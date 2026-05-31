@@ -358,7 +358,7 @@ export default function App() {
             <div style={styles.card}>
                 <div style={styles.header}>
                     <div>
-                        <h1 style={{ fontSize: 'clamp(18px, 3vw, 24px)', fontWeight: 700, margin: 0 }}>Java Core</h1>
+                        <h1 style={{ fontSize: 'clamp(22px, 3vw, 28px)', fontWeight: 700, margin: 0 }}>Java Core</h1>
 
                         <p style={{ fontSize: 'clamp(14px, 2.5vw, 16px)', margin: 0, color: '#374151', fontWeight: 500 }}>
                             Pregunta {currentQuestionIndex + 1} de {shuffledQuestions.length} &nbsp;·&nbsp; <strong>{score} correctas</strong>
