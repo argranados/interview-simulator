@@ -3,17 +3,16 @@ import LandingPage from './LandingPage'
 
 const styles = {
     footerArea: {
-        marginTop: 30,
+        marginTop: 20,
         display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'flex-start',
-        gap: 20
+        flexDirection: 'column',
+        gap: 16
     },
 
     container: {
         minHeight: '100vh',
         background: '#f3f4f6',
-        padding: 40,
+        padding: 'clamp(12px, 3vw, 40px)',
         display: 'flex',
         justifyContent: 'center',
         fontFamily: 'Inter, sans-serif'
@@ -31,20 +30,22 @@ const styles = {
         maxWidth: 900,
         background: 'white',
         borderRadius: 20,
-        padding: 40
+        padding: 'clamp(16px, 3vw, 40px)'
     },
 
     header: {
         display: 'flex',
         justifyContent: 'space-between',
-        marginBottom: 20
+        alignItems: 'flex-start',
+        marginBottom: 20,
+        gap: 10
     },
 
     progressBar: {
         height: 10,
         background: '#e5e7eb',
         borderRadius: 999,
-        marginBottom: 30
+        marginBottom: 20
     },
 
     progress: {
@@ -55,7 +56,7 @@ const styles = {
 
     questionCard: {
         background: '#f9fafb',
-        padding: 30,
+        padding: 'clamp(16px, 3vw, 30px)',
         borderRadius: 20
     },
 
@@ -63,14 +64,16 @@ const styles = {
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        gap: 10,
-        marginBottom: 20
+        gap: 8,
+        marginBottom: 16,
+        flexWrap: 'wrap'
     },
 
     tagsLeft: {
         display: 'flex',
-        gap: 10,
-        alignItems: 'center'
+        gap: 8,
+        alignItems: 'center',
+        flexWrap: 'wrap'
     },
 
     aiTag: {
@@ -79,14 +82,15 @@ const styles = {
         padding: '6px 12px',
         borderRadius: 999,
         fontWeight: 600,
-        fontSize: 14,
+        fontSize: 'clamp(12px, 2vw, 14px)',
         whiteSpace: 'nowrap'
     },
 
     tag: {
         background: '#dbeafe',
         padding: '6px 12px',
-        borderRadius: 999
+        borderRadius: 999,
+        fontSize: 'clamp(12px, 2vw, 14px)'
     },
 
     juniorTag: {
@@ -94,7 +98,8 @@ const styles = {
         color: '#166534',
         padding: '6px 12px',
         borderRadius: 999,
-        fontWeight: 600
+        fontWeight: 600,
+        fontSize: 'clamp(12px, 2vw, 14px)'
     },
 
     midTag: {
@@ -102,66 +107,71 @@ const styles = {
         color: '#c2410c',
         padding: '6px 12px',
         borderRadius: 999,
-        fontWeight: 600
+        fontWeight: 600,
+        fontSize: 'clamp(12px, 2vw, 14px)'
     },
 
     options: {
         display: 'flex',
         flexDirection: 'column',
-        gap: 15,
-        marginTop: 20
+        gap: 12,
+        marginTop: 16
     },
 
     optionButton: {
-        padding: 20,
+        padding: 'clamp(14px, 3vw, 20px)',
         borderRadius: 12,
         border: '1px solid #d1d5db',
-        fontSize: 16,
+        fontSize: 'clamp(15px, 2.5vw, 17px)',
         cursor: 'pointer',
-        textAlign: 'left'
+        textAlign: 'left',
+        lineHeight: 1.5
     },
 
     resultCard: {
         background: 'white',
-        padding: 60,
+        padding: 'clamp(30px, 5vw, 60px)',
         borderRadius: 24,
         textAlign: 'center',
-        width: 500,
+        width: '100%',
+        maxWidth: 500,
         boxShadow: '0 10px 30px rgba(0,0,0,0.08)',
         fontFamily: 'Inter, sans-serif'
     },
 
     trophy: {
-        fontSize: 60,
+        fontSize: 'clamp(40px, 8vw, 60px)',
         marginBottom: 20
     },
 
     resultTitle: {
-        fontSize: 42,
+        fontSize: 'clamp(24px, 5vw, 42px)',
         fontWeight: 800,
-        marginBottom: 30,
+        marginBottom: 20,
         color: '#111827'
     },
 
     resultScore: {
-        fontSize: 52,
+        fontSize: 'clamp(36px, 7vw, 52px)',
         fontWeight: 700,
         color: '#2563eb'
     },
 
     resultPercentage: {
-        fontSize: 32,
+        fontSize: 'clamp(22px, 4vw, 32px)',
         marginTop: 10,
-        marginBottom: 40,
+        marginBottom: 30,
         color: '#6b7280',
         fontWeight: 600
     },
 
     explanation: {
-        marginTop: 30,
+        marginTop: 20,
         background: 'white',
-        padding: 20,
-        borderRadius: 12
+        padding: 'clamp(14px, 3vw, 20px)',
+        borderRadius: 12,
+        fontSize: 'clamp(14px, 2.5vw, 16px)',
+        lineHeight: 1.6
     },
 
     restartButton: {
@@ -172,34 +182,34 @@ const styles = {
         borderRadius: 10,
         cursor: 'pointer',
         marginBottom: 10,
-        fontSize: 14,
+        fontSize: 'clamp(13px, 2vw, 14px)',
         fontWeight: 600,
         transition: '0.2s'
     },
 
     button: {
-        marginTop: 30,
-        padding: '15px 25px',
+        padding: 'clamp(14px, 3vw, 15px) 25px',
         background: '#2563eb',
         color: 'white',
         border: 'none',
         borderRadius: 12,
         cursor: 'pointer',
-        fontSize: 16
+        fontSize: 'clamp(15px, 2.5vw, 17px)',
+        fontWeight: 600,
+        width: '100%'
     },
 
     codeBlock: {
         background: '#f3f4f6',
         color: '#111827',
-        padding: 24,
+        padding: 'clamp(16px, 3vw, 24px)',
         borderRadius: 16,
         overflowX: 'auto',
-        fontSize: 14,
+        fontSize: 'clamp(12px, 2vw, 14px)',
         lineHeight: 1.7,
-        marginTop: 24,
-        marginBottom: 24,
-        fontFamily:
-            'Consolas, Monaco, monospace',
+        marginTop: 16,
+        marginBottom: 16,
+        fontFamily: 'Consolas, Monaco, monospace',
         border: '1px solid #e5e7eb',
         whiteSpace: 'pre-wrap'
     },
