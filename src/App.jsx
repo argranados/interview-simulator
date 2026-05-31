@@ -119,13 +119,17 @@ const styles = {
     },
 
     optionButton: {
-        padding: 'clamp(14px, 3vw, 20px)',
+        padding: 'clamp(16px, 3vw, 22px) clamp(16px, 3vw, 20px)',
         borderRadius: 12,
-        border: '1px solid #d1d5db',
-        fontSize: 'clamp(15px, 2.5vw, 17px)',
+        border: '1.5px solid #c7d2e0',
+        fontSize: 'clamp(16px, 2.8vw, 19px)',
         cursor: 'pointer',
         textAlign: 'left',
-        lineHeight: 1.5
+        lineHeight: 1.5,
+        width: '100%',
+        background: '#f0f4f8',
+        color: '#1e293b',
+        fontWeight: 500
     },
 
     resultCard: {
@@ -354,11 +358,10 @@ export default function App() {
             <div style={styles.card}>
                 <div style={styles.header}>
                     <div>
-                        <h1>Java Core Interview Quiz</h1>
+                        <h1 style={{ fontSize: 'clamp(18px, 3vw, 24px)', fontWeight: 700, margin: 0 }}>Java Core</h1>
 
-                        <p>
-                            Pregunta {currentQuestionIndex + 1} de{' '}
-                            {shuffledQuestions.length}
+                        <p style={{ fontSize: 'clamp(14px, 2.5vw, 16px)', margin: 0, color: '#374151', fontWeight: 500 }}>
+                            Pregunta {currentQuestionIndex + 1} de {shuffledQuestions.length} &nbsp;·&nbsp; <strong>{score} correctas</strong>
                         </p>
                     </div>
 
@@ -369,8 +372,6 @@ export default function App() {
                         >
                             Nueva entrevista
                         </button>
-
-                        <h2>{score} correctas</h2>
                     </div>
                 </div>
 
