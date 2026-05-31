@@ -458,23 +458,10 @@ export default function App() {
                     </div>
 
                     <div style={styles.footerArea}>
-                        <div style={{ flex: 1 }}>
-                            {showResult && (
-                                <div style={styles.explanation}>
-                                    <strong>Explicación:</strong>
-
-                                    <p>{currentQuestion.explanation}</p>
-                                </div>
-                            )}
-                        </div>
-
                         <button
                             style={{
                                 ...styles.button,
                                 opacity: showResult ? 1 : 0.5,
-                                marginTop: 0,
-                                minWidth: 180,
-                                height: 60
                             }}
                             disabled={!showResult}
                             onClick={handleNext}
@@ -484,6 +471,13 @@ export default function App() {
                                 ? 'Finalizar'
                                 : 'Siguiente'}
                         </button>
+
+                        {showResult && (
+                            <div style={styles.explanation}>
+                                <strong>Explicación:</strong>
+                                <p>{currentQuestion.explanation}</p>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>
