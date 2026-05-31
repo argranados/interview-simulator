@@ -1,0 +1,8 @@
+services:
+  react-app:
+    build: .
+    ports:
+      - "3000:5173"
+    volumes:
+      - .:/app
+      - /app/node_modules
