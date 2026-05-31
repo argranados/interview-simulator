@@ -360,7 +360,7 @@ export default function App() {
                     <div>
                         <h1 style={{ fontSize: 'clamp(22px, 3vw, 28px)', fontWeight: 700, margin: 0 }}>Java Core</h1>
 
-                        <p style={{ fontSize: 'clamp(14px, 2.5vw, 16px)', margin: 0, color: '#374151', fontWeight: 500 }}>
+                        <p style={{ fontSize: 'clamp(13px, 2.5vw, 15px)', margin: '4px 0 0 0', color: '#374151', fontWeight: 500, whiteSpace: 'nowrap' }}>
                             Pregunta {currentQuestionIndex + 1} de {shuffledQuestions.length} &nbsp;·&nbsp; <strong>{score} correctas</strong>
                         </p>
                     </div>
