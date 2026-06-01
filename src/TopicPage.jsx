@@ -1,9 +1,16 @@
 export default function TopicPage({ onSelect }) {
     const topics = [
+        // Fila 1
         { id: 'java_core', title: 'Java Core', emoji: '☕', description: 'Fundamentos del lenguaje', available: true },
         { id: 'microservicios', title: 'Microservicios y APIs', emoji: '🔗', description: 'REST, gRPC, mensajería', available: true },
         { id: 'java_patrones', title: 'Java Patrones', emoji: '🧩', description: 'Design patterns', available: false },
         { id: 'java_arquitectura', title: 'Java Arquitectura', emoji: '🏛️', description: 'Arquitectura de software', available: false },
+        
+        // Fila 2 - nuevos temas (todos disponibles)
+        { id: 'sql_java', title: 'SQL Java', emoji: '🗄️', description: 'Consultas, JDBC, JPA', available: true },
+        { id: 'unit_testing', title: 'Unit Testing', emoji: '🧪', description: 'JUnit, Mockito, TDD', available: true },
+        { id: 'devops_java', title: 'DevOps Java', emoji: '🚀', description: 'CI/CD, Docker, Kubernetes', available: true },
+        { id: 'aws_java', title: 'AWS Java Backend', emoji: '☁️', description: 'Lambda, RDS, S3, EC2', available: true },
     ]
 
     return (
@@ -29,6 +36,7 @@ export default function TopicPage({ onSelect }) {
     )
 }
 
+// ⬇️ IMPORTANTE: Este objeto debe estar definido
 const styles = {
     container: {
         minHeight: '100vh', background: '#f8fafc', display: 'flex',
