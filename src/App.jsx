@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import LandingPage from './LandingPage'
+import TopicPage from './TopicPage'
 
 const styles = {
     footerArea: {
@@ -221,9 +222,17 @@ const styles = {
 
 const AI_NAMES = { chatgpt: 'ChatGPT', claude: 'Claude', deepseek: 'DeepSeek' }
 
+const TOPIC_LABELS = {
+    java_core: 'Java Core',
+    microservicios: 'Microservicios y APIs',
+    java_patrones: 'Java Patrones',
+    java_arquitectura: 'Java Arquitectura',
+}
+
 function getAIName(bank) {
     if (!bank) return ''
-    const prefix = bank.split('_')[0]
+    const filename = bank.split('/').pop()
+    const prefix = filename.split('_')[0]
     return AI_NAMES[prefix] || prefix
 }
 
@@ -231,7 +240,7 @@ export default function App() {
     const TOTAL_QUESTIONS = 25
 
     const [questions, setQuestions] = useState([])
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(false)
 
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
     const [selectedAnswer, setSelectedAnswer] = useState(null)
@@ -240,11 +249,13 @@ export default function App() {
     const [finished, setFinished] = useState(false)
     const [quizKey, setQuizKey] = useState(0)
     const [selectedBank, setSelectedBank] = useState(null)
-    const [showLanding, setShowLanding] = useState(true)
+    const [selectedTopic, setSelectedTopic] = useState(null)
+    const [showTopic, setShowTopic] = useState(true)
+    const [showLanding, setShowLanding] = useState(false)
 
     useEffect(() => {
         if (!selectedBank) return
-        //fetch('/question-banks/deepseek_json_java_junior_mid.json')
+        setLoading(true)
         fetch(`/question-banks/${selectedBank}`)
             .then((response) => response.json())
             .then((data) => {
@@ -292,21 +303,43 @@ export default function App() {
     }
 
     const restartQuiz = () => {
-        setQuizKey(k => k + 1)   // ← esta línea faltaba
-        setShowLanding(true)
+        setQuizKey(k => k + 1)
+        setShowTopic(true)
+        setShowLanding(false)
+        setSelectedTopic(null)
+        setSelectedBank(null)
         setCurrentQuestionIndex(0)
         setSelectedAnswer(null)
         setShowResult(false)
         setScore(0)
         setFinished(false)
+        setQuestions([])
+    }
+
+    if (showTopic) {
+        return (
+            <TopicPage
+                onSelect={(topic) => {
+                    setSelectedTopic(topic)
+                    setShowTopic(false)
+                    setShowLanding(true)
+                }}
+            />
+        )
     }
 
     if (showLanding) {
         return (
             <LandingPage
+                topic={selectedTopic}
                 onSelect={(bank) => {
                     setSelectedBank(bank)
                     setShowLanding(false)
+                }}
+                onBack={() => {
+                    setShowLanding(false)
+                    setShowTopic(true)
+                    setSelectedTopic(null)
                 }}
             />
         )
@@ -363,7 +396,7 @@ export default function App() {
             <div style={styles.card}>
                 <div style={styles.header}>
                     <div>
-                        <h1 style={{ fontSize: 'clamp(22px, 3vw, 28px)', fontWeight: 700, margin: 0 }}>Java Core</h1>
+                        <h1 style={{ fontSize: 'clamp(22px, 3vw, 28px)', fontWeight: 700, margin: 0 }}>{TOPIC_LABELS[selectedTopic] || 'Interview'}</h1>
 
                         <p style={{ fontSize: 'clamp(13px, 2.5vw, 15px)', margin: '4px 0 0 0', color: '#374151', fontWeight: 500, whiteSpace: 'nowrap' }}>
                             Pregunta {currentQuestionIndex + 1} de {shuffledQuestions.length} &nbsp;·&nbsp; <strong>{score} correctas</strong>

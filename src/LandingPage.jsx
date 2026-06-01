@@ -1,29 +1,33 @@
-export default function LandingPage({ onSelect }) {
-  const banks = [
-    {
-      id: 'chatgpt_java_core_interview_bank_junior_mid.json',
-      title: 'ChatGPT',
-      emoji: '🤖',
-      description: 'Balanceado y claro'
-    },
-    {
-      id: 'claude_java_core_interview_bank_junior_mid.json',
-      title: 'Claude',
-      emoji: '🧠',
-      description: 'Más analítico'
-    },
-    {
-      id: 'deepseek_java_core_interview_bank_junior_mid.json',
-      title: 'DeepSeek',
-      emoji: '⚡',
-      description: 'Más técnico y directo'
-    }
-  ]
+const BANKS_CONFIG = {
+  java_core: [
+    { ai: 'chatgpt', title: 'ChatGPT', emoji: '🤖', description: 'Balanceado y claro' },
+    { ai: 'claude', title: 'Claude', emoji: '🧠', description: 'Más analítico' },
+    { ai: 'deepseek', title: 'DeepSeek', emoji: '⚡', description: 'Más técnico y directo' },
+  ],
+  microservicios: [
+    { ai: 'chatgpt', title: 'ChatGPT', emoji: '🤖', description: 'Balanceado y claro' },
+    { ai: 'claude', title: 'Claude', emoji: '🧠', description: 'Más analítico' },
+    { ai: 'deepseek', title: 'DeepSeek', emoji: '⚡', description: 'Más técnico y directo' },
+  ],
+}
+
+const TOPIC_LABELS = {
+  java_core: 'Java Core',
+  microservicios: 'Microservicios y APIs',
+  java_patrones: 'Java Patrones',
+  java_arquitectura: 'Java Arquitectura',
+}
+
+export default function LandingPage({ onSelect, onBack, topic }) {
+  const banks = (BANKS_CONFIG[topic] || []).map(b => ({
+    ...b,
+    id: `${topic}/${b.ai}_${topic}.json`,
+  }))
 
   return (
     <div style={styles.container}>
       <h1 style={styles.title}>
-        Java Interview Simulator
+        {TOPIC_LABELS[topic] || 'Interview Simulator'}
       </h1>
 
       <p style={styles.subtitle}>
@@ -51,6 +55,10 @@ export default function LandingPage({ onSelect }) {
           </div>
         ))}
       </div>
+
+      <button style={styles.backButton} onClick={onBack}>
+        ← Cambiar tema
+      </button>
     </div>
   )
 }
@@ -116,5 +124,17 @@ const styles = {
   description: {
     color: '#6b7280',
     fontSize: 'clamp(14px, 2.5vw, 16px)'
+  },
+
+  backButton: {
+    marginTop: 32,
+    background: 'none',
+    border: '1px solid #d1d5db',
+    borderRadius: 10,
+    padding: '10px 20px',
+    cursor: 'pointer',
+    fontSize: 'clamp(14px, 2vw, 15px)',
+    color: '#6b7280',
+    fontWeight: 500
   }
 }

@@ -1,0 +1,1202 @@
+[
+  {
+    "id": 1,
+    "level": "Junior",
+    "category": "Spring Boot Core",
+    "question": "¿Cuál es la anotación principal para declarar una clase como un microservicio REST en Spring Boot 3.x?",
+    "code": null,
+    "options": [
+      "@RestController",
+      "@Controller",
+      "@Service",
+      "@Component"
+    ],
+    "correct": 0,
+    "explanation": "@RestController combina @Controller y @ResponseBody, ideal para APIs REST. En Spring Boot 3.x sigue siendo la anotación estándar."
+  },
+  {
+    "id": 2,
+    "level": "Junior",
+    "category": "Microservices",
+    "question": "¿Cuál es una ventaja clave de la arquitectura de microservicios frente a un monolito?",
+    "code": null,
+    "options": [
+      "Escalabilidad independiente de componentes",
+      "Menor complejidad en las comunicaciones de red",
+      "No se necesita gestión de transacciones distribuidas",
+      "Las pruebas end-to-end son más sencillas"
+    ],
+    "correct": 0,
+    "explanation": "Permite escalar servicios de forma independiente. La comunicación en red añade complejidad."
+  },
+  {
+    "id": 3,
+    "level": "Junior",
+    "category": "Spring Boot Core",
+    "question": "¿Qué archivo se utiliza típicamente para configurar propiedades de una aplicación Spring Boot 3.x?",
+    "code": null,
+    "options": [
+      "application.properties o application.yml",
+      "web.xml",
+      "pom.xml",
+      "logback.xml"
+    ],
+    "correct": 0,
+    "explanation": "Spring Boot externaliza configuración en application.properties/yml."
+  },
+  {
+    "id": 4,
+    "level": "Junior",
+    "category": "REST API",
+    "question": "¿Qué verbo HTTP se debe usar para actualizar parcialmente un recurso?",
+    "code": null,
+    "options": [
+      "PATCH",
+      "PUT",
+      "POST",
+      "DELETE"
+    ],
+    "correct": 0,
+    "explanation": "PATCH permite modificaciones parciales, PUT reemplaza todo el recurso."
+  },
+  {
+    "id": 5,
+    "level": "Junior",
+    "category": "Database & JPA",
+    "question": "¿Qué anotación marca una clase como entidad JPA?",
+    "code": null,
+    "options": [
+      "@Entity",
+      "@Table",
+      "@Repository",
+      "@Document"
+    ],
+    "correct": 0,
+    "explanation": "@Entity define una entidad gestionada por JPA."
+  },
+  {
+    "id": 6,
+    "level": "Junior",
+    "category": "Spring Boot Core",
+    "question": "¿Para qué sirve la anotación @SpringBootApplication?",
+    "code": null,
+    "options": [
+      "Combina @Configuration, @EnableAutoConfiguration y @ComponentScan",
+      "Indica que la aplicación usará Spring MVC",
+      "Habilita el soporte para microservicios",
+      "Configura automáticamente la conexión a base de datos"
+    ],
+    "correct": 0,
+    "explanation": "Es una anotación de conveniencia que activa configuración automática, escaneo de componentes y configuración."
+  },
+  {
+    "id": 7,
+    "level": "Mid",
+    "category": "Spring Cloud",
+    "question": "¿Cuál es el propósito de un Service Discovery como Eureka en microservicios?",
+    "code": null,
+    "options": [
+      "Permitir que los servicios se encuentren sin necesidad de IPs fijas",
+      "Balancear la carga entre instancias",
+      "Centralizar la configuración",
+      "Proveer autenticación unificada"
+    ],
+    "correct": 0,
+    "explanation": "Los servicios se registran y consultan a Eureka para localizar otros servicios dinámicamente."
+  },
+  {
+    "id": 8,
+    "level": "Junior",
+    "category": "Spring Boot Core",
+    "question": "¿Cómo se expone un endpoint que devuelve una lista de objetos en formato JSON?",
+    "code": "@RestController\npublic class ProductController {\n    @GetMapping(\"/products\")\n    public List<Product> getAll() {\n        return productService.findAll();\n    }\n}",
+    "options": [
+      "Con @RestController y @GetMapping, Spring convierte automáticamente a JSON",
+      "Es necesario usar ResponseEntity<JSONObject>",
+      "Debe retornar un String con formato JSON manualmente",
+      "Se requiere configurar un MessageConverter de Jackson explícitamente"
+    ],
+    "correct": 0,
+    "explanation": "Spring Boot configura Jackson por defecto, @RestController serializa la respuesta a JSON."
+  },
+  {
+    "id": 9,
+    "level": "Junior",
+    "category": "Microservices",
+    "question": "¿Qué es una API Gateway en una arquitectura de microservicios?",
+    "code": null,
+    "options": [
+      "Un punto único de entrada que enruta peticiones a los servicios backend",
+      "Una base de datos compartida entre servicios",
+      "Un balanceador de carga exclusivo para HTTP",
+      "Un servicio que genera documentación de API"
+    ],
+    "correct": 0,
+    "explanation": "Actúa como proxy inverso centralizando enrutamiento, autenticación, etc."
+  },
+  {
+    "id": 10,
+    "level": "Mid",
+    "category": "Spring Boot Core",
+    "question": "¿Qué beans se crean al agregar spring-boot-starter-data-jpa?",
+    "code": null,
+    "options": [
+      "EntityManagerFactory, DataSource, TransactionManager, etc.",
+      "Solo DataSource",
+      "Un pool de conexiones HikariCP sin JPA",
+      "Un repositorio REST automático"
+    ],
+    "correct": 0,
+    "explanation": "El starter autoconfigura JPA proporcionando esos beans."
+  },
+  {
+    "id": 11,
+    "level": "Junior",
+    "category": "REST API",
+    "question": "¿Qué código de estado HTTP representa 'Recurso creado exitosamente'?",
+    "code": null,
+    "options": [
+      "200 OK",
+      "204 No Content",
+      "201 Created",
+      "301 Moved Permanently"
+    ],
+    "correct": 2,
+    "explanation": "201 Created indica que la solicitud resultó en un nuevo recurso."
+  },
+  {
+    "id": 12,
+    "level": "Junior",
+    "category": "Database & JPA",
+    "question": "¿Qué anotación se utiliza para mapear una relación Many-to-One en JPA?",
+    "code": "@Entity\npublic class Order {\n    @ManyToOne\n    @JoinColumn(name=\"customer_id\")\n    private Customer customer;\n}",
+    "options": [
+      "@OneToMany",
+      "@ManyToOne",
+      "@OneToOne",
+      "@ManyToMany"
+    ],
+    "correct": 1,
+    "explanation": "@ManyToOne establece una relación muchos a uno con otra entidad."
+  },
+  {
+    "id": 13,
+    "level": "Junior",
+    "category": "Spring Boot Core",
+    "question": "¿Qué comando Maven se usa para ejecutar una aplicación Spring Boot en desarrollo?",
+    "code": null,
+    "options": [
+      "mvn spring-boot:run",
+      "mvn compile",
+      "mvn exec:java",
+      "mvn war:war"
+    ],
+    "correct": 0,
+    "explanation": "spring-boot:run arranca la aplicación con el plugin de Spring Boot."
+  },
+  {
+    "id": 14,
+    "level": "Mid",
+    "category": "Spring Cloud",
+    "question": "¿Cómo se define una ruta hacia un microservicio en Spring Cloud Gateway usando un bean RouteLocator?",
+    "code": "@Bean\npublic RouteLocator customRouteLocator(RouteLocatorBuilder builder) {\n    return builder.routes()\n        .route(\"product-service\", r -> r.path(\"/products/**\")\n        .uri(\"lb://PRODUCT-SERVICE\"))\n        .build();\n}",
+    "options": [
+      "Usando la anotación @GatewayRoute",
+      "Mediante @RequestMapping con URI",
+      "Con el builder y el método .route() del RouteLocatorBuilder",
+      "Definiéndolo en application.yml únicamente"
+    ],
+    "correct": 2,
+    "explanation": "Se construye un RouteLocator usando el builder y el método .route()."
+  },
+  {
+    "id": 15,
+    "level": "Junior",
+    "category": "Testing",
+    "question": "¿Cuál es la anotación base para una prueba que carga el contexto completo de Spring Boot?",
+    "code": null,
+    "options": [
+      "@DataJpaTest",
+      "@WebMvcTest",
+      "@Test",
+      "@SpringBootTest"
+    ],
+    "correct": 3,
+    "explanation": "@SpringBootTest carga el contexto completo para pruebas de integración."
+  },
+  {
+    "id": 16,
+    "level": "Junior",
+    "category": "DevOps & Containerization",
+    "question": "¿Qué herramienta se usa para empaquetar una aplicación Spring Boot en un contenedor?",
+    "code": null,
+    "options": [
+      "Kubernetes",
+      "Docker",
+      "Jenkins",
+      "Git"
+    ],
+    "correct": 1,
+    "explanation": "Docker crea imágenes de contenedor a partir de un Dockerfile."
+  },
+  {
+    "id": 17,
+    "level": "Junior",
+    "category": "Microservices",
+    "question": "¿Qué patrón se recomienda para manejar fallos en cascada entre microservicios?",
+    "code": null,
+    "options": [
+      "API Gateway",
+      "Service Mesh",
+      "Circuit Breaker",
+      "Saga"
+    ],
+    "correct": 2,
+    "explanation": "Circuit Breaker evita que fallos se propaguen abriendo el circuito temporalmente."
+  },
+  {
+    "id": 18,
+    "level": "Mid",
+    "category": "Database & JPA",
+    "question": "¿Cómo se implementa paginación en un repositorio Spring Data JPA?",
+    "code": "Page<Product> findByCategory(String category, Pageable pageable);",
+    "options": [
+      "Con el método limit() y offset()",
+      "Retornando Page<T> y aceptando Pageable",
+      "Usando @PaginationQuery",
+      "Anotando el método con @Pageable"
+    ],
+    "correct": 1,
+    "explanation": "Se usa Page<T> como retorno y un parámetro Pageable, Spring Data genera la consulta paginada."
+  },
+  {
+    "id": 19,
+    "level": "Junior",
+    "category": "Spring Boot Core",
+    "question": "¿Qué starter necesitas para construir una API REST con Spring MVC?",
+    "code": null,
+    "options": [
+      "spring-boot-starter-actuator",
+      "spring-boot-starter-data-rest",
+      "spring-boot-starter-security",
+      "spring-boot-starter-web"
+    ],
+    "correct": 3,
+    "explanation": "spring-boot-starter-web incluye Spring MVC y Tomcat embebido."
+  },
+  {
+    "id": 20,
+    "level": "Junior",
+    "category": "REST API",
+    "question": "¿Cuál es el formato de intercambio de datos más común en APIs REST actuales?",
+    "code": null,
+    "options": [
+      "XML",
+      "CSV",
+      "JSON",
+      "YAML"
+    ],
+    "correct": 2,
+    "explanation": "JSON es ligero y ampliamente soportado."
+  },
+  {
+    "id": 21,
+    "level": "Mid",
+    "category": "Spring Cloud",
+    "question": "¿Qué dependencia de Spring Cloud se utiliza para centralizar configuración externa?",
+    "code": null,
+    "options": [
+      "spring-cloud-starter-netflix-eureka-client",
+      "spring-cloud-starter-config",
+      "spring-cloud-starter-gateway",
+      "spring-cloud-starter-sleuth"
+    ],
+    "correct": 1,
+    "explanation": "spring-cloud-starter-config habilita Config Server/Client para configuración centralizada."
+  },
+  {
+    "id": 22,
+    "level": "Junior",
+    "category": "Microservices",
+    "question": "¿Qué es un 'service mesh'?",
+    "code": null,
+    "options": [
+      "Una capa de infraestructura que gestiona comunicación, seguridad y observabilidad entre servicios",
+      "Una base de datos de series temporales",
+      "Un patrón de descomposición de monolitos",
+      "Un balanceador de carga hardware"
+    ],
+    "correct": 0,
+    "explanation": "Un service mesh como Istio maneja la red de microservicios de forma transparente."
+  },
+  {
+    "id": 23,
+    "level": "Mid",
+    "category": "Spring Boot Core",
+    "question": "En Spring Boot 3.x, ¿qué cambio importante se introdujo respecto a los paquetes javax?",
+    "code": null,
+    "options": [
+      "Se eliminó el soporte para anotaciones",
+      "Se requiere un módulo adicional javax-legacy",
+      "Se migró de javax.* a jakarta.*",
+      "Nada, javax sigue igual"
+    ],
+    "correct": 2,
+    "explanation": "Spring Boot 3 usa Jakarta EE 9+, cambiando javax a jakarta."
+  },
+  {
+    "id": 24,
+    "level": "Junior",
+    "category": "Testing",
+    "question": "¿Qué anotación permite probar solo la capa web de Spring MVC?",
+    "code": null,
+    "options": [
+      "@SpringBootTest",
+      "@WebMvcTest",
+      "@DataJpaTest",
+      "@MockBean"
+    ],
+    "correct": 1,
+    "explanation": "@WebMvcTest carga controladores y configuración MVC sin cargar el contexto completo."
+  },
+  {
+    "id": 25,
+    "level": "Mid",
+    "category": "Security",
+    "question": "¿Qué dependencia starter agrega seguridad basada en Spring Security a un proyecto Spring Boot?",
+    "code": null,
+    "options": [
+      "spring-boot-starter-oauth2",
+      "spring-boot-starter-security",
+      "spring-boot-starter-webflux",
+      "spring-boot-starter-actuator"
+    ],
+    "correct": 1,
+    "explanation": "spring-boot-starter-security incluye Spring Security con configuración básica."
+  },
+  {
+    "id": 26,
+    "level": "Junior",
+    "category": "Java Core",
+    "question": "¿Qué palabra clave se usa para definir una constante en Java?",
+    "code": null,
+    "options": [
+      "static",
+      "final",
+      "const",
+      "immutable"
+    ],
+    "correct": 1,
+    "explanation": "final indica que una variable no puede cambiar su valor."
+  },
+  {
+    "id": 27,
+    "level": "Mid",
+    "category": "Messaging",
+    "question": "¿Qué anotación de Spring permite que un método escuche mensajes de una cola RabbitMQ?",
+    "code": null,
+    "options": [
+      "@JmsListener",
+      "@RabbitListener",
+      "@KafkaListener",
+      "@Scheduled"
+    ],
+    "correct": 1,
+    "explanation": "@RabbitListener se usa para consumir mensajes de RabbitMQ."
+  },
+  {
+    "id": 28,
+    "level": "Junior",
+    "category": "Spring Boot Core",
+    "question": "¿Cómo se externaliza la configuración de la base de datos en application.properties?",
+    "code": "spring.datasource.url=jdbc:mysql://localhost:3306/mydb\nspring.datasource.username=user\nspring.datasource.password=secret",
+    "options": [
+      "Mediante variables de entorno solo",
+      "Con un archivo config.xml",
+      "En el código con @Value",
+      "Usando propiedades spring.datasource.*"
+    ],
+    "correct": 3,
+    "explanation": "Spring Boot permite configurar la fuente de datos a través de estas propiedades."
+  },
+  {
+    "id": 29,
+    "level": "Mid",
+    "category": "Microservices",
+    "question": "¿Qué patrón se emplea para mantener la consistencia de datos entre servicios mediante eventos?",
+    "code": null,
+    "options": [
+      "CQRS",
+      "Saga",
+      "Event Sourcing",
+      "Circuit Breaker"
+    ],
+    "correct": 1,
+    "explanation": "El patrón Saga coordina transacciones distribuidas mediante una secuencia de transacciones locales y eventos."
+  },
+  {
+    "id": 30,
+    "level": "Junior",
+    "category": "REST API",
+    "question": "¿Qué anotación se usa para extraer valores de la ruta en un controlador REST?",
+    "code": "@GetMapping(\"/products/{id}\")\npublic Product getProduct(@PathVariable Long id) { ... }",
+    "options": [
+      "@RequestParam",
+      "@PathVariable",
+      "@RequestBody",
+      "@Path"
+    ],
+    "correct": 1,
+    "explanation": "@PathVariable vincula la variable de la plantilla de ruta."
+  },
+  {
+    "id": 31,
+    "level": "Mid",
+    "category": "Spring Cloud",
+    "question": "¿Qué herramienta de Spring Cloud permite balanceo de carga del lado del cliente?",
+    "code": null,
+    "options": [
+      "Spring Cloud Gateway",
+      "Spring Cloud LoadBalancer",
+      "Eureka",
+      "Resilience4j"
+    ],
+    "correct": 1,
+    "explanation": "Spring Cloud LoadBalancer (sucesor de Ribbon) provee balanceo en el cliente con integración a Service Discovery."
+  },
+  {
+    "id": 32,
+    "level": "Junior",
+    "category": "DevOps & Containerization",
+    "question": "¿Cuál es el propósito de un archivo Dockerfile en un proyecto Spring Boot?",
+    "code": null,
+    "options": [
+      "Configurar la red de Kubernetes",
+      "Definir las variables de entorno",
+      "Describir cómo construir la imagen del contenedor",
+      "Ejecutar pruebas unitarias"
+    ],
+    "correct": 2,
+    "explanation": "Dockerfile contiene instrucciones para crear la imagen Docker."
+  },
+  {
+    "id": 33,
+    "level": "Mid",
+    "category": "Database & JPA",
+    "question": "¿Cómo se manejan las migraciones de base de datos en Spring Boot con Flyway?",
+    "code": null,
+    "options": [
+      "Requiere ejecución manual de scripts",
+      "Se configura solo por anotación @Migration",
+      "No es compatible con Spring Boot 3.x",
+      "Flyway ejecuta automáticamente scripts SQL en classpath:db/migration"
+    ],
+    "correct": 3,
+    "explanation": "Flyway busca scripts en db/migration y los aplica al iniciar la aplicación."
+  },
+  {
+    "id": 34,
+    "level": "Junior",
+    "category": "Design Patterns",
+    "question": "¿Qué patrón crea una única instancia de una clase y proporciona un punto de acceso global?",
+    "code": null,
+    "options": [
+      "Factory",
+      "Singleton",
+      "Observer",
+      "Builder"
+    ],
+    "correct": 1,
+    "explanation": "El patrón Singleton garantiza una sola instancia."
+  },
+  {
+    "id": 35,
+    "level": "Mid",
+    "category": "Observability",
+    "question": "¿Qué herramienta de Spring Boot expone métricas, health checks y más?",
+    "code": null,
+    "options": [
+      "Spring Cloud Sleuth",
+      "Prometheus",
+      "Spring Boot Actuator",
+      "Grafana"
+    ],
+    "correct": 2,
+    "explanation": "Actuator provee endpoints como /health, /metrics, /info."
+  },
+  {
+    "id": 36,
+    "level": "Junior",
+    "category": "Java Core",
+    "question": "¿Cuál es la interfaz base para todas las colecciones en Java?",
+    "code": null,
+    "options": [
+      "Iterable",
+      "List",
+      "Set",
+      "Collection"
+    ],
+    "correct": 3,
+    "explanation": "Collection es la raíz de las colecciones, heredando de Iterable."
+  },
+  {
+    "id": 37,
+    "level": "Mid",
+    "category": "Security",
+    "question": "¿Cómo se protege un endpoint para que solo usuarios autenticados puedan acceder en Spring Security 6?",
+    "code": null,
+    "options": [
+      "Usando .authenticated() en la configuración de SecurityFilterChain",
+      "Anotando con @Secured(\"ROLE_USER\")",
+      "Agregando @PreAuthorize en el controlador",
+      "Todas las anteriores son válidas"
+    ],
+    "correct": 3,
+    "explanation": "Cualquiera de esos métodos funciona en Spring Security 6, y se pueden combinar."
+  },
+  {
+    "id": 38,
+    "level": "Junior",
+    "category": "Spring Boot Core",
+    "question": "¿Qué significa el 'fail-fast' en el contexto de Spring Boot?",
+    "code": null,
+    "options": [
+      "La compilación aborta ante el primer error",
+      "La aplicación se detiene si falla una configuración crítica al iniciar",
+      "Las pruebas unitarias fallan intencionalmente",
+      "El contenedor se reinicia inmediatamente"
+    ],
+    "correct": 1,
+    "explanation": "Spring Boot termina el arranque si condiciones como conexión a BD no se cumplen, a menos que se configure un reintento."
+  },
+  {
+    "id": 39,
+    "level": "Mid",
+    "category": "Messaging",
+    "question": "¿Qué broker de mensajería se integra fácilmente con Spring Boot mediante spring-boot-starter-amqp?",
+    "code": null,
+    "options": [
+      "Apache Kafka",
+      "RabbitMQ",
+      "ActiveMQ",
+      "Amazon SQS"
+    ],
+    "correct": 1,
+    "explanation": "spring-boot-starter-amqp configura RabbitMQ mediante el protocolo AMQP."
+  },
+  {
+    "id": 40,
+    "level": "Junior",
+    "category": "REST API",
+    "question": "¿Qué anotación permite limitar la tasa de peticiones en un controlador usando Resilience4j?",
+    "code": null,
+    "options": [
+      "@Retry",
+      "@CircuitBreaker",
+      "@RateLimiter",
+      "@Bulkhead"
+    ],
+    "correct": 2,
+    "explanation": "@RateLimiter controla la cantidad de solicitudes en un período de tiempo."
+  },
+  {
+    "id": 41,
+    "level": "Mid",
+    "category": "Spring Cloud",
+    "question": "¿Qué componente de Spring Cloud se recomienda para implementar el patrón Circuit Breaker?",
+    "code": null,
+    "options": [
+      "Hystrix",
+      "Spring Cloud Circuit Breaker (abstracción)",
+      "Sentinel",
+      "Resilience4j"
+    ],
+    "correct": 3,
+    "explanation": "Resilience4j es la implementación recomendada para circuit breaker en Spring Cloud."
+  },
+  {
+    "id": 42,
+    "level": "Junior",
+    "category": "Database & JPA",
+    "question": "¿Qué anotación permite inyectar un EntityManager en un repositorio personalizado?",
+    "code": null,
+    "options": [
+      "@Autowired",
+      "@Inject",
+      "@PersistenceContext",
+      "@EntityManager"
+    ],
+    "correct": 2,
+    "explanation": "@PersistenceContext inyecta el EntityManager gestionado por el contenedor."
+  },
+  {
+    "id": 43,
+    "level": "Junior",
+    "category": "Testing",
+    "question": "¿Cómo se simula una dependencia en pruebas de Spring Boot?",
+    "code": null,
+    "options": [
+      "Tanto @Mock (Mockito) como @MockBean (Spring Boot) son válidos",
+      "Solo @Mock de Mockito",
+      "Solo @MockBean de Spring Boot",
+      "Ninguno, se debe usar @SpyBean"
+    ],
+    "correct": 0,
+    "explanation": "@MockBean integra el mock en el contexto; @Mock se usa en pruebas unitarias puras. Ambos son útiles."
+  },
+  {
+    "id": 44,
+    "level": "Mid",
+    "category": "Spring Boot Core",
+    "question": "¿Cuál es el scope por defecto de un bean en Spring?",
+    "code": null,
+    "options": [
+      "prototype",
+      "request",
+      "session",
+      "singleton"
+    ],
+    "correct": 3,
+    "explanation": "Por defecto los beans son singleton (una instancia por contenedor)."
+  },
+  {
+    "id": 45,
+    "level": "Junior",
+    "category": "Microservices",
+    "question": "¿Qué significa 'acoplamiento bajo' en microservicios?",
+    "code": null,
+    "options": [
+      "Todos los servicios comparten la misma base de datos",
+      "Los servicios se despliegan juntos",
+      "Los servicios deben depender lo menos posible unos de otros",
+      "Se usa un solo lenguaje de programación"
+    ],
+    "correct": 2,
+    "explanation": "Busca independencia para cambios y despliegues."
+  },
+  {
+    "id": 46,
+    "level": "Mid",
+    "category": "Design Patterns",
+    "question": "¿Qué patrón se usa comúnmente para crear objetos complejos paso a paso?",
+    "code": null,
+    "options": [
+      "Singleton",
+      "Builder",
+      "Prototype",
+      "Factory Method"
+    ],
+    "correct": 1,
+    "explanation": "Builder separa la construcción de un objeto complejo de su representación."
+  },
+  {
+    "id": 47,
+    "level": "Junior",
+    "category": "Security",
+    "question": "En Spring Security, ¿qué es un SecurityFilterChain?",
+    "code": null,
+    "options": [
+      "Una anotación para métodos seguros",
+      "Una cadena de filtros que procesan peticiones de seguridad",
+      "Un proveedor de autenticación",
+      "Un bean de configuración de CORS"
+    ],
+    "correct": 1,
+    "explanation": "SecurityFilterChain define cómo se aplican los filtros de seguridad a las peticiones."
+  },
+  {
+    "id": 48,
+    "level": "Mid",
+    "category": "Observability",
+    "question": "¿Qué herramienta de trazabilidad distribuye automáticamente en Spring Boot 3?",
+    "code": null,
+    "options": [
+      "Zipkin solo",
+      "OpenTelemetry sin dependencias",
+      "Micrometer Tracing (antes Sleuth)",
+      "Actuator"
+    ],
+    "correct": 2,
+    "explanation": "Spring Boot 3 usa Micrometer Tracing para propagar trace IDs, compatible con Zipkin, Jaeger, etc."
+  },
+  {
+    "id": 49,
+    "level": "Junior",
+    "category": "DevOps & Containerization",
+    "question": "¿Qué comando se usa para construir una imagen Docker desde un Dockerfile?",
+    "code": null,
+    "options": [
+      "docker run",
+      "docker build -t nombre .",
+      "docker compose up",
+      "docker pull"
+    ],
+    "correct": 1,
+    "explanation": "docker build construye la imagen; -t asigna un tag."
+  },
+  {
+    "id": 50,
+    "level": "Mid",
+    "category": "Spring Cloud",
+    "question": "¿Cómo se habilita un cliente de configuración para obtener propiedades de un Spring Cloud Config Server?",
+    "code": "spring.application.name=myapp\nspring.config.import=configserver:http://configserver:8888",
+    "options": [
+      "Solo con bootstrap.properties",
+      "Usando @EnableConfigServer",
+      "Con spring.cloud.config.enabled=true",
+      "Agregando spring-cloud-starter-config y la propiedad spring.config.import"
+    ],
+    "correct": 3,
+    "explanation": "Desde Spring Boot 3.x se usa spring.config.import para vincular config server."
+  },
+  {
+    "id": 51,
+    "level": "Junior",
+    "category": "REST API",
+    "question": "¿Qué anotación se emplea para recibir datos JSON en el cuerpo de una petición?",
+    "code": null,
+    "options": [
+      "@RequestBody",
+      "@RequestParam",
+      "@PathVariable",
+      "@ModelAttribute"
+    ],
+    "correct": 0,
+    "explanation": "@RequestBody deserializa el JSON del cuerpo a un objeto Java."
+  },
+  {
+    "id": 52,
+    "level": "Mid",
+    "category": "Database & JPA",
+    "question": "¿Qué estrategia de herencia en JPA utiliza una sola tabla para toda la jerarquía?",
+    "code": null,
+    "options": [
+      "JOINED",
+      "SINGLE_TABLE",
+      "TABLE_PER_CLASS",
+      "MappedSuperclass"
+    ],
+    "correct": 1,
+    "explanation": "SINGLE_TABLE mapea todas las clases a una tabla con discriminador."
+  },
+  {
+    "id": 53,
+    "level": "Junior",
+    "category": "Java Core",
+    "question": "¿Qué son los streams en Java 8+?",
+    "code": null,
+    "options": [
+      "Una clase para manejar archivos",
+      "Un hilo de ejecución",
+      "Una secuencia de elementos que permite operaciones funcionales en colecciones",
+      "Un tipo de colección sincronizada"
+    ],
+    "correct": 2,
+    "explanation": "Los streams facilitan operaciones como filter, map, reduce de manera declarativa."
+  },
+  {
+    "id": 54,
+    "level": "Mid",
+    "category": "Messaging",
+    "question": "¿Qué es Apache Kafka y cómo se integra en Spring Boot?",
+    "code": null,
+    "options": [
+      "Una base de datos relacional",
+      "Un balanceador de carga",
+      "Un servidor de configuración",
+      "Una plataforma de streaming distribuida, integrable con spring-kafka"
+    ],
+    "correct": 3,
+    "explanation": "Kafka permite publicar y consumir eventos; Spring Boot proporciona spring-kafka."
+  },
+  {
+    "id": 55,
+    "level": "Junior",
+    "category": "Spring Boot Core",
+    "question": "¿Cómo se desactiva una autoconfiguración específica en Spring Boot?",
+    "code": "@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})",
+    "options": [
+      "Usando la propiedad spring.autoconfigure.exclude",
+      "Mediante el atributo exclude de @SpringBootApplication",
+      "Con @EnableAutoConfiguration(exclude=...)",
+      "Todas las anteriores son válidas"
+    ],
+    "correct": 3,
+    "explanation": "Se puede excluir a nivel de anotación o con propiedades, ambas funcionan."
+  },
+  {
+    "id": 56,
+    "level": "Mid",
+    "category": "Microservices",
+    "question": "¿Qué es el patrón 'Database per Service'?",
+    "code": null,
+    "options": [
+      "Todos los microservicios comparten la misma base de datos",
+      "Se usa una base de datos central para logs",
+      "Cada microservicio tiene su propia base de datos privada",
+      "No se utilizan bases de datos relacionales"
+    ],
+    "correct": 2,
+    "explanation": "Garantiza bajo acoplamiento y permite que cada servicio elija el tipo de almacenamiento."
+  },
+  {
+    "id": 57,
+    "level": "Junior",
+    "category": "Design Patterns",
+    "question": "¿Qué patrón se basa en inyectar dependencias en lugar de que la clase las cree internamente?",
+    "code": null,
+    "options": [
+      "Singleton",
+      "Inyección de Dependencias",
+      "Factory",
+      "Observer"
+    ],
+    "correct": 1,
+    "explanation": "La Inyección de Dependencias (DI) delega la creación de dependencias a un contenedor externo."
+  },
+  {
+    "id": 58,
+    "level": "Mid",
+    "category": "Testing",
+    "question": "¿Cuál es la diferencia entre @Mock y @MockBean en Spring Boot?",
+    "code": null,
+    "options": [
+      "No hay diferencia",
+      "@MockBean solo funciona con repositorios",
+      "@Mock es de Mockito puro, @MockBean reemplaza el bean en el contexto de Spring",
+      "@Mock es para servicios, @MockBean para controladores"
+    ],
+    "correct": 2,
+    "explanation": "@MockBean agrega el mock al ApplicationContext, útil para pruebas de integración."
+  },
+  {
+    "id": 59,
+    "level": "Junior",
+    "category": "DevOps & Containerization",
+    "question": "¿Qué es docker-compose y para qué se utiliza en desarrollo de microservicios?",
+    "code": null,
+    "options": [
+      "Un clúster de Kubernetes",
+      "Herramienta para definir y ejecutar aplicaciones multi-contenedor",
+      "Un registro de imágenes Docker",
+      "Un plugin de Maven para Docker"
+    ],
+    "correct": 1,
+    "explanation": "docker-compose levanta múltiples contenedores (servicios, bases de datos, etc.) de forma sencilla."
+  },
+  {
+    "id": 60,
+    "level": "Mid",
+    "category": "Spring Cloud",
+    "question": "¿Cómo se implementa un circuit breaker con Resilience4j en Spring Boot 3?",
+    "code": "@CircuitBreaker(name = \"productService\", fallbackMethod = \"fallback\")\npublic Product getProduct(Long id) { ... }",
+    "options": [
+      "Con HystrixCommand",
+      "Usando @HystrixProperty",
+      "Solo con configuración en application.yml",
+      "Anotando el método con @CircuitBreaker de Resilience4j"
+    ],
+    "correct": 3,
+    "explanation": "Resilience4j expone la anotación @CircuitBreaker para aplicar el patrón."
+  },
+  {
+    "id": 61,
+    "level": "Junior",
+    "category": "REST API",
+    "question": "¿Qué significa REST y qué principio sigue?",
+    "code": null,
+    "options": [
+      "Remote Execution of Services",
+      "Rapid Endpoint Service Template",
+      "Representational State Transfer, basado en recursos y métodos HTTP",
+      "Ninguna de las anteriores"
+    ],
+    "correct": 2,
+    "explanation": "REST usa recursos identificados por URIs y verbos HTTP."
+  },
+  {
+    "id": 62,
+    "level": "Mid",
+    "category": "Security",
+    "question": "¿Cómo se configura CORS globalmente en Spring Boot 3?",
+    "code": "@Configuration\npublic class CorsConfig implements WebMvcConfigurer {\n    @Override\n    public void addCorsMappings(CorsRegistry registry) {\n        registry.addMapping(\"/**\").allowedOrigins(\"*\");\n    }\n}",
+    "options": [
+      "Con la anotación @CrossOrigin a nivel de clase",
+      "Implementando WebMvcConfigurer y sobrescribiendo addCorsMappings",
+      "Usando la propiedad server.cors.enabled=true",
+      "Mediante SecurityFilterChain"
+    ],
+    "correct": 1,
+    "explanation": "Se puede configurar globalmente con WebMvcConfigurer.addCorsMappings."
+  },
+  {
+    "id": 63,
+    "level": "Junior",
+    "category": "Microservices",
+    "question": "¿Qué problema resuelve el patrón 'Strangler Fig' en microservicios?",
+    "code": null,
+    "options": [
+      "Balanceo de carga",
+      "Seguridad",
+      "Caché distribuido",
+      "Migración gradual de un monolito a microservicios"
+    ],
+    "correct": 3,
+    "explanation": "Consiste en reemplazar partes del monolito por microservicios progresivamente."
+  },
+  {
+    "id": 64,
+    "level": "Mid",
+    "category": "Messaging",
+    "question": "¿Qué es el patrón 'Event-Driven Architecture'?",
+    "code": null,
+    "options": [
+      "Se usa una base de datos compartida",
+      "Los servicios se comunican mediante eventos en lugar de llamadas síncronas",
+      "Todo se comunica por HTTP",
+      "Solo aplica para sistemas batch"
+    ],
+    "correct": 1,
+    "explanation": "Promueve desacoplamiento y escalabilidad al reaccionar a eventos."
+  },
+  {
+    "id": 65,
+    "level": "Junior",
+    "category": "Database & JPA",
+    "question": "¿Qué anotación permite definir consultas JPQL personalizadas en Spring Data JPA?",
+    "code": null,
+    "options": [
+      "@NamedQuery",
+      "@SQL",
+      "@Query",
+      "@Select"
+    ],
+    "correct": 2,
+    "explanation": "@Query sobre un método del repositorio permite escribir JPQL o SQL nativo."
+  },
+  {
+    "id": 66,
+    "level": "Mid",
+    "category": "Observability",
+    "question": "¿Qué métrica estándar expone Actuator para monitorear la salud de la aplicación?",
+    "code": null,
+    "options": [
+      "/info",
+      "/metrics",
+      "/env",
+      "/health"
+    ],
+    "correct": 3,
+    "explanation": "/health muestra el estado, incluyendo componentes como BD, disco, etc."
+  },
+  {
+    "id": 67,
+    "level": "Junior",
+    "category": "Java Core",
+    "question": "¿Qué significa 'programación orientada a aspectos' (AOP) en Spring?",
+    "code": null,
+    "options": [
+      "Es un estilo de programación funcional",
+      "Permite separar preocupaciones transversales como logging o transacciones",
+      "Define la arquitectura de microservicios",
+      "Es exclusiva de Spring Boot"
+    ],
+    "correct": 1,
+    "explanation": "AOP intercepta métodos para aplicar lógica común sin modificar el código."
+  },
+  {
+    "id": 68,
+    "level": "Mid",
+    "category": "Spring Boot Core",
+    "question": "¿Cómo se define un bean condicional que solo se cree si falta otro bean?",
+    "code": "@Bean\n@ConditionalOnMissingBean\npublic MyService myService() { return new MyService(); }",
+    "options": [
+      "Con @Primary",
+      "Con @DependsOn",
+      "Con @ConditionalOnMissingBean",
+      "Con @Lazy"
+    ],
+    "correct": 2,
+    "explanation": "@ConditionalOnMissingBean crea el bean solo si no existe otro del mismo tipo."
+  },
+  {
+    "id": 69,
+    "level": "Junior",
+    "category": "Design Patterns",
+    "question": "¿Qué patrón se usa para desacoplar una abstracción de su implementación?",
+    "code": null,
+    "options": [
+      "Adapter",
+      "Bridge",
+      "Decorator",
+      "Proxy"
+    ],
+    "correct": 1,
+    "explanation": "Bridge separa la interfaz de la implementación para que puedan variar independientemente."
+  },
+  {
+    "id": 70,
+    "level": "Mid",
+    "category": "DevOps & Containerization",
+    "question": "¿Cómo se escala horizontalmente un microservicio en Kubernetes?",
+    "code": null,
+    "options": [
+      "Con Docker Swarm únicamente",
+      "Cambiando el código para soportar múltiples hilos",
+      "Aumentando el número de réplicas en un Deployment",
+      "Usando una base de datos más potente"
+    ],
+    "correct": 2,
+    "explanation": "Se configura replicas en el Deployment y Kubernetes gestiona los pods."
+  },
+  {
+    "id": 71,
+    "level": "Junior",
+    "category": "Spring Cloud",
+    "question": "¿Qué es Spring Cloud Gateway?",
+    "code": null,
+    "options": [
+      "Un balanceador de carga tradicional",
+      "Un clúster de configuración",
+      "Una herramienta de monitoreo",
+      "Un API Gateway reactivo basado en Spring WebFlux"
+    ],
+    "correct": 3,
+    "explanation": "Spring Cloud Gateway proporciona enrutamiento, filtros y se basa en programación reactiva."
+  },
+  {
+    "id": 72,
+    "level": "Mid",
+    "category": "REST API",
+    "question": "¿Qué técnica se usa para versionar una API REST?",
+    "code": null,
+    "options": [
+      "Cambiar el puerto",
+      "Incluir la versión en la URL (e.g., /v1/products) o en headers",
+      "Usar parámetros de consulta ?version=1",
+      "Solo documentación"
+    ],
+    "correct": 1,
+    "explanation": "Las versiones en URL o en headers Accept son prácticas comunes."
+  },
+  {
+    "id": 73,
+    "level": "Junior",
+    "category": "Testing",
+    "question": "¿Qué es JUnit 5 y cómo se integra en Spring Boot?",
+    "code": null,
+    "options": [
+      "Una herramienta de mocking",
+      "Un plugin de Maven",
+      "Es el framework de pruebas estándar, incluido con spring-boot-starter-test",
+      "Una biblioteca de aserciones para JSON"
+    ],
+    "correct": 2,
+    "explanation": "Spring Boot Starter Test ya incluye JUnit 5 y otras herramientas."
+  },
+  {
+    "id": 74,
+    "level": "Mid",
+    "category": "Messaging",
+    "question": "¿Qué ventaja ofrece usar mensajería asíncrona como RabbitMQ sobre llamadas HTTP directas?",
+    "code": null,
+    "options": [
+      "Mayor velocidad siempre",
+      "Menor latencia",
+      "Simplicidad en el desarrollo",
+      "Desacoplamiento, resiliencia y escalabilidad"
+    ],
+    "correct": 3,
+    "explanation": "Permite que productor y consumidor evolucionen independientemente y manejar picos de carga."
+  },
+  {
+    "id": 75,
+    "level": "Junior",
+    "category": "Microservices",
+    "question": "¿Qué es un 'health check' en microservicios?",
+    "code": null,
+    "options": [
+      "Una prueba de carga",
+      "Un endpoint que informa si el servicio está funcionando correctamente",
+      "Un log de errores",
+      "Una alerta de seguridad"
+    ],
+    "correct": 1,
+    "explanation": "Se usa para monitoreo y orquestadores como Kubernetes para reiniciar pods no saludables."
+  },
+  {
+    "id": 76,
+    "level": "Mid",
+    "category": "Security",
+    "question": "¿Cómo se configura un filtro de autenticación JWT personalizado en Spring Security 6?",
+    "code": null,
+    "options": [
+      "Usando solo la anotación @EnableWebSecurity",
+      "A través de application.properties",
+      "Creando un filtro que extienda OncePerRequestFilter y registrándolo en SecurityFilterChain",
+      "No es posible, debe usarse OAuth2"
+    ],
+    "correct": 2,
+    "explanation": "Se implementa un filtro que extrae y valida el token JWT, agregándolo a la cadena."
+  },
+  {
+    "id": 77,
+    "level": "Junior",
+    "category": "Database & JPA",
+    "question": "¿Qué es HikariCP y por qué es relevante en Spring Boot?",
+    "code": null,
+    "options": [
+      "Una biblioteca de logging",
+      "Un cliente HTTP",
+      "Un serializador JSON",
+      "Un pool de conexiones a base de datos rápido, usado por defecto en Spring Boot"
+    ],
+    "correct": 3,
+    "explanation": "Spring Boot 3.x configura HikariCP automáticamente al incluir spring-boot-starter-data-jpa."
+  },
+  {
+    "id": 78,
+    "level": "Mid",
+    "category": "Observability",
+    "question": "¿Qué es Micrometer y cómo ayuda en Spring Boot 3?",
+    "code": null,
+    "options": [
+      "Un generador de logs estructurados",
+      "Provee una fachada para métricas, permitiendo exportar a diversos sistemas como Prometheus",
+      "Una herramienta de profiling de CPU",
+      "Un balanceador de carga"
+    ],
+    "correct": 1,
+    "explanation": "Micrometer abstrae la recolección de métricas y Actuator las expone."
+  },
+  {
+    "id": 79,
+    "level": "Junior",
+    "category": "Spring Boot Core",
+    "question": "¿Qué es el 'fat jar' que genera Spring Boot?",
+    "code": null,
+    "options": [
+      "Un archivo comprimido sin dependencias",
+      "Un WAR para desplegar en servidores de aplicaciones",
+      "Un JAR que incluye todas las dependencias y un servidor embebido",
+      "Un archivo de configuración"
+    ],
+    "correct": 2,
+    "explanation": "El fat jar contiene la aplicación, dependencias y un contenedor web, ejecutable con java -jar."
+  },
+  {
+    "id": 80,
+    "level": "Mid",
+    "category": "Spring Cloud",
+    "question": "¿Qué es el patrón 'Config Server' y cómo Spring Cloud lo implementa?",
+    "code": null,
+    "options": [
+      "Balancea las peticiones",
+      "Automatiza la integración continua",
+      "Es un registro de servicios",
+      "Centraliza la configuración de múltiples microservicios en un repositorio externo"
+    ],
+    "correct": 3,
+    "explanation": "Spring Cloud Config Server sirve configuración desde un backend (Git, archivos) a los clientes."
+  }
+]

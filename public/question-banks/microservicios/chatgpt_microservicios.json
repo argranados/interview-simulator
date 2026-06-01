@@ -1,0 +1,527 @@
+[
+  {
+    "id": 1,
+    "level": "Junior",
+    "category": "Microservices Fundamentals",
+    "question": "¿Qué es un microservicio según el principio de enfoque de dominio?",
+    "code": null,
+    "options": [
+      "Una aplicación monolítica que maneja múltiples dominios",
+      "Una aplicación que se enfoca en un solo dominio o función de negocio",
+      "Un servicio que depende fuertemente de otros servicios",
+      "Una base de datos centralizada para múltiples servicios"
+    ],
+    "correct": 1,
+    "explanation": "Un microservicio se enfoca en un único dominio o función de negocio, es débilmente acoplado y autónomo, como un servicio de productos, órdenes o pagos en un dominio de e-commerce."
+  },
+  {
+    "id": 2,
+    "level": "Junior",
+    "category": "Microservices Fundamentals",
+    "question": "¿Cuál es la diferencia principal entre comunicación síncrona y asíncrona en microservicios?",
+    "code": null,
+    "options": [
+      "Síncrona usa bases de datos compartidas; asíncrona usa archivos",
+      "Síncrona requiere que el cliente espere la respuesta (ej. API calls); asíncrona usa brokers de mensajes (ej. Kafka)",
+      "Síncrona es solo para grandes volúmenes; asíncrona para pequeños",
+      "No hay diferencia, ambos usan HTTP"
+    ],
+    "correct": 1,
+    "explanation": "La comunicación síncrona (API calls) espera respuesta; la asíncrona usa Message Brokers o event streaming, reduciendo el acoplamiento."
+  },
+  {
+    "id": 3,
+    "level": "Junior",
+    "category": "API Design",
+    "question": "¿Cuál de los siguientes códigos HTTP indica que un recurso fue creado exitosamente?",
+    "code": null,
+    "options": [
+      "200 OK",
+      "201 Created",
+      "202 Accepted",
+      "204 No Content"
+    ],
+    "correct": 1,
+    "explanation": "201 Created es el código estándar para respuestas exitosas de POST que crean un nuevo recurso."
+  },
+  {
+    "id": 4,
+    "level": "Junior",
+    "category": "Spring Boot Core",
+    "question": "¿Qué anotación se usa para marcar una clase como controlador REST en Spring Boot?",
+    "code": null,
+    "options": [
+      "@Controller",
+      "@Service",
+      "@RestController",
+      "@Component"
+    ],
+    "correct": 2,
+    "explanation": "@RestController combina @Controller y @ResponseBody, ideal para APIs REST donde cada método retorna directamente el objeto de respuesta serializado (JSON/XML)."
+  },
+  {
+    "id": 5,
+    "level": "Junior",
+    "category": "Spring Boot Core",
+    "question": "¿Cuál es el propósito de Spring Boot Actuator?",
+    "code": null,
+    "options": [
+      "Gestionar dependencias de terceros",
+      "Monitorear y obtener métricas de la aplicación (health, info, metrics)",
+      "Configurar la seguridad de la API",
+      "Generar documentación Swagger automáticamente"
+    ],
+    "correct": 1,
+    "explanation": "Actuator proporciona endpoints como /health, /info, /metrics, /beans para monitorear la aplicación en producción."
+  },
+  {
+    "id": 6,
+    "level": "Mid",
+    "category": "API Design",
+    "question": "¿Qué estrategia de paginación es más adecuada para listas grandes con desplazamiento infinito (infinite scroll) y requiere mejor rendimiento consistente?",
+    "code": null,
+    "options": [
+      "Offset (page/size)",
+      "Cursor (keyset pagination)",
+      "Paginación por número de página sin límite",
+      "Paginación basada en fecha"
+    ],
+    "correct": 1,
+    "explanation": "Cursor pagination (basada en identificadores o claves) es siempre rápida y constante, ideal para infinite scroll y grandes volúmenes; offset se degrada en tablas grandes."
+  },
+  {
+    "id": 7,
+    "level": "Mid",
+    "category": "Microservices Architecture Patterns",
+    "question": "¿Qué patrón permite transformar una aplicación monolítica a microservicios gradualmente reemplazando funcionalidades?",
+    "code": null,
+    "options": [
+      "Saga Pattern",
+      "Strangler Fig Pattern",
+      "Outbox Pattern",
+      "Circuit Breaker Pattern"
+    ],
+    "correct": 1,
+    "explanation": "Strangler Fig Pattern permite migrar sistemas heredados construyendo nuevos servicios alrededor y eventualmente reemplazando el sistema original, como una higuera estranguladora."
+  },
+  {
+    "id": 8,
+    "level": "Mid",
+    "category": "Resilience Patterns",
+    "question": "¿Cuál es el propósito del patrón Circuit Breaker en microservicios?",
+    "code": null,
+    "options": [
+      "Mejorar la latencia de red",
+      "Prevenir fallos en cascada al detener llamadas repetidas a un servicio que está fallando",
+      "Distribuir tráfico entre instancias",
+      "Mantener la idempotencia"
+    ],
+    "correct": 1,
+    "explanation": "Circuit Breaker monitorea fallos; si supera un umbral, abre el circuito y rechaza llamadas (fail fast), evitando timeouts y fallos en cascada. Estados: closed, open, half-open."
+  },
+  {
+    "id": 9,
+    "level": "Mid",
+    "category": "API Security",
+    "question": "¿Qué mecanismo de autenticación utiliza un token firmado que puede contener claims (como roles) sin necesidad de consultar una base de datos en cada request?",
+    "code": null,
+    "options": [
+      "Basic Auth",
+      "OAuth 2.0",
+      "JWT (JSON Web Token)",
+      "API Key"
+    ],
+    "correct": 2,
+    "explanation": "JWT es un token autónomo firmado (ej. con HMAC o RSA) que incluye claims; el servidor valida la firma y extrae información sin estado."
+  },
+  {
+    "id": 10,
+    "level": "Mid",
+    "category": "Microservices Communication",
+    "question": "¿Cuál de las siguientes opciones es un mecanismo de descubrimiento de servicios (service discovery) donde el cliente consulta un registro centralizado?",
+    "code": null,
+    "options": [
+      "DNS-based discovery",
+      "Client-side service discovery (ej. Netflix Eureka)",
+      "Message Broker",
+      "API Gateway sin registro"
+    ],
+    "correct": 1,
+    "explanation": "En client-side discovery, el cliente consulta un service registry (como Eureka, Consul) para obtener la ubicación del servicio proveedor."
+  },
+  {
+    "id": 11,
+    "level": "Mid",
+    "category": "Spring Boot Core",
+    "question": "¿Cómo se puede cambiar el servidor embebido por defecto (Tomcat) en Spring Boot?",
+    "code": null,
+    "options": [
+      "Cambiando el puerto en application.properties",
+      "Excluyendo spring-boot-starter-tomcat e incluyendo spring-boot-starter-jetty",
+      "Usando la anotación @EnableWebServer",
+      "No se puede cambiar, Tomcat es obligatorio"
+    ],
+    "correct": 1,
+    "explanation": "Spring Boot permite usar Jetty o Undertow removiendo la dependencia de Tomcat starter y agregando el starter correspondiente (spring-boot-starter-jetty o undertow)."
+  },
+  {
+    "id": 12,
+    "level": "Senior",
+    "category": "Data Consistency Patterns",
+    "question": "¿Qué patrón resuelve la consistencia de datos en transacciones que abarcan múltiples microservicios sin usar transacciones distribuidas (2PC)?",
+    "code": null,
+    "options": [
+      "Database per Service",
+      "Saga Pattern",
+      "CQRS",
+      "Event Sourcing"
+    ],
+    "correct": 1,
+    "explanation": "Saga Pattern gestiona transacciones de larga duración mediante una secuencia de transacciones locales y eventos de compensación, manteniendo consistencia eventual."
+  },
+  {
+    "id": 13,
+    "level": "Senior",
+    "category": "Data Consistency Patterns",
+    "question": "¿Cuál es el propósito del Outbox Pattern?",
+    "code": null,
+    "options": [
+      "Cachear respuestas de API",
+      "Asegurar que los eventos se publiquen de forma confiable junto con cambios en la base de datos",
+      "Balancear carga entre servicios",
+      "Encriptar datos en tránsito"
+    ],
+    "correct": 1,
+    "explanation": "Outbox Pattern almacena eventos en una tabla 'outbox' dentro de la misma transacción de la base de datos; un proceso separado publica los eventos, garantizando entrega at-least-once."
+  },
+  {
+    "id": 14,
+    "level": "Senior",
+    "category": "Microservices Architecture Patterns",
+    "question": "¿Qué patrón de arquitectura separa las operaciones de lectura y escritura en modelos diferentes?",
+    "code": null,
+    "options": [
+      "Event Sourcing",
+      "API Gateway",
+      "CQRS (Command Query Responsibility Segregation)",
+      "Sidecar Pattern"
+    ],
+    "correct": 2,
+    "explanation": "CQRS separa el modelo de comandos (escritura) del modelo de consultas (lectura), permitiendo optimizaciones independientes y escalabilidad."
+  },
+  {
+    "id": 15,
+    "level": "Junior",
+    "category": "REST API",
+    "question": "¿Cuál de los siguientes métodos HTTP es idempotente?",
+    "code": null,
+    "options": [
+      "POST",
+      "PUT",
+      "PATCH",
+      "Ninguno"
+    ],
+    "correct": 1,
+    "explanation": "PUT es idempotente: múltiples solicitudes idénticas tienen el mismo efecto que una sola. POST no es idempotente; PATCH puede serlo según implementación."
+  },
+  {
+    "id": 16,
+    "level": "Mid",
+    "category": "API Design",
+    "question": "¿Qué significa 'DTO' en el contexto de diseño de APIs REST?",
+    "code": null,
+    "options": [
+      "Data Transfer Object, usado para definir el contrato de la API",
+      "Database Transaction Object",
+      "Domain Transfer Orchestrator",
+      "Direct Testing Object"
+    ],
+    "correct": 0,
+    "explanation": "DTO (Data Transfer Object) es un objeto plano que define la estructura de datos de la API (request/response), separando el modelo de persistencia del contrato externo."
+  },
+  {
+    "id": 17,
+    "level": "Mid",
+    "category": "Microservices Testing",
+    "question": "¿Qué tipo de prueba verifica cómo reacciona el sistema ante fallos de infraestructura como la caída de un microservicio?",
+    "code": null,
+    "options": [
+      "Load Testing",
+      "Functional Testing",
+      "Resilience Testing",
+      "Security Testing (DAST)"
+    ],
+    "correct": 2,
+    "explanation": "Resilience Testing (o Chaos Engineering) evalúa la capacidad del sistema para recuperarse de fallos (crash de servicios, latencia, timeouts)."
+  },
+  {
+    "id": 18,
+    "level": "Senior",
+    "category": "Resilience Patterns",
+    "question": "¿Qué combinación de patrones permite manejo de fallos con reintentos progresivos y degradación controlada?",
+    "code": null,
+    "options": [
+      "Retry + Fallback",
+      "Retry con exponential backoff + Circuit Breaker + Fallback",
+      "Solo Timeout",
+      "Bulkhead + Cache"
+    ],
+    "correct": 1,
+    "explanation": "Retry con backoff evita sobrecarga inmediata; Circuit Breaker evita llamadas cuando el servicio falla repetidamente; Fallback proporciona respuesta alternativa (graceful degradation)."
+  },
+  {
+    "id": 19,
+    "level": "Mid",
+    "category": "Spring Boot Core",
+    "question": "¿Cuál es la función de @SpringBootApplication?",
+    "code": null,
+    "options": [
+      "Define el puerto de la aplicación",
+      "Combina @Configuration, @EnableAutoConfiguration y @ComponentScan",
+      "Habilita solo Actuator",
+      "Configura la seguridad por defecto"
+    ],
+    "correct": 1,
+    "explanation": "@SpringBootApplication es una anotación compuesta que incluye las tres anotaciones clave para arrancar una aplicación Spring Boot."
+  },
+  {
+    "id": 20,
+    "level": "Junior",
+    "category": "REST API",
+    "question": "¿Cuál es la diferencia entre @Controller y @RestController en Spring MVC?",
+    "code": null,
+    "options": [
+      "@Controller devuelve vista (View), @RestController devuelve directamente el objeto (JSON/XML)",
+      "@Controller solo sirve HTML, @RestController solo sirve XML",
+      "Son iguales, solo cambia el nombre",
+      "@Controller es para microservicios, @RestController para monolitos"
+    ],
+    "correct": 0,
+    "explanation": "@Controller se usa con vistas (ModelAndView); @RestController agrega @ResponseBody implícito, serializando el objeto de retorno en la respuesta HTTP."
+  },
+  {
+    "id": 21,
+    "level": "Senior",
+    "category": "Microservices Architecture Patterns",
+    "question": "¿Qué patrón de base de datos recomienda tener una base de datos independiente por cada microservicio?",
+    "code": null,
+    "options": [
+      "Shared Database Pattern",
+      "Database per Service Pattern",
+      "Saga Pattern",
+      "CQRS"
+    ],
+    "correct": 1,
+    "explanation": "Database per Service es un patrón fundamental en microservicios para lograr desacoplamiento y autonomía, cada servicio gestiona su propio esquema o base de datos."
+  },
+  {
+    "id": 22,
+    "level": "Mid",
+    "category": "API Versioning",
+    "question": "¿Cuál es una práctica común para versionar una API REST sin romper clientes existentes?",
+    "code": null,
+    "options": [
+      "Usar el mismo endpoint y modificar la respuesta sin notificar",
+      "Incluir la versión en la URL (ej. /v1/usuarios) o en un header (Accept-Version)",
+      "Eliminar el endpoint anterior inmediatamente",
+      "Usar solo parámetros query"
+    ],
+    "correct": 1,
+    "explanation": "Versionar mediante URL (path) o custom header es común; permite mantener versiones anteriores hasta migrar clientes, siguiendo compatibilidad hacia atrás."
+  },
+  {
+    "id": 23,
+    "level": "Junior",
+    "category": "Spring Boot Core",
+    "question": "¿Qué archivo se usa comúnmente para configurar propiedades externas como puerto, base de datos, o logging en Spring Boot?",
+    "code": null,
+    "options": [
+      "pom.xml",
+      "application.properties o application.yml",
+      "web.xml",
+      "spring-config.xml"
+    ],
+    "correct": 1,
+    "explanation": "Spring Boot utiliza application.properties o application.yml para externalizar la configuración (puerto, datasource, niveles de log, etc.)."
+  },
+  {
+    "id": 24,
+    "level": "Mid",
+    "category": "Microservices Communication",
+    "question": "¿Qué tecnología es más adecuada para comunicación asíncrona con garantías de persistencia y reproducción de eventos en microservicios?",
+    "code": null,
+    "options": [
+      "REST over HTTP",
+      "gRPC",
+      "Apache Kafka (event streaming)",
+      "SOAP"
+    ],
+    "correct": 2,
+    "explanation": "Kafka es un sistema de streaming distribuido que persiste eventos, permite replay y es ideal para comunicación asíncrona desacoplada entre microservicios."
+  },
+  {
+    "id": 25,
+    "level": "Senior",
+    "category": "Resilience Patterns",
+    "question": "¿Qué patrón ayuda a manejar mensajes duplicados en sistemas de mensajería?",
+    "code": null,
+    "options": [
+      "Idempotence",
+      "Circuit Breaker",
+      "Bulkhead",
+      "Retry with jitter"
+    ],
+    "correct": 0,
+    "explanation": "Idempotencia asegura que procesar el mismo mensaje múltiples veces no cause efectos secundarios no deseados; se implementa mediante claves de idempotencia o deduplicación."
+  },
+  {
+    "id": 26,
+    "level": "Mid",
+    "category": "Microservices Deployment",
+    "question": "¿Qué beneficio principal aporta Docker en el contexto de microservicios?",
+    "code": null,
+    "options": [
+      "Elimina la necesidad de bases de datos",
+      "Empaqueta el microservicio con sus dependencias, asegurando consistencia entre entornos",
+      "Reemplaza a Kubernetes",
+      "Provee descubrimiento de servicios integrado"
+    ],
+    "correct": 1,
+    "explanation": "Docker permite contenerizar cada microservicio con su entorno y dependencias, garantizando el mismo comportamiento en desarrollo, pruebas y producción."
+  },
+  {
+    "id": 27,
+    "level": "Senior",
+    "category": "Microservices Architecture Patterns",
+    "question": "¿Qué patrón de coreografía vs orquestación describe la coordinación de sagas?",
+    "code": null,
+    "options": [
+      "Saga coreografiada (eventos) vs Saga orquestada (coreografía con orquestador)",
+      "Solo existe orquestación",
+      "Saga no usa coreografía",
+      "Coreografía es siempre superior"
+    ],
+    "correct": 0,
+    "explanation": "En coreografía, los servicios intercambian eventos sin un controlador central; en orquestación, un orquestador (saga coordinator) dirige los pasos y compensaciones."
+  },
+  {
+    "id": 28,
+    "level": "Junior",
+    "category": "REST API",
+    "question": "¿Qué verbo HTTP se utiliza para actualizar parcialmente un recurso?",
+    "code": null,
+    "options": [
+      "PUT",
+      "POST",
+      "PATCH",
+      "UPDATE"
+    ],
+    "correct": 2,
+    "explanation": "PATCH se usa para actualizaciones parciales (enviar solo los campos a modificar). PUT reemplaza todo el recurso."
+  },
+  {
+    "id": 29,
+    "level": "Mid",
+    "category": "Spring Boot Testing",
+    "question": "¿Qué anotación se usa para cargar el contexto completo de Spring en pruebas de integración?",
+    "code": null,
+    "options": [
+      "@SpringBootTest",
+      "@WebMvcTest",
+      "@DataJpaTest",
+      "@MockBean"
+    ],
+    "correct": 0,
+    "explanation": "@SpringBootTest arranca el contexto completo de Spring Boot para pruebas de integración de extremo a extremo."
+  },
+  {
+    "id": 30,
+    "level": "Senior",
+    "category": "API Gateway & Security",
+    "question": "¿Cuál es una función típica de un API Gateway en una arquitectura de microservicios?",
+    "code": null,
+    "options": [
+      "Autenticación, rate limiting, routing, y agregación de respuestas",
+      "Almacenar datos de los microservicios",
+      "Ejecutar procesos ETL",
+      "Reemplazar la base de datos"
+    ],
+    "correct": 0,
+    "explanation": "El API Gateway actúa como punto de entrada único, gestionando autenticación, límites de tasa, enrutamiento a servicios, y a veces transformación de respuestas."
+  },
+  {
+    "id": 31,
+    "level": "Mid",
+    "category": "Monitoring & Observability",
+    "question": "¿Qué herramienta se especializa en visualización de métricas a través de dashboards y es comúnmente usada con Prometheus?",
+    "code": null,
+    "options": [
+      "Splunk",
+      "Grafana",
+      "Kibana",
+      "Datadog"
+    ],
+    "correct": 1,
+    "explanation": "Grafana es una herramienta de visualización de datos y métricas, muy utilizada junto con Prometheus para monitoreo de infraestructura y aplicaciones."
+  },
+  {
+    "id": 32,
+    "level": "Senior",
+    "category": "Data Consistency Patterns",
+    "question": "¿Qué desventaja tiene el patrón 2PC (Two-Phase Commit) en microservicios?",
+    "code": null,
+    "options": [
+      "Es fácil de implementar",
+      "Introduce latencia y reduce disponibilidad (bloqueo de recursos), no es recomendado para microservicios",
+      "No requiere coordinador",
+      "Es ideal para sistemas de alta disponibilidad"
+    ],
+    "correct": 1,
+    "explanation": "2PC es un protocolo de consenso bloqueante que reduce disponibilidad y escala mal; en microservicios se prefiere consistencia eventual con Saga."
+  },
+  {
+    "id": 33,
+    "level": "Mid",
+    "category": "API Design",
+    "question": "¿Cuál es la práctica correcta respecto al uso de DTOs vs entidades de persistencia en capas?",
+    "code": null,
+    "options": [
+      "El controller debe exponer entidades de persistencia directamente",
+      "El controller usa DTOs, el service puede usar DTOs o domain objects, el repository usa entidades",
+      "El repository debe devolver DTOs siempre",
+      "El controller convierte entidades a DTOs, pero el service solo usa entidades"
+    ],
+    "correct": 1,
+    "explanation": "Separación de capas: controller usa DTOs (contrato API), service trabaja con DTOs/domain, repository con entidades. No exponer entidades JPA directamente."
+  },
+  {
+    "id": 34,
+    "level": "Junior",
+    "category": "Microservices Fundamentals",
+    "question": "¿Cuál es una desventaja de la arquitectura de microservicios?",
+    "code": null,
+    "options": [
+      "Mayor simplicidad en despliegues",
+      "Menor latencia de red",
+      "Mayor complejidad de diseño, pruebas y trazabilidad distribuida",
+      "Elimina la necesidad de API Gateway"
+    ],
+    "correct": 2,
+    "explanation": "Entre las desventajas están: complejidad operacional, trazabilidad de requests a través de servicios, pruebas end-to-end más difíciles, y gestión de transacciones distribuidas."
+  },
+  {
+    "id": 35,
+    "level": "Senior",
+    "category": "Resilience Patterns",
+    "question": "¿Qué patrón de resiliencia permite limitar el número de solicitudes concurrentes a un componente para evitar sobrecarga?",
+    "code": null,
+    "options": [
+      "Circuit Breaker",
+      "Bulkhead Pattern",
+      "Retry with backoff",
+      "Timeout"
+    ],
+    "correct": 1,
+    "explanation": "Bulkhead (compartimento estanco) aísla recursos limitando el número de conexiones/hilos a un servicio, evitando que una falla agote todos los recursos."
+  }
+]
