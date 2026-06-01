@@ -257,10 +257,14 @@ export default function App() {
             })
     }, [selectedBank])
 
+    // DESPUÉS
     const shuffledQuestions = useMemo(() => {
-        return [...questions]
-            .sort(() => Math.random() - 0.5)
-            .slice(0, TOTAL_QUESTIONS)
+        const a = [...questions]
+        for (let i = a.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [a[i], a[j]] = [a[j], a[i]]
+        }
+        return a.slice(0, TOTAL_QUESTIONS)
     }, [questions, quizKey])
 
     const currentQuestion = shuffledQuestions[currentQuestionIndex]
@@ -288,6 +292,7 @@ export default function App() {
     }
 
     const restartQuiz = () => {
+        setQuizKey(k => k + 1)   // ← esta línea faltaba
         setShowLanding(true)
         setCurrentQuestionIndex(0)
         setSelectedAnswer(null)
