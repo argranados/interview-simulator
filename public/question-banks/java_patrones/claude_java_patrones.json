@@ -1,0 +1,1352 @@
+[
+  {
+    "id": 1,
+    "level": "Junior",
+    "category": "Clean Code & DRY",
+    "question": "¿Cuál de los siguientes nombres de variable refleja mejor el principio de Clean Code?",
+    "code": null,
+    "options": [
+      "int d",
+      "int daysSinceLastLogin",
+      "int x2",
+      "int temp_val"
+    ],
+    "correct": 1,
+    "explanation": "Los nombres deben revelar intención. `daysSinceLastLogin` comunica exactamente qué representa la variable sin necesidad de comentario."
+  },
+  {
+    "id": 2,
+    "level": "Junior",
+    "category": "Clean Code & DRY",
+    "question": "Según Clean Code, ¿cuántos parámetros es el máximo recomendado para un método?",
+    "code": null,
+    "options": [
+      "Sin límite, depende del contexto",
+      "Máximo 5",
+      "Idealmente 0-2, máximo 3",
+      "Máximo 4"
+    ],
+    "correct": 2,
+    "explanation": "Robert Martin recomienda niládico (0) como ideal, monádico (1) o diádico (2) como aceptables. Triádico (3) se tolera con justificación. Más de 3 es un smell."
+  },
+  {
+    "id": 3,
+    "level": "Junior",
+    "category": "Clean Code & DRY",
+    "question": "¿Qué principio viola el siguiente comentario: `// Incrementa i en 1` seguido de `i++;`?",
+    "code": null,
+    "options": [
+      "DRY",
+      "Single Responsibility",
+      "Law of Demeter",
+      "Open/Closed"
+    ],
+    "correct": 0,
+    "explanation": "DRY (Don't Repeat Yourself) aplica también a la documentación. Un comentario que repite lo que el código ya dice claramente es ruido y duplicación de información."
+  },
+  {
+    "id": 4,
+    "level": "Junior",
+    "category": "Clean Code & DRY",
+    "question": "Un método tiene 80 líneas de código con múltiples niveles de indentación. ¿Cuál es el principal problema según Clean Code?",
+    "code": null,
+    "options": [
+      "Falta de comentarios explicativos",
+      "El método hace demasiadas cosas, viola SRP a nivel de método",
+      "Debería ser un método estático",
+      "Necesita más variables locales"
+    ],
+    "correct": 1,
+    "explanation": "Un método largo con múltiples niveles de indentación es señal de que está haciendo más de una cosa. Clean Code recomienda métodos cortos con un único nivel de abstracción."
+  },
+  {
+    "id": 5,
+    "level": "Junior",
+    "category": "Clean Code & DRY",
+    "question": "¿Qué recomienda Clean Code sobre los comentarios en el código?",
+    "code": null,
+    "options": [
+      "Comentar cada método sin excepción",
+      "El código bien escrito se documenta a sí mismo; los comentarios son señal de código poco claro",
+      "Siempre usar Javadoc en todos los métodos",
+      "Los comentarios mejoran siempre la legibilidad"
+    ],
+    "correct": 1,
+    "explanation": "Un buen nombre de método o variable elimina la necesidad del comentario. Los comentarios mienten con el tiempo porque el código cambia y los comentarios no. Prefiere código expresivo."
+  },
+  {
+    "id": 6,
+    "level": "Mid",
+    "category": "Clean Code & DRY",
+    "question": "¿Cuál es la violación de DRY más peligrosa en producción?",
+    "code": null,
+    "options": [
+      "Tener el mismo string literal en dos clases",
+      "Lógica de negocio duplicada en dos servicios distintos",
+      "Dos variables con nombres similares",
+      "Importar la misma librería dos veces"
+    ],
+    "correct": 1,
+    "explanation": "La lógica de negocio duplicada significa que un cambio en la regla de negocio debe aplicarse en múltiples lugares. Si se actualiza uno y se olvida el otro, hay comportamiento inconsistente en producción."
+  },
+  {
+    "id": 7,
+    "level": "Junior",
+    "category": "Clean Code & DRY",
+    "question": "¿Qué técnica de Clean Code permite eliminar comentarios explicando 'qué hace' el código?",
+    "code": null,
+    "options": [
+      "Agregar más tests",
+      "Extraer el bloque en un método con nombre descriptivo",
+      "Agregar logging",
+      "Usar anotaciones"
+    ],
+    "correct": 1,
+    "explanation": "Extract Method es la técnica fundamental. En lugar de comentar `// calcula el descuento por volumen`, extraes esa lógica en `calculateVolumeDiscount()`. El nombre del método es el comentario."
+  },
+  {
+    "id": 8,
+    "level": "Mid",
+    "category": "Clean Code & DRY",
+    "question": "Tienes la constante `0.15` usada en 6 lugares del código para calcular impuestos. ¿Qué principio se está violando?",
+    "code": null,
+    "options": [
+      "SOLID",
+      "Early return",
+      "DRY y Magic Numbers al mismo tiempo",
+      "Law of Demeter"
+    ],
+    "correct": 2,
+    "explanation": "Se violan dos prácticas a la vez: DRY porque el valor está repetido, y Magic Numbers porque `0.15` no comunica su intención. La solución es `private static final double TAX_RATE = 0.15`."
+  },
+  {
+    "id": 9,
+    "level": "Junior",
+    "category": "Clean Code & DRY",
+    "question": "¿Cuál de los siguientes métodos tiene el mejor nombre según Clean Code?",
+    "code": null,
+    "options": [
+      "processData()",
+      "handleStuff()",
+      "calculateMonthlyInterest()",
+      "doWork()"
+    ],
+    "correct": 2,
+    "explanation": "`calculateMonthlyInterest()` es específico, usa verbo de acción claro y comunica exactamente qué hace. Los demás son genéricos y no revelan intención."
+  },
+  {
+    "id": 10,
+    "level": "Mid",
+    "category": "Clean Code & DRY",
+    "question": "Según el principio de 'un nivel de abstracción por función', ¿qué problema tiene un método que llama a `repository.save()` y también valida formato de email?",
+    "code": null,
+    "options": [
+      "Ninguno, es eficiente",
+      "Mezcla niveles de abstracción: lógica de dominio con persistencia",
+      "Debería usar una interfaz",
+      "Falta un comentario explicativo"
+    ],
+    "correct": 1,
+    "explanation": "Las operaciones de validación de negocio y las de persistencia pertenecen a distintos niveles de abstracción. Mezclarlos hace el método difícil de probar y de reutilizar."
+  },
+  {
+    "id": 11,
+    "level": "Mid",
+    "category": "Code Smells",
+    "question": "Una clase `OrderService` tiene 1200 líneas, maneja pagos, envíos, descuentos y notificaciones. ¿Qué code smell es este?",
+    "code": null,
+    "options": [
+      "Feature Envy",
+      "Primitive Obsession",
+      "God Class",
+      "Long Parameter List"
+    ],
+    "correct": 2,
+    "explanation": "God Class (o Blob) es una clase que lo sabe todo y lo hace todo. Viola SRP y es la fuente más común de acoplamiento y deuda técnica."
+  },
+  {
+    "id": 12,
+    "level": "Junior",
+    "category": "Code Smells",
+    "question": "Un método recibe 8 parámetros primitivos: nombre, apellido, calle, ciudad, país, código postal, teléfono y email. ¿Qué smell tiene?",
+    "code": null,
+    "options": [
+      "Divergent Change",
+      "Long Parameter List + Primitive Obsession",
+      "Lazy Class",
+      "Shotgun Surgery"
+    ],
+    "correct": 1,
+    "explanation": "Dos smells combinados: Long Parameter List (demasiados parámetros) y Primitive Obsession (usar primitivos en lugar de objetos de valor como `Address` o `ContactInfo`)."
+  },
+  {
+    "id": 13,
+    "level": "Mid",
+    "category": "Code Smells",
+    "question": "El método `PaymentService.calculateDiscount()` accede constantemente a datos de `CustomerProfile` a través de varios getters. ¿Qué smell describe esto?",
+    "code": null,
+    "options": [
+      "Feature Envy",
+      "Dead Code",
+      "Parallel Inheritance Hierarchies",
+      "Middle Man"
+    ],
+    "correct": 0,
+    "explanation": "Feature Envy ocurre cuando un método está más interesado en los datos de otra clase que en los de la propia. La solución es mover la lógica donde están los datos."
+  },
+  {
+    "id": 14,
+    "level": "Mid",
+    "category": "Code Smells",
+    "question": "Tienes un switch/case que aparece en 5 métodos diferentes chequeando el mismo tipo de `OrderStatus`. ¿Qué smell es?",
+    "code": null,
+    "options": [
+      "Lazy Class",
+      "Duplicated Code + Switch Statements",
+      "Temporary Field",
+      "Speculative Generality"
+    ],
+    "correct": 1,
+    "explanation": "Switch Statements repetidos sobre un tipo enum son el smell clásico que indica que falta polimorfismo. Cada vez que el enum crece hay que actualizar todos los switches. El patrón Strategy o Enum con comportamiento lo resuelve."
+  },
+  {
+    "id": 15,
+    "level": "Junior",
+    "category": "Code Smells",
+    "question": "Tienes una clase `Utils` con 50 métodos estáticos sin relación entre sí. ¿Qué smell es?",
+    "code": null,
+    "options": [
+      "Inappropriate Intimacy",
+      "Divergent Change",
+      "God Class / Utility Bloat",
+      "Refused Bequest"
+    ],
+    "correct": 2,
+    "explanation": "Las clases `Utils` o `Helper` que acumulan métodos sin cohesión son un God Class disfrazado. Cada grupo de métodos relacionados debería estar en su propia clase con responsabilidad clara."
+  },
+  {
+    "id": 16,
+    "level": "Mid",
+    "category": "Code Smells",
+    "question": "Un campo `discountCode` en la clase `Product` solo se usa en el 20% de los casos y está `null` el resto del tiempo. ¿Qué smell es?",
+    "code": null,
+    "options": [
+      "Feature Envy",
+      "Temporary Field",
+      "Dead Code",
+      "Parallel Inheritance"
+    ],
+    "correct": 1,
+    "explanation": "Temporary Field: un campo que solo tiene valor en ciertos escenarios. Señal de que falta un objeto de valor o una subclase que encapsule ese comportamiento opcional."
+  },
+  {
+    "id": 17,
+    "level": "Mid",
+    "category": "Code Smells",
+    "question": "Para agregar un nuevo tipo de pago debes modificar `PaymentService`, `PaymentValidator`, `PaymentLogger` y `PaymentReporter`. ¿Qué smell es?",
+    "code": null,
+    "options": [
+      "Feature Envy",
+      "Divergent Change",
+      "Shotgun Surgery",
+      "Middle Man"
+    ],
+    "correct": 2,
+    "explanation": "Shotgun Surgery: un cambio lógico requiere tocar muchas clases distintas. Es el inverso de Divergent Change. Indica que la responsabilidad está mal distribuida entre las clases."
+  },
+  {
+    "id": 18,
+    "level": "Mid",
+    "category": "Code Smells",
+    "question": "¿Cuál es el refactoring más apropiado para eliminar el smell 'Primitive Obsession' en coordenadas GPS representadas como dos doubles?",
+    "code": null,
+    "options": [
+      "Extraer a un método",
+      "Crear un Value Object `Coordinates` con latitud y longitud",
+      "Agregar comentarios explicativos",
+      "Convertirlos a String"
+    ],
+    "correct": 1,
+    "explanation": "Los Value Objects encapsulan datos relacionados y las reglas de validación. `Coordinates` puede validar rangos, calcular distancias y tener su propia lógica. Mucho más rico que dos doubles sueltos."
+  },
+  {
+    "id": 19,
+    "level": "Junior",
+    "category": "Code Smells",
+    "question": "Tienes código comentado que nadie sabe si aún se necesita. Lleva 6 meses sin cambiar. ¿Qué smell es y qué debes hacer?",
+    "code": null,
+    "options": [
+      "Es Speculative Generality; dejarlo por si acaso",
+      "Es Dead Code; eliminarlo — para eso está el control de versiones",
+      "Es Lazy Class; refactorizarlo",
+      "Es Feature Envy; moverlo a otra clase"
+    ],
+    "correct": 1,
+    "explanation": "El código comentado es Dead Code. Git guarda el historial — no necesitas el código comentado como respaldo. Dejarlo genera confusión sobre si está activo, desactualizado o si falta algo."
+  },
+  {
+    "id": 20,
+    "level": "Mid",
+    "category": "Code Smells",
+    "question": "Una clase base `Animal` define `fly()` pero la subclase `Dog` no puede implementarla con sentido. ¿Qué smell es?",
+    "code": null,
+    "options": [
+      "Lazy Class",
+      "Refused Bequest",
+      "Inappropriate Intimacy",
+      "Speculative Generality"
+    ],
+    "correct": 1,
+    "explanation": "Refused Bequest: la subclase hereda métodos de la clase padre que no tiene sentido que tenga. Señal de que la jerarquía de herencia está mal diseñada. Prefiere composición sobre herencia."
+  },
+  {
+    "id": 21,
+    "level": "Junior",
+    "category": "SOLID",
+    "question": "Una clase `ReportGenerator` genera el reporte Y lo envía por email. ¿Qué principio SOLID viola?",
+    "code": null,
+    "options": [
+      "OCP — Open/Closed",
+      "LSP — Liskov Substitution",
+      "SRP — Single Responsibility",
+      "ISP — Interface Segregation"
+    ],
+    "correct": 2,
+    "explanation": "SRP: una clase debe tener una sola razón para cambiar. Generar reportes y enviarlos son responsabilidades distintas — cambios en el formato del email no deberían afectar la lógica de generación."
+  },
+  {
+    "id": 22,
+    "level": "Junior",
+    "category": "SOLID",
+    "question": "Tienes una clase `TaxCalculator` y para agregar un nuevo tipo de impuesto debes modificarla. ¿Qué principio SOLID se está violando?",
+    "code": null,
+    "options": [
+      "DIP",
+      "LSP",
+      "SRP",
+      "OCP"
+    ],
+    "correct": 3,
+    "explanation": "OCP (Open/Closed): las entidades deben estar abiertas a extensión pero cerradas a modificación. Deberías poder agregar nuevos tipos de impuesto con una nueva implementación, sin tocar el código existente."
+  },
+  {
+    "id": 23,
+    "level": "Junior",
+    "category": "SOLID",
+    "question": "Si `Bird.fly()` es un método que `Penguin extends Bird` debe sobreescribir lanzando `UnsupportedOperationException`, ¿qué principio se viola?",
+    "code": null,
+    "options": [
+      "ISP",
+      "LSP",
+      "OCP",
+      "DIP"
+    ],
+    "correct": 1,
+    "explanation": "LSP (Liskov): cualquier subclase debe poder sustituir a su clase padre sin alterar el comportamiento esperado del programa. Un `Penguin` que lanza excepción al llamar `fly()` rompe el contrato de `Bird`."
+  },
+  {
+    "id": 24,
+    "level": "Junior",
+    "category": "SOLID",
+    "question": "Una interfaz `IWorker` tiene métodos `work()`, `eat()` y `sleep()`. Una clase `Robot implements IWorker` no necesita `eat()` ni `sleep()`. ¿Qué principio se viola?",
+    "code": null,
+    "options": [
+      "SRP",
+      "OCP",
+      "ISP",
+      "DIP"
+    ],
+    "correct": 2,
+    "explanation": "ISP (Interface Segregation): los clientes no deberían verse forzados a depender de métodos que no usan. La solución es segregar en `IWorker`, `IEater`, `ISleeper`."
+  },
+  {
+    "id": 25,
+    "level": "Junior",
+    "category": "SOLID",
+    "question": "Una clase de alto nivel `OrderService` instancia directamente `MySQLOrderRepository`. ¿Qué principio SOLID viola?",
+    "code": null,
+    "options": [
+      "LSP",
+      "SRP",
+      "ISP",
+      "DIP"
+    ],
+    "correct": 3,
+    "explanation": "DIP (Dependency Inversion): los módulos de alto nivel no deben depender de los de bajo nivel; ambos deben depender de abstracciones. `OrderService` debería depender de `OrderRepository` (interfaz), no de la implementación MySQL."
+  },
+  {
+    "id": 26,
+    "level": "Mid",
+    "category": "SOLID",
+    "question": "¿Cuál de los siguientes diseños aplica correctamente OCP?",
+    "code": null,
+    "options": [
+      "Agregar un `if/else` en `DiscountService` para cada nuevo tipo de descuento",
+      "Crear una interfaz `DiscountStrategy` e implementar cada descuento como clase separada",
+      "Modificar los parámetros del método cada vez que hay un nuevo descuento",
+      "Usar un switch dentro del servicio de descuentos"
+    ],
+    "correct": 1,
+    "explanation": "Con `DiscountStrategy` extiendes el sistema agregando una nueva clase que implementa la interfaz. El código existente no cambia — solo se agrega una nueva implementación."
+  },
+  {
+    "id": 27,
+    "level": "Mid",
+    "category": "SOLID",
+    "question": "¿Cuál es la diferencia práctica entre SRP y la separación en capas (Controller, Service, Repository)?",
+    "code": null,
+    "options": [
+      "Son exactamente lo mismo",
+      "SRP es a nivel de clase/método; las capas son una aplicación de SRP a nivel arquitectónico",
+      "SRP aplica solo a métodos, no a clases",
+      "Las capas reemplazan completamente a SRP"
+    ],
+    "correct": 1,
+    "explanation": "La separación en capas es una aplicación macro de SRP: cada capa tiene una responsabilidad arquitectónica. SRP aplica a cada clase individualmente dentro de esas capas."
+  },
+  {
+    "id": 28,
+    "level": "Mid",
+    "category": "SOLID",
+    "question": "Tienes `interface Flyable { fly(); }` y `interface Swimmable { swim(); }`. `Duck implements Flyable, Swimmable`. ¿Qué principio aplica correctamente?",
+    "code": null,
+    "options": [
+      "Viola OCP",
+      "Aplica ISP correctamente — interfaces pequeñas y especializadas",
+      "Viola DIP",
+      "Aplica LSP incorrectamente"
+    ],
+    "correct": 1,
+    "explanation": "ISP bien aplicado: en lugar de una interfaz `Animal` con todos los métodos, se segregan capacidades específicas. `Duck` implementa solo las que le corresponden."
+  },
+  {
+    "id": 29,
+    "level": "Mid",
+    "category": "SOLID",
+    "question": "¿Por qué inyectar dependencias por constructor es preferible a `new` dentro de la clase?",
+    "code": null,
+    "options": [
+      "No hay diferencia, es solo estilo",
+      "Facilita el testing con mocks y cumple DIP — la clase depende de la abstracción, no de la implementación concreta",
+      "Es obligatorio en Java",
+      "Solo es útil con frameworks de IoC"
+    ],
+    "correct": 1,
+    "explanation": "Con inyección por constructor: 1) puedes pasar un mock en tests, 2) la clase declara explícitamente sus dependencias, 3) cumple DIP al recibir la abstracción (interfaz), no la implementación concreta."
+  },
+  {
+    "id": 30,
+    "level": "Mid",
+    "category": "SOLID",
+    "question": "Una clase `Employee` tiene métodos para calcular sueldo, generar reporte PDF y guardar en base de datos. ¿Cuántas violaciones de SRP hay?",
+    "code": null,
+    "options": [
+      "Ninguna, todo es sobre empleados",
+      "Una violación",
+      "Dos violaciones — son tres responsabilidades distintas en una sola clase",
+      "Solo es violación si supera 100 líneas"
+    ],
+    "correct": 2,
+    "explanation": "Tres responsabilidades = dos violaciones de SRP. Cálculo de sueldo (regla de negocio), generación de PDF (presentación) y persistencia (datos) son razones distintas para cambiar."
+  },
+  {
+    "id": 31,
+    "level": "Junior",
+    "category": "Code Review Best Practices",
+    "question": "Durante un code review encuentras un método de 150 líneas que funciona perfectamente. ¿Cuál es el comentario más adecuado?",
+    "code": null,
+    "options": [
+      "Aprobarlo — si funciona, no tocar",
+      "Señalar que debería refactorizarse aunque funcione, porque la mantenibilidad es parte de la calidad",
+      "Bloquearlo hasta que lo refactorice completamente antes del merge",
+      "Ignorarlo porque no es tu responsabilidad"
+    ],
+    "correct": 1,
+    "explanation": "Un code review cubre correctitud, legibilidad y mantenibilidad. Código que funciona pero es difícil de mantener es deuda técnica. Se señala con sugerencia constructiva, no como bloqueo."
+  },
+  {
+    "id": 32,
+    "level": "Junior",
+    "category": "Code Review Best Practices",
+    "question": "¿Cuál es la diferencia entre un comentario de code review bloqueante y uno sugerido?",
+    "code": null,
+    "options": [
+      "No hay diferencia, todo debe solucionarse",
+      "Bloqueante: impide el merge por correctitud, seguridad o calidad crítica. Sugerido: mejora deseable que no bloquea",
+      "Solo los bugs son bloqueantes",
+      "Los sugeridos son opcionales siempre"
+    ],
+    "correct": 1,
+    "explanation": "Distinguir entre must-fix y nice-to-have es clave para code reviews efectivos. Bloquear por todo crea fricción innecesaria. Solo bloquear cuando hay impacto real en correctitud, seguridad o mantenibilidad crítica."
+  },
+  {
+    "id": 33,
+    "level": "Junior",
+    "category": "Code Review Best Practices",
+    "question": "Un desarrollador sube un PR de 800 líneas cambiando 15 archivos distintos. ¿Cuál es el problema principal?",
+    "code": null,
+    "options": [
+      "Es demasiado código para revisar efectivamente — los PRs grandes reducen la calidad del review",
+      "El problema es que cambia demasiados archivos, no el tamaño",
+      "Solo es problema si tarda más de 30 minutos en revisarse",
+      "No hay problema si cada cambio tiene su justificación"
+    ],
+    "correct": 0,
+    "explanation": "PRs grandes degradan la calidad del review exponencialmente. La investigación muestra que después de 400 líneas la tasa de detección de defectos cae. PRs pequeños y enfocados son una best practice."
+  },
+  {
+    "id": 34,
+    "level": "Junior",
+    "category": "Code Review Best Practices",
+    "question": "¿Cuál es la actitud correcta al recibir un comentario de code review sobre tu código?",
+    "code": null,
+    "options": [
+      "Defender siempre tu decisión inicial",
+      "Aceptar todos los comentarios sin discutir",
+      "Tratar el feedback como sobre el código, no sobre ti. Discutir técnicamente si no estás de acuerdo",
+      "Ignorar comentarios de revisores junior"
+    ],
+    "correct": 2,
+    "explanation": "El code review es una conversación técnica, no un juicio personal. Separar el ego del código permite discusiones productivas. Puedes no estar de acuerdo — exprésalo con argumento técnico."
+  },
+  {
+    "id": 35,
+    "level": "Junior",
+    "category": "Code Review Best Practices",
+    "question": "Durante un code review, ¿qué es más importante verificar primero?",
+    "code": null,
+    "options": [
+      "El estilo de código y formato",
+      "La lógica de negocio, correctitud y posibles bugs",
+      "Los nombres de variables",
+      "Que tenga suficientes comentarios"
+    ],
+    "correct": 1,
+    "explanation": "La correctitud funcional y la lógica de negocio tienen mayor impacto. El formato se puede automatizar con linters. Primero validar que hace lo que debe hacer, luego cómo está escrito."
+  },
+  {
+    "id": 36,
+    "level": "Mid",
+    "category": "Code Review Best Practices",
+    "question": "¿Qué práctica de code review ayuda más a transferir conocimiento del sistema entre el equipo?",
+    "code": null,
+    "options": [
+      "Reviews asignados al mismo revisor experto siempre",
+      "Rotación de revisores para que todos conozcan distintas partes del código",
+      "Que solo revisen los seniors",
+      "Reviews rápidos para no bloquear el progreso"
+    ],
+    "correct": 1,
+    "explanation": "La rotación de revisores distribuye el conocimiento, reduce dependencias de personas clave (bus factor) y crea entendimiento compartido del sistema. Es una práctica de equipos maduros."
+  },
+  {
+    "id": 37,
+    "level": "Mid",
+    "category": "Code Review Best Practices",
+    "question": "Encuentras en un PR un catch vacío: `catch(Exception e) {}`. ¿Qué tipo de comentario deberías dejar?",
+    "code": null,
+    "options": [
+      "Sugerencia opcional — probablemente era intencional",
+      "Bloqueante — tragar excepciones silenciosamente puede ocultar bugs críticos en producción",
+      "Solo señalarlo si el método es crítico",
+      "Bloqueante solo si no hay logging"
+    ],
+    "correct": 1,
+    "explanation": "Un catch vacío es uno de los anti-patrones más peligrosos. Errores que deberían ser visibles se silencian. Como mínimo debe loggearse. En la mayoría de los casos es un bug en potencia."
+  },
+  {
+    "id": 38,
+    "level": "Junior",
+    "category": "Code Review Best Practices",
+    "question": "¿Cuál es el propósito principal de un PR description bien escrito?",
+    "code": null,
+    "options": [
+      "Cumplir con el proceso burocrático del equipo",
+      "Dar contexto al revisor sobre el 'por qué' del cambio, no solo el 'qué'",
+      "Listar todos los archivos modificados",
+      "Explicar cómo ejecutar los tests"
+    ],
+    "correct": 1,
+    "explanation": "El diff muestra qué cambió. El description explica por qué: contexto de negocio, decisiones de diseño, alternativas descartadas. Eso permite un review más inteligente y documenta la historia del sistema."
+  },
+  {
+    "id": 39,
+    "level": "Mid",
+    "category": "Code Review Best Practices",
+    "question": "Un revisor deja 25 comentarios en un PR. ¿Qué indica esto típicamente?",
+    "code": null,
+    "options": [
+      "Que el revisor es muy detallista, es positivo",
+      "Que el PR llegó sin suficiente contexto o sin revisión previa del autor",
+      "Que hay que rechazar el PR completamente",
+      "Nada relevante, es normal"
+    ],
+    "correct": 1,
+    "explanation": "Muchos comentarios suelen indicar que el autor no revisó su propio código antes del PR, falta de criterio sobre qué merece review, o un PR demasiado grande. Los mejores PRs llegan casi sin comentarios."
+  },
+  {
+    "id": 40,
+    "level": "Junior",
+    "category": "Code Review Best Practices",
+    "question": "¿Qué ventaja tiene hacer self-review del PR antes de asignarlo a un revisor?",
+    "code": null,
+    "options": [
+      "Ninguna, el revisor siempre encontrará más cosas",
+      "Eliminas errores obvios tú mismo, respetas el tiempo del revisor y el feedback es más valioso",
+      "Es obligatorio en todos los equipos",
+      "Solo es útil para developers junior"
+    ],
+    "correct": 1,
+    "explanation": "El self-review antes del PR es una señal de profesionalismo. Los reviewers tienen tiempo limitado — filtra los errores de descuido y permite que el review se enfoque en la lógica y el diseño."
+  },
+  {
+    "id": 41,
+    "level": "Junior",
+    "category": "Java Coding Standards & Best Practices",
+    "question": "¿Cuál es la convención correcta de nombres para una constante en Java?",
+    "code": null,
+    "options": [
+      "maxRetryCount",
+      "MaxRetryCount",
+      "MAX_RETRY_COUNT",
+      "maxretrycount"
+    ],
+    "correct": 2,
+    "explanation": "Las constantes en Java (`static final`) usan SCREAMING_SNAKE_CASE. Esta convención permite identificar visualmente una constante en cualquier parte del código."
+  },
+  {
+    "id": 42,
+    "level": "Junior",
+    "category": "Java Coding Standards & Best Practices",
+    "question": "¿Por qué se prefiere `List<String>` sobre `ArrayList<String>` como tipo de retorno de un método?",
+    "code": null,
+    "options": [
+      "No hay diferencia práctica",
+      "Programar contra la interfaz permite cambiar la implementación sin afectar al consumidor del método",
+      "ArrayList es más lento",
+      "Es solo una convención estética"
+    ],
+    "correct": 1,
+    "explanation": "Programar contra interfaces es un principio fundamental. Si retornas `List`, mañana puedes cambiar internamente a `LinkedList` o `Collections.unmodifiableList()` sin romper ningún consumidor."
+  },
+  {
+    "id": 43,
+    "level": "Mid",
+    "category": "Java Coding Standards & Best Practices",
+    "question": "¿Cuándo es apropiado usar `Optional<T>` en Java?",
+    "code": null,
+    "options": [
+      "Siempre que una variable pueda ser null",
+      "Como tipo de retorno cuando un valor puede estar ausente, para forzar al consumidor a manejar la ausencia",
+      "En todos los campos de una clase",
+      "Como parámetro de métodos para permitir null"
+    ],
+    "correct": 1,
+    "explanation": "`Optional` como tipo de retorno comunica explícitamente 'esto puede no tener valor'. No se recomienda como parámetro (usa sobrecarga) ni en campos (usa null con validación)."
+  },
+  {
+    "id": 44,
+    "level": "Junior",
+    "category": "Java Coding Standards & Best Practices",
+    "question": "¿Qué convención de nombres aplica a los paquetes en Java?",
+    "code": null,
+    "options": [
+      "PascalCase: com.MiEmpresa.MiApp",
+      "camelCase: com.miEmpresa.miApp",
+      "todo en minúsculas: com.miempresa.miapp",
+      "SNAKE_CASE: com.mi_empresa.mi_app"
+    ],
+    "correct": 2,
+    "explanation": "Los paquetes en Java usan siempre minúsculas sin guiones ni underscores. La convención es dominio invertido: `com.empresa.proyecto.modulo`."
+  },
+  {
+    "id": 45,
+    "level": "Junior",
+    "category": "Java Coding Standards & Best Practices",
+    "question": "¿Por qué es una mala práctica retornar `null` desde un método que devuelve una colección?",
+    "code": null,
+    "options": [
+      "No es mala práctica, es eficiente",
+      "El consumidor siempre debe verificar null antes de iterar, aumentando el riesgo de NullPointerException",
+      "Solo es problema con listas grandes",
+      "Es válido si se documenta con Javadoc"
+    ],
+    "correct": 1,
+    "explanation": "Retornar una colección vacía (`Collections.emptyList()`) es siempre mejor que null. El consumidor puede iterar directamente sin verificación de null. Efectivo y seguro."
+  },
+  {
+    "id": 46,
+    "level": "Junior",
+    "category": "Java Coding Standards & Best Practices",
+    "question": "¿Cuál es la forma recomendada de comparar Strings en Java?",
+    "code": null,
+    "options": [
+      "Con el operador `==`",
+      "Con `str1.equals(str2)` o `Objects.equals(str1, str2)`",
+      "Con `str1.compareTo(str2) == 0`",
+      "Con `str1.hashCode() == str2.hashCode()`"
+    ],
+    "correct": 1,
+    "explanation": "`==` compara referencias, no contenido. `equals()` compara el contenido. `Objects.equals()` es además null-safe. El `==` con Strings es un bug clásico que pasa desapercibido en algunos casos por el String pool."
+  },
+  {
+    "id": 47,
+    "level": "Mid",
+    "category": "Java Coding Standards & Best Practices",
+    "question": "¿Qué significa que un método sea idempotente y por qué importa en diseño de APIs?",
+    "code": null,
+    "options": [
+      "Que siempre retorna el mismo tipo",
+      "Que ejecutarlo múltiples veces produce el mismo resultado que ejecutarlo una vez",
+      "Que no tiene efectos secundarios",
+      "Que siempre es exitoso"
+    ],
+    "correct": 1,
+    "explanation": "La idempotencia es crítica en sistemas distribuidos y APIs REST. Si una llamada falla y se reintenta, un método idempotente garantiza que no habrá efectos duplicados (ej: doble cobro, doble creación)."
+  },
+  {
+    "id": 48,
+    "level": "Mid",
+    "category": "Java Coding Standards & Best Practices",
+    "question": "¿Cuál es la diferencia práctica entre usar `StringBuilder` vs concatenación con `+` en un loop?",
+    "code": null,
+    "options": [
+      "No hay diferencia funcional ni de rendimiento",
+      "Concatenación con `+` en un loop crea un nuevo objeto String en cada iteración — O(n²) en memoria. StringBuilder es O(n)",
+      "StringBuilder es solo para threads",
+      "Solo importa con Strings mayores a 1000 caracteres"
+    ],
+    "correct": 1,
+    "explanation": "Cada `+` con Strings crea un nuevo objeto String inmutable en el heap. En un loop de 1000 iteraciones creas 1000 objetos innecesarios. StringBuilder acumula en un buffer y construye el String al final."
+  },
+  {
+    "id": 49,
+    "level": "Mid",
+    "category": "Java Coding Standards & Best Practices",
+    "question": "¿Por qué se prefiere `try-with-resources` sobre `try-finally` para manejar recursos como conexiones?",
+    "code": null,
+    "options": [
+      "No hay diferencia real",
+      "try-with-resources garantiza el cierre del recurso automáticamente, incluso si ocurre una excepción. Elimina el riesgo de resource leak",
+      "try-finally es más explícito y preferible",
+      "Solo aplica para archivos, no para conexiones"
+    ],
+    "correct": 1,
+    "explanation": "`try-with-resources` llama automáticamente a `close()` en cualquier `AutoCloseable`. Con `try-finally` es fácil olvidar el cierre o que la excepción en `finally` enmascare la original."
+  },
+  {
+    "id": 50,
+    "level": "Junior",
+    "category": "Java Coding Standards & Best Practices",
+    "question": "¿Qué problema tiene la siguiente declaración: `public List datos = new ArrayList();`?",
+    "code": null,
+    "options": [
+      "Ninguno, es válida",
+      "Usa raw type (sin generics) — pierde type safety, el compilador no puede validar el tipo del contenido",
+      "Es private, debería ser public",
+      "Debería ser static"
+    ],
+    "correct": 1,
+    "explanation": "Los raw types eliminan la seguridad de tipos del compilador. Deberías declarar `List<TipoCorrecto>` para que el compilador detecte errores en tiempo de compilación, no en runtime."
+  },
+  {
+    "id": 51,
+    "level": "Junior",
+    "category": "Error & Exception Handling Best Practices",
+    "question": "¿Cuál es el problema principal de `catch(Exception e) { e.printStackTrace(); }` en producción?",
+    "code": null,
+    "options": [
+      "Ninguno, es suficiente para debugging",
+      "Imprime en stdout, no en el sistema de logging. La excepción se 'traga' y el flujo puede continuar en estado inconsistente",
+      "Solo es problema si la excepción es checked",
+      "Es demasiado verboso"
+    ],
+    "correct": 1,
+    "explanation": "Dos problemas: 1) printStackTrace va a stdout, ignorado en producción con logging centralizado. 2) El catch vacío permite que el código continúe después de un error, potencialmente en estado corrupto."
+  },
+  {
+    "id": 52,
+    "level": "Mid",
+    "category": "Error & Exception Handling Best Practices",
+    "question": "¿Cuándo es apropiado crear una excepción personalizada?",
+    "code": null,
+    "options": [
+      "Nunca, siempre usar excepciones de Java",
+      "Cuando necesitas comunicar un error de dominio específico que las excepciones estándar no representan bien (ej: `InsufficientFundsException`)",
+      "Solo cuando heredas de RuntimeException",
+      "Siempre que haya un error de negocio"
+    ],
+    "correct": 1,
+    "explanation": "Las excepciones personalizadas comunican errores de dominio de forma expresiva. `InsufficientFundsException` es más informativo que `IllegalStateException`. Además permite capturarlas específicamente en la capa correcta."
+  },
+  {
+    "id": 53,
+    "level": "Junior",
+    "category": "Error & Exception Handling Best Practices",
+    "question": "¿Cuál es la diferencia entre `checked` y `unchecked` exceptions en términos de diseño?",
+    "code": null,
+    "options": [
+      "Solo difieren en la sintaxis",
+      "Checked: el compilador obliga a manejarlas — para errores recuperables. Unchecked (RuntimeException): para errores de programación o de los que no se puede recuperar",
+      "Unchecked son más rápidas",
+      "Checked son obsoletas en Java moderno"
+    ],
+    "correct": 1,
+    "explanation": "Checked exceptions expresan condiciones recuperables que el llamador debe considerar (ej: `FileNotFoundException`). Unchecked son para bugs o condiciones irrecuperables (ej: `NullPointerException`, `IllegalArgumentException`)."
+  },
+  {
+    "id": 54,
+    "level": "Mid",
+    "category": "Error & Exception Handling Best Practices",
+    "question": "¿En qué capa de una aplicación en capas deberías manejar (capturar y transformar) las excepciones de base de datos?",
+    "code": null,
+    "options": [
+      "En el Repository, relanzarla como excepción de dominio",
+      "En el Controller, directamente",
+      "En el método main",
+      "En la base de datos misma"
+    ],
+    "correct": 0,
+    "explanation": "El Repository es el punto de contacto con la persistencia. Captura `DataAccessException` ahí y relanza como `UserNotFoundException` o similar. Así las capas superiores no conocen detalles de implementación de persistencia."
+  },
+  {
+    "id": 55,
+    "level": "Mid",
+    "category": "Error & Exception Handling Best Practices",
+    "question": "¿Qué problema tiene `catch(Exception e) { throw new RuntimeException(e.getMessage()); }`?",
+    "code": null,
+    "options": [
+      "Ninguno, es correcto",
+      "Pierde el stack trace original y el tipo de la excepción — dificulta el debugging en producción",
+      "Es demasiado verboso",
+      "Debería usar checked exception"
+    ],
+    "correct": 1,
+    "explanation": "Al crear `new RuntimeException(e.getMessage())` solo copias el mensaje como String, perdiendo el stack trace y el tipo original. Correcto: `throw new RuntimeException(\"contexto adicional\", e)` — preserva la causa original."
+  },
+  {
+    "id": 56,
+    "level": "Junior",
+    "category": "Error & Exception Handling Best Practices",
+    "question": "¿Cuál es la práctica correcta para validar parámetros al inicio de un método?",
+    "code": null,
+    "options": [
+      "Confiar en que el llamador siempre pasa valores válidos",
+      "Validar con `if` al inicio y lanzar `IllegalArgumentException` o `NullPointerException` con mensaje descriptivo (early return / fail fast)",
+      "Validar solo en los métodos públicos",
+      "Usar assert en lugar de excepciones"
+    ],
+    "correct": 1,
+    "explanation": "Fail Fast: detectar el error lo más temprano posible. Un `IllegalArgumentException(\"userId no puede ser null\")` al inicio es infinitamente más útil que un `NullPointerException` 10 llamadas después en un lugar inesperado."
+  },
+  {
+    "id": 57,
+    "level": "Mid",
+    "category": "Error & Exception Handling Best Practices",
+    "question": "Tienes un loop que procesa 1000 registros. Uno falla. ¿Cuál es el mejor enfoque?",
+    "code": null,
+    "options": [
+      "Detener todo el proceso con una excepción no manejada",
+      "Depende del negocio: si son independientes, loggear el error y continuar; si son transaccionales, rollback total",
+      "Ignorar el error y continuar siempre",
+      "Reintentar el registro fallido infinitamente"
+    ],
+    "correct": 1,
+    "explanation": "La respuesta depende del contexto de negocio. Para registros independientes (ej: envío de emails), continuar y loggear. Para transacciones relacionadas (ej: transferencias), fallar todo. El diseño debe reflejar la semántica de negocio."
+  },
+  {
+    "id": 58,
+    "level": "Mid",
+    "category": "Error & Exception Handling Best Practices",
+    "question": "¿Por qué es mala práctica usar excepciones para control de flujo normal?",
+    "code": null,
+    "options": [
+      "No es mala práctica, es válido",
+      "Las excepciones son costosas (construcción de stack trace) y hacen el código difícil de leer — son para condiciones excepcionales, no para lógica normal",
+      "Solo es malo en loops",
+      "Java lo permite, así que está bien"
+    ],
+    "correct": 1,
+    "explanation": "El stack trace de una excepción es costoso de construir. Además, usar try/catch para flujo normal confunde al lector — `try { user = findUser(id); } catch { ... }` cuando `findUser` puede retornar `Optional`."
+  },
+  {
+    "id": 59,
+    "level": "Junior",
+    "category": "Error & Exception Handling Best Practices",
+    "question": "¿Qué información debe incluir siempre el mensaje de una excepción de negocio?",
+    "code": null,
+    "options": [
+      "Solo el nombre de la excepción es suficiente",
+      "Contexto suficiente para entender el error sin el stack trace: qué falló, con qué valor, por qué",
+      "El stack trace completo en el mensaje",
+      "Solo un código de error numérico"
+    ],
+    "correct": 1,
+    "explanation": "Un buen mensaje: `\"Usuario no encontrado con id: 12345\"`. Un mal mensaje: `\"Error\"` o `\"null\"`. El mensaje debe permitir al desarrollador o al sistema de alertas entender el problema sin investigación adicional."
+  },
+  {
+    "id": 60,
+    "level": "Mid",
+    "category": "Error & Exception Handling Best Practices",
+    "question": "¿Cuál es la diferencia entre loggear `log.error(e.getMessage())` y `log.error(\"Error procesando pago\", e)`?",
+    "code": null,
+    "options": [
+      "Son equivalentes",
+      "La segunda forma incluye el stack trace completo en el log — fundamental para debugging. La primera solo guarda el mensaje de texto",
+      "La primera es más eficiente",
+      "log.error solo acepta un parámetro"
+    ],
+    "correct": 1,
+    "explanation": "Pasar la excepción como segundo parámetro a SLF4J hace que el logger incluya el stack trace completo. Solo el mensaje texto es prácticamente inútil para debugging — no sabes dónde ocurrió el error."
+  },
+  {
+    "id": 61,
+    "level": "Junior",
+    "category": "Refactoring Techniques",
+    "question": "¿Cuál es la regla de oro del refactoring para hacerlo de forma segura?",
+    "code": null,
+    "options": [
+      "Reescribir todo el módulo de una vez",
+      "Refactorizar en pequeños pasos con tests que validen que el comportamiento no cambió",
+      "Refactorizar solo código nuevo",
+      "Refactorizar sin tests para ir más rápido"
+    ],
+    "correct": 1,
+    "explanation": "Refactoring sin tests es reescritura con esperanza. Los tests son la red de seguridad que garantiza que cada pequeño paso preservó el comportamiento externo. Sin ellos, no es refactoring — es ruleta."
+  },
+  {
+    "id": 62,
+    "level": "Junior",
+    "category": "Refactoring Techniques",
+    "question": "La técnica 'Extract Method' es apropiada cuando:",
+    "code": null,
+    "options": [
+      "Un método tiene más de 10 líneas",
+      "Un bloque de código tiene un comentario que explica qué hace, o hace una cosa distinguible dentro de una función mayor",
+      "Siempre que haya duplicación",
+      "El método tiene más de 3 parámetros"
+    ],
+    "correct": 1,
+    "explanation": "El comentario es la señal. `// calcula descuento por volumen` seguido de 5 líneas de código grita 'extráeme a un método'. El nombre del método reemplaza el comentario y la lógica queda encapsulada."
+  },
+  {
+    "id": 63,
+    "level": "Mid",
+    "category": "Refactoring Techniques",
+    "question": "¿Qué técnica de refactoring se usa para eliminar el smell 'Long Parameter List'?",
+    "code": null,
+    "options": [
+      "Extract Method",
+      "Introduce Parameter Object — agrupar parámetros relacionados en un objeto",
+      "Replace Conditional with Polymorphism",
+      "Inline Method"
+    ],
+    "correct": 1,
+    "explanation": "Introduce Parameter Object: si tienes `createOrder(String name, String street, String city, String country)`, los últimos tres parámetros son candidatos para un objeto `Address`. Reduce el acoplamiento y añade semántica."
+  },
+  {
+    "id": 64,
+    "level": "Mid",
+    "category": "Refactoring Techniques",
+    "question": "Tienes 3 clases con métodos casi idénticos que difieren en 2 líneas. ¿Qué técnica de refactoring aplica?",
+    "code": null,
+    "options": [
+      "Duplicate code es aceptable",
+      "Extract Superclass o Template Method — mueve el código común a una clase base, las diferencias van en métodos abstractos",
+      "Copiar y pegar la lógica donde se necesite",
+      "Crear un método estático en Utils"
+    ],
+    "correct": 1,
+    "explanation": "Template Method define el esqueleto del algoritmo en la clase base y deja que las subclases implementen los pasos variables. Elimina la duplicación preservando las variaciones específicas."
+  },
+  {
+    "id": 65,
+    "level": "Mid",
+    "category": "Refactoring Techniques",
+    "question": "¿Cuándo es apropiado hacer refactoring de código que funciona correctamente?",
+    "code": null,
+    "options": [
+      "Nunca — si funciona, no tocar",
+      "Antes de agregar una nueva funcionalidad ('make the change easy, then make the easy change'), o cuando el código dificulta el entendimiento",
+      "Solo cuando hay bugs",
+      "Solo en sprint de deuda técnica"
+    ],
+    "correct": 1,
+    "explanation": "La frase de Kent Beck lo resume: 'For each desired change, make the change easy (warning: this may be hard), then make the easy change.' El refactoring previo reduce el riesgo y el costo del cambio funcional."
+  },
+  {
+    "id": 66,
+    "level": "Mid",
+    "category": "Refactoring Techniques",
+    "question": "'Replace Conditional with Polymorphism' es el refactoring para:",
+    "code": null,
+    "options": [
+      "Eliminar todos los if del código",
+      "Reemplazar switch/if-else sobre tipo con una jerarquía de clases o implementaciones de interfaz",
+      "Convertir métodos condicionales en métodos abstractos",
+      "Solo aplica a Java Generics"
+    ],
+    "correct": 1,
+    "explanation": "Cuando el mismo switch sobre un tipo aparece en múltiples métodos, cada `case` es en realidad un objeto diferente. Crear una clase por caso y usar polimorfismo elimina todos los switches a la vez."
+  },
+  {
+    "id": 67,
+    "level": "Mid",
+    "category": "Refactoring Techniques",
+    "question": "¿Qué riesgo principal tiene el over-refactoring?",
+    "code": null,
+    "options": [
+      "Ninguno, más refactoring siempre es mejor",
+      "Introducir complejidad accidental — abstracciones prematuras que hacen el código más difícil de entender que el original",
+      "Viola el principio DRY",
+      "Hace el código más lento"
+    ],
+    "correct": 1,
+    "explanation": "YAGNI (You Aren't Gonna Need It): no abstraigas para casos hipotéticos. Una abstracción mal elegida es peor que el código simple original. El refactoring debe responder a un problema real, no a uno imaginado."
+  },
+  {
+    "id": 68,
+    "level": "Junior",
+    "category": "Refactoring Techniques",
+    "question": "La técnica 'Early Return' (o Guard Clauses) refactoriza código para:",
+    "code": null,
+    "options": [
+      "Retornar siempre null en caso de error",
+      "Validar precondiciones al inicio y retornar/lanzar inmediatamente, eliminando el anidamiento de if-else",
+      "Retornar antes de hacer el trabajo",
+      "Siempre usar Optional en el retorno"
+    ],
+    "correct": 1,
+    "explanation": "Guard Clauses invierten la condición: en lugar de `if (valido) { ...50 líneas... }`, usas `if (!valido) return;`. Elimina la pirámide de if anidados (arrow anti-pattern) y hace el happy path evidente."
+  },
+  {
+    "id": 69,
+    "level": "Junior",
+    "category": "Refactoring Techniques",
+    "question": "¿Qué es el 'Boy Scout Rule' en el contexto de refactoring?",
+    "code": null,
+    "options": [
+      "Documentar todo el código nuevo",
+      "Deja el código un poco mejor de como lo encontraste en cada cambio",
+      "Refactorizar todo el módulo cuando tocas un archivo",
+      "Solo aplica a código legacy"
+    ],
+    "correct": 1,
+    "explanation": "De Robert Martin: 'Leave the campground cleaner than you found it.' Cada vez que tocas código, mejora algo pequeño: renombra una variable confusa, extrae un método largo, elimina un comentario obsoleto. El código mejora incrementalmente."
+  },
+  {
+    "id": 70,
+    "level": "Mid",
+    "category": "Refactoring Techniques",
+    "question": "¿Cuál es la diferencia entre refactoring y reescritura?",
+    "code": null,
+    "options": [
+      "Son sinónimos en práctica",
+      "Refactoring: pequeños pasos preservando comportamiento externo con tests. Reescritura: construir desde cero sin garantía de comportamiento equivalente",
+      "Reescritura es siempre mejor",
+      "Refactoring solo aplica a métodos, reescritura a clases"
+    ],
+    "correct": 1,
+    "explanation": "Refactoring es disciplinado y verificable — cada paso es pequeño y los tests confirman equivalencia. Reescritura es de alto riesgo — pierdes los casos edge que el código original cubría, a veces sin saberlo."
+  },
+  {
+    "id": 71,
+    "level": "Mid",
+    "category": "Design Patterns",
+    "question": "Tienes `OrderStatus` como enum con valores `PENDING, APPROVED, SHIPPED, DELIVERED, CANCELLED`. Cada estado permite distintas transiciones. ¿Qué patrón modela mejor esto?",
+    "code": null,
+    "options": [
+      "Strategy Pattern",
+      "State Pattern — cada estado controla sus propias transiciones válidas",
+      "Factory Pattern",
+      "Observer Pattern"
+    ],
+    "correct": 1,
+    "explanation": "State Pattern: el objeto cambia su comportamiento según su estado interno, y el estado mismo controla las transiciones válidas. `SHIPPED.cancel()` puede lanzar excepción; `PENDING.cancel()` puede proceder."
+  },
+  {
+    "id": 72,
+    "level": "Mid",
+    "category": "Design Patterns",
+    "question": "Tienes múltiples reglas de negocio para determinar si un cliente es elegible para un préstamo (edad, historial, ingresos). ¿Qué patrón permite agregar reglas sin modificar el evaluador?",
+    "code": null,
+    "options": [
+      "Observer",
+      "State",
+      "Strategy/Specification — cada regla es una especificación combinable",
+      "Composite"
+    ],
+    "correct": 2,
+    "explanation": "Specification Pattern: cada criterio es un objeto con método `isSatisfiedBy(customer)`. Se combinan con `and()`, `or()`, `not()`. Agregar una nueva regla es crear una nueva `Specification` sin tocar el código existente."
+  },
+  {
+    "id": 73,
+    "level": "Mid",
+    "category": "Design Patterns",
+    "question": "¿Cuál es la ventaja del patrón Enum con comportamiento sobre un switch-case que delega por tipo?",
+    "code": null,
+    "options": [
+      "Los enums son más rápidos que switch",
+      "El comportamiento está encapsulado en el propio enum — agregar un nuevo valor no requiere localizar y actualizar todos los switch del código",
+      "Los enums usan menos memoria",
+      "Switch es siempre mejor que enum con comportamiento"
+    ],
+    "correct": 1,
+    "explanation": "Con enum + comportamiento, cada constante sobreescribe el método abstracto. Al agregar `GOLD` al enum, el compilador fuerza implementar el método. Con switch distribuidos en el código, olvidar uno es un bug silencioso."
+  },
+  {
+    "id": 74,
+    "level": "Mid",
+    "category": "Design Patterns",
+    "question": "Tienes una cadena de validaciones: formato, negocio, permisos, rate-limiting. Cada una puede rechazar la solicitud. ¿Qué patrón aplica?",
+    "code": null,
+    "options": [
+      "Strategy",
+      "Composite",
+      "Chain of Responsibility — cada handler decide procesar o pasar al siguiente",
+      "Observer"
+    ],
+    "correct": 2,
+    "explanation": "Chain of Responsibility: los handlers se encadenan. Cada uno procesa lo que puede o delega al siguiente. Agregar una nueva validación es crear un nuevo handler y agregarlo a la cadena sin modificar los existentes."
+  },
+  {
+    "id": 75,
+    "level": "Mid",
+    "category": "Design Patterns",
+    "question": "¿Cuál es el riesgo principal de implementar el patrón Singleton en una aplicación con múltiples threads?",
+    "code": null,
+    "options": [
+      "Los Singletons siempre son thread-safe",
+      "En la inicialización lazy sin sincronización se pueden crear múltiples instancias en condición de carrera",
+      "Los Singletons no funcionan con herencia",
+      "Consumen demasiada memoria"
+    ],
+    "correct": 1,
+    "explanation": "En inicialización lazy sin `synchronized` o `volatile`, dos threads pueden pasar el check `== null` simultáneamente y crear dos instancias. La solución: eager initialization, `synchronized`, o el patrón Bill Pugh (holder estático)."
+  },
+  {
+    "id": 76,
+    "level": "Mid",
+    "category": "Design Patterns",
+    "question": "El patrón Strategy y el State son estructuralmente similares. ¿Cuál es la diferencia conceptual clave?",
+    "code": null,
+    "options": [
+      "No hay diferencia, son el mismo patrón",
+      "Strategy: el comportamiento es seleccionado externamente y no cambia. State: el objeto cambia su propio comportamiento basado en su estado interno",
+      "Strategy usa interfaces, State usa clases abstractas",
+      "State es para UI, Strategy para lógica de negocio"
+    ],
+    "correct": 1,
+    "explanation": "En Strategy, el cliente elige qué algoritmo usar y lo inyecta. En State, el objeto mismo transiciona entre estados y cambia su comportamiento. La diferencia es quién controla el cambio: externo (Strategy) vs interno (State)."
+  },
+  {
+    "id": 77,
+    "level": "Mid",
+    "category": "Design Patterns",
+    "question": "¿Cuándo es apropiado usar el patrón Composite?",
+    "code": null,
+    "options": [
+      "Cuando tienes muchas implementaciones de una interfaz",
+      "Para estructuras árbol donde los nodos individuales y los grupos se tratan uniformemente (ej: sistema de archivos, menús anidados)",
+      "Para encadenar operaciones",
+      "Para desacoplar observadores"
+    ],
+    "correct": 1,
+    "explanation": "Composite modela jerarquías parte-todo. Archivo y Carpeta implementan el mismo `Component`. Puedes llamar `calcularTamaño()` en un archivo o en toda una carpeta — el comportamiento recursivo está encapsulado en el Composite."
+  },
+  {
+    "id": 78,
+    "level": "Mid",
+    "category": "Design Patterns",
+    "question": "El Builder Pattern es especialmente útil cuando:",
+    "code": null,
+    "options": [
+      "La clase tiene un solo constructor",
+      "Se necesita construir objetos complejos con muchos parámetros opcionales, evitando constructores con 10+ parámetros o setters que dejan el objeto en estado inconsistente",
+      "Hay muchas subclases del objeto",
+      "Se necesita crear copias del objeto"
+    ],
+    "correct": 1,
+    "explanation": "Builder soluciona el problema del 'telescoping constructor'. Con 8 parámetros opcionales tendrías 256 combinaciones de constructores. Builder permite construir el objeto paso a paso, solo con los campos necesarios, y el objeto final es inmutable."
+  },
+  {
+    "id": 79,
+    "level": "Mid",
+    "category": "Design Patterns",
+    "question": "¿Qué patrón usarías para implementar un sistema de plugins donde el código base no conoce las implementaciones concretas que se agregarán en el futuro?",
+    "code": null,
+    "options": [
+      "Singleton",
+      "Strategy + Factory/Registry — registra implementaciones por nombre o tipo, las resuelve en runtime",
+      "State",
+      "Composite"
+    ],
+    "correct": 1,
+    "explanation": "Strategy define la interfaz del plugin. Un Registry/Factory mapea nombres o tipos a implementaciones. El código base solo conoce la interfaz. Agregar un plugin es registrar una nueva implementación sin tocar el core."
+  },
+  {
+    "id": 80,
+    "level": "Mid",
+    "category": "Design Patterns",
+    "question": "El patrón Observer y el Event-Driven son conceptualmente similares. ¿Cuál es la diferencia práctica?",
+    "code": null,
+    "options": [
+      "Son idénticos",
+      "Observer: acoplamiento directo entre subject y observadores (los conoce). Event-Driven: publisher no conoce a los consumidores — hay un bus/broker intermediario",
+      "Observer es solo para UI",
+      "Event-Driven requiere mensajería externa"
+    ],
+    "correct": 1,
+    "explanation": "Observer clásico mantiene referencias a sus observers — hay acoplamiento. En Event-Driven el publisher emite al bus y no sabe quién escucha. Mayor desacoplamiento pero más complejidad. En microservicios, Event-Driven es el estándar."
+  },
+  {
+    "id": 81,
+    "level": "Mid",
+    "category": "Refactoring Techniques",
+    "question": "Tienes un método con la siguiente estructura: `if (a) { if (b) { if (c) { doWork(); } } }`. ¿Qué técnica de refactoring aplica directamente?",
+    "code": "if (a) {\n  if (b) {\n    if (c) {\n      doWork();\n    }\n  }\n}",
+    "options": [
+      "Extract Superclass",
+      "Introduce Parameter Object",
+      "Guard Clauses / Early Return para invertir las condiciones y eliminar el anidamiento",
+      "Replace Conditional with Polymorphism"
+    ],
+    "correct": 2,
+    "explanation": "El 'arrow anti-pattern' o pirámide de doom se resuelve con Guard Clauses: `if (!a) return; if (!b) return; if (!c) return; doWork();`. El happy path queda al final sin anidamiento."
+  },
+  {
+    "id": 82,
+    "level": "Mid",
+    "category": "SOLID",
+    "question": "¿Qué violación de SOLID introduce el siguiente código? `class OrderService { private MySQLDb db = new MySQLDb(); }`",
+    "code": "class OrderService {\n  private MySQLDb db = new MySQLDb();\n}",
+    "options": [
+      "SRP — tiene dos responsabilidades",
+      "DIP — depende de una implementación concreta, no de una abstracción",
+      "OCP — no está cerrado a modificación",
+      "LSP — viola la sustitución"
+    ],
+    "correct": 1,
+    "explanation": "DIP: `OrderService` instancia directamente `MySQLDb` (módulo de bajo nivel). Debe depender de una abstracción como `DbRepository`. Si mañana cambias a PostgreSQL, debes modificar `OrderService` — eso es acoplamiento innecesario."
+  },
+  {
+    "id": 83,
+    "level": "Junior",
+    "category": "Clean Code & DRY",
+    "question": "¿Qué problema tiene el siguiente nombre de método: `boolean check(User u)`?",
+    "code": "boolean check(User u) {\n  return u.getAge() >= 18;\n}",
+    "options": [
+      "El tipo de retorno es incorrecto",
+      "El nombre `check` no revela intención — no sabes qué se está chequeando sin leer la implementación",
+      "El parámetro debería ser un String",
+      "No tiene problema, es conciso"
+    ],
+    "correct": 1,
+    "explanation": "Clean Code: los nombres deben revelar intención. `check(user)` no dice nada. `isAdult(user)` o `hasLegalAge(user)` comunican exactamente qué se valida sin necesidad de leer el cuerpo del método."
+  },
+  {
+    "id": 84,
+    "level": "Mid",
+    "category": "Error & Exception Handling Best Practices",
+    "question": "¿Cuál es el patrón correcto para manejar una excepción de infraestructura en la capa de servicio?",
+    "code": "// En ServiceLayer:\ntry {\n  return repository.findById(id);\n} catch (DataAccessException e) {\n  // ¿Qué va aquí?\n}",
+    "options": [
+      "Ignorar la excepción y retornar null",
+      "Relanzar como excepción de dominio preservando la causa: `throw new UserNotFoundException(\"id: \" + id, e)`",
+      "Loggear y retornar un objeto vacío siempre",
+      "Convertir a RuntimeException sin contexto"
+    ],
+    "correct": 1,
+    "explanation": "La capa de servicio debe traducir excepciones de infraestructura a excepciones de dominio significativas, preservando la causa original (passing `e` al constructor). Esto mantiene las capas desacopladas y facilita el debugging."
+  },
+  {
+    "id": 85,
+    "level": "Mid",
+    "category": "Design Patterns",
+    "question": "¿Qué patrón está implementando el siguiente código? `enum Discount { REGULAR { @Override double apply(double p){return p*0.95;} }, VIP { @Override double apply(double p){return p*0.8;} }; abstract double apply(double price); }`",
+    "code": "enum Discount {\n  REGULAR {\n    @Override\n    double apply(double p) { return p * 0.95; }\n  },\n  VIP {\n    @Override\n    double apply(double p) { return p * 0.8; }\n  };\n  abstract double apply(double price);\n}",
+    "options": [
+      "Factory Pattern",
+      "Enum con comportamiento — Strategy encapsulado en enum",
+      "State Pattern",
+      "Template Method"
+    ],
+    "correct": 1,
+    "explanation": "Enum con comportamiento: cada constante implementa el método abstracto con su propia lógica. Es una forma compacta de Strategy Pattern donde las variantes están tipadas por el compilador. Elimina los switch sobre tipo de descuento."
+  },
+  {
+    "id": 86,
+    "level": "Mid",
+    "category": "Code Smells",
+    "question": "El siguiente código huele a algo. ¿Qué smell tiene y cómo lo refactorizas?",
+    "code": "double price = product.getCategory()\n  .getDefaultDiscount()\n  .getMultiplier();",
+    "options": [
+      "Primitive Obsession — usar un double directo",
+      "Law of Demeter violation (Train Wreck) — el objeto habla con extraños en lugar de con sus vecinos directos",
+      "Feature Envy — el método está en la clase incorrecta",
+      "No tiene smell, es código fluido válido"
+    ],
+    "correct": 1,
+    "explanation": "Law of Demeter / Train Wreck: encadenas `.get().get().get()` atravesando múltiples objetos. El código conoce la estructura interna de `Category` y de `Discount`. Un método `product.getDiscountMultiplier()` encapsularía esa navegación."
+  },
+  {
+    "id": 87,
+    "level": "Junior",
+    "category": "Java Coding Standards & Best Practices",
+    "question": "¿Por qué este código es problemático? `if (user.isActive() == true)`",
+    "code": "if (user.isActive() == true) {\n  // ...\n}",
+    "options": [
+      "No compila en Java",
+      "La comparación `== true` es redundante y viola el estándar de código — `isActive()` ya retorna boolean",
+      "Debería usar `equals()` en lugar de `==`",
+      "No hay problema, es perfectamente válido"
+    ],
+    "correct": 1,
+    "explanation": "Comparar un boolean con `true` o `false` explícitamente es ruido. `if (user.isActive())` y `if (!user.isActive())` son más limpios y directos. Es uno de los estándares básicos de Java."
+  },
+  {
+    "id": 88,
+    "level": "Mid",
+    "category": "Refactoring Techniques",
+    "question": "¿Qué técnica de refactoring elimina este problema: un método privado de 3 líneas que solo se llama una vez y su nombre no aporta más claridad que el código mismo?",
+    "code": "private boolean isEligible(User u) {\n  return u.getAge() >= 18 && u.isVerified();\n}",
+    "options": [
+      "Extract Method — extraer más métodos",
+      "Inline Method — absorber el cuerpo del método en el único lugar donde se llama",
+      "Introduce Parameter Object",
+      "Replace Conditional with Polymorphism"
+    ],
+    "correct": 1,
+    "explanation": "Inline Method: si un método no agrega claridad y solo se usa en un lugar, la abstracción puede ser contraproducente. Inline elimina el indirection innecesario. El refactoring no es siempre extraer — a veces es simplificar."
+  },
+  {
+    "id": 89,
+    "level": "Mid",
+    "category": "SOLID",
+    "question": "Tienes una interfaz `Printable` con métodos `printPDF()`, `printHTML()` y `printCSV()`. Una clase solo necesita `printPDF()`. ¿Qué principio SOLID se viola y cómo lo corriges?",
+    "code": "interface Printable {\n  void printPDF();\n  void printHTML();\n  void printCSV();\n}",
+    "options": [
+      "SRP — dividir en tres clases separadas",
+      "ISP — segregar en `PdfPrintable`, `HtmlPrintable`, `CsvPrintable` para que cada clase implemente solo lo que necesita",
+      "DIP — usar inyección de dependencias",
+      "OCP — agregar nuevos métodos sin modificar"
+    ],
+    "correct": 1,
+    "explanation": "ISP: ninguna clase debería depender de métodos que no usa. Segregar en interfaces específicas permite que las clases implementen solo las capacidades que necesitan, sin implementaciones vacías o excepciones."
+  },
+  {
+    "id": 90,
+    "level": "Mid",
+    "category": "Design Patterns",
+    "question": "Tienes lógica de aprobación de crédito con condiciones: ingreso > 50k AND historial == BUENO AND edad >= 25 OR (cliente_preferente AND historial == BUENO). ¿Qué patrón modela esto mejor que un if/else?",
+    "code": "// Actualmente:\nif ((income > 50000 && history == GOOD && age >= 25)\n    || (preferred && history == GOOD)) {\n  approve();\n}",
+    "options": [
+      "State Pattern",
+      "Specification Pattern — cada condición es una Specification combinable con and()/or()/not()",
+      "Chain of Responsibility",
+      "Template Method"
+    ],
+    "correct": 1,
+    "explanation": "Specification Pattern: `HasGoodHistory.and(HasMinIncome(50000)).and(HasMinAge(25)).or(IsPreferred.and(HasGoodHistory))`. Cada regla es testeable individualmente, combinable, y agregar una nueva condición no toca el código existente."
+  }
+]

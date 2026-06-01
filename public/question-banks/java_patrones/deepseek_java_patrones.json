@@ -1,0 +1,827 @@
+[
+  {
+    "id": 1,
+    "level": "Junior",
+    "category": "Clean Code / Code Smells",
+    "question": "¿Qué es un 'code smell'?",
+    "code": null,
+    "options": [
+      "Un error de compilación",
+      "Una vulnerabilidad de seguridad",
+      "Un indicio en el código que sugiere un posible problema de diseño o mantenimiento",
+      "Un bug que causa un mal olor en el equipo"
+    ],
+    "correct": 2,
+    "explanation": "Un code smell es una señal en el código fuente que puede indicar un problema más profundo; no es un bug en sí mismo, pero puede dificultar el mantenimiento."
+  },
+  {
+    "id": 2,
+    "level": "Junior",
+    "category": "Clean Code / Code Smells",
+    "question": "¿Cuál de los siguientes es un ejemplo común de code smell?",
+    "code": null,
+    "options": [
+      "Métodos con una sola responsabilidad",
+      "Clases con alta cohesión",
+      "Método largo (Long Method)",
+      "Uso de interfaces para desacoplar"
+    ],
+    "correct": 2,
+    "explanation": "Un método demasiado largo es uno de los code smells clásicos catalogados por Martin Fowler."
+  },
+  {
+    "id": 3,
+    "level": "Mid",
+    "category": "Clean Code / Code Smells",
+    "question": "¿Qué técnica se recomienda para eliminar el code smell 'Long Parameter List'?",
+    "code": null,
+    "options": [
+      "Agregar más parámetros para completitud",
+      "Extraer los parámetros en un objeto de transferencia de datos (DTO) o value object",
+      "Ignorarlo si el método aún funciona",
+      "Convertir el método en varios métodos estáticos"
+    ],
+    "correct": 1,
+    "explanation": "Agrupar parámetros relacionados en un objeto reduce la longitud de la lista y mejora la claridad."
+  },
+  {
+    "id": 4,
+    "level": "Junior",
+    "category": "DRY",
+    "question": "¿Qué significa el principio DRY?",
+    "code": null,
+    "options": [
+      "Don't Repeat Yourself",
+      "Do Repeat Yourself",
+      "Define Requirements YAML",
+      "Dynamic Resource Yielding"
+    ],
+    "correct": 0,
+    "explanation": "DRY es un principio que promueve evitar la duplicación de conocimiento o lógica en el código."
+  },
+  {
+    "id": 5,
+    "level": "Junior",
+    "category": "DRY",
+    "question": "¿Cuál de las siguientes situaciones viola el principio DRY?",
+    "code": null,
+    "options": [
+      "Extraer un método común usado en varios lugares",
+      "Copiar y pegar un bloque de validación idéntico en múltiples clases",
+      "Usar una constante para un valor que se repite",
+      "Centralizar la lógica de formateo en una clase utilitaria"
+    ],
+    "correct": 1,
+    "explanation": "La duplicación mediante copy-paste es la violación más obvia de DRY."
+  },
+  {
+    "id": 6,
+    "level": "Mid",
+    "category": "DRY",
+    "question": "¿Qué problema puede aparecer al aplicar DRY de forma excesiva?",
+    "code": null,
+    "options": [
+      "Código más limpio",
+      "Acoplamiento incidental entre módulos no relacionados",
+      "Menor número de líneas de código",
+      "Aumento de la cohesión"
+    ],
+    "correct": 1,
+    "explanation": "Forzar la eliminación de duplicación entre módulos que no son conceptualmente iguales puede acoplarlos de forma artificial."
+  },
+  {
+    "id": 7,
+    "level": "Junior",
+    "category": "SOLID",
+    "question": "¿A qué principio SOLID corresponde la frase 'una clase debe tener una sola razón para cambiar'?",
+    "code": null,
+    "options": [
+      "Open/Closed Principle",
+      "Liskov Substitution Principle",
+      "Interface Segregation Principle",
+      "Single Responsibility Principle"
+    ],
+    "correct": 3,
+    "explanation": "El Principio de Responsabilidad Única (SRP) establece que cada clase debe tener una única responsabilidad."
+  },
+  {
+    "id": 8,
+    "level": "Junior",
+    "category": "SOLID",
+    "question": "¿Qué establece el principio Open/Closed (OCP)?",
+    "code": null,
+    "options": [
+      "Las clases deben estar abiertas a la modificación y cerradas a la extensión",
+      "Las clases deben estar abiertas a la extensión pero cerradas a la modificación",
+      "Todas las clases deben ser finales",
+      "Los métodos deben ser públicos para herencia"
+    ],
+    "correct": 1,
+    "explanation": "OCP indica que una entidad de software debe permitir añadir nuevas funcionalidades sin modificar el código existente."
+  },
+  {
+    "id": 9,
+    "level": "Mid",
+    "category": "SOLID",
+    "question": "¿Cuál de las siguientes es una violación típica del principio de Liskov (LSP)?",
+    "code": null,
+    "options": [
+      "Una clase derivada que solo añade nuevos métodos",
+      "Una subclase que lanza una excepción no declarada en la clase base para un método heredado",
+      "Una interfaz con un solo método",
+      "Una clase abstracta con implementación parcial"
+    ],
+    "correct": 1,
+    "explanation": "LSP exige que los objetos de una subclase puedan sustituir a los de la superclase sin alterar el comportamiento esperado."
+  },
+  {
+    "id": 10,
+    "level": "Junior",
+    "category": "SOLID",
+    "question": "Según el Principio de Segregación de Interfaces (ISP), ¿qué se debe evitar?",
+    "code": null,
+    "options": [
+      "Interfaces pequeñas y enfocadas",
+      "Clases que implementan interfaces",
+      "Interfaces 'gordas' que obligan a implementar métodos no necesarios",
+      "El uso de interfaces en lugar de clases abstractas"
+    ],
+    "correct": 2,
+    "explanation": "ISP propone no forzar a los clientes a depender de interfaces que no usan; es mejor tener varias interfaces específicas."
+  },
+  {
+    "id": 11,
+    "level": "Mid",
+    "category": "SOLID",
+    "question": "¿Cómo ayuda el Principio de Inversión de Dependencias (DIP) en un proyecto Java típico?",
+    "code": null,
+    "options": [
+      "Obliga a usar frameworks de inyección",
+      "Las clases de alto nivel dependen de abstracciones, no de implementaciones concretas",
+      "Se evita el uso de interfaces",
+      "Todas las dependencias deben ser inyectadas por constructor"
+    ],
+    "correct": 1,
+    "explanation": "DIP promueve que los módulos de alto nivel no dependan de los de bajo nivel; ambos deben depender de abstracciones."
+  },
+  {
+    "id": 12,
+    "level": "Mid",
+    "category": "SOLID",
+    "question": "¿Cuál es una ventaja de seguir el Principio de Responsabilidad Única (SRP) al escribir código diario?",
+    "code": null,
+    "options": [
+      "Las clases se vuelven más cortas automáticamente",
+      "Facilita las pruebas unitarias y el mantenimiento al aislar cambios",
+      "Se reduce la necesidad de documentación",
+      "Aumenta la complejidad ciclomática"
+    ],
+    "correct": 1,
+    "explanation": "Una clase con una sola responsabilidad es más fácil de probar, entender y modificar sin efectos secundarios."
+  },
+  {
+    "id": 13,
+    "level": "Junior",
+    "category": "Java Coding Standards",
+    "question": "Según las convenciones de Java, ¿cómo se deben nombrar las variables locales y parámetros?",
+    "code": null,
+    "options": [
+      "En mayúsculas con guiones bajos",
+      "CamelCase comenzando con minúscula",
+      "Con prefijo del tipo (ej. strName)",
+      "En snake_case"
+    ],
+    "correct": 1,
+    "explanation": "La convención estándar en Java es camelCase con primera letra minúscula."
+  },
+  {
+    "id": 14,
+    "level": "Junior",
+    "category": "Java Coding Standards",
+    "question": "¿Cuál es una buena práctica para nombres de métodos?",
+    "code": null,
+    "options": [
+      "Nombres cortos como a(), b()",
+      "Nombres que empiecen con verbo e indiquen claramente su acción",
+      "Usar únicamente sustantivos",
+      "Incluir el tipo de retorno en el nombre"
+    ],
+    "correct": 1,
+    "explanation": "Los métodos deben expresar acciones; verbos como 'calculateTotal' o 'findUser' son descriptivos."
+  },
+  {
+    "id": 15,
+    "level": "Mid",
+    "category": "Java Coding Standards",
+    "question": "¿Qué es incorrecto en el siguiente fragmento de código?",
+    "code": "public void ProcessData() {\n    int x = 10;\n    int Y = 20;\n    int result = x + Y;\n    System.out.println(\"El resultado es: \" + result);\n}",
+    "options": [
+      "El nombre del método ProcessData no sigue camelCase (debe ser processData)",
+      "La variable Y está mal nombrada (debe ser y)",
+      "La suma podría dar overflow",
+      "No se documenta el propósito del método"
+    ],
+    "correct": 0,
+    "explanation": "En Java, los métodos deben empezar con minúscula según la convención. El resto del código es aceptable en este contexto."
+  },
+  {
+    "id": 16,
+    "level": "Junior",
+    "category": "Error & Exception Handling",
+    "question": "¿Qué tipo de excepción en Java debe usarse para condiciones recuperables?",
+    "code": null,
+    "options": [
+      "Error",
+      "Throwable",
+      "Checked Exception",
+      "RuntimeException (unchecked)"
+    ],
+    "correct": 2,
+    "explanation": "Las excepciones checked están pensadas para situaciones donde el cliente puede tomar acciones correctivas."
+  },
+  {
+    "id": 17,
+    "level": "Junior",
+    "category": "Error & Exception Handling",
+    "question": "¿Cuál es una mala práctica en el manejo de excepciones?",
+    "code": "try {\n    // código\n} catch (Exception e) {\n    // no hacer nada\n}",
+    "options": [
+      "Usar excepciones específicas en lugar de genéricas",
+      "Registrar la excepción en un log",
+      "Dejar el bloque catch vacío (swallowing exceptions)",
+      "Propagar la excepción con throw"
+    ],
+    "correct": 2,
+    "explanation": "Silenciar excepciones oculta errores y dificulta la depuración."
+  },
+  {
+    "id": 18,
+    "level": "Mid",
+    "category": "Error & Exception Handling",
+    "question": "¿Por qué se recomienda lanzar excepciones específicas en lugar de Exception genérica?",
+    "code": null,
+    "options": [
+      "Porque Exception es una clase abstracta",
+      "Para que el compilador pueda optimizar",
+      "Para que el código cliente pueda manejar distintos errores de forma diferenciada",
+      "Para cumplir con la especificación de Java"
+    ],
+    "correct": 2,
+    "explanation": "Excepciones específicas como IllegalArgumentException o IOException permiten reaccionar de manera adecuada a cada tipo de error."
+  },
+  {
+    "id": 19,
+    "level": "Mid",
+    "category": "Error & Exception Handling",
+    "question": "¿Qué ventaja ofrece el uso de try-with-resources introducido en Java 7?",
+    "code": "try (BufferedReader br = new BufferedReader(new FileReader(path))) {\n    return br.readLine();\n}",
+    "options": [
+      "Acelera la lectura de archivos",
+      "Solo funciona con streams de entrada",
+      "Cierra automáticamente los recursos que implementan AutoCloseable",
+      "Evita tener que manejar IOException"
+    ],
+    "correct": 2,
+    "explanation": "try-with-resources garantiza el cierre de recursos sin necesidad de un bloque finally explícito."
+  },
+  {
+    "id": 20,
+    "level": "Junior",
+    "category": "Refactoring",
+    "question": "¿Qué es el refactoring?",
+    "code": null,
+    "options": [
+      "Reescribir una aplicación desde cero",
+      "Cambiar el diseño del código sin modificar su comportamiento externo",
+      "Optimizar el rendimiento a costa de legibilidad",
+      "Añadir nuevas funcionalidades"
+    ],
+    "correct": 1,
+    "explanation": "Refactorizar consiste en mejorar la estructura interna del código manteniendo su funcionalidad intacta."
+  },
+  {
+    "id": 21,
+    "level": "Mid",
+    "category": "Refactoring",
+    "question": "¿Qué técnica de refactoring aplicarías a este código?",
+    "code": "if (employee.getType().equals(\"MANAGER\")) {\n    // calcular bono manager\n} else if (employee.getType().equals(\"ENGINEER\")) {\n    // calcular bono engineer\n}",
+    "options": [
+      "Extraer método",
+      "Replace Conditional with Polymorphism",
+      "Introducir aserción",
+      "Inline Temp"
+    ],
+    "correct": 1,
+    "explanation": "Reemplazar la lógica condicional basada en tipo con polimorfismo (subclases o strategy) mejora la extensibilidad."
+  },
+  {
+    "id": 22,
+    "level": "Mid",
+    "category": "Refactoring",
+    "question": "¿Cuál es un síntoma claro de que se necesita refactorizar un método?",
+    "code": null,
+    "options": [
+      "El método tiene un solo parámetro",
+      "El método tiene más de 20 líneas y mezcla niveles de abstracción",
+      "El método está documentado con Javadoc",
+      "El método usa genéricos"
+    ],
+    "correct": 1,
+    "explanation": "Métodos largos, con varias responsabilidades o mezcla de detalles de bajo y alto nivel son candidatos a refactorización."
+  },
+  {
+    "id": 23,
+    "level": "Junior",
+    "category": "Clean Code / Code Smells",
+    "question": "¿Qué significa el código 'limpio' (clean code) en el contexto laboral?",
+    "code": null,
+    "options": [
+      "Código que solo funciona correctamente",
+      "Código que se compila sin warnings",
+      "Código fácil de entender, modificar y mantener por otros desarrolladores",
+      "Código escrito en el menor número de líneas posible"
+    ],
+    "correct": 2,
+    "explanation": "El código limpio se enfoca en la legibilidad y mantenibilidad, no solo en la corrección funcional."
+  },
+  {
+    "id": 24,
+    "level": "Junior",
+    "category": "Clean Code / Code Smells",
+    "question": "¿Cuál de los siguientes nombres de variable es más limpio y expresivo?",
+    "code": null,
+    "options": [
+      "int d; // duración en días",
+      "int durationInDays;",
+      "int dur;",
+      "int days;"
+    ],
+    "correct": 1,
+    "explanation": "Un nombre completo y descriptivo como 'durationInDays' comunica la intención sin necesidad de comentarios."
+  },
+  {
+    "id": 25,
+    "level": "Mid",
+    "category": "Clean Code / Code Smells",
+    "question": "¿Qué code smell describe clases que tienen demasiadas responsabilidades y se vuelven difíciles de mantener?",
+    "code": null,
+    "options": [
+      "Lazy Class",
+      "Feature Envy",
+      "Large Class (Clase Grande)",
+      "Shotgun Surgery"
+    ],
+    "correct": 2,
+    "explanation": "Large Class es el smell que indica que una clase concentra demasiada lógica, violando el SRP."
+  },
+  {
+    "id": 26,
+    "level": "Junior",
+    "category": "DRY",
+    "question": "¿Qué ventaja principal se obtiene al aplicar DRY en un proyecto?",
+    "code": null,
+    "options": [
+      "Reducir el número de archivos .java",
+      "Un único punto de mantenimiento cuando la lógica cambia",
+      "Mejor rendimiento del código compilado",
+      "Eliminar la necesidad de interfaces"
+    ],
+    "correct": 1,
+    "explanation": "La gran ventaja es que un cambio en la lógica solo debe hacerse en un lugar, reduciendo bugs."
+  },
+  {
+    "id": 27,
+    "level": "Mid",
+    "category": "SOLID",
+    "question": "¿Cómo aplicarías el Principio de Inversión de Dependencias al acoplar un servicio a un repositorio?",
+    "code": null,
+    "options": [
+      "El servicio debe instanciar el repositorio con new",
+      "El servicio debe depender de una interfaz (abstracción) del repositorio",
+      "El repositorio debe heredar del servicio",
+      "Ambos deben ser clases concretas"
+    ],
+    "correct": 1,
+    "explanation": "DIP establece que las dependencias deben ser abstracciones; usando una interfaz de repositorio desacoplamos el servicio de la implementación concreta."
+  },
+  {
+    "id": 28,
+    "level": "Junior",
+    "category": "SOLID",
+    "question": "¿Qué ventaja ofrece el Principio de Segregación de Interfaces (ISP) en el día a día?",
+    "code": null,
+    "options": [
+      "Evita tener que implementar métodos vacíos solo para cumplir un contrato",
+      "Reduce el número de clases en el proyecto",
+      "Obliga a usar herencia múltiple",
+      "Mejora la cohesión de las interfaces grandes"
+    ],
+    "correct": 0,
+    "explanation": "ISP evita que las clases tengan dependencias innecesarias y tengan que implementar métodos que no usan."
+  },
+  {
+    "id": 29,
+    "level": "Mid",
+    "category": "SOLID",
+    "question": "¿Cuál de las siguientes implementaciones sigue mejor el Principio Open/Closed?",
+    "code": "// Opción A\nclass Calculadora {\n    double calcular(String tipo) {\n        if (tipo.equals(\"suma\")) ...\n        else if (tipo.equals(\"resta\")) ...\n    }\n}\n\n// Opción B\ninterface Operacion { double ejecutar(double a, double b); }\nclass Suma implements Operacion { ... }\nclass Resta implements Operacion { ... }\nclass Calculadora { double calcular(Operacion op, double a, double b) { return op.ejecutar(a,b); } }",
+    "options": [
+      "La Opción A porque centraliza la lógica",
+      "La Opción B porque permite agregar nuevas operaciones sin modificar Calculadora",
+      "Ambas son igualmente válidas",
+      "Ninguna, se debe usar un switch"
+    ],
+    "correct": 1,
+    "explanation": "La Opción B usa polimorfismo para extender funcionalidad sin modificar la clase Calculadora, cumpliendo OCP."
+  },
+  {
+    "id": 30,
+    "level": "Mid",
+    "category": "Code Review",
+    "question": "Durante una revisión de código, un revisor señala que un método tiene demasiados parámetros. ¿Qué sugiere como mejora?",
+    "code": null,
+    "options": [
+      "Añadir más parámetros con valores por defecto",
+      "Crear una clase que agrupe esos datos (Parameter Object)",
+      "Dividir el método en varios más pequeños",
+      "Ignorar la sugerencia si el método funciona"
+    ],
+    "correct": 1,
+    "explanation": "El patrón Parameter Object agrupa parámetros relacionados, simplificando la firma del método."
+  },
+  {
+    "id": 31,
+    "level": "Junior",
+    "category": "Code Review",
+    "question": "¿Cuál es un objetivo principal de las revisiones de código en equipo?",
+    "code": null,
+    "options": [
+      "Encontrar al culpable de un bug",
+      "Medir la productividad individual",
+      "Compartir conocimiento y detectar defectos tempranamente",
+      "Garantizar que todo el código use los mismos patrones de diseño"
+    ],
+    "correct": 2,
+    "explanation": "Las code reviews buscan mejorar la calidad colectiva y fomentar el aprendizaje del equipo."
+  },
+  {
+    "id": 32,
+    "level": "Mid",
+    "category": "Code Review",
+    "question": "¿Qué aspecto NO es prioritario en una revisión de código?",
+    "code": null,
+    "options": [
+      "La legibilidad y claridad del código",
+      "El estilo personal de llaves y espacios (más allá de lo acordado por el equipo)",
+      "Posibles vulnerabilidades de seguridad",
+      "La adherencia a los principios SOLID"
+    ],
+    "correct": 1,
+    "explanation": "Mientras el estilo se ajuste a la guía del equipo, no se debe perder tiempo en preferencias personales intrascendentes."
+  },
+  {
+    "id": 33,
+    "level": "Junior",
+    "category": "Java Coding Standards",
+    "question": "¿Cuál es una buena práctica para el manejo de constantes en Java?",
+    "code": null,
+    "options": [
+      "Usar números directamente en el código",
+      "Definirlas como static final en una interfaz de constantes",
+      "Declararlas como public static final en una clase relevante",
+      "Guardarlas en un archivo properties"
+    ],
+    "correct": 2,
+    "explanation": "Las constantes deben estar en una clase adecuada, con nombre en mayúsculas y snake_case, evitando interfaces de constantes."
+  },
+  {
+    "id": 34,
+    "level": "Junior",
+    "category": "Java Coding Standards",
+    "question": "¿Por qué se recomienda evitar los 'magic numbers' en el código?",
+    "code": null,
+    "options": [
+      "Porque hacen que el programa sea más lento",
+      "Porque el compilador no los acepta",
+      "Porque son difíciles de entender y mantener; una constante con nombre explica su significado",
+      "Porque no se pueden usar en sentencias switch"
+    ],
+    "correct": 2,
+    "explanation": "Reemplazar valores literales sin contexto por constantes con nombre mejora la legibilidad y la mantenibilidad."
+  },
+  {
+    "id": 35,
+    "level": "Mid",
+    "category": "Java Coding Standards",
+    "question": "¿Qué ventaja se obtiene al preferir early returns en lugar de anidaciones profundas?",
+    "code": "// Opción con early return\nif (!isValid(input)) {\n    return;\n}\n// resto del código",
+    "options": [
+      "El rendimiento mejora dramáticamente",
+      "El código se vuelve más lineal y fácil de seguir",
+      "Se elimina la necesidad de excepciones",
+      "Es una mala práctica; no debe usarse"
+    ],
+    "correct": 1,
+    "explanation": "Los early returns reducen la indentación y hacen que el flujo principal sea más claro."
+  },
+  {
+    "id": 36,
+    "level": "Mid",
+    "category": "Error & Exception Handling",
+    "question": "¿Por qué se considera una mala práctica atrapar Throwable?",
+    "code": null,
+    "options": [
+      "Porque no se puede relanzar",
+      "Porque captura también errores graves como OutOfMemoryError, que no deberían manejarse",
+      "Porque las excepciones checked no se capturan",
+      "Es una buena práctica para manejar todo"
+    ],
+    "correct": 1,
+    "explanation": "Capturar Throwable incluye subclases de Error que representan condiciones serias de la JVM que normalmente no deben ser manejadas por la aplicación."
+  },
+  {
+    "id": 37,
+    "level": "Junior",
+    "category": "Error & Exception Handling",
+    "question": "¿Qué se debe hacer siempre al capturar una excepción en un bloque catch?",
+    "code": null,
+    "options": [
+      "Llamar a System.exit(0)",
+      "Ignorarla si no es grave",
+      "Registrarla adecuadamente (logging) y tomar una acción correctiva o propagarla",
+      "Escribirla en la consola con e.printStackTrace()"
+    ],
+    "correct": 2,
+    "explanation": "Se debe registrar la excepción y manejarla o propagarla. Usar printStackTrace no es suficiente para un entorno productivo."
+  },
+  {
+    "id": 38,
+    "level": "Mid",
+    "category": "Refactoring",
+    "question": "¿Cuándo es un buen momento para refactorizar un fragmento de código?",
+    "code": null,
+    "options": [
+      "Solo al final del proyecto",
+      "Cuando se agrega una nueva funcionalidad y el código actual dificulta la extensión",
+      "Antes de cada commit, sin importar el estado",
+      "Nunca, si el código funciona"
+    ],
+    "correct": 1,
+    "explanation": "El refactoring continuo durante el desarrollo ('camping rule': dejar el código mejor de como se encontró) es una práctica recomendada."
+  },
+  {
+    "id": 39,
+    "level": "Junior",
+    "category": "Refactoring",
+    "question": "¿Qué hace el refactoring 'Extract Method'?",
+    "code": null,
+    "options": [
+      "Convierte un método en una clase",
+      "Mueve un fragmento de código a un nuevo método para mejorar la legibilidad",
+      "Elimina parámetros de un método",
+      "Cambia el nombre de un método"
+    ],
+    "correct": 1,
+    "explanation": "'Extract Method' toma un bloque de código, lo convierte en un método con un nombre descriptivo y reemplaza el código original por una llamada."
+  },
+  {
+    "id": 40,
+    "level": "Mid",
+    "category": "Refactoring",
+    "question": "¿Qué refactoring se puede aplicar cuando dos clases tienen campos y lógica similares?",
+    "code": null,
+    "options": [
+      "Replace Inheritance with Delegation",
+      "Pull Up Field / Pull Up Method",
+      "Inline Class",
+      "Encapsulate Field"
+    ],
+    "correct": 1,
+    "explanation": "Si varias subclases o clases hermanas comparten código, se mueven esos miembros a una superclase común."
+  },
+  {
+    "id": 41,
+    "level": "Junior",
+    "category": "Clean Code / Code Smells",
+    "question": "¿Cuál de los siguientes comentarios es un ejemplo de 'mal comentario'?",
+    "code": "// Incrementa i en 1\ni++;\n\n// Verifica si el usuario está activo antes de procesar la orden\nif (user.isActive()) { ... }",
+    "options": [
+      "El primer comentario, porque repite lo que ya dice el código",
+      "El segundo comentario, porque explica el porqué",
+      "Ambos son buenos comentarios",
+      "Ninguno debería usarse"
+    ],
+    "correct": 0,
+    "explanation": "Los comentarios deben explicar el 'por qué', no el 'qué'. Si el código ya es claro, el comentario sobra."
+  },
+  {
+    "id": 42,
+    "level": "Mid",
+    "category": "Clean Code / Code Smells",
+    "question": "¿Qué smell describe una clase que solo contiene campos, getters y setters sin comportamiento real?",
+    "code": null,
+    "options": [
+      "God Class",
+      "Data Class",
+      "Feature Envy",
+      "Inappropriate Intimacy"
+    ],
+    "correct": 1,
+    "explanation": "Una Data Class es aquella que solo almacena datos sin lógica de negocio, lo que a menudo dispersa el comportamiento en otras clases."
+  },
+  {
+    "id": 43,
+    "level": "Junior",
+    "category": "Best Practices",
+    "question": "¿Qué ventaja ofrece validar los inputs al inicio de un método?",
+    "code": null,
+    "options": [
+      "Hace que el código sea más largo",
+      "Evita el procesamiento innecesario y falla rápido (fail-fast)",
+      "Disminuye la necesidad de pruebas unitarias",
+      "Solo es necesario en APIs públicas"
+    ],
+    "correct": 1,
+    "explanation": "Validar los parámetros al principio permite detectar condiciones incorrectas rápidamente, evitando corrupción de estado o errores lejanos."
+  },
+  {
+    "id": 44,
+    "level": "Mid",
+    "category": "Best Practices",
+    "question": "¿Cómo se puede evitar el uso de if/else encadenados para comportamientos por categorías?",
+    "code": null,
+    "options": [
+      "Usando un HashMap de categorías a comportamientos (Strategy/Command)",
+      "Escribiendo más condiciones if",
+      "Ignorando la categoría",
+      "Utilizando solo switch"
+    ],
+    "correct": 0,
+    "explanation": "Un mapa que asocia una categoría a una función u objeto de comportamiento permite eliminar el encadenamiento y sigue el principio Open/Closed."
+  },
+  {
+    "id": 45,
+    "level": "Junior",
+    "category": "Best Practices",
+    "question": "¿Por qué se recomienda usar enums con comportamiento en lugar de if/else sobre el tipo?",
+    "code": "enum Operation {\n    ADD { double apply(double a, double b) { return a + b; } },\n    SUBTRACT { ... }\n}",
+    "options": [
+      "Porque es obligatorio en Java moderno",
+      "Porque agrupa el comportamiento con la constante y facilita la adición de nuevos tipos",
+      "Porque los enums son más rápidos que los if/else",
+      "No se recomienda; el if/else es más legible"
+    ],
+    "correct": 1,
+    "explanation": "Los enums con métodos abstractos permiten polimorfismo, evitando código cliente que pregunte por el tipo."
+  },
+  {
+    "id": 46,
+    "level": "Junior",
+    "category": "Design Patterns",
+    "question": "¿Qué patrón de diseño pertenece a la categoría de patrones creacionales?",
+    "code": null,
+    "options": [
+      "Observer",
+      "Factory Method",
+      "Adapter",
+      "Strategy"
+    ],
+    "correct": 1,
+    "explanation": "Factory Method es un patrón creacional que define una interfaz para crear objetos, delegando a las subclases la decisión."
+  },
+  {
+    "id": 47,
+    "level": "Junior",
+    "category": "Design Patterns",
+    "question": "¿Cuál es la intención del patrón Singleton?",
+    "code": null,
+    "options": [
+      "Crear múltiples instancias de una clase según la demanda",
+      "Asegurar que una clase tenga una única instancia y proporcionar un punto global de acceso a ella",
+      "Separar la interfaz de la implementación",
+      "Permitir que los objetos cambien de estado sin afectar a sus clientes"
+    ],
+    "correct": 1,
+    "explanation": "Singleton restringe la instanciación de una clase a un solo objeto."
+  },
+  {
+    "id": 48,
+    "level": "Mid",
+    "category": "Design Patterns",
+    "question": "¿Qué patrón permite intercambiar algoritmos en tiempo de ejecución?",
+    "code": null,
+    "options": [
+      "State",
+      "Strategy",
+      "Template Method",
+      "Decorator"
+    ],
+    "correct": 1,
+    "explanation": "Strategy define una familia de algoritmos encapsulándolos, permitiendo que varíen independientemente del cliente que los usa."
+  },
+  {
+    "id": 49,
+    "level": "Mid",
+    "category": "Design Patterns",
+    "question": "¿Qué patrón de diseño es adecuado para implementar un carrito de compras donde se aplican múltiples descuentos encadenados?",
+    "code": null,
+    "options": [
+      "Strategy",
+      "State",
+      "Chain of Responsibility",
+      "Command"
+    ],
+    "correct": 2,
+    "explanation": "Chain of Responsibility permite pasar una solicitud a través de una cadena de manejadores; cada uno decide si la procesa o la pasa al siguiente."
+  },
+  {
+    "id": 50,
+    "level": "Mid",
+    "category": "Design Patterns",
+    "question": "¿Qué patrón se puede usar para modelar una máquina de estados como el ciclo de vida de una orden?",
+    "code": null,
+    "options": [
+      "Strategy",
+      "State",
+      "Composite",
+      "Builder"
+    ],
+    "correct": 1,
+    "explanation": "El patrón State permite que un objeto altere su comportamiento cuando su estado interno cambia."
+  },
+  {
+    "id": 51,
+    "level": "Mid",
+    "category": "Design Patterns",
+    "question": "¿En qué situación es útil el patrón Composite?",
+    "code": null,
+    "options": [
+      "Cuando se necesita ejecutar comandos de forma asíncrona",
+      "Cuando se quiere tratar a objetos individuales y composiciones de objetos de manera uniforme",
+      "Para limitar la creación de instancias",
+      "Para implementar un sistema de logging"
+    ],
+    "correct": 1,
+    "explanation": "Composite compone objetos en estructuras de árbol para representar jerarquías parte-todo."
+  },
+  {
+    "id": 52,
+    "level": "Junior",
+    "category": "Design Patterns",
+    "question": "¿Qué patrón permite encapsular una solicitud como un objeto, lo que facilita la parametrización de clientes con colas o registros?",
+    "code": null,
+    "options": [
+      "Observer",
+      "Visitor",
+      "Adapter",
+      "Command"
+    ],
+    "correct": 3,
+    "explanation": "El patrón Command convierte una petición en un objeto independiente que contiene toda la información sobre la solicitud."
+  },
+  {
+    "id": 53,
+    "level": "Mid",
+    "category": "Design Patterns",
+    "question": "¿Cómo se puede implementar el patrón Specification en Java para filtros reutilizables de una colección?",
+    "code": null,
+    "options": [
+      "Con una única clase que contenga múltiples métodos booleanos",
+      "Creando una interfaz Specification con un método isSatisfiedBy y combinándolas con AND, OR, NOT",
+      "Usando un switch sobre el tipo de entidad",
+      "Mediante consultas SQL nativas"
+    ],
+    "correct": 1,
+    "explanation": "El patrón Specification define reglas de negocio reutilizables que pueden combinarse mediante lógica booleana."
+  },
+  {
+    "id": 54,
+    "level": "Junior",
+    "category": "Best Practices",
+    "question": "¿Cuál es un beneficio de mantener métodos pequeños y con un solo propósito?",
+    "code": null,
+    "options": [
+      "Reduce el número de clases",
+      "Facilita nombrarlos, probarlos y reutilizarlos",
+      "Hace que el código se ejecute más rápido",
+      "Evita la necesidad de comentarios"
+    ],
+    "correct": 1,
+    "explanation": "Los métodos pequeños son más fáciles de entender, probar de forma aislada y combinarlos para formar lógicas más complejas."
+  },
+  {
+    "id": 55,
+    "level": "Mid",
+    "category": "Code Review",
+    "question": "¿Cuál es una buena práctica al realizar code reviews en un entorno de trabajo ágil?",
+    "code": null,
+    "options": [
+      "Revisar solo el código del líder técnico",
+      "Hacer revisiones rápidas y sin comentarios para no retrasar los sprints",
+      "Revisar fragmentos pequeños de código, enfocarse en lógica y diseño, y fomentar un tono constructivo",
+      "Esperar a que el código esté en producción para dar feedback"
+    ],
+    "correct": 2,
+    "explanation": "Las revisiones efectivas son frecuentes, de pequeñas porciones y con una cultura de mejora colaborativa."
+  }
+]

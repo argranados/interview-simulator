@@ -1,0 +1,827 @@
+[
+  {
+    "id": 1,
+    "level": "Junior",
+    "category": "Microservices Patterns",
+    "question": "¿Cuál es el propósito principal de un API Gateway en una arquitectura de microservicios?",
+    "code": null,
+    "options": [
+      "Almacenar la configuración de todos los servicios",
+      "Servir como punto único de entrada que enruta, filtra y transforma solicitudes",
+      "Reemplazar la base de datos compartida",
+      "Ejecutar pruebas de integración"
+    ],
+    "correct": 1,
+    "explanation": "Un API Gateway centraliza el acceso a los microservicios, manejando enrutamiento, autenticación, rate limiting, etc."
+  },
+  {
+    "id": 2,
+    "level": "Junior",
+    "category": "Microservices Patterns",
+    "question": "¿Qué problema resuelve el patrón SAGA en microservicios?",
+    "code": null,
+    "options": [
+      "Escalado automático de instancias",
+      "Consistencia de datos entre servicios sin usar transacciones distribuidas bloqueantes",
+      "Comunicación síncrona rápida",
+      "Balanceo de carga entre réplicas"
+    ],
+    "correct": 1,
+    "explanation": "SAGA coordina transacciones distribuidas mediante una secuencia de transacciones locales y eventos compensatorios."
+  },
+  {
+    "id": 3,
+    "level": "Mid",
+    "category": "Microservices Patterns",
+    "question": "¿Cuál es el papel del patrón Outbox en una arquitectura de microservicios?",
+    "code": null,
+    "options": [
+      "Garantizar la publicación confiable de eventos atómicos con la base de datos",
+      "Almacenar logs de acceso externo",
+      "Compensar fallos en la red",
+      "Implementar circuit breaker"
+    ],
+    "correct": 0,
+    "explanation": "El patrón Outbox asegura que un evento se publique si y solo si la transacción en la base de datos se confirma, usando una tabla de salida."
+  },
+  {
+    "id": 4,
+    "level": "Junior",
+    "category": "Microservices Patterns",
+    "question": "¿Qué significa BFF en el contexto de microservicios?",
+    "code": null,
+    "options": [
+      "Binary Format Fetcher",
+      "Backend For Frontend",
+      "Built-in Fault Filter",
+      "Big Fast Function"
+    ],
+    "correct": 1,
+    "explanation": "El patrón Backend For Frontend crea un backend específico para las necesidades de cada cliente (web, móvil, etc.)."
+  },
+  {
+    "id": 5,
+    "level": "Mid",
+    "category": "Microservices Patterns",
+    "question": "¿En qué consiste el patrón Strangler Fig?",
+    "code": null,
+    "options": [
+      "Balancear tráfico con DNS",
+      "Migrar gradualmente un sistema monolítico reemplazando partes por microservicios",
+      "Añadir caché a todas las consultas",
+      "Centralizar logs con ELK"
+    ],
+    "correct": 1,
+    "explanation": "Strangler Fig envuelve el monolito y redirige tráfico incrementalmente a nuevos servicios hasta que el monolito se apaga."
+  },
+  {
+    "id": 6,
+    "level": "Mid",
+    "category": "Communication & Integration",
+    "question": "¿Cuál es una ventaja de gRPC sobre REST/JSON en comunicación interna entre microservicios?",
+    "code": null,
+    "options": [
+      "Mayor legibilidad en formato de texto",
+      "Soporte nativo para navegadores",
+      "Serialización binaria eficiente (Protobuf) y soporte para streaming bidireccional",
+      "No necesita definición de esquema"
+    ],
+    "correct": 2,
+    "explanation": "gRPC usa Protobuf, que es más compacto y rápido; además admite streaming nativo, ideal para baja latencia."
+  },
+  {
+    "id": 7,
+    "level": "Junior",
+    "category": "Communication & Integration",
+    "question": "¿Qué es un Webhook en integración entre servicios?",
+    "code": null,
+    "options": [
+      "Un balanceador de carga",
+      "Una llamada HTTP saliente desde un servidor hacia un cliente que espera una URL de callback",
+      "Una base de datos compartida",
+      "Un protocolo de mensajería asíncrona"
+    ],
+    "correct": 1,
+    "explanation": "Un webhook permite que un sistema notifique a otro mediante una solicitud HTTP a una URL registrada cuando ocurre un evento."
+  },
+  {
+    "id": 8,
+    "level": "Mid",
+    "category": "Communication & Integration",
+    "question": "¿Cómo se puede implementar idempotencia en un endpoint REST?",
+    "code": null,
+    "options": [
+      "Usando únicamente GET",
+      "Ignorando solicitudes duplicadas",
+      "Asignando una clave de idempotencia (Idempotency-Key) y almacenando la respuesta para detectar duplicados",
+      "Aumentando el timeout"
+    ],
+    "correct": 2,
+    "explanation": "Una clave de idempotencia permite que el servidor identifique si ya procesó una solicitud, devolviendo la misma respuesta sin efectos secundarios."
+  },
+  {
+    "id": 9,
+    "level": "Junior",
+    "category": "Communication & Integration",
+    "question": "¿Qué es GraphQL y cómo se diferencia de REST?",
+    "code": null,
+    "options": [
+      "GraphQL es una base de datos, REST es un protocolo",
+      "GraphQL permite al cliente especificar exactamente los datos que necesita, evitando over-fetching y under-fetching",
+      "GraphQL solo funciona con bases de datos SQL",
+      "GraphQL no necesita autenticación"
+    ],
+    "correct": 1,
+    "explanation": "GraphQL es un lenguaje de consulta para APIs que da al cliente control sobre la forma de la respuesta."
+  },
+  {
+    "id": 10,
+    "level": "Mid",
+    "category": "Communication & Integration",
+    "question": "¿Qué es una Dead Letter Queue (DLQ) en sistemas de mensajería?",
+    "code": null,
+    "options": [
+      "Una cola especial donde se envían los mensajes que no pudieron ser procesados después de varios intentos",
+      "La cola principal de entrada de mensajes",
+      "Una cola de alta prioridad",
+      "Un mecanismo de encriptación"
+    ],
+    "correct": 0,
+    "explanation": "La DLQ almacena mensajes fallidos para su análisis posterior, evitando que bloqueen el procesamiento normal."
+  },
+  {
+    "id": 11,
+    "level": "Junior",
+    "category": "Resilience & Fault Tolerance",
+    "question": "¿Qué problema aborda el patrón Circuit Breaker?",
+    "code": null,
+    "options": [
+      "Autenticación centralizada",
+      "Propagación de fallos en cascada entre servicios",
+      "Serialización de datos",
+      "Escalado horizontal"
+    ],
+    "correct": 1,
+    "explanation": "El Circuit Breaker evita llamadas a servicios que están fallando, dando tiempo para recuperarse y previniendo fallos en cadena."
+  },
+  {
+    "id": 12,
+    "level": "Mid",
+    "category": "Resilience & Fault Tolerance",
+    "question": "¿Cómo se configura un Circuit Breaker con Resilience4j en Spring Boot 3?",
+    "code": "@CircuitBreaker(name = \"inventory\", fallbackMethod = \"fallback\")\npublic Product getProduct(Long id) {\n    return inventoryClient.fetch(id);\n}",
+    "options": [
+      "Solo con un archivo YAML",
+      "Usando la anotación @CircuitBreaker y un método fallback",
+      "Implementando una interfaz HystrixCommand",
+      "Con un interceptor de Spring MVC"
+    ],
+    "correct": 1,
+    "explanation": "Resilience4j expone la anotación @CircuitBreaker para métodos; se configura también en application.yml."
+  },
+  {
+    "id": 13,
+    "level": "Junior",
+    "category": "Resilience & Fault Tolerance",
+    "question": "¿Qué es el patrón Bulkhead en sistemas resilientes?",
+    "code": null,
+    "options": [
+      "Aislar recursos para que un fallo en un componente no agote todo el sistema",
+      "Balanceo de carga round-robin",
+      "Compartir un único pool de hilos para todas las peticiones",
+      "Una base de datos de respaldo"
+    ],
+    "correct": 0,
+    "explanation": "Bulkhead limita la cantidad de recursos (hilos, conexiones) que una parte del sistema puede consumir, conteniendo fallos."
+  },
+  {
+    "id": 14,
+    "level": "Mid",
+    "category": "Resilience & Fault Tolerance",
+    "question": "¿Cuál es la diferencia entre Chaos Engineering y las pruebas de resiliencia tradicionales?",
+    "code": null,
+    "options": [
+      "Chaos Engineering solo se aplica en entornos de desarrollo",
+      "Chaos Engineering inyecta fallos controlados en producción para descubrir debilidades desconocidas",
+      "Las pruebas de resiliencia no usan automatización",
+      "Chaos Engineering es un tipo de prueba unitaria"
+    ],
+    "correct": 1,
+    "explanation": "Chaos Engineering realiza experimentos en sistemas productivos para verificar su comportamiento bajo condiciones adversas."
+  },
+  {
+    "id": 15,
+    "level": "Junior",
+    "category": "Resilience & Fault Tolerance",
+    "question": "¿Qué es el Exponential Backoff en reintentos de llamadas a servicios?",
+    "code": null,
+    "options": [
+      "Reintentar inmediatamente sin espera",
+      "Aumentar progresivamente el tiempo de espera entre reintentos",
+      "Disminuir el tiempo de espera entre reintentos",
+      "Usar un patrón de reintento fijo"
+    ],
+    "correct": 1,
+    "explanation": "El backoff exponencial evita sobrecargar el servicio destino dando tiempo para su recuperación."
+  },
+  {
+    "id": 16,
+    "level": "Junior",
+    "category": "Architecture Styles",
+    "question": "¿Qué propone la arquitectura hexagonal (Ports and Adapters)?",
+    "code": null,
+    "options": [
+      "Separar la lógica de negocio de las dependencias externas mediante puertos y adaptadores",
+      "Usar seis capas de abstracción",
+      "Dividir la aplicación en microservicios",
+      "Implementar una base de datos hexagonal"
+    ],
+    "correct": 0,
+    "explanation": "La arquitectura hexagonal aísla el núcleo de la aplicación de interfaces externas como web, base de datos, etc."
+  },
+  {
+    "id": 17,
+    "level": "Mid",
+    "category": "Architecture Styles",
+    "question": "¿En qué se diferencia CQRS de una arquitectura CRUD tradicional?",
+    "code": null,
+    "options": [
+      "CQRS solo permite lecturas, CRUD solo escrituras",
+      "CQRS separa los modelos de comando (escritura) y consulta (lectura)",
+      "CRUD usa dos bases de datos",
+      "CQRS no necesita base de datos"
+    ],
+    "correct": 1,
+    "explanation": "CQRS (Command Query Responsibility Segregation) divide las operaciones de lectura y escritura en modelos distintos, optimizados por separado."
+  },
+  {
+    "id": 18,
+    "level": "Junior",
+    "category": "Architecture Styles",
+    "question": "¿Qué es una arquitectura dirigida por eventos (EDA)?",
+    "code": null,
+    "options": [
+      "Sistemas que se comunican exclusivamente mediante bases de datos",
+      "Un estilo donde los componentes reaccionan a eventos publicados, desacoplando productores y consumidores",
+      "Un patrón exclusivo de microservicios",
+      "Una forma de programación síncrona"
+    ],
+    "correct": 1,
+    "explanation": "EDA promueve que los servicios publiquen eventos y otros reaccionen a ellos, logrando desacoplamiento temporal."
+  },
+  {
+    "id": 19,
+    "level": "Mid",
+    "category": "Architecture Styles",
+    "question": "¿Qué es el patrón Multi-tenancy en la arquitectura de software?",
+    "code": null,
+    "options": [
+      "Múltiples instancias de una aplicación para cada usuario",
+      "Una sola instancia de software que sirve a múltiples clientes (tenants) aislados lógicamente",
+      "Balanceo de carga con múltiples servidores",
+      "Uso de varios lenguajes de programación"
+    ],
+    "correct": 1,
+    "explanation": "Multi-tenancy permite compartir infraestructura manteniendo los datos y configuraciones de cada cliente separados."
+  },
+  {
+    "id": 20,
+    "level": "Junior",
+    "category": "Architecture Styles",
+    "question": "¿Cuál es una característica de la arquitectura Clean (Uncle Bob)?",
+    "code": null,
+    "options": [
+      "La capa de presentación accede directamente a la base de datos",
+      "La regla de dependencia apunta hacia el núcleo (entidades y casos de uso)",
+      "Se usan microservicios obligatoriamente",
+      "No se permiten frameworks"
+    ],
+    "correct": 1,
+    "explanation": "Clean Architecture define capas concéntricas donde las dependencias siempre apuntan hacia adentro, protegiendo el dominio."
+  },
+  {
+    "id": 21,
+    "level": "Junior",
+    "category": "Domain-Driven Design",
+    "question": "¿Qué es un Bounded Context en DDD?",
+    "code": null,
+    "options": [
+      "Un contexto de transacción de base de datos",
+      "Un límite explícito dentro del cual un modelo de dominio es consistente y tiene significado",
+      "Un contexto de seguridad",
+      "Una implementación de caché"
+    ],
+    "correct": 1,
+    "explanation": "Un Bounded Context delimita un área del dominio donde un modelo particular aplica, ayudando a gestionar la complejidad."
+  },
+  {
+    "id": 22,
+    "level": "Junior",
+    "category": "Domain-Driven Design",
+    "question": "¿Qué es un Aggregate en DDD?",
+    "code": null,
+    "options": [
+      "Una colección de servicios REST",
+      "Un clúster de objetos de dominio tratados como una unidad, con una raíz que garantiza la consistencia",
+      "Una función de agregación en base de datos",
+      "Un grupo de usuarios"
+    ],
+    "correct": 1,
+    "explanation": "Un Aggregate es un conjunto de entidades y value objects que se manipulan a través de una raíz (Aggregate Root)."
+  },
+  {
+    "id": 23,
+    "level": "Mid",
+    "category": "Domain-Driven Design",
+    "question": "¿Qué es Event Sourcing?",
+    "code": null,
+    "options": [
+      "Almacenar el estado actual del objeto en una tabla",
+      "Guardar todos los cambios de estado como una secuencia inmutable de eventos",
+      "Registrar solo las excepciones en un log",
+      "Un patrón de comunicación asíncrona"
+    ],
+    "correct": 1,
+    "explanation": "Event Sourcing persiste el estado como una serie de eventos, permitiendo reconstruir el estado actual y el historial completo."
+  },
+  {
+    "id": 24,
+    "level": "Mid",
+    "category": "Domain-Driven Design",
+    "question": "¿Para qué se utiliza un Anti-Corruption Layer (ACL) en DDD?",
+    "code": null,
+    "options": [
+      "Prevenir ataques de seguridad",
+      "Actuar como un firewall de red",
+      "Aislar el modelo propio de la influencia de modelos externos, traduciendo entre ellos",
+      "Optimizar consultas de base de datos"
+    ],
+    "correct": 2,
+    "explanation": "Una ACL crea una capa de traducción entre dos bounded contexts para que el dominio no se contamine."
+  },
+  {
+    "id": 25,
+    "level": "Junior",
+    "category": "Spring Boot & Spring Cloud",
+    "question": "¿Cuál es el propósito de Spring Cloud Config Server?",
+    "code": null,
+    "options": [
+      "Balancear peticiones HTTP",
+      "Centralizar la configuración externa de todos los microservicios",
+      "Proveer autenticación OAuth2",
+      "Monitorizar la salud de los servicios"
+    ],
+    "correct": 1,
+    "explanation": "Config Server externaliza la configuración, permitiendo cambios sin reconstruir los servicios."
+  },
+  {
+    "id": 26,
+    "level": "Junior",
+    "category": "Spring Boot & Spring Cloud",
+    "question": "¿Qué anotación se utiliza para definir un cliente Feign en Spring Cloud?",
+    "code": null,
+    "options": [
+      "@FeignClient",
+      "@RestClient",
+      "@RemoteService",
+      "@HttpClient"
+    ],
+    "correct": 0,
+    "explanation": "@FeignClient declara una interfaz que se conecta a un servicio remoto, integrando balanceo de carga."
+  },
+  {
+    "id": 27,
+    "level": "Mid",
+    "category": "Spring Boot & Spring Cloud",
+    "question": "¿Cómo se define una ruta en Spring Cloud Gateway usando código?",
+    "code": "@Bean\npublic RouteLocator customRouteLocator(RouteLocatorBuilder builder) {\n    return builder.routes()\n        .route(\"product_route\", r -> r.path(\"/products/**\")\n        .uri(\"lb://PRODUCT-SERVICE\"))\n        .build();\n}",
+    "options": [
+      "Solo se puede configurar en application.yml",
+      "Usando RouteLocatorBuilder y definiendo un bean de RouteLocator",
+      "Con la anotación @GatewayRoute",
+      "No se puede usar código, solo XML"
+    ],
+    "correct": 1,
+    "explanation": "Se puede definir rutas programáticamente con RouteLocatorBuilder y exponer un bean de RouteLocator."
+  },
+  {
+    "id": 28,
+    "level": "Mid",
+    "category": "Spring Boot & Spring Cloud",
+    "question": "¿Cuál es una aplicación típica de AOP (Aspect-Oriented Programming) en un microservicio?",
+    "code": null,
+    "options": [
+      "Implementar logging transversal, métricas o manejo de transacciones distribuidas",
+      "Reemplazar la capa de persistencia",
+      "Definir endpoints REST automáticos",
+      "Crear bases de datos relacionales"
+    ],
+    "correct": 0,
+    "explanation": "AOP permite extraer preocupaciones transversales como logging, seguridad o métricas de manera no intrusiva."
+  },
+  {
+    "id": 29,
+    "level": "Junior",
+    "category": "Spring Boot & Spring Cloud",
+    "question": "¿Qué sucede por defecto al usar @Transactional en un método de un servicio Spring?",
+    "code": null,
+    "options": [
+      "La transacción se ejecuta siempre en modo solo lectura",
+      "Se inicia una transacción (o se une a una existente) y se confirma si el método termina correctamente, o se revierte ante RuntimeException",
+      "No tiene efecto si no se usa una base de datos SQL",
+      "Requiere configuración manual de EntityManager"
+    ],
+    "correct": 1,
+    "explanation": "@Transactional gestiona automáticamente el ciclo de vida de la transacción, haciendo rollback ante excepciones unchecked."
+  },
+  {
+    "id": 30,
+    "level": "Mid",
+    "category": "Spring Boot & Spring Cloud",
+    "question": "¿Cómo se configura un balanceador de carga con Spring Cloud LoadBalancer al usar Feign?",
+    "code": null,
+    "options": [
+      "Se habilita automáticamente al usar spring-cloud-starter-loadbalancer y definir @FeignClient con el nombre del servicio",
+      "Solo funciona con Ribbon",
+      "Hay que escribir un interceptor personalizado",
+      "Feign no soporta balanceo de carga"
+    ],
+    "correct": 0,
+    "explanation": "Spring Cloud LoadBalancer se integra con Feign; si el cliente usa un nombre de servicio, aplica balanceo."
+  },
+  {
+    "id": 31,
+    "level": "Junior",
+    "category": "Observability & DevOps",
+    "question": "¿Qué significan las siglas SLI, SLO y SLA en Site Reliability Engineering?",
+    "code": null,
+    "options": [
+      "Service Level Indicator, Service Level Objective, Service Level Agreement",
+      "System Load Index, System Log Output, Service License Agreement",
+      "Standard Latency Interface, Service Limit Order, Software License Agreement",
+      "Ninguna de las anteriores"
+    ],
+    "correct": 0,
+    "explanation": "SLI mide el rendimiento, SLO define el objetivo, y SLA es el compromiso formal con el cliente."
+  },
+  {
+    "id": 32,
+    "level": "Junior",
+    "category": "Observability & DevOps",
+    "question": "¿Qué son las 'Four Golden Signals' en observabilidad?",
+    "code": null,
+    "options": [
+      "Latencia, tráfico, errores y saturación",
+      "CPU, memoria, disco y red",
+      "Logs, métricas, trazas y alertas",
+      "Peticiones por segundo, throughput, tiempo de respuesta y uptime"
+    ],
+    "correct": 0,
+    "explanation": "Las cuatro señales doradas (latency, traffic, errors, saturation) son métricas clave para monitorear sistemas."
+  },
+  {
+    "id": 33,
+    "level": "Mid",
+    "category": "Observability & DevOps",
+    "question": "¿Cómo ayuda el distributed tracing en una arquitectura de microservicios?",
+    "code": null,
+    "options": [
+      "Reduce el uso de CPU",
+      "Permite rastrear una solicitud a través de múltiples servicios para identificar cuellos de botella y errores",
+      "Automatiza los despliegues",
+      "Reemplaza los logs"
+    ],
+    "correct": 1,
+    "explanation": "El trazado distribuido asigna un ID único a cada solicitud y lo propaga, facilitando la depuración de flujos complejos."
+  },
+  {
+    "id": 34,
+    "level": "Junior",
+    "category": "Observability & DevOps",
+    "question": "¿Cuál de los siguientes NO es uno de los 12 factores de la metodología 12-Factor App?",
+    "code": null,
+    "options": [
+      "Codebase (una base de código, muchos depliegues)",
+      "Config (almacenar la configuración en el entorno)",
+      "Procesos sin estado y que no comparten nada",
+      "Uso de una única base de datos relacional"
+    ],
+    "correct": 3,
+    "explanation": "La metodología no impone una única base de datos; los servicios deben ser autónomos y pueden usar distintos backends."
+  },
+  {
+    "id": 35,
+    "level": "Mid",
+    "category": "Observability & DevOps",
+    "question": "¿Qué diferencia hay entre Logging, Metrics y Tracing?",
+    "code": null,
+    "options": [
+      "Son sinónimos",
+      "Logging registra eventos discretos, Metrics agrega datos numéricos, Tracing sigue el flujo de una petición",
+      "Metrics es lo mismo que Tracing",
+      "Logging solo se usa en desarrollo"
+    ],
+    "correct": 1,
+    "explanation": "Son los tres pilares de la observabilidad: logs, métricas y trazas, cada uno con propósito distinto."
+  },
+  {
+    "id": 36,
+    "level": "Junior",
+    "category": "Data Patterns & Caching",
+    "question": "¿Qué es el patrón Cache-Aside?",
+    "code": null,
+    "options": [
+      "La aplicación consulta primero la caché; si hay fallo, consulta la base de datos y actualiza la caché",
+      "La base de datos actualiza la caché automáticamente",
+      "La caché se recarga periódicamente con todos los datos",
+      "Un balanceador de carga con caché"
+    ],
+    "correct": 0,
+    "explanation": "Cache-Aside (o lazy loading) pone a la aplicación a cargo de la lógica de caché: leer de caché, cargar de BD si miss, y almacenar."
+  },
+  {
+    "id": 37,
+    "level": "Mid",
+    "category": "Data Patterns & Caching",
+    "question": "¿Qué es el Cache Stampede y cómo se puede mitigar?",
+    "code": null,
+    "options": [
+      "Cuando muchos clientes intentan regenerar el mismo valor de caché simultáneamente; se mitiga con bloqueo o expiración escalonada",
+      "Un ataque de fuerza bruta a la caché",
+      "La replicación de caché entre nodos",
+      "La invalidación manual de caché"
+    ],
+    "correct": 0,
+    "explanation": "Cache Stampede ocurre cuando un elemento muy consultado expira y múltiples peticiones intentan regenerarlo a la vez."
+  },
+  {
+    "id": 38,
+    "level": "Junior",
+    "category": "Data Patterns & Caching",
+    "question": "¿Qué es Redis en el contexto de microservicios?",
+    "code": null,
+    "options": [
+      "Una base de datos relacional",
+      "Un almacén de datos en memoria usado como caché, broker de mensajes o base de datos clave-valor",
+      "Un framework de microservicios",
+      "Una herramienta de CI/CD"
+    ],
+    "correct": 1,
+    "explanation": "Redis es un almacén en memoria versátil, comúnmente usado para caché y publicación/subscripción."
+  },
+  {
+    "id": 39,
+    "level": "Mid",
+    "category": "Data Patterns & Caching",
+    "question": "¿Qué es el Change Data Capture (CDC)?",
+    "code": null,
+    "options": [
+      "Una herramienta de migración de base de datos",
+      "Capturar los cambios realizados en una base de datos y publicarlos como eventos",
+      "Un tipo de base de datos NoSQL",
+      "Un mecanismo de respaldo"
+    ],
+    "correct": 1,
+    "explanation": "CDC permite reaccionar a cambios en la base de datos (inserts, updates, deletes) y notificar a otros sistemas."
+  },
+  {
+    "id": 40,
+    "level": "Junior",
+    "category": "Data Patterns & Caching",
+    "question": "¿Qué es el Sharding en bases de datos?",
+    "code": null,
+    "options": [
+      "Una técnica de respaldo",
+      "Dividir una base de datos grande en fragmentos más pequeños y distribuidos",
+      "Crear índices secundarios",
+      "Un tipo de caché"
+    ],
+    "correct": 1,
+    "explanation": "Sharding particiona los datos horizontalmente en múltiples servidores para escalar y mejorar el rendimiento."
+  },
+  {
+    "id": 41,
+    "level": "Junior",
+    "category": "Cloud & Deployment (AWS)",
+    "question": "¿Cuál es la diferencia principal entre Amazon ECS y Amazon EKS?",
+    "code": null,
+    "options": [
+      "ECS es para contenedores Windows, EKS para Linux",
+      "ECS es el servicio de orquestación propio de AWS, EKS gestiona Kubernetes como servicio",
+      "ECS no escala, EKS sí",
+      "EKS solo funciona con Docker Swarm"
+    ],
+    "correct": 1,
+    "explanation": "ECS es el orquestador nativo de AWS, más sencillo; EKS ofrece Kubernetes gestionado, con mayor ecosistema y portabilidad."
+  },
+  {
+    "id": 42,
+    "level": "Junior",
+    "category": "Cloud & Deployment (AWS)",
+    "question": "¿Qué es AWS Fargate?",
+    "code": null,
+    "options": [
+      "Un servicio de base de datos serverless",
+      "Un motor de contenedores serverless que elimina la necesidad de gestionar servidores para ECS/EKS",
+      "Una herramienta de monitoreo",
+      "Un balanceador de carga"
+    ],
+    "correct": 1,
+    "explanation": "Fargate permite ejecutar contenedores sin administrar la infraestructura subyacente de EC2."
+  },
+  {
+    "id": 43,
+    "level": "Mid",
+    "category": "Cloud & Deployment (AWS)",
+    "question": "¿En qué consiste una implementación Canary?",
+    "code": null,
+    "options": [
+      "Desplegar a todos los usuarios de golpe",
+      "Desplegar una nueva versión a un pequeño subconjunto de usuarios para validar antes de un lanzamiento completo",
+      "Usar solo un entorno de pruebas",
+      "Ejecutar pruebas en producción"
+    ],
+    "correct": 1,
+    "explanation": "Canary deployment reduce el riesgo exponiendo gradualmente la nueva versión a una fracción de tráfico."
+  },
+  {
+    "id": 44,
+    "level": "Junior",
+    "category": "Cloud & Deployment (AWS)",
+    "question": "¿Cómo funciona el Auto Scaling en AWS?",
+    "code": null,
+    "options": [
+      "Aumenta o disminuye automáticamente el número de instancias basándose en métricas definidas",
+      "Requiere intervención manual",
+      "Solo escala verticalmente",
+      "Solo funciona con bases de datos"
+    ],
+    "correct": 0,
+    "explanation": "Auto Scaling ajusta la capacidad para mantener el rendimiento y optimizar costos."
+  },
+  {
+    "id": 45,
+    "level": "Junior",
+    "category": "Cloud & Deployment (AWS)",
+    "question": "¿Cuál de las siguientes afirmaciones sobre AWS Lambda es correcta?",
+    "code": null,
+    "options": [
+      "Requiere la gestión de servidores EC2",
+      "Ejecuta código en respuesta a eventos y escala automáticamente",
+      "Solo soporta Java",
+      "No se puede integrar con otros servicios de AWS"
+    ],
+    "correct": 1,
+    "explanation": "Lambda es un servicio serverless que ejecuta funciones sin necesidad de aprovisionar servidores."
+  },
+  {
+    "id": 46,
+    "level": "Mid",
+    "category": "Cloud & Deployment (AWS)",
+    "question": "¿Qué es una VPC en AWS y por qué es importante para microservicios?",
+    "code": null,
+    "options": [
+      "Un servicio de base de datos virtual",
+      "Una red virtual privada que aísla recursos y define reglas de seguridad",
+      "Un balanceador de carga avanzado",
+      "Un protocolo de autenticación"
+    ],
+    "correct": 1,
+    "explanation": "Una VPC permite controlar la red, subredes, gateways y reglas de firewall, crucial para aislar servicios."
+  },
+  {
+    "id": 47,
+    "level": "Mid",
+    "category": "Microservices Patterns",
+    "question": "¿Cómo se implementa una SAGA basada en coreografía (choreography) en lugar de orquestación?",
+    "code": null,
+    "options": [
+      "Un coordinador central envía comandos a los servicios",
+      "Cada servicio publica eventos y otros reaccionan, sin un punto central de control",
+      "Se usa una base de datos compartida",
+      "Se delega en un API Gateway"
+    ],
+    "correct": 1,
+    "explanation": "En coreografía, los servicios se coordinan mediante eventos; cada uno sabe cómo reaccionar a eventos de otros."
+  },
+  {
+    "id": 48,
+    "level": "Junior",
+    "category": "Microservices Patterns",
+    "question": "¿Qué función adicional suele asumir un API Gateway más allá del enrutamiento?",
+    "code": null,
+    "options": [
+      "Compilar el código fuente",
+      "Agregar cross-cutting concerns como autenticación, rate limiting, logging y transformación de solicitudes",
+      "Almacenar datos de sesión",
+      "Generar documentación automática"
+    ],
+    "correct": 1,
+    "explanation": "Un API Gateway moderno maneja autenticación, autorización, limitación de tasa, y transformaciones."
+  },
+  {
+    "id": 49,
+    "level": "Mid",
+    "category": "Communication & Integration",
+    "question": "¿Qué ventaja ofrece un Dead Letter Queue (DLQ) en una arquitectura de eventos?",
+    "code": null,
+    "options": [
+      "Acumular eventos para procesarlos en lote",
+      "Proveer un mecanismo de auditoría y reintento manual de eventos fallidos sin afectar el flujo principal",
+      "Reemplazar el log de la aplicación",
+      "Enviar correos de notificación"
+    ],
+    "correct": 1,
+    "explanation": "La DLQ aisla mensajes que no se pudieron procesar, permitiendo su inspección y reintento sin bloquear la cola principal."
+  },
+  {
+    "id": 50,
+    "level": "Mid",
+    "category": "Resilience & Fault Tolerance",
+    "question": "¿Qué es el patrón 'Retry with Backoff' y cómo se relaciona con Circuit Breaker?",
+    "code": null,
+    "options": [
+      "Reintentos inmediatos con Circuit Breaker abierto",
+      "Reintentos con espera creciente; el Circuit Breaker puede abrirse si los reintentos fallan repetidamente",
+      "Solo se usa en lugar del Circuit Breaker",
+      "Es un sinónimo de Circuit Breaker"
+    ],
+    "correct": 1,
+    "explanation": "El reintento con backoff maneja fallos transitorios; si persisten, el Circuit Breaker corta las llamadas para no agravar el problema."
+  },
+  {
+    "id": 51,
+    "level": "Junior",
+    "category": "Architecture Styles",
+    "question": "¿Cuál es una característica principal de la arquitectura hexagonal?",
+    "code": null,
+    "options": [
+      "El dominio depende directamente de la base de datos",
+      "La lógica de negocio es independiente de la infraestructura y se comunica a través de puertos",
+      "Se divide en tres capas: presentación, negocio, datos",
+      "Usa exclusivamente REST"
+    ],
+    "correct": 1,
+    "explanation": "La arquitectura hexagonal (Ports and Adapters) desacopla el núcleo de los detalles externos mediante puertos (interfaces) y adaptadores."
+  },
+  {
+    "id": 52,
+    "level": "Mid",
+    "category": "Domain-Driven Design",
+    "question": "¿Por qué es importante definir correctamente los Bounded Contexts en un proyecto de microservicios?",
+    "code": null,
+    "options": [
+      "Para cumplir con la norma ISO 9001",
+      "Para alinear los equipos y la arquitectura con los subdominios del negocio, minimizando acoplamiento",
+      "Para que todos los servicios usen la misma base de datos",
+      "Para reducir el número de microservicios"
+    ],
+    "correct": 1,
+    "explanation": "Un Bounded Context bien definido ayuda a delimitar responsabilidades y evita la corrupción del modelo."
+  },
+  {
+    "id": 53,
+    "level": "Mid",
+    "category": "Data Patterns & Caching",
+    "question": "¿Cuál es un riesgo de usar el patrón Cache-Aside con alta concurrencia?",
+    "code": null,
+    "options": [
+      "No hay riesgos",
+      "Cache Stampede: múltiples hilos consultan la BD al mismo tiempo tras un fallo de caché",
+      "La caché se vuelve obsoleta inmediatamente",
+      "Aumenta la latencia siempre"
+    ],
+    "correct": 1,
+    "explanation": "Un fallo de caché puede provocar una avalancha de consultas a la base de datos si muchos hilos ejecutan la lógica de recarga simultáneamente."
+  },
+  {
+    "id": 54,
+    "level": "Junior",
+    "category": "Observability & DevOps",
+    "question": "¿Cuál es el propósito de un health check endpoint en un microservicio?",
+    "code": null,
+    "options": [
+      "Exponer logs de la aplicación",
+      "Permitir que orquestadores (Kubernetes) y balanceadores conozcan si la instancia está lista para recibir tráfico",
+      "Mostrar la versión del servicio",
+      "Medir el rendimiento de la base de datos"
+    ],
+    "correct": 1,
+    "explanation": "Los health checks (liveness/readiness) son fundamentales para la orquestación y el ruteo de tráfico."
+  },
+  {
+    "id": 55,
+    "level": "Mid",
+    "category": "Spring Boot & Spring Cloud",
+    "question": "¿Cómo se puede propagar el trace ID en peticiones entre microservicios con Spring Cloud Sleuth/Micrometer Tracing?",
+    "code": null,
+    "options": [
+      "Se añade manualmente en el cuerpo de la petición",
+      "Se inyectan encabezados como X-B3-TraceId en las solicitudes HTTP de forma automática",
+      "Solo se puede hacer con RabbitMQ",
+      "Se requiere un archivo de configuración por cada servicio"
+    ],
+    "correct": 1,
+    "explanation": "Spring Cloud Sleuth (ahora Micrometer Tracing) agrega automáticamente encabezados de trazado a las peticiones salientes y los extrae en las entrantes."
+  }
+]

@@ -9,6 +9,17 @@ const BANKS_CONFIG = {
     { ai: 'claude', title: 'Claude', emoji: '🧠', description: 'Más analítico' },
     { ai: 'deepseek', title: 'DeepSeek', emoji: '⚡', description: 'Más técnico y directo' },
   ],
+  java_patrones: [
+    { ai: 'chatgpt', title: 'ChatGPT', emoji: '🤖', description: 'Balanceado y claro' },
+    { ai: 'claude', title: 'Claude', emoji: '🧠', description: 'Más analítico' },
+    { ai: 'deepseek', title: 'DeepSeek', emoji: '⚡', description: 'Más técnico y directo' },
+  ],
+
+  java_arquitectura: [
+    { ai: 'chatgpt', title: 'ChatGPT', emoji: '🤖', description: 'Balanceado y claro' },
+    { ai: 'claude', title: 'Claude', emoji: '🧠', description: 'Más analítico' },
+    { ai: 'deepseek', title: 'DeepSeek', emoji: '⚡', description: 'Más técnico y directo' },
+  ],
 }
 
 const TOPIC_LABELS = {

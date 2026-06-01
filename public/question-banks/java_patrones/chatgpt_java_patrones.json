@@ -1,0 +1,1292 @@
+[
+  {
+    "id": 1,
+    "level": "Junior",
+    "category": "Clean Code",
+    "question": "En una revisión de código, ¿cuál es la mejor acción respecto a hay varios if/else anidados?",
+    "code": null,
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 1,
+    "explanation": "Pregunta enfocada en clean code y buenas prácticas profesionales."
+  },
+  {
+    "id": 2,
+    "level": "Junior",
+    "category": "Clean Code",
+    "question": "En una revisión de código, ¿cuál es la mejor acción respecto a se repite lógica en distintas clases?",
+    "code": null,
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 2,
+    "explanation": "Pregunta enfocada en clean code y buenas prácticas profesionales."
+  },
+  {
+    "id": 3,
+    "level": "Junior",
+    "category": "Clean Code",
+    "question": "En una revisión de código, ¿cuál es la mejor acción respecto a hay magic strings en el código?",
+    "code": null,
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 3,
+    "explanation": "Pregunta enfocada en clean code y buenas prácticas profesionales."
+  },
+  {
+    "id": 4,
+    "level": "Junior",
+    "category": "Clean Code",
+    "question": "En una revisión de código, ¿cuál es la mejor acción respecto a existen validaciones duplicadas?",
+    "code": null,
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 0,
+    "explanation": "Pregunta enfocada en clean code y buenas prácticas profesionales."
+  },
+  {
+    "id": 5,
+    "level": "Junior",
+    "category": "Clean Code",
+    "question": "En una revisión de código, ¿cuál es la mejor acción respecto a hay varios if/else anidados?",
+    "code": "if(type.equals(\"A\")){...} else if(type.equals(\"B\")){...}",
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 1,
+    "explanation": "Pregunta enfocada en clean code y buenas prácticas profesionales."
+  },
+  {
+    "id": 6,
+    "level": "Junior",
+    "category": "Clean Code",
+    "question": "En una revisión de código, ¿cuál es la mejor acción respecto a se repite lógica en distintas clases?",
+    "code": null,
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 2,
+    "explanation": "Pregunta enfocada en clean code y buenas prácticas profesionales."
+  },
+  {
+    "id": 7,
+    "level": "Junior",
+    "category": "Clean Code",
+    "question": "En una revisión de código, ¿cuál es la mejor acción respecto a hay magic strings en el código?",
+    "code": null,
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 3,
+    "explanation": "Pregunta enfocada en clean code y buenas prácticas profesionales."
+  },
+  {
+    "id": 8,
+    "level": "Junior",
+    "category": "Clean Code",
+    "question": "En una revisión de código, ¿cuál es la mejor acción respecto a existen validaciones duplicadas?",
+    "code": null,
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 0,
+    "explanation": "Pregunta enfocada en clean code y buenas prácticas profesionales."
+  },
+  {
+    "id": 9,
+    "level": "Junior",
+    "category": "Clean Code",
+    "question": "En una revisión de código, ¿cuál es la mejor acción respecto a hay varios if/else anidados?",
+    "code": null,
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 1,
+    "explanation": "Pregunta enfocada en clean code y buenas prácticas profesionales."
+  },
+  {
+    "id": 10,
+    "level": "Junior",
+    "category": "Clean Code",
+    "question": "En una revisión de código, ¿cuál es la mejor acción respecto a se repite lógica en distintas clases?",
+    "code": "if(type.equals(\"A\")){...} else if(type.equals(\"B\")){...}",
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 2,
+    "explanation": "Pregunta enfocada en clean code y buenas prácticas profesionales."
+  },
+  {
+    "id": 11,
+    "level": "Junior",
+    "category": "Clean Code",
+    "question": "En una revisión de código, ¿cuál es la mejor acción respecto a hay magic strings en el código?",
+    "code": null,
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 3,
+    "explanation": "Pregunta enfocada en clean code y buenas prácticas profesionales."
+  },
+  {
+    "id": 12,
+    "level": "Junior",
+    "category": "Clean Code",
+    "question": "En una revisión de código, ¿cuál es la mejor acción respecto a existen validaciones duplicadas?",
+    "code": null,
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 0,
+    "explanation": "Pregunta enfocada en clean code y buenas prácticas profesionales."
+  },
+  {
+    "id": 13,
+    "level": "Junior",
+    "category": "Code Smells",
+    "question": "¿Qué code smell describe mejor el siguiente escenario: hay magic strings en el código?",
+    "code": null,
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 1,
+    "explanation": "Pregunta enfocada en code smells y buenas prácticas profesionales."
+  },
+  {
+    "id": 14,
+    "level": "Junior",
+    "category": "Code Smells",
+    "question": "¿Qué code smell describe mejor el siguiente escenario: existen validaciones duplicadas?",
+    "code": null,
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 2,
+    "explanation": "Pregunta enfocada en code smells y buenas prácticas profesionales."
+  },
+  {
+    "id": 15,
+    "level": "Junior",
+    "category": "Code Smells",
+    "question": "¿Qué code smell describe mejor el siguiente escenario: hay varios if/else anidados?",
+    "code": "if(type.equals(\"A\")){...} else if(type.equals(\"B\")){...}",
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 3,
+    "explanation": "Pregunta enfocada en code smells y buenas prácticas profesionales."
+  },
+  {
+    "id": 16,
+    "level": "Junior",
+    "category": "Code Smells",
+    "question": "¿Qué code smell describe mejor el siguiente escenario: se repite lógica en distintas clases?",
+    "code": null,
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 0,
+    "explanation": "Pregunta enfocada en code smells y buenas prácticas profesionales."
+  },
+  {
+    "id": 17,
+    "level": "Junior",
+    "category": "Code Smells",
+    "question": "¿Qué code smell describe mejor el siguiente escenario: hay magic strings en el código?",
+    "code": null,
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 1,
+    "explanation": "Pregunta enfocada en code smells y buenas prácticas profesionales."
+  },
+  {
+    "id": 18,
+    "level": "Junior",
+    "category": "Code Smells",
+    "question": "¿Qué code smell describe mejor el siguiente escenario: existen validaciones duplicadas?",
+    "code": null,
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 2,
+    "explanation": "Pregunta enfocada en code smells y buenas prácticas profesionales."
+  },
+  {
+    "id": 19,
+    "level": "Junior",
+    "category": "Code Smells",
+    "question": "¿Qué code smell describe mejor el siguiente escenario: hay varios if/else anidados?",
+    "code": null,
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 3,
+    "explanation": "Pregunta enfocada en code smells y buenas prácticas profesionales."
+  },
+  {
+    "id": 20,
+    "level": "Junior",
+    "category": "Code Smells",
+    "question": "¿Qué code smell describe mejor el siguiente escenario: se repite lógica en distintas clases?",
+    "code": "if(type.equals(\"A\")){...} else if(type.equals(\"B\")){...}",
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 0,
+    "explanation": "Pregunta enfocada en code smells y buenas prácticas profesionales."
+  },
+  {
+    "id": 21,
+    "level": "Junior",
+    "category": "DRY",
+    "question": "¿Cuál es la mejor aplicación del principio DRY cuando hay magic strings en el código?",
+    "code": null,
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 1,
+    "explanation": "Pregunta enfocada en dry y buenas prácticas profesionales."
+  },
+  {
+    "id": 22,
+    "level": "Junior",
+    "category": "DRY",
+    "question": "¿Cuál es la mejor aplicación del principio DRY cuando existen validaciones duplicadas?",
+    "code": null,
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 2,
+    "explanation": "Pregunta enfocada en dry y buenas prácticas profesionales."
+  },
+  {
+    "id": 23,
+    "level": "Junior",
+    "category": "DRY",
+    "question": "¿Cuál es la mejor aplicación del principio DRY cuando hay varios if/else anidados?",
+    "code": null,
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 3,
+    "explanation": "Pregunta enfocada en dry y buenas prácticas profesionales."
+  },
+  {
+    "id": 24,
+    "level": "Junior",
+    "category": "DRY",
+    "question": "¿Cuál es la mejor aplicación del principio DRY cuando se repite lógica en distintas clases?",
+    "code": null,
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 0,
+    "explanation": "Pregunta enfocada en dry y buenas prácticas profesionales."
+  },
+  {
+    "id": 25,
+    "level": "Junior",
+    "category": "DRY",
+    "question": "¿Cuál es la mejor aplicación del principio DRY cuando hay magic strings en el código?",
+    "code": "if(type.equals(\"A\")){...} else if(type.equals(\"B\")){...}",
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 1,
+    "explanation": "Pregunta enfocada en dry y buenas prácticas profesionales."
+  },
+  {
+    "id": 26,
+    "level": "Junior",
+    "category": "SOLID",
+    "question": "¿Qué principio SOLID aplica mejor cuando un método supera 100 líneas?",
+    "code": null,
+    "options": [
+      "Single Responsibility Principle",
+      "Open/Closed Principle",
+      "Interface Segregation Principle",
+      "Dependency Inversion Principle"
+    ],
+    "correct": 3,
+    "explanation": "Pregunta enfocada en solid y buenas prácticas profesionales."
+  },
+  {
+    "id": 27,
+    "level": "Junior",
+    "category": "SOLID",
+    "question": "¿Qué principio SOLID aplica mejor cuando los nombres son ambiguos?",
+    "code": null,
+    "options": [
+      "Single Responsibility Principle",
+      "Open/Closed Principle",
+      "Interface Segregation Principle",
+      "Dependency Inversion Principle"
+    ],
+    "correct": 0,
+    "explanation": "Pregunta enfocada en solid y buenas prácticas profesionales."
+  },
+  {
+    "id": 28,
+    "level": "Junior",
+    "category": "SOLID",
+    "question": "¿Qué principio SOLID aplica mejor cuando deben agregarse nuevas reglas frecuentemente?",
+    "code": null,
+    "options": [
+      "Single Responsibility Principle",
+      "Open/Closed Principle",
+      "Interface Segregation Principle",
+      "Dependency Inversion Principle"
+    ],
+    "correct": 1,
+    "explanation": "Pregunta enfocada en solid y buenas prácticas profesionales."
+  },
+  {
+    "id": 29,
+    "level": "Junior",
+    "category": "SOLID",
+    "question": "¿Qué principio SOLID aplica mejor cuando existen múltiples reglas de negocio por categoría?",
+    "code": null,
+    "options": [
+      "Single Responsibility Principle",
+      "Open/Closed Principle",
+      "Interface Segregation Principle",
+      "Dependency Inversion Principle"
+    ],
+    "correct": 2,
+    "explanation": "Pregunta enfocada en solid y buenas prácticas profesionales."
+  },
+  {
+    "id": 30,
+    "level": "Junior",
+    "category": "SOLID",
+    "question": "¿Qué principio SOLID aplica mejor cuando un método supera 100 líneas?",
+    "code": "if(type.equals(\"A\")){...} else if(type.equals(\"B\")){...}",
+    "options": [
+      "Single Responsibility Principle",
+      "Open/Closed Principle",
+      "Interface Segregation Principle",
+      "Dependency Inversion Principle"
+    ],
+    "correct": 3,
+    "explanation": "Pregunta enfocada en solid y buenas prácticas profesionales."
+  },
+  {
+    "id": 31,
+    "level": "Junior",
+    "category": "SOLID",
+    "question": "¿Qué principio SOLID aplica mejor cuando los nombres son ambiguos?",
+    "code": null,
+    "options": [
+      "Single Responsibility Principle",
+      "Open/Closed Principle",
+      "Interface Segregation Principle",
+      "Dependency Inversion Principle"
+    ],
+    "correct": 0,
+    "explanation": "Pregunta enfocada en solid y buenas prácticas profesionales."
+  },
+  {
+    "id": 32,
+    "level": "Junior",
+    "category": "SOLID",
+    "question": "¿Qué principio SOLID aplica mejor cuando deben agregarse nuevas reglas frecuentemente?",
+    "code": null,
+    "options": [
+      "Single Responsibility Principle",
+      "Open/Closed Principle",
+      "Interface Segregation Principle",
+      "Dependency Inversion Principle"
+    ],
+    "correct": 1,
+    "explanation": "Pregunta enfocada en solid y buenas prácticas profesionales."
+  },
+  {
+    "id": 33,
+    "level": "Junior",
+    "category": "SOLID",
+    "question": "¿Qué principio SOLID aplica mejor cuando existen múltiples reglas de negocio por categoría?",
+    "code": null,
+    "options": [
+      "Single Responsibility Principle",
+      "Open/Closed Principle",
+      "Interface Segregation Principle",
+      "Dependency Inversion Principle"
+    ],
+    "correct": 2,
+    "explanation": "Pregunta enfocada en solid y buenas prácticas profesionales."
+  },
+  {
+    "id": 34,
+    "level": "Junior",
+    "category": "SOLID",
+    "question": "¿Qué principio SOLID aplica mejor cuando un método supera 100 líneas?",
+    "code": null,
+    "options": [
+      "Single Responsibility Principle",
+      "Open/Closed Principle",
+      "Interface Segregation Principle",
+      "Dependency Inversion Principle"
+    ],
+    "correct": 3,
+    "explanation": "Pregunta enfocada en solid y buenas prácticas profesionales."
+  },
+  {
+    "id": 35,
+    "level": "Junior",
+    "category": "SOLID",
+    "question": "¿Qué principio SOLID aplica mejor cuando los nombres son ambiguos?",
+    "code": "if(type.equals(\"A\")){...} else if(type.equals(\"B\")){...}",
+    "options": [
+      "Single Responsibility Principle",
+      "Open/Closed Principle",
+      "Interface Segregation Principle",
+      "Dependency Inversion Principle"
+    ],
+    "correct": 0,
+    "explanation": "Pregunta enfocada en solid y buenas prácticas profesionales."
+  },
+  {
+    "id": 36,
+    "level": "Junior",
+    "category": "SOLID",
+    "question": "¿Qué principio SOLID aplica mejor cuando deben agregarse nuevas reglas frecuentemente?",
+    "code": null,
+    "options": [
+      "Single Responsibility Principle",
+      "Open/Closed Principle",
+      "Interface Segregation Principle",
+      "Dependency Inversion Principle"
+    ],
+    "correct": 1,
+    "explanation": "Pregunta enfocada en solid y buenas prácticas profesionales."
+  },
+  {
+    "id": 37,
+    "level": "Junior",
+    "category": "SOLID",
+    "question": "¿Qué principio SOLID aplica mejor cuando existen múltiples reglas de negocio por categoría?",
+    "code": null,
+    "options": [
+      "Single Responsibility Principle",
+      "Open/Closed Principle",
+      "Interface Segregation Principle",
+      "Dependency Inversion Principle"
+    ],
+    "correct": 2,
+    "explanation": "Pregunta enfocada en solid y buenas prácticas profesionales."
+  },
+  {
+    "id": 38,
+    "level": "Junior",
+    "category": "Code Review",
+    "question": "Durante un code review, ¿qué deberías priorizar cuando deben agregarse nuevas reglas frecuentemente?",
+    "code": null,
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 2,
+    "explanation": "Pregunta enfocada en code review y buenas prácticas profesionales."
+  },
+  {
+    "id": 39,
+    "level": "Junior",
+    "category": "Code Review",
+    "question": "Durante un code review, ¿qué deberías priorizar cuando existen múltiples reglas de negocio por categoría?",
+    "code": null,
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 3,
+    "explanation": "Pregunta enfocada en code review y buenas prácticas profesionales."
+  },
+  {
+    "id": 40,
+    "level": "Junior",
+    "category": "Code Review",
+    "question": "Durante un code review, ¿qué deberías priorizar cuando un método supera 100 líneas?",
+    "code": "if(type.equals(\"A\")){...} else if(type.equals(\"B\")){...}",
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 0,
+    "explanation": "Pregunta enfocada en code review y buenas prácticas profesionales."
+  },
+  {
+    "id": 41,
+    "level": "Mid",
+    "category": "Code Review",
+    "question": "Durante un code review, ¿qué deberías priorizar cuando los nombres son ambiguos?",
+    "code": null,
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 1,
+    "explanation": "Pregunta enfocada en code review y buenas prácticas profesionales."
+  },
+  {
+    "id": 42,
+    "level": "Mid",
+    "category": "Code Review",
+    "question": "Durante un code review, ¿qué deberías priorizar cuando deben agregarse nuevas reglas frecuentemente?",
+    "code": null,
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 2,
+    "explanation": "Pregunta enfocada en code review y buenas prácticas profesionales."
+  },
+  {
+    "id": 43,
+    "level": "Mid",
+    "category": "Code Review",
+    "question": "Durante un code review, ¿qué deberías priorizar cuando existen múltiples reglas de negocio por categoría?",
+    "code": null,
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 3,
+    "explanation": "Pregunta enfocada en code review y buenas prácticas profesionales."
+  },
+  {
+    "id": 44,
+    "level": "Mid",
+    "category": "Code Review",
+    "question": "Durante un code review, ¿qué deberías priorizar cuando un método supera 100 líneas?",
+    "code": null,
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 0,
+    "explanation": "Pregunta enfocada en code review y buenas prácticas profesionales."
+  },
+  {
+    "id": 45,
+    "level": "Mid",
+    "category": "Code Review",
+    "question": "Durante un code review, ¿qué deberías priorizar cuando los nombres son ambiguos?",
+    "code": "if(type.equals(\"A\")){...} else if(type.equals(\"B\")){...}",
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 1,
+    "explanation": "Pregunta enfocada en code review y buenas prácticas profesionales."
+  },
+  {
+    "id": 46,
+    "level": "Mid",
+    "category": "Java Coding Standards",
+    "question": "¿Cuál es la práctica recomendada cuando deben agregarse nuevas reglas frecuentemente?",
+    "code": null,
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 2,
+    "explanation": "Pregunta enfocada en java coding standards y buenas prácticas profesionales."
+  },
+  {
+    "id": 47,
+    "level": "Mid",
+    "category": "Java Coding Standards",
+    "question": "¿Cuál es la práctica recomendada cuando existen múltiples reglas de negocio por categoría?",
+    "code": null,
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 3,
+    "explanation": "Pregunta enfocada en java coding standards y buenas prácticas profesionales."
+  },
+  {
+    "id": 48,
+    "level": "Mid",
+    "category": "Java Coding Standards",
+    "question": "¿Cuál es la práctica recomendada cuando un método supera 100 líneas?",
+    "code": null,
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 0,
+    "explanation": "Pregunta enfocada en java coding standards y buenas prácticas profesionales."
+  },
+  {
+    "id": 49,
+    "level": "Mid",
+    "category": "Java Coding Standards",
+    "question": "¿Cuál es la práctica recomendada cuando los nombres son ambiguos?",
+    "code": null,
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 1,
+    "explanation": "Pregunta enfocada en java coding standards y buenas prácticas profesionales."
+  },
+  {
+    "id": 50,
+    "level": "Mid",
+    "category": "Java Coding Standards",
+    "question": "¿Cuál es la práctica recomendada cuando deben agregarse nuevas reglas frecuentemente?",
+    "code": "if(type.equals(\"A\")){...} else if(type.equals(\"B\")){...}",
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 2,
+    "explanation": "Pregunta enfocada en java coding standards y buenas prácticas profesionales."
+  },
+  {
+    "id": 51,
+    "level": "Mid",
+    "category": "Java Coding Standards",
+    "question": "¿Cuál es la práctica recomendada cuando existen múltiples reglas de negocio por categoría?",
+    "code": null,
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 3,
+    "explanation": "Pregunta enfocada en java coding standards y buenas prácticas profesionales."
+  },
+  {
+    "id": 52,
+    "level": "Mid",
+    "category": "Java Coding Standards",
+    "question": "¿Cuál es la práctica recomendada cuando un método supera 100 líneas?",
+    "code": null,
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 0,
+    "explanation": "Pregunta enfocada en java coding standards y buenas prácticas profesionales."
+  },
+  {
+    "id": 53,
+    "level": "Mid",
+    "category": "Java Coding Standards",
+    "question": "¿Cuál es la práctica recomendada cuando los nombres son ambiguos?",
+    "code": null,
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 1,
+    "explanation": "Pregunta enfocada en java coding standards y buenas prácticas profesionales."
+  },
+  {
+    "id": 54,
+    "level": "Mid",
+    "category": "Exception Handling",
+    "question": "¿Cuál es el mejor manejo de excepciones cuando deben agregarse nuevas reglas frecuentemente?",
+    "code": null,
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 2,
+    "explanation": "Pregunta enfocada en exception handling y buenas prácticas profesionales."
+  },
+  {
+    "id": 55,
+    "level": "Mid",
+    "category": "Exception Handling",
+    "question": "¿Cuál es el mejor manejo de excepciones cuando existen múltiples reglas de negocio por categoría?",
+    "code": "if(type.equals(\"A\")){...} else if(type.equals(\"B\")){...}",
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 3,
+    "explanation": "Pregunta enfocada en exception handling y buenas prácticas profesionales."
+  },
+  {
+    "id": 56,
+    "level": "Mid",
+    "category": "Exception Handling",
+    "question": "¿Cuál es el mejor manejo de excepciones cuando un método supera 100 líneas?",
+    "code": null,
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 0,
+    "explanation": "Pregunta enfocada en exception handling y buenas prácticas profesionales."
+  },
+  {
+    "id": 57,
+    "level": "Mid",
+    "category": "Exception Handling",
+    "question": "¿Cuál es el mejor manejo de excepciones cuando los nombres son ambiguos?",
+    "code": null,
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 1,
+    "explanation": "Pregunta enfocada en exception handling y buenas prácticas profesionales."
+  },
+  {
+    "id": 58,
+    "level": "Mid",
+    "category": "Exception Handling",
+    "question": "¿Cuál es el mejor manejo de excepciones cuando deben agregarse nuevas reglas frecuentemente?",
+    "code": null,
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 2,
+    "explanation": "Pregunta enfocada en exception handling y buenas prácticas profesionales."
+  },
+  {
+    "id": 59,
+    "level": "Mid",
+    "category": "Exception Handling",
+    "question": "¿Cuál es el mejor manejo de excepciones cuando existen múltiples reglas de negocio por categoría?",
+    "code": null,
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 3,
+    "explanation": "Pregunta enfocada en exception handling y buenas prácticas profesionales."
+  },
+  {
+    "id": 60,
+    "level": "Mid",
+    "category": "Exception Handling",
+    "question": "¿Cuál es el mejor manejo de excepciones cuando un método supera 100 líneas?",
+    "code": "if(type.equals(\"A\")){...} else if(type.equals(\"B\")){...}",
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 0,
+    "explanation": "Pregunta enfocada en exception handling y buenas prácticas profesionales."
+  },
+  {
+    "id": 61,
+    "level": "Mid",
+    "category": "Exception Handling",
+    "question": "¿Cuál es el mejor manejo de excepciones cuando los nombres son ambiguos?",
+    "code": null,
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 1,
+    "explanation": "Pregunta enfocada en exception handling y buenas prácticas profesionales."
+  },
+  {
+    "id": 62,
+    "level": "Mid",
+    "category": "Refactoring",
+    "question": "¿Qué técnica de refactorización encaja mejor cuando deben agregarse nuevas reglas frecuentemente?",
+    "code": null,
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 2,
+    "explanation": "Pregunta enfocada en refactoring y buenas prácticas profesionales."
+  },
+  {
+    "id": 63,
+    "level": "Mid",
+    "category": "Refactoring",
+    "question": "¿Qué técnica de refactorización encaja mejor cuando existen múltiples reglas de negocio por categoría?",
+    "code": null,
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 3,
+    "explanation": "Pregunta enfocada en refactoring y buenas prácticas profesionales."
+  },
+  {
+    "id": 64,
+    "level": "Mid",
+    "category": "Refactoring",
+    "question": "¿Qué técnica de refactorización encaja mejor cuando un método supera 100 líneas?",
+    "code": null,
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 0,
+    "explanation": "Pregunta enfocada en refactoring y buenas prácticas profesionales."
+  },
+  {
+    "id": 65,
+    "level": "Mid",
+    "category": "Refactoring",
+    "question": "¿Qué técnica de refactorización encaja mejor cuando los nombres son ambiguos?",
+    "code": "if(type.equals(\"A\")){...} else if(type.equals(\"B\")){...}",
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 1,
+    "explanation": "Pregunta enfocada en refactoring y buenas prácticas profesionales."
+  },
+  {
+    "id": 66,
+    "level": "Mid",
+    "category": "Refactoring",
+    "question": "¿Qué técnica de refactorización encaja mejor cuando deben agregarse nuevas reglas frecuentemente?",
+    "code": null,
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 2,
+    "explanation": "Pregunta enfocada en refactoring y buenas prácticas profesionales."
+  },
+  {
+    "id": 67,
+    "level": "Mid",
+    "category": "Refactoring",
+    "question": "¿Qué técnica de refactorización encaja mejor cuando existen múltiples reglas de negocio por categoría?",
+    "code": null,
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 3,
+    "explanation": "Pregunta enfocada en refactoring y buenas prácticas profesionales."
+  },
+  {
+    "id": 68,
+    "level": "Mid",
+    "category": "Refactoring",
+    "question": "¿Qué técnica de refactorización encaja mejor cuando un método supera 100 líneas?",
+    "code": null,
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 0,
+    "explanation": "Pregunta enfocada en refactoring y buenas prácticas profesionales."
+  },
+  {
+    "id": 69,
+    "level": "Mid",
+    "category": "Enum Behavior",
+    "question": "¿Por qué usar enum con comportamiento cuando hay magic strings en el código?",
+    "code": null,
+    "options": [
+      "Reduce if/else por categorías",
+      "Aumenta herencia innecesaria",
+      "Evita encapsulación",
+      "Obliga a usar reflexión"
+    ],
+    "correct": 0,
+    "explanation": "Pregunta enfocada en enum behavior y buenas prácticas profesionales."
+  },
+  {
+    "id": 70,
+    "level": "Mid",
+    "category": "Enum Behavior",
+    "question": "¿Por qué usar enum con comportamiento cuando existen validaciones duplicadas?",
+    "code": "if(type.equals(\"A\")){...} else if(type.equals(\"B\")){...}",
+    "options": [
+      "Reduce if/else por categorías",
+      "Aumenta herencia innecesaria",
+      "Evita encapsulación",
+      "Obliga a usar reflexión"
+    ],
+    "correct": 0,
+    "explanation": "Pregunta enfocada en enum behavior y buenas prácticas profesionales."
+  },
+  {
+    "id": 71,
+    "level": "Mid",
+    "category": "Enum Behavior",
+    "question": "¿Por qué usar enum con comportamiento cuando hay varios if/else anidados?",
+    "code": null,
+    "options": [
+      "Reduce if/else por categorías",
+      "Aumenta herencia innecesaria",
+      "Evita encapsulación",
+      "Obliga a usar reflexión"
+    ],
+    "correct": 0,
+    "explanation": "Pregunta enfocada en enum behavior y buenas prácticas profesionales."
+  },
+  {
+    "id": 72,
+    "level": "Mid",
+    "category": "Enum Behavior",
+    "question": "¿Por qué usar enum con comportamiento cuando se repite lógica en distintas clases?",
+    "code": null,
+    "options": [
+      "Reduce if/else por categorías",
+      "Aumenta herencia innecesaria",
+      "Evita encapsulación",
+      "Obliga a usar reflexión"
+    ],
+    "correct": 0,
+    "explanation": "Pregunta enfocada en enum behavior y buenas prácticas profesionales."
+  },
+  {
+    "id": 73,
+    "level": "Mid",
+    "category": "Strategy/Specification",
+    "question": "¿Qué patrón conviene cuando hay varios if/else anidados?",
+    "code": null,
+    "options": [
+      "Factory",
+      "Strategy o Specification",
+      "Singleton",
+      "Decorator"
+    ],
+    "correct": 1,
+    "explanation": "Pregunta enfocada en strategy/specification y buenas prácticas profesionales."
+  },
+  {
+    "id": 74,
+    "level": "Mid",
+    "category": "Strategy/Specification",
+    "question": "¿Qué patrón conviene cuando se repite lógica en distintas clases?",
+    "code": null,
+    "options": [
+      "Factory",
+      "Strategy o Specification",
+      "Singleton",
+      "Decorator"
+    ],
+    "correct": 1,
+    "explanation": "Pregunta enfocada en strategy/specification y buenas prácticas profesionales."
+  },
+  {
+    "id": 75,
+    "level": "Mid",
+    "category": "Strategy/Specification",
+    "question": "¿Qué patrón conviene cuando hay magic strings en el código?",
+    "code": "if(type.equals(\"A\")){...} else if(type.equals(\"B\")){...}",
+    "options": [
+      "Factory",
+      "Strategy o Specification",
+      "Singleton",
+      "Decorator"
+    ],
+    "correct": 1,
+    "explanation": "Pregunta enfocada en strategy/specification y buenas prácticas profesionales."
+  },
+  {
+    "id": 76,
+    "level": "Mid",
+    "category": "State Pattern",
+    "question": "¿Qué ventaja aporta State Pattern cuando los nombres son ambiguos?",
+    "code": null,
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 0,
+    "explanation": "Pregunta enfocada en state pattern y buenas prácticas profesionales."
+  },
+  {
+    "id": 77,
+    "level": "Mid",
+    "category": "State Pattern",
+    "question": "¿Qué ventaja aporta State Pattern cuando deben agregarse nuevas reglas frecuentemente?",
+    "code": null,
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 1,
+    "explanation": "Pregunta enfocada en state pattern y buenas prácticas profesionales."
+  },
+  {
+    "id": 78,
+    "level": "Mid",
+    "category": "Composite Pattern",
+    "question": "¿Cuándo usar Composite Pattern si deben agregarse nuevas reglas frecuentemente?",
+    "code": null,
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 2,
+    "explanation": "Pregunta enfocada en composite pattern y buenas prácticas profesionales."
+  },
+  {
+    "id": 79,
+    "level": "Mid",
+    "category": "Composite Pattern",
+    "question": "¿Cuándo usar Composite Pattern si existen múltiples reglas de negocio por categoría?",
+    "code": null,
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 3,
+    "explanation": "Pregunta enfocada en composite pattern y buenas prácticas profesionales."
+  },
+  {
+    "id": 80,
+    "level": "Mid",
+    "category": "Policy/Provider",
+    "question": "¿Qué beneficio aporta Policy/Provider cuando existen múltiples reglas de negocio por categoría?",
+    "code": "if(type.equals(\"A\")){...} else if(type.equals(\"B\")){...}",
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 0,
+    "explanation": "Pregunta enfocada en policy/provider y buenas prácticas profesionales."
+  },
+  {
+    "id": 81,
+    "level": "Mid",
+    "category": "Policy/Provider",
+    "question": "¿Qué beneficio aporta Policy/Provider cuando un método supera 100 líneas?",
+    "code": null,
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 1,
+    "explanation": "Pregunta enfocada en policy/provider y buenas prácticas profesionales."
+  },
+  {
+    "id": 82,
+    "level": "Mid",
+    "category": "Policy/Provider",
+    "question": "¿Qué beneficio aporta Policy/Provider cuando los nombres son ambiguos?",
+    "code": null,
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 2,
+    "explanation": "Pregunta enfocada en policy/provider y buenas prácticas profesionales."
+  },
+  {
+    "id": 83,
+    "level": "Mid",
+    "category": "Chain/Command",
+    "question": "¿Qué patrón es más apropiado cuando se repite lógica en distintas clases?",
+    "code": null,
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 3,
+    "explanation": "Pregunta enfocada en chain/command y buenas prácticas profesionales."
+  },
+  {
+    "id": 84,
+    "level": "Mid",
+    "category": "Chain/Command",
+    "question": "¿Qué patrón es más apropiado cuando hay magic strings en el código?",
+    "code": null,
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 0,
+    "explanation": "Pregunta enfocada en chain/command y buenas prácticas profesionales."
+  },
+  {
+    "id": 85,
+    "level": "Mid",
+    "category": "Chain/Command",
+    "question": "¿Qué patrón es más apropiado cuando existen validaciones duplicadas?",
+    "code": "if(type.equals(\"A\")){...} else if(type.equals(\"B\")){...}",
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 1,
+    "explanation": "Pregunta enfocada en chain/command y buenas prácticas profesionales."
+  },
+  {
+    "id": 86,
+    "level": "Mid",
+    "category": "Chain/Command",
+    "question": "¿Qué patrón es más apropiado cuando hay varios if/else anidados?",
+    "code": null,
+    "options": [
+      "Aplicar una práctica orientada a mantenibilidad",
+      "Incrementar el acoplamiento para simplificar cambios",
+      "Mover toda la lógica a una sola clase",
+      "Agregar más comentarios en lugar de refactorizar"
+    ],
+    "correct": 2,
+    "explanation": "Pregunta enfocada en chain/command y buenas prácticas profesionales."
+  }
+]
