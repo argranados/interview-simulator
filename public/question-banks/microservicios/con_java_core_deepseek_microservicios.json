@@ -377,17 +377,17 @@
   {
     "id": 26,
     "level": "Junior",
-    "category": "REST API",
-    "question": "¿Cuál es el código de estado HTTP correcto para una solicitud POST exitosa que crea un nuevo recurso?",
+    "category": "Java Core",
+    "question": "¿Qué palabra clave se usa para definir una constante en Java?",
     "code": null,
     "options": [
-      "200 OK",
-      "201 Created",
-      "202 Accepted",
-      "204 No Content"
+      "static",
+      "final",
+      "const",
+      "immutable"
     ],
     "correct": 1,
-    "explanation": "El código 201 Created indica que la solicitud ha sido exitosa y se ha creado un nuevo recurso. Se suele incluir el encabezado Location con la URI del recurso creado."
+    "explanation": "final indica que una variable no puede cambiar su valor."
   },
   {
     "id": 27,
@@ -526,18 +526,18 @@
   },
   {
     "id": 36,
-    "level": "Mid",
-    "category": "API Design",
-    "question": "¿Cuál de las siguientes NO es una práctica recomendada para versionar una API REST?",
+    "level": "Junior",
+    "category": "Java Core",
+    "question": "¿Cuál es la interfaz base para todas las colecciones en Java?",
     "code": null,
     "options": [
-      "Incluir la versión en la ruta (ej. /v1/usuarios)",
-      "Usar un encabezado personalizado (ej. Accept-version: 1)",
-      "Usar un parámetro de consulta (ej. ?version=1)",
-      "Mantener la misma URI sin ninguna versión y cambiar los contratos directamente"
+      "Iterable",
+      "List",
+      "Set",
+      "Collection"
     ],
     "correct": 3,
-    "explanation": "Cambiar los contratos directamente sin versionado rompe la compatibilidad con clientes existentes. Las prácticas recomendadas incluyen versionado por URI, cabeceras o parámetros de consulta."
+    "explanation": "Collection es la raíz de las colecciones, heredando de Iterable."
   },
   {
     "id": 37,
@@ -781,18 +781,18 @@
   },
   {
     "id": 53,
-    "level": "Senior",
-    "category": "API Best Practices",
-    "question": "¿Qué principio RESTful permite que un cliente navegue por la API dinámicamente a través de enlaces, sin necesidad de conocimiento previo de las URIs?",
+    "level": "Junior",
+    "category": "Java Core",
+    "question": "¿Qué son los streams en Java 8+?",
     "code": null,
     "options": [
-      "Statelessness (Ausencia de estado)",
-      "Cacheability (Capacidad de caché)",
-      "HATEOAS (Hypermedia as the Engine of Application State)",
-      "Code on demand (Código bajo demanda)"
+      "Una clase para manejar archivos",
+      "Un hilo de ejecución",
+      "Una secuencia de elementos que permite operaciones funcionales en colecciones",
+      "Un tipo de colección sincronizada"
     ],
     "correct": 2,
-    "explanation": "HATEOAS es una restricción de REST que hace que las respuestas incluyan enlaces hipermedia, permitiendo a los clientes descubrir acciones dinámicamente."
+    "explanation": "Los streams facilitan operaciones como filter, map, reduce de manera declarativa."
   },
   {
     "id": 54,
@@ -991,18 +991,18 @@
   },
   {
     "id": 67,
-    "level": "Mid",
-    "category": "REST API",
-    "question": "¿Cuál de las siguientes afirmaciones sobre el método HTTP PUT es correcta según las mejores prácticas de diseño de API REST?",
+    "level": "Junior",
+    "category": "Java Core",
+    "question": "¿Qué significa 'programación orientada a aspectos' (AOP) en Spring?",
     "code": null,
     "options": [
-      "PUT no es idempotente, a diferencia de POST",
-      "PUT debe usarse para crear recursos siempre, incluso si el cliente no conoce la URI",
-      "PUT es idempotente y debe reemplazar completamente el recurso en la URI especificada",
-      "PUT solo permite actualizaciones parciales de un recurso"
+      "Es un estilo de programación funcional",
+      "Permite separar preocupaciones transversales como logging o transacciones",
+      "Define la arquitectura de microservicios",
+      "Es exclusiva de Spring Boot"
     ],
-    "correct": 2,
-    "explanation": "PUT es idempotente (múltiples solicitudes idénticas tienen el mismo efecto) y reemplaza todo el estado del recurso. Para actualizaciones parciales se usa PATCH."
+    "correct": 1,
+    "explanation": "AOP intercepta métodos para aplicar lógica común sin modificar el código."
   },
   {
     "id": 68,
