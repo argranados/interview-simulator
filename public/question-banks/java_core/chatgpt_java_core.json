@@ -373,5 +373,530 @@
     ],
     "correct": 0,
     "explanation": "Compartir objetos mutables sin sincronización puede causar estados inconsistentes."
+  },
+  {
+    "id": 26,
+    "level": "Junior",
+    "category": "Concurrency",
+    "question": "¿Cuál de las siguientes opciones es una forma correcta de crear un hilo en Java?",
+    "code": null,
+    "options": [
+      "Extender la clase Thread e implementar el método run()",
+      "Implementar la interfaz Runnable y definir el método start()",
+      "Extender la clase Runnable y definir el método run()",
+      "Implementar la interfaz Thread y sobreescribir el método execute()"
+    ],
+    "correct": 0,
+    "explanation": "La forma correcta es extender Thread o implementar Runnable, pero la opción válida es extender Thread y override run(). La otra forma es implementar Runnable y pasar a un Thread."
+  },
+  {
+    "id": 27,
+    "level": "Mid",
+    "category": "Concurrency",
+    "question": "¿Cuál es la diferencia fundamental entre sleep() y wait()?",
+    "code": null,
+    "options": [
+      "sleep() libera el monitor del objeto, wait() no",
+      "wait() libera el monitor del objeto, sleep() no",
+      "Ambos liberan el monitor pero por diferentes tiempos",
+      "Ninguno libera el monitor"
+    ],
+    "correct": 1,
+    "explanation": "wait() libera el monitor (lock) del objeto, mientras que sleep() mantiene el monitor bloqueado."
+  },
+  {
+    "id": 28,
+    "level": "Junior",
+    "category": "OOP",
+    "question": "¿Cuál de los siguientes modificadores de acceso permite el acceso desde cualquier clase del mismo paquete y también desde subclases en otros paquetes?",
+    "code": null,
+    "options": [
+      "private",
+      "default (package private)",
+      "protected",
+      "public"
+    ],
+    "correct": 2,
+    "explanation": "protected permite acceso desde el mismo paquete y desde subclases (incluso en otros paquetes)."
+  },
+  {
+    "id": 29,
+    "level": "Mid",
+    "category": "OOP",
+    "question": "Dada la clase padre Animal y la clase hija Perro. ¿Qué sucede al intentar compilar?",
+    "code": "Animal a = new Perro();\nPerro p = (Perro) a;",
+    "options": [
+      "Error de compilación por tipo incompatible",
+      "ClassCastException en tiempo de ejecución",
+      "Compila y ejecuta sin errores",
+      "Error porque Perro no es subtipo de Animal"
+    ],
+    "correct": 2,
+    "explanation": "El código compila y ejecuta bien porque a realmente es una instancia de Perro, el cast es válido."
+  },
+  {
+    "id": 30,
+    "level": "Junior",
+    "category": "Core Syntax",
+    "question": "¿Cuál es el resultado de ejecutar este código?",
+    "code": "int x = 5;\nSystem.out.println(x++);\nSystem.out.println(++x);",
+    "options": [
+      "5 y 6",
+      "5 y 7",
+      "6 y 6",
+      "6 y 7"
+    ],
+    "correct": 1,
+    "explanation": "x++ imprime 5 y luego x se incrementa a 6; ++x incrementa de 6 a 7 e imprime 7."
+  },
+  {
+    "id": 31,
+    "level": "Junior",
+    "category": "Functional Programming",
+    "question": "¿Cuál de las siguientes es una interfaz funcional válida?",
+    "code": null,
+    "options": [
+      "Interfaz con dos métodos abstractos",
+      "Interfaz con un método abstracto y varios default",
+      "Interfaz sin métodos",
+      "Clase abstracta con un método abstracto"
+    ],
+    "correct": 1,
+    "explanation": "Una interfaz funcional tiene exactamente un método abstracto, pero puede tener métodos default o static."
+  },
+  {
+    "id": 32,
+    "level": "Mid",
+    "category": "Streams",
+    "question": "¿Qué operación terminal acumula los elementos del stream en un solo valor aplicando una función binaria?",
+    "code": null,
+    "options": [
+      "collect()",
+      "reduce()",
+      "map()",
+      "filter()"
+    ],
+    "correct": 1,
+    "explanation": "reduce() combina elementos repetidamente usando una función asociativa para obtener un solo resultado."
+  },
+  {
+    "id": 33,
+    "level": "Junior",
+    "category": "Exceptions",
+    "question": "¿Qué bloque se ejecuta siempre después de try-catch, incluso si hay return?",
+    "code": null,
+    "options": [
+      "catch",
+      "finally",
+      "finalize",
+      "throw"
+    ],
+    "correct": 1,
+    "explanation": "El bloque finally se ejecuta siempre (excepto si JVM termina abruptamente)."
+  },
+  {
+    "id": 34,
+    "level": "Mid",
+    "category": "Collections",
+    "question": "¿Cuál es la diferencia clave entre Iterator y Enumeration?",
+    "code": null,
+    "options": [
+      "Enumeration puede remover elementos, Iterator no",
+      "Iterator permite remover elementos, Enumeration no",
+      "Son idénticos",
+      "Iterator es más antiguo que Enumeration"
+    ],
+    "correct": 1,
+    "explanation": "Iterator tiene método remove(), mientras que Enumeration solo permite lectura."
+  },
+  {
+    "id": 35,
+    "level": "Junior",
+    "category": "Generics",
+    "question": "¿Qué ventaja aporta el uso de genéricos en una clase como List<T>?",
+    "code": null,
+    "options": [
+      "Elimina la necesidad de instanceof",
+      "Permite almacenar solo Strings",
+      "Fuerza type-safety en tiempo de compilación",
+      "Mejora el rendimiento en tiempo de ejecución"
+    ],
+    "correct": 2,
+    "explanation": "Los genéricos proporcionan seguridad de tipos (type-safety) en tiempo de compilación evitando casts incorrectos."
+  },
+  {
+    "id": 36,
+    "level": "Mid",
+    "category": "OOP",
+    "question": "¿Qué es el contrato entre equals() y hashCode()?",
+    "code": null,
+    "options": [
+      "Si dos objetos son iguales, deben tener mismo hashCode",
+      "Si dos objetos tienen mismo hashCode, son iguales",
+      "No hay relación entre ambos",
+      "HashCode debe ser único por objeto"
+    ],
+    "correct": 0,
+    "explanation": "Si a.equals(b) es true, entonces a.hashCode() == b.hashCode() debe cumplirse."
+  },
+  {
+    "id": 37,
+    "level": "Junior",
+    "category": "Strings",
+    "question": "¿Qué imprime este código?",
+    "code": "String s1 = \"Hola\";\nString s2 = new String(\"Hola\");\nSystem.out.println(s1 == s2);",
+    "options": [
+      "true",
+      "false",
+      "Compilation error",
+      "NullPointerException"
+    ],
+    "correct": 1,
+    "explanation": "== compara referencias, s1 está en pool de strings y s2 en heap, son objetos distintos."
+  },
+  {
+    "id": 38,
+    "level": "Mid",
+    "category": "Concurrency",
+    "question": "¿Qué palabra clave se usa para adquirir un bloqueo (monitor) sobre un objeto?",
+    "code": null,
+    "options": [
+      "lock",
+      "monitor",
+      "synchronized",
+      "volatile"
+    ],
+    "correct": 2,
+    "explanation": "synchronized se usa para adquirir el monitor (lock) de un objeto y controlar acceso concurrente."
+  },
+  {
+    "id": 39,
+    "level": "Junior",
+    "category": "Core Syntax",
+    "question": "¿Cuál es el resultado de intentar compilar y ejecutar?",
+    "code": "int[] arr = new int[3];\nSystem.out.println(arr[3]);",
+    "options": [
+      "Compila y imprime 0",
+      "Compila y lanza ArrayIndexOutOfBoundsException",
+      "Error de compilación",
+      "Compila e imprime null"
+    ],
+    "correct": 1,
+    "explanation": "Compila pero lanza ArrayIndexOutOfBoundsException porque el índice 3 está fuera de rango (0-2)."
+  },
+  {
+    "id": 40,
+    "level": "Mid",
+    "category": "Java 8",
+    "question": "¿Qué funcionalidad permite que una interfaz tenga implementación de métodos desde Java 8?",
+    "code": null,
+    "options": [
+      "Métodos abstractos",
+      "Métodos static y default",
+      "Métodos privados",
+      "Métodos final"
+    ],
+    "correct": 1,
+    "explanation": "Java 8 introdujo métodos default y static en interfaces, permitiendo tener implementación concreta."
+  },
+  {
+    "id": 41,
+    "level": "Junior",
+    "category": "JVM & Memory",
+    "question": "¿Qué área de memoria JVM almacena variables locales y referencias a objetos?",
+    "code": null,
+    "options": [
+      "Heap",
+      "Stack",
+      "Metaspace",
+      "Code Cache"
+    ],
+    "correct": 1,
+    "explanation": "La pila (stack) almacena frames con variables locales, operand stack y referencias a objetos del heap."
+  },
+  {
+    "id": 42,
+    "level": "Mid",
+    "category": "Functional Programming",
+    "question": "¿Cuál de las siguientes interfaces funcionales recibe un argumento y retorna un boolean?",
+    "code": null,
+    "options": [
+      "Function<T,R>",
+      "Predicate<T>",
+      "Consumer<T>",
+      "Supplier<T>"
+    ],
+    "correct": 1,
+    "explanation": "Predicate<T> tiene método test(T t) que retorna boolean."
+  },
+  {
+    "id": 43,
+    "level": "Junior",
+    "category": "OOP",
+    "question": "¿Qué permite la herencia múltiple en Java?",
+    "code": null,
+    "options": [
+      "Una clase puede heredar de varias clases abstractas",
+      "Una clase puede implementar múltiples interfaces",
+      "Una interfaz puede extender múltiples clases",
+      "Java no soporta ninguna forma de herencia múltiple"
+    ],
+    "correct": 1,
+    "explanation": "Java no permite herencia múltiple de clases, pero sí una clase puede implementar múltiples interfaces."
+  },
+  {
+    "id": 44,
+    "level": "Mid",
+    "category": "Collections",
+    "question": "¿Cuál es la complejidad temporal esperada para get() y put() en un HashMap bien dimensionado?",
+    "code": null,
+    "options": [
+      "O(1) para ambos",
+      "O(n) para ambos",
+      "O(log n) para ambos",
+      "O(1) para put y O(n) para get"
+    ],
+    "correct": 0,
+    "explanation": "Un HashMap con buena función hash y factor de carga ofrece tiempo constante O(1) promedio para inserción y búsqueda."
+  },
+  {
+    "id": 45,
+    "level": "Junior",
+    "category": "Core Syntax",
+    "question": "¿Qué palabra clave se usa para evitar que una clase sea extendida?",
+    "code": null,
+    "options": [
+      "static",
+      "final",
+      "abstract",
+      "sealed"
+    ],
+    "correct": 1,
+    "explanation": "final aplicado a una clase impide que sea heredada."
+  },
+  {
+    "id": 46,
+    "level": "Mid",
+    "category": "Java 11",
+    "question": "¿Cuál de los siguientes métodos fue añadido a Optional en Java 11?",
+    "code": null,
+    "options": [
+      "ifPresentOrElse()",
+      "isEmpty()",
+      "orElseThrow()",
+      "stream()"
+    ],
+    "correct": 1,
+    "explanation": "Java 11 añadió isEmpty() como contraparte de isPresent() para verificar ausencia de valor."
+  },
+  {
+    "id": 47,
+    "level": "Junior",
+    "category": "Exceptions",
+    "question": "¿Cuál de las siguientes es una excepción unchecked?",
+    "code": null,
+    "options": [
+      "IOException",
+      "SQLException",
+      "NullPointerException",
+      "ClassNotFoundException"
+    ],
+    "correct": 2,
+    "explanation": "NullPointerException extiende RuntimeException, por lo tanto es unchecked."
+  },
+  {
+    "id": 48,
+    "level": "Mid",
+    "category": "Concurrency",
+    "question": "¿Qué método de Thread pone el hilo actual en estado TIMED_WAITING?",
+    "code": null,
+    "options": [
+      "wait() sin timeout",
+      "sleep(long millis)",
+      "yield()",
+      "join() sin parámetro"
+    ],
+    "correct": 1,
+    "explanation": "Thread.sleep(millis) hace que el hilo espere un tiempo específico sin liberar locks, entrando en TIMED_WAITING."
+  },
+  {
+    "id": 49,
+    "level": "Junior",
+    "category": "OOP",
+    "question": "¿Qué es una clase abstracta?",
+    "code": null,
+    "options": [
+      "Clase que no puede tener métodos implementados",
+      "Clase que no puede ser instanciada y puede tener métodos abstractos",
+      "Clase que solo puede tener métodos static",
+      "Clase que debe ser final"
+    ],
+    "correct": 1,
+    "explanation": "Una clase abstracta no se puede instanciar y puede contener métodos abstractos (sin cuerpo) y concretos."
+  },
+  {
+    "id": 50,
+    "level": "Mid",
+    "category": "Generics",
+    "question": "Dado List<? extends Number>, ¿qué tipo de elementos se pueden agregar?",
+    "code": "List<? extends Number> list = new ArrayList<Integer>();",
+    "options": [
+      "Cualquier subtipo de Number",
+      "Solo Number",
+      "Solo null",
+      "Integer, Double, etc."
+    ],
+    "correct": 2,
+    "explanation": "Con upper bounded wildcard (? extends T) no se pueden agregar elementos excepto null, porque se desconoce el tipo exacto."
+  },
+  {
+    "id": 51,
+    "level": "Junior",
+    "category": "Core Syntax",
+    "question": "¿Qué resultado produce este código?",
+    "code": "int a = 10;\nint b = 20;\nSystem.out.println(a > b ? a : b);",
+    "options": [
+      "10",
+      "20",
+      "true",
+      "false"
+    ],
+    "correct": 1,
+    "explanation": "El operador ternario retorna b porque a > b es falso."
+  },
+  {
+    "id": 52,
+    "level": "Mid",
+    "category": "Java 8",
+    "question": "¿Qué funcionalidad permite usar :: como en list.forEach(System.out::println)?",
+    "code": null,
+    "options": [
+      "Expresión lambda",
+      "Method reference",
+      "Constructor reference",
+      "Stream pipeline"
+    ],
+    "correct": 1,
+    "explanation": "El operador de doble colon (::) es una referencia a método, una forma abreviada de lambda."
+  },
+  {
+    "id": 53,
+    "level": "Junior",
+    "category": "Exceptions",
+    "question": "¿Qué sucede si se lanza una excepción checked dentro de un método y no se maneja ni declara?",
+    "code": null,
+    "options": [
+      "El programa compila pero falla en runtime",
+      "Error de compilación",
+      "Se maneja automáticamente por la JVM",
+      "Se convierte en unchecked"
+    ],
+    "correct": 1,
+    "explanation": "El compilador obliga a manejar o declarar checked exceptions; de lo contrario produce error de compilación."
+  },
+  {
+    "id": 54,
+    "level": "Mid",
+    "category": "Collections",
+    "question": "¿Cuál de las siguientes opciones implementa la interfaz List y mantiene el orden de inserción pero con acceso secuencial más lento?",
+    "code": null,
+    "options": [
+      "ArrayList",
+      "LinkedList",
+      "HashSet",
+      "TreeSet"
+    ],
+    "correct": 1,
+    "explanation": "LinkedList mantiene orden de inserción pero el acceso por índice es O(n) comparado con ArrayList O(1)."
+  },
+  {
+    "id": 55,
+    "level": "Junior",
+    "category": "Concurrency",
+    "question": "¿Qué es un daemon thread?",
+    "code": null,
+    "options": [
+      "Un hilo que se ejecuta antes que el main",
+      "Un hilo de prioridad máxima",
+      "Un hilo que no impide que la JVM termine cuando todos los no-daemon terminan",
+      "Un hilo que no puede ser interrumpido"
+    ],
+    "correct": 2,
+    "explanation": "Los daemon threads son hilos de servicio que no evitan la terminación de la JVM cuando solo quedan ellos."
+  },
+  {
+    "id": 56,
+    "level": "Mid",
+    "category": "Optional",
+    "question": "¿Qué método de Optional lanza una excepción si el valor está ausente?",
+    "code": null,
+    "options": [
+      "get()",
+      "orElse(null)",
+      "orElseGet()",
+      "ifPresent()"
+    ],
+    "correct": 0,
+    "explanation": "get() lanza NoSuchElementException si el Optional está vacío; se recomienda usar orElseThrow() en versiones modernas."
+  },
+  {
+    "id": 57,
+    "level": "Junior",
+    "category": "OOP",
+    "question": "¿Qué es el autoboxing en Java?",
+    "code": null,
+    "options": [
+      "Conversión automática de objeto a primitivo",
+      "Conversión automática de primitivo a objeto wrapper",
+      "Conversión manual usando valueOf()",
+      "No existe en Java"
+    ],
+    "correct": 1,
+    "explanation": "Autoboxing es la conversión automática que hace el compilador de un tipo primitivo a su clase wrapper correspondiente."
+  },
+  {
+    "id": 58,
+    "level": "Mid",
+    "category": "Java 17",
+    "question": "¿Cuál de las siguientes características fue oficializada en Java 17 (LTS)?",
+    "code": null,
+    "options": [
+      "Lambda expressions",
+      "Records",
+      "Pattern Matching for instanceof (preview en versiones anteriores)",
+      "Módulos"
+    ],
+    "correct": 2,
+    "explanation": "Pattern Matching para instanceof se estandarizó en Java 16 y está presente en Java 17. Records también pero llegó en Java 16. La opción más distintiva de LTS 17 es pattern matching finalizado."
+  },
+  {
+    "id": 59,
+    "level": "Junior",
+    "category": "Strings",
+    "question": "¿Qué método de String es correcto para eliminar espacios en blanco tanto al inicio como al final desde Java 11?",
+    "code": null,
+    "options": [
+      "trim()",
+      "strip()",
+      "stripLeading()",
+      "stripTrailing()"
+    ],
+    "correct": 1,
+    "explanation": "strip() es el método introducido en Java 11 que elimina espacios Unicode al inicio y final, similar a trim() pero con soporte Unicode."
+  },
+  {
+    "id": 60,
+    "level": "Mid",
+    "category": "Concurrency",
+    "question": "Dado el siguiente código, ¿cuál es el resultado correcto?",
+    "code": "class Counter {\n  private int count = 0;\n  public synchronized void increment() { count++; }\n  public int getCount() { return count; }\n}\n// Múltiples threads llaman a increment() 1000 veces cada uno",
+    "options": [
+      "El resultado siempre es 1000 veces número de threads",
+      "Puede haber resultados incorrectos por race condition",
+      "El método getCount() también debe ser synchronized para garantizar visibilidad",
+      "La palabra volatile soluciona el problema"
+    ],
+    "correct": 2,
+    "explanation": "Aunque increment es synchronized, getCount() no lo es, por lo que un hilo puede leer un valor inconsistente (stale data)."
   }
 ]
