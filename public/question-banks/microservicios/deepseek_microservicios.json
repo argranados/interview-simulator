@@ -498,16 +498,16 @@
     "id": 34,
     "level": "Junior",
     "category": "Design Patterns",
-    "question": "¿Qué patrón crea una única instancia de una clase y proporciona un punto de acceso global?",
+    "question": "¿Qué patrón de microservicios se utiliza para manejar transacciones distribuidas que abarcan múltiples servicios, dividiendo la transacción en una secuencia de pasos locales que se compensan si algo falla?",
     "code": null,
     "options": [
-      "Factory",
-      "Singleton",
-      "Observer",
-      "Builder"
+      "API Gateway",
+      "Circuit Breaker",
+      "Saga",
+      "CQRS"
     ],
-    "correct": 1,
-    "explanation": "El patrón Singleton garantiza una sola instancia."
+    "correct": 2,
+    "explanation": "El patrón Saga coordina transacciones distribuidas mediante una serie de transacciones locales, cada una acompañada de un evento o acción compensatoria. Si un paso falla, se ejecutan las compensaciones para mantener la consistencia, sin necesidad de bloqueos largos ni transacciones ACID distribuidas."
   },
   {
     "id": 35,
@@ -678,16 +678,16 @@
     "id": 46,
     "level": "Mid",
     "category": "Design Patterns",
-    "question": "¿Qué patrón se usa comúnmente para crear objetos complejos paso a paso?",
+    "question": "¿Qué patrón de arquitectura de microservicios separa las operaciones de lectura y escritura en modelos diferentes, permitiendo optimizar cada una por separado y escalarlas de forma independiente?",
     "code": null,
     "options": [
-      "Singleton",
-      "Builder",
-      "Prototype",
-      "Factory Method"
+      "Event Sourcing",
+      "CQRS (Command Query Responsibility Segregation)",
+      "Strangler Fig",
+      "Sidecar"
     ],
     "correct": 1,
-    "explanation": "Builder separa la construcción de un objeto complejo de su representación."
+    "explanation": "CQRS divide el modelo de datos en dos: comandos (escritura, mutación del estado) y consultas (lectura, proyecciones). Esto permite escalar y optimizar de forma independiente, y suele combinarse con Event Sourcing para garantizar consistencia eventual."
   },
   {
     "id": 47,
@@ -843,16 +843,16 @@
     "id": 57,
     "level": "Junior",
     "category": "Design Patterns",
-    "question": "¿Qué patrón se basa en inyectar dependencias en lugar de que la clase las cree internamente?",
+    "question": "¿Qué patrón de microservicios proporciona un punto único de entrada a un sistema, manejando tareas como enrutamiento, autenticación, rate limiting y agregación de respuestas de múltiples servicios backend?",
     "code": null,
     "options": [
-      "Singleton",
-      "Inyección de Dependencias",
-      "Factory",
-      "Observer"
+      "Service Registry",
+      "API Gateway",
+      "Circuit Breaker",
+      "Config Server"
     ],
     "correct": 1,
-    "explanation": "La Inyección de Dependencias (DI) delega la creación de dependencias a un contenedor externo."
+    "explanation": "El patrón API Gateway actúa como un proxy inverso que centraliza el acceso a los microservicios, ocultando su topología interna y proporcionando funcionalidades transversales como seguridad, logging, balanceo de carga, limitación de tasa y transformación de protocolos."
   },
   {
     "id": 58,
@@ -1023,16 +1023,16 @@
     "id": 69,
     "level": "Junior",
     "category": "Design Patterns",
-    "question": "¿Qué patrón se usa para desacoplar una abstracción de su implementación?",
+    "question": "¿Qué patrón permite extraer capacidades transversales (como logging, monitoreo, tracing o seguridad) a un proceso auxiliar que se ejecuta junto a un microservicio, compartiendo el mismo ciclo de vida y red?",
     "code": null,
     "options": [
-      "Adapter",
-      "Bridge",
-      "Decorator",
-      "Proxy"
+      "Ambassador",
+      "Sidecar",
+      "Bulkhead",
+      "Retry"
     ],
     "correct": 1,
-    "explanation": "Bridge separa la interfaz de la implementación para que puedan variar independientemente."
+    "explanation": "El patrón Sidecar despliega un contenedor adicional junto al contenedor principal del microservicio (por ejemplo, en un pod de Kubernetes). Este sidecar maneja tareas de infraestructura como descubrimiento de servicios, recolección de métricas, proxies de red o configuraciones dinámicas, sin modificar el código del servicio principal."
   },
   {
     "id": 70,
