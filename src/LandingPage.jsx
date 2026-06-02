@@ -2,7 +2,7 @@ const BANKS_CONFIG = {
   java_core: [
     { ai: 'chatgpt', title: 'ChatGPT', emoji: '🤖', description: 'Balanceado y claro' },
     { ai: 'claude', title: 'Claude', emoji: '🧠', description: 'Más analítico' },
-    { ai: 'deepseek', title: 'DeepSeek', emoji: '⚡', description: 'Más técnico y directo' },
+    { ai: 'deepseek', title: 'DeepSeek', emoji: '⚡', description: 'Más técnico y directo', file: 'deepseek_java_core_v2.json' },
   ],
   microservicios: [
     { ai: 'chatgpt', title: 'ChatGPT', emoji: '🤖', description: 'Balanceado y claro' },
@@ -32,7 +32,7 @@ const TOPIC_LABELS = {
 export default function LandingPage({ onSelect, onBack, topic }) {
   const banks = (BANKS_CONFIG[topic] || []).map(b => ({
     ...b,
-    id: `${topic}/${b.ai}_${topic}.json`,
+    id: `${topic}/${b.file ?? `${b.ai}_${topic}.json`}`,
   }))
 
   return (

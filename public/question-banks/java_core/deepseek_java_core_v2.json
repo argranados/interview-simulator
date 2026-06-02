@@ -1,0 +1,1202 @@
+[
+  {
+    "id": 1,
+    "level": "Mid",
+    "category": "Java 21",
+    "question": "¿Qué son los Virtual Threads en Java 21 (Project Loom) y qué problema resuelven?",
+    "code": "Thread vt = Thread.ofVirtual().start(() -> System.out.println(\"Virtual!\"));\n// O con ExecutorService:\ntry (var executor = Executors.newVirtualThreadPerTaskExecutor()) {\n    executor.submit(() -> handleRequest());\n}",
+    "options": [
+      "Hilos ligeros gestionados por la JVM (no por el OS) que permiten millones de hilos concurrentes sin overhead, ideal para I/O-bound workloads",
+      "Son hilos del sistema operativo mejorados con más memoria",
+      "Son equivalentes a threads tradicionales, solo cambia la sintaxis",
+      "Solo funcionan con ExecutorService, no con Thread directamente"
+    ],
+    "correct": 0,
+    "explanation": "Los Platform Threads son wrappers del OS (costosos, ~1MB stack). Virtual Threads son gestionados por la JVM (~1KB), bloquearse en I/O no bloquea el OS thread. Ideal para microservicios con alta concurrencia I/O (Spring Boot 3.2+ los soporta nativamente). La JVM hace 'mounting/unmounting' de virtual threads sobre carrier threads (ForkJoinPool)."
+  },
+  {
+    "id": 2,
+    "level": "Junior",
+    "category": "OOP",
+    "question": "¿Qué es el polimorfismo y cómo se logra en Java?",
+    "code": "public class Animal { public void sound() { System.out.println(\"Animal sound\"); } }\npublic class Dog extends Animal { public void sound() { System.out.println(\"Bark\"); } }\nAnimal myDog = new Dog();\nmyDog.sound(); // ¿Qué imprime?",
+    "options": [
+      "Animal sound",
+      "Bark",
+      "Error de compilación",
+      "RuntimeException"
+    ],
+    "correct": 1,
+    "explanation": "Polimorfismo permite que una referencia de tipo padre apunte a un objeto hijo, y el método ejecutado es el del objeto real (runtime). En entrevistas se pregunta mucho para evaluar si entiendes override y herencia."
+  },
+  {
+    "id": 3,
+    "level": "Junior",
+    "category": "OOP",
+    "question": "¿Qué permite hacer la palabra clave 'super'?",
+    "code": null,
+    "options": [
+      "Acceder a métodos y constructores de la clase padre",
+      "Acceder a métodos de la clase actual",
+      "Crear una instancia de la clase padre",
+      "Llamar a un método estático de la clase padre"
+    ],
+    "correct": 0,
+    "explanation": "Entrevista real. 'super' se usa en herencia para invocar constructores de la clase padre (super()) o para acceder a métodos/atributos sobrescritos de la clase padre."
+  },
+  {
+    "id": 4,
+    "level": "Junior",
+    "category": "OOP",
+    "question": "¿Qué es el encapsulamiento y cómo se logra en Java?",
+    "code": null,
+    "options": [
+      "Ocultando el estado interno con modificadores private y exponiendo métodos públicos (getters/setters)",
+      "Usando clases abstractas para proteger la lógica interna",
+      "Mediante herencia y polimorfismo",
+      "Con el uso de interfaces públicas"
+    ],
+    "correct": 0,
+    "explanation": "Pregunta básica de OOP en entrevistas junior. Encapsulamiento protege los datos internos y controla el acceso mediante métodos públicos. Es fundamental en el diseño de APIs robustas."
+  },
+  {
+    "id": 5,
+    "level": "Junior",
+    "category": "OOP",
+    "question": "¿Cuál es la diferencia entre overloading y overriding?",
+    "code": null,
+    "options": [
+      "Overloading es en tiempo de compilación, overriding en tiempo de ejecución",
+      "Overriding es en tiempo de compilación, overloading en tiempo de ejecución",
+      "Ambos ocurren en tiempo de compilación",
+      "Ambos ocurren en tiempo de ejecución"
+    ],
+    "correct": 0,
+    "explanation": "Pregunta clásica. Overloading (mismo nombre, distintos parámetros) se resuelve en compilación. Overriding (redefinir método heredado) se resuelve en runtime y requiere @Override. Muy común en entrevistas técnicas."
+  },
+  {
+    "id": 6,
+    "level": "Mid",
+    "category": "Java 21",
+    "question": "¿Qué es Structured Concurrency en Java 21 y qué problema de concurrencia resuelve?",
+    "code": "try (var scope = new StructuredTaskScope.ShutdownOnFailure()) {\n    Future<User> user = scope.fork(() -> fetchUser(id));\n    Future<Order> order = scope.fork(() -> fetchOrder(id));\n    scope.join().throwIfFailed();\n    return new Response(user.resultNow(), order.resultNow());\n}",
+    "options": [
+      "Agrupa tareas concurrentes en un scope con ciclo de vida controlado: si una falla, cancela las demás automáticamente",
+      "Reemplaza ExecutorService por completo en Java 21",
+      "Es una forma de lanzar threads en secuencia, no en paralelo",
+      "Solo funciona con Virtual Threads, no con Platform Threads"
+    ],
+    "correct": 0,
+    "explanation": "Sin Structured Concurrency, si fetchUser falla y fetchOrder sigue corriendo, hay thread leak. Con StructuredTaskScope.ShutdownOnFailure(), al fallar una tarea se cancelan las demás automáticamente. Traza de error más clara (no se pierden excepciones en threads hijos). Resuelve el problema de 'fire and forget' en código concurrente."
+  },
+  {
+    "id": 7,
+    "level": "Junior",
+    "category": "Data Types",
+    "question": "¿Cuál es la diferencia entre '==' y .equals() para comparar Strings?",
+    "code": "String s1 = new String(\"Java\");\nString s2 = new String(\"Java\");\nboolean r1 = (s1 == s2);\nboolean r2 = s1.equals(s2);\n// ¿Cuál es el resultado?",
+    "options": [
+      "r1=true, r2=false",
+      "r1=false, r2=true",
+      "r1=true, r2=true",
+      "r1=false, r2=false"
+    ],
+    "correct": 1,
+    "explanation": "Pregunta de entrevista real que confunde a muchos juniors. == compara referencias (¿mismo objeto?). equals() compara contenido. Con new String() se crean objetos distintos, por eso == es false, pero equals() es true por tener mismo contenido."
+  },
+  {
+    "id": 8,
+    "level": "Junior",
+    "category": "Data Types",
+    "question": "¿Qué es el String Pool y para qué sirve?",
+    "code": "String s1 = \"Hola\";\nString s2 = \"Hola\";\n// ¿s1 == s2?",
+    "options": [
+      "Un área en heap donde se almacenan literales String para reutilizarlos y ahorrar memoria",
+      "Un pool de hilos para procesar Strings en paralelo",
+      "Un caché de Strings en el stack",
+      "Una colección de Strings inmutables"
+    ],
+    "correct": 0,
+    "explanation": "El String Pool permite reutilizar literales idénticos. s1 y s2 apuntan al mismo objeto en el pool, por eso s1 == s2 es true. Con new String() se evita el pool. Pregunta clave para evaluar manejo de memoria."
+  },
+  {
+    "id": 9,
+    "level": "Mid",
+    "category": "Java 11",
+    "question": "¿Qué nuevos métodos de String se introdujeron en Java 11 y cuál es la diferencia entre strip() y trim()?",
+    "code": "\" Hello \".strip();        // \"Hello\" (Unicode-aware)\n\" Hello \".trim();         // \"Hello\" (solo ASCII \\u0000-\\u0020)\n\"  \".isBlank();           // true\n\"line1\\nline2\".lines();   // Stream<String>\n\"ha\".repeat(3);           // \"hahaha\"",
+    "options": [
+      "strip() es Unicode-aware (elimina cualquier whitespace Unicode); trim() solo elimina ASCII whitespace; también se añadieron isBlank(), lines() y repeat()",
+      "strip() y trim() son idénticos en Java 11",
+      "isBlank() y strip() existían desde Java 8",
+      "lines() devuelve un List<String>, no un Stream"
+    ],
+    "correct": 0,
+    "explanation": "strip() usa Character.isWhitespace() (Unicode), trim() usa carácter <= '\\u0020'. Para código internacional, strip() es preferible. isBlank() es más limpio que ''.trim().isEmpty(). lines() simplifica parseo de texto multilínea. repeat() evita StringJoiner manual. Pregunta real para validar conocimiento de Java 11 LTS."
+  },
+  {
+    "id": 10,
+    "level": "Mid",
+    "category": "Java 21",
+    "question": "¿Qué son las Sequenced Collections en Java 21 y qué problema resuelven?",
+    "code": "SequencedCollection<String> list = new ArrayList<>(List.of(\"a\", \"b\", \"c\"));\nlist.getFirst(); // \"a\"\nlist.getLast();  // \"c\"\nlist.reversed(); // vista invertida [\"c\", \"b\", \"a\"]",
+    "options": [
+      "Nueva interfaz que unifica acceso al primer/último elemento en colecciones con orden definido, eliminando inconsistencias entre List, Deque y LinkedHashSet",
+      "Una nueva implementación de List más eficiente que ArrayList",
+      "Solo aplica a LinkedList, no a ArrayList",
+      "Reemplaza Comparable e Iterator en Java 21"
+    ],
+    "correct": 0,
+    "explanation": "Antes de Java 21: list.get(0) vs deque.peekFirst() vs sortedSet.first() — APIs inconsistentes. SequencedCollection añade getFirst(), getLast(), addFirst(), addLast(), removeFirst(), removeLast() y reversed(). SequencedMap añade firstEntry(), lastEntry(). Mejora legibilidad y unifica la API de colecciones ordenadas."
+  },
+  {
+    "id": 11,
+    "level": "Mid",
+    "category": "Java 21",
+    "question": "¿Qué es Pattern Matching para switch en Java 21 y cómo usa 'when' para guarded patterns?",
+    "code": "Object obj = getShape();\nString result = switch (obj) {\n    case Integer i when i > 0  -> \"Positive int: \" + i;\n    case Integer i              -> \"Non-positive int\";\n    case String s when s.isBlank() -> \"Blank string\";\n    case String s               -> \"String: \" + s;\n    case null                   -> \"null value\";\n    default                     -> \"Other: \" + obj;\n};",
+    "options": [
+      "Permite usar patrones de tipo con condiciones (when) en switch, haciendo exhaustividad verificable y eliminando casteos explícitos",
+      "Solo añade soporte para null en switch",
+      "Es equivalente al switch expression de Java 14, sin cambios adicionales",
+      "Los guarded patterns solo funcionan con tipos primitivos"
+    ],
+    "correct": 0,
+    "explanation": "Pattern matching en switch (estable Java 21): combina type checking + cast + condición en un solo case. 'when' es el guard (antes era &&). Complementa Sealed Classes: el compilador verifica exhaustividad. Elimina cadenas if-else instanceof. Muy preguntado en entrevistas 2024-2025."
+  },
+  {
+    "id": 12,
+    "level": "Junior",
+    "category": "Control Flow",
+    "question": "¿Qué imprime el siguiente código?",
+    "code": "for(int i = 0; i < 3; i++) {\n    if(i == 1) continue;\n    System.out.print(i);\n}",
+    "options": [
+      "012",
+      "02",
+      "12",
+      "0"
+    ],
+    "correct": 1,
+    "explanation": "continue salta a la siguiente iteración sin ejecutar el resto del bloque. Cuando i=1 se salta el print, por eso imprime 0 y 2."
+  },
+  {
+    "id": 13,
+    "level": "Junior",
+    "category": "Control Flow",
+    "question": "¿Qué hace la sentencia break en un switch sin etiqueta?",
+    "code": null,
+    "options": [
+      "Termina la ejecución del switch y sale del bloque",
+      "Termina todo el programa",
+      "Salta a la siguiente iteración del bucle exterior",
+      "No hace nada, switch no soporta break"
+    ],
+    "correct": 0,
+    "explanation": "break en switch es fundamental para evitar fall-through (ejecución de los siguientes casos). Sin break, el código continúa ejecutando los casos siguientes aunque no coincidan."
+  },
+  {
+    "id": 14,
+    "level": "Junior",
+    "category": "Memory & JVM",
+    "question": "¿Dónde se almacenan las variables locales en Java?",
+    "code": null,
+    "options": [
+      "En el Heap",
+      "En el Stack",
+      "En el Metaspace",
+      "En el Code Cache"
+    ],
+    "correct": 1,
+    "explanation": "Las variables locales (métodos) se almacenan en el Stack. Los objetos (instancias de clases) se almacenan en el Heap. Las referencias a objetos son variables locales y están en el Stack, apuntando al objeto en Heap."
+  },
+  {
+    "id": 15,
+    "level": "Junior",
+    "category": "Memory & JVM",
+    "question": "¿Cuándo es elegible un objeto para el Garbage Collector?",
+    "code": null,
+    "options": [
+      "Cuando se llama explícitamente a System.gc()",
+      "Cuando ya no hay referencias accesibles hacia él",
+      "Cuando el programa termina su ejecución",
+      "Cuando el objeto tiene al menos 5 minutos de vida"
+    ],
+    "correct": 1,
+    "explanation": "Un objeto es elegible para GC cuando no hay referencias fuertes desde hilos vivos. System.gc() solo es una sugerencia para la JVM, no garantiza ejecución inmediata. Muy preguntado en entrevistas de rendimiento."
+  },
+  {
+    "id": 16,
+    "level": "Junior",
+    "category": "Memory & JVM",
+    "question": "¿Qué es un memory leak en Java?",
+    "code": null,
+    "options": [
+      "Cuando el programa consume más memoria de la disponible y crashea",
+      "Cuando objetos que ya no se necesitan siguen siendo referenciados, impidiendo que el GC los libere",
+      "Cuando la JVM no puede encontrar el método main",
+      "Cuando se usa System.gc() incorrectamente"
+    ],
+    "correct": 1,
+    "explanation": "Aunque Java tiene GC, los memory leaks existen. Ejemplo típico: agregar objetos a una List estática y nunca eliminarlos. Las referencias persistentes impiden que el GC actúe. Pregunta avanzada para junior/mid."
+  },
+  {
+    "id": 17,
+    "level": "Junior",
+    "category": "Memory & JVM",
+    "question": "¿Cuál es el propósito del método finalize()?",
+    "code": null,
+    "options": [
+      "Finalizar un hilo de ejecución",
+      "Realizar limpieza antes de que el objeto sea recolectado (deprecated desde Java 9)",
+      "Cerrar la JVM",
+      "Liberar memoria de forma inmediata"
+    ],
+    "correct": 1,
+    "explanation": "finalize() era llamado por el GC antes de liberar un objeto, pero es impredecible y problemático. Deprecated desde Java 9. En entrevistas actuales se pregunta para evaluar si conoces prácticas obsoletas y alternativas (Cleaner, try-with-resources)."
+  },
+  {
+    "id": 18,
+    "level": "Junior",
+    "category": "Exceptions",
+    "question": "¿Cuál es la diferencia entre checked y unchecked exceptions?",
+    "code": null,
+    "options": [
+      "Checked son subclases de RuntimeException; unchecked son subclases de Exception",
+      "Checked deben declararse o capturarse (IOException, SQLException); unchecked son RuntimeException y no requieren manejo explícito",
+      "Checked solo ocurren en tiempo de ejecución; unchecked en tiempo de compilación",
+      "No hay diferencia, es solo un concepto teórico"
+    ],
+    "correct": 1,
+    "explanation": "Pregunta fundamental. Checked: IOException, SQLException. Unchecked: NullPointerException, IllegalArgumentException. En APIs reales se debate cuándo usar cada una. Spring suele preferir unchecked."
+  },
+  {
+    "id": 19,
+    "level": "Junior",
+    "category": "Exceptions",
+    "question": "¿Qué imprime el siguiente código?",
+    "code": "try {\n    int x = 10 / 0;\n} catch (ArithmeticException e) {\n    System.out.print(\"A\");\n} finally {\n    System.out.print(\"B\");\n}",
+    "options": [
+      "A",
+      "B",
+      "AB",
+      "Error de compilación"
+    ],
+    "correct": 2,
+    "explanation": "El bloque finally siempre se ejecuta, haya o no excepción. Primero se ejecuta el catch (si coincide), luego finally. Pregunta clásica para entender el flujo try-catch-finally."
+  },
+  {
+    "id": 20,
+    "level": "Junior",
+    "category": "Exceptions",
+    "question": "¿Qué es try-with-resources y qué requisito cumplen los recursos?",
+    "code": "try (FileReader fr = new FileReader(\"file.txt\")) {\n    // lectura\n} catch (IOException e) { }",
+    "options": [
+      "Un bloque try que cierra automáticamente recursos que implementan AutoCloseable",
+      "Un try que maneja múltiples excepciones simultáneamente",
+      "Un try que solo funciona con archivos y streams",
+      "Un try que requiere un catch obligatorio"
+    ],
+    "correct": 0,
+    "explanation": "try-with-resources (Java 7+) cierra automáticamente recursos que implementan AutoCloseable. Evita leaks y código boilerplate de finally con close(). Muy valorado en entrevistas sobre buenas prácticas."
+  },
+  {
+    "id": 21,
+    "level": "Mid",
+    "category": "Generics",
+    "question": "¿Qué es type erasure en Java Generics?",
+    "code": "List<String> strings = new ArrayList<>();\nList<Integer> ints = new ArrayList<>();\n// strings.getClass() == ints.getClass()",
+    "options": [
+      "El compilador elimina la información de tipos genéricos en tiempo de ejecución, reemplazándolos por Object",
+      "Los genéricos se mantienen en tiempo de ejecución para reflexión",
+      "Los genéricos solo existen en documentación, no en código",
+      "Java no tiene genéricos en tiempo de compilación"
+    ],
+    "correct": 0,
+    "explanation": "Type erasure significa que List<String> y List<Integer> son la misma clase (ArrayList) en runtime. Por eso no puedes hacer instanceof List<String>. Pregunta mid-level muy común en entrevistas técnicas."
+  },
+  {
+    "id": 22,
+    "level": "Mid",
+    "category": "Generics",
+    "question": "¿Cuál es la diferencia entre <? extends T> y <? super T>?",
+    "code": null,
+    "options": [
+      "<? extends T> es para lectura (produce T), <? super T> es para escritura (consume T) - PECS",
+      "Son equivalentes, solo cambia la sintaxis",
+      "<? extends T> solo funciona con interfaces, <? super T> solo con clases",
+      "<? extends T> es para métodos static, <? super T> para métodos de instancia"
+    ],
+    "correct": 0,
+    "explanation": "PECS: Producer Extends, Consumer Super. extends se usa cuando quieres LEER (get). super se usa cuando quieres ESCRIBIR (add). Es una pregunta avanzada de generics en entrevistas mid/senior."
+  },
+  {
+    "id": 23,
+    "level": "Mid",
+    "category": "Generics",
+    "question": "¿Puedes crear un array de tipo genérico? Ej: T[] array = new T[10];",
+    "code": null,
+    "options": [
+      "Sí, es completamente válido",
+      "No, da error de compilación porque los arrays son covariantes y los genéricos son invariantes",
+      "Sí, pero solo si T es una clase concreta",
+      "Solo funciona con tipos primitivos"
+    ],
+    "correct": 1,
+    "explanation": "No se puede crear un array de tipo genérico directo (new T[10]) por type erasure y problemas de seguridad de tipos. Alternativa: usar ArrayList<T> o crear un array de Object y castear."
+  },
+  {
+    "id": 24,
+    "level": "Mid",
+    "category": "Java 11",
+    "question": "¿Qué es el nuevo HttpClient estándar de Java 11 y qué ventajas tiene sobre HttpURLConnection?",
+    "code": "HttpClient client = HttpClient.newBuilder()\n    .connectTimeout(Duration.ofSeconds(5))\n    .build();\nHttpRequest request = HttpRequest.newBuilder()\n    .uri(URI.create(\"https://api.example.com/users\"))\n    .GET().build();\nHttpResponse<String> response = client.send(request,\n    HttpResponse.BodyHandlers.ofString());",
+    "options": [
+      "Soporta HTTP/2, WebSocket, peticiones asíncronas (sendAsync), y tiene API fluida; HttpURLConnection es verbose, blocking y solo HTTP/1.1",
+      "Es equivalente a HttpURLConnection, solo cambia la sintaxis",
+      "Solo admite peticiones síncronas, no async",
+      "Requiere una librería externa adicional"
+    ],
+    "correct": 0,
+    "explanation": "HttpURLConnection (Java 1.1) es verbose y solo HTTP/1.1 blocking. HttpClient (Java 11): HTTP/2 y HTTP/1.1, async con CompletableFuture (sendAsync), WebSocket, interceptors, redirect handling. Estandariza lo que antes necesitaba Apache HttpClient o OkHttp. Muy relevante en microservicios que consumen APIs externas."
+  },
+  {
+    "id": 25,
+    "level": "Mid",
+    "category": "Collections",
+    "question": "¿Cómo funciona HashMap internamente en Java 8+?",
+    "code": null,
+    "options": [
+      "Array de buckets (lista enlazada) + conversión a árbol balanceado cuando hay muchas colisiones",
+      "Solo usa lista enlazada simple en todos los casos",
+      "Usa un array de árboles rojinegros desde el inicio",
+      "Implementación basada en hashtable sincronizada"
+    ],
+    "correct": 0,
+    "explanation": "HashMap usa array de Node (buckets). Si un bucket tiene más de 8 nodos, se convierte a TreeBin (árbol rojinegro) para mejorar búsqueda a O(log n). Cambio importante de Java 8 para rendimiento ante colisiones."
+  },
+  {
+    "id": 26,
+    "level": "Mid",
+    "category": "Collections",
+    "question": "¿Qué requisitos deben cumplir las claves en un HashMap?",
+    "code": null,
+    "options": [
+      "Sobrescribir correctamente equals() y hashCode(), y ser inmutables preferiblemente",
+      "Solo necesitan equals()",
+      "Solo necesitan hashCode()",
+      "No necesitan ningún requisito especial"
+    ],
+    "correct": 0,
+    "explanation": "Contrato fundamental: si equals() es true, hashCode() debe ser igual. Claves mutables pueden causar pérdida de objetos si cambian después de insertarse. Muy preguntado en entrevistas para detectar bugs potenciales."
+  },
+  {
+    "id": 27,
+    "level": "Mid",
+    "category": "Collections",
+    "question": "¿Cuál es la diferencia entre HashSet y TreeSet?",
+    "code": null,
+    "options": [
+      "HashSet no garantiza orden, TreeSet mantiene elementos ordenados (Comparable/Comparator)",
+      "HashSet mantiene orden de inserción, TreeSet orden alfabético",
+      "HashSet es más lento que TreeSet",
+      "TreeSet permite nulls, HashSet no"
+    ],
+    "correct": 0,
+    "explanation": "HashSet: O(1) pero sin orden. TreeSet: implementado con TreeMap (árbol rojinegro), O(log n) pero ordenado. Útil cuando necesitas elementos únicos ordenados, ej: rankings, autocompletado."
+  },
+  {
+    "id": 28,
+    "level": "Mid",
+    "category": "Concurrency",
+    "question": "¿Qué diferencia hay entre synchronized y Lock (ReentrantLock)?",
+    "code": null,
+    "options": [
+      "Lock ofrece tryLock, lockInterruptibly, y más control; synchronized es más simple pero menos flexible",
+      "Son equivalentes, solo cambia la sintaxis",
+      "synchronized es más nuevo y recomendado",
+      "Lock no es thread-safe"
+    ],
+    "correct": 0,
+    "explanation": "synchronized es más simple pero no permite timeout, interrupción, o múltiples condiciones. ReentrantLock es más avanzado, útil en escenarios complejos (ej. productor-consumidor con fairness)."
+  },
+  {
+    "id": 29,
+    "level": "Mid",
+    "category": "Concurrency",
+    "question": "¿Qué es volatile y cuándo se usa?",
+    "code": "volatile boolean running = true;",
+    "options": [
+      "Garantiza visibilidad de cambios entre threads (sin caché local), pero no atomicidad",
+      "Hace la variable atómica y thread-safe",
+      "Es equivalente a synchronized en todo sentido",
+      "Optimiza el rendimiento evitando locks"
+    ],
+    "correct": 0,
+    "explanation": "volatile previene el caching de variables en threads, asegurando que todos vean el valor actualizado. No es suficiente para operaciones compuestas (ej. count++). Pregunta real sobre concurrencia."
+  },
+  {
+    "id": 30,
+    "level": "Mid",
+    "category": "Concurrency",
+    "question": "¿Qué es un deadlock y cómo prevenirlo?",
+    "code": null,
+    "options": [
+      "Situación donde dos o más hilos esperan recursos que el otro tiene, causando bloqueo eterno; prevención: orden fijo de locks, tryLock con timeout",
+      "Un error de compilación por mala sincronización",
+      "Cuando un hilo consume toda la CPU sin liberar recursos",
+      "Situación esperable en programas concurrentes"
+    ],
+    "correct": 0,
+    "explanation": "Deadlock clásico: Thread1 tiene lock A y espera lock B; Thread2 tiene lock B y espera lock A. Estrategias: orden consistente de locks, tryLock con timeout, y evitar locks anidados si es posible."
+  },
+  {
+    "id": 31,
+    "level": "Mid",
+    "category": "Concurrency",
+    "question": "¿Qué riesgo existe al compartir objetos mutables entre threads sin sincronización?",
+    "code": null,
+    "options": [
+      "Problemas de visibilidad de memoria (stale data) y condiciones de carrera (race conditions)",
+      "Solo problemas de rendimiento, no de corrección",
+      "El compilador detecta automáticamente los errores",
+      "Los objetos mutables son thread-safe por defecto"
+    ],
+    "correct": 0,
+    "explanation": "Sin sincronización, un hilo puede no ver los cambios de otro (visibilidad) y operaciones como i++ pueden dar resultados inconsistentes (race conditions). Pregunta real sobre bugs en producción."
+  },
+  {
+    "id": 32,
+    "level": "Mid",
+    "category": "Concurrency",
+    "question": "¿Qué es el patrón Producer-Consumer y cómo se implementa en Java?",
+    "code": null,
+    "options": [
+      "Un productor genera datos, un consumidor los procesa; se implementa con BlockingQueue (ArrayBlockingQueue, LinkedBlockingQueue)",
+      "Un productor es un hilo, un consumidor es otro, no hay comunicación",
+      "Se implementa solo con synchronized y wait/notify, no hay otra forma",
+      "Es un patrón de diseño de alto nivel, no implementable en Java"
+    ],
+    "correct": 0,
+    "explanation": "BlockingQueue (desde Java 5) maneja automáticamente la sincronización: put() espera si está llena, take() espera si está vacía. Es la implementación recomendada sobre wait/notify manual."
+  },
+  {
+    "id": 33,
+    "level": "Mid",
+    "category": "Concurrency",
+    "question": "¿Qué es el patrón ThreadLocal y cuándo es útil?",
+    "code": "ThreadLocal<SimpleDateFormat> dateFormat = ThreadLocal.withInitial(() -> new SimpleDateFormat(\"yyyy-MM-dd\"));",
+    "options": [
+      "Cada hilo tiene su propia copia de la variable, evitando sincronización; útil para objetos no thread-safe como SimpleDateFormat",
+      "Comparte el mismo valor entre todos los hilos de forma segura",
+      "Solo funciona con tipos primitivos",
+      "Es una alternativa a synchronized para datos compartidos"
+    ],
+    "correct": 0,
+    "explanation": "ThreadLocal mantiene valores por hilo. SimpleDateFormat no es thread-safe, pero con ThreadLocal cada hilo tiene su propia instancia. Muy útil en aplicaciones web (Spring lo usa internamente para request-scoped beans)."
+  },
+  {
+    "id": 34,
+    "level": "Mid",
+    "category": "Concurrency",
+    "question": "¿Cuál es la diferencia entre submit() y execute() en ExecutorService?",
+    "code": null,
+    "options": [
+      "submit() retorna Future (puede capturar resultado/excepción); execute() no retorna nada y no captura excepciones",
+      "Son equivalentes en funcionalidad",
+      "execute() es para Runnable, submit() para Callable únicamente",
+      "submit() es blocking, execute() es non-blocking"
+    ],
+    "correct": 0,
+    "explanation": "execute() es método de Executor, no captura excepciones. submit() devuelve Future, permite obtener resultado o excepción con future.get(). En entrevistas se pregunta para evaluar manejo avanzado de threads."
+  },
+  {
+    "id": 35,
+    "level": "Mid",
+    "category": "Java 8",
+    "question": "¿Qué es una expresión lambda y qué interfaz funcional permite?",
+    "code": "List<String> names = Arrays.asList(\"Ana\", \"Luis\");\nnames.forEach(name -> System.out.println(name));",
+    "options": [
+      "Implementación concisa de interfaces funcionales (un solo método abstracto)",
+      "Una forma de crear métodos estáticos",
+      "Un tipo de bucle mejorado",
+      "Una anotación de Java 8"
+    ],
+    "correct": 0,
+    "explanation": "Lambda implementa interfaces funcionales (@FunctionalInterface) como Consumer, Predicate, Supplier. Código más limpio y expresivo, fundamental en Streams API."
+  },
+  {
+    "id": 36,
+    "level": "Mid",
+    "category": "Java 8",
+    "question": "¿Qué hace el método filter() en Stream API?",
+    "code": "list.stream().filter(s -> s.startsWith(\"A\")).collect(Collectors.toList());",
+    "options": [
+      "Selecciona elementos que cumplen una condición (Predicate), devolviendo un nuevo Stream",
+      "Transforma cada elemento aplicando una función",
+      "Elimina elementos duplicados",
+      "Ordena los elementos del Stream"
+    ],
+    "correct": 0,
+    "explanation": "filter() es operación intermedia, recibe Predicate (lambda que retorna boolean). Muy común en procesamiento de colecciones en backend Java."
+  },
+  {
+    "id": 37,
+    "level": "Mid",
+    "category": "Java 17",
+    "question": "¿Puede un record implementar interfaces y tener métodos adicionales? ¿Cuáles son sus limitaciones?",
+    "code": "interface Printable { void print(); }\nrecord Point(int x, int y) implements Printable {\n    // Compact constructor para validación\n    Point {\n        if (x < 0 || y < 0) throw new IllegalArgumentException(\"Negativo\");\n    }\n    @Override\n    public void print() { System.out.println(x + \",\" + y); }\n    public double distance() { return Math.sqrt(x*x + y*y); } // método custom\n}",
+    "options": [
+      "Sí puede implementar interfaces y tener métodos adicionales; NO puede: extender clases, tener campos de instancia adicionales (mutable state), ni ser abstract",
+      "Los records no pueden implementar interfaces",
+      "Los records no pueden tener métodos adicionales, solo los generados automáticamente",
+      "Los records pueden tener campos mutables si se declaran explícitamente"
+    ],
+    "correct": 0,
+    "explanation": "Records SÍ pueden: implementar interfaces, tener métodos de instancia adicionales, tener campos static, usar compact constructors para validación. Records NO pueden: extender clases (extienden implícitamente Record), tener campos de instancia extra (toda la identidad está en los componentes), ser abstract. Muy preguntado para DTOs en APIs REST con Spring."
+  },
+  {
+    "id": 38,
+    "level": "Mid",
+    "category": "Java 8",
+    "question": "¿Qué es Optional y cómo previene NullPointerException?",
+    "code": "Optional<String> opt = Optional.ofNullable(getName());\nopt.ifPresent(name -> System.out.println(name));",
+    "options": [
+      "Contenedor que puede tener valor o estar vacío; fuerza al desarrollador a manejar el caso \"sin valor\" con métodos como orElse, ifPresent, orElseThrow",
+      "Es equivalente a usar null, solo cambia la sintaxis",
+      "Es un tipo de colección especial",
+      "Optional siempre contiene un valor"
+    ],
+    "correct": 0,
+    "explanation": "Optional no elimina los nulls, pero hace explícito que un valor puede faltar. El compilador te obliga a pensar en el caso vacío. Muy útil en APIs para documentar que un retorno puede ser \"no encontrado\"."
+  },
+  {
+    "id": 39,
+    "level": "Mid",
+    "category": "Java 8",
+    "question": "¿Qué es un método default en interfaces y para qué sirve?",
+    "code": "default void log(String msg) { System.out.println(msg); }",
+    "options": [
+      "Método con implementación por defecto en interfaz; permite añadir métodos sin romper clases existentes",
+      "Método que no puede ser sobrescrito",
+      "Método abstracto obligatorio",
+      "Método que solo puede usarse en Java 8+"
+    ],
+    "correct": 0,
+    "explanation": "default methods (Java 8) permiten evolución de APIs. Ejemplo: Collection.stream() es default. Problema del diamante: si dos interfaces tienen default methods, la clase debe sobrescribir."
+  },
+  {
+    "id": 40,
+    "level": "Mid",
+    "category": "Java 8",
+    "question": "¿Qué es un Stream y en qué se diferencia de una Collection?",
+    "code": null,
+    "options": [
+      "Stream procesa datos de forma funcional y no almacena datos; Collection almacena datos",
+      "Stream almacena datos y Collection los procesa",
+      "Son equivalentes, Stream es una Collection optimizada",
+      "Stream solo funciona con primitivos"
+    ],
+    "correct": 0,
+    "explanation": "Una Collection es una estructura de datos (almacena). Un Stream es un pipeline de operaciones (no almacena, solo procesa). Los Streams son lazy y consumibles (solo se usan una vez)."
+  },
+  {
+    "id": 41,
+    "level": "Mid",
+    "category": "Java 9-11",
+    "question": "¿Qué métodos estáticos se añadieron a Optional en Java 9?",
+    "code": null,
+    "options": [
+      "ifPresentOrElse, or, stream",
+      "ofNullable ya existía",
+      "map y flatMap",
+      "filter y map"
+    ],
+    "correct": 0,
+    "explanation": "Java 9 mejoró Optional: ifPresentOrElse(Consumer, Runnable) para acción alternativa; or(Supplier<Optional>) para encadenar opcionales; stream() para convertir Optional a Stream. Pregunta para evaluar conocimiento de versiones."
+  },
+  {
+    "id": 42,
+    "level": "Mid",
+    "category": "Java 9-11",
+    "question": "¿Qué es el método Collection.of() (ej: List.of(), Set.of()) en Java 9+?",
+    "code": "List<String> list = List.of(\"a\", \"b\", \"c\");",
+    "options": [
+      "Crea colecciones inmutables (no se pueden modificar)",
+      "Crea colecciones vacías",
+      "Crea colecciones sincronizadas",
+      "Crea copias mutables de colecciones existentes"
+    ],
+    "correct": 0,
+    "explanation": "List.of(), Set.of(), Map.of() crean colecciones inmutables. Intentar modificar (add, remove) lanza UnsupportedOperationException. Útil para constantes y data classes."
+  },
+  {
+    "id": 43,
+    "level": "Mid",
+    "category": "Java 9-11",
+    "question": "¿Qué es la inferencia de tipos con 'var' (Java 10+)?",
+    "code": "var list = new ArrayList<String>(); // ¿Qué tipo tiene list?",
+    "options": [
+      "El compilador infiere el tipo (ArrayList<String>) en tiempo de compilación",
+      "Es tipado dinámico como JavaScript",
+      "Solo funciona con tipos primitivos",
+      "var es una palabra clave reservada para constantes"
+    ],
+    "correct": 0,
+    "explanation": "var es inferencia de tipos local (variables dentro de métodos). No es tipado dinámico: el tipo se determina en compilación. Reduce boilerplate sin perder type safety. Muy usado en Java moderno."
+  },
+  {
+    "id": 44,
+    "level": "Mid",
+    "category": "Java 9-11",
+    "question": "¿Qué son los text blocks (Java 15+)?",
+    "code": "String json = \"\"\"\n{\"name\": \"Juan\"}\n\"\"\";",
+    "options": [
+      "Strings multilínea con \"\"\" que preservan formato, sin necesidad de escapes",
+      "Bloques de código multilínea en Java",
+      "Comentarios de documentación mejorados",
+      "Bloques de inicialización estática"
+    ],
+    "correct": 0,
+    "explanation": "Text blocks simplifican strings multilínea (JSON, SQL, HTML). Evitan \n y concatenación. Característica muy práctica en aplicaciones que manejan texto estructurado."
+  },
+  {
+    "id": 45,
+    "level": "Mid",
+    "category": "Java 9-11",
+    "question": "¿Qué cambios importantes trajo el sistema de módulos (Project Jigsaw) en Java 9?",
+    "code": null,
+    "options": [
+      "Introdujo module-info.java para encapsular paquetes y reducir el classpath",
+      "Eliminó la necesidad de classpath",
+      "Añadió soporte nativo para microservicios",
+      "Reemplazó completamente a Maven"
+    ],
+    "correct": 0,
+    "explanation": "Project Jigsaw introduce módulos: module-info.java define qué paquetes exporta y qué módulos requiere. Mejora encapsulación, reduce el tamaño del JRE (jlink), y permite JVM más pequeñas."
+  },
+  {
+    "id": 46,
+    "level": "Mid",
+    "category": "Java 12-17",
+    "question": "¿Qué es pattern matching con instanceof (Java 16+)?",
+    "code": "if (obj instanceof String s) { // s está en scope\n    System.out.println(s.length());\n}",
+    "options": [
+      "Declara automáticamente la variable si instanceof es true, eliminando el casteo explícito",
+      "Nuevo operador para comparar patrones",
+      "Sintaxis para crear objetos con patrones",
+      "Validación de tipos en tiempo de compilación"
+    ],
+    "correct": 0,
+    "explanation": "Antes: (String) obj; ahora: instanceof String s. Reduce boilerplate y errores de casteo. Característica muy aclamada en Java moderno, mejora legibilidad."
+  },
+  {
+    "id": 47,
+    "level": "Mid",
+    "category": "Java 12-17",
+    "question": "¿Qué son los records (Java 16+)?",
+    "code": "record Point(int x, int y) {}",
+    "options": [
+      "Clases inmutables con constructor, equals, hashCode y toString generados automáticamente",
+      "Una nueva anotación para mapeo ORM",
+      "Un tipo de registro de logs",
+      "Una estructura de datos para depuración"
+    ],
+    "correct": 0,
+    "explanation": "Records reducen drásticamente el boilerplate para DTOs y value objects. Son inmutables por diseño. Una línea reemplaza decenas de líneas de código manual. Ideal para respuestas de API."
+  },
+  {
+    "id": 48,
+    "level": "Mid",
+    "category": "Java 12-17",
+    "question": "¿Qué son las sealed classes (Java 17+)?",
+    "code": "sealed class Shape permits Circle, Rectangle, Triangle { }",
+    "options": [
+      "Clases que restringen qué subclases pueden extenderlas (herencia controlada)",
+      "Clases que no pueden ser instanciadas",
+      "Clases inmutables con records",
+      "Clases con métodos privados"
+    ],
+    "correct": 0,
+    "explanation": "Sealed classes permiten definir un conjunto cerrado de subclases. Útil para modelar dominios con alternativas conocidas (ej. Resultado de operación: Success/Failure). Complementa pattern matching."
+  },
+  {
+    "id": 49,
+    "level": "Mid",
+    "category": "Java 12-17",
+    "question": "¿Qué es switch expressions en Java 14+?",
+    "code": "int num = switch(day) {\n    case MONDAY, FRIDAY -> 1;\n    case TUESDAY -> 2;\n    default -> 0;\n};",
+    "options": [
+      "Switch que puede retornar un valor (sin break) y usa flecha -> para evitar fall-through",
+      "Switch con sintaxis tradicional mejorada",
+      "Switch que solo funciona con Strings",
+      "Switch que no soporta default"
+    ],
+    "correct": 0,
+    "explanation": "Switch expressions eliminan fall-through accidental, permiten múltiples etiquetas por caso, y retornan valor. Más seguro y expresivo. Pregunta real en entrevistas Java moderno."
+  },
+  {
+    "id": 50,
+    "level": "Mid",
+    "category": "Java 12-17",
+    "question": "¿Qué es el método String::formatted (Java 15+)?",
+    "code": "String msg = \"Hello %s\".formatted(\"World\");",
+    "options": [
+      "Método de instancia de String que formatea con String.format internamente",
+      "Sustituto de printf",
+      "Solo funciona con números",
+      "Método estático de String"
+    ],
+    "correct": 0,
+    "explanation": "formatted() es azúcar sintáctico para String.format. Prefiero 'str.formatted(args)' sobre 'String.format(str, args)'. Mejora legibilidad, pequeña pero útil mejora."
+  },
+  {
+    "id": 51,
+    "level": "Mid",
+    "category": "I/O & NIO",
+    "question": "¿Cuál es la diferencia entre FileReader y BufferedReader?",
+    "code": null,
+    "options": [
+      "BufferedReader es más eficiente porque agrega buffer, reduciendo operaciones de I/O",
+      "FileReader es más rápido para archivos grandes",
+      "No hay diferencia significativa",
+      "BufferedReader solo funciona con Strings"
+    ],
+    "correct": 0,
+    "explanation": "BufferedReader envuelve a FileReader y agrega buffer (por defecto 8KB). Lee en bloques, no carácter por carácter. Mejora drásticamente rendimiento en archivos grandes. Buen patrón para I/O en Java."
+  },
+  {
+    "id": 52,
+    "level": "Mid",
+    "category": "I/O & NIO",
+    "question": "¿Qué es try-with-resources y cómo mejora el manejo de recursos?",
+    "code": "try (BufferedReader br = new BufferedReader(new FileReader(\"file.txt\"))) { ... }",
+    "options": [
+      "Cierra automáticamente recursos AutoCloseable, evitando leaks y código boilerplate",
+      "Requiere finally obligatorio",
+      "Solo funciona con streams de red",
+      "Sustituye a los bloques catch"
+    ],
+    "correct": 0,
+    "explanation": "Antes: finally con br.close() anidado. Ahora: el recurso se cierra automáticamente. Mejora seguridad y legibilidad. Pregunta sobre buenas prácticas en entrevistas."
+  },
+  {
+    "id": 53,
+    "level": "Mid",
+    "category": "Java 11",
+    "question": "¿Qué mejoras importantes introdujo Java 11 como LTS que lo hicieron el estándar para producción?",
+    "code": "// 1. var en lambdas\nlist.stream().map((var s) -> s.toUpperCase())\n// 2. Files API mejorada\nString content = Files.readString(Path.of(\"file.txt\"));\nFiles.writeString(Path.of(\"out.txt\"), \"data\");\n// 3. Optional.isEmpty()\nif (optional.isEmpty()) { ... }",
+    "options": [
+      "HttpClient estándar (HTTP/2), nuevos métodos String (strip, isBlank, lines, repeat), var en lambdas, Files.readString/writeString, Optional.isEmpty(), eliminación de Java EE modules",
+      "Solo añadió mejoras de rendimiento, sin nuevas APIs",
+      "Introdujo records y sealed classes",
+      "Java 11 fue un release menor sin features destacables"
+    ],
+    "correct": 0,
+    "explanation": "Java 11 (LTS, Sept 2018) fue el sucesor directo de Java 8 LTS. Features clave: HttpClient estándar (antes incubator en Java 9), String API (strip Unicode-aware, isBlank, lines, repeat), var en lambdas, Files.readString/writeString, Optional.isEmpty() (complemento de isPresent), remoción de JavaEE (javax.xml.bind, etc). Base de Spring Boot 2.x y muchos microservicios en producción hoy."
+  },
+  {
+    "id": 54,
+    "level": "Junior",
+    "category": "Strings",
+    "question": "¿Cuál es la diferencia entre String, StringBuilder y StringBuffer?",
+    "code": null,
+    "options": [
+      "String inmutable; StringBuilder mutable no sincronizado (rápido); StringBuffer mutable sincronizado (thread-safe pero lento)",
+      "StringBuilder es inmutable, StringBuffer mutable",
+      "Son equivalentes, solo cambia el nombre",
+      "StringBuffer es el más rápido para uso single-thread"
+    ],
+    "correct": 0,
+    "explanation": "Para concatenaciones en un hilo: StringBuilder. Para múltiples hilos: StringBuffer. String para valores constantes. Elegir mal impacta rendimiento. Pregunta real en entrevistas de optimización."
+  },
+  {
+    "id": 55,
+    "level": "Junior",
+    "category": "Strings",
+    "question": "¿Qué método se usa para dividir un String en partes?",
+    "code": "String[] parts = \"a,b,c\".split(\",\");",
+    "options": [
+      "split()",
+      "divide()",
+      "tokenize()",
+      "substring()"
+    ],
+    "correct": 0,
+    "explanation": "split() usa regex internamente. Para delimitadores simples, es eficiente. Pero para splits muy frecuentes, considerar StringUtils de Apache Commons o usar indexOf manual."
+  },
+  {
+    "id": 56,
+    "level": "Junior",
+    "category": "Arrays",
+    "question": "¿Cómo se ordena un array en Java?",
+    "code": "int[] numbers = {3, 1, 2};\nArrays.sort(numbers);",
+    "options": [
+      "Arrays.sort() para primitivos (Dual-Pivot Quicksort) y objetos (TimSort)",
+      "Collections.sort() funciona también con arrays",
+      "Array.sort() no existe en Java",
+      "Solo se puede ordenar con bucles manuales"
+    ],
+    "correct": 0,
+    "explanation": "Arrays.sort() usa algoritmos optimizados: primitivos con Dual-Pivot Quicksort, objetos con TimSort (estable, O(n log n)). Pregunta de utilidad diaria."
+  },
+  {
+    "id": 57,
+    "level": "Junior",
+    "category": "Arrays",
+    "question": "¿Cuál es la diferencia entre array y ArrayList?",
+    "code": null,
+    "options": [
+      "Array tamaño fijo, puede almacenar primitivos; ArrayList tamaño dinámico, solo objetos (usa wrapper para primitivos)",
+      "ArrayList tiene tamaño fijo, array es dinámico",
+      "Ambos almacenan primitivos",
+      "ArrayList es más lento en todos los casos"
+    ],
+    "correct": 0,
+    "explanation": "ArrayList internamente usa array, pero maneja redimensionamiento automático. Preferir ArrayList por flexibilidad, arrays por máximo rendimiento y tipos primitivos."
+  },
+  {
+    "id": 58,
+    "level": "Mid",
+    "category": "Math & Numbers",
+    "question": "¿Qué son los números BigDecimal y cuándo usarlos?",
+    "code": "BigDecimal price = new BigDecimal(\"19.99\");",
+    "options": [
+      "Para operaciones financieras que requieren precisión exacta (sin errores de punto flotante)",
+      "Para mejorar rendimiento en cálculos matemáticos",
+      "Para números muy grandes (> 2^63)",
+      "Para convertir doubles a enteros"
+    ],
+    "correct": 0,
+    "explanation": "double/binary floating point no pueden representar exactamente 0.1. BigDecimal sí, pero es más lento. Indispensable en fintech, facturación, cualquier cálculo con dinero. Pregunta real en entrevistas bancarias."
+  },
+  {
+    "id": 59,
+    "level": "Mid",
+    "category": "Math & Numbers",
+    "question": "¿Qué es el problema de precisión con double y float?",
+    "code": "double result = 0.1 + 0.2; // ¿result == 0.3?",
+    "options": [
+      "No es exacto por representación binaria; 0.1 + 0.2 = 0.30000000000000004",
+      "Siempre es exacto",
+      "Depende de la arquitectura del procesador",
+      "Java corrige automáticamente el error"
+    ],
+    "correct": 0,
+    "explanation": "0.1 en binario es periódico. Usar double para dinero produce errores acumulativos. BigDecimal es la solución. Pregunta clásica sobre por qué no usar double en finanzas."
+  },
+  {
+    "id": 60,
+    "level": "Junior",
+    "category": "Date & Time",
+    "question": "¿Qué diferencias hay entre Date, Calendar y LocalDate (java.time)?",
+    "code": null,
+    "options": [
+      "Date/Calendar son mutables, diseño pobre; java.time (Java 8+) es inmutable, fluido, y separa fecha, hora, zona horaria (LocalDate, LocalTime, ZonedDateTime)",
+      "Son equivalentes, solo cambian de nombre",
+      "LocalDate es más lento que Date",
+      "Calendar es la API más moderna y recomendada"
+    ],
+    "correct": 0,
+    "explanation": "java.time (JSR-310) es la API moderna. Inmutable, thread-safe, métodos claros: plusDays(), minusMonths(). Date/Calendar están deprecados en la práctica. Pregunta para evaluar si usas Java moderno."
+  },
+  {
+    "id": 61,
+    "level": "Mid",
+    "category": "Date & Time",
+    "question": "¿Cómo se formatea una fecha en Java?",
+    "code": "LocalDate.now().format(DateTimeFormatter.ofPattern(\"dd/MM/yyyy\"));",
+    "options": [
+      "Con DateTimeFormatter (java.time) o SimpleDateFormat (legacy)",
+      "Con DateFormat.parse()",
+      "Con String.format()",
+      "Con toString() directamente"
+    ],
+    "correct": 0,
+    "explanation": "DateTimeFormatter (java.time) es thread-safe, a diferencia de SimpleDateFormat. Usar DateTimeFormatter.ofPattern() para formatos personalizados. Muy común en APIs REST."
+  },
+  {
+    "id": 62,
+    "level": "Junior",
+    "category": "Keywords",
+    "question": "¿Qué significa la palabra clave 'static'?",
+    "code": null,
+    "options": [
+      "Pertenece a la clase, no a instancias; se comparte entre todos los objetos",
+      "Solo se usa para constantes",
+      "Impide la herencia",
+      "Marca un método como privado"
+    ],
+    "correct": 0,
+    "explanation": "static: variable de clase (compartida), método de clase (sin this), bloque de inicialización estático (se ejecuta una vez al cargar la clase). Pregunta fundamental."
+  },
+  {
+    "id": 63,
+    "level": "Junior",
+    "category": "Keywords",
+    "question": "¿Qué significa 'final' en variables, métodos y clases?",
+    "code": null,
+    "options": [
+      "Variable: no puede reasignarse; Método: no puede sobrescribirse; Clase: no puede heredarse",
+      "Variable: solo para constantes; Método: privado; Clase: abstracta",
+      "Variable: valor constante; Método: estático; Clase: no se puede instanciar",
+      "Solo se aplica a variables, no a métodos o clases"
+    ],
+    "correct": 0,
+    "explanation": "final variable: valor asignado una sola vez. final método: previene overriding. final clase: previene herencia. Muy usado en inmutabilidad y diseño de APIs."
+  },
+  {
+    "id": 64,
+    "level": "Mid",
+    "category": "Keywords",
+    "question": "¿Cuál es la diferencia entre final, finally y finalize()?",
+    "code": null,
+    "options": [
+      "final: keyword; finally: bloque en excepciones; finalize(): método obsoleto llamado por GC",
+      "Son sinónimos para el mismo concepto",
+      "final: para constantes; finally: para excepciones; finalize: para limpieza de archivos",
+      "finalize() es el método principal de Object"
+    ],
+    "correct": 0,
+    "explanation": "Trampa clásica en entrevistas. La similitud en nombre confunde. final (keyword), finally (try-catch), finalize (deprecated). Pregunta para filtrar conocimiento básico vs avanzado."
+  },
+  {
+    "id": 65,
+    "level": "Junior",
+    "category": "Keywords",
+    "question": "¿Qué hace el operador 'instanceof'?",
+    "code": "if (obj instanceof String) { ... }",
+    "options": [
+      "Verifica si un objeto es instancia de una clase o implementa una interfaz",
+      "Compara dos objetos por contenido",
+      "Compara dos objetos por referencia",
+      "Crea una nueva instancia"
+    ],
+    "correct": 0,
+    "explanation": "instanceof es útil antes de castear. Desde Java 16, pattern matching permite instanceof String s, combinando verificación y declaración."
+  },
+  {
+    "id": 66,
+    "level": "Mid",
+    "category": "JVM Internals",
+    "question": "¿Qué es el ClassLoader y cuáles son los tipos principales?",
+    "code": null,
+    "options": [
+      "Carga clases .class en memoria; Bootstrap (JVM), Platform/Extension, Application/System",
+      "Compila código Java a bytecode",
+      "Ejecuta el método main",
+      "Gestiona la memoria heap"
+    ],
+    "correct": 0,
+    "explanation": "ClassLoader delegates: Bootstrap (rt.jar) → Platform (extensiones) → Application (classpath). Parent delegation evita cargar clases maliciosas. Pregunta avanzada para mid."
+  },
+  {
+    "id": 67,
+    "level": "Mid",
+    "category": "JVM Internals",
+    "question": "¿Qué es la reflexión (reflection) y cuándo se usa?",
+    "code": "Class<?> clazz = Class.forName(\"com.example.User\");\nMethod method = clazz.getMethod(\"getName\");",
+    "options": [
+      "Inspeccionar y modificar clases, métodos, campos en runtime; usado en frameworks (Spring, JUnit)",
+      "Optimizar código en tiempo de compilación",
+      "Generar bytecode más rápido",
+      "Validar tipos en tiempo de ejecución"
+    ],
+    "correct": 0,
+    "explanation": "Reflection permite frameworks como Spring (inyección de dependencias), JUnit (descubrir tests), Jackson (serialización). Tiene costo en rendimiento y rompe abstracciones."
+  },
+  {
+    "id": 68,
+    "level": "Mid",
+    "category": "JVM Internals",
+    "question": "¿Qué es StackOverflowError y cuándo ocurre?",
+    "code": "public void recursive() { recursive(); }",
+    "options": [
+      "Cuando el stack de llamadas (métodos anidados) supera su capacidad, típicamente por recursión infinita",
+      "Cuando no hay suficiente memoria heap",
+      "Cuando hay un deadlock",
+      "Cuando se llena el String Pool"
+    ],
+    "correct": 0,
+    "explanation": "Cada llamada a método agrega un frame al stack. Sin límite o recursión mal implementada: StackOverflowError. Diferenciar de OutOfMemoryError (heap). Pregunta real sobre debugging."
+  },
+  {
+    "id": 69,
+    "level": "Mid",
+    "category": "JVM Internals",
+    "question": "¿Qué regiones de memoria existen en la JVM?",
+    "code": null,
+    "options": [
+      "Heap (objetos), Stack (variables locales, llamadas a métodos), Metaspace (metadata de clases, reemplaza PermGen desde Java 8)",
+      "Solo Heap y Stack",
+      "Heap, Stack y Code Cache",
+      "Memoria principal y caché L1/L2"
+    ],
+    "correct": 0,
+    "explanation": "Pregunta académica importante. Metaspace está en memoria nativa (no en heap), evita el problema de PermGen (tamaño fijo). Útil para entender memory leaks y tuning."
+  },
+  {
+    "id": 70,
+    "level": "Junior",
+    "category": "Initialization",
+    "question": "¿Qué es un constructor y cuál es su propósito?",
+    "code": "public Person(String name) { this.name = name; }",
+    "options": [
+      "Inicializa el estado de un objeto al crearlo con 'new'",
+      "Destruye el objeto antes del GC",
+      "Es un método estático",
+      "Solo puede ser llamado explícitamente"
+    ],
+    "correct": 0,
+    "explanation": "Constructor tiene mismo nombre de la clase, sin tipo de retorno. Si no defines, Java provee constructor por defecto sin parámetros. Pregunta básica pero fundamental."
+  },
+  {
+    "id": 71,
+    "level": "Junior",
+    "category": "Initialization",
+    "question": "¿Qué es un bloque de inicialización (instance initializer)?",
+    "code": "class Demo {\n    { System.out.println(\"Instance init\"); }\n}",
+    "options": [
+      "Bloque que se ejecuta antes del constructor, por cada instancia creada",
+      "Bloque que se ejecuta una sola vez al cargar la clase",
+      "Sustituto del constructor",
+      "Se ejecuta después del constructor"
+    ],
+    "correct": 0,
+    "explanation": "Útil para inicialización común entre constructores. Raro en código moderno (se usan constructores o fábricas), pero aparece en legacy. Orden: static init → instance init → constructor."
+  },
+  {
+    "id": 72,
+    "level": "Junior",
+    "category": "Initialization",
+    "question": "¿Qué es un bloque estático (static initializer)?",
+    "code": "static { System.out.println(\"Static init\"); }",
+    "options": [
+      "Se ejecuta una sola vez cuando la clase se carga en memoria",
+      "Se ejecuta por cada objeto creado",
+      "Se ejecuta después del constructor",
+      "No se ejecuta nunca a menos que se llame explícitamente"
+    ],
+    "correct": 0,
+    "explanation": "Útil para inicializar recursos estáticos (conexiones, configuraciones). Se ejecuta antes que cualquier método estático o constructor."
+  },
+  {
+    "id": 73,
+    "level": "Junior",
+    "category": "Enums",
+    "question": "¿Qué es un enum en Java y qué ventajas ofrece?",
+    "code": "enum Day { MONDAY, TUESDAY, WEDNESDAY }",
+    "options": [
+      "Tipo seguro con constantes predefinidas; puede tener campos, métodos y constructores",
+      "Equivalente a ints con nombres",
+      "Solo para días de la semana",
+      "No puede tener métodos adicionales"
+    ],
+    "correct": 0,
+    "explanation": "enum en Java es más que constantes. Puede tener comportamiento: métodos, campos, implementar interfaces. Usado para estados, tipos, categorías. Mejor que constantes con int/string."
+  },
+  {
+    "id": 74,
+    "level": "Junior",
+    "category": "Enums",
+    "question": "¿Cómo se comparan enums? ¿Se puede usar '=='?",
+    "code": "if (day == Day.MONDAY) { ... }",
+    "options": [
+      "Sí, == es seguro porque enums son singletons (una sola instancia por constante)",
+      "No, debe usarse .equals() obligatoriamente",
+      "Solo funciona con .name()",
+      "La comparación no está permitida"
+    ],
+    "correct": 0,
+    "explanation": "Enums tienen instancia única por constante, por eso == es seguro y más rápido que equals(). Pregunta específica pero importante para evitar bugs."
+  },
+  {
+    "id": 75,
+    "level": "Mid",
+    "category": "Annotations",
+    "question": "¿Qué son las anotaciones (@Override, @Deprecated) y para qué sirven?",
+    "code": "@Override\npublic String toString() { ... }",
+    "options": [
+      "Metadatos que proporcionan información al compilador o en tiempo de ejecución",
+      "Comentarios especiales",
+      "Sustituto de Javadoc",
+      "Palabras clave como final o static"
+    ],
+    "correct": 0,
+    "explanation": "@Override: compilador verifica que estás sobrescribiendo correctamente. @Deprecated: marca código obsoleto. Las anotaciones personalizadas se usan en frameworks (Spring, JPA)."
+  },
+  {
+    "id": 76,
+    "level": "Junior",
+    "category": "Packages & Imports",
+    "question": "¿Para qué sirve el import static?",
+    "code": "import static java.lang.Math.PI;",
+    "options": [
+      "Importa miembros estáticos (métodos o constantes) para usarlos sin nombre de clase",
+      "Importa todas las clases de un paquete",
+      "Importa clases en tiempo de ejecución",
+      "No existe en Java"
+    ],
+    "correct": 0,
+    "explanation": "import static permite escribir sqrt(25) en lugar de Math.sqrt(25). Útil para constantes (PI) o métodos matemáticos. No abusar porque reduce legibilidad."
+  },
+  {
+    "id": 77,
+    "level": "Junior",
+    "category": "Access Modifiers",
+    "question": "Ordena los modificadores de acceso de más restrictivo a menos restrictivo",
+    "code": null,
+    "options": [
+      "private → default (package-private) → protected → public",
+      "public → protected → default → private",
+      "default → private → protected → public",
+      "protected → private → public → default"
+    ],
+    "correct": 0,
+    "explanation": "private (solo clase) → default (mismo paquete) → protected (paquete + subclases) → public (todos). Pregunta básica pero confunde en entrevistas."
+  },
+  {
+    "id": 78,
+    "level": "Mid",
+    "category": "Nested Classes",
+    "question": "¿Cuál es la diferencia entre static nested class y inner class (non-static)?",
+    "code": null,
+    "options": [
+      "Static nested class no tiene acceso a miembros de instancia de la clase externa; inner class sí (tiene referencia implícita a this$0)",
+      "No hay diferencia práctica",
+      "Inner class es más eficiente",
+      "Static nested class solo puede ser private"
+    ],
+    "correct": 0,
+    "explanation": "Inner class requiere instancia de la externa. Puede causar memory leaks si la instancia externa se mantiene viva sin necesitarla. Preferir static nested cuando no necesitas acceso a la externa."
+  },
+  {
+    "id": 79,
+    "level": "Junior",
+    "category": "Casting",
+    "question": "¿Qué es el casting implícito (widening) y explícito (narrowing)?",
+    "code": "int a = 10; long b = a; // implícito\ndouble d = 10.5; int e = (int) d; // explícito",
+    "options": [
+      "Widening: automático (int a long, sin pérdida); Narrowing: requiere cast, puede perder datos",
+      "Ambos son automáticos",
+      "Narrowing no requiere cast explícito",
+      "Solo existe widening en Java"
+    ],
+    "correct": 0,
+    "explanation": "Casting numérico es común en APIs que mezclan tipos. Nunca hacer narrowing sin verificar rango de valores (pérdida de datos)."
+  },
+  {
+    "id": 80,
+    "level": "Mid",
+    "category": "Performance",
+    "question": "¿Cómo afecta la creación excesiva de objetos al rendimiento?",
+    "code": null,
+    "options": [
+      "Aumenta presión sobre GC, posibles pausas y overhead de memoria",
+      "No afecta porque Java tiene GC automático",
+      "Solo afecta si son objetos grandes",
+      "El GC optimiza automáticamente sin impacto"
+    ],
+    "correct": 0,
+    "explanation": "En APIs de alto rendimiento, crear objetos en loops es problemático. Preferir reutilizar objetos (StringBuilder en lugar de String +), primitivos vs wrappers, y objetos inmutables compartidos. Pregunta real en entrevistas de optimización."
+  }
+]
