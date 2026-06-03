@@ -10,7 +10,7 @@ const BANKS_CONFIG = {
     { ai: 'deepseek', title: 'DeepSeek', emoji: '⚡', description: 'Más técnico y directo' },
   ],
   java_patrones: [
-    { ai: 'chatgpt', title: 'ChatGPT', emoji: '🤖', description: 'Balanceado y claro' },
+    { ai: 'chatgpt', title: 'ChatGPT', emoji: '🤖', description: 'Balanceado y claro', file: 'chatgpt_java_patrones_v2.json' },
     { ai: 'claude', title: 'Claude', emoji: '🧠', description: 'Más analítico' },
     { ai: 'deepseek', title: 'DeepSeek', emoji: '⚡', description: 'Más técnico y directo' },
   ],

@@ -1,0 +1,932 @@
+[
+  {
+    "id": 1,
+    "level": "Junior",
+    "category": "Clean Code",
+    "question": "¿Cuál es la mejor acción cuando un método tiene varios if/else anidados con lógica de negocio?",
+    "code": "public double calcularDescuento(String tipo) {\n    if (tipo.equals(\"VIP\")) {\n        if (monto > 1000) {\n            return 0.30;\n        } else {\n            return 0.20;\n        }\n    } else if (tipo.equals(\"REGULAR\")) {\n        return 0.10;\n    } else {\n        return 0.0;\n    }\n}",
+    "options": [
+      "Extraer cada rama a métodos privados con nombres descriptivos o aplicar Strategy Pattern",
+      "Agregar comentarios explicando cada rama del if/else",
+      "Convertir toda la lógica a una cadena de ternarios",
+      "Mover el método a una clase utilitaria estática"
+    ],
+    "correct": 0,
+    "explanation": "Los if/else anidados profundos violan el principio de responsabilidad única y reducen legibilidad. La solución es extraer métodos privados con nombres descriptivos (Early Return / Guard Clauses) o aplicar Strategy Pattern para eliminar los condicionales por polimorfismo."
+  },
+  {
+    "id": 2,
+    "level": "Junior",
+    "category": "Clean Code",
+    "question": "Se repite lógica de validación de email en tres clases distintas. ¿Cuál es la mejor acción de Clean Code?",
+    "code": "// En OrderService:\nif (!email.contains(\"@\") || !email.contains(\".\")) throw new RuntimeException();\n// En UserService (igual)\n// En NotificationService (igual)",
+    "options": [
+      "Duplicar la validación es aceptable porque cada clase puede evolucionar independientemente",
+      "Centralizar la lógica en un método utilitario o clase de dominio (ej. EmailValidator) y referenciarla desde las tres clases",
+      "Usar herencia para que las tres clases extiendan una clase base con la validación",
+      "Agregar un comentario en cada clase indicando que la lógica es intencionalmente duplicada"
+    ],
+    "correct": 1,
+    "explanation": "La duplicación viola DRY (Don't Repeat Yourself). Un cambio en la regla de validación requeriría modificar 3 clases. Lo correcto es extraer la lógica a un EmailValidator reutilizable. Herencia no aplica porque no hay relación 'es un' entre las clases."
+  },
+  {
+    "id": 3,
+    "level": "Junior",
+    "category": "Clean Code",
+    "question": "Se encuentran magic strings dispersas en el código. ¿Cuál es la refactorización correcta?",
+    "code": "if (order.getStatus().equals(\"PENDING\")) { ... }\nif (order.getStatus().equals(\"PENDING\")) { ... } // otra clase\nnotify(\"PENDING\");",
+    "options": [
+      "Reemplazar los literales por constantes o enums tipados (ej. OrderStatus.PENDING)",
+      "Agregar un comentario junto a cada literal explicando su significado",
+      "Mover todos los literales a un archivo de propiedades externo",
+      "Usar variables locales con el mismo valor en cada método"
+    ],
+    "correct": 0,
+    "explanation": "Las magic strings son frágiles: un typo produce bugs silenciosos, y cambiar el valor requiere buscar y reemplazar en todo el código. Usar enum o constantes tipadas centraliza el valor, activa el autocompletado del IDE y hace imposible los typos."
+  },
+  {
+    "id": 4,
+    "level": "Junior",
+    "category": "Clean Code",
+    "question": "Existen validaciones de negocio dispersas en controller, service y repository. ¿Cuál es la mejor práctica?",
+    "code": "// En OrderController:\nif (order.getAmount() <= 0) return ResponseEntity.badRequest();\n// En OrderService:\nif (order.getAmount() <= 0) throw new RuntimeException();\n// En OrderRepository:\nif (order.getAmount() <= 0) return;",
+    "options": [
+      "Centralizar las validaciones en la capa de servicio o en un objeto de dominio (ej. Order.validate()), eliminando las duplicadas",
+      "Mantener la validación en cada capa por seguridad en profundidad",
+      "Mover todas las validaciones al controller para fallar rápido",
+      "Usar anotaciones de Bean Validation (@NotNull) en todos los campos del modelo"
+    ],
+    "correct": 0,
+    "explanation": "Validar en múltiples capas con la misma lógica es duplicación. La validación de negocio pertenece a la capa de servicio o al modelo de dominio. Bean Validation (@NotNull) es complementaria para constraints de formato, pero la lógica de negocio debe estar centralizada y testeable."
+  },
+  {
+    "id": 5,
+    "level": "Junior",
+    "category": "Code Smells",
+    "question": "¿Qué code smell representa tener magic strings como 'ACTIVE', 'INACTIVE', 'PENDING' repetidas en múltiples clases?",
+    "code": "if (user.getState().equals(\"ACTIVE\")) { ... }\nif (user.getState().equals(\"ACTIVE\")) { ... } // otra clase",
+    "options": [
+      "Long Method",
+      "Feature Envy",
+      "Magic Numbers / Primitive Obsession",
+      "Shotgun Surgery"
+    ],
+    "correct": 2,
+    "explanation": "Primitive Obsession ocurre cuando se usan primitivos (String, int) para representar conceptos de dominio que merecen su propio tipo (enum UserState). Magic Numbers/Strings es una variante. Shotgun Surgery sería el efecto: un cambio requiere modificar múltiples clases."
+  },
+  {
+    "id": 6,
+    "level": "Junior",
+    "category": "Code Smells",
+    "question": "¿Qué code smell describe una clase OrderService con 800 líneas que maneja creación, pago, notificaciones y reportes?",
+    "code": "public class OrderService {\n    public Order create(...) { ... }\n    public void processPayment(...) { ... }\n    public void sendNotification(...) { ... }\n    public Report generateReport(...) { ... }\n    // ... 750 líneas más\n}",
+    "options": [
+      "Duplicate Code",
+      "Long Parameter List",
+      "God Class",
+      "Middle Man"
+    ],
+    "correct": 2,
+    "explanation": "God Class (también llamada Blob) es una clase que sabe demasiado y hace demasiado, acumulando responsabilidades de múltiples dominios. Viola SRP. La solución es extraer responsabilidades a clases dedicadas: PaymentService, NotificationService, ReportService."
+  },
+  {
+    "id": 7,
+    "level": "Junior",
+    "category": "Code Smells",
+    "question": "¿Qué code smell se identifica cuando agregar un nuevo tipo de pago requiere modificar 5 clases distintas?",
+    "code": "// Al añadir CRYPTO se debe modificar:\n// PaymentService, OrderController, ReportService,\n// NotificationService, AuditService",
+    "options": [
+      "Divergent Change",
+      "Shotgun Surgery",
+      "Feature Envy",
+      "Lazy Class"
+    ],
+    "correct": 1,
+    "explanation": "Shotgun Surgery: un solo cambio lógico requiere modificar muchas clases. Es el opuesto de Divergent Change (una clase cambia por muchas razones). La solución es consolidar la lógica relacionada con tipos de pago en un solo lugar (Strategy Pattern o enum con comportamiento)."
+  },
+  {
+    "id": 8,
+    "level": "Junior",
+    "category": "Code Smells",
+    "question": "Un método recibe 7 parámetros: nombre, apellido, email, telefono, ciudad, estado, pais. ¿Qué code smell es?",
+    "code": "public User createUser(String name, String lastName,\n    String email, String phone,\n    String city, String state, String country) { ... }",
+    "options": [
+      "Long Method",
+      "Data Clumps / Long Parameter List",
+      "Inappropriate Intimacy",
+      "Speculative Generality"
+    ],
+    "correct": 1,
+    "explanation": "Long Parameter List (y Data Clumps cuando esos parámetros aparecen juntos en varios métodos). La solución es agrupar parámetros relacionados en un objeto: un record/clase Address para los datos de ubicación y un CreateUserRequest como DTO de entrada."
+  },
+  {
+    "id": 9,
+    "level": "Junior",
+    "category": "DRY",
+    "question": "¿Cuál es la diferencia entre DRY (Don't Repeat Yourself) y duplicación legítima?",
+    "code": "// Caso A: misma validación de email en 3 servicios\n// Caso B: dos tests que configuran datos similares\n// pero cada uno verifica comportamiento diferente",
+    "options": [
+      "No existe duplicación legítima, DRY debe aplicarse siempre sin excepciones",
+      "DRY aplica a lógica de negocio y conocimiento; la duplicación en tests o código que puede evolucionar independientemente puede ser intencional",
+      "DRY solo aplica a métodos de más de 10 líneas",
+      "La duplicación es aceptable si está en clases del mismo paquete"
+    ],
+    "correct": 1,
+    "explanation": "DRY trata de no duplicar conocimiento, no de eliminar toda similitud de código. En tests, la duplicación puede mejorar legibilidad y aislamiento. El problema real es cuando cambiar una regla de negocio obliga a buscar y modificar múltiples lugares."
+  },
+  {
+    "id": 10,
+    "level": "Junior",
+    "category": "DRY",
+    "question": "Se aplica DRY extrayendo lógica común a una clase base por herencia. ¿Cuándo esto es un antipatrón?",
+    "code": "// BaseService tiene: validate(), log(), audit()\n// OrderService extends BaseService\n// UserService extends BaseService\n// PaymentService extends BaseService",
+    "options": [
+      "Nunca, la herencia es la forma correcta de aplicar DRY",
+      "Cuando las subclases no tienen relación 'es un' real y se usa herencia solo para reutilizar código, creando acoplamiento innecesario",
+      "Cuando la clase base tiene más de 5 métodos",
+      "Cuando las subclases sobrescriben algún método de la base"
+    ],
+    "correct": 1,
+    "explanation": "Herencia para reutilización (sin relación 'es un') es un antipatrón llamado 'Inheritance for code reuse'. OrderService no 'es un' BaseService. Lo correcto es composición: inyectar ValidationService, LogService como dependencias. 'Favor composition over inheritance'."
+  },
+  {
+    "id": 11,
+    "level": "Junior",
+    "category": "DRY",
+    "question": "¿Cómo aplicar DRY correctamente cuando varios métodos comparten lógica de mapeo entre DTO y entidad?",
+    "code": "// En OrderService.create(): Order order = new Order(dto.getId(), dto.getAmount()...)\n// En OrderService.update(): Order order = new Order(dto.getId(), dto.getAmount()...)\n// En OrderService.clone(): Order order = new Order(dto.getId(), dto.getAmount()...)",
+    "options": [
+      "Copiar el código es aceptable porque cada método puede necesitar evolucionar diferente",
+      "Extraer el mapeo a un método privado toEntity(OrderDTO dto) o usar un MapStruct mapper",
+      "Usar reflexión para mapear automáticamente los campos",
+      "Crear una clase abstracta con el método de mapeo"
+    ],
+    "correct": 1,
+    "explanation": "Extraer a un método privado toEntity() elimina la triplicación. En proyectos reales, MapStruct genera el código de mapeo en compilación, eliminando boilerplate y errores. Es una aplicación directa de DRY en la capa de transformación."
+  },
+  {
+    "id": 12,
+    "level": "Junior",
+    "category": "DRY",
+    "question": "¿Qué problema introduce una abstracción prematura al aplicar DRY?",
+    "code": "// Solo hay 2 usos similares, se crea:\npublic abstract class AbstractGenericProcessorFactoryBean<T,R>\n    extends BaseProcessorTemplate<T> { ... }",
+    "options": [
+      "Ninguno, más abstracción siempre es mejor",
+      "Complejidad innecesaria: si los dos casos divergen después, la abstracción complica más que simplifica (WET > wrong abstraction)",
+      "El compilador no puede optimizar código abstracto",
+      "Las abstracciones solo funcionan con más de 5 usos"
+    ],
+    "correct": 1,
+    "explanation": "La abstracción prematura (también conocida como 'wrong abstraction') es peor que duplicación. Sandi Metz dice: 'duplication is far cheaper than the wrong abstraction'. Extraer abstracción tiene sentido con 3+ usos reales con el mismo comportamiento."
+  },
+  {
+    "id": 13,
+    "level": "Junior",
+    "category": "DRY",
+    "question": "¿Cuál es la correcta aplicación del principio DRY para constantes de configuración usadas en múltiples clases?",
+    "code": "// En OrderService:    int MAX_RETRIES = 3;\n// En PaymentService:  int MAX_RETRIES = 3;\n// En EmailService:    int MAX_RETRIES = 3;",
+    "options": [
+      "Definir la constante en cada clase para mantener independencia",
+      "Centralizar en una clase de constantes o en application.properties e inyectarla con @Value",
+      "Usar una variable global estática en el Main",
+      "Duplicar es aceptable para constantes porque son solo números"
+    ],
+    "correct": 1,
+    "explanation": "Constantes duplicadas son un caso claro de DRY violation. Si el valor cambia (MAX_RETRIES = 5) hay que buscarlo en todo el proyecto. Lo correcto: centralizar en AppConstants o mejor aún en application.properties con @Value('${app.max-retries}') para que sea configurable sin recompilar."
+  },
+  {
+    "id": 14,
+    "level": "Junior",
+    "category": "SOLID",
+    "question": "¿Qué principio SOLID se viola cuando un método supera 100 líneas mezclando validación, lógica de negocio y persistencia?",
+    "code": "public void processOrder(OrderDTO dto) {\n    // 20 líneas: validar\n    // 40 líneas: calcular precios y descuentos\n    // 20 líneas: guardar en BD\n    // 20 líneas: enviar notificación\n}",
+    "options": [
+      "Open/Closed Principle",
+      "Single Responsibility Principle",
+      "Interface Segregation Principle",
+      "Dependency Inversion Principle"
+    ],
+    "correct": 1,
+    "explanation": "SRP: una clase/método debe tener una sola razón para cambiar. Este método tiene 4 razones para cambiar: cambio en reglas de validación, en lógica de precios, en persistencia o en notificaciones. La solución es dividir en métodos privados o delegar a servicios especializados."
+  },
+  {
+    "id": 15,
+    "level": "Junior",
+    "category": "SOLID",
+    "question": "¿Qué principio SOLID aplica cuando los nombres de variables son ambiguos como 'd', 'tmp', 'data', 'x'?",
+    "code": "public double calc(double d, int x) {\n    double tmp = d * x;\n    return tmp * 0.21;\n}",
+    "options": [
+      "Single Responsibility Principle",
+      "Open/Closed Principle",
+      "Interface Segregation Principle",
+      "Dependency Inversion Principle"
+    ],
+    "correct": 0,
+    "explanation": "SRP aplicado a nombres: cada variable y método debe tener una responsabilidad clara y su nombre debe comunicarla. 'd' debería ser 'precioBase', 'x' debería ser 'cantidad', 'tmp' debería ser 'subtotal', '0.21' debería ser la constante IVA. El código debe documentarse a sí mismo."
+  },
+  {
+    "id": 16,
+    "level": "Junior",
+    "category": "SOLID",
+    "question": "¿Qué principio SOLID aplica cuando deben agregarse nuevas reglas de descuento sin modificar el código existente?",
+    "code": "// ANTES (hay que modificar este método cada vez):\npublic double applyDiscount(String type, double amount) {\n    if (type.equals(\"VIP\")) return amount * 0.8;\n    if (type.equals(\"MEMBER\")) return amount * 0.9;\n    // Cada nueva regla: modificar aquí\n}",
+    "options": [
+      "Single Responsibility Principle",
+      "Open/Closed Principle",
+      "Interface Segregation Principle",
+      "Dependency Inversion Principle"
+    ],
+    "correct": 1,
+    "explanation": "OCP: abierto para extensión, cerrado para modificación. Cada nueva regla de descuento modifica el método existente, arriesgando romper las reglas anteriores. La solución: crear una interfaz DiscountStrategy con implementaciones por tipo, e inyectar la estrategia correspondiente sin tocar el código original."
+  },
+  {
+    "id": 17,
+    "level": "Junior",
+    "category": "SOLID",
+    "question": "Una interfaz Animal tiene métodos fly(), swim(), run() y todas las clases deben implementarlos. ¿Qué principio SOLID viola?",
+    "code": "interface Animal {\n    void fly();\n    void swim();\n    void run();\n}\nclass Dog implements Animal {\n    public void fly() { throw new UnsupportedOperationException(); }\n    public void swim() { ... }\n    public void run() { ... }\n}",
+    "options": [
+      "Single Responsibility Principle",
+      "Open/Closed Principle",
+      "Interface Segregation Principle",
+      "Dependency Inversion Principle"
+    ],
+    "correct": 2,
+    "explanation": "ISP: los clientes no deben depender de interfaces que no usan. Dog se ve forzado a implementar fly() con UnsupportedOperationException. La solución: segregar en interfaces Flyable, Swimmable, Runnable y que cada clase implemente solo las que corresponden."
+  },
+  {
+    "id": 18,
+    "level": "Junior",
+    "category": "SOLID",
+    "question": "¿Qué principio SOLID se viola cuando OrderService crea directamente sus dependencias con 'new'?",
+    "code": "public class OrderService {\n    private MySQLOrderRepository repo = new MySQLOrderRepository();\n    private SmtpEmailService email = new SmtpEmailService();\n    private StripePaymentGateway payment = new StripePaymentGateway();\n}",
+    "options": [
+      "Single Responsibility Principle",
+      "Open/Closed Principle",
+      "Interface Segregation Principle",
+      "Dependency Inversion Principle"
+    ],
+    "correct": 3,
+    "explanation": "DIP: depende de abstracciones, no de implementaciones concretas. OrderService está acoplado a MySQL, SMTP y Stripe. Para testear o cambiar de proveedor hay que modificar OrderService. La solución: inyectar interfaces (OrderRepository, EmailService, PaymentGateway) via constructor injection."
+  },
+  {
+    "id": 19,
+    "level": "Junior",
+    "category": "SOLID",
+    "question": "¿Qué principio SOLID se viola cuando una clase Report tiene métodos para generar PDF, enviar email y guardar en BD?",
+    "code": "public class Report {\n    public byte[] generatePdf() { ... }\n    public void sendByEmail(String to) { ... }\n    public void saveToDatabase() { ... }\n}",
+    "options": [
+      "Single Responsibility Principle",
+      "Open/Closed Principle",
+      "Interface Segregation Principle",
+      "Dependency Inversion Principle"
+    ],
+    "correct": 0,
+    "explanation": "SRP: Report tiene tres razones para cambiar: cambio en generación PDF, en envío de email, en persistencia. Cada responsabilidad debe separarse: ReportGenerator, ReportEmailSender, ReportRepository. Esto también facilita el testing unitario de cada pieza de forma independiente."
+  },
+  {
+    "id": 20,
+    "level": "Junior",
+    "category": "SOLID",
+    "question": "Liskov Substitution Principle: ¿cuál es el problema con este diseño?",
+    "code": "class Rectangle {\n    void setWidth(int w) { this.width = w; }\n    void setHeight(int h) { this.height = h; }\n    int area() { return width * height; }\n}\nclass Square extends Rectangle {\n    void setWidth(int w) { this.width = w; this.height = w; }\n    void setHeight(int h) { this.width = h; this.height = h; }\n}",
+    "options": [
+      "Square no puede extender Rectangle porque Java no soporta herencia múltiple",
+      "Al sustituir Rectangle por Square el comportamiento cambia inesperadamente (setWidth también cambia height), violando LSP",
+      "Square necesita implementar una interfaz, no extender una clase",
+      "Rectangle debería ser abstracta para que funcione correctamente"
+    ],
+    "correct": 1,
+    "explanation": "LSP: los subtipos deben poder sustituir a sus tipos base sin alterar el comportamiento esperado. Un test que hace rect.setWidth(5); rect.setHeight(3); assert rect.area() == 15 fallará con Square. El diseño geométrico no equivale a relación de herencia en OOP."
+  },
+  {
+    "id": 21,
+    "level": "Mid",
+    "category": "Code Review",
+    "question": "En un code review encuentras que el servicio llama a un repositorio externo dentro de un bucle. ¿Cuál es el problema?",
+    "code": "public List<OrderDTO> getOrders(List<Long> ids) {\n    List<OrderDTO> result = new ArrayList<>();\n    for (Long id : ids) {\n        Order o = orderRepository.findById(id).orElseThrow(); // N queries\n        result.add(mapper.toDTO(o));\n    }\n    return result;\n}",
+    "options": [
+      "El bucle debería ser un Stream para mejor legibilidad",
+      "Problema N+1: se ejecuta una query por cada ID. Debe reemplazarse por findAllById(ids) que ejecuta una sola query",
+      "Se debe agregar @Transactional al método",
+      "El mapper debería ser estático para mejor rendimiento"
+    ],
+    "correct": 1,
+    "explanation": "El problema N+1 es uno de los bugs de rendimiento más comunes en Java/JPA. Con 1000 IDs se ejecutan 1000 queries en lugar de 1. La solución: orderRepository.findAllById(ids) ejecuta un solo SELECT WHERE id IN (...). Crítico en code reviews de backend."
+  },
+  {
+    "id": 22,
+    "level": "Mid",
+    "category": "Code Review",
+    "question": "En un code review encuentras este manejo de excepciones. ¿Cuál es el problema principal?",
+    "code": "try {\n    processPayment(order);\n} catch (Exception e) {\n    e.printStackTrace();\n    return null;\n}",
+    "options": [
+      "e.printStackTrace() es correcto, solo falta el log",
+      "Catch genérico de Exception oculta el tipo real del error, return null propaga nulls silenciosos, y printStackTrace no es logging estructurado",
+      "El método debería lanzar la excepción en lugar de capturarla",
+      "Solo falta agregar finally para cerrar recursos"
+    ],
+    "correct": 1,
+    "explanation": "Tres antipatrones en 3 líneas: (1) catch(Exception) captura hasta OutOfMemoryError, (2) return null fuerza al llamador a hacer null-checks o falla con NPE silenciosa, (3) printStackTrace en lugar de logger.error impide correlación de logs. Correcto: catch específico, lanzar excepción de dominio, usar SLF4J."
+  },
+  {
+    "id": 23,
+    "level": "Mid",
+    "category": "Code Review",
+    "question": "En un code review encuentras un método con 6 parámetros booleanos. ¿Qué comentario harías?",
+    "code": "public Report generate(boolean includeHeaders, boolean includeSummary,\n    boolean includeCharts, boolean exportPdf,\n    boolean sendEmail, boolean archiveResult) { ... }\n\n// Llamada:\ngenerate(true, false, true, false, true, false);",
+    "options": [
+      "Los booleanos son el tipo correcto, solo falta JavaDoc",
+      "Boolean parameters (Flag Arguments): la firma es ilegible y frágil. Refactorizar a un ReportOptions builder/record",
+      "Reducir a máximo 3 parámetros booleanos",
+      "Usar varargs: generate(boolean... options)"
+    ],
+    "correct": 1,
+    "explanation": "Flag Arguments es un code smell de Martin Fowler. Una llamada como generate(true,false,true,false,true,false) es completamente ilegible. La solución: ReportOptions.builder().includeHeaders(true).includeCharts(true).sendEmail(true).build(). Builder Pattern o record para opciones de configuración."
+  },
+  {
+    "id": 24,
+    "level": "Mid",
+    "category": "Code Review",
+    "question": "¿Qué problema crítico detectas en este code review?",
+    "code": "public class UserService {\n    public static List<User> activeUsers = new ArrayList<>();\n\n    public void addUser(User u) {\n        activeUsers.add(u);\n    }\n}",
+    "options": [
+      "La lista debería ser un Set para evitar duplicados",
+      "Estado mutable estático compartido: no es thread-safe, impide testing aislado y crea estado global implícito",
+      "El método addUser debería ser estático también",
+      "Falta anotación @Component para que Spring gestione el bean"
+    ],
+    "correct": 1,
+    "explanation": "Estado mutable estático es uno de los problemas más graves en aplicaciones concurrentes: múltiples threads modifican la misma lista sin sincronización. Además, en tests el estado persiste entre casos de prueba. Solución: lista como campo de instancia, inyección de dependencias vía Spring, o CopyOnWriteArrayList si necesita ser compartida."
+  },
+  {
+    "id": 25,
+    "level": "Mid",
+    "category": "Code Review",
+    "question": "Encuentras este código en un code review de Spring Boot. ¿Cuál es la mejor observación?",
+    "code": "@RestController\npublic class OrderController {\n    @Autowired\n    private OrderService orderService;\n    @Autowired\n    private UserService userService;\n    @Autowired\n    private PaymentService paymentService;\n    // 8 @Autowired más...\n}",
+    "options": [
+      "Usar @Autowired en campo es válido, no hay problema",
+      "Field injection con @Autowired oculta dependencias, impide final, dificulta testing; preferir constructor injection; además el controller tiene demasiadas dependencias (SRP violation)",
+      "Cambiar @Autowired por @Resource es la solución",
+      "Solo falta agregar @RequiredArgsConstructor de Lombok"
+    ],
+    "correct": 1,
+    "explanation": "Field injection es un antipatrón: (1) dependencias no son visibles en la API pública, (2) no permite final, (3) testing requiere reflection. Constructor injection (recomendado por Spring team y facilitado por @RequiredArgsConstructor) hace dependencias explícitas. 10 dependencias en un controller también indica SRP violation."
+  },
+  {
+    "id": 26,
+    "level": "Mid",
+    "category": "Code Review",
+    "question": "¿Qué problema de seguridad y diseño encuentras en este endpoint?",
+    "code": "@GetMapping(\"/users\")\npublic List<User> getAllUsers() {\n    return userRepository.findAll(); // Retorna entidad JPA directamente\n}",
+    "options": [
+      "Ninguno, retornar entidades JPA directamente es la forma más eficiente",
+      "Exposición de entidad JPA como respuesta HTTP: filtra campos internos (passwords, auditoría), crea acoplamiento entre capa API y BD, y puede causar LazyInitializationException",
+      "Solo falta agregar @ResponseBody",
+      "El método debería ser POST, no GET"
+    ],
+    "correct": 1,
+    "explanation": "Retornar entidades JPA directamente en la API es un antipatrón grave: (1) expone campos internos como contraseñas o campos de auditoría, (2) acopla el contrato API al modelo de BD, (3) en relaciones lazy puede serializar todo el grafo. Solución: usar DTOs (record UserDTO) con solo los campos necesarios."
+  },
+  {
+    "id": 27,
+    "level": "Mid",
+    "category": "Code Review",
+    "question": "¿Qué problema hay con este manejo de transacciones?",
+    "code": "@Service\npublic class OrderService {\n    public void createOrder(OrderDTO dto) {\n        Order order = orderRepository.save(toEntity(dto));\n        inventoryService.reduceStock(dto.getItems()); // puede fallar\n        paymentService.charge(dto.getPaymentInfo()); // puede fallar\n        // Sin @Transactional: si charge() falla, order y stock ya están guardados\n    }\n}",
+    "options": [
+      "El método necesita @Async para ejecutar en paralelo",
+      "Sin @Transactional, si cualquier paso falla quedan datos inconsistentes en BD (orden guardada sin pago, stock reducido sin orden confirmada)",
+      "Solo falta un try-catch alrededor del método completo",
+      "orderRepository.save() hace commit automático, no hay problema"
+    ],
+    "correct": 1,
+    "explanation": "Sin @Transactional no hay atomicidad: si paymentService.charge() lanza excepción, la orden ya existe en BD y el stock ya fue reducido — datos inconsistentes. @Transactional garantiza que todo el método sea una unidad atómica: si algo falla, el rollback deshace todos los cambios anteriores."
+  },
+  {
+    "id": 28,
+    "level": "Mid",
+    "category": "Code Review",
+    "question": "¿Cuál es el problema de rendimiento en este query JPQL?",
+    "code": "@Query(\"SELECT u FROM User u\")\nList<User> findAll();\n\n// Uso:\nList<User> users = userRepo.findAll();\nlong activeCount = users.stream()\n    .filter(u -> u.getStatus() == ACTIVE)\n    .count();",
+    "options": [
+      "JPQL no soporta streams de Java",
+      "Se cargan todos los usuarios en memoria para filtrar en Java lo que debería filtrarse en la BD con WHERE status = 'ACTIVE'",
+      "findAll() debería paginarse con Pageable",
+      "El stream debería usar parallelStream() para mejor rendimiento"
+    ],
+    "correct": 1,
+    "explanation": "Filtrado en memoria en lugar de en BD: si hay 1 millón de usuarios se cargan todos en heap para contar los activos. La solución: long countByStatus(UserStatus status) o @Query('SELECT COUNT(u) FROM User u WHERE u.status = :status'). Siempre filtrar, agregar y proyectar en la BD."
+  },
+  {
+    "id": 29,
+    "level": "Mid",
+    "category": "Java Coding Standards",
+    "question": "¿Cuál es la convención correcta de nomenclatura en Java para estos elementos?",
+    "code": "// ¿Cuál es correcto?\nclass order_service { }      // A\nclass OrderService { }        // B\nfinal int MAX_SIZE = 100;     // C\nfinal int maxSize = 100;      // D\nString GetUserName() { }      // E\nString getUserName() { }      // F",
+    "options": [
+      "A, D y E son correctos",
+      "B (PascalCase para clases), C (UPPER_SNAKE_CASE para constantes), F (camelCase para métodos) son los estándares Java",
+      "Solo importa ser consistente dentro del proyecto, no hay estándar oficial",
+      "B, D y F son correctos"
+    ],
+    "correct": 1,
+    "explanation": "Estándares Java (Oracle Code Conventions): Clases/Interfaces: PascalCase (OrderService). Constantes (static final): UPPER_SNAKE_CASE (MAX_SIZE). Métodos/Variables: camelCase (getUserName). Paquetes: lowercase (com.example.order). Seguirlos facilita la lectura por cualquier desarrollador Java."
+  },
+  {
+    "id": 30,
+    "level": "Mid",
+    "category": "Java Coding Standards",
+    "question": "¿Cuál es el problema con este uso de Optional?",
+    "code": "// MAL uso de Optional:\nOptional<User> userOpt = userService.findById(id);\nif (userOpt.isPresent()) {\n    User user = userOpt.get();\n    return user.getName();\n} else {\n    return \"Unknown\";\n}",
+    "options": [
+      "Optional no puede usarse en condiciones if",
+      "Se usa Optional como un simple null-check; el propósito es usar la API funcional: userOpt.map(User::getName).orElse('Unknown')",
+      "get() lanza excepción, debería usarse orElseThrow()",
+      "Optional debería evitarse siempre, usar null es más eficiente"
+    ],
+    "correct": 1,
+    "explanation": "Usar isPresent()+get() reproduce el patrón null-check que Optional intenta eliminar. La forma idiomática: userOpt.map(User::getName).orElse('Unknown'). Otras formas: orElseGet(() -> computeDefault()), orElseThrow(() -> new NotFoundException()). Optional comunica intención y fuerza al llamador a pensar en el caso vacío."
+  },
+  {
+    "id": 31,
+    "level": "Mid",
+    "category": "Java Coding Standards",
+    "question": "¿Cuál es el estándar correcto para comparar Strings en Java?",
+    "code": "String status = getStatus();\n\n// Opción A:\nif (status == \"ACTIVE\") { ... }\n\n// Opción B:\nif (status.equals(\"ACTIVE\")) { ... }\n\n// Opción C:\nif (\"ACTIVE\".equals(status)) { ... }",
+    "options": [
+      "A es correcto porque == es más rápido",
+      "B y C son correctos; C es preferible porque es null-safe (no lanza NPE si status es null)",
+      "Solo A es correcto para literales de String",
+      "Los tres son equivalentes en Java moderno"
+    ],
+    "correct": 1,
+    "explanation": "== compara referencias, no contenido (falla con new String()). B usa equals() correctamente pero lanza NPE si status es null. C ('ACTIVE'.equals(status)) es null-safe: si status es null retorna false en lugar de NPE. Patrón recomendado en Java. Con enums se puede usar == sin problema."
+  },
+  {
+    "id": 32,
+    "level": "Mid",
+    "category": "Java Coding Standards",
+    "question": "¿Cuál es la forma correcta de concatenar Strings en un bucle con muchas iteraciones?",
+    "code": "// ¿Cuál es más eficiente para concatenar 10,000 elementos?\n\n// Opción A:\nString result = \"\";\nfor (String item : items) {\n    result += item + \",\"; // Crea nuevo objeto String cada iteración\n}\n\n// Opción B:\nStringBuilder sb = new StringBuilder();\nfor (String item : items) {\n    sb.append(item).append(\",\");\n}\nString result = sb.toString();",
+    "options": [
+      "Opción A porque la JVM optimiza el operador +",
+      "Opción B: StringBuilder evita crear N objetos String intermedios en heap, es O(n) vs O(n²) de la concatenación con +",
+      "Son equivalentes porque el compilador optimiza + a StringBuilder",
+      "Usar String.join() siempre es preferible a ambas opciones"
+    ],
+    "correct": 1,
+    "explanation": "String + en bucle: el compilador optimiza dentro de una expresión pero NO entre iteraciones. Cada result += crea un nuevo String. Con 10k elementos: 10k objetos temporales en heap. StringBuilder reutiliza el mismo buffer. El compilador solo optimiza a SB dentro de una sola expresión, no en bucles."
+  },
+  {
+    "id": 33,
+    "level": "Mid",
+    "category": "Java Coding Standards",
+    "question": "¿Cuál es el problema con este uso de colecciones?",
+    "code": "public List<User> getUsers() {\n    return userRepository.findAll(); // Retorna ArrayList interno\n}\n\n// Consumidor:\nList<User> users = service.getUsers();\nusers.add(new User(\"hacker\")); // Modifica la lista interna",
+    "options": [
+      "No hay problema, el consumidor puede modificar la lista",
+      "El método expone la lista interna mutable; el consumidor puede modificarla inesperadamente. Retornar Collections.unmodifiableList() o List.copyOf()",
+      "Usar Set en lugar de List para evitar modificaciones",
+      "Marcar el método como synchronized"
+    ],
+    "correct": 1,
+    "explanation": "Exposición de representación interna (Effective Java Item 50: defensive copies). Si el repositorio retorna su lista interna y el servicio la expone directamente, el consumidor puede corromper el estado. Solución: return List.copyOf(list) o Collections.unmodifiableList(list). En APIs públicas, siempre hacer defensive copies."
+  },
+  {
+    "id": 34,
+    "level": "Mid",
+    "category": "Java Coding Standards",
+    "question": "¿Cuál es la forma idiomática de iterar un Map en Java moderno?",
+    "code": "Map<String, Integer> scores = getScores();\n\n// ¿Cuál es la forma recomendada?",
+    "options": [
+      "for (String key : scores.keySet()) { int val = scores.get(key); }",
+      "scores.forEach((key, value) -> process(key, value)) o for (Map.Entry<String,Integer> e : scores.entrySet())",
+      "for (int i = 0; i < scores.size(); i++) { scores.get(i); }",
+      "Iterator<String> it = scores.keySet().iterator(); while(it.hasNext())"
+    ],
+    "correct": 1,
+    "explanation": "Iterar keySet() y llamar get(key) es doble lookup en el mapa. entrySet() da clave+valor en una sola operación. En Java 8+, forEach con BiConsumer es la forma más expresiva. Para transformaciones: scores.entrySet().stream().filter(...).collect(...). Evitar iterator manual salvo que necesites remove() durante la iteración."
+  },
+  {
+    "id": 35,
+    "level": "Mid",
+    "category": "Exception Handling",
+    "question": "¿Cuál es la forma correcta de crear excepciones de dominio en una aplicación Spring Boot?",
+    "code": "// ¿Cuál diseño es correcto?\n\n// Opción A:\npublic void findOrder(Long id) {\n    throw new RuntimeException(\"Order not found: \" + id);\n}\n\n// Opción B:\npublic class OrderNotFoundException extends RuntimeException {\n    public OrderNotFoundException(Long id) {\n        super(\"Order not found with id: \" + id);\n    }\n}\npublic void findOrder(Long id) { throw new OrderNotFoundException(id); }",
+    "options": [
+      "Opción A es suficiente, el mensaje describe el error",
+      "Opción B: excepciones de dominio tipadas permiten manejo específico en @ControllerAdvice, logging diferenciado y API responses apropiados (404 vs 500)",
+      "En Spring Boot se deben usar solo checked exceptions",
+      "Ambas son equivalentes porque RuntimeException ya incluye el mensaje"
+    ],
+    "correct": 1,
+    "explanation": "Excepciones de dominio tipadas son esenciales en Spring Boot: @ControllerAdvice puede mapear OrderNotFoundException → 404, PaymentException → 402, etc. Con RuntimeException genérico todo se mapea a 500. Además facilita logging estructurado, monitoreo por tipo de error y documentación de la API (Swagger muestra las excepciones posibles)."
+  },
+  {
+    "id": 36,
+    "level": "Mid",
+    "category": "Exception Handling",
+    "question": "¿Cuál es el antipatrón en este manejo de excepciones checked?",
+    "code": "public void processFile(String path) throws Exception {\n    // ...\n}\n\npublic void service() throws Exception {\n    processFile(\"data.txt\");\n}\n\npublic void controller() throws Exception {\n    service();\n}",
+    "options": [
+      "Declarar throws Exception es correcto para máxima flexibilidad",
+      "Exception swallowing via propagation: throws Exception elimina información de tipo, fuerza a todos los llamadores a declarar throws Exception y desinforma sobre qué puede fallar",
+      "Solo la capa controller debería declarar throws Exception",
+      "Debería usarse throws Throwable para mayor cobertura"
+    ],
+    "correct": 1,
+    "explanation": "'throws Exception' es el equivalente de catch(Exception): borra información de tipo y contagia a toda la cadena de llamadas. Cada método debe declarar solo las excepciones que realmente puede lanzar (throws FileNotFoundException, throws IOException) o encapsularlas en excepciones de dominio unchecked. Spring prefiere unchecked exceptions."
+  },
+  {
+    "id": 37,
+    "level": "Mid",
+    "category": "Exception Handling",
+    "question": "¿Cuál es la forma correcta de manejar excepciones en un microservicio Spring Boot con múltiples endpoints?",
+    "code": "// ¿Cuál es el patrón correcto?\n\n// Opción A: try-catch en cada controller method\n@GetMapping(\"/{id}\")\npublic ResponseEntity<?> getOrder(@PathVariable Long id) {\n    try { ... } catch (OrderNotFoundException e) {\n        return ResponseEntity.notFound().build();\n    }\n}\n\n// Opción B:\n@RestControllerAdvice\npublic class GlobalExceptionHandler {\n    @ExceptionHandler(OrderNotFoundException.class)\n    @ResponseStatus(HttpStatus.NOT_FOUND)\n    public ErrorResponse handle(OrderNotFoundException e) { ... }\n}",
+    "options": [
+      "Opción A: el manejo local es más explícito y fácil de leer",
+      "Opción B: @RestControllerAdvice centraliza el manejo, elimina try-catch en controllers, garantiza respuestas consistentes y separa la responsabilidad de error-handling",
+      "Ambas son equivalentes, es cuestión de preferencia",
+      "Opción A si hay pocos endpoints, Opción B solo con más de 10 controllers"
+    ],
+    "correct": 1,
+    "explanation": "@RestControllerAdvice es el patrón estándar en Spring Boot para manejo global de excepciones: (1) controllers quedan limpios sin try-catch, (2) respuestas de error son consistentes (mismo formato JSON), (3) fácil agregar logging centralizado, (4) un solo lugar para mapear excepción → HTTP status. Patrón universal en proyectos profesionales."
+  },
+  {
+    "id": 38,
+    "level": "Mid",
+    "category": "Exception Handling",
+    "question": "¿Cuál es el problema con capturar y re-lanzar excepciones así?",
+    "code": "try {\n    repository.save(entity);\n} catch (DataAccessException e) {\n    throw new RuntimeException(e.getMessage()); // pierde stack trace original\n}",
+    "options": [
+      "DataAccessException no es compatible con RuntimeException",
+      "Se pierde el stack trace original al crear new RuntimeException(message): el diagnóstico se vuelve imposible porque no sabes dónde ocurrió el error realmente",
+      "Está bien, el mensaje tiene suficiente información",
+      "Solo falta hacer e.printStackTrace() antes de re-lanzar"
+    ],
+    "correct": 1,
+    "explanation": "Exception wrapping incorrecto: new RuntimeException(e.getMessage()) descarta el stack trace original. Correcto: throw new RuntimeException(e) — pasando la excepción original como causa. Aún mejor: throw new PersistenceException('Error saving entity', e) con una excepción de dominio tipada que encadena la causa original."
+  },
+  {
+    "id": 39,
+    "level": "Mid",
+    "category": "Refactoring",
+    "question": "¿Qué técnica de refactorización elimina la necesidad de este if/else anidado?",
+    "code": "public String getDiscount(User user) {\n    if (user != null) {\n        if (user.isActive()) {\n            if (user.isPremium()) {\n                return \"30%\";\n            } else {\n                return \"10%\";\n            }\n        } else {\n            return \"0%\";\n        }\n    } else {\n        return \"0%\";\n    }\n}",
+    "options": [
+      "Extraer el método a una clase separada",
+      "Guard Clauses (Early Return): invertir las condiciones negativas para salir temprano y aplanar la indentación",
+      "Reemplazar con un switch expression",
+      "Usar el operador ternario anidado"
+    ],
+    "correct": 1,
+    "explanation": "Guard Clauses (también llamado Early Return o Fail Fast): if (user == null) return '0%'; if (!user.isActive()) return '0%'; return user.isPremium() ? '30%' : '10%'. Elimina la pirámide de la muerte, reduce anidamiento y hace el flujo feliz más evidente. Técnica de refactoring de Martin Fowler."
+  },
+  {
+    "id": 40,
+    "level": "Mid",
+    "category": "Refactoring",
+    "question": "¿Qué refactorización aplica cuando un método de 120 líneas calcula, valida y persiste una orden?",
+    "code": "public void createOrder(OrderRequest req) {\n    // 30 líneas: validar request\n    // 40 líneas: calcular precios, impuestos, descuentos\n    // 30 líneas: persistir orden y líneas\n    // 20 líneas: publicar evento\n}",
+    "options": [
+      "Agregar comentarios separando cada sección del método",
+      "Extract Method: dividir en métodos privados validate(req), calculatePricing(req), persist(order), publishEvent(order) con nombres descriptivos",
+      "Mover el método completo a una clase utilitaria",
+      "Reducir el método eliminando la lógica de validación"
+    ],
+    "correct": 1,
+    "explanation": "Extract Method es la refactorización más fundamental (Martin Fowler). Cada sección con comentario es candidata a método propio. Resultado: createOrder queda como orquestador de 4 llamadas legibles. Cada método es testeable individualmente. Los comentarios desaparecen porque el nombre del método los reemplaza."
+  },
+  {
+    "id": 41,
+    "level": "Mid",
+    "category": "Refactoring",
+    "question": "¿Qué refactorización aplica para eliminar este switch con muchos casos que crecen constantemente?",
+    "code": "public double calculate(String type, double amount) {\n    switch (type) {\n        case \"TAX_MX\": return amount * 0.16;\n        case \"TAX_US\": return amount * 0.08;\n        case \"TAX_EU\": return amount * 0.21;\n        // Se agregan nuevos países frecuentemente\n        default: throw new IllegalArgumentException(type);\n    }\n}",
+    "options": [
+      "Agregar más casos al switch conforme se necesiten",
+      "Replace Conditional with Polymorphism: crear interfaz TaxCalculator con implementaciones por país, registradas en un Map<String, TaxCalculator>",
+      "Convertir el switch a if/else para mayor flexibilidad",
+      "Mover la lógica a la base de datos"
+    ],
+    "correct": 1,
+    "explanation": "Replace Conditional with Polymorphism: interface TaxCalculator { double calculate(double amount); }. Implementaciones: MexicoTaxCalculator, USTaxCalculator, EUTaxCalculator. Un Map<String,TaxCalculator> permite agregar nuevos países sin modificar el código existente (OCP). En Spring cada implementación puede ser un @Component con @Qualifier."
+  },
+  {
+    "id": 42,
+    "level": "Mid",
+    "category": "Refactoring",
+    "question": "¿Qué técnica de refactorización aplica cuando múltiples clases tienen los mismos campos 'createdAt', 'updatedAt', 'createdBy'?",
+    "code": "class Order { LocalDateTime createdAt; LocalDateTime updatedAt; String createdBy; ... }\nclass Product { LocalDateTime createdAt; LocalDateTime updatedAt; String createdBy; ... }\nclass User { LocalDateTime createdAt; LocalDateTime updatedAt; String createdBy; ... }",
+    "options": [
+      "Duplicar los campos es aceptable porque cada entidad es independiente",
+      "Extract Superclass o Extract Interface: crear clase base AuditableEntity con los campos de auditoría, o usar @MappedSuperclass en JPA",
+      "Usar composición: cada clase tiene un campo Audit audit",
+      "Tanto B como C son válidos; B con herencia (@MappedSuperclass), C con composición (@Embedded)"
+    ],
+    "correct": 3,
+    "explanation": "Ambas son técnicas válidas de refactoring para eliminar duplicación de campos de auditoría: @MappedSuperclass herencia para entidades JPA con campos idénticos; @Embedded/@Embeddable para composición si los campos son un concepto cohesivo (AuditInfo). En Spring Data JPA, @EntityListeners(AuditingEntityListener.class) + @CreatedDate/@LastModifiedDate automatiza el llenado."
+  },
+  {
+    "id": 43,
+    "level": "Mid",
+    "category": "Refactoring",
+    "question": "¿Qué refactorización aplica para mejorar este builder manual?",
+    "code": "public class UserDTO {\n    private String name;\n    private String email;\n    private String role;\n    \n    public UserDTO setName(String n) { this.name=n; return this; }\n    public UserDTO setEmail(String e) { this.email=e; return this; }\n    public UserDTO setRole(String r) { this.role=r; return this; }\n    // getters, 30 líneas de boilerplate\n}",
+    "options": [
+      "El builder manual está bien, no necesita refactorización",
+      "Usar record (Java 16+) para DTOs inmutables, o @Builder de Lombok para reducir boilerplate a cero",
+      "Convertir a clase abstracta para mayor flexibilidad",
+      "Agregar @JsonProperty en cada campo para mejorar la serialización"
+    ],
+    "correct": 1,
+    "explanation": "Para DTOs inmutables (Java 16+): record UserDTO(String name, String email, String role) {} — una línea genera constructor, getters, equals, hashCode, toString. Para objetos mutables con builder: @Data @Builder de Lombok elimina todo el boilerplate. En entrevistas se valora conocer estas herramientas modernas."
+  },
+  {
+    "id": 44,
+    "level": "Mid",
+    "category": "Refactoring",
+    "question": "¿Qué técnica de refactorización aplica para eliminar la duplicación entre estos dos métodos?",
+    "code": "public List<Order> getActiveOrders(Long userId) {\n    List<Order> all = orderRepo.findByUserId(userId);\n    return all.stream().filter(o -> o.getStatus() == ACTIVE)\n        .sorted(Comparator.comparing(Order::getCreatedAt))\n        .collect(Collectors.toList());\n}\npublic List<Order> getCancelledOrders(Long userId) {\n    List<Order> all = orderRepo.findByUserId(userId);\n    return all.stream().filter(o -> o.getStatus() == CANCELLED)\n        .sorted(Comparator.comparing(Order::getCreatedAt))\n        .collect(Collectors.toList());\n}",
+    "options": [
+      "Duplicar es correcto porque cada método puede evolucionar independientemente",
+      "Extract Method parametrizando el status: getOrdersByStatus(Long userId, OrderStatus status) elimina la duplicación manteniendo ambos métodos como delegadores",
+      "Combinar ambos métodos en uno que retorne todos los estados",
+      "Usar herencia para que cada clase implemente su propio filtro"
+    ],
+    "correct": 1,
+    "explanation": "Parameterize Method: la única diferencia entre los dos métodos es el valor de status. Extraer getOrdersByStatus(userId, status) y hacer que getActiveOrders/getCancelledOrders deleguen en él. Los métodos públicos se mantienen para una API clara pero sin duplicar la implementación. Aplicación directa de DRY."
+  },
+  {
+    "id": 45,
+    "level": "Mid",
+    "category": "Enum Behavior",
+    "question": "¿Cómo refactorizar este switch usando enum con comportamiento?",
+    "code": "public double applyTax(String country, double amount) {\n    switch (country) {\n        case \"MX\": return amount * 1.16;\n        case \"US\": return amount * 1.08;\n        case \"EU\": return amount * 1.21;\n        default: throw new IllegalArgumentException();\n    }\n}",
+    "options": [
+      "No es necesario refactorizar, el switch es claro",
+      "Crear enum Country { MX(1.16), US(1.08), EU(1.21); con campo rate y método applyTax(double amount) — el enum encapsula el comportamiento por categoría",
+      "Usar una interfaz con clases anónimas por país",
+      "Mover la lógica a un archivo de propiedades externo"
+    ],
+    "correct": 1,
+    "explanation": "Enum con comportamiento: enum Country { MX(0.16), US(0.08), EU(0.21); private final double taxRate; public double applyTax(double amount) { return amount * (1 + taxRate); } }. Uso: Country.MX.applyTax(100). El switch desaparece. Agregar un nuevo país solo requiere un nuevo enum value, no tocar la lógica existente (OCP)."
+  },
+  {
+    "id": 46,
+    "level": "Mid",
+    "category": "Enum Behavior",
+    "question": "¿Qué ventaja concreta tiene usar enum con comportamiento vs magic strings para estados de una orden?",
+    "code": "// Con magic strings:\nif (order.getStatus().equals(\"PENDING\")) { sendConfirmation(); }\nif (order.getStatus().equals(\"PAID\")) { prepareShipment(); }\n\n// Con enum:\norder.getStatus().handle(order); // cada estado sabe qué hacer",
+    "options": [
+      "El enum es solo azúcar sintáctico, funcionalmente son equivalentes",
+      "El enum elimina condicionales por polimorfismo, garantiza type-safety en compilación, activa autocompletado y permite que cada estado encapsule su propio comportamiento (State Pattern implícito)",
+      "Los enums son más lentos porque cargan todos los valores en memoria",
+      "Los enums solo aplican cuando hay menos de 10 estados"
+    ],
+    "correct": 1,
+    "explanation": "Enum con comportamiento implementa el patrón State sin clases adicionales: enum OrderStatus { PENDING { public void handle(Order o) { o.sendConfirmation(); } }, PAID { public void handle(Order o) { o.prepareShipment(); } }; abstract void handle(Order o); }. Ventajas: no hay switch, agregar estado = agregar enum value con su comportamiento, imposible tener typo."
+  },
+  {
+    "id": 47,
+    "level": "Mid",
+    "category": "Enum Behavior",
+    "question": "¿Por qué un enum con comportamiento es preferible cuando existen validaciones duplicadas por tipo?",
+    "code": "// En PaymentService:\nif (type.equals(\"CREDIT\")) validateCreditCard(data);\nif (type.equals(\"DEBIT\")) validateDebitCard(data);\n// En ReportService (mismo código)\n// En AuditService (mismo código)",
+    "options": [
+      "No hay razón para usar enum, las interfaces son superiores en este caso",
+      "El enum centraliza la validación por tipo: cada valor enum tiene su propio validate(), eliminando la duplicación en múltiples servicios y garantizando consistencia",
+      "Los enums no pueden tener métodos con lógica compleja",
+      "Solo aplica si hay exactamente 2 tipos de pago"
+    ],
+    "correct": 1,
+    "explanation": "enum PaymentType { CREDIT { public void validate(PaymentData d) { validateCard(d); } }, DEBIT { public void validate(PaymentData d) { validatePin(d); } }; abstract void validate(PaymentData d); }. Ahora PaymentService, ReportService y AuditService solo llaman type.validate(data). La lógica vive en un solo lugar."
+  },
+  {
+    "id": 48,
+    "level": "Mid",
+    "category": "Enum Behavior",
+    "question": "¿Cómo implementar correctamente un enum que registra sus instancias en un Map para lookup eficiente?",
+    "code": "enum HttpMethod {\n    GET, POST, PUT, DELETE;\n    \n    // ¿Cómo hacer lookup eficiente por string sin switch?\n    public static HttpMethod from(String method) {\n        // implementar\n    }\n}",
+    "options": [
+      "Usar un switch dentro del método from()",
+      "Usar un static Map inicializado en bloque estático: Map<String,HttpMethod> MAP = Arrays.stream(values()).collect(toMap(Enum::name, identity())); y retornar MAP.get(method)",
+      "Iterar values() con un for en cada llamada a from()",
+      "Usar valueOf() directamente sin necesidad de from()"
+    ],
+    "correct": 1,
+    "explanation": "El bloque estático inicializa el Map UNA sola vez al cargar la clase: private static final Map<String,HttpMethod> BY_NAME = Arrays.stream(values()).collect(Collectors.toMap(Enum::name, Function.identity())). Lookup O(1) vs O(n) con for. valueOf() funciona pero lanza IllegalArgumentException no controlable. El Map permite retornar Optional.ofNullable(BY_NAME.get(method))."
+  },
+  {
+    "id": 49,
+    "level": "Mid",
+    "category": "Strategy/Specification",
+    "question": "¿Cómo implementar Strategy Pattern en Spring Boot para múltiples tipos de notificación?",
+    "code": "// Antes:\nif (type.equals(\"EMAIL\")) sendEmail(msg);\nelse if (type.equals(\"SMS\")) sendSms(msg);\nelse if (type.equals(\"PUSH\")) sendPush(msg);\n\n// ¿Cómo refactorizar con Strategy en Spring?",
+    "options": [
+      "Crear una clase con métodos estáticos por cada tipo de notificación",
+      "Definir interfaz NotificationSender con método send(); crear @Component EmailSender, SmsSender, PushSender; inyectar List<NotificationSender> o Map<String,NotificationSender> en el servicio",
+      "Usar @Conditional en cada implementación",
+      "Crear un @Bean en @Configuration que retorne la implementación correcta"
+    ],
+    "correct": 1,
+    "explanation": "Spring inyecta automáticamente todas las implementaciones de una interfaz: @Autowired List<NotificationSender> senders — o mejor, un Map<String,NotificationSender> donde el key es el bean name. Agregar WHATSAPP solo requiere crear WhatsappSender @Component sin tocar el servicio existente. OCP + Strategy + IoC de Spring trabajando juntos."
+  },
+  {
+    "id": 50,
+    "level": "Mid",
+    "category": "Strategy/Specification",
+    "question": "¿Qué es el Specification Pattern y cuándo conviene sobre Strategy?",
+    "code": "// Múltiples reglas de filtrado combinables:\n// usuarios activos + premium + con pedidos > 5\n// usuarios inactivos + con deuda\n// usuarios premium + registrados este mes",
+    "options": [
+      "Specification es equivalente a Strategy, son intercambiables",
+      "Specification encapsula reglas de negocio booleanas combinables (and, or, not): Specification<User> spec = isActive().and(isPremium()).and(hasOrdersGreaterThan(5)). Ideal para criterios de búsqueda dinámicos con Spring Data JPA",
+      "Strategy es para comportamiento, Specification solo para SQL queries",
+      "Specification Pattern solo aplica en bases de datos relacionales"
+    ],
+    "correct": 1,
+    "explanation": "Specification Pattern (Evans DDD): encapsula una regla de negocio en un objeto combinable. Spring Data JPA lo implementa con la interfaz Specification<T>: isSatisfiedBy() y métodos and/or/not. Perfecto para búsquedas con múltiples filtros dinámicos. Strategy es para algoritmos intercambiables; Specification es para criterios de selección combinables."
+  },
+  {
+    "id": 51,
+    "level": "Mid",
+    "category": "Strategy/Specification",
+    "question": "¿Cuándo elegir Strategy Pattern sobre un simple mapa de funciones (Map<String, Function>)?",
+    "code": "// Opción A: Map de funciones\nMap<String, Function<Double, Double>> discounts = Map.of(\n    \"VIP\", amount -> amount * 0.7,\n    \"REGULAR\", amount -> amount * 0.9\n);\n\n// Opción B: Strategy con interfaz\ninterface DiscountStrategy {\n    double apply(double amount);\n    boolean isEligible(User user); // lógica adicional\n}",
+    "options": [
+      "Siempre usar Map de funciones porque es más conciso",
+      "Map de funciones cuando la lógica es simple (una función pura); Strategy con interfaz cuando las estrategias necesitan estado, múltiples métodos, o ser inyectadas como beans Spring",
+      "Strategy Pattern siempre, el Map de funciones no es orientado a objetos",
+      "Solo usar Map cuando hay menos de 5 estrategias"
+    ],
+    "correct": 1,
+    "explanation": "Map<String,Function> es ideal para lógica simple y stateless. Strategy con interfaz aplica cuando: (1) las estrategias tienen estado o dependencias, (2) necesitan múltiples métodos (apply + isEligible + describe), (3) deben ser beans Spring con @Autowired, (4) requieren testing individual. No hay solución universal: elegir según complejidad."
+  },
+  {
+    "id": 52,
+    "level": "Mid",
+    "category": "State Pattern",
+    "question": "¿Cómo implementar State Pattern para el ciclo de vida de un pedido en Java?",
+    "code": "// Estados: DRAFT → CONFIRMED → PAID → SHIPPED → DELIVERED\n// Cada estado tiene transiciones válidas diferentes\n// ¿Cómo evitar la explosión de if/else por estado?",
+    "options": [
+      "Usar un campo String status y validar en cada método con if/else",
+      "Definir interfaz OrderState con métodos confirm(), pay(), ship(); cada estado implementa solo las transiciones válidas y lanza IllegalStateException en las inválidas; Order delega en el estado actual",
+      "Usar enum con valores para cada estado y un switch en cada método de transición",
+      "Crear una clase por cada par origen-destino de transición"
+    ],
+    "correct": 1,
+    "explanation": "State Pattern: interface OrderState { void confirm(Order o); void pay(Order o); void ship(Order o); } Cada estado implementa sus transiciones válidas. DraftState.pay() lanza IllegalStateException('Must confirm first'). PaidState.confirm() lanza IllegalStateException('Already confirmed'). Order solo tiene order.getState().pay(order). Sin if/else de estado en ningún lado."
+  },
+  {
+    "id": 53,
+    "level": "Mid",
+    "category": "State Pattern",
+    "question": "¿Qué ventaja aporta State Pattern sobre un enum con comportamiento para modelar estados complejos?",
+    "code": "// State Pattern: clase por estado\nclass PaidOrderState implements OrderState {\n    private final PaymentInfo payment; // tiene estado propio\n    public void ship(Order o) { \n        if (payment.isVerified()) o.setState(new ShippedState(courier));\n    }\n}\n// vs Enum: no puede tener estado de instancia variable",
+    "options": [
+      "No hay ventaja, el enum con comportamiento siempre es preferible",
+      "State Pattern permite que cada estado tenga su propio estado de instancia y dependencias inyectables (Spring beans), mientras que los enum values comparten estado estático",
+      "State Pattern es más rápido que enum en tiempo de ejecución",
+      "Solo usar State Pattern cuando hay más de 10 estados"
+    ],
+    "correct": 1,
+    "explanation": "Enum con comportamiento: excelente para lógica simple sin estado de instancia variable. State Pattern completo: cada estado es un objeto con su propio estado (PaidOrderState guarda PaymentInfo), puede ser un Spring bean con dependencias inyectadas. Para flujos de trabajo complejos como saga en microservicios, State Pattern es superior. Para catálogos simples, enum es suficiente."
+  },
+  {
+    "id": 54,
+    "level": "Mid",
+    "category": "Composite Pattern",
+    "question": "¿Cuándo aplicar Composite Pattern en una aplicación Java?",
+    "code": "// Sistema de descuentos combinables:\n// descuento por volumen + descuento por cliente VIP + descuento por temporada\n// Cada combinación debe calcularse como un todo",
+    "options": [
+      "Cuando se necesita ordenar objetos en una colección",
+      "Cuando objetos individuales y composiciones deben tratarse uniformemente (estructura árbol): Discount es tanto una regla simple como una combinación de reglas",
+      "Cuando se necesita convertir una interfaz en otra",
+      "Para implementar lazy loading de objetos pesados"
+    ],
+    "correct": 1,
+    "explanation": "Composite Pattern: interface Discount { double apply(double amount); }. SimpleDiscount implementa Discount. CompositeDiscount tiene List<Discount> y aplica todos. Uso: new CompositeDiscount(vipDiscount, seasonalDiscount, volumeDiscount).apply(amount). El cliente trata un descuento simple igual que una combinación de descuentos. Útil para reglas de negocio combinables."
+  },
+  {
+    "id": 55,
+    "level": "Mid",
+    "category": "Composite Pattern",
+    "question": "¿Cómo se relaciona Composite Pattern con el principio Open/Closed en un sistema de validaciones?",
+    "code": "interface Validator<T> {\n    ValidationResult validate(T input);\n}\n\nclass CompositeValidator<T> implements Validator<T> {\n    private List<Validator<T>> validators;\n    public ValidationResult validate(T input) {\n        // aplica todos los validators\n    }\n}",
+    "options": [
+      "No hay relación entre Composite Pattern y OCP",
+      "Composite + OCP: agregar nuevas reglas de validación solo requiere crear una nueva clase Validator e incluirla en CompositeValidator, sin modificar las reglas existentes ni el composite",
+      "Composite Pattern viola OCP porque modifica la lista de validators",
+      "Solo se relacionan cuando se usa con Spring beans"
+    ],
+    "correct": 1,
+    "explanation": "Composite Pattern es una implementación natural de OCP para colecciones de comportamiento: NotNullValidator, EmailFormatValidator, UniquenessValidator son independientes. CompositeValidator los compone. Agregar MinLengthValidator no toca nada existente. En Spring: @Autowired List<Validator<UserDTO>> validators se inyecta automáticamente con todos los beans que implementan la interfaz."
+  },
+  {
+    "id": 56,
+    "level": "Mid",
+    "category": "Policy/Provider",
+    "question": "¿Qué es el Policy Pattern y cómo difiere de Strategy?",
+    "code": "// Strategy: algoritmo intercambiable en runtime\nsorter.setStrategy(new QuickSortStrategy());\n\n// Policy: regla de negocio encapsulada y combinable\ninterface ShippingPolicy {\n    boolean canShipTo(Address address);\n    double calculateCost(Order order);\n}",
+    "options": [
+      "Policy y Strategy son exactamente el mismo patrón con diferente nombre",
+      "Strategy intercambia algoritmos; Policy encapsula una regla de negocio completa con múltiples decisiones relacionadas. Policy es Strategy especializado para lógica de negocio con contexto de dominio",
+      "Policy solo aplica para cálculos de precios",
+      "Strategy es para Java, Policy es para Spring Boot específicamente"
+    ],
+    "correct": 1,
+    "explanation": "Policy Pattern (variante de Strategy en DDD): encapsula una política de negocio con múltiples aspectos relacionados (elegibilidad + cálculo + restricciones). ShippingPolicy tiene canShipTo() + calculateCost() + getEstimatedDays(). Permite intercambiar políticas completas: FreeShippingPolicy, ExpressShippingPolicy, InternationalShippingPolicy. Más cohesivo que Strategy cuando hay múltiples decisiones relacionadas."
+  },
+  {
+    "id": 57,
+    "level": "Mid",
+    "category": "Policy/Provider",
+    "question": "¿Cómo implementar Provider Pattern en Spring Boot para selección dinámica de implementaciones?",
+    "code": "// Múltiples proveedores de pago: Stripe, PayPal, MercadoPago\n// Se selecciona según configuración del comercio\n@Component\npublic class PaymentProviderFactory {\n    // ¿Cómo inyectar y seleccionar dinámicamente?\n}",
+    "options": [
+      "Usar if/else en el factory para retornar la implementación correcta",
+      "Inyectar Map<String, PaymentProvider> donde la key es el bean name; Spring auto-popula el mapa con todas las implementaciones @Component de PaymentProvider",
+      "Usar @Qualifier en cada punto de inyección del provider",
+      "Crear un @Bean condicional con @ConditionalOnProperty"
+    ],
+    "correct": 1,
+    "explanation": "Spring inyecta Map<String,PaymentProvider> automáticamente: key=bean name, value=implementación. @Component('stripe') StripeProvider, @Component('paypal') PayPalProvider. Factory: return providers.get(merchant.getPaymentProvider()). Agregar MercadoPago: crear @Component('mercadopago') sin tocar el factory. Patrón Service Locator gestionado por Spring, sin if/else."
+  },
+  {
+    "id": 58,
+    "level": "Mid",
+    "category": "Policy/Provider",
+    "question": "¿Cuándo un Provider Pattern con mapa es preferible a un simple if/else o switch?",
+    "code": "// Switch (20 casos hoy, creciendo):\nswitch (providerName) {\n    case \"STRIPE\": return new StripeService(config);\n    case \"PAYPAL\": return new PayPalService(config);\n    // ... 18 casos más, modificar aquí con cada nuevo proveedor\n}",
+    "options": [
+      "Nunca, el switch es más legible y mantenible",
+      "Cuando los casos crecen frecuentemente: el mapa elimina el switch, permite registro dinámico de providers, facilita testing con mocks y respeta OCP (nuevo provider = nueva clase, no modificar el factory)",
+      "Solo cuando hay más de 10 casos en el switch",
+      "Solo cuando los providers tienen dependencias externas"
+    ],
+    "correct": 1,
+    "explanation": "Un switch de factory que crece es el síntoma clásico de OCP violation. Con Map<String,PaymentProvider>: (1) agregar proveedor = nueva clase @Component, sin tocar el factory, (2) testing: mockear solo el proveedor bajo prueba, (3) carga dinámica: en runtime se puede registrar/desregistrar providers, (4) el switch desaparece. Usado extensamente en Spring (HandlerMapping, MessageConverter, etc)."
+  },
+  {
+    "id": 59,
+    "level": "Mid",
+    "category": "Chain/Command",
+    "question": "¿Cómo implementar Chain of Responsibility para un pipeline de validación en Spring Boot?",
+    "code": "// Validar una orden: formato → stock → precio → fraude → límite de crédito\n// Cada validación puede rechazar o pasar al siguiente\n// ¿Cómo evitar el acoplamiento entre validaciones?",
+    "options": [
+      "Crear un método con if/else para cada validación en secuencia",
+      "Definir interfaz OrderValidator con validate(OrderRequest, next) o usar una lista ordenada de validators ejecutándolos secuencialmente hasta que uno falle",
+      "Usar @Async para ejecutar todas las validaciones en paralelo",
+      "Poner todas las validaciones en un solo método de 200 líneas"
+    ],
+    "correct": 1,
+    "explanation": "Chain of Responsibility: cada validator decide si procesa la solicitud o la rechaza. En Spring: List<OrderValidator> validators inyectada (respetando @Order). Se itera hasta el primer fallo. Variante funcional: validators.stream().map(v -> v.validate(request)).filter(Result::isFailure).findFirst(). Desacopla las validaciones: cada una es testeable individualmente."
+  },
+  {
+    "id": 60,
+    "level": "Mid",
+    "category": "Chain/Command",
+    "question": "¿Qué problema resuelve Command Pattern y cómo se implementa en Java?",
+    "code": "// Sistema de órdenes con undo/redo:\n// createOrder, cancelOrder, updatePrice\n// Cada acción debe poder deshacerse",
+    "options": [
+      "Command Pattern es para manejo de excepciones en cadena",
+      "Encapsula una operación como objeto (Command): interface Command { void execute(); void undo(); }. Permite historial de operaciones, undo/redo, colas de comandos y logging de acciones",
+      "Command Pattern solo aplica para interacciones de UI",
+      "Es equivalente a usar lambdas, no necesita interfaz propia"
+    ],
+    "correct": 1,
+    "explanation": "Command Pattern: CreateOrderCommand { execute(): crea orden, guarda estado previo; undo(): revierte la creación }. Una pila de comandos ejecutados permite undo/redo. Usos en microservicios: queue de comandos procesados asincrónicamente, event sourcing (cada comando = evento), auditoría (log de comandos). Spring Batch usa este patrón para steps reversibles."
+  },
+  {
+    "id": 61,
+    "level": "Mid",
+    "category": "Chain/Command",
+    "question": "¿Qué patrón es más apropiado para un pipeline de procesamiento de pagos donde cada paso puede ser reordenado?",
+    "code": "// Pipeline: validar → enriquecer → calcular fees → notificar → persistir\n// Los pasos deben ser reordenables y opcionales según configuración",
+    "options": [
+      "Un método con todos los pasos en secuencia fija",
+      "Chain of Responsibility con pasos configurables: cada Step es un @Component con @Order, inyectados como List<PaymentStep>; el orden se controla por configuración",
+      "Strategy Pattern seleccionando el paso correcto por tipo",
+      "Factory Pattern creando el paso correcto según configuración"
+    ],
+    "correct": 1,
+    "explanation": "Chain of Responsibility como pipeline configurable: cada PaymentStep es un bean Spring con @Order. La lista se inyecta ordenada. En application.properties se puede activar/desactivar pasos con @ConditionalOnProperty. Para reordenar: cambiar @Order. Para agregar un paso: nueva clase @Component. Sin modificar el motor del pipeline. Patrón usado en Spring Security (FilterChain)."
+  },
+  {
+    "id": 62,
+    "level": "Mid",
+    "category": "Chain/Command",
+    "question": "¿Cómo combinar Command Pattern con una cola de mensajes (Kafka/SQS) en microservicios?",
+    "code": "// Operaciones asíncronas que deben ser trazables y retriables:\n// PlaceOrderCommand, CancelOrderCommand, RefundCommand\n// Cada comando debe procesarse una vez, poder reintentarse y auditarse",
+    "options": [
+      "Publicar strings con el nombre del comando, deserializar con if/else",
+      "Serializar cada Command como mensaje tipado: los consumers deserializan al Command concreto y lo ejecutan; el command lleva su propio contexto (correlationId, timestamp, userId) para trazabilidad y idempotencia",
+      "Command Pattern no aplica con messaging, solo para operaciones síncronas",
+      "Usar un solo topic genérico para todos los comandos sin tipado"
+    ],
+    "correct": 1,
+    "explanation": "Command como mensaje: PlaceOrderCommand { orderId, userId, items, correlationId, timestamp }. Publicado en Kafka/SQS como JSON. Consumer lo deserializa y ejecuta PlaceOrderCommandHandler. Beneficios: trazabilidad por correlationId, idempotencia por orderId, reintento sin duplicación, audit log natural. Este es el fundamento de CQRS y Event Sourcing en microservicios."
+  }
+]
