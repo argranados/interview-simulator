@@ -9,7 +9,7 @@ export default function TopicPage({ onSelect }) {
 
         // Fila 2 - NUEVOS TEMAS (todos como "Próximamente")
         { id: 'unit_testing', title: 'Unit Testing', emoji: '🧪', description: 'JUnit, Mockito, TDD', available: true },
-        { id: 'devops_java', title: 'DevOps Java', emoji: '🚀', description: 'CI/CD, Docker, Kubernetes', available: false },
+        { id: 'devops_java', title: 'DevOps Java', emoji: '🚀', description: 'CI/CD, Docker, Kubernetes', available: true },
         { id: 'aws_java', title: 'AWS Java Backend', emoji: '☁️', description: 'Lambda, RDS, S3, EC2', available: false },
     ]
 

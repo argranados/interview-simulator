@@ -30,6 +30,11 @@ const BANKS_CONFIG = {
     { ai: 'claude', title: 'Claude', emoji: '🧠', description: 'Más analítico' },
     { ai: 'deepseek', title: 'DeepSeek', emoji: '⚡', description: 'Más técnico y directo' },
   ],
+  devops_java: [
+    { ai: 'chatgpt', title: 'ChatGPT', emoji: '🤖', description: 'Balanceado y claro' },
+    { ai: 'claude', title: 'Claude', emoji: '🧠', description: 'Más analítico' },
+    { ai: 'deepseek', title: 'DeepSeek', emoji: '⚡', description: 'Más técnico y directo' },
+  ],
 }
 
 const TOPIC_LABELS = {
@@ -39,6 +44,7 @@ const TOPIC_LABELS = {
   java_arquitectura: 'Java Arquitectura',
   sql_java: 'SQL Java',        // ← agrega esta línea
   unit_testing: 'Unit Testing',
+  devops_java: 'DevOps Java',
 }
 
 export default function LandingPage({ onSelect, onBack, topic }) {

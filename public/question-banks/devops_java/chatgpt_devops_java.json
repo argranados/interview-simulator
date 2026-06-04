@@ -1,0 +1,752 @@
+[
+  {
+    "id": 1,
+    "level": "Junior",
+    "category": "Git",
+    "question": "¿Cuál es el propósito principal de un repositorio Git dentro del ciclo de desarrollo de software?",
+    "code": null,
+    "options": [
+      "Desplegar aplicaciones en producción",
+      "Ejecutar pipelines CI/CD",
+      "Almacenar el historial de cambios y versionar el código fuente",
+      "Gestionar contenedores Docker"
+    ],
+    "correct": 2,
+    "explanation": "Un repositorio Git almacena el código fuente junto con todo el historial de cambios realizados por los desarrolladores. Esto permite rastrear modificaciones, colaborar entre equipos, revertir cambios problemáticos y mantener distintas ramas de trabajo de forma controlada."
+  },
+  {
+    "id": 2,
+    "level": "Junior",
+    "category": "Git",
+    "question": "¿Cuál es la principal ventaja de trabajar en una branch separada para desarrollar una nueva funcionalidad?",
+    "code": null,
+    "options": [
+      "Incrementa el rendimiento de Git",
+      "Elimina la necesidad de Pull Requests",
+      "Permite trabajar sin afectar el código estable de otros desarrolladores",
+      "Reduce automáticamente los conflictos"
+    ],
+    "correct": 2,
+    "explanation": "Las branches permiten aislar cambios hasta que estén listos para integrarse. Esto facilita el trabajo paralelo entre desarrolladores y reduce el riesgo de introducir código incompleto en ramas principales."
+  },
+  {
+    "id": 3,
+    "level": "Junior",
+    "category": "Git",
+    "question": "¿Cuál es la diferencia más importante entre git fetch y git pull?",
+    "code": null,
+    "options": [
+      "git fetch descarga cambios sin fusionarlos en la rama actual",
+      "git fetch elimina commits locales",
+      "No existe diferencia práctica",
+      "git pull solo descarga cambios"
+    ],
+    "correct": 0,
+    "explanation": "git fetch descarga cambios desde el repositorio remoto sin modificar la rama actual. git pull realiza fetch y posteriormente merge sobre la rama activa. Esta diferencia suele preguntarse frecuentemente en entrevistas DevOps."
+  },
+  {
+    "id": 4,
+    "level": "Mid",
+    "category": "Git",
+    "question": "¿Cuál es el objetivo principal de un Pull Request dentro de un flujo de trabajo colaborativo?",
+    "code": null,
+    "options": [
+      "Crear una nueva branch",
+      "Ejecutar pruebas unitarias",
+      "Actualizar dependencias",
+      "Solicitar revisión antes de integrar cambios al código principal"
+    ],
+    "correct": 3,
+    "explanation": "Los Pull Requests permiten revisar cambios antes de incorporarlos a ramas compartidas. Facilitan revisiones de código, validaciones automáticas y discusiones técnicas dentro del equipo."
+  },
+  {
+    "id": 5,
+    "level": "Mid",
+    "category": "Git",
+    "question": "¿Cuál es la principal diferencia conceptual entre Merge y Rebase?",
+    "code": null,
+    "options": [
+      "Merge solo funciona en GitHub",
+      "Rebase elimina commits",
+      "Merge preserva el historial original; Rebase reescribe el historial",
+      "No existe diferencia significativa"
+    ],
+    "correct": 2,
+    "explanation": "Merge combina historiales creando un commit de integración. Rebase mueve commits sobre una nueva base y genera un historial más lineal, aunque modifica la historia existente."
+  },
+  {
+    "id": 6,
+    "level": "Mid",
+    "category": "Git",
+    "question": "Durante un merge aparecen conflictos en varios archivos. ¿Cuál es el procedimiento correcto para resolverlos?",
+    "code": null,
+    "options": [
+      "Reiniciar el repositorio",
+      "Eliminar los archivos afectados",
+      "Resolver manualmente los conflictos, hacer git add y completar el merge",
+      "Ejecutar git pull nuevamente"
+    ],
+    "correct": 2,
+    "explanation": "Los conflictos requieren intervención manual para decidir qué cambios conservar. Una vez resueltos, los archivos se agregan nuevamente al staging area y se finaliza la operación."
+  },
+  {
+    "id": 7,
+    "level": "Mid",
+    "category": "GitFlow",
+    "question": "Dentro de GitFlow, ¿qué rama contiene normalmente el código listo para producción?",
+    "code": null,
+    "options": [
+      "feature",
+      "main",
+      "release",
+      "develop"
+    ],
+    "correct": 1,
+    "explanation": "La rama main representa el estado estable y desplegable del sistema. Generalmente contiene únicamente versiones que han sido probadas y aprobadas para producción."
+  },
+  {
+    "id": 8,
+    "level": "Junior",
+    "category": "Git",
+    "question": "¿Qué representa un tag dentro de Git?",
+    "code": null,
+    "options": [
+      "Una rama temporal",
+      "Una configuración remota",
+      "Un commit sin historial",
+      "Una referencia a un punto específico de la historia utilizado para marcar versiones"
+    ],
+    "correct": 3,
+    "explanation": "Los tags suelen utilizarse para identificar releases o hitos importantes del proyecto. Permiten referenciar fácilmente versiones específicas del código."
+  },
+  {
+    "id": 9,
+    "level": "Mid",
+    "category": "Git",
+    "question": "¿Por qué muchas organizaciones prefieren Pull Requests obligatorios antes de integrar cambios a main?",
+    "code": null,
+    "options": [
+      "Porque Git no permite merges directos",
+      "Porque eliminan conflictos automáticamente",
+      "Porque reducen el tamaño del repositorio",
+      "Porque facilitan revisión de código y controles de calidad"
+    ],
+    "correct": 3,
+    "explanation": "Los Pull Requests introducen validaciones adicionales, revisiones por pares y ejecución automática de pipelines antes de aceptar cambios en ramas críticas."
+  },
+  {
+    "id": 10,
+    "level": "Mid",
+    "category": "Git",
+    "question": "¿Qué problema intenta resolver principalmente un sistema de control de versiones como Git?",
+    "code": null,
+    "options": [
+      "Coordinar cambios y mantener historial del código fuente",
+      "Automatizar despliegues",
+      "Gestionar infraestructura cloud",
+      "Monitorizar aplicaciones"
+    ],
+    "correct": 0,
+    "explanation": "Git permite rastrear cambios, colaborar entre desarrolladores, recuperar versiones anteriores y coordinar el trabajo simultáneo sobre el mismo proyecto."
+  },
+  {
+    "id": 11,
+    "level": "Junior",
+    "category": "CI/CD",
+    "question": "¿Cuál es el objetivo principal de Continuous Integration (CI) dentro del ciclo de desarrollo de software?",
+    "code": null,
+    "options": [
+      "Gestionar contenedores Docker",
+      "Monitorizar aplicaciones en tiempo real",
+      "Integrar cambios frecuentemente y validar que el código siga funcionando",
+      "Automatizar despliegues a producción"
+    ],
+    "correct": 2,
+    "explanation": "Continuous Integration busca que los desarrolladores integren cambios frecuentemente en una rama compartida. Cada integración dispara validaciones automáticas como compilación, análisis estático y pruebas, permitiendo detectar problemas tempranamente antes de que lleguen a etapas posteriores."
+  },
+  {
+    "id": 12,
+    "level": "Junior",
+    "category": "CI/CD",
+    "question": "¿Cuál es la principal diferencia entre Continuous Delivery y Continuous Deployment?",
+    "code": null,
+    "options": [
+      "Continuous Delivery reemplaza CI",
+      "No existe diferencia",
+      "Continuous Deployment publica automáticamente en producción; Continuous Delivery deja la liberación lista para aprobación",
+      "Continuous Deployment solo funciona con Jenkins"
+    ],
+    "correct": 2,
+    "explanation": "Continuous Delivery automatiza el proceso hasta dejar una versión lista para liberar. Continuous Deployment va un paso más allá y realiza la publicación en producción automáticamente cuando las validaciones son exitosas."
+  },
+  {
+    "id": 13,
+    "level": "Mid",
+    "category": "Jenkins",
+    "question": "¿Cuál es el propósito principal de Jenkins dentro de una estrategia DevOps?",
+    "code": null,
+    "options": [
+      "Gestionar repositorios Git",
+      "Crear imágenes Docker",
+      "Gestionar bases de datos",
+      "Automatizar pipelines de construcción, pruebas y despliegue"
+    ],
+    "correct": 3,
+    "explanation": "Jenkins es un servidor de automatización ampliamente utilizado para ejecutar pipelines CI/CD. Puede detectar cambios en repositorios, compilar aplicaciones, ejecutar pruebas y desplegar artefactos en diferentes ambientes."
+  },
+  {
+    "id": 14,
+    "level": "Mid",
+    "category": "GitHub Actions",
+    "question": "¿Cuál es una ventaja importante de GitHub Actions frente a una instalación tradicional de Jenkins?",
+    "code": null,
+    "options": [
+      "No requiere Git",
+      "Permite definir workflows directamente dentro del repositorio mediante YAML",
+      "No ejecuta pruebas automatizadas",
+      "Reemplaza Docker"
+    ],
+    "correct": 1,
+    "explanation": "GitHub Actions se integra nativamente con GitHub y permite definir pipelines mediante archivos YAML versionados junto al código. Esto simplifica configuración y mantenimiento comparado con muchas instalaciones tradicionales de Jenkins."
+  },
+  {
+    "id": 15,
+    "level": "Junior",
+    "category": "Maven",
+    "question": "¿Cuál es la responsabilidad principal de Maven dentro de un proyecto Java?",
+    "code": null,
+    "options": [
+      "Realizar despliegues blue-green",
+      "Ejecutar contenedores",
+      "Monitorizar aplicaciones",
+      "Gestionar dependencias y automatizar builds"
+    ],
+    "correct": 3,
+    "explanation": "Maven es una herramienta de automatización de builds y gestión de dependencias. Permite definir librerías, plugins y ciclo de vida del proyecto mediante el archivo pom.xml."
+  },
+  {
+    "id": 16,
+    "level": "Junior",
+    "category": "Maven",
+    "question": "¿Qué archivo contiene la configuración principal de un proyecto Maven?",
+    "code": null,
+    "options": [
+      "pom.xml",
+      "Dockerfile",
+      "application.yml",
+      "settings.gradle"
+    ],
+    "correct": 0,
+    "explanation": "El archivo pom.xml contiene dependencias, plugins, configuración de compilación y metadatos del proyecto. Es el elemento central de cualquier proyecto Maven."
+  },
+  {
+    "id": 17,
+    "level": "Mid",
+    "category": "Maven",
+    "question": "¿Qué representan groupId, artifactId y version dentro de Maven?",
+    "code": null,
+    "options": [
+      "Identificadores de módulos dentro de un proyecto multi-módulo Gradle",
+      "Parámetros de configuración del plugin de compilación de Maven",
+      "Las coordenadas únicas que identifican un artefacto en repositorios Maven",
+      "Propiedades del servidor en el archivo settings.xml de Maven"
+    ],
+    "correct": 2,
+    "explanation": "Las coordenadas Maven identifican de forma única cada artefacto dentro de repositorios. Permiten resolver dependencias correctamente y gestionar versiones entre proyectos."
+  },
+  {
+    "id": 18,
+    "level": "Mid",
+    "category": "Gradle",
+    "question": "¿Cuál es una ventaja frecuentemente asociada a Gradle respecto a Maven?",
+    "code": null,
+    "options": [
+      "Requiere definir todas las dependencias con versiones explícitas sin herencia",
+      "Usa únicamente XML igual que Maven pero con mejor rendimiento",
+      "Es idéntico a Maven en funcionalidad pero con sintaxis diferente",
+      "Builds incrementales y mayor flexibilidad mediante DSL en Groovy o Kotlin"
+    ],
+    "correct": 3,
+    "explanation": "Gradle ofrece mayor flexibilidad gracias a sus DSL basados en Groovy o Kotlin y suele destacar por sus builds incrementales y optimizaciones de rendimiento en proyectos grandes."
+  },
+  {
+    "id": 19,
+    "level": "Mid",
+    "category": "CI/CD Pipeline",
+    "question": "Dentro de un pipeline típico para una aplicación Java, ¿cuál suele ser el orden más común de ejecución?",
+    "code": null,
+    "options": [
+      "Ejecutar pruebas → Eliminar repositorio",
+      "Crear contenedor → Modificar código",
+      "Desplegar → Compilar → Ejecutar pruebas",
+      "Compilar → Ejecutar pruebas → Generar artefacto → Desplegar"
+    ],
+    "correct": 3,
+    "explanation": "La secuencia habitual consiste en compilar el código, ejecutar validaciones automáticas, generar artefactos desplegables y posteriormente realizar despliegues hacia distintos ambientes."
+  },
+  {
+    "id": 20,
+    "level": "Mid",
+    "category": "CI/CD Best Practices",
+    "question": "¿Por qué es recomendable que un pipeline falle inmediatamente cuando una etapa crítica no supera sus validaciones?",
+    "code": null,
+    "options": [
+      "Para reducir el tamaño del repositorio",
+      "Para eliminar conflictos Git",
+      "Para evitar consumir recursos ejecutando etapas posteriores sobre una versión inválida",
+      "Para acelerar Docker"
+    ],
+    "correct": 2,
+    "explanation": "El principio Fail Fast permite detectar errores tan pronto como ocurren. Continuar ejecutando etapas posteriores sobre una build ya inválida incrementa tiempo de ejecución, costo operativo y complejidad de diagnóstico."
+  },
+  {
+    "id": 21,
+    "level": "Junior",
+    "category": "Docker",
+    "question": "¿Cuál es la principal ventaja de ejecutar una aplicación Java dentro de un contenedor Docker en lugar de depender directamente del sistema operativo anfitrión?",
+    "code": null,
+    "options": [
+      "Reduce automáticamente el consumo de CPU",
+      "Elimina la necesidad de CI/CD",
+      "Garantiza que la aplicación se ejecute con el mismo entorno y dependencias en distintos ambientes",
+      "Reemplaza completamente Kubernetes"
+    ],
+    "correct": 2,
+    "explanation": "Uno de los principales beneficios de Docker es la portabilidad. La aplicación, junto con sus dependencias y configuración, viaja dentro de una imagen que puede ejecutarse de forma consistente en distintos entornos, reduciendo problemas clásicos como 'funciona en mi máquina'."
+  },
+  {
+    "id": 22,
+    "level": "Junior",
+    "category": "Docker",
+    "question": "¿Qué afirmación describe correctamente la diferencia entre una Docker Image y un Docker Container?",
+    "code": null,
+    "options": [
+      "No existe diferencia práctica",
+      "Un contenedor contiene múltiples imágenes",
+      "Una imagen es un contenedor detenido",
+      "Una imagen es una plantilla; un contenedor es una instancia en ejecución de esa imagen"
+    ],
+    "correct": 3,
+    "explanation": "Una Docker Image es un paquete inmutable que contiene aplicación, dependencias y configuración. Un Container es una instancia en ejecución creada a partir de una imagen."
+  },
+  {
+    "id": 23,
+    "level": "Junior",
+    "category": "Dockerfile",
+    "question": "¿Cuál es la responsabilidad principal de un Dockerfile dentro del proceso de containerización?",
+    "code": "FROM eclipse-temurin:21\nCOPY app.jar /app.jar\nENTRYPOINT [\"java\",\"-jar\",\"/app.jar\"]",
+    "options": [
+      "Orquestar múltiples contenedores con sus dependencias y variables de entorno",
+      "Configurar el runtime de Docker para limitar CPU y memoria de los contenedores",
+      "Definir los pasos necesarios para construir una imagen Docker de forma reproducible",
+      "Declarar los volúmenes y redes que utilizará el contenedor en producción"
+    ],
+    "correct": 2,
+    "explanation": "Dockerfile es un archivo declarativo que especifica cómo construir una imagen. Define imagen base, copia de archivos, instalación de dependencias y comando de inicio de la aplicación."
+  },
+  {
+    "id": 24,
+    "level": "Mid",
+    "category": "Docker",
+    "question": "Una aplicación Java necesita exponer el puerto interno 8080 para que pueda ser accedido desde el host. ¿Qué opción de docker run cumple este objetivo?",
+    "code": null,
+    "options": [
+      "-p 8080:8080",
+      "--memory=8080",
+      "--network host",
+      "-v 8080:8080"
+    ],
+    "correct": 0,
+    "explanation": "La opción -p permite mapear un puerto del host hacia un puerto interno del contenedor. Esto hace posible acceder a servicios que se ejecutan dentro del contenedor desde el exterior."
+  },
+  {
+    "id": 25,
+    "level": "Mid",
+    "category": "Docker Volumes",
+    "question": "¿Qué problema intenta resolver principalmente el uso de Docker Volumes para una base de datos ejecutándose en contenedores?",
+    "code": null,
+    "options": [
+      "Eliminar la necesidad de backups",
+      "Aumentar automáticamente el rendimiento",
+      "Persistir datos aunque el contenedor sea eliminado o recreado",
+      "Reducir el tamaño de las imágenes"
+    ],
+    "correct": 2,
+    "explanation": "Los contenedores son efímeros. Sin mecanismos de persistencia, los datos pueden perderse cuando el contenedor desaparece. Los volúmenes permiten almacenar información fuera del ciclo de vida del contenedor."
+  },
+  {
+    "id": 26,
+    "level": "Mid",
+    "category": "Docker Compose",
+    "question": "¿Cuál es el principal caso de uso de Docker Compose dentro de un entorno de desarrollo?",
+    "code": null,
+    "options": [
+      "Compilar proyectos Maven",
+      "Ejecutar pruebas unitarias",
+      "Orquestar múltiples servicios relacionados mediante una configuración declarativa",
+      "Reemplazar GitHub"
+    ],
+    "correct": 2,
+    "explanation": "Docker Compose permite definir aplicaciones compuestas por múltiples servicios, como una API Java, una base de datos y Redis, utilizando un único archivo YAML."
+  },
+  {
+    "id": 27,
+    "level": "Mid",
+    "category": "Docker Networking",
+    "question": "¿Cuál es la red predeterminada utilizada por Docker cuando no se especifica una configuración adicional?",
+    "code": null,
+    "options": [
+      "Overlay",
+      "Host",
+      "Bridge",
+      "None"
+    ],
+    "correct": 2,
+    "explanation": "Bridge es la red predeterminada en Docker. Permite comunicación entre contenedores del mismo host utilizando direcciones IP privadas administradas por Docker."
+  },
+  {
+    "id": 28,
+    "level": "Mid",
+    "category": "Docker Best Practices",
+    "question": "¿Por qué suele recomendarse utilizar imágenes base ligeras al construir contenedores para aplicaciones Java?",
+    "code": null,
+    "options": [
+      "Eliminan la necesidad de pruebas",
+      "Evitan el uso de volúmenes",
+      "Incrementan automáticamente la memoria disponible",
+      "Reducen superficie de ataque, tiempo de descarga y consumo de almacenamiento"
+    ],
+    "correct": 3,
+    "explanation": "Las imágenes pequeñas suelen descargarse más rápido, consumir menos almacenamiento y contener menos paquetes potencialmente vulnerables. Esto mejora seguridad y eficiencia operativa."
+  },
+  {
+    "id": 29,
+    "level": "Mid",
+    "category": "Docker Runtime",
+    "question": "¿Cuál es la diferencia conceptual más importante entre CMD y ENTRYPOINT en un Dockerfile?",
+    "code": null,
+    "options": [
+      "No existe diferencia",
+      "CMD crea imágenes y ENTRYPOINT crea contenedores",
+      "CMD solo funciona en Linux",
+      "ENTRYPOINT define el ejecutable principal; CMD proporciona argumentos o comportamiento por defecto"
+    ],
+    "correct": 3,
+    "explanation": "ENTRYPOINT define el proceso principal que se ejecutará dentro del contenedor. CMD suele utilizarse para proporcionar argumentos por defecto que pueden ser sobrescritos durante la ejecución."
+  },
+  {
+    "id": 30,
+    "level": "Mid",
+    "category": "Docker Resources",
+    "question": "¿Por qué puede ser importante limitar CPU y memoria asignadas a un contenedor en producción?",
+    "code": "docker run --cpus=.5 --memory=512m my-app",
+    "options": [
+      "Para reducir el tamaño de la imagen",
+      "Para reemplazar monitoreo",
+      "Para eliminar logs automáticamente",
+      "Para evitar que un contenedor consuma recursos excesivos y afecte a otros servicios"
+    ],
+    "correct": 3,
+    "explanation": "La limitación de recursos ayuda a mantener estabilidad en entornos compartidos. Sin restricciones, una aplicación defectuosa o con fugas de memoria podría consumir recursos críticos y afectar otros servicios ejecutándose en el mismo host."
+  },
+  {
+    "id": 31,
+    "level": "Junior",
+    "category": "Kubernetes",
+    "question": "¿Cuál es la unidad más pequeña desplegable dentro de Kubernetes y qué suele contener?",
+    "code": null,
+    "options": [
+      "Service",
+      "Node",
+      "Deployment",
+      "Pod"
+    ],
+    "correct": 3,
+    "explanation": "El Pod es la unidad mínima desplegable en Kubernetes. Generalmente contiene uno o varios contenedores que comparten red y almacenamiento. En aplicaciones Java es común que cada Pod ejecute una instancia de la aplicación."
+  },
+  {
+    "id": 32,
+    "level": "Junior",
+    "category": "Kubernetes",
+    "question": "¿Cuál es la responsabilidad principal de un Deployment dentro de Kubernetes?",
+    "code": null,
+    "options": [
+      "Almacenar logs",
+      "Crear imágenes Docker",
+      "Ejecutar pipelines CI/CD",
+      "Gestionar el estado deseado de Pods y actualizaciones"
+    ],
+    "correct": 3,
+    "explanation": "Deployment permite declarar cuántas réplicas deben existir, qué imagen utilizar y cómo realizar actualizaciones. Kubernetes se encarga de mantener ese estado deseado automáticamente."
+  },
+  {
+    "id": 33,
+    "level": "Mid",
+    "category": "Kubernetes",
+    "question": "Una aplicación Java necesita ejecutarse con 5 instancias para soportar carga. ¿Qué recurso de Kubernetes se utiliza normalmente para mantener esa cantidad de Pods disponibles?",
+    "code": null,
+    "options": [
+      "ConfigMap",
+      "ReplicaSet gestionado por un Deployment",
+      "Secret",
+      "Ingress"
+    ],
+    "correct": 1,
+    "explanation": "Los Deployments utilizan internamente ReplicaSets para garantizar que el número deseado de Pods permanezca disponible incluso si algunos fallan."
+  },
+  {
+    "id": 34,
+    "level": "Mid",
+    "category": "Kubernetes",
+    "question": "¿Cuál es el propósito principal de un ConfigMap dentro de Kubernetes?",
+    "code": null,
+    "options": [
+      "Ejecutar scripts de despliegue",
+      "Guardar configuraciones no sensibles separadas de la aplicación",
+      "Almacenar imágenes Docker",
+      "Escalar Pods automáticamente"
+    ],
+    "correct": 1,
+    "explanation": "ConfigMap permite externalizar configuraciones como URLs, parámetros o flags de comportamiento sin necesidad de reconstruir imágenes Docker."
+  },
+  {
+    "id": 35,
+    "level": "Mid",
+    "category": "Kubernetes Security",
+    "question": "¿Cuál es el recurso recomendado para almacenar credenciales como contraseñas o API Keys dentro de Kubernetes?",
+    "code": null,
+    "options": [
+      "ConfigMap",
+      "Service",
+      "Secret",
+      "Deployment"
+    ],
+    "correct": 2,
+    "explanation": "Secrets están diseñados para almacenar información sensible. Aunque no sustituyen completamente una estrategia de seguridad, son preferibles a almacenar credenciales directamente en imágenes o archivos de configuración."
+  },
+  {
+    "id": 36,
+    "level": "Mid",
+    "category": "Kubernetes Deployments",
+    "question": "¿Cuál es la principal ventaja de una Rolling Update respecto a detener todas las instancias y desplegar una nueva versión de una sola vez?",
+    "code": null,
+    "options": [
+      "Evita el uso de Pods",
+      "Elimina la necesidad de monitoreo",
+      "Reduce el tamaño de las imágenes",
+      "Reduce o elimina interrupciones para los usuarios"
+    ],
+    "correct": 3,
+    "explanation": "Rolling Updates reemplazan gradualmente instancias antiguas por nuevas, permitiendo mantener disponibilidad durante el despliegue."
+  },
+  {
+    "id": 37,
+    "level": "Mid",
+    "category": "Kubernetes Health Checks",
+    "question": "¿Qué problema intenta resolver principalmente una Liveness Probe?",
+    "code": null,
+    "options": [
+      "Balancear tráfico HTTP",
+      "Determinar si el contenedor sigue funcionando correctamente o debe reiniciarse",
+      "Crear réplicas automáticamente",
+      "Gestionar secretos"
+    ],
+    "correct": 1,
+    "explanation": "La Liveness Probe detecta procesos bloqueados o en estados irrecuperables. Si la validación falla repetidamente, Kubernetes reinicia el contenedor."
+  },
+  {
+    "id": 38,
+    "level": "Mid",
+    "category": "Kubernetes Health Checks",
+    "question": "¿Cuál es la diferencia principal entre Readiness Probe y Liveness Probe?",
+    "code": null,
+    "options": [
+      "Ambas son utilizadas únicamente por Docker",
+      "Readiness reinicia Pods y Liveness balancea tráfico",
+      "No existe diferencia",
+      "Readiness determina si el Pod puede recibir tráfico; Liveness si debe reiniciarse"
+    ],
+    "correct": 3,
+    "explanation": "Readiness controla cuándo un Pod está preparado para recibir tráfico. Liveness verifica si el proceso sigue sano y requiere reinicio cuando se detectan fallos graves."
+  },
+  {
+    "id": 39,
+    "level": "Mid",
+    "category": "Kubernetes Scaling",
+    "question": "¿Cuál es el propósito principal de un Horizontal Pod Autoscaler (HPA)?",
+    "code": null,
+    "options": [
+      "Distribuir el tráfico entrante entre los Pods disponibles según reglas de balanceo",
+      "Aumentar los recursos de CPU y memoria asignados a cada Pod existente sin crear nuevos",
+      "Incrementar o reducir automáticamente la cantidad de Pods según métricas como CPU o memoria",
+      "Reemplazar Pods fallidos manteniendo el número deseado de réplicas declarado en el Deployment"
+    ],
+    "correct": 2,
+    "explanation": "HPA permite escalar horizontalmente aplicaciones basándose en métricas como CPU, memoria o métricas personalizadas, mejorando capacidad de respuesta ante cambios de carga."
+  },
+  {
+    "id": 40,
+    "level": "Mid",
+    "category": "Kubernetes Troubleshooting",
+    "question": "Después de un despliegue, los Pods aparecen ejecutándose pero el tráfico nunca llega a la aplicación. ¿Qué elemento deberías revisar primero?",
+    "code": null,
+    "options": [
+      "La configuración de Maven Central",
+      "Readiness Probe y configuración del Service",
+      "El archivo pom.xml",
+      "Los commits Git"
+    ],
+    "correct": 1,
+    "explanation": "Uno de los problemas más comunes es que los Pods no estén marcados como Ready o que el Service no esté correctamente configurado. En ambos casos la aplicación puede estar ejecutándose pero no recibir tráfico."
+  },
+  {
+    "id": 41,
+    "level": "Junior",
+    "category": "Observability",
+    "question": "¿Cuál es el objetivo principal de la observabilidad en sistemas distribuidos modernos?",
+    "code": null,
+    "options": [
+      "Reducir el tamaño de las imágenes Docker",
+      "Eliminar la necesidad de monitoreo",
+      "Comprender el comportamiento interno de un sistema a partir de métricas, logs y trazas",
+      "Reemplazar herramientas CI/CD"
+    ],
+    "correct": 2,
+    "explanation": "La observabilidad busca proporcionar suficiente información para comprender qué está ocurriendo dentro de un sistema complejo. Se apoya principalmente en métricas, logs y trazas distribuidas para diagnosticar problemas, analizar rendimiento y entender el comportamiento de aplicaciones en producción."
+  },
+  {
+    "id": 42,
+    "level": "Junior",
+    "category": "Monitoring",
+    "question": "¿Cuál de los siguientes elementos representa una métrica dentro de una estrategia de monitoreo?",
+    "code": null,
+    "options": [
+      "Archivo Dockerfile",
+      "Tiempo promedio de respuesta de una API",
+      "Commit de Git",
+      "Configuración de Maven"
+    ],
+    "correct": 1,
+    "explanation": "Las métricas representan valores numéricos que permiten medir el comportamiento de un sistema. Ejemplos comunes incluyen latencia, uso de CPU, consumo de memoria, throughput y cantidad de errores."
+  },
+  {
+    "id": 43,
+    "level": "Mid",
+    "category": "Distributed Tracing",
+    "question": "¿Cuál es la principal utilidad de un TraceId en una arquitectura distribuida basada en múltiples servicios?",
+    "code": null,
+    "options": [
+      "Agrupar logs de error relacionados con un mismo usuario en una ventana de tiempo",
+      "Identificar y correlacionar una solicitud completa a través de todos los servicios involucrados",
+      "Identificar el servicio de origen de una solicitud sin considerar los servicios intermedios",
+      "Medir el tiempo de respuesta individual de cada microservicio de forma independiente"
+    ],
+    "correct": 1,
+    "explanation": "El TraceId permite seguir una solicitud de extremo a extremo mientras atraviesa distintos componentes de la arquitectura. Es fundamental para diagnosticar problemas en sistemas distribuidos donde participan múltiples servicios."
+  },
+  {
+    "id": 44,
+    "level": "Mid",
+    "category": "Distributed Tracing",
+    "question": "¿Qué representa normalmente un Span dentro de una traza distribuida?",
+    "code": null,
+    "options": [
+      "El tiempo total de extremo a extremo medido desde el cliente hasta el último servicio",
+      "Una unidad de trabajo específica dentro de una solicitud, como una llamada HTTP o query a BD",
+      "Un conjunto de métricas de rendimiento asociadas a un servicio durante un intervalo de tiempo",
+      "El identificador único que agrupa todas las operaciones de una solicitud distribuida"
+    ],
+    "correct": 1,
+    "explanation": "Un Span representa una operación concreta realizada durante una solicitud. Por ejemplo, una llamada HTTP, una consulta a base de datos o una invocación entre microservicios."
+  },
+  {
+    "id": 45,
+    "level": "Mid",
+    "category": "Monitoring",
+    "question": "Una aplicación presenta errores esporádicos en producción. ¿Cuál suele ser la primera fuente de información que un ingeniero revisa para entender qué ocurrió?",
+    "code": null,
+    "options": [
+      "La rama develop",
+      "El pom.xml",
+      "Los logs generados por la aplicación",
+      "El Dockerfile"
+    ],
+    "correct": 2,
+    "explanation": "Los logs proporcionan información detallada sobre eventos ocurridos dentro de la aplicación. Son una de las herramientas más utilizadas para diagnosticar excepciones, errores de integración y problemas operativos."
+  },
+  {
+    "id": 46,
+    "level": "Mid",
+    "category": "Grafana",
+    "question": "¿Cuál es el propósito principal de Grafana dentro de una plataforma de observabilidad?",
+    "code": null,
+    "options": [
+      "Centralizar y correlacionar logs estructurados provenientes de múltiples servicios",
+      "Ejecutar queries ad-hoc sobre trazas distribuidas para identificar cuellos de botella",
+      "Visualizar métricas mediante dashboards configurables y definir alertas basadas en umbrales",
+      "Recolectar y almacenar métricas de series de tiempo desde múltiples fuentes"
+    ],
+    "correct": 2,
+    "explanation": "Grafana es una herramienta ampliamente utilizada para construir dashboards, visualizar métricas provenientes de distintas fuentes y configurar alertas que permitan detectar incidentes operativos."
+  },
+  {
+    "id": 47,
+    "level": "Mid",
+    "category": "SLI/SLO/SLA",
+    "question": "¿Qué representa un SLO (Service Level Objective) dentro de una estrategia de confiabilidad?",
+    "code": null,
+    "options": [
+      "Una política de despliegue",
+      "Un objetivo interno de calidad o disponibilidad que el servicio intenta cumplir",
+      "Un contrato legal con el proveedor cloud",
+      "Una herramienta de monitoreo"
+    ],
+    "correct": 1,
+    "explanation": "Un SLO define metas medibles de calidad del servicio, por ejemplo mantener disponibilidad del 99.9% o tiempos de respuesta por debajo de determinado umbral. Sirve como referencia para evaluar la salud operativa."
+  },
+  {
+    "id": 48,
+    "level": "Mid",
+    "category": "Deployments",
+    "question": "¿Cuál es la principal ventaja de una estrategia Canary Deployment frente a desplegar la nueva versión para todos los usuarios simultáneamente?",
+    "code": null,
+    "options": [
+      "Reemplaza instancias antiguas de forma secuencial sin reducir la capacidad disponible durante el despliegue",
+      "Despliega la nueva versión en paralelo y redirige solo usuarios internos para validación previa",
+      "Mantiene dos entornos completos idénticos y conmuta todo el tráfico de golpe entre ellos",
+      "Permite exponer gradualmente la nueva versión a un porcentaje reducido de usuarios para validar antes del rollout completo"
+    ],
+    "correct": 3,
+    "explanation": "Canary Deployment reduce riesgo liberando una nueva versión inicialmente a un pequeño subconjunto de usuarios. Si se detectan problemas, el impacto queda limitado antes de expandir el despliegue."
+  },
+  {
+    "id": 49,
+    "level": "Mid",
+    "category": "Deployments",
+    "question": "¿Cuál es la característica principal de una estrategia Blue-Green Deployment?",
+    "code": null,
+    "options": [
+      "Liberar la nueva versión progresivamente a subconjuntos de usuarios hasta el 100% del tráfico",
+      "Reemplazar instancias del entorno activo una por una con la nueva versión sin downtime",
+      "Ejecutar la nueva versión en paralelo con la anterior dividiendo el tráfico al 50% durante la validación",
+      "Mantener dos entornos idénticos activos y cambiar el tráfico completo de uno al otro de forma instantánea"
+    ],
+    "correct": 3,
+    "explanation": "Blue-Green Deployment utiliza dos entornos completos. Uno atiende tráfico mientras el otro recibe la nueva versión. Cuando la validación es exitosa, el tráfico se redirige al entorno actualizado, facilitando rollback rápido."
+  },
+  {
+    "id": 50,
+    "level": "Mid",
+    "category": "Incident Response",
+    "question": "Una nueva versión fue desplegada hace diez minutos y los errores HTTP 500 aumentan significativamente. ¿Cuál sería la acción más razonable antes de continuar con más despliegues?",
+    "code": null,
+    "options": [
+      "Incrementar la cantidad de commits",
+      "Eliminar los dashboards de monitoreo",
+      "Investigar métricas, logs y trazas; si es necesario ejecutar rollback de la versión",
+      "Reconstruir todos los contenedores sin analizar evidencia"
+    ],
+    "correct": 2,
+    "explanation": "Cuando una liberación coincide con un incremento de errores, la prioridad es recopilar evidencia mediante observabilidad. Métricas, logs y trazas permiten identificar rápidamente si la nueva versión es responsable. Si el impacto es significativo, un rollback controlado suele ser la decisión más segura."
+  }
+]
