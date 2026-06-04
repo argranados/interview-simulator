@@ -6,11 +6,9 @@ export default function TopicPage({ onSelect }) {
         { id: 'java_patrones', title: 'Java Patrones', emoji: '🧩', description: 'Design patterns', available: true },
         { id: 'java_arquitectura', title: 'Java Arquitectura', emoji: '🏛️', description: 'Arquitectura de software', available: true },
         { id: 'sql_java', title: 'SQL Java', emoji: '🗄️', description: 'Consultas, JDBC, Conceptos', available: true },
-
-        // Fila 2 - NUEVOS TEMAS (todos como "Próximamente")
         { id: 'unit_testing', title: 'Unit Testing', emoji: '🧪', description: 'JUnit, Mockito, TDD', available: true },
         { id: 'devops_java', title: 'DevOps Java', emoji: '🚀', description: 'CI/CD, Docker, Kubernetes', available: true },
-        { id: 'aws_java', title: 'AWS Java Backend', emoji: '☁️', description: 'Lambda, RDS, S3, EC2', available: false },
+        { id: 'aws_java', title: 'AWS Java Backend', emoji: '☁️', description: 'Lambda, RDS, S3, EC2', available: true },
     ]
 
     return (
