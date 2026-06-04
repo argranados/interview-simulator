@@ -1,0 +1,902 @@
+[
+  {
+    "id": 1,
+    "level": "Junior",
+    "category": "Microservices Patterns",
+    "question": "¿Cuál es el principal beneficio del patrón Strangler Fig al migrar un monolito a microservicios?",
+    "code": null,
+    "options": [
+      "Reescribir todo el monolito en una sola entrega para minimizar el tiempo de transición",
+      "Eliminar el monolito inmediatamente y reemplazarlo con microservicios desde el primer día",
+      "Permite escalar horizontalmente el monolito antes de dividirlo",
+      "Migrar funcionalidades de forma gradual e incremental, reduciendo el riesgo al mantener el sistema en producción durante la transición"
+    ],
+    "correct": 3,
+    "explanation": "Strangler Fig (Martin Fowler): se crea el nuevo sistema en paralelo al monolito, redirigiendo tráfico funcionalidad por funcionalidad. El monolito 'se estrangula' gradualmente. Ventaja clave: el sistema nunca deja de funcionar, los rollbacks son por funcionalidad individual, y el equipo aprende microservicios incrementalmente. Big Bang rewrites tienen historial de fracaso en proyectos grandes."
+  },
+  {
+    "id": 2,
+    "level": "Junior",
+    "category": "Microservices Patterns",
+    "question": "¿Cuándo es recomendable usar un API Gateway en una arquitectura de microservicios?",
+    "code": null,
+    "options": [
+      "Solo cuando hay más de 50 microservicios en producción",
+      "Cuando los clientes necesitan conocer la dirección interna de cada microservicio",
+      "Para centralizar autenticación, routing, rate limiting, SSL termination y observabilidad en un único punto de entrada, evitando que los clientes llamen directamente a los servicios internos",
+      "Únicamente para aplicaciones móviles, no para navegadores web"
+    ],
+    "correct": 2,
+    "explanation": "API Gateway es el patrón de entrada para arquitecturas de microservicios. Centraliza: autenticación/autorización (valida JWT una vez), routing (cliente llama a un solo host), rate limiting (protege servicios de sobrecarga), SSL termination (los servicios internos usan HTTP simple), logging centralizado. Sin Gateway, cada microservicio duplica estas responsabilidades. Spring Cloud Gateway y AWS API Gateway son implementaciones comunes."
+  },
+  {
+    "id": 3,
+    "level": "Junior",
+    "category": "Microservices Patterns",
+    "question": "¿Qué problema concreto resuelve el Outbox Pattern en arquitecturas de microservicios?",
+    "code": "// Sin Outbox: riesgo de inconsistencia\norderRepository.save(order);         // OK\nkafkaTemplate.send(\"orders\", event); // ¿Y si falla aquí?",
+    "options": [
+      "Mejora el rendimiento de las queries a la base de datos",
+      "Permite comunicación síncrona entre microservicios sin acoplamiento",
+      "Elimina la necesidad de usar mensajería como Kafka o RabbitMQ",
+      "Garantiza que un evento se publique si y solo si la transacción de base de datos fue exitosa, resolviendo la dualidad escritura-evento"
+    ],
+    "correct": 3,
+    "explanation": "Sin Outbox: si save() persiste pero send() falla, la orden existe en BD pero ningún servicio fue notificado — inconsistencia. Con Outbox: en la misma transacción se guarda la orden Y se inserta el evento en tabla 'outbox'. Un proceso separado (Debezium/CDC) lee la outbox y publica a Kafka. Si el publicador falla, reintenta desde la outbox. Atomicidad garantizada por la transacción de BD."
+  },
+  {
+    "id": 4,
+    "level": "Junior",
+    "category": "Microservices Patterns",
+    "question": "¿Cuándo conviene elegir Saga Orchestration sobre Saga Choreography?",
+    "code": null,
+    "options": [
+      "Cuando los servicios involucrados son menos de 3",
+      "Cuando se necesita un coordinador central que dirija los pasos de la saga, gestione el estado global y ejecute compensaciones ante fallos en flujos de negocio complejos",
+      "Cuando todos los servicios comparten la misma base de datos",
+      "Siempre que se use Kafka como broker de mensajería"
+    ],
+    "correct": 1,
+    "explanation": "Saga Orchestration: un servicio coordinador (Orchestrator) dirige el flujo: llama a ServicioA, si falla llama a compensación, luego llama a ServicioB, etc. Ventaja: visibilidad centralizada del estado de la saga, lógica de compensación clara. Desventaja: el orquestador se convierte en un punto central acoplado. Ideal para flujos complejos con múltiples pasos y compensaciones. Herramientas: Temporal, Conductor, Axon Framework."
+  },
+  {
+    "id": 5,
+    "level": "Junior",
+    "category": "Microservices Patterns",
+    "question": "¿Cuándo conviene usar Saga Choreography y cuál es su principal desventaja?",
+    "code": null,
+    "options": [
+      "Los servicios reaccionan a eventos entre sí sin coordinador central; su desventaja es que el flujo global es difícil de rastrear y depurar porque está distribuido entre múltiples servicios",
+      "Todos los servicios llaman a un orquestador central para coordinar sus acciones",
+      "Solo funciona con RabbitMQ, no con Kafka",
+      "Es idéntico a Saga Orchestration pero sin base de datos"
+    ],
+    "correct": 0,
+    "explanation": "Choreography: OrderService publica OrderCreated → PaymentService escucha y publica PaymentProcessed → InventoryService escucha y publica StockReserved. Ventaja: servicios completamente desacoplados, no hay coordinador central. Desventaja crítica: el flujo completo no existe en ningún lugar, rastrear qué pasó con una saga requiere correlacionar eventos en múltiples servicios. Recomendado para flujos simples (2-3 pasos)."
+  },
+  {
+    "id": 6,
+    "level": "Junior",
+    "category": "Microservices Patterns",
+    "question": "¿Qué ventaja principal aporta el patrón Database per Service y qué complejidad introduce?",
+    "code": null,
+    "options": [
+      "Permite hacer JOIN entre tablas de distintos servicios directamente en SQL",
+      "Reduce costos de infraestructura al compartir una BD entre todos los servicios",
+      "Cada servicio tiene su propia BD, lo que reduce el acoplamiento y permite escalar e iterar independientemente; introduce complejidad en consultas cross-service que requieren API Composition o CQRS",
+      "Garantiza consistencia fuerte (ACID) entre todos los servicios"
+    ],
+    "correct": 2,
+    "explanation": "Database per Service: OrderService tiene su MySQL, InventoryService su MongoDB, UserService su PostgreSQL. Beneficios: equipos independientes, escalado granular por servicio, libertad tecnológica. Trade-offs: no hay JOINs entre servicios (se resuelve con API Composition o vistas desnormalizadas), consistencia eventual en lugar de ACID distribuido, necesidad de Saga para transacciones cross-service."
+  },
+  {
+    "id": 7,
+    "level": "Junior",
+    "category": "Communication & Integration",
+    "question": "¿Cuál es la ventaja principal de gRPC sobre REST/JSON para comunicación entre microservicios?",
+    "code": null,
+    "options": [
+      "gRPC es más fácil de depurar con herramientas estándar como curl o Postman",
+      "gRPC usa HTTP/1.1 que tiene mayor compatibilidad que HTTP/2",
+      "Mayor eficiencia: usa Protocol Buffers (binario) en lugar de JSON (texto), HTTP/2 con multiplexing, tipado fuerte y generación de código cliente/servidor automática",
+      "gRPC elimina la necesidad de definir contratos entre servicios"
+    ],
+    "correct": 2,
+    "explanation": "gRPC vs REST: Protocol Buffers es 3-10x más compacto que JSON y más rápido de serializar. HTTP/2 permite múltiples requests en la misma conexión (multiplexing) y streaming bidireccional. El contrato .proto genera código tipado en múltiples lenguajes automáticamente. Desventaja: menos legible para humanos, requiere herramientas específicas. Ideal para comunicación interna entre microservicios donde el rendimiento importa."
+  },
+  {
+    "id": 8,
+    "level": "Junior",
+    "category": "Communication & Integration",
+    "question": "¿Cuál es la ventaja principal de GraphQL sobre REST y cuándo NO es la elección correcta?",
+    "code": null,
+    "options": [
+      "GraphQL siempre es superior a REST en todos los casos de uso",
+      "GraphQL solo funciona con bases de datos NoSQL",
+      "GraphQL es más rápido que REST porque usa WebSockets por defecto",
+      "El cliente solicita exactamente los campos que necesita, eliminando over-fetching y under-fetching; no es ideal para operaciones simples CRUD, APIs públicas de terceros o equipos sin experiencia en el paradigma"
+    ],
+    "correct": 3,
+    "explanation": "GraphQL resuelve el problema clásico de REST: una pantalla necesita datos de 3 endpoints (over-fetching) o un endpoint retorna campos de más (under-fetching). Con GraphQL el cliente define exactamente su query. Cuándo NO usarlo: operaciones CRUD simples (REST es más simple), cuando necesitas caché HTTP estándar (GraphQL usa POST, dificulta caché), equipos pequeños sin experiencia (la curva de aprendizaje es real)."
+  },
+  {
+    "id": 9,
+    "level": "Junior",
+    "category": "Communication & Integration",
+    "question": "¿Qué es idempotencia en el contexto de microservicios y por qué es crítica?",
+    "code": "// Ejemplo: procesar pago con idempotency key\nPOST /payments\n{\n  \"idempotencyKey\": \"order-123-attempt-1\",\n  \"amount\": 100\n}",
+    "options": [
+      "Que múltiples ejecuciones de la misma operación producen el mismo resultado que ejecutarla una sola vez, sin efectos secundarios adicionales",
+      "Que una operación se ejecuta exactamente una vez sin posibilidad de reintento",
+      "Que dos servicios pueden ejecutar la misma operación en paralelo sin conflictos",
+      "Que el sistema siempre responde en el mismo tiempo de respuesta"
+    ],
+    "correct": 0,
+    "explanation": "Idempotencia es crítica en sistemas distribuidos porque los reintentos son inevitables (timeouts, fallos de red). Sin idempotencia: un pago reintentado cobra dos veces. Con idempotency key: el servidor detecta que 'order-123-attempt-1' ya fue procesado y retorna el resultado original sin ejecutar el pago de nuevo. DELETE, GET y PUT son naturalmente idempotentes. POST requiere diseño explícito. Patrón universal en pagos (Stripe), APIs bancarias y mensajería."
+  },
+  {
+    "id": 10,
+    "level": "Junior",
+    "category": "Communication & Integration",
+    "question": "¿Qué es una Dead Letter Queue (DLQ) y cuándo debe usarse?",
+    "code": null,
+    "options": [
+      "Una cola de alta prioridad para mensajes urgentes del sistema",
+      "Una cola de backup que replica todos los mensajes para recuperación ante desastres",
+      "Una cola temporal para mensajes que están siendo procesados actualmente",
+      "Una cola que recibe mensajes que no pudieron ser procesados después de N reintentos, permitiendo análisis y reintento manual sin bloquear la cola principal"
+    ],
+    "correct": 3,
+    "explanation": "Sin DLQ: un mensaje mal formado o que causa excepción bloquea el consumer indefinidamente (poison pill). Con DLQ: después de 3-5 reintentos el mensaje va a la DLQ. El equipo puede inspeccionarlo, corregir el bug, y republicarlo. En AWS SQS se configura con maxReceiveCount. En Kafka se implementa con un topic de retry y DLQ separados. Patrón imprescindible para resiliencia en sistemas de mensajería."
+  },
+  {
+    "id": 11,
+    "level": "Junior",
+    "category": "Communication & Integration",
+    "question": "¿Para qué sirven los Webhooks y en qué se diferencian del polling?",
+    "code": null,
+    "options": [
+      "Los webhooks son llamadas HTTP que el cliente hace periódicamente para verificar cambios",
+      "Los webhooks y el polling son equivalentes, solo difieren en la frecuencia",
+      "El servidor notifica proactivamente al cliente mediante una llamada HTTP cuando ocurre un evento, eliminando la necesidad de polling continuo y reduciendo latencia y carga",
+      "Los webhooks solo funcionan con protocolos WebSocket, no con HTTP estándar"
+    ],
+    "correct": 2,
+    "explanation": "Polling: el cliente pregunta cada N segundos '¿hay algo nuevo?' — ineficiente, latencia alta, carga innecesaria. Webhook: cuando ocurre el evento (pago confirmado, PR mergeado), el servidor llama al endpoint del cliente con los datos. Ventajas: tiempo real, sin carga de polling. Consideraciones: el endpoint del cliente debe ser accesible públicamente, implementar validación de firma (HMAC) para verificar origen, manejar reintentos del servidor remoto. Usado por Stripe, GitHub, Shopify."
+  },
+  {
+    "id": 12,
+    "level": "Junior",
+    "category": "Communication & Integration",
+    "question": "¿Qué es API Composition y cuándo se usa en microservicios?",
+    "code": null,
+    "options": [
+      "Combinar múltiples APIs externas de terceros en una sola librería interna",
+      "Un servicio compositor llama a múltiples microservicios y combina sus respuestas para construir una vista que ningún servicio individual puede proveer por sí solo",
+      "Versionar múltiples versiones de la misma API simultáneamente",
+      "Comprimir las respuestas HTTP para reducir el ancho de banda entre servicios"
+    ],
+    "correct": 1,
+    "explanation": "Con Database per Service no hay JOINs entre servicios. API Composition: un servicio (o el API Gateway) llama a OrderService, UserService y InventoryService en paralelo (CompletableFuture) y combina los resultados. Trade-off: si cualquier servicio falla, la composición falla (Circuit Breaker ayuda). Para datos de solo lectura, CQRS con una vista desnormalizada es más eficiente. API Composition es el patrón para queries cross-service en tiempo real."
+  },
+  {
+    "id": 13,
+    "level": "Junior",
+    "category": "Resilience & Fault Tolerance",
+    "question": "¿Qué problema concreto evita el patrón Circuit Breaker en microservicios?",
+    "code": null,
+    "options": [
+      "Evita que dos servicios hagan llamadas circulares entre sí",
+      "Previene fallos en cascada: cuando un servicio dependiente está caído o lento, el Circuit Breaker abre el circuito y retorna un fallback inmediato en lugar de acumular threads en espera que colapsen el servicio llamador",
+      "Balancea la carga entre múltiples instancias de un servicio",
+      "Cifra la comunicación entre servicios para evitar ataques de intermediario"
+    ],
+    "correct": 1,
+    "explanation": "Sin Circuit Breaker: ServiceA llama a ServiceB (caído). Cada request espera 30s antes de timeout. Con 100 req/s, en 30s hay 3000 threads bloqueados en ServiceA → ServiceA colapsa → ServiceC que llama a ServiceA también colapsa (fallo en cascada). Con Circuit Breaker (Resilience4j): después de N fallos el circuito abre, las llamadas fallan inmediatamente con fallback. Cuando ServiceB se recupera, el circuito cierra gradualmente (Half-Open state)."
+  },
+  {
+    "id": 14,
+    "level": "Junior",
+    "category": "Resilience & Fault Tolerance",
+    "question": "¿Por qué el patrón Retry debe combinarse con Exponential Backoff y Jitter?",
+    "code": "// Retry con Exponential Backoff + Jitter (Resilience4j)\n@Retry(name = \"paymentService\", fallbackMethod = \"fallback\")\n// Esperas: 1s, 2s, 4s, 8s... + jitter aleatorio",
+    "options": [
+      "Exponential Backoff aumenta la velocidad de los reintentos para resolver el problema más rápido",
+      "Exponential Backoff y Jitter son opcionales, el Retry solo funciona con intervalos fijos",
+      "Exponential Backoff espacía los reintentos exponencialmente para no sobrecargar un servicio ya estresado; el Jitter añade aleatoriedad para evitar que múltiples clientes reintenten exactamente al mismo tiempo (thundering herd)",
+      "Solo se necesita Jitter cuando hay más de 1000 usuarios concurrentes"
+    ],
+    "correct": 2,
+    "explanation": "Sin backoff: 1000 clientes reintentan cada 1 segundo → el servicio caído recibe 1000 req/s de reintentos, imposible recuperarse. Con Exponential Backoff: 1s, 2s, 4s, 8s... el servicio tiene tiempo de recuperarse. Sin Jitter: todos los clientes reintentaron en 1s, 2s, 4s exactamente al mismo tiempo (spike sincronizado). Con Jitter: cada cliente añade entre 0-1s aleatorio → tráfico distribuido. Thundering herd es un problema real en sistemas distribuidos a escala."
+  },
+  {
+    "id": 15,
+    "level": "Junior",
+    "category": "Resilience & Fault Tolerance",
+    "question": "¿Qué busca validar Chaos Engineering y cuál es su herramienta más conocida?",
+    "code": null,
+    "options": [
+      "Validar que el código pase todos los tests unitarios bajo condiciones normales",
+      "Medir el rendimiento máximo del sistema bajo carga extrema",
+      "Identificar vulnerabilidades de seguridad mediante ataques controlados",
+      "Inyectar fallos controlados en producción (o staging) para validar que los mecanismos de resiliencia funcionan realmente antes de que ocurra un fallo real"
+    ],
+    "correct": 3,
+    "explanation": "Chaos Engineering (Netflix/Chaos Monkey): 'si algo puede fallar, vamos a hacerlo fallar intencionalmente en condiciones controladas'. Se inyectan fallos reales: matar instancias, cortar red entre servicios, llenar disco, añadir latencia artificial. Si el sistema se recupera solo → resiliencia validada. Si colapsa → se encontró la debilidad antes que los usuarios. Netflix Chaos Monkey, AWS Fault Injection Simulator, Gremlin son herramientas del ecosistema."
+  },
+  {
+    "id": 16,
+    "level": "Junior",
+    "category": "Resilience & Fault Tolerance",
+    "question": "¿Qué hace el patrón Bulkhead y de qué metáfora proviene?",
+    "code": null,
+    "options": [
+      "Replica los datos entre múltiples bases de datos para alta disponibilidad",
+      "Comprime las respuestas HTTP para reducir el uso de ancho de banda",
+      "Divide el código en módulos independientes para facilitar el testing",
+      "Aisla recursos (thread pools, conexiones) por funcionalidad para que el fallo o saturación de una parte no afecte al resto del sistema; la metáfora es los compartimentos estancos de un barco"
+    ],
+    "correct": 3,
+    "explanation": "Bulkhead (mamparo naval): en un barco, los compartimentos estancos evitan que un agujero hunda todo el barco. En microservicios: en lugar de un pool de 200 threads compartido, se asignan 50 threads para llamadas a ServiceA, 50 para ServiceB, 100 para operaciones internas. Si ServiceA se satura y agota sus 50 threads, ServiceB y las operaciones internas siguen funcionando. Resilience4j implementa Bulkhead con ThreadPoolBulkhead y SemaphoreBulkhead."
+  },
+  {
+    "id": 17,
+    "level": "Junior",
+    "category": "Resilience & Fault Tolerance",
+    "question": "¿Qué es Graceful Degradation y cómo se implementa en un microservicio Spring Boot?",
+    "code": "// Ejemplo: recomendaciones con fallback\n@CircuitBreaker(name = \"recommendations\", fallbackMethod = \"defaultRecs\")\npublic List<Product> getRecommendations(Long userId) { ... }\n\npublic List<Product> defaultRecs(Long userId, Exception e) {\n    return productService.getBestSellers(); // fallback\n}",
+    "options": [
+      "Apagar el sistema completamente ante el primer fallo para evitar datos incorrectos",
+      "Mantener la funcionalidad principal del sistema operativa aunque funcionalidades secundarias fallen, retornando respuestas degradadas en lugar de errores",
+      "Reducir gradualmente el número de usuarios activos durante una sobrecarga",
+      "Reiniciar automáticamente los pods de Kubernetes cuando detectan un fallo"
+    ],
+    "correct": 1,
+    "explanation": "Graceful Degradation: Amazon en Black Friday — si el servicio de recomendaciones falla, no falles todo el carrito de compras. Retorna 'productos más vendidos' como fallback. El usuario puede seguir comprando aunque sin recomendaciones personalizadas. Implementación con Resilience4j @CircuitBreaker + fallbackMethod. Principio: distinguir funcionalidades críticas (pago, carrito) de secundarias (recomendaciones, reviews) y degradar solo las secundarias."
+  },
+  {
+    "id": 18,
+    "level": "Junior",
+    "category": "Architecture Styles",
+    "question": "¿Qué caracteriza a Clean Architecture y cuál es su regla fundamental?",
+    "code": null,
+    "options": [
+      "Organizar el código en capas MVC estrictas: Model, View, Controller",
+      "Las dependencias solo pueden apuntar hacia adentro: las capas externas (infraestructura, frameworks) dependen del dominio central, nunca al revés. El dominio no conoce Spring, JPA ni ningún framework",
+      "Separar el código en microservicios independientes desde el inicio del proyecto",
+      "Usar solo interfaces y nunca clases concretas en toda la aplicación"
+    ],
+    "correct": 1,
+    "explanation": "Clean Architecture (Robert Martin): anillos concéntricos. Centro: Entities (lógica de negocio pura, Java sin frameworks). Use Cases: orquestación de negocio. Interface Adapters: controllers, presenters, gateways. Frameworks & Drivers: Spring, JPA, Kafka — en el borde exterior. La Dependency Rule: el código interno nunca menciona nada del exterior. Beneficio: el dominio es testeable sin Spring, sin BD, sin nada externo. Migrar de JPA a MongoDB no toca el dominio."
+  },
+  {
+    "id": 19,
+    "level": "Junior",
+    "category": "Architecture Styles",
+    "question": "¿Qué es la Arquitectura Hexagonal (Ports & Adapters) y cómo se diferencia del patrón MVC?",
+    "code": null,
+    "options": [
+      "Es una variante de MVC con 6 capas en lugar de 3",
+      "Solo aplica para aplicaciones con interfaz gráfica de usuario",
+      "La aplicación expone Ports (interfaces) hacia afuera y conecta Adapters (implementaciones) que la conectan con el mundo externo; el dominio no sabe si es llamado por HTTP, Kafka o un test",
+      "Es equivalente a una arquitectura de microservicios con 6 servicios independientes"
+    ],
+    "correct": 2,
+    "explanation": "Hexagonal (Alistair Cockburn): el dominio define Ports (interfaces): OrderRepository, PaymentGateway, NotificationSender. Los Adapters son las implementaciones concretas: JpaOrderRepository, StripePaymentAdapter, SmtpNotificationAdapter. Desde afuera: HTTP Adapter, Kafka Adapter, CLI Adapter — todos llaman al mismo dominio. Un test puede usar InMemoryOrderRepository sin levantar BD. Diferencia con MVC: MVC acopla el dominio a HTTP; Hexagonal hace el dominio agnóstico al mecanismo de entrega."
+  },
+  {
+    "id": 20,
+    "level": "Junior",
+    "category": "Architecture Styles",
+    "question": "¿Qué define una arquitectura Event-Driven (EDA) y cuáles son sus ventajas y riesgos?",
+    "code": null,
+    "options": [
+      "Los servicios se comunican exclusivamente mediante llamadas HTTP síncronas en tiempo real",
+      "Un servicio central recibe todos los eventos y los distribuye a los servicios interesados",
+      "La comunicación entre componentes se basa en la producción y consumo de eventos asíncronos; los productores no conocen a los consumidores. Ventaja: desacoplamiento. Riesgo: consistencia eventual y dificultad de rastreo del flujo",
+      "Solo aplica cuando se usa Kafka como broker, no con RabbitMQ o SQS"
+    ],
+    "correct": 2,
+    "explanation": "EDA: OrderService publica 'OrderPlaced' sin saber quién escucha. PaymentService, InventoryService, NotificationService consumen independientemente. Ventajas: desacoplamiento total, escalabilidad independiente, nuevos consumidores sin modificar el productor. Riesgos: consistencia eventual (no sabes cuándo procesó el consumidor), debugging complejo (el flujo no está en un solo lugar), order of events puede importar. Herramientas: Kafka, RabbitMQ, AWS EventBridge, SQS."
+  },
+  {
+    "id": 21,
+    "level": "Junior",
+    "category": "Architecture Styles",
+    "question": "¿Qué ventaja aporta una arquitectura Multi-tenancy y qué modelos de aislamiento existen?",
+    "code": null,
+    "options": [
+      "Multi-tenancy significa tener múltiples instancias del mismo servicio para alta disponibilidad",
+      "Compartir la misma infraestructura entre múltiples clientes (tenants) reduce costos; los modelos van desde BD compartida (más económico, menos aislamiento) hasta instancias dedicadas por tenant (más costoso, máximo aislamiento)",
+      "Multi-tenancy solo aplica para aplicaciones SaaS con más de 1000 usuarios",
+      "Es equivalente a tener múltiples ambientes (dev, staging, prod) en la misma infraestructura"
+    ],
+    "correct": 1,
+    "explanation": "Multi-tenancy: Salesforce, GitHub, Slack — múltiples empresas en la misma plataforma. Modelos: (1) Shared DB/Shared Schema: todos en mismas tablas con tenant_id — más económico, riesgo de data leaks si falla el filtro. (2) Shared DB/Separate Schema: cada tenant tiene su esquema — equilibrio. (3) Separate DB: BD dedicada por tenant — máximo aislamiento, más costoso. En Spring Boot: Spring Security + ThreadLocal para propagar el tenantId en cada request."
+  },
+  {
+    "id": 22,
+    "level": "Junior",
+    "category": "Architecture Styles",
+    "question": "¿Cuándo aplicar CQRS y qué complejidad introduce?",
+    "code": null,
+    "options": [
+      "CQRS debe aplicarse en todos los proyectos como buena práctica general",
+      "Solo cuando se usa Event Sourcing obligatoriamente",
+      "Cuando los modelos de lectura y escritura tienen requisitos tan diferentes que justifican separar sus stacks; introduce consistencia eventual entre el modelo de escritura y las proyecciones de lectura",
+      "Cuando el equipo tiene más de 10 desarrolladores trabajando en paralelo"
+    ],
+    "correct": 2,
+    "explanation": "CQRS (Greg Young): Commands (escribir) y Queries (leer) usan modelos separados. Caso de uso: escribir normalizado en PostgreSQL (ACID), leer desde Elasticsearch desnormalizado (búsqueda rápida). Trade-off clave: consistencia eventual — la proyección de lectura se actualiza asincrónicamente después del write. Si el usuario consulta inmediatamente después de escribir puede no ver el cambio. Prematura aplicación de CQRS añade complejidad innecesaria en proyectos simples."
+  },
+  {
+    "id": 23,
+    "level": "Junior",
+    "category": "Domain-Driven Design",
+    "question": "¿Qué es un Bounded Context en DDD y cómo se mapea a microservicios?",
+    "code": null,
+    "options": [
+      "Un límite técnico en el código que separa las capas de presentación y persistencia",
+      "El límite de memoria que puede usar un microservicio en producción",
+      "Un límite explícito dentro del cual un modelo de dominio tiene un significado consistente y único; generalmente cada Bounded Context se convierte en un microservicio independiente",
+      "Una restricción de acceso que define qué servicios pueden llamarse entre sí"
+    ],
+    "correct": 2,
+    "explanation": "En un e-commerce, 'Producto' significa diferente en cada contexto: en Catálogo (nombre, descripción, fotos), en Inventario (cantidad, ubicación, stock), en Facturación (precio, impuestos, SKU). Si todos comparten el mismo modelo de Producto, cualquier cambio afecta a todos. Bounded Context: cada contexto tiene su propio modelo de Producto con solo los campos que le importan. La comunicación entre contextos usa eventos o APIs, con traducción de modelos (ACL)."
+  },
+  {
+    "id": 24,
+    "level": "Junior",
+    "category": "Domain-Driven Design",
+    "question": "¿Qué es un Aggregate en DDD y cuál es la regla de oro para su diseño?",
+    "code": "// Order es el Aggregate Root\nclass Order {\n    private List<OrderItem> items; // solo accesible via Order\n    \n    public void addItem(Product p, int qty) {\n        // Order controla la consistencia\n        items.add(new OrderItem(p, qty));\n        recalculateTotal();\n    }\n}",
+    "options": [
+      "Un grupo de tablas relacionadas en la base de datos que se consultan juntas con JOIN",
+      "Una clase que agrega funciones de múltiples servicios en una sola interfaz",
+      "Un servicio que agrega datos de múltiples microservicios para construir una respuesta",
+      "Un clúster de objetos de dominio tratados como una unidad de consistencia, con un Aggregate Root que controla el acceso; la regla de oro: modificar solo un aggregate por transacción"
+    ],
+    "correct": 3,
+    "explanation": "Aggregate Root (Order) es la única puerta de entrada: nadie modifica OrderItem directamente, solo a través de Order. Esto garantiza invariantes de negocio (total siempre consistente con items). Regla de oro de Vaughn Vernon: una transacción = un aggregate. Si necesitas modificar dos aggregates en una operación, usa eventos de dominio y consistencia eventual. Diseño incorrecto: aggregates grandes con docenas de entidades → contención, locks, lentitud."
+  },
+  {
+    "id": 25,
+    "level": "Junior",
+    "category": "Domain-Driven Design",
+    "question": "¿Qué es Event Sourcing y cuáles son sus ventajas y desventajas reales?",
+    "code": "// En lugar de guardar estado actual:\n// orders: { id:1, status:'SHIPPED', total:100 }\n// Se guardan todos los eventos:\n// OrderPlaced, PaymentConfirmed, ItemShipped",
+    "options": [
+      "Persistencia basada en eventos: el estado actual se reconstruye reproduciendo todos los eventos históricos; ventaja: audit trail completo y time-travel debugging; desventaja: reconstrucción lenta para aggregates con miles de eventos (se mitiga con snapshots)",
+      "Un patrón para publicar eventos a Kafka cada vez que cambia un registro en la BD",
+      "Una forma de versionar la base de datos guardando el historial de schema changes",
+      "Equivalente a CDC (Change Data Capture) implementado a nivel de aplicación"
+    ],
+    "correct": 0,
+    "explanation": "Event Sourcing: nunca UPDATE/DELETE, solo INSERT de eventos inmutables. Estado actual = replay de todos los eventos. Ventajas: audit trail completo (¿quién hizo qué y cuándo?), time-travel (reconstruir estado en cualquier punto del pasado), base natural para CQRS. Desventajas: queries complejas son difíciles (resolver con proyecciones CQRS), reconstrucción lenta para aggregates con miles de eventos (Snapshot cada N eventos), el equipo debe cambiar su forma de pensar completamente."
+  },
+  {
+    "id": 26,
+    "level": "Junior",
+    "category": "Domain-Driven Design",
+    "question": "¿Qué es un Anti-Corruption Layer (ACL) en DDD y cuándo es necesario?",
+    "code": null,
+    "options": [
+      "Un mecanismo de seguridad que previene inyección SQL entre servicios",
+      "Una capa que traduce entre el modelo de dominio propio y el modelo de un sistema externo o legado, evitando que conceptos ajenos contaminen el dominio interno",
+      "Una lista de validaciones que previene datos inválidos en la base de datos",
+      "Un patrón para cifrar la comunicación entre bounded contexts"
+    ],
+    "correct": 1,
+    "explanation": "ACL: cuando integras con un sistema legado o de terceros (ERP, Salesforce, sistema bancario), su modelo de datos puede ser incompatible o contaminar tu dominio. El ACL traduce: LegacyCustomerRecord → Customer (tu modelo). El dominio interno nunca ve el modelo externo. Implementación: un Adapter/Translator que convierte entre modelos. Especialmente importante en migraciones de monolito donde el modelo legado es caótico y no quieres propagarlo al nuevo sistema."
+  },
+  {
+    "id": 27,
+    "level": "Junior",
+    "category": "Domain-Driven Design",
+    "question": "¿Qué representa un Domain Event y cómo se diferencia de un mensaje de integración?",
+    "code": null,
+    "options": [
+      "Es igual a un mensaje de Kafka, son términos intercambiables",
+      "Es una excepción de negocio que se lanza cuando ocurre un error en el dominio",
+      "Un hecho relevante del negocio expresado en el pasado ('OrderPlaced', 'PaymentFailed') que ocurrió dentro del dominio; los eventos de integración son su versión publicada hacia otros bounded contexts, posiblemente con menos detalle",
+      "Es un log de auditoría que se escribe automáticamente al modificar una entidad"
+    ],
+    "correct": 2,
+    "explanation": "Domain Event: 'OrderShipped' es un hecho inmutable que ocurrió. Nombre en pasado, contiene el contexto mínimo necesario (orderId, timestamp, customerId). Diferencia clave: Domain Event es interno al Bounded Context (puede contener detalles internos). Integration Event es la versión publicada hacia otros contextos — más estable, con menos detalles internos, versionada explícitamente. Un Domain Event puede generar múltiples Integration Events con diferente nivel de detalle para diferentes consumidores."
+  },
+  {
+    "id": 28,
+    "level": "Junior",
+    "category": "Spring Boot & Spring Cloud",
+    "question": "¿Qué características ofrece Spring Cloud Gateway y en qué se diferencia de Zuul?",
+    "code": "// application.yml\nspring:\n  cloud:\n    gateway:\n      routes:\n        - id: orders\n          uri: lb://order-service\n          predicates:\n            - Path=/api/orders/**\n          filters:\n            - StripPrefix=1\n            - name: CircuitBreaker\n              args:\n                name: ordersBreaker",
+    "options": [
+      "Spring Cloud Gateway y Zuul son idénticos, solo difieren en el nombre",
+      "Zuul 2 es superior porque usa Netty y es reactivo por defecto",
+      "Spring Cloud Gateway implementa un API Gateway reactivo (WebFlux/Netty) con routing dinámico, predicados, filtros, integración con Circuit Breaker y load balancing; Zuul 1 era bloqueante (Servlet), con menor rendimiento bajo alta concurrencia",
+      "Spring Cloud Gateway solo funciona con servicios registrados en Eureka"
+    ],
+    "correct": 2,
+    "explanation": "Spring Cloud Gateway (SCG): construido sobre Spring WebFlux + Reactor Netty — non-blocking, reactivo. Zuul 1 (Netflix, heredado): bloqueante, un thread por request. SCG soporta: predicados (Path, Header, Query, Cookie), filtros pre/post (AddRequestHeader, RateLimiter, CircuitBreaker), load balancing con Spring Cloud LoadBalancer, integración nativa con Eureka/Consul. Para microservicios nuevos, SCG es el estándar actual."
+  },
+  {
+    "id": 29,
+    "level": "Junior",
+    "category": "Spring Boot & Spring Cloud",
+    "question": "¿Para qué sirve Spring Cloud Config Server y cuáles son sus ventajas sobre archivos de propiedades locales?",
+    "code": "# bootstrap.yml del microservicio cliente\nspring:\n  config:\n    import: configserver:http://config-server:8888\n  application:\n    name: order-service",
+    "options": [
+      "Config Server solo sirve para gestionar variables de entorno en Kubernetes",
+      "Es equivalente a mantener un archivo application.properties en cada microservicio",
+      "Centraliza toda la configuración de los microservicios en un repositorio Git; permite actualizar configuración sin redesplegar servicios (@RefreshScope), gestionar configuración por ambiente (dev/prod) y auditar cambios vía Git history",
+      "Solo funciona con repositorios GitHub, no con GitLab o Bitbucket"
+    ],
+    "correct": 2,
+    "explanation": "Sin Config Server: cambiar un timeout requiere redesplegar 20 microservicios. Con Config Server: todos los servicios se conectan al servidor de configuración al arrancar. Git como backend: historial de cambios, PR reviews para cambios de config, rollback trivial. @RefreshScope + Spring Cloud Bus (Kafka/RabbitMQ): propagación de cambios de configuración en caliente a todos los servicios sin reinicio. Alternativas modernas: AWS Parameter Store, Vault, Kubernetes ConfigMaps."
+  },
+  {
+    "id": 30,
+    "level": "Junior",
+    "category": "Spring Boot & Spring Cloud",
+    "question": "¿Qué aporta OpenFeign y cuáles son sus ventajas sobre RestTemplate o WebClient manual?",
+    "code": "@FeignClient(name = \"inventory-service\", fallback = InventoryFallback.class)\npublic interface InventoryClient {\n    @GetMapping(\"/inventory/{productId}\")\n    InventoryDTO getStock(@PathVariable Long productId);\n}",
+    "options": [
+      "OpenFeign es solo un wrapper de HttpURLConnection sin ventajas reales",
+      "OpenFeign genera clientes HTTP declarativos a partir de interfaces: define la interfaz y Spring genera la implementación con load balancing, Circuit Breaker, logging y retry sin escribir código HTTP manualmente",
+      "OpenFeign solo funciona con servicios registrados en Eureka, no con URLs directas",
+      "OpenFeign es más lento que RestTemplate porque usa reflexión en cada llamada"
+    ],
+    "correct": 1,
+    "explanation": "Con RestTemplate: código verbose de serialización, manejo de errores, construcción de URL. Con OpenFeign: defines la interfaz como si fuera un repository local, Spring genera la implementación. Integración automática con: Spring Cloud LoadBalancer (balancea entre instancias), Resilience4j Circuit Breaker (fallback declarativo), Micrometer (métricas de llamadas), logging configurable. Para microservicios Spring Boot, OpenFeign es el estándar para comunicación HTTP síncrona."
+  },
+  {
+    "id": 31,
+    "level": "Mid",
+    "category": "Spring Boot & Spring Cloud",
+    "question": "¿Para qué se usa AOP en Spring y cuáles son los casos de uso más comunes en microservicios?",
+    "code": "@Aspect\n@Component\npublic class LoggingAspect {\n    @Around(\"@annotation(Auditable)\")\n    public Object auditMethod(ProceedingJoinPoint pjp) throws Throwable {\n        long start = System.currentTimeMillis();\n        Object result = pjp.proceed();\n        log.info(\"{} took {}ms\", pjp.getSignature(), System.currentTimeMillis() - start);\n        return result;\n    }\n}",
+    "options": [
+      "AOP solo sirve para logging y no tiene otros casos de uso relevantes",
+      "AOP en Spring se implementa únicamente con XML, no con anotaciones",
+      "AOP gestiona cross-cutting concerns (preocupaciones transversales) que afectan a múltiples capas: logging, auditoría, métricas de rendimiento, seguridad (@PreAuthorize), manejo de transacciones (@Transactional), y retry logic — sin contaminar la lógica de negocio",
+      "AOP es una alternativa a la inyección de dependencias, no un complemento"
+    ],
+    "correct": 2,
+    "explanation": "AOP separa preocupaciones que cruzan múltiples clases: @Transactional (Spring lo implementa con AOP), @Cacheable, @Async, @PreAuthorize son todos AOP internamente. Casos en microservicios: auditoría (quién hizo qué), métricas de latencia por método, retry automático con @Retryable, distributed tracing injection. Sin AOP, duplicarías estas líneas en cada método. Conceptos clave: Advice (qué hacer), Pointcut (dónde aplicar), JoinPoint (punto de ejecución)."
+  },
+  {
+    "id": 32,
+    "level": "Mid",
+    "category": "Spring Boot & Spring Cloud",
+    "question": "¿Qué garantiza @Transactional en Spring y cuáles son sus trampas más comunes?",
+    "code": "// TRAMPA: self-invocation no activa la transacción\n@Service\npublic class OrderService {\n    public void createOrder() {\n        this.saveAndNotify(); // llama al mismo bean, bypasa el proxy AOP\n    }\n    \n    @Transactional\n    public void saveAndNotify() { ... }\n}",
+    "options": [
+      "@Transactional solo funciona en métodos public de clases @Repository",
+      "@Transactional garantiza atomicidad, consistencia, aislamiento y durabilidad (ACID) para el bloque de código; las trampas más comunes son self-invocation (bypasa el proxy AOP), excepciones checked que no hacen rollback por defecto, y @Transactional en métodos private",
+      "@Transactional automáticamente hace commit después de cada línea de código",
+      "@Transactional es equivalente a un bloque synchronized para concurrencia"
+    ],
+    "correct": 1,
+    "explanation": "Trampas de @Transactional: (1) Self-invocation: this.method() no pasa por el proxy Spring → @Transactional ignorado. Solución: inyectar el propio bean o usar AspectJ. (2) Checked exceptions no hacen rollback por defecto — solo RuntimeException. Solución: @Transactional(rollbackFor=Exception.class). (3) Métodos private: el proxy no puede interceptarlos. (4) Propagation.REQUIRES_NEW en el mismo hilo comparte la conexión de BD (problema sutil). (5) @Transactional en @Controller — no recomendado, pertenece a @Service."
+  },
+  {
+    "id": 33,
+    "level": "Mid",
+    "category": "Observability",
+    "question": "¿Qué es un SLI, un SLO y un SLA y cómo se relacionan entre sí?",
+    "code": null,
+    "options": [
+      "Son tres términos distintos para describir el mismo concepto de disponibilidad",
+      "SLI es el contrato con el cliente, SLO es el objetivo interno y SLA es la métrica medida",
+      "SLI es la métrica medida (ej: latencia p99, error rate), SLO es el objetivo sobre esa métrica (ej: p99 < 200ms), SLA es el contrato formal con el cliente con penalizaciones si el SLO no se cumple",
+      "Solo las empresas cloud como AWS o Google usan SLI/SLO/SLA"
+    ],
+    "correct": 2,
+    "explanation": "SLI (Service Level Indicator): métrica medible — 'el 99.5% de las requests retornaron en menos de 200ms la semana pasada'. SLO (Service Level Objective): el target interno — 'queremos que el p99 de latencia sea < 200ms'. SLO siempre más estricto que SLA para tener margen. SLA (Service Level Agreement): contrato legal con el cliente — 'si la disponibilidad cae por debajo del 99.9% en un mes, el cliente recibe crédito'. Error Budget = 100% - SLO: el 0.1% de tiempo permitido para ser 'no disponible'."
+  },
+  {
+    "id": 34,
+    "level": "Mid",
+    "category": "Observability",
+    "question": "¿Para qué sirve el Distributed Tracing y cómo se implementa en Spring Boot?",
+    "code": "// Spring Boot 3 + Micrometer Tracing\n// Cada request genera un traceId propagado entre servicios\n// GET /orders/123\n//   → OrderService [traceId: abc123, spanId: 001]\n//     → InventoryService [traceId: abc123, spanId: 002]\n//       → UserService [traceId: abc123, spanId: 003]",
+    "options": [
+      "Monitorear el uso de CPU y memoria de cada microservicio individualmente",
+      "Registrar todos los logs de error de la aplicación en un sistema centralizado",
+      "Balancear el tráfico entre múltiples instancias de un microservicio",
+      "Seguir una petición a través de múltiples microservicios con un traceId único, permitiendo visualizar el flujo completo, identificar cuellos de botella y correlacionar logs de servicios distintos"
+    ],
+    "correct": 3,
+    "explanation": "Sin Distributed Tracing: un request lento involucra 5 servicios — ¿cuál es el culpable? Con Distributed Tracing: el traceId 'abc123' aparece en los logs de los 5 servicios, el span tree muestra que InventoryService tardó 800ms de los 1000ms totales. Implementación en Spring Boot 3: spring-boot-starter-actuator + micrometer-tracing-bridge-otel + exportar a Zipkin/Jaeger/Grafana Tempo. El traceId se propaga automáticamente en headers HTTP (B3/W3C TraceContext) y en mensajes Kafka."
+  },
+  {
+    "id": 35,
+    "level": "Mid",
+    "category": "Observability",
+    "question": "¿Cuáles son las Four Golden Signals de Google SRE y qué mide cada una?",
+    "code": null,
+    "options": [
+      "CPU, Memoria, Disco y Red — las métricas de infraestructura de cualquier servidor",
+      "Disponibilidad, Rendimiento, Seguridad y Escalabilidad",
+      "Latencia (tiempo de respuesta), Tráfico (volumen de requests), Errors (tasa de errores) y Saturation (uso de recursos al límite) — las métricas mínimas para entender la salud de un servicio",
+      "SLI, SLO, SLA y Error Budget — los cuatro indicadores de un acuerdo de servicio"
+    ],
+    "correct": 2,
+    "explanation": "Four Golden Signals (Google SRE Book): Latency — cuánto tardan las requests (distinguir exitosas de fallidas); Traffic — cuántas requests/seg; Errors — tasa de requests fallidas (5xx, timeouts, respuestas incorrectas); Saturation — qué tan 'lleno' está el servicio (CPU, memoria, thread pool, cola de mensajes). Si solo puedes medir 4 cosas de un servicio, mide estas. En Prometheus/Grafana: estas métricas generan los dashboards y alertas principales."
+  },
+  {
+    "id": 36,
+    "level": "Mid",
+    "category": "Observability",
+    "question": "¿Qué promueve la metodología 12-Factor App y cuáles son los factores más relevantes para microservicios Java?",
+    "code": null,
+    "options": [
+      "12-Factor es una guía para dividir un monolito en exactamente 12 microservicios",
+      "Define 12 reglas de seguridad para aplicaciones cloud que deben cumplirse por ley",
+      "Es equivalente a las prácticas de Clean Code de Robert Martin aplicadas a cloud",
+      "Una metodología para construir aplicaciones cloud-native portables y escalables; los factores más críticos: configuración en variables de entorno (no en código), procesos stateless, logs como streams, paridad dev/prod y dependencias explícitas declaradas"
+    ],
+    "correct": 3,
+    "explanation": "12 factores más relevantes para Java microservices: III. Config — configuración en env vars, no hardcodeada (Spring: @Value, application.yml); IV. Backing Services — BD, caché, cola como recursos adjuntos configurables; VI. Processes — stateless, sin sesión en memoria local (usar Redis); XI. Logs — tratar logs como event streams (stdout → ELK/CloudWatch); XII. Admin processes — migraciones DB (Flyway/Liquibase) como procesos separados. Spring Boot cumple 12-Factor nativamente con su modelo de configuración."
+  },
+  {
+    "id": 37,
+    "level": "Mid",
+    "category": "Observability",
+    "question": "¿Cómo implementar structured logging en un microservicio Spring Boot para correlacionar logs en un sistema distribuido?",
+    "code": "// application.yml\nlogging:\n  pattern:\n    console: '{\"timestamp\":\"%d\",\"level\":\"%p\",\"traceId\":\"%X{traceId}\",\"service\":\"order-service\",\"message\":\"%m\"}%n'",
+    "options": [
+      "Usar System.out.println con un formato consistente en todos los servicios",
+      "El formato de logs no importa mientras todos los servicios usen el mismo framework de logging",
+      "Emitir logs en JSON estructurado con campos fijos (traceId, spanId, service, level, timestamp, message) permite búsqueda eficiente, correlación cross-service y alertas basadas en campos específicos en ELK o CloudWatch",
+      "Structured logging solo es necesario cuando hay más de 10 microservicios en producción"
+    ],
+    "correct": 2,
+    "explanation": "Logs como texto libre en microservicios son inútiles a escala. Structured logging en JSON: cada log es un documento indexable. Con traceId en cada log: 'dame todos los logs de la request abc123 en todos los servicios' → una query en Kibana/CloudWatch Logs Insights. Campos estándar: timestamp, level, traceId, spanId, service, userId, correlationId, message, exception. Herramientas: Logback + logstash-logback-encoder, ELK Stack, AWS CloudWatch Logs, Grafana Loki."
+  },
+  {
+    "id": 38,
+    "level": "Mid",
+    "category": "Data Patterns & Caching",
+    "question": "¿Qué es el patrón Cache-Aside y cómo se diferencia de Write-Through?",
+    "code": "// Cache-Aside con Spring Cache + Redis\n@Cacheable(value = \"products\", key = \"#id\")\npublic Product getProduct(Long id) {\n    return productRepository.findById(id).orElseThrow();\n    // Si está en caché: retorna directo\n    // Si no: ejecuta el método y guarda en caché\n}",
+    "options": [
+      "Cache-Aside y Write-Through son el mismo patrón con diferente nombre",
+      "Cache-Aside guarda automáticamente en caché al escribir; Write-Through requiere código manual",
+      "La aplicación controla explícitamente el caché: lee de caché, si miss lee de BD y guarda en caché (lazy loading); Write-Through escribe simultáneamente en caché y BD garantizando consistencia pero con mayor latencia en escrituras",
+      "Cache-Aside solo funciona con Redis, Write-Through requiere Memcached"
+    ],
+    "correct": 2,
+    "explanation": "Cache-Aside (Lazy Loading): miss → lee BD → guarda en caché. Ventaja: solo cachea lo que se consulta. Desventaja: primer acceso siempre lento, posible inconsistencia entre caché y BD. Write-Through: cada escritura va a caché Y BD simultáneamente. Ventaja: caché siempre consistente. Desventaja: latencia extra en escrituras. Write-Behind: escribe en caché primero, BD asincrónicamente (riesgo de pérdida de datos). En Spring Boot: @Cacheable (read), @CachePut (write-through), @CacheEvict (invalidar)."
+  },
+  {
+    "id": 39,
+    "level": "Mid",
+    "category": "Data Patterns & Caching",
+    "question": "¿Qué es Cache Stampede (Thundering Herd en caché) y cómo se mitiga?",
+    "code": null,
+    "options": [
+      "Cuando el caché almacena demasiados datos y se queda sin memoria",
+      "Cuando múltiples instancias del servicio intentan escribir en el caché simultáneamente",
+      "Cuando una entrada de caché expira y múltiples requests concurrentes intentan regenerarla simultáneamente, provocando una avalancha de queries a la BD que puede derribarla",
+      "Cuando el caché no puede conectarse a la base de datos durante una migración"
+    ],
+    "correct": 2,
+    "explanation": "Cache Stampede: clave popular expira a las 3am, 1000 requests simultáneos detectan el miss y los 1000 van a BD al mismo tiempo. La BD colapsa. Soluciones: (1) Mutex Lock — solo el primer miss regenera, los demás esperan. (2) Probabilistic Early Expiration — antes de que expire, algunos requests la regeneran proactivamente. (3) Stale-While-Revalidate — retornar el valor expirado mientras se regenera en background. (4) Jitter en TTL — añadir ±N segundos aleatorios para evitar expiración sincronizada."
+  },
+  {
+    "id": 40,
+    "level": "Mid",
+    "category": "Data Patterns & Caching",
+    "question": "¿Qué es CDC (Change Data Capture) y cómo se usa con Debezium en arquitecturas de microservicios?",
+    "code": null,
+    "options": [
+      "CDC es una técnica para hacer backup de bases de datos en tiempo real",
+      "CDC es equivalente al patrón Outbox, son sinónimos en el contexto de microservicios",
+      "CDC captura cambios en la base de datos leyendo el transaction log (binlog/WAL) y los publica como eventos a Kafka; permite sincronizar datos entre servicios sin modificar el código de la aplicación",
+      "CDC solo funciona con bases de datos NoSQL, no con MySQL o PostgreSQL"
+    ],
+    "correct": 2,
+    "explanation": "Debezium (Red Hat) lee el binlog/WAL de MySQL/PostgreSQL/MongoDB y publica cada INSERT/UPDATE/DELETE como evento a Kafka. Casos de uso: (1) Invalidación de caché automática cuando cambia la BD. (2) Sincronización de datos hacia un data warehouse. (3) Implementar el patrón Outbox sin tabla extra (Debezium lee directamente la tabla outbox). (4) Auditoría de cambios en tiempo real. Sin tocar el código de la aplicación — es infraestructura pura."
+  },
+  {
+    "id": 41,
+    "level": "Mid",
+    "category": "Data Patterns & Caching",
+    "question": "¿Cuándo elegir Redis y cuáles son sus casos de uso más comunes en microservicios Spring Boot?",
+    "code": null,
+    "options": [
+      "Redis solo sirve para almacenar sesiones de usuario HTTP",
+      "Redis es una alternativa a PostgreSQL para almacenamiento permanente de datos transaccionales",
+      "Redis es una base de datos en memoria para acceso de baja latencia (sub-milisegundo); casos de uso: caché de resultados, sesiones distribuidas, rate limiting, pub/sub de eventos, sorted sets para rankings y colas con prioridad",
+      "Redis solo puede almacenar strings, no estructuras de datos complejas"
+    ],
+    "correct": 2,
+    "explanation": "Redis en microservicios Spring Boot: (1) Caché (@Cacheable con RedisCacheManager) — resultados de queries costosas. (2) Sesiones distribuidas (Spring Session + Redis) — en clusters de pods sin sticky sessions. (3) Rate Limiting — contadores con TTL por IP/usuario. (4) Distributed Lock (Redisson) — coordinación entre instancias. (5) Pub/Sub — eventos ligeros entre servicios (no reemplaza Kafka para persistencia). (6) Sorted Sets — leaderboards, colas de prioridad. Latencia: ~0.1ms vs ~10ms de una BD."
+  },
+  {
+    "id": 42,
+    "level": "Mid",
+    "category": "Data Patterns & Caching",
+    "question": "¿Qué problema resuelve el Sharding de base de datos y cuáles son sus estrategias principales?",
+    "code": null,
+    "options": [
+      "Sharding es otra forma de llamar a la replicación master-slave de la base de datos",
+      "Sharding divide la base de datos en múltiples fragmentos (shards) distribuidos en diferentes servidores para escalar horizontalmente el volumen de datos y la carga de escritura; estrategias: hash sharding, range sharding y directory sharding",
+      "Sharding solo aplica para bases de datos NoSQL como MongoDB o Cassandra",
+      "Sharding mejora el rendimiento de lectura pero no afecta las escrituras"
+    ],
+    "correct": 1,
+    "explanation": "Sharding: cuando una BD no cabe en un servidor o sus escrituras saturan el I/O. Hash sharding: userId % 4 → shard 0,1,2,3. Distribución uniforme pero range queries difíciles. Range sharding: usuarios A-F en shard1, G-M en shard2. Bueno para range queries, riesgo de hotspots. Directory sharding: tabla de lookup shard_key → shard_id. Flexible pero la tabla de lookup es un SPOF. Trade-offs: JOINs entre shards son costosos o imposibles, transacciones distribuidas son complejas. MongoDB y Cassandra tienen sharding nativo."
+  },
+  {
+    "id": 43,
+    "level": "Mid",
+    "category": "Cloud & Deployment AWS",
+    "question": "¿Cuál es la ventaja principal de AWS Fargate sobre ECS con EC2 para microservicios?",
+    "code": null,
+    "options": [
+      "Fargate es siempre más económico que EC2 en todos los casos de uso",
+      "Fargate permite mayor control sobre la configuración del sistema operativo del servidor",
+      "Fargate es serverless para contenedores: no es necesario administrar ni provisionar servidores EC2, el cluster o el sistema operativo; AWS gestiona la infraestructura subyacente y se paga por CPU/memoria consumida por cada tarea",
+      "Fargate solo funciona con imágenes Docker basadas en Amazon Linux"
+    ],
+    "correct": 2,
+    "explanation": "ECS con EC2: debes gestionar el cluster de instancias EC2 (patching, scaling, capacidad). Fargate: defines solo la CPU y memoria de la tarea, AWS gestiona dónde y cómo se ejecuta. Ventajas: sin overhead operativo de servidores, scaling a nivel de tarea (no de instancia), modelo de costos pay-per-use exacto. Cuándo preferir EC2: workloads que requieren acceso a GPU, configuración específica del kernel, o costo optimizado con instancias reservadas para cargas predecibles."
+  },
+  {
+    "id": 44,
+    "level": "Mid",
+    "category": "Cloud & Deployment AWS",
+    "question": "¿Qué es Canary Deployment y cómo se diferencia de Blue-Green Deployment?",
+    "code": null,
+    "options": [
+      "Canary y Blue-Green son el mismo patrón con diferente nombre en AWS",
+      "Canary despliega la nueva versión a todos los usuarios simultáneamente pero con menos recursos",
+      "Canary libera gradualmente la nueva versión a un pequeño porcentaje de usuarios (ej: 5%) para validar con tráfico real antes de el rollout completo; Blue-Green mantiene dos ambientes completos y hace el switch instantáneo de todo el tráfico",
+      "Canary solo aplica para aplicaciones con más de 1 millón de usuarios activos"
+    ],
+    "correct": 2,
+    "explanation": "Canary: 5% del tráfico va a v2, 95% a v1. Si métricas de v2 son buenas (error rate, latencia), se incrementa gradualmente: 10%, 25%, 50%, 100%. Si algo falla, el impacto es solo en el 5%. Blue-Green: dos ambientes idénticos (Blue=prod actual, Green=nueva versión). El switch es instantáneo en el load balancer. Rollback = volver a apuntar al Blue. Desventaja: costo doble de infraestructura durante el deploy. AWS CodeDeploy, Kubernetes con Argo Rollouts y AWS App Mesh soportan ambos patrones."
+  },
+  {
+    "id": 45,
+    "level": "Mid",
+    "category": "Cloud & Deployment AWS",
+    "question": "¿Cómo funciona Auto Scaling en AWS y qué métricas se usan comúnmente para microservicios Java?",
+    "code": null,
+    "options": [
+      "Auto Scaling solo escala hacia arriba, no puede reducir instancias automáticamente",
+      "Auto Scaling requiere intervención manual para confirmar cada nuevo servidor añadido",
+      "Auto Scaling ajusta automáticamente el número de instancias según políticas definidas; métricas comunes: CPU utilization, requests por segundo (ALB), profundidad de cola SQS y métricas custom de Micrometer/CloudWatch para microservicios Java",
+      "Auto Scaling solo funciona con instancias EC2, no con contenedores ECS o EKS"
+    ],
+    "correct": 2,
+    "explanation": "Auto Scaling Group (ASG): define min/max/desired instances. Políticas: Target Tracking (mantener CPU al 70%), Step Scaling (CPU>80%: +2 instancias, CPU>95%: +5), Scheduled Scaling (viernes 6pm: +10 instancias). Para microservicios Java: CPU de JVM puede estar baja mientras los thread pools están saturados → usar métricas de cola SQS (mensajes en espera), ALB requests/target o métricas custom de Micrometer exportadas a CloudWatch. ECS + Fargate y EKS (HPA) tienen Auto Scaling nativo por servicio."
+  },
+  {
+    "id": 46,
+    "level": "Mid",
+    "category": "Cloud & Deployment AWS",
+    "question": "¿Cuándo elegir AWS Lambda sobre ECS/Fargate para microservicios Java y cuáles son sus limitaciones?",
+    "code": null,
+    "options": [
+      "Lambda siempre es superior a ECS porque no requiere gestionar servidores",
+      "Lambda no es adecuada para código Java porque la JVM tiene problemas en serverless",
+      "Lambda es ideal para ejecución serverless por eventos con cargas intermitentes; limitaciones para Java: cold start (JVM tarda 1-3s en inicializar), máximo 15 minutos de ejecución, 10GB de memoria máxima y sin estado persistente entre invocaciones",
+      "Lambda puede reemplazar completamente a ECS para cualquier microservicio Java"
+    ],
+    "correct": 2,
+    "explanation": "Lambda es ideal para: procesamiento de eventos S3 (imagen subida → thumbnail), notificaciones SNS/SQS, schedulers cron (EventBridge), APIs con tráfico muy intermitente. Problema con Java: cold start de la JVM (1-3s) es inaceptable para APIs síncronas. Soluciones: Provisioned Concurrency (instancias pre-calentadas, costo extra), GraalVM Native Image (Spring Boot 3 + AOT), AWS SnapStart (snapshots de JVM). Para servicios con tráfico constante, ECS/Fargate es más económico y sin latencia de cold start."
+  },
+  {
+    "id": 47,
+    "level": "Mid",
+    "category": "Cloud & Deployment AWS",
+    "question": "¿Qué proporciona una VPC en AWS y qué elementos de seguridad de red son esenciales para microservicios?",
+    "code": null,
+    "options": [
+      "Una VPC es simplemente un nombre alternativo para un servidor virtual en AWS",
+      "Una VPC solo sirve para conectar múltiples regiones de AWS entre sí",
+      "Una VPC provee aislamiento de red lógico en AWS; elementos esenciales: subnets privadas para microservicios (sin acceso directo desde internet), subnets públicas solo para el ALB/NAT Gateway, Security Groups como firewall por instancia, y NACLs como firewall por subnet",
+      "Una VPC es opcional en AWS porque todos los servicios tienen seguridad por defecto"
+    ],
+    "correct": 2,
+    "explanation": "Arquitectura VPC para microservicios: Public Subnet → ALB (recibe tráfico externo). Private Subnet → ECS Tasks/Lambda (microservicios, sin IP pública). Private Subnet → RDS/ElastiCache (datos, solo accesible desde la app). NAT Gateway: permite a los servicios en subnets privadas hacer llamadas salientes (pull de Docker images, llamadas a APIs externas) sin exponer una IP pública entrante. Security Groups: permite solo el puerto 8080 desde el ALB al servicio, y solo el puerto 5432 desde el servicio a la BD."
+  },
+  {
+    "id": 48,
+    "level": "Mid",
+    "category": "Cloud & Deployment AWS",
+    "question": "¿Cuándo elegir ECS sobre EKS y cuándo la complejidad de Kubernetes se justifica?",
+    "code": null,
+    "options": [
+      "EKS siempre es superior a ECS porque Kubernetes es el estándar de la industria",
+      "ECS y EKS son equivalentes en capacidades, solo difieren en el precio",
+      "ECS tiene menor complejidad operativa y es suficiente para la mayoría de equipos; EKS se justifica cuando se necesitan capacidades avanzadas de Kubernetes: custom controllers, CRDs, ecosistema de herramientas (Istio, Argo), o portabilidad multi-cloud",
+      "ECS solo soporta un microservicio por cluster, EKS permite múltiples"
+    ],
+    "correct": 2,
+    "explanation": "ECS: API simple de AWS, integración nativa con ALB/CloudWatch/IAM, soporte Fargate nativo, menos configuración. Ideal para equipos sin experiencia en Kubernetes o proyectos que no necesitan la complejidad adicional. EKS: ecosistema Kubernetes completo (Helm, Kustomize, Argo CD, Istio), service mesh, custom resource definitions, portabilidad a GKE/AKS. El costo real de EKS no es solo el cluster ($0.10/hora) sino el tiempo de operación del equipo: ingress controllers, cert-manager, RBAC, upgrades de versión."
+  },
+  {
+    "id": 49,
+    "level": "Mid",
+    "category": "Microservices Patterns",
+    "question": "¿Qué es el patrón Sidecar y cuáles son sus aplicaciones más comunes en microservicios?",
+    "code": null,
+    "options": [
+      "Sidecar es un patrón para compartir la base de datos entre dos microservicios relacionados",
+      "Es equivalente al patrón Ambassador, son nombres distintos para lo mismo",
+      "Un proceso auxiliar desplegado junto al microservicio principal en el mismo pod/host que extiende o intercepta su funcionalidad sin modificar su código: proxy de red (Envoy), observabilidad (logging agent), seguridad (mTLS), config reload",
+      "Sidecar solo aplica en arquitecturas Kubernetes, no en ECS o máquinas virtuales"
+    ],
+    "correct": 2,
+    "explanation": "Sidecar Pattern: el microservicio principal no sabe que hay un proxy Envoy/Linkerd interceptando su tráfico de red. El sidecar añade: mTLS automático (todas las comunicaciones cifradas), circuit breaking, retries, métricas de red, distributed tracing — sin una línea de código en el servicio. Esto es la base de un Service Mesh (Istio = control plane + sidecars Envoy). En Kubernetes: Pod = contenedor app + contenedor sidecar. En ECS: Task definition con múltiples contenedores."
+  },
+  {
+    "id": 50,
+    "level": "Mid",
+    "category": "Microservices Patterns",
+    "question": "¿Cuál es la diferencia entre Kafka y SQS/RabbitMQ para mensajería en microservicios y cuándo elegir cada uno?",
+    "code": null,
+    "options": [
+      "Kafka, SQS y RabbitMQ son intercambiables, la elección es solo por precio",
+      "Kafka solo funciona en clusters on-premise, SQS es la alternativa cloud de AWS",
+      "Kafka es un log distribuido persistente con retención configurable y múltiples consumers independientes por topic; SQS/RabbitMQ son colas de mensajes donde cada mensaje se consume una vez; Kafka para event streaming y auditoría, SQS para task queues",
+      "Kafka siempre es superior porque soporta mayor throughput que SQS"
+    ],
+    "correct": 2,
+    "explanation": "Kafka: cada mensaje persiste N días, múltiples consumer groups leen el mismo mensaje independientemente, reprocess desde cualquier offset. Ideal para: event streaming, audit log, CQRS projections, CDC. SQS: message queue clásica — un consumer recibe y borra el mensaje. Ideal para: task distribution, work queues, desacoplamiento de carga. RabbitMQ: similar a SQS pero con routing más flexible (exchanges, bindings). Regla: '¿múltiples consumidores necesitan el mismo mensaje?' → Kafka. '¿distribuir trabajo entre workers?' → SQS."
+  },
+  {
+    "id": 51,
+    "level": "Mid",
+    "category": "Microservices Patterns",
+    "question": "¿Cómo garantizar idempotencia en un consumer de Kafka en Spring Boot?",
+    "code": "@KafkaListener(topics = \"orders\")\n@Transactional\npublic void processOrder(OrderEvent event) {\n    if (processedEventRepository.existsById(event.getEventId())) {\n        return; // ya procesado\n    }\n    orderService.process(event);\n    processedEventRepository.save(new ProcessedEvent(event.getEventId()));\n}",
+    "options": [
+      "Kafka garantiza automáticamente que cada mensaje se procesa exactamente una vez sin código adicional",
+      "La idempotencia en Kafka se logra solo configurando enable.idempotence=true en el producer",
+      "Kafka garantiza at-least-once delivery por defecto, lo que significa que un mensaje puede consumirse múltiples veces; la idempotencia del consumer se implementa con un registro de eventos ya procesados usando el eventId como clave de deduplicación",
+      "Para garantizar idempotencia siempre se debe usar enable.auto.commit=false"
+    ],
+    "correct": 2,
+    "explanation": "Kafka at-least-once: si el consumer falla después de procesar pero antes de hacer commit del offset, el mensaje se re-entrega. Solución: tabla processed_events con el eventId. Si el eventId ya existe → skip. Esto debe ser atómico con el procesamiento (misma transacción de BD). Kafka Transactions (exactly-once) es más complejo y solo funciona dentro del ecosistema Kafka. El patrón de deduplicación con tabla es el más portable y claro."
+  },
+  {
+    "id": 52,
+    "level": "Mid",
+    "category": "Microservices Patterns",
+    "question": "¿Cómo se implementa el patrón Service Discovery en una arquitectura de microservicios con Spring Cloud?",
+    "code": null,
+    "options": [
+      "Service Discovery requiere configurar manualmente las IPs de todos los servicios en un archivo de propiedades centralizado",
+      "En contenedores, Service Discovery es automático y no requiere ninguna configuración adicional",
+      "Los servicios se registran en un registry (Eureka/Consul) con su IP y puerto; los consumidores consultan el registry para obtener instancias disponibles y el cliente hace load balancing; en Kubernetes el Service Discovery nativo usa DNS y kube-proxy",
+      "Service Discovery solo es necesario cuando los servicios cambian de IP frecuentemente"
+    ],
+    "correct": 2,
+    "explanation": "Sin Service Discovery: IPs hardcodeadas → inmanejable en cloud donde las IPs cambian. Con Eureka: cada servicio se registra al arrancar con su IP:puerto y envía heartbeats. OpenFeign + Spring Cloud LoadBalancer consultan el registry y balancean entre instancias. En Kubernetes: el DNS interno del cluster (service-name.namespace.svc.cluster.local) resuelve al ClusterIP del Service, que kube-proxy balancea entre los Pods. En producción en Kubernetes, Eureka es redundante — el Service Discovery nativo es suficiente."
+  },
+  {
+    "id": 53,
+    "level": "Mid",
+    "category": "Microservices Patterns",
+    "question": "¿Qué es el patrón Saga y cómo manejar la compensación cuando falla un paso en una transacción distribuida?",
+    "code": "// Saga Orchestration para crear una orden:\n// 1. ReservarStock → 2. ProcesarPago → 3. EnviarNotificación\n// Si paso 2 falla:\n// Compensación: LiberarStock (undoes paso 1)",
+    "options": [
+      "En una Saga no es posible compensar pasos anteriores, el sistema queda en estado inconsistente",
+      "La compensación se hace automáticamente por Spring mediante @Transactional distribuido",
+      "Cada paso de la Saga tiene una transacción compensatoria que deshace su efecto; si el pago falla, se ejecuta LiberarStock para compensar la reserva ya realizada; las compensaciones deben ser idempotentes",
+      "La Saga solo funciona si todos los servicios usan la misma base de datos"
+    ],
+    "correct": 2,
+    "explanation": "Saga = secuencia de transacciones locales + transacciones compensatorias. ReservarStock ↔ LiberarStock. ProcesarPago ↔ RevertirCargo. No hay rollback distribuido (no existe 2PC confiable en microservicios). Las compensaciones son transacciones de negocio reales: 'liberar stock' no es un rollback técnico, es una operación de negocio. Regla crítica: las compensaciones deben ser idempotentes (ejecutarlas N veces = ejecutarlas 1 vez). Frameworks: Axon Framework, Temporal, AWS Step Functions."
+  },
+  {
+    "id": 54,
+    "level": "Mid",
+    "category": "Domain-Driven Design",
+    "question": "¿Cómo se implementa un Bounded Context como microservicio Spring Boot y qué comunica hacia otros contextos?",
+    "code": null,
+    "options": [
+      "Un Bounded Context siempre equivale exactamente a un microservicio, sin excepciones",
+      "Los Bounded Contexts deben compartir la misma base de datos para facilitar la comunicación",
+      "Un Bounded Context se despliega como uno o más microservicios con su propia BD; se comunica con otros contextos mediante eventos de integración o APIs bien definidas, nunca compartiendo el modelo interno ni la BD",
+      "Bounded Contexts solo aplican en el diseño, no tienen impacto en la implementación técnica"
+    ],
+    "correct": 2,
+    "explanation": "Un Bounded Context puede ser un microservicio o un módulo dentro de un monolito (modular monolith). Lo que NO cambia: cada contexto tiene su propio modelo, su propio lenguaje ubicuo, y NO comparte su BD. Comunicación entre contextos: Context Map define las relaciones — Customer/Supplier, Conformist, ACL, Shared Kernel. En código: Integration Events con el mínimo de datos necesarios, ACL para traducir el modelo externo al interno. El acoplamiento entre contextos siempre debe ser explícito y mínimo."
+  },
+  {
+    "id": 55,
+    "level": "Mid",
+    "category": "Architecture Styles",
+    "question": "¿Cuáles son las diferencias clave entre una arquitectura monolítica modular y una de microservicios, y cuándo es mejor el monolito?",
+    "code": null,
+    "options": [
+      "Los microservicios siempre son superiores a los monolitos para cualquier tipo de aplicación",
+      "La única diferencia entre monolito modular y microservicios es que los microservicios usan contenedores Docker",
+      "El monolito modular organiza el código en módulos cohesivos pero se despliega como una unidad; los microservicios se despliegan independientemente pero añaden complejidad de red, observabilidad distribuida y operaciones. El monolito es mejor para equipos pequeños y dominios no bien entendidos",
+      "El monolito modular y los microservicios tienen el mismo costo operativo"
+    ],
+    "correct": 2,
+    "explanation": "Martin Fowler: 'Don't start with microservices'. Monolito modular: módulos bien separados (por package o JAR), misma BD, deploy único. Ventajas: debugging simple, transactions ACID nativas, sin latencia de red entre módulos, un solo lugar para deployar. Microservicios añaden: latencia de red, distributed tracing, eventual consistency, múltiples deployments. Cuándo migrar a microservicios: equipo grande que se pisa (Conway's Law), necesidad de escalar partes independientemente, dominio bien entendido y estabilizado."
+  },
+  {
+    "id": 56,
+    "level": "Mid",
+    "category": "Resilience & Fault Tolerance",
+    "question": "¿Cómo implementar Rate Limiting en un API Gateway Spring Cloud Gateway para proteger los microservicios?",
+    "code": "spring:\n  cloud:\n    gateway:\n      routes:\n        - id: order-service\n          filters:\n            - name: RequestRateLimiter\n              args:\n                redis-rate-limiter.replenishRate: 100\n                redis-rate-limiter.burstCapacity: 200\n                key-resolver: \"#{@userKeyResolver}\"",
+    "options": [
+      "Rate Limiting solo puede implementarse en el código de cada microservicio individualmente",
+      "Spring Cloud Gateway con Redis implementa rate limiting usando el algoritmo Token Bucket: replenishRate define tokens por segundo, burstCapacity el máximo en un burst; se puede aplicar por usuario, IP o API key usando un KeyResolver",
+      "Rate Limiting en Spring Cloud Gateway requiere una base de datos relacional para almacenar los contadores",
+      "El rate limiting se configura automáticamente sin necesidad de Redis ni configuración adicional"
+    ],
+    "correct": 1,
+    "explanation": "Token Bucket en Spring Cloud Gateway + Redis: cada usuario tiene un bucket con capacidad burstCapacity tokens. Se añaden replenishRate tokens/segundo. Cada request consume 1 token. Si el bucket está vacío → HTTP 429. Redis almacena el estado del bucket de forma distribuida (funciona en múltiples instancias del gateway). KeyResolver permite rate limiting por: userId (header JWT), API Key, IP address. Algoritmo alternativo: Leaky Bucket (más suave, sin bursts). AWS API Gateway tiene rate limiting nativo."
+  },
+  {
+    "id": 57,
+    "level": "Mid",
+    "category": "Data Patterns & Caching",
+    "question": "¿Qué es el teorema CAP y cómo influye en las decisiones de diseño de microservicios?",
+    "code": null,
+    "options": [
+      "CAP significa que todo sistema distribuido debe tener Consistencia, Disponibilidad y Partición simultáneamente",
+      "CAP solo aplica para bases de datos NoSQL, no para sistemas relacionales",
+      "El teorema CAP establece que un sistema distribuido solo puede garantizar 2 de 3 propiedades simultáneamente (Consistency, Availability, Partition Tolerance); en redes reales las particiones ocurren, por lo que la elección real es entre CP y AP",
+      "CAP es un framework de arquitectura para microservicios desarrollado por Netflix"
+    ],
+    "correct": 2,
+    "explanation": "Partition Tolerance es no negociable en sistemas distribuidos (las redes fallan). La elección real: CP (Consistency + Partition): durante una partición el sistema rechaza requests para no servir datos inconsistentes. Ejemplos: HBase, Zookeeper, etcd. AP (Availability + Partition): durante una partición el sistema sigue respondiendo pero puede retornar datos stale. Ejemplos: Cassandra, DynamoDB, CouchDB. Implicación para microservicios: Database per Service + EDA → AP con consistencia eventual. Si necesitas consistencia fuerte entre servicios, la arquitectura debe revisarse."
+  },
+  {
+    "id": 58,
+    "level": "Mid",
+    "category": "Microservices Patterns",
+    "question": "¿Qué es el patrón Backend for Frontend (BFF) y cuándo es necesario en microservicios?",
+    "code": null,
+    "options": [
+      "BFF es otro nombre para el API Gateway, son el mismo patrón",
+      "BFF es un microservicio dedicado por tipo de cliente (mobile, web, partner API) que agrega y adapta las respuestas de los microservicios internos según las necesidades específicas de cada cliente, evitando over-fetching y lógica de agregación en el frontend",
+      "BFF solo aplica para aplicaciones móviles, no para aplicaciones web",
+      "BFF reemplaza a GraphQL como solución para el problema de over-fetching"
+    ],
+    "correct": 1,
+    "explanation": "Un API Gateway genérico expone todos los servicios igual para todos los clientes. BFF: la app mobile necesita menos datos y respuestas optimizadas para conexiones lentas; la web app necesita datos más ricos; los partners necesitan otra API más estable y versionada. Un BFF por tipo de cliente agrega llamadas a múltiples microservicios, adapta el formato, hace caching específico. Cada BFF puede ser un microservicio Spring Boot ligero. Ventaja: el equipo de frontend controla su propio BFF y evoluciona su contrato sin afectar a otros clientes."
+  },
+  {
+    "id": 59,
+    "level": "Mid",
+    "category": "Microservices Patterns",
+    "question": "¿Qué estrategias existen para versionar una API REST en microservicios y cuáles son sus trade-offs?",
+    "code": "// Opción A: URL path versioning\nGET /api/v1/orders\nGET /api/v2/orders\n\n// Opción B: Header versioning\nGET /api/orders\nAccept: application/vnd.company.v2+json\n\n// Opción C: Query param\nGET /api/orders?version=2",
+    "options": [
+      "Las APIs REST no deben versionarse; los cambios siempre deben ser retrocompatibles",
+      "Solo se puede versionar por URL path, las otras estrategias no son REST-compliant",
+      "URL path (/v1/) es la más explícita y fácil de enrutar en API Gateway pero contamina las URLs; Header versioning es más RESTful pero más compleja; la clave es mantener compatibilidad hacia atrás y deprecar versiones antiguas con tiempo suficiente",
+      "La única forma correcta de versionar es crear un nuevo microservicio para cada versión"
+    ],
+    "correct": 2,
+    "explanation": "URL versioning (/v1/orders): más visible, fácil de probar con curl, enrutamiento trivial en API Gateway. Desventaja: URIs cambian, 'no es REST puro'. Header versioning (Accept: vnd.v2+json): más RESTful, URIs estables. Desventaja: invisible en el navegador, difícil de probar. Query param (?v=2): simple pero menos semántico. Estrategia práctica: versionar solo cuando hay breaking changes, soportar al menos 2 versiones simultáneamente, comunicar deprecación con 6 meses de antelación, usar Sunset header HTTP."
+  },
+  {
+    "id": 60,
+    "level": "Mid",
+    "category": "Architecture Styles",
+    "question": "¿Cómo se implementa el patrón CQRS con Spring Boot y cuáles son las opciones de sincronización entre el modelo de escritura y el de lectura?",
+    "code": "// Write side: comando\n@CommandHandler\npublic void handle(PlaceOrderCommand cmd) {\n    Order order = new Order(cmd);\n    orderRepository.save(order); // BD normalizada\n    eventPublisher.publish(new OrderPlacedEvent(order));\n}\n\n// Read side: proyección\n@EventHandler\npublic void on(OrderPlacedEvent event) {\n    orderSummaryRepo.save(new OrderSummary(event)); // BD desnormalizada\n}",
+    "options": [
+      "CQRS requiere siempre Event Sourcing, no puede implementarse sin él",
+      "En CQRS el modelo de lectura siempre está actualizado en tiempo real sin latencia",
+      "CQRS separa Commands (escritura en BD normalizada) y Queries (lectura de proyecciones desnormalizadas); la sincronización puede ser síncrona (misma transacción) o asíncrona (via eventos, con consistencia eventual); Axon Framework automatiza la infraestructura",
+      "CQRS solo aplica cuando se usa Kafka como broker de eventos"
+    ],
+    "correct": 2,
+    "explanation": "CQRS sin Event Sourcing es perfectamente válido: escribe en PostgreSQL normalizado, proyecta a Elasticsearch para búsquedas o a una tabla desnormalizada para dashboards. Sincronización síncrona: proyección en la misma transacción (consistencia fuerte, más lento). Sincronización asíncrona: evento → consumer actualiza proyección (consistencia eventual, mejor rendimiento). Axon Framework, Spring Modulith y Eventuate simplifican la infraestructura CQRS. Trade-off real: el modelo de lectura puede estar N milisegundos detrás del modelo de escritura."
+  }
+]
