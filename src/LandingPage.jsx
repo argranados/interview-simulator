@@ -20,6 +20,16 @@ const BANKS_CONFIG = {
     { ai: 'claude', title: 'Claude', emoji: '🧠', description: 'Más analítico' },
     { ai: 'deepseek', title: 'DeepSeek', emoji: '⚡', description: 'Más técnico y directo' },
   ],
+  sql_java: [
+    { ai: 'chatgpt', title: 'ChatGPT', emoji: '🤖', description: 'Balanceado y claro' },
+    { ai: 'claude', title: 'Claude', emoji: '🧠', description: 'Más analítico' },
+    { ai: 'deepseek', title: 'DeepSeek', emoji: '⚡', description: 'Más técnico y directo' },
+  ],
+  unit_testing: [
+    { ai: 'chatgpt', title: 'ChatGPT', emoji: '🤖', description: 'Balanceado y claro' },
+    { ai: 'claude', title: 'Claude', emoji: '🧠', description: 'Más analítico' },
+    { ai: 'deepseek', title: 'DeepSeek', emoji: '⚡', description: 'Más técnico y directo' },
+  ],
 }
 
 const TOPIC_LABELS = {
@@ -27,6 +37,8 @@ const TOPIC_LABELS = {
   microservicios: 'Microservicios y APIs',
   java_patrones: 'Java Patrones',
   java_arquitectura: 'Java Arquitectura',
+  sql_java: 'SQL Java',        // ← agrega esta línea
+  unit_testing: 'Unit Testing',
 }
 
 export default function LandingPage({ onSelect, onBack, topic }) {

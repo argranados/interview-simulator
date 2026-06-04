@@ -1,0 +1,842 @@
+[
+  {
+    "id": 1,
+    "level": "Junior",
+    "category": "JOINs",
+    "question": "Tienes una tabla users y una tabla orders. Necesitas mostrar todos los usuarios, incluso aquellos que nunca han realizado una orden. ¿Qué tipo de JOIN deberías utilizar para obtener ese resultado correctamente?",
+    "code": "SELECT u.id, u.name, o.id AS order_id\nFROM users u\nLEFT JOIN orders o ON u.id = o.user_id;",
+    "options": [
+      "INNER JOIN",
+      "LEFT JOIN",
+      "CROSS JOIN",
+      "SELF JOIN"
+    ],
+    "correct": 1,
+    "explanation": "LEFT JOIN devuelve todas las filas de la tabla ubicada a la izquierda de la consulta, independientemente de que exista una coincidencia en la tabla derecha. Cuando un usuario no tiene órdenes, las columnas provenientes de orders aparecerán con NULL. INNER JOIN excluiría esos usuarios porque requiere coincidencia en ambas tablas."
+  },
+  {
+    "id": 2,
+    "level": "Junior",
+    "category": "GROUP BY",
+    "question": "Necesitas obtener la cantidad de órdenes realizadas por cada cliente. ¿Cuál de las siguientes consultas es la más apropiada para resolver este requerimiento?",
+    "code": "SELECT customer_id, COUNT(*)\nFROM orders\nGROUP BY customer_id;",
+    "options": [
+      "GROUP BY customer_id con COUNT(*)",
+      "DISTINCT customer_id",
+      "ORDER BY customer_id",
+      "WHERE customer_id IS NOT NULL"
+    ],
+    "correct": 0,
+    "explanation": "COUNT(*) combinado con GROUP BY permite agrupar los registros por cliente y calcular cuántas órdenes pertenecen a cada uno. DISTINCT únicamente elimina duplicados y no calcula cantidades. ORDER BY solo ordena resultados y WHERE filtra registros sin realizar agregaciones."
+  },
+  {
+    "id": 3,
+    "level": "Mid",
+    "category": "Performance",
+    "question": "Una consulta tarda varios segundos al filtrar por la columna email en una tabla con más de 20 millones de registros. ¿Cuál sería la primera optimización que deberías evaluar?",
+    "code": "SELECT *\nFROM users\nWHERE email = 'john@example.com';",
+    "options": [
+      "Particionar la tabla inmediatamente",
+      "Agregar un índice sobre la columna email",
+      "Crear una vista materializada",
+      "Usar DISTINCT"
+    ],
+    "correct": 1,
+    "explanation": "Cuando una consulta filtra frecuentemente por una columna específica, un índice suele ser la optimización inicial más efectiva. Antes de aplicar soluciones más complejas como particionamiento o vistas materializadas, conviene validar si existe un índice adecuado y revisar el plan de ejecución."
+  },
+  {
+    "id": 4,
+    "level": "Junior",
+    "category": "HAVING",
+    "question": "Necesitas mostrar únicamente los clientes que tienen más de 10 órdenes registradas. ¿Qué cláusula es la más adecuada para filtrar el resultado agregado?",
+    "code": "SELECT customer_id, COUNT(*)\nFROM orders\nGROUP BY customer_id\nHAVING COUNT(*) > 10;",
+    "options": [
+      "ORDER BY",
+      "WHERE",
+      "HAVING",
+      "DISTINCT"
+    ],
+    "correct": 2,
+    "explanation": "HAVING se utiliza para filtrar resultados después de que se han aplicado funciones de agregación y GROUP BY. WHERE se ejecuta antes del agrupamiento y no puede utilizar directamente el resultado de COUNT(*), SUM() u otras funciones agregadas."
+  },
+  {
+    "id": 5,
+    "level": "Mid",
+    "category": "Indexes",
+    "question": "¿Cuál es una desventaja importante de crear demasiados índices en una tabla con alta frecuencia de escrituras?",
+    "code": null,
+    "options": [
+      "Los INSERT y UPDATE pueden volverse más lentos",
+      "Los SELECT dejan de utilizar índices",
+      "Las claves primarias dejan de funcionar",
+      "Se pierde la capacidad de hacer JOINs"
+    ],
+    "correct": 0,
+    "explanation": "Cada vez que una fila es insertada, actualizada o eliminada, los índices relacionados también deben actualizarse. Esto incrementa el costo de las operaciones de escritura. Por ello, aunque los índices mejoran la lectura, deben crearse únicamente cuando aportan un beneficio real."
+  },
+  {
+    "id": 6,
+    "level": "Junior",
+    "category": "JOINs",
+    "question": "¿Cuál es la diferencia entre INNER JOIN y FULL OUTER JOIN?",
+    "code": "-- INNER JOIN\nSELECT u.name, o.id\nFROM users u INNER JOIN orders o ON u.id = o.user_id;\n\n-- FULL OUTER JOIN\nSELECT u.name, o.id\nFROM users u FULL OUTER JOIN orders o ON u.id = o.user_id;",
+    "options": [
+      "INNER JOIN retorna solo filas con coincidencia en ambas tablas; FULL OUTER JOIN retorna todas las filas de ambas tablas, rellenando con NULL donde no hay coincidencia",
+      "FULL OUTER JOIN es equivalente a INNER JOIN pero más lento",
+      "INNER JOIN incluye NULLs automáticamente; FULL OUTER JOIN los excluye",
+      "No hay diferencia funcional, solo cambia el orden de las columnas en el resultado"
+    ],
+    "correct": 0,
+    "explanation": "INNER JOIN: solo retorna las filas donde existe coincidencia en ambas tablas. FULL OUTER JOIN: retorna todas las filas de ambas tablas — las que coinciden se unen, las que no tienen par aparecen con NULL en las columnas de la otra tabla. Útil para detectar registros huérfanos en ambas direcciones simultáneamente."
+  },
+  {
+    "id": 7,
+    "level": "Junior",
+    "category": "NULL Handling",
+    "question": "¿Cuál es la forma correcta de obtener los usuarios cuyo teléfono no ha sido registrado todavía?",
+    "code": "SELECT *\nFROM users\nWHERE phone IS NULL;",
+    "options": [
+      "phone = NULL",
+      "phone == NULL",
+      "phone IS NULL",
+      "phone IN (NULL)"
+    ],
+    "correct": 2,
+    "explanation": "NULL representa la ausencia de valor y no puede compararse utilizando el operador =. SQL proporciona IS NULL e IS NOT NULL para evaluar correctamente este tipo de valores. Utilizar = NULL devolverá resultados incorrectos en prácticamente todos los motores SQL."
+  },
+  {
+    "id": 8,
+    "level": "Mid",
+    "category": "Transactions",
+    "question": "Durante una transferencia bancaria se actualizan dos cuentas. Si ocurre un error después del primer UPDATE, ¿qué propiedad ACID garantiza que ninguna modificación parcial quede almacenada?",
+    "code": null,
+    "options": [
+      "Durability",
+      "Consistency",
+      "Isolation",
+      "Atomicity"
+    ],
+    "correct": 3,
+    "explanation": "Atomicity garantiza que una transacción se ejecute completamente o no se ejecute en absoluto. Si ocurre un error durante el proceso, todos los cambios realizados hasta ese momento serán revertidos mediante ROLLBACK para evitar estados parciales o inconsistentes."
+  },
+  {
+    "id": 9,
+    "level": "Mid",
+    "category": "Pagination",
+    "question": "Tu API expone millones de registros y los usuarios suelen navegar páginas muy avanzadas. ¿Qué estrategia suele escalar mejor que OFFSET/LIMIT tradicional?",
+    "code": null,
+    "options": [
+      "Cursor Pagination",
+      "GROUP BY",
+      "UNION ALL",
+      "DISTINCT"
+    ],
+    "correct": 0,
+    "explanation": "OFFSET obliga al motor a recorrer y descartar filas hasta llegar a la posición solicitada. En tablas muy grandes esto puede degradar significativamente el rendimiento. La paginación por cursor utiliza un valor de referencia, como un ID o timestamp, permitiendo consultas más eficientes."
+  },
+  {
+    "id": 10,
+    "level": "Mid",
+    "category": "Execution Plans",
+    "question": "Una consulta funciona correctamente pero presenta problemas de rendimiento en producción. ¿Qué herramienta deberías utilizar para entender cómo el motor SQL está ejecutando la consulta?",
+    "code": "EXPLAIN SELECT * FROM orders WHERE customer_id = 100;",
+    "options": [
+      "EXPLAIN / EXPLAIN ANALYZE: muestra el plan de ejecución del optimizador, incluyendo si usa índices, tipo de scan y costo estimado",
+      "SHOW INDEX: lista los índices de la tabla y determina cuál está fallando",
+      "ALTER TABLE: permite reestructurar la tabla para mejorar el rendimiento",
+      "CREATE INDEX: la solución siempre es añadir un nuevo índice sobre la columna filtrada"
+    ],
+    "correct": 0,
+    "explanation": "EXPLAIN (y EXPLAIN ANALYZE en PostgreSQL/MySQL 8+) muestra el plan de ejecución generado por el optimizador: tipo de acceso (index scan vs full table scan), índices utilizados, filas estimadas y costo. Sin esta información es imposible diagnosticar problemas de rendimiento correctamente. SHOW INDEX lista índices pero no dice si se están usando. Añadir índices sin analizar el plan puede no resolver el problema real."
+  },
+  {
+    "id": 11,
+    "level": "Junior",
+    "category": "Indexes",
+    "question": "¿Cuál es el objetivo principal de un índice en una base de datos relacional y por qué suele mejorar el rendimiento de las consultas?",
+    "code": null,
+    "options": [
+      "Reducir el espacio ocupado por las tablas",
+      "Permitir búsquedas más rápidas evitando recorridos completos de la tabla",
+      "Eliminar automáticamente registros duplicados",
+      "Reemplazar las claves primarias"
+    ],
+    "correct": 1,
+    "explanation": "Un índice es una estructura auxiliar que permite localizar registros de manera más eficiente. Sin un índice, el motor puede verse obligado a realizar un Full Table Scan. Aunque los índices aceleran muchas consultas de lectura, también incrementan el costo de operaciones de escritura porque deben mantenerse actualizados."
+  },
+  {
+    "id": 12,
+    "level": "Junior",
+    "category": "Normalization",
+    "question": "¿Cuál es el principal problema que intenta resolver la normalización dentro de un modelo de datos relacional?",
+    "code": null,
+    "options": [
+      "Reducir redundancia e inconsistencias en los datos",
+      "Incrementar la cantidad de índices disponibles",
+      "Eliminar la necesidad de claves foráneas",
+      "Aumentar el tamaño de las tablas"
+    ],
+    "correct": 0,
+    "explanation": "La normalización busca minimizar la duplicación innecesaria de información. Cuando los mismos datos aparecen repetidos en múltiples lugares, existe un mayor riesgo de inconsistencias durante actualizaciones, inserciones o eliminaciones. Las formas normales ayudan a estructurar los datos de manera más coherente."
+  },
+  {
+    "id": 13,
+    "level": "Mid",
+    "category": "Transactions",
+    "question": "¿Cuál es la diferencia principal entre COMMIT y ROLLBACK dentro de una transacción SQL?",
+    "code": null,
+    "options": [
+      "COMMIT guarda permanentemente los cambios y ROLLBACK los revierte",
+      "COMMIT elimina registros y ROLLBACK crea registros",
+      "Ambos realizan exactamente la misma función",
+      "ROLLBACK es más rápido que COMMIT en todos los casos"
+    ],
+    "correct": 0,
+    "explanation": "COMMIT confirma de manera permanente los cambios realizados dentro de una transacción. ROLLBACK deshace los cambios pendientes cuando ocurre un error o cuando la lógica de negocio determina que la operación no debe completarse. Son fundamentales para mantener la integridad de los datos."
+  },
+  {
+    "id": 14,
+    "level": "Mid",
+    "category": "ACID",
+    "question": "¿Qué propiedad ACID garantiza que una transacción no dejará la base de datos en un estado inválido después de ejecutarse?",
+    "code": null,
+    "options": [
+      "Isolation",
+      "Durability",
+      "Consistency",
+      "Atomicity"
+    ],
+    "correct": 2,
+    "explanation": "Consistency asegura que todas las reglas, restricciones e invariantes de negocio continúen siendo válidas después de una transacción. Una operación puede modificar datos, pero nunca debe dejar la base de datos en un estado que viole sus reglas de integridad."
+  },
+  {
+    "id": 15,
+    "level": "Mid",
+    "category": "Performance",
+    "question": "Una consulta utiliza una columna indexada, pero el motor sigue realizando un Full Table Scan. ¿Cuál de las siguientes podría ser una causa razonable?",
+    "code": null,
+    "options": [
+      "La consulta devuelve muy pocos registros",
+      "El optimizador estima que usar el índice es más costoso que escanear la tabla",
+      "La tabla tiene clave primaria",
+      "La consulta contiene ORDER BY"
+    ],
+    "correct": 1,
+    "explanation": "Los motores SQL utilizan estadísticas para decidir si un índice resulta beneficioso. Cuando una consulta devuelve un porcentaje muy alto de la tabla o las estadísticas indican baja selectividad, el optimizador puede decidir que un Full Table Scan es más eficiente."
+  },
+  {
+    "id": 16,
+    "level": "Mid",
+    "category": "Subqueries",
+    "question": "En términos generales, ¿cuándo suele ser preferible utilizar EXISTS en lugar de IN?",
+    "code": null,
+    "options": [
+      "Cuando solo interesa verificar la existencia de registros relacionados",
+      "Cuando se desea ordenar resultados automáticamente",
+      "Cuando se necesita reemplazar un JOIN",
+      "Cuando se desea eliminar duplicados"
+    ],
+    "correct": 0,
+    "explanation": "EXISTS suele ser una buena elección cuando únicamente interesa saber si existe al menos una coincidencia. Muchos motores pueden detener la evaluación tan pronto encuentran un registro válido, reduciendo trabajo innecesario en comparación con otras alternativas."
+  },
+  {
+    "id": 17,
+    "level": "Junior",
+    "category": "Data Modeling",
+    "question": "¿Cuál es la principal responsabilidad de una clave foránea dentro de un modelo relacional?",
+    "code": null,
+    "options": [
+      "Garantizar integridad referencial entre tablas",
+      "Acelerar todas las consultas automáticamente",
+      "Eliminar registros duplicados",
+      "Crear índices de manera implícita en todos los motores"
+    ],
+    "correct": 0,
+    "explanation": "Una clave foránea establece una relación entre tablas y ayuda a garantizar que los registros relacionados sean válidos. Gracias a ella es posible evitar referencias a entidades inexistentes y mantener la consistencia de los datos entre distintas tablas."
+  },
+  {
+    "id": 18,
+    "level": "Mid",
+    "category": "Indexes",
+    "question": "¿En cuál de los siguientes escenarios un índice probablemente aporte poco beneficio?",
+    "code": null,
+    "options": [
+      "Una columna con muy pocos valores distintos, como un campo booleano",
+      "Una columna utilizada constantemente en filtros",
+      "Una clave primaria",
+      "Una columna utilizada en JOINs frecuentes"
+    ],
+    "correct": 0,
+    "explanation": "Cuando una columna tiene muy baja cardinalidad, como un campo con únicamente dos valores posibles, el índice puede resultar poco selectivo. En esos casos el optimizador puede preferir escanear la tabla completa porque el índice no reduce significativamente la cantidad de registros candidatos."
+  },
+  {
+    "id": 19,
+    "level": "Mid",
+    "category": "Transactions",
+    "question": "¿Qué problema intenta evitar principalmente el nivel de aislamiento READ COMMITTED?",
+    "code": null,
+    "options": [
+      "Dirty Reads",
+      "Deadlocks",
+      "Full Table Scans",
+      "Cartesian Products"
+    ],
+    "correct": 0,
+    "explanation": "READ COMMITTED evita que una transacción lea cambios que todavía no han sido confirmados por otra transacción. Esto reduce el riesgo de trabajar con datos temporales que podrían ser revertidos posteriormente mediante un ROLLBACK."
+  },
+  {
+    "id": 20,
+    "level": "Mid",
+    "category": "Database Design",
+    "question": "Un entrevistador te pregunta cuándo podrías aceptar cierta desnormalización en una base de datos. ¿Cuál sería la mejor respuesta?",
+    "code": null,
+    "options": [
+      "Cuando se busca mejorar el rendimiento de lectura y el costo de mantener redundancia está controlado",
+      "Siempre que exista una clave primaria",
+      "Nunca debe utilizarse desnormalización",
+      "Solo cuando la tabla tiene menos de 100 registros"
+    ],
+    "correct": 0,
+    "explanation": "Aunque la normalización es la base de un buen diseño relacional, existen escenarios donde una desnormalización controlada puede mejorar significativamente el rendimiento de lectura. La decisión debe tomarse entendiendo los trade-offs entre consistencia, mantenimiento y velocidad de consulta."
+  },
+  {
+    "id": 21,
+    "level": "Mid",
+    "category": "Query Optimization",
+    "question": "Una consulta que funcionaba correctamente comenzó a degradarse después de que la tabla pasó de 100 mil a 50 millones de registros. ¿Cuál sería la primera acción razonable antes de modificar el diseño de la base de datos?",
+    "code": null,
+    "options": [
+      "Revisar el plan de ejecución y las estadísticas actuales",
+      "Migrar inmediatamente a otra base de datos",
+      "Eliminar todos los índices existentes",
+      "Crear particiones sin analizar la consulta"
+    ],
+    "correct": 0,
+    "explanation": "Cuando una consulta degrada su rendimiento con el crecimiento de datos, la primera tarea debe ser entender cómo está ejecutándola el optimizador. Revisar el plan de ejecución permite identificar scans innecesarios, índices ignorados, estimaciones incorrectas y otros problemas antes de aplicar cambios más costosos."
+  },
+  {
+    "id": 22,
+    "level": "Mid",
+    "category": "Indexes",
+    "question": "Una tabla tiene un índice compuesto sobre (country, city). ¿Cuál consulta tiene más probabilidades de aprovechar completamente dicho índice?",
+    "code": null,
+    "options": [
+      "WHERE city = 'Madrid'",
+      "WHERE country = 'Spain' AND city = 'Madrid'",
+      "ORDER BY city",
+      "WHERE city LIKE '%rid'"
+    ],
+    "correct": 1,
+    "explanation": "Los índices compuestos siguen generalmente la regla del prefijo izquierdo. Un índice definido como (country, city) suele ser más efectivo cuando la consulta utiliza primero country y posteriormente city. Consultar únicamente por city puede impedir que el índice sea utilizado eficientemente."
+  },
+  {
+    "id": 23,
+    "level": "Mid",
+    "category": "Window Functions",
+    "question": "Necesitas obtener los tres empleados mejor pagados por departamento sin perder el detalle individual de cada fila. ¿Qué característica SQL es la más apropiada?",
+    "code": null,
+    "options": [
+      "DISTINCT",
+      "GROUP BY",
+      "Window Functions",
+      "UNION ALL"
+    ],
+    "correct": 2,
+    "explanation": "Las Window Functions permiten realizar cálculos analíticos manteniendo las filas originales. Funciones como ROW_NUMBER(), RANK() o DENSE_RANK() son ideales para resolver rankings por grupo sin colapsar resultados como ocurre con GROUP BY."
+  },
+  {
+    "id": 24,
+    "level": "Mid",
+    "category": "Cardinality",
+    "question": "¿Por qué una columna con millones de valores distintos suele ser una mejor candidata para indexación que una columna con únicamente dos valores posibles?",
+    "code": null,
+    "options": [
+      "Porque tiene mayor cardinalidad y selectividad",
+      "Porque ocupa menos espacio",
+      "Porque evita todos los bloqueos",
+      "Porque elimina la necesidad de JOINs"
+    ],
+    "correct": 0,
+    "explanation": "La cardinalidad mide la cantidad de valores distintos existentes en una columna. Cuanto mayor sea la cardinalidad, más selectivo suele ser el índice. Una columna con solo dos valores posibles normalmente devuelve demasiadas filas y reduce el beneficio de utilizar un índice."
+  },
+  {
+    "id": 25,
+    "level": "Junior",
+    "category": "CTE",
+    "question": "¿Cuál es una ventaja común de utilizar Common Table Expressions (CTEs) en consultas complejas?",
+    "code": "WITH recent_orders AS (\n  SELECT * FROM orders\n)\nSELECT * FROM recent_orders;",
+    "options": [
+      "Mejorar legibilidad y mantenimiento",
+      "Incrementar automáticamente el rendimiento",
+      "Eliminar la necesidad de índices",
+      "Reemplazar transacciones"
+    ],
+    "correct": 0,
+    "explanation": "Las CTEs permiten dividir consultas complejas en partes más comprensibles. Aunque algunas personas asumen que mejoran el rendimiento, su principal beneficio suele ser la legibilidad, mantenibilidad y reutilización lógica dentro de una misma consulta."
+  },
+  {
+    "id": 26,
+    "level": "Mid",
+    "category": "JOINs",
+    "question": "¿Cuál es el principal riesgo de utilizar accidentalmente un CROSS JOIN sobre tablas grandes en producción?",
+    "code": null,
+    "options": [
+      "Generar un número masivo de combinaciones de filas",
+      "Perder índices automáticamente",
+      "Eliminar registros duplicados",
+      "Bloquear permanentemente la tabla"
+    ],
+    "correct": 0,
+    "explanation": "CROSS JOIN genera el producto cartesiano entre ambas tablas. Si una tabla tiene 100 mil registros y otra 50 mil, el resultado potencial puede alcanzar miles de millones de combinaciones, provocando consultas extremadamente lentas y consumo excesivo de recursos."
+  },
+  {
+    "id": 27,
+    "level": "Mid",
+    "category": "Performance",
+    "question": "¿Cuál de las siguientes prácticas suele ayudar más a reducir el volumen de datos transferidos desde la base de datos hacia la aplicación?",
+    "code": null,
+    "options": [
+      "Seleccionar únicamente las columnas necesarias",
+      "Agregar más índices",
+      "Usar FULL OUTER JOIN",
+      "Incrementar el tamaño del servidor"
+    ],
+    "correct": 0,
+    "explanation": "Muchas consultas utilizan SELECT * cuando realmente solo necesitan unas pocas columnas. Limitar explícitamente las columnas reduce tráfico de red, consumo de memoria y procesamiento tanto en el servidor de base de datos como en la aplicación cliente."
+  },
+  {
+    "id": 28,
+    "level": "Mid",
+    "category": "Execution Plans",
+    "question": "Al analizar un plan de ejecución observas que el motor ignora un índice existente. ¿Cuál podría ser una explicación válida?",
+    "code": null,
+    "options": [
+      "El optimizador considera más eficiente otro camino de acceso",
+      "Los índices nunca son utilizados automáticamente",
+      "La tabla tiene una clave primaria",
+      "La consulta contiene SELECT"
+    ],
+    "correct": 0,
+    "explanation": "Los optimizadores modernos comparan múltiples estrategias antes de ejecutar una consulta. Incluso cuando existe un índice, pueden decidir ignorarlo si estiman que un escaneo completo resulta más eficiente debido a baja selectividad o estadísticas disponibles."
+  },
+  {
+    "id": 29,
+    "level": "Mid",
+    "category": "Window Functions",
+    "question": "¿Cuál es la diferencia principal entre ROW_NUMBER() y RANK() cuando existen valores empatados?",
+    "code": null,
+    "options": [
+      "ROW_NUMBER() asigna números únicos; RANK() permite empates",
+      "RANK() elimina duplicados automáticamente",
+      "ROW_NUMBER() solo funciona con GROUP BY",
+      "No existe diferencia práctica"
+    ],
+    "correct": 0,
+    "explanation": "ROW_NUMBER() asigna una secuencia única a cada fila incluso cuando existen valores iguales. RANK(), en cambio, asigna el mismo ranking a filas empatadas y puede dejar saltos en la numeración posterior. Esta diferencia suele evaluarse frecuentemente en entrevistas."
+  },
+  {
+    "id": 30,
+    "level": "Mid",
+    "category": "Database Design",
+    "question": "Una tabla contiene información de clientes repetida miles de veces dentro de registros de órdenes. ¿Qué problema de diseño podría existir?",
+    "code": null,
+    "options": [
+      "Posible falta de normalización",
+      "Uso excesivo de claves primarias",
+      "Exceso de índices compuestos",
+      "Demasiadas transacciones"
+    ],
+    "correct": 0,
+    "explanation": "La repetición innecesaria de datos suele ser una señal clásica de falta de normalización. Esto incrementa el riesgo de inconsistencias, complica actualizaciones y aumenta el almacenamiento requerido. Una entrevista suele evaluar si el candidato identifica este tipo de problemas de modelado."
+  },
+  {
+    "id": 31,
+    "level": "Mid",
+    "category": "Transactions",
+    "question": "Dos transacciones quedan esperando indefinidamente recursos bloqueados por la otra y ninguna puede continuar. ¿Cómo se denomina este problema?",
+    "code": null,
+    "options": [
+      "Dirty Read",
+      "Deadlock",
+      "Phantom Read",
+      "Full Table Scan"
+    ],
+    "correct": 1,
+    "explanation": "Un deadlock ocurre cuando dos o más transacciones se bloquean mutuamente esperando recursos que la otra posee. Los motores de bases de datos suelen detectar estas situaciones y cancelar una de las transacciones para romper el ciclo. Es un problema común en sistemas con alta concurrencia."
+  },
+  {
+    "id": 32,
+    "level": "Mid",
+    "category": "Isolation Levels",
+    "question": "¿Qué problema ocurre cuando una transacción lee datos modificados por otra transacción que todavía no ha realizado COMMIT?",
+    "code": null,
+    "options": [
+      "Dirty Read",
+      "Lost Update",
+      "Deadlock",
+      "Phantom Read"
+    ],
+    "correct": 0,
+    "explanation": "Dirty Read ocurre cuando una transacción consume datos que todavía no han sido confirmados. Si posteriormente la otra transacción ejecuta ROLLBACK, la información leída nunca existió realmente, generando inconsistencias y comportamientos inesperados."
+  },
+  {
+    "id": 33,
+    "level": "Mid",
+    "category": "Indexes",
+    "question": "¿Cuál es la principal ventaja de un índice compuesto frente a múltiples índices individuales cuando una consulta filtra por varias columnas?",
+    "code": null,
+    "options": [
+      "Permite optimizar búsquedas combinadas siguiendo un orden específico de columnas",
+      "Elimina automáticamente los JOINs",
+      "Reduce el tamaño de la tabla",
+      "Evita completamente los bloqueos"
+    ],
+    "correct": 0,
+    "explanation": "Un índice compuesto puede optimizar consultas que utilizan varias columnas simultáneamente. Sin embargo, su efectividad depende del orden en que fueron definidas las columnas dentro del índice y de cómo se construyen los filtros de la consulta."
+  },
+  {
+    "id": 34,
+    "level": "Mid",
+    "category": "Indexes",
+    "question": "¿Qué es un Covering Index y por qué puede mejorar significativamente el rendimiento de ciertas consultas?",
+    "code": null,
+    "options": [
+      "Un índice que contiene todas las columnas necesarias para resolver la consulta sin acceder a la tabla",
+      "Un índice utilizado únicamente para claves primarias",
+      "Un índice temporal creado por el optimizador",
+      "Un índice que reemplaza las restricciones UNIQUE"
+    ],
+    "correct": 0,
+    "explanation": "Un Covering Index contiene tanto las columnas utilizadas en filtros como las requeridas en el SELECT. Esto permite que la consulta se resuelva utilizando únicamente el índice, evitando accesos adicionales a la tabla base y reduciendo considerablemente el costo de lectura."
+  },
+  {
+    "id": 35,
+    "level": "Mid",
+    "category": "Performance",
+    "question": "Una consulta utiliza SELECT * sobre una tabla con más de 50 columnas, pero la aplicación solo necesita cuatro. ¿Cuál es la mejor recomendación?",
+    "code": null,
+    "options": [
+      "Seleccionar únicamente las columnas requeridas",
+      "Agregar más índices",
+      "Utilizar UNION ALL",
+      "Aumentar el tamaño de página"
+    ],
+    "correct": 0,
+    "explanation": "Solicitar únicamente las columnas necesarias reduce tráfico de red, uso de memoria y procesamiento. Aunque muchas aplicaciones funcionan correctamente con SELECT *, esta práctica suele ser considerada una mala práctica en entornos productivos debido a su impacto acumulativo."
+  },
+  {
+    "id": 36,
+    "level": "Mid",
+    "category": "Query Optimization",
+    "question": "Necesitas saber si existen registros relacionados, pero no necesitas recuperar ninguna información adicional. ¿Qué enfoque suele ser más eficiente?",
+    "code": null,
+    "options": [
+      "EXISTS",
+      "LEFT JOIN con todas las columnas",
+      "SELECT DISTINCT",
+      "UNION"
+    ],
+    "correct": 0,
+    "explanation": "EXISTS suele ser una elección eficiente cuando únicamente interesa validar la existencia de registros relacionados. Muchos motores pueden detener la búsqueda al encontrar la primera coincidencia, reduciendo el trabajo necesario para completar la consulta."
+  },
+  {
+    "id": 37,
+    "level": "Junior",
+    "category": "Set Operations",
+    "question": "¿Cuál es la diferencia principal entre UNION y UNION ALL?",
+    "code": null,
+    "options": [
+      "UNION elimina duplicados; UNION ALL conserva todos los registros",
+      "UNION ALL elimina duplicados automáticamente",
+      "UNION solo funciona con índices",
+      "No existe diferencia funcional"
+    ],
+    "correct": 0,
+    "explanation": "UNION realiza una operación adicional para eliminar registros duplicados, lo que puede incrementar el costo de ejecución. UNION ALL conserva todas las filas y generalmente resulta más rápido cuando no es necesario eliminar duplicados."
+  },
+  {
+    "id": 38,
+    "level": "Mid",
+    "category": "Transactions",
+    "question": "¿Qué problema intenta prevenir principalmente el nivel de aislamiento REPEATABLE READ?",
+    "code": null,
+    "options": [
+      "Lecturas no repetibles",
+      "Full Table Scans",
+      "Índices duplicados",
+      "Errores de sintaxis"
+    ],
+    "correct": 0,
+    "explanation": "REPEATABLE READ garantiza que una misma fila leída varias veces dentro de la misma transacción mantenga el mismo valor. Esto evita que otra transacción modifique los datos observados durante la ejecución actual."
+  },
+  {
+    "id": 39,
+    "level": "Mid",
+    "category": "Performance",
+    "question": "Después de analizar una consulta descubres que devuelve únicamente 20 filas, pero debe recorrer millones para encontrarlas. ¿Qué concepto es especialmente relevante para entender este problema?",
+    "code": null,
+    "options": [
+      "Selectividad",
+      "Normalización",
+      "Atomicidad",
+      "UNION ALL"
+    ],
+    "correct": 0,
+    "explanation": "La selectividad describe qué tan bien un filtro reduce el conjunto de resultados. Una consulta altamente selectiva devuelve pocas filas respecto al tamaño total de la tabla y suele beneficiarse considerablemente de índices apropiados."
+  },
+  {
+    "id": 40,
+    "level": "Mid",
+    "category": "Execution Plans",
+    "question": "¿Por qué es peligroso asumir que una consulta rápida en desarrollo tendrá el mismo rendimiento en producción?",
+    "code": null,
+    "options": [
+      "Porque el volumen de datos, estadísticas y distribución de registros pueden ser completamente diferentes",
+      "Porque SQL se ejecuta diferente según el lenguaje de programación",
+      "Porque los índices no funcionan en producción",
+      "Porque las claves primarias dejan de utilizarse"
+    ],
+    "correct": 0,
+    "explanation": "Muchas consultas funcionan correctamente con miles de registros pero presentan problemas cuando el volumen crece a millones. El optimizador toma decisiones basadas en estadísticas, cardinalidad y distribución de datos, factores que suelen diferir significativamente entre ambientes."
+  },
+  {
+    "id": 41,
+    "level": "Mid",
+    "category": "Reporting",
+    "question": "Necesitas generar un reporte mensual mostrando el total de ventas por mes durante el último año. ¿Qué técnica SQL es la más apropiada para agrupar correctamente los resultados?",
+    "code": "SELECT YEAR(order_date), MONTH(order_date), SUM(total)\nFROM orders\nGROUP BY YEAR(order_date), MONTH(order_date);",
+    "options": [
+      "GROUP BY utilizando año y mes",
+      "ORDER BY fecha",
+      "DISTINCT",
+      "UNION ALL"
+    ],
+    "correct": 0,
+    "explanation": "Cuando se generan reportes agregados por períodos de tiempo, GROUP BY permite consolidar múltiples registros en un único resultado por grupo. En este caso se agrupan las órdenes por año y mes para calcular el total de ventas correspondiente a cada período."
+  },
+  {
+    "id": 42,
+    "level": "Mid",
+    "category": "Window Functions",
+    "question": "Necesitas obtener el empleado mejor pagado dentro de cada departamento sin perder el detalle individual de los registros. ¿Qué función suele ser la más adecuada?",
+    "code": "SELECT name, department_id, salary,\n  ROW_NUMBER() OVER(PARTITION BY department_id ORDER BY salary DESC) AS rn\nFROM employees;",
+    "options": [
+      "ROW_NUMBER() OVER(PARTITION BY department_id ORDER BY salary DESC) filtrando rn = 1",
+      "RANK() OVER(PARTITION BY department_id ORDER BY salary DESC) — equivalente a ROW_NUMBER() y siempre preferible",
+      "FIRST_VALUE(salary) OVER(PARTITION BY department_id ORDER BY salary DESC) sobre la tabla completa sin filtrar",
+      "GROUP BY department_id con MAX(salary) — produce el mismo resultado que Window Functions"
+    ],
+    "correct": 0,
+    "explanation": "ROW_NUMBER() asigna un número único por partición ordenado por salario DESC. Al filtrar WHERE rn = 1 se obtiene exactamente un empleado por departamento (el de mayor salario), manteniendo todas sus columnas. RANK() también funciona pero puede retornar múltiples filas si hay empate en el salario máximo. FIRST_VALUE() retorna el valor pero no filtra filas. GROUP BY + MAX(salary) pierde las demás columnas del empleado ganador."
+  },
+  {
+    "id": 43,
+    "level": "Mid",
+    "category": "Data Quality",
+    "question": "Durante una auditoría descubres que existen usuarios duplicados registrados con el mismo correo electrónico. ¿Cuál sería la mejor medida preventiva para evitar que el problema vuelva a ocurrir?",
+    "code": null,
+    "options": [
+      "Agregar una restricción UNIQUE sobre email",
+      "Crear un índice temporal",
+      "Usar ORDER BY email",
+      "Agregar una vista"
+    ],
+    "correct": 0,
+    "explanation": "Las restricciones UNIQUE garantizan que no puedan insertarse registros con valores repetidos en determinadas columnas. Aunque los índices pueden acelerar búsquedas, una restricción UNIQUE protege explícitamente la integridad de los datos."
+  },
+  {
+    "id": 44,
+    "level": "Mid",
+    "category": "Pagination",
+    "question": "Una API utiliza OFFSET 500000 LIMIT 50 y comienza a mostrar problemas de rendimiento. ¿Cuál es una posible explicación?",
+    "code": null,
+    "options": [
+      "El motor debe recorrer y descartar una gran cantidad de filas antes de devolver resultados",
+      "OFFSET crea índices automáticamente",
+      "LIMIT bloquea la tabla completa",
+      "La consulta deja de usar claves primarias"
+    ],
+    "correct": 0,
+    "explanation": "En muchos motores SQL, OFFSET obliga a recorrer las filas previas aunque no formen parte del resultado final. A medida que aumenta el número de página, el costo de la consulta también puede crecer significativamente, razón por la cual muchas APIs migran hacia paginación por cursor."
+  },
+  {
+    "id": 45,
+    "level": "Mid",
+    "category": "Window Functions",
+    "question": "¿Cuál es la principal diferencia entre RANK() y DENSE_RANK() cuando existen empates?",
+    "code": null,
+    "options": [
+      "RANK() deja huecos en la numeración; DENSE_RANK() no",
+      "DENSE_RANK() elimina registros duplicados",
+      "RANK() solo funciona con GROUP BY",
+      "No existe diferencia práctica"
+    ],
+    "correct": 0,
+    "explanation": "Cuando existen empates, RANK() asigna el mismo valor a los registros empatados y deja saltos posteriores en la numeración. DENSE_RANK() también permite empates, pero mantiene una secuencia continua sin generar huecos."
+  },
+  {
+    "id": 46,
+    "level": "Mid",
+    "category": "Database Design",
+    "question": "¿Cuál es una razón válida para aceptar cierta desnormalización dentro de una base de datos empresarial?",
+    "code": null,
+    "options": [
+      "Mejorar el rendimiento de lectura cuando el costo de redundancia está controlado",
+      "Eliminar todas las claves foráneas",
+      "Evitar el uso de índices",
+      "Reducir la cantidad de tablas a una sola"
+    ],
+    "correct": 0,
+    "explanation": "La normalización es generalmente deseable, pero existen escenarios donde una desnormalización controlada puede reducir JOINs complejos y mejorar el rendimiento de lectura. La decisión debe evaluarse considerando consistencia, mantenimiento y rendimiento."
+  },
+  {
+    "id": 47,
+    "level": "Mid",
+    "category": "Auditing",
+    "question": "Una empresa necesita rastrear quién modificó un registro, cuándo ocurrió el cambio y cuál era el valor anterior. ¿Qué enfoque es más apropiado?",
+    "code": null,
+    "options": [
+      "Implementar una estrategia de auditoría con historial de cambios",
+      "Eliminar registros antiguos periódicamente",
+      "Usar únicamente índices",
+      "Aplicar GROUP BY sobre la tabla"
+    ],
+    "correct": 0,
+    "explanation": "Los requerimientos de auditoría suelen implicar almacenar metadatos sobre las modificaciones realizadas. Esto permite rastrear usuarios, fechas, valores anteriores y nuevos, facilitando análisis forenses, cumplimiento normativo y trazabilidad."
+  },
+  {
+    "id": 48,
+    "level": "Mid",
+    "category": "Performance",
+    "question": "Una consulta utiliza varias funciones sobre una columna indexada dentro de la cláusula WHERE. ¿Qué impacto podría tener esto?",
+    "code": "WHERE UPPER(email) = 'JOHN@COMPANY.COM'",
+    "options": [
+      "El optimizador podría no utilizar el índice eficientemente",
+      "La consulta siempre será más rápida",
+      "Se eliminan automáticamente registros duplicados",
+      "Se incrementa la cardinalidad de la tabla"
+    ],
+    "correct": 0,
+    "explanation": "Aplicar funciones sobre columnas indexadas puede impedir que el motor aproveche el índice de forma óptima. Dependiendo del motor SQL, esto puede derivar en escaneos completos de tabla y degradaciones significativas de rendimiento."
+  },
+  {
+    "id": 49,
+    "level": "Mid",
+    "category": "Reporting",
+    "question": "Necesitas identificar los cinco productos más vendidos durante el último trimestre. ¿Qué enfoque SQL resulta más adecuado?",
+    "code": "SELECT product_id, SUM(quantity)\nFROM order_items\nGROUP BY product_id\nORDER BY SUM(quantity) DESC\nLIMIT 5;",
+    "options": [
+      "Agrupar por producto, ordenar por ventas y limitar resultados",
+      "Utilizar DISTINCT exclusivamente",
+      "Aplicar CROSS JOIN",
+      "Eliminar índices antes de ejecutar la consulta"
+    ],
+    "correct": 0,
+    "explanation": "Este es un caso clásico de reporting. Primero se agregan las ventas por producto, luego se ordenan de forma descendente y finalmente se limita el resultado a los cinco registros más relevantes. Es una pregunta frecuente en entrevistas orientadas a análisis de datos."
+  },
+  {
+    "id": 50,
+    "level": "Mid",
+    "category": "SQL Architecture",
+    "question": "Después de varios años de crecimiento, una base de datos comienza a presentar consultas lentas y tiempos de respuesta inconsistentes. ¿Cuál suele ser la estrategia más razonable antes de considerar una migración completa de tecnología?",
+    "code": null,
+    "options": [
+      "Analizar consultas, índices, planes de ejecución y patrones de acceso",
+      "Reescribir inmediatamente toda la aplicación",
+      "Eliminar todas las restricciones de integridad",
+      "Desnormalizar todas las tablas sin análisis previo"
+    ],
+    "correct": 0,
+    "explanation": "La mayoría de los problemas de rendimiento se resuelven comprendiendo cómo accede la aplicación a los datos. Antes de plantear cambios drásticos de tecnología, es fundamental analizar consultas lentas, índices, estadísticas, planes de ejecución y patrones de uso reales para identificar cuellos de botella."
+  },
+  {
+    "id": 51,
+    "level": "Junior",
+    "category": "JOINs",
+    "question": "Tienes una tabla products y una tabla categories. Quieres mostrar solo los productos que tienen una categoría asignada. ¿Qué tipo de JOIN usarías?",
+    "code": "SELECT p.name, c.name AS category\nFROM products p\n??? JOIN categories c ON p.category_id = c.id;",
+    "options": [
+      "INNER JOIN — retorna solo los productos que tienen una categoría coincidente en la tabla categories",
+      "LEFT JOIN — retorna todos los productos incluyendo los que no tienen categoría",
+      "CROSS JOIN — combina cada producto con cada categoría existente",
+      "RIGHT JOIN — retorna solo las categorías que tienen al menos un producto"
+    ],
+    "correct": 0,
+    "explanation": "INNER JOIN retorna únicamente las filas donde existe coincidencia en ambas tablas. Si un producto tiene category_id NULL o apunta a una categoría inexistente, no aparecerá en el resultado. Es el JOIN más común cuando se necesita que ambos lados del join tengan datos válidos. LEFT JOIN sería la elección si se quiere mostrar también productos sin categoría."
+  },
+  {
+    "id": 52,
+    "level": "Junior",
+    "category": "JOINs",
+    "question": "¿Qué resultado produce un LEFT JOIN cuando no existe coincidencia en la tabla de la derecha?",
+    "code": "SELECT u.name, o.total\nFROM users u\nLEFT JOIN orders o ON u.id = o.user_id;",
+    "options": [
+      "La fila del usuario aparece en el resultado con NULL en las columnas de orders",
+      "La fila del usuario se omite del resultado, igual que con INNER JOIN",
+      "La consulta lanza un error por falta de coincidencia",
+      "La fila aparece duplicada con ceros en lugar de NULL"
+    ],
+    "correct": 0,
+    "explanation": "LEFT JOIN garantiza que todas las filas de la tabla izquierda (users) aparezcan en el resultado, independientemente de si tienen coincidencia en la tabla derecha (orders). Cuando no existe coincidencia, las columnas de la tabla derecha se rellenan con NULL. Esto permite identificar usuarios que nunca han realizado un pedido: WHERE o.id IS NULL."
+  },
+  {
+    "id": 53,
+    "level": "Junior",
+    "category": "SELECT",
+    "question": "¿Qué cláusula se usa para eliminar filas duplicadas en el resultado de una consulta SELECT?",
+    "code": "SELECT ??? country FROM customers;",
+    "options": [
+      "DISTINCT — elimina filas duplicadas del resultado basándose en las columnas seleccionadas",
+      "UNIQUE — equivalente a DISTINCT en SQL estándar",
+      "GROUP BY country — siempre produce el mismo resultado que DISTINCT",
+      "WHERE duplicates = false — filtra duplicados usando una condición"
+    ],
+    "correct": 0,
+    "explanation": "DISTINCT elimina filas con valores idénticos en todas las columnas seleccionadas. SELECT DISTINCT country retorna cada país una sola vez. GROUP BY puede producir un resultado similar pero su propósito es agrupar para aplicar funciones de agregación (COUNT, SUM). UNIQUE no existe como cláusula SELECT en SQL. DISTINCT tiene un costo adicional ya que requiere ordenar o comparar los resultados."
+  },
+  {
+    "id": 54,
+    "level": "Junior",
+    "category": "SELECT",
+    "question": "¿Cuál es la diferencia entre WHERE y HAVING en una consulta SQL con GROUP BY?",
+    "code": "SELECT customer_id, COUNT(*) AS total\nFROM orders\nWHERE status = 'ACTIVE'      -- filtra ANTES de agrupar\nGROUP BY customer_id\nHAVING COUNT(*) > 5;          -- filtra DESPUÉS de agrupar",
+    "options": [
+      "WHERE filtra filas individuales antes del agrupamiento; HAVING filtra grupos después de aplicar funciones de agregación",
+      "WHERE y HAVING son intercambiables, solo difieren en la posición dentro de la consulta",
+      "HAVING se usa para columnas indexadas; WHERE para columnas sin índice",
+      "WHERE solo funciona con columnas de texto; HAVING solo con columnas numéricas"
+    ],
+    "correct": 0,
+    "explanation": "WHERE se evalúa antes de GROUP BY: filtra filas individuales y no puede usar funciones de agregación como COUNT() o SUM(). HAVING se evalúa después de GROUP BY: filtra grupos completos y sí puede usar funciones de agregación. Error común: intentar escribir WHERE COUNT(*) > 5, lo cual genera un error de sintaxis. La solución correcta siempre es HAVING COUNT(*) > 5."
+  },
+  {
+    "id": 55,
+    "level": "Junior",
+    "category": "GROUP BY",
+    "question": "¿Qué regla debe cumplirse con las columnas en un SELECT que usa GROUP BY?",
+    "code": "-- ¿Cuál de estas consultas es correcta?\n-- A:\nSELECT customer_id, status, COUNT(*) FROM orders GROUP BY customer_id;\n-- B:\nSELECT customer_id, COUNT(*) FROM orders GROUP BY customer_id;",
+    "options": [
+      "Toda columna del SELECT que no sea una función de agregación debe estar incluida en el GROUP BY",
+      "Se puede incluir cualquier columna en el SELECT independientemente del GROUP BY",
+      "GROUP BY solo se puede usar con una sola columna a la vez",
+      "Las funciones de agregación como COUNT() no pueden usarse junto con GROUP BY"
+    ],
+    "correct": 0,
+    "explanation": "Regla fundamental: cada columna del SELECT debe ser parte del GROUP BY o estar dentro de una función de agregación (COUNT, SUM, MAX, MIN, AVG). En el ejemplo, la consulta A es incorrecta porque 'status' aparece en el SELECT pero no en el GROUP BY — el motor no sabe qué valor de status mostrar para el grupo. La consulta B es correcta: customer_id está en el GROUP BY y COUNT(*) es una agregación."
+  },
+  {
+    "id": 56,
+    "level": "Junior",
+    "category": "GROUP BY",
+    "question": "Necesitas saber cuántos productos hay en cada categoría, ordenados de mayor a menor cantidad. ¿Cuál es la consulta correcta?",
+    "code": "SELECT category_id, COUNT(*) AS total\nFROM products\nGROUP BY ???\nORDER BY ??? DESC;",
+    "options": [
+      "GROUP BY category_id ORDER BY total DESC — agrupa por categoría y ordena el conteo descendente",
+      "GROUP BY COUNT(*) ORDER BY category_id DESC — agrupa por el conteo y ordena por categoría",
+      "GROUP BY category_id ORDER BY category_id DESC — ordena por el ID de categoría, no por el conteo",
+      "ORDER BY COUNT(*) DESC sin GROUP BY — ORDER BY puede reemplazar a GROUP BY"
+    ],
+    "correct": 0,
+    "explanation": "GROUP BY category_id agrupa todas las filas por categoría. COUNT(*) cuenta los productos en cada grupo. ORDER BY total DESC (o ORDER BY COUNT(*) DESC) ordena los resultados de mayor a menor cantidad. Es un patrón de consulta extremadamente común en entrevistas: agrupar + contar + ordenar. Sin GROUP BY, COUNT(*) contaría el total de todos los productos, no por categoría."
+  }
+]

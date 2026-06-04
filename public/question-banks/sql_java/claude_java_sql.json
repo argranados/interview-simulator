@@ -1,0 +1,1127 @@
+[
+  {
+    "id": 1,
+    "level": "Junior",
+    "category": "JOINs",
+    "question": "Tienes una tabla clientes y una tabla pedidos. Necesitas mostrar todos los clientes, incluso los que nunca han realizado un pedido. ¿Qué tipo de JOIN usarías?",
+    "code": "SELECT c.id, c.nombre, p.id AS pedido_id\nFROM clientes c\nLEFT JOIN pedidos p ON c.id = p.cliente_id;",
+    "options": [
+      "INNER JOIN",
+      "LEFT JOIN",
+      "CROSS JOIN",
+      "SELF JOIN"
+    ],
+    "correct": 1,
+    "explanation": "LEFT JOIN retorna todas las filas de la tabla izquierda (clientes) independientemente de si existe coincidencia en la tabla derecha (pedidos). Cuando un cliente no tiene pedidos, las columnas de pedidos aparecen como NULL. INNER JOIN excluiría esos clientes porque requiere coincidencia en ambas tablas."
+  },
+  {
+    "id": 2,
+    "level": "Junior",
+    "category": "Fundamentos",
+    "question": "¿Qué retorna esta consulta si ninguna fila cumple la condición?",
+    "code": "SELECT COUNT(*) FROM empleados\nWHERE salario > 100000;",
+    "options": [
+      "NULL",
+      "No retorna ninguna fila",
+      "0",
+      "Error de sintaxis"
+    ],
+    "correct": 2,
+    "explanation": "COUNT(*) siempre retorna un valor numérico, nunca NULL ni cero filas. Si ninguna fila cumple la condición WHERE, retorna 0. Esta es una diferencia importante respecto a otras funciones de agregación como SUM() o AVG(), que retornarían NULL si no hay filas."
+  },
+  {
+    "id": 3,
+    "level": "Junior",
+    "category": "Fundamentos",
+    "question": "¿Qué significa NULL en SQL y cuál es la forma correcta de comparar un valor con NULL?",
+    "code": null,
+    "options": [
+      "NULL equivale a 0; se compara con = NULL",
+      "NULL es una cadena vacía ''; se compara con = ''",
+      "NULL representa ausencia de valor; se compara con IS NULL o IS NOT NULL",
+      "NULL y FALSE son equivalentes en SQL"
+    ],
+    "correct": 2,
+    "explanation": "NULL representa la ausencia de un valor o un valor desconocido. No es 0 ni una cadena vacía. Cualquier comparación con = NULL devuelve NULL (no TRUE ni FALSE), por lo que se debe usar IS NULL o IS NOT NULL."
+  },
+  {
+    "id": 4,
+    "level": "Junior",
+    "category": "DML/DDL",
+    "question": "En una entrevista te preguntan la diferencia entre DELETE, TRUNCATE y DROP. ¿Cuál es la respuesta correcta?",
+    "code": null,
+    "options": [
+      "Son equivalentes, solo cambia la sintaxis",
+      "DELETE borra filas con WHERE y es transaccional; TRUNCATE borra todo sin log por fila; DROP elimina la tabla completa con su estructura",
+      "TRUNCATE puede usar WHERE; DELETE no; DROP reinicia secuencias",
+      "Solo DELETE es reversible con ROLLBACK; TRUNCATE y DROP no existen en SQL estándar"
+    ],
+    "correct": 1,
+    "explanation": "DELETE elimina filas individuales, permite filtrar con WHERE, registra cada eliminación en el log de transacciones y puede revertirse con ROLLBACK. TRUNCATE elimina todas las filas de forma más eficiente sin loguear cada fila. DROP elimina completamente la tabla junto con su estructura, indices y constraints."
+  },
+  {
+    "id": 5,
+    "level": "Junior",
+    "category": "Agregación",
+    "question": "¿Cuál es la diferencia entre COUNT(*) y COUNT(columna)?",
+    "code": "SELECT COUNT(*), COUNT(email)\nFROM usuarios;",
+    "options": [
+      "Son exactamente equivalentes siempre",
+      "COUNT(*) cuenta todas las filas incluyendo NULLs; COUNT(email) ignora los NULLs en la columna email",
+      "COUNT(*) ignora los NULLs; COUNT(columna) los incluye",
+      "COUNT(columna) también cuenta filas con NULL"
+    ],
+    "correct": 1,
+    "explanation": "COUNT(*) cuenta el número total de filas en el resultado, incluyendo filas con valores NULL en cualquier columna. COUNT(columna) ignora las filas donde esa columna específica es NULL."
+  },
+  {
+    "id": 6,
+    "level": "Junior",
+    "category": "Filtrado",
+    "question": "¿Cuál es la diferencia entre WHERE y HAVING en una consulta con GROUP BY?",
+    "code": null,
+    "options": [
+      "WHERE filtra grupos después del GROUP BY; HAVING filtra filas antes",
+      "Son equivalentes y se pueden usar indistintamente",
+      "WHERE filtra filas individuales antes del GROUP BY; HAVING filtra grupos después y admite funciones de agregación",
+      "WHERE puede usar COUNT(); HAVING no puede usar funciones de agregación"
+    ],
+    "correct": 2,
+    "explanation": "WHERE se aplica antes de agrupar y filtra filas individuales; no puede usar funciones de agregación. HAVING se aplica después del GROUP BY y filtra grupos completos; si puede usar funciones de agregación como COUNT() o SUM()."
+  },
+  {
+    "id": 7,
+    "level": "Junior",
+    "category": "Fundamentos",
+    "question": "¿Qué hace el operador LIKE con los caracteres % y _?",
+    "code": "WHERE email LIKE '%@gmail.com'\nWHERE codigo LIKE 'MX-__-___'",
+    "options": [
+      "% representa exactamente un carácter; _ representa cero o más caracteres",
+      "% representa cero o más caracteres; _ representa exactamente un carácter",
+      "Ambos representan cero o más caracteres",
+      "Solo funciona con columnas VARCHAR de máximo 255 caracteres"
+    ],
+    "correct": 1,
+    "explanation": "En el operador LIKE: % representa cero o más caracteres de cualquier tipo, y _ representa exactamente un carácter. '%@gmail.com' encuentra cualquier email que termine en @gmail.com, mientras que 'MX-__-___' requiere exactamente 2 caracteres después del primer guion y 3 después del segundo."
+  },
+  {
+    "id": 8,
+    "level": "Junior",
+    "category": "Constraints",
+    "question": "¿Cuál es la diferencia entre PRIMARY KEY y una constraint UNIQUE?",
+    "code": null,
+    "options": [
+      "PRIMARY KEY: no permite NULL ni duplicados, solo una por tabla; UNIQUE: no permite duplicados pero admite un NULL, puede haber múltiples por tabla",
+      "Son idénticas en comportamiento",
+      "UNIQUE no permite NULL tampoco",
+      "Una tabla puede tener múltiples PRIMARY KEY"
+    ],
+    "correct": 0,
+    "explanation": "PRIMARY KEY identifica de forma única cada fila, no permite NULL ni valores duplicados, y solo puede existir una por tabla. UNIQUE garantiza valores únicos pero generalmente permite un valor NULL, y puede haber múltiples constraints UNIQUE en una misma tabla."
+  },
+  {
+    "id": 9,
+    "level": "Junior",
+    "category": "Funciones",
+    "question": "¿Qué produce la función COALESCE(NULL, NULL, 5, NULL)?",
+    "code": null,
+    "options": [
+      "NULL",
+      "0",
+      "Error",
+      "5"
+    ],
+    "correct": 3,
+    "explanation": "COALESCE evalúa los argumentos en orden de izquierda a derecha y retorna el primer valor que no sea NULL. Los dos primeros son NULL, el tercero es 5 (no NULL), por lo que retorna 5."
+  },
+  {
+    "id": 10,
+    "level": "Junior",
+    "category": "Fundamentos",
+    "question": "¿Qué hace el operador BETWEEN en una cláusula WHERE?",
+    "code": "WHERE salario BETWEEN 3000 AND 7000\n-- Equivale a:\nWHERE salario >= 3000 AND salario <= 7000",
+    "options": [
+      "BETWEEN excluye los límites del rango",
+      "Solo funciona con fechas, no con números",
+      "Filtra valores dentro de un rango inclusivo en ambos extremos",
+      "BETWEEN es equivalente a > y <, excluyendo los límites"
+    ],
+    "correct": 2,
+    "explanation": "BETWEEN filtra valores dentro de un rango incluyendo ambos límites. WHERE salario BETWEEN 3000 AND 7000 es exactamente equivalente a WHERE salario >= 3000 AND salario <= 7000. Funciona con números, fechas y strings."
+  },
+  {
+    "id": 11,
+    "level": "Junior",
+    "category": "JOINs",
+    "question": "¿Cuántas filas produce un CROSS JOIN entre una tabla con 4 filas y otra con 3 filas?",
+    "code": "SELECT * FROM colores CROSS JOIN tallas;\n-- colores: 4 filas, tallas: 3 filas",
+    "options": [
+      "7 filas (4+3)",
+      "4 filas (el máximo)",
+      "1 fila por tabla",
+      "12 filas (4x3)"
+    ],
+    "correct": 3,
+    "explanation": "CROSS JOIN produce el producto cartesiano: cada fila de la primera tabla se combina con cada fila de la segunda tabla. Con 4 filas y 3 filas el resultado es 4x3 = 12 filas."
+  },
+  {
+    "id": 12,
+    "level": "Junior",
+    "category": "Funciones",
+    "question": "¿Qué hace la función CASE WHEN en SQL?",
+    "code": "SELECT nombre,\n  CASE\n    WHEN salario > 8000 THEN 'Senior'\n    WHEN salario > 4000 THEN 'Mid'\n    ELSE 'Junior'\n  END AS nivel\nFROM empleados;",
+    "options": [
+      "Es un tipo de JOIN condicional entre tablas",
+      "Maneja excepciones de errores SQL",
+      "Solo funciona en la cláusula WHERE",
+      "Permite lógica condicional if-else dentro de una query, asignando valores distintos según condiciones"
+    ],
+    "correct": 3,
+    "explanation": "CASE WHEN es la estructura condicional de SQL. Evalúa las condiciones en orden y retorna el valor de la primera que sea verdadera. Puede usarse en SELECT, WHERE y ORDER BY."
+  },
+  {
+    "id": 13,
+    "level": "Junior",
+    "category": "Agregación",
+    "question": "¿Qué hace GROUP BY y para qué se combina con funciones de agregación?",
+    "code": "SELECT dept_id, COUNT(*) AS total\nFROM empleados\nGROUP BY dept_id\nHAVING COUNT(*) > 5;",
+    "options": [
+      "Ordena el resultado igual que ORDER BY",
+      "Filtra filas como WHERE",
+      "Agrupa filas con valores iguales para aplicar funciones de agregación (COUNT, SUM, AVG) a cada grupo; HAVING filtra grupos con más de 5 empleados",
+      "Elimina duplicados como DISTINCT"
+    ],
+    "correct": 2,
+    "explanation": "GROUP BY agrupa todas las filas que tienen el mismo valor en las columnas especificadas, permitiendo aplicar funciones de agregación a cada grupo. HAVING luego filtra solo los grupos que cumplen la condición."
+  },
+  {
+    "id": 14,
+    "level": "Junior",
+    "category": "Constraints",
+    "question": "¿Qué es una FOREIGN KEY y qué garantiza en la base de datos?",
+    "code": null,
+    "options": [
+      "Un índice especial de búsqueda rápida",
+      "Solo es un alias de PRIMARY KEY en otra tabla",
+      "Una clave primaria compuesta de múltiples columnas",
+      "Una columna que referencia la PK de otra tabla, garantizando integridad referencial: no puedes insertar un valor que no exista en la tabla padre"
+    ],
+    "correct": 3,
+    "explanation": "Una FOREIGN KEY es una columna o conjunto de columnas que referencia la PRIMARY KEY de otra tabla. Garantiza la integridad referencial: no se puede insertar un valor en la FK que no exista en la tabla referenciada."
+  },
+  {
+    "id": 15,
+    "level": "Junior",
+    "category": "Tipos de datos",
+    "question": "¿Cuál es la diferencia entre CHAR(10) y VARCHAR(10) en cuanto a almacenamiento?",
+    "code": null,
+    "options": [
+      "VARCHAR siempre ocupa 10 bytes independientemente del contenido",
+      "Son idénticos en almacenamiento y rendimiento",
+      "CHAR siempre ocupa 10 bytes rellenando con espacios; VARCHAR ocupa solo los bytes necesarios hasta un máximo de 10",
+      "CHAR no admite espacios en blanco dentro del valor"
+    ],
+    "correct": 2,
+    "explanation": "CHAR(10) almacena exactamente 10 caracteres siempre, rellenando con espacios si el valor es más corto. VARCHAR(10) almacena solo los caracteres del valor más 1-2 bytes para la longitud. CHAR es eficiente para valores de longitud constante; VARCHAR es más eficiente en espacio para longitudes variables."
+  },
+  {
+    "id": 16,
+    "level": "Junior",
+    "category": "Operadores",
+    "question": "¿Cuándo usarías UNION vs UNION ALL?",
+    "code": null,
+    "options": [
+      "Son completamente equivalentes",
+      "UNION ALL elimina los duplicados; UNION los conserva",
+      "UNION solo funciona con exactamente dos SELECT",
+      "UNION elimina duplicados pero es más lento; UNION ALL conserva todos los registros y es más rápido"
+    ],
+    "correct": 3,
+    "explanation": "UNION combina los resultados de dos queries y elimina filas duplicadas (implica un paso adicional de comparación). UNION ALL combina todos los resultados sin eliminar duplicados, siendo más rápido. Si no habrá duplicados o no te importan, UNION ALL es preferible por rendimiento."
+  },
+  {
+    "id": 17,
+    "level": "Junior",
+    "category": "Funciones",
+    "question": "¿Qué hace la función SUBSTRING() y cómo se usa?",
+    "code": "SELECT SUBSTRING('SQL Developer', 5, 9);\n-- Resultado: 'Developer'",
+    "options": [
+      "Cuenta el número de caracteres de la cadena",
+      "Reemplaza una subcadena por otra",
+      "Divide la cadena en múltiples filas",
+      "Extrae una porción de texto: SUBSTRING(texto, posicion_inicio, longitud)"
+    ],
+    "correct": 3,
+    "explanation": "SUBSTRING(cadena, inicio, longitud) extrae una parte de una cadena de texto comenzando en la posición indicada. En SQL el índice comienza en 1. En el ejemplo, empieza en posición 5 y toma 9 caracteres, resultando en 'Developer'."
+  },
+  {
+    "id": 18,
+    "level": "Junior",
+    "category": "Transacciones",
+    "question": "¿Cuál es la diferencia entre COMMIT y ROLLBACK en una transacción?",
+    "code": "BEGIN;\n  DELETE FROM pedidos WHERE estado = 'cancelado';\nROLLBACK; -- deshace los cambios\n-- vs\nCOMMIT;   -- confirma los cambios",
+    "options": [
+      "COMMIT deshace cambios; ROLLBACK los confirma",
+      "Son equivalentes: ambos confirman la transacción",
+      "ROLLBACK solo revierte el último statement ejecutado",
+      "COMMIT confirma y persiste los cambios de la transacción; ROLLBACK deshace todos los cambios de la transacción actual"
+    ],
+    "correct": 3,
+    "explanation": "COMMIT finaliza la transacción confirmando todos los cambios, haciéndolos permanentes. ROLLBACK deshace todos los cambios realizados desde el inicio de la transacción, dejando los datos en el estado anterior."
+  },
+  {
+    "id": 19,
+    "level": "Junior",
+    "category": "Optimización",
+    "question": "¿Qué es un índice en SQL y cuál es su principal ventaja y desventaja?",
+    "code": null,
+    "options": [
+      "Solo acelera operaciones INSERT y UPDATE",
+      "Elimina la necesidad de escribir JOINs",
+      "Garantiza unicidad de valores en una columna",
+      "Acelera las búsquedas evitando full table scans a costa de espacio en disco adicional y overhead en operaciones de escritura"
+    ],
+    "correct": 3,
+    "explanation": "Un índice es una estructura de datos adicional que permite al motor encontrar filas sin escanear toda la tabla. Acelera enormemente consultas con WHERE, JOIN y ORDER BY. La desventaja es que ocupa espacio adicional y ralentiza INSERT, UPDATE y DELETE porque el índice debe mantenerse actualizado."
+  },
+  {
+    "id": 20,
+    "level": "Junior",
+    "category": "Fundamentos",
+    "question": "¿Qué problema puede tener usar SELECT * en producción?",
+    "code": null,
+    "options": [
+      "Ningún problema, es la forma más eficiente de escribir queries",
+      "Solo afecta tablas con más de 20 columnas",
+      "Es solo un problema estético de legibilidad",
+      "Recupera columnas innecesarias aumentando tráfico de red, impide covering indexes y puede romper el código si se añaden o reordenan columnas"
+    ],
+    "correct": 3,
+    "explanation": "SELECT * transfiere datos innecesarios por la red, impide que el optimizador use covering indexes, puede retornar columnas sensibles no deseadas, y hace el código frágil ante cambios de esquema."
+  },
+  {
+    "id": 21,
+    "level": "Junior",
+    "category": "Funciones",
+    "question": "¿Qué hace CAST() y por qué es importante en el desarrollo backend?",
+    "code": "SELECT CAST('2024-01-15' AS DATE);\nSELECT CAST(precio AS DECIMAL(10,2));",
+    "options": [
+      "Solo funciona para convertir números a texto",
+      "No es necesario, SQL convierte automáticamente siempre sin errores",
+      "Es equivalente a CONVERT() en todos los DBMS sin ninguna diferencia",
+      "Convierte un valor de un tipo de dato a otro; importante para evitar comparaciones incorrectas entre tipos diferentes"
+    ],
+    "correct": 3,
+    "explanation": "CAST(valor AS tipo) convierte explícitamente un valor de un tipo de dato a otro. En el backend es crucial para comparaciones correctas entre tipos, formatear decimales con precisión, y manejar fechas correctamente."
+  },
+  {
+    "id": 22,
+    "level": "Junior",
+    "category": "Agregación",
+    "question": "¿Cuáles son las funciones de agregación principales en SQL?",
+    "code": null,
+    "options": [
+      "Son iguales a las funciones de ventana",
+      "Solo COUNT y SUM son funciones de agregación",
+      "No pueden usarse junto con GROUP BY",
+      "Funciones que operan sobre un conjunto de filas y retornan un único valor: COUNT, SUM, AVG, MIN, MAX; ignoran NULL excepto COUNT(*)"
+    ],
+    "correct": 3,
+    "explanation": "Las funciones de agregación colapsan múltiples filas en un único valor. Las principales son: COUNT, SUM, AVG, MIN y MAX. Todas ignoran valores NULL, excepto COUNT(*) que cuenta todas las filas incluyendo las que tienen NULLs."
+  },
+  {
+    "id": 23,
+    "level": "Junior",
+    "category": "Objetos DB",
+    "question": "¿Cuál es la diferencia entre una VIEW y una tabla física?",
+    "code": null,
+    "options": [
+      "Una VIEW almacena datos físicamente igual que una tabla",
+      "Las vistas no se pueden consultar con SELECT",
+      "Una VIEW es más rápida que una tabla siempre",
+      "Una tabla almacena datos físicamente; una VIEW es una query guardada que se ejecuta cada vez que se consulta y no almacena datos propios"
+    ],
+    "correct": 3,
+    "explanation": "Una tabla almacena datos físicamente en disco. Una VIEW es una consulta SQL guardada que actúa como tabla virtual: cada vez que se consulta, ejecuta la query subyacente en tiempo real. No almacena datos propios (excepto las vistas materializadas)."
+  },
+  {
+    "id": 24,
+    "level": "Junior",
+    "category": "Filtrado",
+    "question": "¿Para qué sirve el operador IN y cómo se compara con múltiples OR?",
+    "code": "WHERE ciudad IN ('CDMX', 'Guadalajara', 'Monterrey')\n-- Equivale a:\nWHERE ciudad = 'CDMX' OR ciudad = 'Guadalajara' OR ciudad = 'Monterrey'",
+    "options": [
+      "IN solo funciona con subqueries, no con listas de valores",
+      "IN es más lento que múltiples OR siempre",
+      "IN y OR producen resultados diferentes",
+      "IN verifica si un valor coincide con alguno de los valores de una lista; es equivalente a múltiples OR pero más legible"
+    ],
+    "correct": 3,
+    "explanation": "El operador IN verifica si un valor coincide con alguno de los valores de la lista, siendo equivalente a múltiples condiciones OR pero más legible. También puede usarse con subqueries: WHERE id IN (SELECT cliente_id FROM pedidos)."
+  },
+  {
+    "id": 25,
+    "level": "Junior",
+    "category": "Funciones",
+    "question": "¿Qué hace la función ROUND() y cómo se aplica en reportes financieros?",
+    "code": "SELECT ROUND(precio * 1.16, 2) AS precio_con_iva\nFROM productos;",
+    "options": [
+      "Trunca el número sin redondear al valor más cercano",
+      "ROUND(x, 2) redondea al entero más cercano ignorando los decimales",
+      "Solo funciona con valores enteros",
+      "Redondea un número a la cantidad de decimales especificada; en reportes financieros es crucial para evitar errores de punto flotante acumulados"
+    ],
+    "correct": 3,
+    "explanation": "ROUND(numero, decimales) redondea un número a la cantidad de posiciones decimales indicada. En reportes financieros es indispensable para presentar precios con exactamente 2 decimales y evitar acumulación de errores de punto flotante."
+  },
+  {
+    "id": 26,
+    "level": "Mid",
+    "category": "Subqueries",
+    "question": "En una entrevista te piden encontrar el segundo salario más alto. ¿Qué enfoque es más portable entre DBMS?",
+    "code": "-- Opcion A (portable):\nSELECT MAX(salario) FROM empleados\nWHERE salario < (SELECT MAX(salario) FROM empleados);\n-- Opcion B (MySQL/PostgreSQL):\nSELECT DISTINCT salario FROM empleados\nORDER BY salario DESC LIMIT 1 OFFSET 1;",
+    "options": [
+      "Solo la Opcion B es correcta",
+      "Solo la Opcion A es correcta",
+      "Ninguna de las dos es válida",
+      "Ambas son válidas; la Opcion A es más portable entre DBMS; la Opcion B depende de soporte de LIMIT/OFFSET"
+    ],
+    "correct": 3,
+    "explanation": "Ambas son correctas. La Opcion A con subquery es más portable ya que usa SQL estándar. La Opcion B con LIMIT/OFFSET funciona en MySQL y PostgreSQL pero no en SQL Server. En entrevistas también se acepta usar DENSE_RANK() OVER(ORDER BY salario DESC) y filtrar donde rn = 2."
+  },
+  {
+    "id": 27,
+    "level": "Mid",
+    "category": "Subqueries",
+    "question": "¿Qué es una CTE (Common Table Expression) y en qué se diferencia de una subquery en el FROM?",
+    "code": "WITH ventas_top AS (\n  SELECT vendedor_id, SUM(monto) AS total\n  FROM ventas\n  GROUP BY vendedor_id\n)\nSELECT * FROM ventas_top WHERE total > 10000;",
+    "options": [
+      "Una CTE es una vista permanente en la base de datos",
+      "Un tipo de stored procedure con parámetros",
+      "Un índice temporal que mejora rendimiento automáticamente",
+      "Un resultado temporal nombrado definido con WITH que mejora legibilidad y puede referenciarse múltiples veces en la misma query"
+    ],
+    "correct": 3,
+    "explanation": "Una CTE se define con WITH nombre AS (query) y existe solo durante la ejecución de la consulta donde está definida. A diferencia de una subquery en el FROM, puede referenciarse múltiples veces sin repetir el código, y soporta CTEs recursivas para datos jerárquicos."
+  },
+  {
+    "id": 28,
+    "level": "Mid",
+    "category": "Window Functions",
+    "question": "¿Cuál es la diferencia entre ROW_NUMBER(), RANK() y DENSE_RANK() cuando hay empates?",
+    "code": "-- Salarios: 5000, 5000, 3000\nROW_NUMBER() -> 1, 2, 3\nRANK()       -> 1, 1, 3\nDENSE_RANK() -> 1, 1, 2",
+    "options": [
+      "Son idénticas en todos los casos",
+      "DENSE_RANK es igual a RANK",
+      "ROW_NUMBER y RANK producen el mismo resultado con empates",
+      "ROW_NUMBER asigna número único siempre; RANK deja huecos en empates; DENSE_RANK no deja huecos en empates"
+    ],
+    "correct": 3,
+    "explanation": "Con valores empatados: ROW_NUMBER asigna un número único a cada fila. RANK asigna el mismo número a los empatados y luego salta posiciones (1, 1, 3). DENSE_RANK asigna el mismo número a empatados pero continúa secuencialmente sin saltar (1, 1, 2)."
+  },
+  {
+    "id": 29,
+    "level": "Mid",
+    "category": "Window Functions",
+    "question": "¿Qué hace PARTITION BY en una función de ventana y en qué se diferencia de GROUP BY?",
+    "code": "SELECT nombre, dept, salario,\n  AVG(salario) OVER (PARTITION BY dept) AS avg_dept\nFROM empleados;",
+    "options": [
+      "Es exactamente equivalente a GROUP BY: colapsa las filas por grupo",
+      "Ordena las filas dentro de la función de ventana",
+      "Filtra filas como WHERE pero dentro de la ventana",
+      "Divide el resultado en particiones para calcular la función de ventana independientemente por grupo, sin colapsar las filas originales"
+    ],
+    "correct": 3,
+    "explanation": "PARTITION BY divide el conjunto de resultados en particiones sobre las que se calcula la función de ventana. La diferencia clave con GROUP BY es que PARTITION BY NO colapsa las filas: cada fila mantiene sus datos originales más el resultado de la función calculada para su partición."
+  },
+  {
+    "id": 30,
+    "level": "Mid",
+    "category": "Window Functions",
+    "question": "¿Qué hacen las funciones LAG() y LEAD() y para qué se usan?",
+    "code": "SELECT fecha, ventas,\n  LAG(ventas, 1) OVER (ORDER BY fecha) AS ventas_dia_anterior,\n  LEAD(ventas, 1) OVER (ORDER BY fecha) AS ventas_dia_siguiente\nFROM reporte_diario;",
+    "options": [
+      "LAG ordena descendente; LEAD ordena ascendente",
+      "Son equivalentes a MIN() y MAX()",
+      "Solo funcionan con columnas de tipo fecha",
+      "LAG accede al valor de la fila anterior; LEAD accede al valor de la fila siguiente; útiles para comparaciones entre periodos consecutivos"
+    ],
+    "correct": 3,
+    "explanation": "LAG(columna, offset) accede al valor de una fila anterior según el offset especificado. LEAD(columna, offset) accede al valor de una fila posterior. Son fundamentales para análisis de series temporales: calcular variaciones dia a dia o mes a mes sin necesidad de hacer un SELF JOIN."
+  },
+  {
+    "id": 31,
+    "level": "Mid",
+    "category": "Window Functions",
+    "question": "¿Cómo calcularías el running total (suma acumulada) de ventas por fecha?",
+    "code": "SELECT fecha, ventas,\n  SUM(ventas) OVER (\n    ORDER BY fecha\n    ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW\n  ) AS acumulado\nFROM ventas_diarias;",
+    "options": [
+      "Usar GROUP BY con SUM y luego ordenar el resultado",
+      "No es posible sin un stored procedure o cursor",
+      "Usar una subquery correlacionada que sume todas las filas anteriores",
+      "SUM() OVER(ORDER BY fecha ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) calcula la suma acumulada fila por fila"
+    ],
+    "correct": 3,
+    "explanation": "SUM() OVER con ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW define una ventana desde la primera fila hasta la fila actual, calculando la suma acumulada. Es la forma más eficiente de calcular acumulados en SQL moderno sin subqueries correlacionadas."
+  },
+  {
+    "id": 32,
+    "level": "Mid",
+    "category": "Window Functions",
+    "question": "¿Cómo obtendrías el top 3 de ventas por categoría usando funciones de ventana?",
+    "code": "SELECT * FROM (\n  SELECT categoria, producto, ventas,\n    ROW_NUMBER() OVER(\n      PARTITION BY categoria\n      ORDER BY ventas DESC\n    ) AS rn\n  FROM productos\n) t WHERE rn <= 3;",
+    "options": [
+      "Usar GROUP BY categoria y LIMIT 3 directamente",
+      "Usar RANK() en la query principal sin subquery",
+      "Usar una variable contador en un loop procedimental",
+      "ROW_NUMBER() OVER(PARTITION BY categoria ORDER BY ventas DESC) en subquery o CTE, luego filtrar donde rn <= 3"
+    ],
+    "correct": 3,
+    "explanation": "Se usa PARTITION BY para reiniciar el contador en cada categoria, ORDER BY ventas DESC para ordenar, y ROW_NUMBER() para numerar. El filtro rn <= 3 debe hacerse en una subquery o CTE porque no se puede filtrar por funciones de ventana directamente en WHERE."
+  },
+  {
+    "id": 33,
+    "level": "Mid",
+    "category": "Optimización",
+    "question": "Detectas una query lenta en producción. ¿Cuál es el primer paso correcto?",
+    "code": null,
+    "options": [
+      "Agregar más índices inmediatamente a todas las columnas del WHERE",
+      "Aumentar la RAM del servidor de base de datos",
+      "Reescribir la query sin analizarla primero",
+      "Ejecutar EXPLAIN o EXPLAIN ANALYZE para ver el plan de ejecución: si hay full table scan, qué índices usa y el costo estimado"
+    ],
+    "correct": 3,
+    "explanation": "Antes de hacer cualquier cambio, se debe entender por qué la query es lenta. EXPLAIN muestra el plan de ejecución: qué operaciones realiza el motor, si usa índices o hace full table scan, y el costo estimado. EXPLAIN ANALYZE también ejecuta la query y muestra tiempos reales."
+  },
+  {
+    "id": 34,
+    "level": "Mid",
+    "category": "Optimización",
+    "question": "¿Qué es un índice compuesto y qué es la regla del prefijo (prefix rule)?",
+    "code": "CREATE INDEX idx_comp ON pedidos(cliente_id, fecha, estado);\n-- Efectivo para:\nWHERE cliente_id = 1\nWHERE cliente_id = 1 AND fecha > '2024-01-01'\n-- NO efectivo solo por:\nWHERE fecha > '2024-01-01'",
+    "options": [
+      "Un índice sobre todas las columnas de la tabla",
+      "El orden de columnas no importa en un índice compuesto",
+      "No existe diferencia entre un índice simple y uno compuesto",
+      "Un índice sobre múltiples columnas; es efectivo si la query filtra por las columnas iniciales del índice (prefix rule)"
+    ],
+    "correct": 3,
+    "explanation": "Un índice compuesto cubre múltiples columnas en el orden especificado. La prefix rule establece que el índice es utilizable solo si la query filtra por las columnas iniciales. Con INDEX(cliente_id, fecha, estado): funciona filtrando por cliente_id, o cliente_id + fecha, pero NO filtrando solo por fecha."
+  },
+  {
+    "id": 35,
+    "level": "Mid",
+    "category": "Optimización",
+    "question": "¿Qué es el problema N+1 en SQL y cómo se soluciona?",
+    "code": "-- N+1: 1 query para lista + N queries por cada item\nSELECT * FROM clientes; -- retorna 100 clientes\n-- Luego para CADA cliente (100 queries extra!):\nSELECT * FROM pedidos WHERE cliente_id = ?;\n-- Solucion: 1 sola query con JOIN",
+    "options": [
+      "Un error de sintaxis que ocurre en queries con loops",
+      "Una query que retorna exactamente N+1 columnas",
+      "Un problema exclusivo de ORMs como Hibernate o JPA",
+      "Ejecutar 1 query para obtener la lista y luego 1 query por cada registro; se soluciona con JOINs o eager loading en una sola consulta"
+    ],
+    "correct": 3,
+    "explanation": "El problema N+1 ocurre cuando se hace 1 query inicial para obtener N registros y luego N queries adicionales por cada uno. Para 100 clientes son 101 queries en lugar de 1. Se soluciona haciendo un JOIN que obtenga toda la información en una sola query."
+  },
+  {
+    "id": 36,
+    "level": "Mid",
+    "category": "Optimización",
+    "question": "¿Cómo paginarías eficientemente un resultado con millones de filas?",
+    "code": "-- Offset (ineficiente en paginas grandes):\nSELECT * FROM tabla ORDER BY id LIMIT 20 OFFSET 100000;\n-- Keyset pagination (eficiente):\nSELECT * FROM tabla WHERE id > :last_seen_id ORDER BY id LIMIT 20;",
+    "options": [
+      "Usar siempre OFFSET; es eficiente en todos los casos",
+      "Cargar todos los datos en memoria y paginar en la aplicación",
+      "Usar ROWNUM siempre; es la mejor opción en cualquier DBMS",
+      "Keyset pagination con WHERE id > :ultimo_id es eficiente; OFFSET es lento en páginas grandes porque debe saltar todas las filas previas"
+    ],
+    "correct": 3,
+    "explanation": "OFFSET se vuelve cada vez más lento conforme aumenta el número de página, porque el motor debe leer y descartar todas las filas anteriores. Keyset pagination usa WHERE id > :ultimo_id_visto aprovechando el índice para ir directamente a la posición correcta, siendo O(1) independientemente de la página."
+  },
+  {
+    "id": 37,
+    "level": "Mid",
+    "category": "Subqueries",
+    "question": "¿Cuál es la diferencia de rendimiento entre IN y EXISTS con subqueries grandes?",
+    "code": "-- IN: evalúa toda la subquery\nWHERE id IN (SELECT cliente_id FROM pedidos WHERE monto > 1000)\n-- EXISTS: para en el primer match\nWHERE EXISTS (\n  SELECT 1 FROM pedidos\n  WHERE cliente_id = c.id AND monto > 1000\n)",
+    "options": [
+      "IN es siempre más rápido que EXISTS",
+      "Son idénticos en rendimiento en todos los DBMS modernos",
+      "EXISTS solo funciona con columnas numéricas",
+      "EXISTS detiene la búsqueda en el primer resultado encontrado y suele ser más eficiente con subqueries correlacionadas grandes"
+    ],
+    "correct": 3,
+    "explanation": "EXISTS detiene la evaluación en cuanto encuentra la primera fila (short-circuit evaluation), lo que lo hace más eficiente cuando la subquery puede retornar muchas filas. IN evalúa toda la subquery y construye una lista completa. Para tablas grandes con subqueries correlacionadas, EXISTS generalmente tiene mejor rendimiento."
+  },
+  {
+    "id": 38,
+    "level": "Mid",
+    "category": "Subqueries",
+    "question": "¿Cuándo usarías una CTE recursiva?",
+    "code": "WITH RECURSIVE jerarquia AS (\n  SELECT id, nombre, manager_id, 0 AS nivel\n  FROM empleados WHERE manager_id IS NULL\n  UNION ALL\n  SELECT e.id, e.nombre, e.manager_id, j.nivel+1\n  FROM empleados e\n  JOIN jerarquia j ON e.manager_id = j.id\n)\nSELECT * FROM jerarquia;",
+    "options": [
+      "Para cualquier query que use GROUP BY",
+      "Para reemplazar todos los subqueries en la aplicación",
+      "Solo funciona en SQL Server, no en otros DBMS",
+      "Para recorrer estructuras jerárquicas o en árbol como org charts, categorías padre-hijo o listas de materiales (BOM)"
+    ],
+    "correct": 3,
+    "explanation": "Las CTEs recursivas permiten recorrer estructuras jerárquicas donde una fila referencia a otra de la misma tabla. Se componen de un anchor member (caso base) unido con UNION ALL a la parte recursiva. Son ideales para org charts, categorias anidadas o cualquier dato con relación padre-hijo."
+  },
+  {
+    "id": 39,
+    "level": "Mid",
+    "category": "JOINs",
+    "question": "¿Qué es un SELF JOIN y cuándo se utiliza en la práctica?",
+    "code": "-- Empleados con su manager en la misma tabla\nSELECT e.nombre AS empleado,\n       m.nombre AS manager\nFROM empleados e\nJOIN empleados m ON e.manager_id = m.id;",
+    "options": [
+      "Es un error de sintaxis en SQL estándar",
+      "Solo funciona en tablas con auto-referencia declarada como FK",
+      "Es equivalente a CROSS JOIN sin condición",
+      "Une una tabla consigo misma usando alias diferentes; útil para relaciones jerárquicas o comparar filas de la misma tabla"
+    ],
+    "correct": 3,
+    "explanation": "Un SELF JOIN une una tabla con ella misma asignando dos alias diferentes. Es el patrón correcto para relaciones donde una entidad referencia a otra del mismo tipo: empleados con sus managers, categorias con sus categorias padre, o comparar filas de la misma tabla entre si."
+  },
+  {
+    "id": 40,
+    "level": "Mid",
+    "category": "JOINs",
+    "question": "¿Qué es un FULL OUTER JOIN y cuándo lo usarías?",
+    "code": null,
+    "options": [
+      "Es equivalente a INNER JOIN pero más rápido",
+      "Solo retorna las filas que no tienen match en ninguna de las dos tablas",
+      "No existe en MySQL estándar, es solo de Oracle",
+      "Retorna todas las filas de ambas tablas; donde no hay match pone NULL en las columnas de la otra tabla; útil para reconciliaciones de datos"
+    ],
+    "correct": 3,
+    "explanation": "FULL OUTER JOIN combina LEFT JOIN y RIGHT JOIN: retorna todas las filas de ambas tablas, colocando NULL donde no existe coincidencia. Util para comparar dos conjuntos y encontrar qué registros existen en uno pero no en el otro. Nota: MySQL no soporta FULL OUTER JOIN directamente; se simula con UNION de LEFT y RIGHT JOIN."
+  },
+  {
+    "id": 41,
+    "level": "Mid",
+    "category": "Transacciones",
+    "question": "¿Qué son las propiedades ACID de una transacción?",
+    "code": "BEGIN;\n  UPDATE cuentas SET saldo = saldo - 500 WHERE id = 1;\n  UPDATE cuentas SET saldo = saldo + 500 WHERE id = 2;\nCOMMIT;",
+    "options": [
+      "ACID: Autenticación, Control, Integridad, Disponibilidad",
+      "Una transacción siempre hace COMMIT automáticamente si no hay errores",
+      "Solo la Atomicidad es obligatoria; las demás son opcionales",
+      "ACID: Atomicidad (todo o nada), Consistencia (estado válido), Aislamiento (concurrencia controlada), Durabilidad (persiste ante fallos)"
+    ],
+    "correct": 3,
+    "explanation": "Las propiedades ACID garantizan la fiabilidad de las transacciones: Atomicidad (todas las operaciones se ejecutan o ninguna), Consistencia (la DB pasa de un estado válido a otro), Aislamiento (transacciones concurrentes no se interfieren), Durabilidad (los cambios confirmados persisten incluso ante fallos del sistema)."
+  },
+  {
+    "id": 42,
+    "level": "Mid",
+    "category": "Transacciones",
+    "question": "¿Cuál es la diferencia entre optimistic locking y pessimistic locking?",
+    "code": "-- Pessimistic:\nSELECT * FROM pedidos WHERE id=1 FOR UPDATE;\n-- Optimistic: usa columna version\nUPDATE pedidos SET estado='pagado', version=version+1\nWHERE id=1 AND version=:version_leida;",
+    "options": [
+      "Son equivalentes en comportamiento y rendimiento",
+      "Optimistic bloquea más recursos que Pessimistic",
+      "Pessimistic es siempre más rápido en sistemas de alta concurrencia",
+      "Pessimistic bloquea el registro al inicio evitando conflictos; Optimistic no bloquea pero verifica versión al guardar y hace rollback si hubo conflicto"
+    ],
+    "correct": 3,
+    "explanation": "Pessimistic locking bloquea el registro al inicio con SELECT FOR UPDATE, impidiendo modificaciones concurrentes. Puede causar deadlocks. Optimistic locking no bloquea: verifica que la versión no haya cambiado al guardar. Si alguien modificó primero, el UPDATE afecta 0 filas y se reintenta. Mejor para sistemas con baja contención."
+  },
+  {
+    "id": 43,
+    "level": "Mid",
+    "category": "Transacciones",
+    "question": "¿Qué es un dirty read y desde qué nivel de aislamiento se previene?",
+    "code": null,
+    "options": [
+      "Leer filas que otra transacción eliminó permanentemente",
+      "Es lo mismo que un phantom read",
+      "Un error de sintaxis al leer datos con JOINs complejos",
+      "Leer datos no confirmados (uncommitted) de otra transacción que podría hacer ROLLBACK; se previene desde READ COMMITTED en adelante"
+    ],
+    "correct": 3,
+    "explanation": "Un dirty read ocurre cuando una transacción lee datos que otra modificó pero aún no ha confirmado. Si esa transacción hace ROLLBACK, los datos leídos nunca existieron realmente. Solo READ UNCOMMITTED permite dirty reads. READ COMMITTED y niveles superiores garantizan que solo se lean datos confirmados."
+  },
+  {
+    "id": 44,
+    "level": "Mid",
+    "category": "Transacciones",
+    "question": "¿Cuáles son los niveles de aislamiento de transacciones en SQL?",
+    "code": null,
+    "options": [
+      "Los niveles son: LOW, MEDIUM, HIGH, STRICT",
+      "Solo existen dos niveles: READ y WRITE",
+      "El aislamiento no es configurable, es fijo por DBMS",
+      "READ UNCOMMITTED, READ COMMITTED, REPEATABLE READ, SERIALIZABLE; mayor nivel = mayor consistencia pero menor concurrencia"
+    ],
+    "correct": 3,
+    "explanation": "Los cuatro niveles de menor a mayor protección: READ UNCOMMITTED (permite dirty reads), READ COMMITTED (evita dirty reads), REPEATABLE READ (evita dirty y non-repeatable reads), SERIALIZABLE (máxima protección). Mayor aislamiento reduce la concurrencia y el rendimiento."
+  },
+  {
+    "id": 45,
+    "level": "Mid",
+    "category": "Constraints",
+    "question": "¿Qué hace ON DELETE CASCADE en una FOREIGN KEY?",
+    "code": "CONSTRAINT fk_pedidos\n  FOREIGN KEY (cliente_id)\n  REFERENCES clientes(id)\n  ON DELETE CASCADE",
+    "options": [
+      "Solo elimina el índice de la FOREIGN KEY al borrar el padre",
+      "Impide eliminar el registro padre si tiene hijos relacionados",
+      "Es equivalente a ON DELETE SET NULL",
+      "Elimina automáticamente las filas hijas cuando se elimina la fila padre, manteniendo la integridad referencial"
+    ],
+    "correct": 3,
+    "explanation": "ON DELETE CASCADE configura que cuando se elimina una fila en la tabla padre, todas las filas relacionadas en la tabla hija se eliminan automáticamente. Alternativas: ON DELETE SET NULL (pone NULL en la FK) y ON DELETE RESTRICT (impide el borrado si hay hijos)."
+  },
+  {
+    "id": 46,
+    "level": "Mid",
+    "category": "Constraints",
+    "question": "¿Qué hace ON UPDATE CASCADE en una FOREIGN KEY?",
+    "code": "FOREIGN KEY (dept_id)\n  REFERENCES departamentos(id)\n  ON UPDATE CASCADE",
+    "options": [
+      "Impide actualizar el registro padre si tiene hijos",
+      "Elimina las filas hijas cuando se actualiza el padre",
+      "Solo funciona en combinación con ON DELETE CASCADE",
+      "Cuando se actualiza el valor de la PK en la tabla padre, automáticamente actualiza el valor correspondiente en todas las filas hijas"
+    ],
+    "correct": 3,
+    "explanation": "ON UPDATE CASCADE propaga automáticamente los cambios de valor en la PK de la tabla padre a todas las filas hijas. Por ejemplo, si cambias el id de un departamento, todas las filas de empleados que lo referencian se actualizarán automáticamente."
+  },
+  {
+    "id": 47,
+    "level": "Mid",
+    "category": "Objetos DB",
+    "question": "¿Qué es un stored procedure y qué ventajas ofrece?",
+    "code": null,
+    "options": [
+      "Es idéntico a una VIEW en comportamiento",
+      "Solo puede ejecutar operaciones SELECT, no DML",
+      "No acepta parámetros de entrada ni salida",
+      "Conjunto de instrucciones SQL precompiladas en el servidor; ventajas: reutilización, rendimiento, encapsulación de lógica y reducción de tráfico de red"
+    ],
+    "correct": 3,
+    "explanation": "Un stored procedure es un conjunto de instrucciones SQL guardadas y precompiladas en el servidor. Sus ventajas: reutilización (se llama por nombre), mejor rendimiento (precompilado), encapsulación de lógica de negocio, reducción del tráfico de red, y control de acceso granular."
+  },
+  {
+    "id": 48,
+    "level": "Mid",
+    "category": "Objetos DB",
+    "question": "¿Qué es un trigger y cuándo es apropiado usarlo?",
+    "code": null,
+    "options": [
+      "Es un tipo de índice especial que se activa automáticamente",
+      "Solo puede ejecutarse manualmente por un administrador",
+      "Es equivalente a un stored procedure con parámetros",
+      "Procedimiento que se ejecuta automáticamente ante INSERT/UPDATE/DELETE; apropiado para auditoría, validaciones complejas y mantener datos derivados"
+    ],
+    "correct": 3,
+    "explanation": "Un trigger se ejecuta automáticamente en respuesta a eventos DML sobre una tabla. Casos de uso: auditoría (registrar quién cambió qué), validaciones complejas que no pueden expresarse como constraints, y mantenimiento de datos derivados. Deben usarse con cuidado ya que añaden lógica oculta que dificulta el debugging."
+  },
+  {
+    "id": 49,
+    "level": "Mid",
+    "category": "Objetos DB",
+    "question": "¿Qué es una materialized view y en qué se diferencia de una VIEW regular?",
+    "code": null,
+    "options": [
+      "Una materialized view no puede actualizarse una vez creada",
+      "Son equivalentes; 'materialized' es solo un alias en PostgreSQL",
+      "La VIEW regular también almacena datos en un caché permanente",
+      "Una materialized view almacena físicamente el resultado de la query y requiere REFRESH para actualizarse; más rápida en lectura que una VIEW regular"
+    ],
+    "correct": 3,
+    "explanation": "Una VIEW regular ejecuta la query subyacente en cada acceso, reflejando siempre datos actuales. Una materialized view guarda físicamente el resultado en disco, permitiendo lecturas muy rápidas. La desventaja es que los datos pueden quedar desactualizados y requiere un REFRESH para reflejar cambios."
+  },
+  {
+    "id": 50,
+    "level": "Mid",
+    "category": "Diseño",
+    "question": "¿Cuál es la diferencia entre 1NF, 2NF y 3NF en normalización?",
+    "code": null,
+    "options": [
+      "Son sinónimos para el mismo nivel de normalización",
+      "Solo 3NF se usa en bases de datos de producción reales",
+      "La normalización solo aplica a bases de datos NoSQL",
+      "1NF: valores atómicos sin grupos repetidos; 2NF: sin dependencias parciales de la PK; 3NF: sin dependencias transitivas entre columnas no clave"
+    ],
+    "correct": 3,
+    "explanation": "1NF: cada celda contiene un valor atómico, sin grupos repetidos. 2NF: cumple 1NF y todos los atributos no clave dependen de la PK completa. 3NF: cumple 2NF y ningún atributo no clave depende transitivamente de otro atributo no clave."
+  },
+  {
+    "id": 51,
+    "level": "Mid",
+    "category": "Diseño",
+    "question": "¿Cuándo es justificable desnormalizar una base de datos?",
+    "code": null,
+    "options": [
+      "Siempre que haya más de 3 tablas relacionadas",
+      "Nunca, siempre se debe mantener la normalización completa",
+      "Solo en bases de datos con menos de 1000 registros",
+      "Cuando el rendimiento de lectura es crítico y los JOINs son costosos; se acepta redundancia a cambio de velocidad en data warehouses y reportes"
+    ],
+    "correct": 3,
+    "explanation": "La desnormalización almacena datos redundantes para evitar JOINs costosos. Se justifica en data warehouses y OLAP donde las lecturas son masivas y las escrituras infrecuentes, o cuando se han agotado otras optimizaciones y los JOINs siguen siendo el cuello de botella."
+  },
+  {
+    "id": 52,
+    "level": "Mid",
+    "category": "Funciones",
+    "question": "¿Para qué sirve NULLIF(a, b) y cuál es su caso de uso más común?",
+    "code": "-- Evitar división por cero:\nSELECT ventas / NULLIF(visitas, 0) AS conversion_rate\nFROM estadisticas;",
+    "options": [
+      "Retorna b cuando a es NULL",
+      "Es equivalente a COALESCE en todos los casos",
+      "Solo funciona con columnas numéricas enteras",
+      "Retorna NULL si a es igual a b, o retorna a si son diferentes; el caso más común es evitar la división por cero"
+    ],
+    "correct": 3,
+    "explanation": "NULLIF(a, b) retorna NULL si a == b, de lo contrario retorna a. El caso más frecuente es evitar la división por cero: NULLIF(denominador, 0) convierte el 0 en NULL, y cualquier operación aritmética con NULL retorna NULL en lugar de causar un error."
+  },
+  {
+    "id": 53,
+    "level": "Mid",
+    "category": "Agregación",
+    "question": "¿Qué hace GROUP_CONCAT() en MySQL o STRING_AGG() en PostgreSQL?",
+    "code": "-- MySQL:\nSELECT dept,\n  GROUP_CONCAT(nombre ORDER BY nombre SEPARATOR ', ') AS equipo\nFROM empleados GROUP BY dept;\n-- PostgreSQL:\nSELECT dept, STRING_AGG(nombre, ', ' ORDER BY nombre)\nFROM empleados GROUP BY dept;",
+    "options": [
+      "Cuenta el número de valores distintos en el grupo",
+      "Une dos tablas por una columna de texto",
+      "Es equivalente a CONCAT() aplicado a dos columnas",
+      "Concatena valores de múltiples filas en una sola cadena dentro de cada grupo; muy útil para mostrar listas en reportes"
+    ],
+    "correct": 3,
+    "explanation": "GROUP_CONCAT() (MySQL) y STRING_AGG() (PostgreSQL) son funciones de agregación que concatenan los valores de una columna de todas las filas de un grupo en una sola cadena separada por el delimitador especificado. Son muy útiles para reportes donde se necesita mostrar una lista de valores relacionados en una sola celda."
+  },
+  {
+    "id": 54,
+    "level": "Mid",
+    "category": "Operadores",
+    "question": "¿Cuál es la diferencia entre INTERSECT y EXCEPT (o MINUS)?",
+    "code": "-- INTERSECT: IDs que existen en ambas queries\nSELECT id FROM tabla_a\nINTERSECT\nSELECT id FROM tabla_b;\n-- EXCEPT: IDs en A pero no en B\nSELECT id FROM tabla_a\nEXCEPT\nSELECT id FROM tabla_b;",
+    "options": [
+      "INTERSECT es equivalente a UNION; EXCEPT a UNION ALL",
+      "Son equivalentes con diferente sintaxis",
+      "EXCEPT es más lento que NOT IN en todos los casos",
+      "INTERSECT retorna filas que existen en ambas queries; EXCEPT retorna filas de la primera query que no aparecen en la segunda"
+    ],
+    "correct": 3,
+    "explanation": "INTERSECT retorna solo las filas presentes en los resultados de ambas queries. EXCEPT (MINUS en Oracle) retorna las filas del primer SELECT que no aparecen en el segundo. Ambos eliminan duplicados por defecto. Son útiles para comparar dos resultados sin necesidad de JOINs complejos."
+  },
+  {
+    "id": 55,
+    "level": "Mid",
+    "category": "Tipos de datos",
+    "question": "¿Cuál es la diferencia entre CHAR, VARCHAR y TEXT en cuanto a almacenamiento e indexación?",
+    "code": null,
+    "options": [
+      "Son completamente equivalentes en almacenamiento",
+      "TEXT es siempre más rápido que VARCHAR",
+      "VARCHAR no tiene límite de longitud como TEXT",
+      "CHAR: longitud fija; VARCHAR: longitud variable con límite definido e indexable eficientemente; TEXT: longitud variable sin límite práctico, no siempre completamente indexable"
+    ],
+    "correct": 3,
+    "explanation": "CHAR(n) almacena longitud fija rellenando con espacios. VARCHAR(n) almacena longitud variable hasta n caracteres; puede indexarse completamente. TEXT almacena cadenas muy largas sin límite práctico, pero los índices sobre TEXT generalmente requieren especificar un prefijo de longitud."
+  },
+  {
+    "id": 56,
+    "level": "Mid",
+    "category": "Seguridad",
+    "question": "¿Qué es SQL Injection y cómo se previene desde la capa de queries?",
+    "code": "-- VULNERABLE (nunca hacer esto):\nString q = \"SELECT * FROM users WHERE name='\" + input + \"'\";\n// Input malicioso: ' OR '1'='1\n\n-- SEGURO: Prepared Statements\nSELECT * FROM users WHERE name = ?;",
+    "options": [
+      "Solo ocurre en aplicaciones que usan PHP, no en Java",
+      "Se previene usando HTTPS en la comunicación",
+      "Se previene cambiando de VARCHAR a CHAR en columnas de texto",
+      "Ataque que inyecta SQL malicioso en inputs del usuario; se previene con prepared statements y parámetros vinculados, nunca concatenando input directamente"
+    ],
+    "correct": 3,
+    "explanation": "SQL Injection ocurre cuando input del usuario se concatena directamente en una query, permitiendo modificar la lógica SQL. La prevención fundamental son los Prepared Statements: el SQL y los datos viajan separados. En Java: PreparedStatement; en Spring: JPA/JPQL con parámetros o @Query con :param."
+  },
+  {
+    "id": 57,
+    "level": "Mid",
+    "category": "Fundamentos",
+    "question": "¿Cuál es la diferencia entre FETCH FIRST n ROWS ONLY y LIMIT?",
+    "code": "-- SQL estándar (SQL:2008):\nSELECT * FROM tabla ORDER BY id\nFETCH FIRST 10 ROWS ONLY;\n-- MySQL y PostgreSQL:\nSELECT * FROM tabla ORDER BY id LIMIT 10;",
+    "options": [
+      "FETCH FIRST es más lento que LIMIT en todos los DBMS",
+      "LIMIT es SQL estándar; FETCH FIRST es solo de Oracle",
+      "Son completamente diferentes en funcionamiento",
+      "Son equivalentes en función; FETCH FIRST es SQL estándar (SQL:2008); LIMIT es la sintaxis de MySQL y PostgreSQL"
+    ],
+    "correct": 3,
+    "explanation": "Ambas sintaxis limitan el número de filas retornadas. FETCH FIRST n ROWS ONLY es la sintaxis del estándar SQL:2008, soportada por DB2, Oracle 12c+, PostgreSQL y SQL Server 2012+. LIMIT n es la sintaxis de MySQL, PostgreSQL y SQLite."
+  },
+  {
+    "id": 58,
+    "level": "Mid",
+    "category": "Fundamentos",
+    "question": "¿Qué problema puede indicar el uso frecuente de DISTINCT en queries complejas?",
+    "code": null,
+    "options": [
+      "DISTINCT no tiene ningún impacto en el rendimiento",
+      "Es solo un problema de legibilidad del código",
+      "DISTINCT siempre indica un error de diseño de base de datos",
+      "Puede indicar un JOIN mal construido que genera filas duplicadas; en lugar de DISTINCT se debe corregir el JOIN"
+    ],
+    "correct": 3,
+    "explanation": "Aunque DISTINCT tiene usos legítimos, su uso frecuente en queries complejas puede indicar que un JOIN está generando duplicados innecesarios. La solución correcta es revisar las condiciones del JOIN en lugar de ocultar el problema con DISTINCT."
+  },
+  {
+    "id": 59,
+    "level": "Mid",
+    "category": "Optimización",
+    "question": "¿Cuándo es más efectivo un índice de tipo HASH vs BTREE?",
+    "code": null,
+    "options": [
+      "HASH siempre supera a BTREE en rendimiento",
+      "BTREE solo funciona con columnas de texto",
+      "Son completamente equivalentes para todos los tipos de consultas",
+      "HASH es eficiente solo para comparaciones de igualdad (=); BTREE soporta igualdad, rangos y ORDER BY siendo más versátil"
+    ],
+    "correct": 3,
+    "explanation": "Los índices HASH son muy rápidos para búsquedas de igualdad en O(1), pero no funcionan para rangos ni ORDER BY. Los índices BTREE mantienen los datos ordenados, soportando igualdad, rangos (>, <, BETWEEN), LIKE 'prefijo%' y ordenamientos. BTREE es el índice por defecto y más versátil."
+  },
+  {
+    "id": 60,
+    "level": "Mid",
+    "category": "Optimización",
+    "question": "¿Qué es un covering index y por qué mejora el rendimiento?",
+    "code": "-- Query:\nSELECT nombre, email FROM usuarios WHERE activo = 1;\n-- Covering index (incluye todas las columnas necesarias):\nCREATE INDEX idx_covering ON usuarios(activo, nombre, email);\n-- El motor resuelve la query sin acceder a la tabla",
+    "options": [
+      "Un índice que cubre todos los campos de la tabla principal",
+      "Es otro nombre para un índice de clave primaria",
+      "No existe en PostgreSQL ni MySQL",
+      "Un índice que contiene todas las columnas necesarias para resolver la query, evitando acceder a la tabla principal (index-only scan)"
+    ],
+    "correct": 3,
+    "explanation": "Un covering index incluye todas las columnas que la query necesita. Cuando el motor puede resolver la query completamente desde el índice sin acceder a la tabla física, se llama index-only scan. Esto elimina el costoso heap fetch, reduciendo dramáticamente el tiempo de query en tablas grandes."
+  },
+  {
+    "id": 61,
+    "level": "Mid",
+    "category": "Optimización",
+    "question": "¿Qué es la cardinalidad en el contexto de índices y por qué importa?",
+    "code": null,
+    "options": [
+      "El número total de filas en la tabla",
+      "La cantidad de índices que tiene la tabla",
+      "El número de columnas en la tabla",
+      "El número de valores únicos en una columna; alta cardinalidad (como email) hace índices muy selectivos y efectivos; baja cardinalidad (como boolean) los hace poco útiles"
+    ],
+    "correct": 3,
+    "explanation": "La cardinalidad mide cuántos valores únicos existen en una columna. Alta cardinalidad (email, UUID) hace el índice muy selectivo. Baja cardinalidad (activo BOOLEAN) lo hace poco selectivo: filtrar por activo=1 puede retornar el 80% de la tabla, siendo un full scan más eficiente. El optimizador usa la cardinalidad para decidir si usar un índice."
+  },
+  {
+    "id": 62,
+    "level": "Mid",
+    "category": "Optimización",
+    "question": "¿Cómo detectarías que una query no está usando un índice esperado?",
+    "code": null,
+    "options": [
+      "Si la query retorna resultados en más de 1 segundo automáticamente",
+      "Verificando el número de resultados retornados",
+      "Ejecutando SHOW INDEXES y contando los índices disponibles",
+      "Ejecutar EXPLAIN y buscar 'Full Table Scan', 'Seq Scan' o tipo 'ALL' en MySQL; el plan mostrará si el índice es ignorado por el optimizador"
+    ],
+    "correct": 3,
+    "explanation": "EXPLAIN muestra el plan de ejecución. En MySQL, el tipo 'ALL' indica full table scan; 'ref' o 'range' indica uso de índice. En PostgreSQL, 'Seq Scan' es full scan; 'Index Scan' o 'Index Only Scan' indica uso de índice. Si el índice existe pero el optimizador lo ignora puede ser por baja cardinalidad o estadísticas desactualizadas."
+  },
+  {
+    "id": 63,
+    "level": "Mid",
+    "category": "Optimización",
+    "question": "¿Por qué aplicar una función sobre una columna indexada puede impedir el uso del índice?",
+    "code": "-- NO usa el índice en fecha:\nWHERE YEAR(fecha_creacion) = 2024\n-- SI usa el índice:\nWHERE fecha_creacion >= '2024-01-01'\n  AND fecha_creacion < '2025-01-01'",
+    "options": [
+      "Las funciones siempre mejoran el uso de índices",
+      "Solo aplica para funciones matemáticas, no para funciones de fecha",
+      "El optimizador siempre puede resolver funciones sobre índices eficientemente",
+      "Al aplicar una función sobre la columna indexada, el optimizador no puede usar el índice directamente y realiza un full scan calculando la función para cada fila"
+    ],
+    "correct": 3,
+    "explanation": "Cuando se aplica una función sobre una columna indexada en el WHERE, el optimizador no puede usar el índice porque necesita evaluar la función para cada fila. La solución es reescribir dejando la columna indexada limpia: en lugar de YEAR(fecha) = 2024, usar fecha >= '2024-01-01' AND fecha < '2025-01-01'."
+  },
+  {
+    "id": 64,
+    "level": "Mid",
+    "category": "Optimización",
+    "question": "¿Qué son los índices parciales y cuándo son útiles?",
+    "code": "-- Indice parcial (PostgreSQL):\nCREATE INDEX idx_pedidos_activos\nON pedidos(fecha_creacion)\nWHERE estado = 'activo';\n-- Solo indexa ~5% de la tabla (pedidos activos)",
+    "options": [
+      "Un índice que solo cubre las primeras columnas de la tabla",
+      "No existen en bases de datos relacionales estándar",
+      "Es igual a un índice compuesto con dos columnas",
+      "Un índice con condición WHERE que indexa solo las filas que cumplen el filtro; más pequeño y eficiente para queries con ese filtro frecuente"
+    ],
+    "correct": 3,
+    "explanation": "Un índice parcial incluye solo las filas que cumplen una condición WHERE. Es útil cuando una columna tiene distribución sesgada: si el 95% de los pedidos están completados y solo el 5% activos, el índice parcial para activos es mucho más pequeño y eficiente para las queries que filtran por estado = 'activo'."
+  },
+  {
+    "id": 65,
+    "level": "Mid",
+    "category": "Transacciones",
+    "question": "¿Qué es un phantom read y qué nivel de aislamiento lo previene completamente?",
+    "code": null,
+    "options": [
+      "Es lo mismo que un dirty read",
+      "Ocurre solo con operaciones DELETE, no con INSERT",
+      "Se previene desde READ COMMITTED en adelante",
+      "Leer un conjunto de filas que cambia entre dos lecturas porque otra transacción insertó o eliminó filas; solo SERIALIZABLE lo previene completamente"
+    ],
+    "correct": 3,
+    "explanation": "Un phantom read ocurre cuando una transacción ejecuta la misma query dos veces y obtiene resultados diferentes porque otra transacción insertó o eliminó filas entre las dos ejecuciones. REPEATABLE READ previene que cambien los valores de filas ya leídas, pero no previene nuevas filas. Solo SERIALIZABLE lo previene completamente."
+  },
+  {
+    "id": 66,
+    "level": "Mid",
+    "category": "Window Functions",
+    "question": "¿Qué hace NTILE(n) en funciones de ventana?",
+    "code": "SELECT nombre, salario,\n  NTILE(4) OVER (ORDER BY salario DESC) AS cuartil\nFROM empleados;",
+    "options": [
+      "Es equivalente a RANK() con grupos fijos",
+      "Solo funciona con columnas de tipo fecha",
+      "Divide los valores numéricos en rangos de igual amplitud",
+      "Divide las filas en n grupos iguales (cuartiles, deciles, percentiles) según el orden especificado; útil para análisis de distribución"
+    ],
+    "correct": 3,
+    "explanation": "NTILE(n) divide el conjunto de filas en n grupos de tamaño aproximadamente igual basándose en el ORDER BY, y asigna a cada fila el número de grupo al que pertenece. NTILE(4) crea cuartiles, NTILE(10) deciles, NTILE(100) percentiles."
+  },
+  {
+    "id": 67,
+    "level": "Mid",
+    "category": "Window Functions",
+    "question": "¿Para qué sirve la cláusula WINDOW en SQL y qué ventaja ofrece?",
+    "code": "SELECT nombre, salario,\n  AVG(salario) OVER w AS avg_dept,\n  MAX(salario) OVER w AS max_dept\nFROM empleados\nWINDOW w AS (PARTITION BY dept ORDER BY salario);",
+    "options": [
+      "Es un alias para GROUP BY con un nombre diferente",
+      "WINDOW solo está disponible en Oracle Database",
+      "Es equivalente a WITH (CTE) para funciones de ventana",
+      "Permite definir una ventana nombrada y reutilizable para múltiples funciones en la misma query, evitando repetir el OVER(...)"
+    ],
+    "correct": 3,
+    "explanation": "La cláusula WINDOW permite nombrar y reutilizar una definición de ventana cuando múltiples funciones de ventana usan el mismo OVER(...). Se define una vez con WINDOW w AS (...) y se referencia con OVER w. Mejora la legibilidad y evita inconsistencias."
+  },
+  {
+    "id": 68,
+    "level": "Mid",
+    "category": "Agregación",
+    "question": "¿Cómo encontrarías filas duplicadas en una tabla usando SQL?",
+    "code": "SELECT email, COUNT(*) AS duplicados\nFROM usuarios\nGROUP BY email\nHAVING COUNT(*) > 1\nORDER BY duplicados DESC;",
+    "options": [
+      "Usar DISTINCT y contar la diferencia con COUNT(*)",
+      "Usar una subquery con NOT IN para encontrar duplicados",
+      "No es posible detectar duplicados directamente en SQL",
+      "Usar GROUP BY en la columna candidata y HAVING COUNT(*) > 1 para detectar grupos con más de un registro"
+    ],
+    "correct": 3,
+    "explanation": "La técnica estándar para encontrar duplicados es agrupar por la columna que debería ser única y filtrar con HAVING COUNT(*) > 1 para mostrar solo los grupos con más de una fila. Para obtener las filas completas se hace un JOIN del resultado con la tabla original."
+  },
+  {
+    "id": 69,
+    "level": "Mid",
+    "category": "Subqueries",
+    "question": "¿Cuál es la diferencia entre una tabla temporal y una CTE en términos de persistencia?",
+    "code": null,
+    "options": [
+      "Son completamente equivalentes en todos los aspectos",
+      "Las CTEs son más rápidas siempre porque se precompilan",
+      "Las tablas temporales se borran automáticamente entre queries de la misma sesión",
+      "Tabla temporal persiste en la sesión y puede tener índices; CTE existe solo durante la query donde se define y no se puede indexar directamente"
+    ],
+    "correct": 3,
+    "explanation": "Una tabla temporal (CREATE TEMP TABLE o # en SQL Server) persiste durante la sesión, puede tener índices propios, y puede usarse en múltiples queries distintas. Una CTE (WITH) existe solo durante la ejecución de la query donde se define, no persiste y no puede indexarse."
+  },
+  {
+    "id": 70,
+    "level": "Mid",
+    "category": "Diseño",
+    "question": "¿Qué problema de rendimiento puede causar no tener índice en una columna usada en un JOIN?",
+    "code": null,
+    "options": [
+      "Ningún problema; el optimizador resuelve los JOINs eficientemente siempre",
+      "Solo afecta tablas con más de 1 millón de filas",
+      "Solo impacta las operaciones INSERT y UPDATE",
+      "Full table scan en la tabla sin índice por cada fila de la otra tabla, resultando en O(n x m) operaciones y queries extremadamente lentas"
+    ],
+    "correct": 3,
+    "explanation": "Sin índice en la columna de JOIN, el motor debe hacer un nested loop: por cada fila de la tabla A, escanea completamente la tabla B. Con 10,000 filas en A y 100,000 en B son 1,000,000,000 operaciones. Con un índice la búsqueda es O(log n), reduciendo dramáticamente el tiempo."
+  },
+  {
+    "id": 71,
+    "level": "Mid",
+    "category": "Fundamentos",
+    "question": "¿Qué hace la cláusula OVER() vacía en una función de ventana?",
+    "code": "SELECT nombre, salario,\n  SUM(salario) OVER() AS total_nomina,\n  ROUND(salario * 100.0 / SUM(salario) OVER(), 2) AS porcentaje\nFROM empleados;",
+    "options": [
+      "Es un error de sintaxis; OVER siempre requiere ORDER BY",
+      "Es equivalente a GROUP BY sobre toda la tabla, colapsando filas",
+      "Solo retorna el valor de la primera fila del resultado",
+      "OVER() sin PARTITION BY ni ORDER BY aplica la función sobre todas las filas sin colapsar, permitiendo calcular totales globales por fila"
+    ],
+    "correct": 3,
+    "explanation": "OVER() vacío define una ventana que incluye todas las filas del resultado. A diferencia de GROUP BY, no colapsa las filas: cada fila mantiene sus datos y además tiene el resultado de la función calculado sobre todo el conjunto. Cada empleado ve su salario Y el total de nómina, permitiendo calcular porcentajes sobre el total."
+  },
+  {
+    "id": 72,
+    "level": "Mid",
+    "category": "Transacciones",
+    "question": "¿Cómo manejarías dos transacciones que intentan actualizar el mismo registro simultáneamente?",
+    "code": "-- Optimistic (version):\nUPDATE cuentas SET saldo=saldo-100, version=version+1\nWHERE id=1 AND version=:v;\n-- Pessimistic (bloqueo):\nSELECT saldo FROM cuentas WHERE id=1 FOR UPDATE;",
+    "options": [
+      "Ignorar el problema; los DBMS modernos lo resuelven automáticamente",
+      "Usar solo transacciones de lectura para evitar conflictos",
+      "Siempre usar READ UNCOMMITTED para evitar bloqueos",
+      "Usar optimistic locking con control de versión para baja contención, o pessimistic locking (FOR UPDATE) cuando los conflictos son frecuentes"
+    ],
+    "correct": 3,
+    "explanation": "Optimistic locking es preferible cuando los conflictos son raros: no bloquea y permite mayor concurrencia. Si el UPDATE afecta 0 filas (alguien modificó primero), se reintenta. Pessimistic locking (SELECT FOR UPDATE) es preferible cuando los conflictos son frecuentes, asegurando exclusividad pero reduciendo la concurrencia."
+  },
+  {
+    "id": 73,
+    "level": "Mid",
+    "category": "Optimización",
+    "question": "¿Qué información proporciona EXPLAIN ANALYZE que EXPLAIN regular no da?",
+    "code": null,
+    "options": [
+      "EXPLAIN ANALYZE muestra la estructura DDL de la tabla",
+      "Son equivalentes; ANALYZE es solo un alias opcional",
+      "EXPLAIN ANALYZE solo está disponible en Oracle",
+      "EXPLAIN muestra el plan estimado con costos teóricos; EXPLAIN ANALYZE ejecuta la query y muestra tiempos reales, filas reales vs estimadas y loops"
+    ],
+    "correct": 3,
+    "explanation": "EXPLAIN muestra el plan con costos y filas estimadas basadas en estadísticas. EXPLAIN ANALYZE realmente ejecuta la query y además muestra: tiempo de ejecución real en cada nodo, número de filas reales vs estimadas (detecta estadísticas desactualizadas), y número de loops. La diferencia entre estimado y real es clave para detectar problemas de planificación."
+  },
+  {
+    "id": 74,
+    "level": "Mid",
+    "category": "Diseño",
+    "question": "¿Qué consideraciones debes tener al elegir el tipo de dato para una columna de ID primaria?",
+    "code": null,
+    "options": [
+      "Siempre usar VARCHAR para mayor flexibilidad en el ID",
+      "El tipo de dato del ID no tiene impacto en rendimiento",
+      "Solo INTEGER funciona como PRIMARY KEY en SQL estándar",
+      "INT/BIGINT es eficiente para auto-increment; UUID ofrece unicidad global pero es más grande (16 bytes) y puede fragmentar índices BTREE"
+    ],
+    "correct": 3,
+    "explanation": "INT o BIGINT con auto-increment son eficientes, secuenciales (no fragmentan el índice clustered) y ocupan poco espacio. UUID (16 bytes) es útil para sistemas distribuidos que necesitan IDs únicos globalmente, pero al ser aleatorios fragmentan los índices BTREE causando más page splits. UUIDv7 combina unicidad global con inserción secuencial."
+  },
+  {
+    "id": 75,
+    "level": "Mid",
+    "category": "Optimización",
+    "question": "¿Qué son las estadísticas de tabla y cómo afectan al optimizador de queries?",
+    "code": "-- Actualizar estadísticas:\nANALYZE TABLE empleados; -- MySQL\nANALYZE empleados;       -- PostgreSQL\nUPDATE STATISTICS empleados; -- SQL Server",
+    "options": [
+      "Son registros de auditoría de queries ejecutadas",
+      "Las estadísticas no afectan el plan de ejecución, son solo informativas",
+      "Solo las actualiza manualmente el DBA",
+      "Metadatos que el optimizador usa para estimar costos: distribución de valores, cardinalidad y tamaño; estadísticas desactualizadas generan planes subóptimos"
+    ],
+    "correct": 3,
+    "explanation": "Las estadísticas son metadatos que el optimizador consulta para estimar el costo de diferentes planes: número de filas, distribución de valores (histogramas), número de valores únicos. Con estadísticas precisas el optimizador elige el plan correcto. Con estadísticas desactualizadas (tras cargas masivas) puede elegir planes terribles. ANALYZE actualiza estas estadísticas."
+  }
+]

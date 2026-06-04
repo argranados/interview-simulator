@@ -1,19 +1,17 @@
 export default function TopicPage({ onSelect }) {
-const topics = [
-    // Fila 1 - disponibles
-    { id: 'java_core', title: 'Java Core', emoji: '☕', description: 'Fundamentos del lenguaje', available: true },
-    { id: 'microservicios', title: 'Microservicios y APIs', emoji: '🔗', description: 'REST, gRPC, mensajería', available: true },
-    
-    // Fila 1 - próximamente
-    { id: 'java_patrones', title: 'Java Patrones', emoji: '🧩', description: 'Design patterns', available: true },
-    { id: 'java_arquitectura', title: 'Java Arquitectura', emoji: '🏛️', description: 'Arquitectura de software', available: true },
-    
-    // Fila 2 - NUEVOS TEMAS (todos como "Próximamente")
-    { id: 'sql_java', title: 'SQL Java', emoji: '🗄️', description: 'Consultas, JDBC, JPA', available: false },
-    { id: 'unit_testing', title: 'Unit Testing', emoji: '🧪', description: 'JUnit, Mockito, TDD', available: false },
-    { id: 'devops_java', title: 'DevOps Java', emoji: '🚀', description: 'CI/CD, Docker, Kubernetes', available: false },
-    { id: 'aws_java', title: 'AWS Java Backend', emoji: '☁️', description: 'Lambda, RDS, S3, EC2', available: false },
-]
+    const topics = [
+        // Fila 1 - disponibles
+        { id: 'java_core', title: 'Java Core', emoji: '☕', description: 'Fundamentos del lenguaje', available: true },
+        { id: 'microservicios', title: 'Microservicios y APIs', emoji: '🔗', description: 'REST, gRPC, mensajería', available: true },
+        { id: 'java_patrones', title: 'Java Patrones', emoji: '🧩', description: 'Design patterns', available: true },
+        { id: 'java_arquitectura', title: 'Java Arquitectura', emoji: '🏛️', description: 'Arquitectura de software', available: true },
+        { id: 'sql_java', title: 'SQL Java', emoji: '🗄️', description: 'Consultas, JDBC, Conceptos', available: true },
+
+        // Fila 2 - NUEVOS TEMAS (todos como "Próximamente")
+        { id: 'unit_testing', title: 'Unit Testing', emoji: '🧪', description: 'JUnit, Mockito, TDD', available: true },
+        { id: 'devops_java', title: 'DevOps Java', emoji: '🚀', description: 'CI/CD, Docker, Kubernetes', available: false },
+        { id: 'aws_java', title: 'AWS Java Backend', emoji: '☁️', description: 'Lambda, RDS, S3, EC2', available: false },
+    ]
 
     return (
         <div style={styles.container}>
