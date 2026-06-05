@@ -1,0 +1,1502 @@
+[
+  {
+    "id": 1,
+    "level": "Junior",
+    "category": "Fundamentos",
+    "question": "¿Qué significa el modelo de responsabilidad compartida de AWS?",
+    "code": null,
+    "options": [
+      "AWS gestiona la seguridad 'de' la nube; el cliente gestiona la seguridad 'en' la nube",
+      "AWS es responsable de absolutamente todo lo que ocurre en la nube",
+      "El cliente es responsable de toda la infraestructura física y virtual",
+      "Es un acuerdo de niveles de servicio (SLA) entre AWS y el cliente"
+    ],
+    "correct": 0,
+    "explanation": "AWS protege hardware, red y software base. El cliente es responsable de sus datos, apps, configuración IAM y cifrado. Por ejemplo: AWS parchea el hipervisor de EC2, pero tú parcheas el SO de tu instancia."
+  },
+  {
+    "id": 2,
+    "level": "Junior",
+    "category": "Infraestructura",
+    "question": "¿Qué es una Availability Zone (AZ)?",
+    "code": null,
+    "options": [
+      "Un tipo de instancia EC2 optimizada para alta disponibilidad",
+      "Un grupo de usuarios IAM con acceso a una región",
+      "Una zona horaria usada para la facturación de recursos",
+      "Un datacenter aislado dentro de una región AWS, con red y energía independientes"
+    ],
+    "correct": 3,
+    "explanation": "Cada región tiene 2 o más AZs físicamente separadas. Si una AZ falla, las otras siguen operando. Distribuir recursos entre AZs es la base de la alta disponibilidad."
+  },
+  {
+    "id": 3,
+    "level": "Junior",
+    "category": "Almacenamiento",
+    "question": "¿Para qué sirve Amazon S3 en un proyecto Java Backend?",
+    "code": null,
+    "options": [
+      "Como base de datos relacional para guardar entidades JPA",
+      "Como sistema de caché en memoria tipo Redis",
+      "Para almacenar objetos: archivos, imágenes, backups, artefactos JAR",
+      "Como orquestador de contenedores Docker"
+    ],
+    "correct": 2,
+    "explanation": "S3 es almacenamiento de objetos accesible vía HTTP. Muy usado para guardar uploads de usuarios, artefactos de build, logs y backups. No es una base de datos ni sirve para ejecutar código."
+  },
+  {
+    "id": 4,
+    "level": "Junior",
+    "category": "Seguridad",
+    "question": "¿Qué es un IAM Role y en qué se diferencia de un IAM User?",
+    "code": null,
+    "options": [
+      "Los Roles tienen más permisos que los Users siempre",
+      "Un IAM User tiene credenciales estáticas; un Role es una identidad temporal asumible por servicios como EC2, Lambda o ECS",
+      "Son lo mismo; solo difieren visualmente en la consola",
+      "Los Roles son para personas físicas; los Users para servicios AWS"
+    ],
+    "correct": 1,
+    "explanation": "Users: claves de acceso estáticas para personas. Roles: identidades temporales asumidas por servicios (EC2 instance profile, Lambda execution role). Las buenas prácticas prefieren Roles sobre credenciales estáticas hardcodeadas."
+  },
+  {
+    "id": 5,
+    "level": "Junior",
+    "category": "Redes",
+    "question": "¿Cuál es la diferencia entre subnet pública y privada en una VPC?",
+    "code": null,
+    "options": [
+      "La subnet privada es más costosa por el cifrado adicional",
+      "La subnet pública usa IPv6; la privada solo IPv4",
+      "Solo puede existir una subnet pública por VPC",
+      "La pública tiene ruta al Internet Gateway; la privada no tiene acceso directo a internet"
+    ],
+    "correct": 3,
+    "explanation": "La subnet pública tiene una ruta al Internet Gateway en su tabla de rutas. La privada no; sus recursos solo se comunican internamente o salen a internet via NAT Gateway, sin ser accesibles desde fuera."
+  },
+  {
+    "id": 6,
+    "level": "Junior",
+    "category": "Bases de datos",
+    "question": "¿Qué es Amazon RDS?",
+    "code": null,
+    "options": [
+      "Una base de datos de grafos de AWS",
+      "Almacenamiento de objetos como S3 pero con SQL",
+      "Un servicio gestionado de bases de datos relacionales (MySQL, PostgreSQL, Aurora, etc.)",
+      "Una base de datos en memoria tipo Redis"
+    ],
+    "correct": 2,
+    "explanation": "RDS gestiona motores SQL: MySQL, PostgreSQL, MariaDB, Oracle y Aurora. Automatiza backups, parches, failover Multi-AZ y escalado de réplicas de lectura."
+  },
+  {
+    "id": 7,
+    "level": "Junior",
+    "category": "Serverless",
+    "question": "¿Qué es AWS Lambda y cuál es su modelo de ejecución?",
+    "code": null,
+    "options": [
+      "Un servidor virtual siempre encendido que facturas por hora",
+      "Un servicio serverless que ejecuta funciones en respuesta a eventos, sin gestionar servidores, cobrando por milisegundo",
+      "Un orquestador de contenedores tipo Kubernetes",
+      "Una base de datos serverless de documentos"
+    ],
+    "correct": 1,
+    "explanation": "Lambda ejecuta funciones disparadas por eventos (API Gateway, S3, SQS, etc.). Escala automáticamente de 0 a miles de instancias. Pagas solo por el tiempo de ejecución y el número de invocaciones."
+  },
+  {
+    "id": 8,
+    "level": "Junior",
+    "category": "Desarrollo",
+    "question": "En el AWS SDK para Java, ¿qué hace este fragmento y qué problema podría tener?",
+    "code": "// En application.properties:\n// aws.accessKey=AKIAIOSFODNN7EXAMPLE\n// aws.secretKey=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY\n\nStaticCredentialsProvider.create(\n  AwsBasicCredentials.create(accessKey, secretKey)\n);",
+    "options": [
+      "Es la forma recomendada por AWS para producción",
+      "Funciona pero solo en us-east-1",
+      "Las credenciales hardcodeadas son un riesgo de seguridad; lo correcto es usar IAM Roles o DefaultCredentialsProvider",
+      "Es código de SDK v1, en v2 ya no existe StaticCredentialsProvider"
+    ],
+    "correct": 2,
+    "explanation": "Nunca hardcodees credenciales en código o properties. Si el repo es público o los logs se filtran, las claves quedan expuestas. En EC2/ECS/Lambda usa IAM Roles. El SDK v2 las descubre automáticamente con DefaultCredentialsProvider."
+  },
+  {
+    "id": 9,
+    "level": "Junior",
+    "category": "Cómputo",
+    "question": "¿Para qué sirve un Elastic Load Balancer (ALB)?",
+    "code": null,
+    "options": [
+      "Para hacer backups automáticos de instancias EC2",
+      "Para comprimir archivos estáticos y reducir costos de S3",
+      "Para monitorear el uso de CPU y disparar alarmas",
+      "Para distribuir tráfico HTTP entre múltiples instancias o contenedores automáticamente"
+    ],
+    "correct": 3,
+    "explanation": "El ALB (Application Load Balancer) opera en capa 7 HTTP/HTTPS. Distribuye requests entre targets (EC2, ECS, Lambda) usando path-based o host-based routing. Permite rolling deployments sin downtime."
+  },
+  {
+    "id": 10,
+    "level": "Junior",
+    "category": "Observabilidad",
+    "question": "¿Qué es Amazon CloudWatch y cómo lo usarías en Java?",
+    "code": null,
+    "options": [
+      "Solo sirve para monitorear instancias EC2, no otros servicios",
+      "Un servicio de CI/CD para despliegues automáticos",
+      "Un servicio de monitoreo: centraliza logs, métricas y alarmas; en Java envías logs con el SDK o el agente CloudWatch",
+      "Un gestor de secretos y credenciales de aplicación"
+    ],
+    "correct": 2,
+    "explanation": "CloudWatch recolecta logs y métricas de EC2, Lambda, RDS, ECS, etc. En Spring Boot configuras el CloudWatch Logs agent o usas el SDK para métricas personalizadas. Creas alarmas (ej: errores HTTP 5xx > 10/min) y dashboards."
+  },
+  {
+    "id": 11,
+    "level": "Junior",
+    "category": "Mensajería",
+    "question": "¿Qué es Amazon SQS y cuándo lo usarías en un microservicio Java?",
+    "code": null,
+    "options": [
+      "Una base de datos de colas persistente tipo PostgreSQL",
+      "Un servicio de caché de mensajes en memoria",
+      "Un registro de imágenes Docker con versiones",
+      "Un servicio gestionado de colas de mensajes para desacoplar servicios y procesar tareas de forma asíncrona"
+    ],
+    "correct": 3,
+    "explanation": "SQS permite que un servicio Java produzca mensajes y otro los consuma de forma independiente. Ideal para tareas asíncronas: enviar emails, procesar pagos, redimensionar imágenes. Si el consumidor falla, el mensaje vuelve a estar disponible."
+  },
+  {
+    "id": 12,
+    "level": "Junior",
+    "category": "Contenedores",
+    "question": "¿Qué es Amazon ECR y cómo encaja en el pipeline de un servicio Java dockerizado?",
+    "code": null,
+    "options": [
+      "Un servicio de CI/CD para compilar código Java",
+      "Un balanceador de carga para contenedores Docker",
+      "Un registro gestionado de imágenes Docker de AWS, destino del docker push en el pipeline CI/CD",
+      "Un orquestador de contenedores equivalente a Kubernetes"
+    ],
+    "correct": 2,
+    "explanation": "ECR almacena imágenes Docker privadas. En el pipeline: CodeBuild compila el JAR, construye la imagen Docker y hace push a ECR. Luego ECS/EKS descarga la imagen desde ECR para desplegarla."
+  },
+  {
+    "id": 13,
+    "level": "Junior",
+    "category": "Despliegue",
+    "question": "¿Qué es AWS Elastic Beanstalk y cuándo conviene usarlo?",
+    "code": null,
+    "options": [
+      "Un servicio de base de datos serverless para apps Java",
+      "Un registro de artefactos JAR como Maven Central pero en AWS",
+      "Una PaaS que gestiona infraestructura automáticamente al subir tu JAR/WAR; ideal para equipos pequeños sin experiencia en IaC",
+      "Un orquestador de contenedores simplificado"
+    ],
+    "correct": 2,
+    "explanation": "Beanstalk provisiona EC2, Load Balancer, Auto Scaling y CloudWatch automáticamente. Solo subes el artefacto Java. Pierde algo de control vs ECS/EC2 directos, pero reduce drásticamente la carga operativa inicial."
+  },
+  {
+    "id": 14,
+    "level": "Junior",
+    "category": "Seguridad",
+    "question": "¿Qué es un Security Group en AWS?",
+    "code": null,
+    "options": [
+      "Un grupo de usuarios IAM con los mismos permisos",
+      "Un firewall virtual stateful a nivel de instancia que controla tráfico inbound/outbound",
+      "Un tipo de política de bucket en S3",
+      "Un servicio de auditoría de cambios en la cuenta"
+    ],
+    "correct": 1,
+    "explanation": "Los Security Groups son firewalls stateful: defines reglas por protocolo, puerto y origen/destino. Al ser stateful, si permites la entrada de tráfico, la respuesta sale automáticamente."
+  },
+  {
+    "id": 15,
+    "level": "Junior",
+    "category": "Mensajería",
+    "question": "¿Qué servicio usarías para enviar notificaciones push, email o SMS desde Java?",
+    "code": null,
+    "options": [
+      "Amazon SQS (Simple Queue Service)",
+      "Amazon SNS (Simple Notification Service)",
+      "Amazon RDS",
+      "AWS CloudTrail"
+    ],
+    "correct": 1,
+    "explanation": "SNS es un servicio de pub/sub y notificaciones. Envía mensajes a múltiples suscriptores via email, SMS, HTTP o SQS. Es ideal para alertas o desacoplar productores de múltiples consumidores."
+  },
+  {
+    "id": 16,
+    "level": "Junior",
+    "category": "Cómputo",
+    "question": "¿Para qué sirve Auto Scaling en AWS?",
+    "code": null,
+    "options": [
+      "Para hacer backups automáticos de RDS",
+      "Para ajustar automáticamente la cantidad de instancias EC2 según la demanda o métricas",
+      "Para actualizar el código de la aplicación en producción",
+      "Para gestionar acceso y permisos de usuarios"
+    ],
+    "correct": 1,
+    "explanation": "Auto Scaling lanza o termina instancias EC2 basándose en métricas (CPU, tráfico) o schedules. Garantiza capacidad suficiente en picos y ahorro en horas de baja demanda."
+  },
+  {
+    "id": 17,
+    "level": "Junior",
+    "category": "IaC",
+    "question": "¿Qué es AWS CloudFormation?",
+    "code": null,
+    "options": [
+      "Un servicio de monitoreo de aplicaciones web",
+      "Una herramienta de Infrastructure as Code para definir y desplegar recursos AWS con plantillas YAML/JSON",
+      "Un servicio de base de datos NoSQL",
+      "Una red de distribución de contenido (CDN)"
+    ],
+    "correct": 1,
+    "explanation": "CloudFormation define infraestructura como código. Crea stacks reproducibles y versionables: VPCs, EC2, RDS, etc. Facilita múltiples entornos (dev, staging, prod) idénticos con una sola plantilla."
+  },
+  {
+    "id": 18,
+    "level": "Junior",
+    "category": "Redes",
+    "question": "¿Qué es una VPC en AWS?",
+    "code": null,
+    "options": [
+      "Un tipo de instancia EC2 de alto rendimiento",
+      "Una red virtual privada e aislada dentro de AWS donde despliegas tus recursos",
+      "Un servicio de base de datos distribuida",
+      "Un protocolo de cifrado de AWS"
+    ],
+    "correct": 1,
+    "explanation": "VPC (Virtual Private Cloud) es tu red aislada en AWS. Defines rangos IP, subredes públicas/privadas, tablas de rutas, internet gateways y security groups. Todos los recursos se lanzan dentro de una VPC."
+  },
+  {
+    "id": 19,
+    "level": "Junior",
+    "category": "Bases de datos",
+    "question": "¿Qué es Amazon DynamoDB?",
+    "code": null,
+    "options": [
+      "Una base de datos relacional compatible con PostgreSQL",
+      "Una base de datos NoSQL de clave-valor y documentos, serverless, gestionada y de baja latencia",
+      "Un sistema de archivos distribuido NFS",
+      "Un servicio de caché como Redis"
+    ],
+    "correct": 1,
+    "explanation": "DynamoDB es la BD NoSQL flagship de AWS: serverless, latencia de milisegundos, escalado automático. Ideal para sesiones, catálogos o cualquier acceso por clave primaria sin joins complejos."
+  },
+  {
+    "id": 20,
+    "level": "Junior",
+    "category": "Almacenamiento",
+    "question": "¿Cuándo usarías EBS en lugar de S3 para almacenamiento en una app Java?",
+    "code": null,
+    "options": [
+      "Cuando necesitas almacenar objetos accesibles vía HTTP",
+      "Cuando la aplicación necesita un disco montado como sistema de archivos (leer/escribir archivos locales)",
+      "Cuando quieres hospedar un sitio web estático",
+      "Cuando necesitas replicación automática global"
+    ],
+    "correct": 1,
+    "explanation": "EBS (Elastic Block Store) es almacenamiento en bloque que se monta como disco duro en EC2. Necesario cuando la app escribe en el filesystem local (logs, archivos temporales, bases de datos locales). S3 es para objetos vía API HTTP."
+  },
+  {
+    "id": 21,
+    "level": "Junior",
+    "category": "Redes",
+    "question": "¿Qué es Amazon Route 53?",
+    "code": null,
+    "options": [
+      "Un servicio de base de datos de series de tiempo",
+      "El servicio de DNS gestionado de AWS con routing por latencia, geolocalización y health checks",
+      "Un servicio de firewall de aplicaciones web",
+      "Un servicio de distribución de contenido CDN"
+    ],
+    "correct": 1,
+    "explanation": "Route 53 gestiona DNS con capacidades avanzadas: routing por latencia, geolocalización, pesos, failover automático con health checks. Esencial para arquitecturas multi-región."
+  },
+  {
+    "id": 22,
+    "level": "Junior",
+    "category": "Mensajería",
+    "question": "¿Qué diferencia hay entre SQS y SNS?",
+    "code": null,
+    "options": [
+      "Son exactamente lo mismo con diferente interfaz",
+      "SQS es una cola punto a punto (pull); SNS es pub/sub que entrega a múltiples suscriptores a la vez (push)",
+      "SQS es para notificaciones en tiempo real; SNS es para procesamiento batch",
+      "SNS solo funciona con AWS Lambda como suscriptor"
+    ],
+    "correct": 1,
+    "explanation": "SQS: un productor pone mensajes y los consumidores hacen pull. SNS: un publisher envía a un topic y todos los suscriptores reciben instantáneamente. Se combinan (SNS→SQS fan-out) para arquitecturas robustas."
+  },
+  {
+    "id": 23,
+    "level": "Junior",
+    "category": "CI/CD",
+    "question": "¿Qué es AWS CodePipeline?",
+    "code": null,
+    "options": [
+      "Un editor de código en la nube",
+      "Un servicio de CI/CD para automatizar build, test y deploy de aplicaciones",
+      "Un servicio de monitoreo de pipelines de datos",
+      "Un servicio de VPN para conectar equipos remotos"
+    ],
+    "correct": 1,
+    "explanation": "CodePipeline orquesta el flujo completo de entrega: source (CodeCommit/GitHub) → build (CodeBuild) → test → deploy (CodeDeploy/ECS/Beanstalk). Se integra con GitHub Actions también."
+  },
+  {
+    "id": 24,
+    "level": "Junior",
+    "category": "Mensajería",
+    "question": "¿Qué es Amazon SES (Simple Email Service) y cuándo lo usarías?",
+    "code": null,
+    "options": [
+      "Un servicio de mensajería instantánea entre usuarios",
+      "Un servicio de envío de emails a escala, útil para emails transaccionales (confirmaciones, alertas) y de marketing desde apps Java",
+      "Un servicio de SMS como parte de SNS",
+      "Un servicio de chat entre microservicios"
+    ],
+    "correct": 1,
+    "explanation": "SES envía emails a bajo costo desde aplicaciones. En Spring Boot se integra via JavaMail con SMTP de SES, o directamente con el SDK AWS. Úsalo para emails transaccionales: bienvenida, reset de contraseña, alertas de sistema."
+  },
+  {
+    "id": 25,
+    "level": "Junior",
+    "category": "Seguridad",
+    "question": "¿Qué es AWS IAM y por qué es fundamental?",
+    "code": null,
+    "options": [
+      "Un servicio de base de datos de identidades",
+      "El servicio para gestionar usuarios, roles y permisos de acceso a AWS aplicando el principio de mínimo privilegio",
+      "Un protocolo de red propietario de AWS",
+      "Un tipo de instancia EC2 optimizada para seguridad"
+    ],
+    "correct": 1,
+    "explanation": "IAM (Identity and Access Management) controla quién puede hacer qué en AWS mediante usuarios, grupos, roles y políticas. Es el pilar de seguridad de toda arquitectura AWS."
+  },
+  {
+    "id": 26,
+    "level": "Junior-Mid",
+    "category": "Configuración",
+    "question": "¿Qué es AWS Systems Manager Parameter Store?",
+    "code": null,
+    "options": [
+      "Un almacén para parámetros de instancias EC2 como tipo y tamaño",
+      "Un servicio para almacenar configuración y secretos de aplicaciones en jerarquías, integrado con IAM y KMS",
+      "Es idéntico a Secrets Manager sin diferencias prácticas",
+      "Solo sirve para almacenar configuración de funciones Lambda"
+    ],
+    "correct": 1,
+    "explanation": "Parameter Store guarda configuración jerárquica (/app/prod/db-url) con tier gratuito. Para secretos con rotación automática se prefiere Secrets Manager. Ambos se integran con Spring Cloud AWS para inyectar valores como properties."
+  },
+  {
+    "id": 27,
+    "level": "Junior-Mid",
+    "category": "Redes",
+    "question": "¿En AWS, qué es un NAT Gateway y cuándo lo necesitas?",
+    "code": null,
+    "options": [
+      "Un gateway para conectar dos VPCs diferentes",
+      "Permite que instancias en subnets privadas hagan peticiones salientes a internet sin estar expuestas a él",
+      "Es un reemplazo del Internet Gateway para subnets públicas",
+      "Solo lo necesitas si tienes instancias con IPv6"
+    ],
+    "correct": 1,
+    "explanation": "Las instancias privadas no tienen IP pública ni ruta a internet. El NAT Gateway (en subnet pública) permite salida a internet (actualizaciones, llamadas a APIs externas) sin exponer las instancias privadas a tráfico entrante."
+  },
+  {
+    "id": 28,
+    "level": "Junior-Mid",
+    "category": "Bases de datos",
+    "question": "¿Qué es Amazon ElastiCache y para qué lo usarías en Spring Boot?",
+    "code": null,
+    "options": [
+      "Un CDN para archivos estáticos y HTML",
+      "Un servicio gestionado de caché en memoria (Redis o Memcached) para reducir latencia y carga en la BD",
+      "Una base de datos de series de tiempo para métricas",
+      "Un servicio de mensajería asíncrona como SQS"
+    ],
+    "correct": 1,
+    "explanation": "ElastiCache ofrece Redis o Memcached gestionados. En Spring Boot lo usas para cachear resultados de queries costosas (@Cacheable con Redis), sesiones de usuario, rate limiting o datos de referencia frecuentemente leídos."
+  },
+  {
+    "id": 29,
+    "level": "Junior-Mid",
+    "category": "Mensajería",
+    "question": "¿Cuál es la diferencia entre SQS estándar y FIFO?",
+    "code": null,
+    "options": [
+      "La estándar solo funciona en us-east-1; la FIFO en todas las regiones",
+      "La FIFO garantiza orden estricto y exactly-once processing; la estándar tiene mayor throughput pero puede reordenar o duplicar mensajes",
+      "Son idénticas; solo difieren en el precio",
+      "La estándar es para Java; la FIFO para Python y Node.js"
+    ],
+    "correct": 1,
+    "explanation": "Estándar: throughput casi ilimitado pero puede duplicar o reordenar. FIFO: orden garantizado y exactly-once, hasta 3,000 TPS con batching. Usa FIFO cuando el orden importa: eventos de pago, cambios de estado de un pedido."
+  },
+  {
+    "id": 30,
+    "level": "Junior-Mid",
+    "category": "Redes",
+    "question": "¿Qué es un VPC Endpoint y qué ventaja da a una app Java en ECS que llama a S3?",
+    "code": null,
+    "options": [
+      "Un DNS privado para acceder a servicios dentro de la VPC",
+      "Una VPN entre dos cuentas de AWS distintas",
+      "Un balanceador de carga interno para servicios en la VPC",
+      "Permite acceder a servicios AWS desde la VPC sin pasar por internet, mejorando seguridad y reduciendo costos de NAT Gateway"
+    ],
+    "correct": 3,
+    "explanation": "Sin VPC Endpoint, el tráfico a S3 sale por NAT Gateway (costo + latencia). Con un Gateway Endpoint para S3, el tráfico permanece en la red de AWS, es gratuito y más rápido. Elimina la necesidad de NAT para acceder a S3 o DynamoDB."
+  },
+  {
+    "id": 31,
+    "level": "Junior-Mid",
+    "category": "Observabilidad",
+    "question": "¿Qué es AWS X-Ray y para qué sirve en microservicios Java?",
+    "code": null,
+    "options": [
+      "Un escáner de vulnerabilidades de código fuente",
+      "Un servicio de distributed tracing para visualizar el flujo de requests a través de múltiples servicios y detectar cuellos de botella",
+      "Un servicio de CI/CD para deployments",
+      "Un firewall de aplicaciones web (WAF)"
+    ],
+    "correct": 1,
+    "explanation": "X-Ray genera el service map y muestra latencias y errores por segmento. Con ADOT (OpenTelemetry de AWS) en Spring Boot, el agente instrumenta automáticamente llamadas HTTP, SQS y JDBC. El trace ID se propaga en headers entre servicios."
+  },
+  {
+    "id": 32,
+    "level": "Junior-Mid",
+    "category": "Serverless",
+    "question": "¿En qué consiste el 'cold start' de AWS Lambda con Java y cómo mitigarlo?",
+    "code": null,
+    "options": [
+      "Es un error de memoria; se soluciona aumentando la RAM de la función",
+      "Es un bug conocido de AWS sin solución disponible aún",
+      "Es el tiempo de inicialización de la JVM al invocar una función fría; se mitiga con Provisioned Concurrency, Lambda SnapStart o GraalVM native image",
+      "Es el tiempo que tarda el trigger de S3 en activarse"
+    ],
+    "correct": 2,
+    "explanation": "La JVM tarda en arrancar cuando no hay instancia caliente. Mitigaciones: Provisioned Concurrency (instancias precalentadas), Lambda SnapStart (restaura snapshot de JVM), GraalVM native image (binario sin JVM), o reducir tamaño del deployment."
+  },
+  {
+    "id": 33,
+    "level": "Junior-Mid",
+    "category": "Seguridad",
+    "question": "¿Qué es AWS Secrets Manager y cómo integrarlo correctamente en Spring Boot?",
+    "code": null,
+    "options": [
+      "Guardar el secret ARN en application.properties y leerlo en startup",
+      "Un gestor de contraseñas para usuarios finales de la app",
+      "Usar IAM Roles + AWS SDK o Spring Cloud AWS para recuperar secretos en runtime; nunca guardar valores en properties",
+      "Es idéntico a Parameter Store; da igual cuál uses para contraseñas de BD"
+    ],
+    "correct": 2,
+    "explanation": "Secrets Manager almacena y rota credenciales automáticamente con cifrado KMS. En Spring Boot con Spring Cloud AWS: configura el prefix y las propiedades se inyectan como @Value. El Task Role de ECS autoriza el acceso."
+  },
+  {
+    "id": 34,
+    "level": "Junior-Mid",
+    "category": "Contenedores",
+    "question": "¿Qué es ECS Fargate y qué ventaja clave tiene frente a ECS con EC2 launch type?",
+    "code": null,
+    "options": [
+      "Fargate es el registro de imágenes Docker privado de ECS",
+      "Fargate solo soporta contenedores de menos de 512MB de RAM",
+      "Fargate tiene mayor latencia de arranque que EC2 en todos los casos",
+      "Fargate es serverless: no gestionas instancias EC2, pagas exactamente por CPU/memoria del contenedor, sin over-provisioning ni parches de SO"
+    ],
+    "correct": 3,
+    "explanation": "Con EC2 launch type: provisiones un cluster de instancias, las parcheas y las escalas. Con Fargate: defines cpu/memory por task y AWS gestiona todo el servidor. Ideal para equipos pequeños o cargas intermitentes."
+  },
+  {
+    "id": 35,
+    "level": "Junior-Mid",
+    "category": "Mensajería",
+    "question": "¿Qué hace este código Java con SQS y qué patrón implementa?",
+    "code": "// Consumidor SQS con long polling\nReceiveMessageRequest req = ReceiveMessageRequest.builder()\n    .queueUrl(queueUrl)\n    .maxNumberOfMessages(10)\n    .waitTimeSeconds(20)  // <-- long polling\n    .build();\n\nList<Message> messages = sqs.receiveMessage(req).messages();\nfor (Message msg : messages) {\n    processMessage(msg);\n    sqs.deleteMessage(b -> b.queueUrl(queueUrl)\n                           .receiptHandle(msg.receiptHandle()));\n}",
+    "options": [
+      "Short polling con batch de mensajes y auto-delete",
+      "Long polling con batch de hasta 10 mensajes; espera hasta 20s si la cola está vacía y elimina cada mensaje después de procesarlo",
+      "Streaming de mensajes en tiempo real con Kinesis",
+      "Publicación de mensajes a un SNS topic desde un consumidor"
+    ],
+    "correct": 1,
+    "explanation": "waitTimeSeconds(20) activa long polling: espera hasta 20s por mensajes en lugar de responder vacío inmediatamente. Reduce llamadas API en un 95% en colas con poco tráfico. deleteMessage después del procesamiento confirma que el mensaje fue procesado."
+  },
+  {
+    "id": 36,
+    "level": "Junior-Mid",
+    "category": "Mensajería",
+    "question": "¿Qué es una Dead Letter Queue (DLQ) en SQS y por qué es importante?",
+    "code": null,
+    "options": [
+      "Una cola de alta prioridad que se procesa antes que las demás",
+      "Una cola cifrada exclusivamente para datos sensibles con KMS",
+      "Una cola donde van los mensajes que fallaron N veces (maxReceiveCount), para análisis y reintento controlado",
+      "Una cola que expira automáticamente a las 24 horas"
+    ],
+    "correct": 2,
+    "explanation": "Sin DLQ, los mensajes que fallan repetidamente pueden bloquear la cola o perderse. Con DLQ: configuras maxReceiveCount=3; después de 3 fallos el mensaje va a la DLQ. Allí puedes inspeccionarlo, corregir el bug y reintroducirlo."
+  },
+  {
+    "id": 37,
+    "level": "Junior-Mid",
+    "category": "Arquitectura",
+    "question": "¿Cómo implementarías Circuit Breaker en Spring Boot para llamadas a un servicio externo en AWS?",
+    "code": "@CircuitBreaker(name = \"inventoryService\", fallbackMethod = \"fallback\")\npublic Inventory getInventory(String productId) {\n    return inventoryClient.findById(productId);\n}\n\npublic Inventory fallback(String productId, Exception ex) {\n    return Inventory.unavailable(productId); // respuesta degradada\n}",
+    "options": [
+      "No es aplicable en AWS; solo funciona on-premise",
+      "Usando reintentos infinitos con Thread.sleep entre cada intento",
+      "Con Resilience4j: tras N fallos consecutivos el circuito se 'abre' y ejecuta el fallback sin esperar timeout, evitando cascada de fallos",
+      "Usando múltiples SQS queues como buffer de cada llamada"
+    ],
+    "correct": 2,
+    "explanation": "@CircuitBreaker de Resilience4j monitorea fallos consecutivos. Cuando supera el umbral el circuito se 'abre' y las llamadas van directo al fallbackMethod. Tras un tiempo pasa a half-open para probar si el servicio se recuperó. Evita que un servicio lento derribe toda la aplicación."
+  },
+  {
+    "id": 38,
+    "level": "Junior-Mid",
+    "category": "Seguridad",
+    "question": "¿Qué es Amazon Cognito y cómo valida tokens en una API Spring Boot?",
+    "code": null,
+    "options": [
+      "Una base de datos de usuarios SQL gestionada por AWS",
+      "Un servicio de autenticación que emite JWTs; Spring Security los valida localmente con la clave pública JWKS de Cognito, sin llamar a Cognito en cada request",
+      "Un servicio de MFA exclusivo para empleados de la empresa",
+      "Equivalente a IAM pero para bases de datos RDS"
+    ],
+    "correct": 1,
+    "explanation": "Cognito User Pools emiten access/id tokens JWT. Spring Security configura spring.security.oauth2.resourceserver.jwt.jwk-set-uri apuntando al endpoint JWKS de Cognito. La validación es local: verifica la firma con la clave pública. No hay llamada remota por request."
+  },
+  {
+    "id": 39,
+    "level": "Junior-Mid",
+    "category": "Despliegue",
+    "question": "¿Qué estrategia de deployment minimiza el downtime en producción con ECS o Beanstalk?",
+    "code": null,
+    "options": [
+      "Recreate: parar todo y desplegar la nueva versión de golpe",
+      "Blue/Green: levantar el nuevo entorno en paralelo y cambiar el tráfico cuando esté listo",
+      "Desplegar solo en horas de baja demanda (madrugada)",
+      "Actualizar el código directamente vía SSH en producción"
+    ],
+    "correct": 1,
+    "explanation": "Blue/Green mantiene el entorno actual (blue) corriendo mientras levantas el nuevo (green). Cuando green pasa los health checks, cambias el tráfico en el LB o Route 53. Rollback instantáneo apuntando de vuelta a blue."
+  },
+  {
+    "id": 40,
+    "level": "Junior-Mid",
+    "category": "Arquitectura",
+    "question": "¿Qué es el patrón Outbox y cuándo lo aplicarías en un servicio Java con SQS?",
+    "code": "// En la misma transacción de BD:\n@Transactional\npublic void createOrder(Order order) {\n    orderRepo.save(order);          // 1. guarda entidad\n    outboxRepo.save(new OutboxEvent( // 2. guarda evento\n        \"ORDER_CREATED\", order.getId()));\n    // SQS se publica FUERA de la transacción\n}",
+    "options": [
+      "Un patrón para serializar objetos Java a JSON antes de enviar a SQS",
+      "Un patrón que garantiza que el evento se publique a SQS solo si la transacción de BD fue exitosa, escribiendo primero en tabla 'outbox'",
+      "Es simplemente usar DLQ como outbox de mensajes fallidos",
+      "Un patrón de autenticación para publicar a SQS con permisos IAM"
+    ],
+    "correct": 1,
+    "explanation": "El Outbox escribe el evento en la misma transacción de BD. Un proceso separado lee la tabla outbox y publica a SQS con garantía de al-menos-una-vez. Resuelve el problema de consistencia entre BD y broker de mensajes."
+  },
+  {
+    "id": 41,
+    "level": "Junior-Mid",
+    "category": "Seguridad",
+    "question": "¿Qué es AWS KMS (Key Management Service)?",
+    "code": null,
+    "options": [
+      "Un servicio para gestionar claves SSH de acceso a instancias EC2",
+      "Un servicio gestionado para crear y controlar claves de cifrado usadas en S3, RDS, EBS, Secrets Manager, etc.",
+      "Una VPN entre AWS y tu datacenter on-premise",
+      "Un sistema de autenticación multifactor para la consola AWS"
+    ],
+    "correct": 1,
+    "explanation": "KMS gestiona claves de cifrado simétricas y asimétricas. Se integra con la mayoría de servicios AWS para cifrar datos en reposo. Define quién puede usar cada clave mediante políticas de clave e IAM."
+  },
+  {
+    "id": 42,
+    "level": "Junior-Mid",
+    "category": "Seguridad",
+    "question": "¿Qué es AWS CloudTrail?",
+    "code": null,
+    "options": [
+      "Un servicio para hacer deployments en pasos a producción",
+      "Un servicio que registra todas las llamadas API de AWS en tu cuenta para auditoría y compliance",
+      "Un CDN para contenido estático global",
+      "Una base de datos de series de tiempo para logs de aplicación"
+    ],
+    "correct": 1,
+    "explanation": "CloudTrail registra cada acción en tu cuenta AWS: quién hizo qué, desde dónde y cuándo. Esencial para auditoría, compliance (PCI-DSS, HIPAA), detección de actividad sospechosa e investigación de incidentes."
+  },
+  {
+    "id": 43,
+    "level": "Junior-Mid",
+    "category": "Contenedores",
+    "question": "¿Qué es Amazon ECS (Elastic Container Service)?",
+    "code": null,
+    "options": [
+      "Un registro de imágenes Docker (como ECR pero diferente)",
+      "Un orquestador de contenedores gestionado que corre en EC2 o Fargate",
+      "El servicio de Kubernetes gestionado de AWS",
+      "Un servicio para compilar imágenes Docker en la nube"
+    ],
+    "correct": 1,
+    "explanation": "ECS orquesta contenedores Docker. Define Tasks (qué contenedores correr y con qué config) y Services (cuántas réplicas mantener). Usa EC2 (tú gestionas los servidores) o Fargate (serverless)."
+  },
+  {
+    "id": 44,
+    "level": "Junior-Mid",
+    "category": "Serverless",
+    "question": "¿Qué es Amazon API Gateway y cómo se relaciona con una app Java?",
+    "code": null,
+    "options": [
+      "Es el DNS de AWS para APIs públicas",
+      "Permite crear, publicar y gestionar APIs REST/HTTP/WebSocket; hace proxy a Lambda, EC2/ALB o cualquier backend HTTP",
+      "Es solo para APIs privadas dentro de la VPC",
+      "Es un balanceador de carga de capa 4 (TCP)"
+    ],
+    "correct": 1,
+    "explanation": "API Gateway actúa como puerta de entrada para APIs. Para Java: proxy a ALB donde corre Spring Boot, o invocación directa de Lambdas. Gestiona autenticación, throttling, caché, versionado y logging."
+  },
+  {
+    "id": 45,
+    "level": "Junior-Mid",
+    "category": "Almacenamiento",
+    "question": "¿Qué son los S3 Presigned URLs y cómo los generarías desde Java?",
+    "code": "S3Presigner presigner = S3Presigner.create();\n\nPutObjectPresignRequest presignReq = PutObjectPresignRequest.builder()\n    .signatureDuration(Duration.ofMinutes(15))\n    .putObjectRequest(r -> r.bucket(\"my-bucket\").key(\"uploads/file.pdf\"))\n    .build();\n\nPresignedPutObjectRequest presigned = presigner.presignPutObject(presignReq);\nURI uploadUrl = presigned.url().toURI(); // envías esta URL al cliente",
+    "options": [
+      "URLs permanentes para objetos públicos en S3",
+      "URLs temporales y firmadas que permiten al cliente subir/descargar directamente a S3 sin pasar por el backend, con expiración configurable",
+      "URLs de acceso interno solo desde la VPC, no accesibles desde internet",
+      "URLs que apuntan a versiones antiguas de objetos en S3"
+    ],
+    "correct": 1,
+    "explanation": "El backend Java genera la URL firmada (válida 15 min en el ejemplo) y la envía al cliente. El cliente sube el archivo directamente a S3 sin pasar por tu backend. Reduce carga en tu servidor y evita exponer credenciales AWS al cliente."
+  },
+  {
+    "id": 46,
+    "level": "Junior-Mid",
+    "category": "CI/CD",
+    "question": "¿Qué es AWS CodeBuild y cómo encaja en un pipeline CI/CD para Java?",
+    "code": null,
+    "options": [
+      "Es un IDE de desarrollo en la nube",
+      "Un servicio de compilación completamente gestionado que compila código fuente, ejecuta tests y produce artefactos; se integra con CodePipeline para el paso de build/test",
+      "Un servicio de revisión de código automático",
+      "Un servicio de análisis de vulnerabilidades de dependencias"
+    ],
+    "correct": 1,
+    "explanation": "CodeBuild ejecuta builds en contenedores gestionados. Usas un buildspec.yml para definir fases: install (JDK), pre_build (mvn test), build (mvn package), post_build (docker build + push a ECR). Se integra en CodePipeline o GitHub Actions."
+  },
+  {
+    "id": 47,
+    "level": "Junior-Mid",
+    "category": "CI/CD",
+    "question": "¿Qué es AWS CodeDeploy y cómo se usa con EC2/ECS?",
+    "code": null,
+    "options": [
+      "Un servicio de code review automático",
+      "Un servicio que automatiza deployments a EC2, Lambda o ECS con estrategias como in-place, rolling, blue/green y canary",
+      "Un compilador de código Java en la nube",
+      "Un servicio de análisis estático de código"
+    ],
+    "correct": 1,
+    "explanation": "CodeDeploy gestiona el ciclo de deployment: copia artefactos, ejecuta scripts de pre/post deployment y gestiona rollback ante fallos. Con ECS hace Blue/Green nativamente, cambiando tráfico en el ALB de forma gradual."
+  },
+  {
+    "id": 48,
+    "level": "Junior-Mid",
+    "category": "Gobernanza",
+    "question": "¿Qué es AWS Config y cómo complementa a CloudTrail?",
+    "code": null,
+    "options": [
+      "Es un archivo de configuración del CLI de AWS",
+      "Es lo mismo que CloudTrail con diferente interfaz",
+      "Un servicio que registra el historial de configuración de recursos AWS y evalúa compliance contra reglas (ej: 'ningún SG debe abrir el puerto 22 a 0.0.0.0/0')",
+      "Un servicio de gestión de secretos de configuración"
+    ],
+    "correct": 2,
+    "explanation": "CloudTrail registra quién hizo la acción. AWS Config registra el estado de configuración de cada recurso a lo largo del tiempo y evalúa reglas de compliance. Si un Security Group se modifica para abrir el puerto 22, Config lo detecta y puede disparar una Lambda para revertirlo."
+  },
+  {
+    "id": 49,
+    "level": "Junior-Mid",
+    "category": "Almacenamiento",
+    "question": "¿Qué es Amazon S3 Versioning y cuándo activarlo?",
+    "code": null,
+    "options": [
+      "Una función para hacer los objetos de S3 más rápidos de acceder",
+      "Una función que conserva múltiples versiones de un objeto, protegiendo contra eliminaciones accidentales y permitiendo recuperar versiones anteriores",
+      "Una función que comprime automáticamente los objetos para ahorrar espacio",
+      "Un sistema de replicación de objetos entre regiones"
+    ],
+    "correct": 1,
+    "explanation": "Con versioning activo, cada PUT crea una nueva versión sin eliminar la anterior. Protege contra eliminaciones accidentales (se crea un delete marker) y cambios no deseados. Necesario para buckets usados como fuente de backups o artefactos."
+  },
+  {
+    "id": 50,
+    "level": "Junior-Mid",
+    "category": "Gobernanza",
+    "question": "¿Qué es AWS Trusted Advisor?",
+    "code": null,
+    "options": [
+      "Un servicio de consultoría contratada de AWS",
+      "Una herramienta que analiza tu cuenta AWS y ofrece recomendaciones en seguridad, rendimiento, costo y límites de servicio",
+      "Un servicio de IA para generar código automáticamente",
+      "Un balanceador de carga inteligente que aprende del tráfico"
+    ],
+    "correct": 1,
+    "explanation": "Trusted Advisor inspecciona tu configuración y da recomendaciones concretas: Security Groups con acceso abierto, instancias subutilizadas, cobertura de Reserved Instances y límites de servicio próximos a superarse."
+  },
+  {
+    "id": 51,
+    "level": "Junior-Mid",
+    "category": "Almacenamiento",
+    "question": "¿Qué es Amazon EFS y cuándo lo preferirías sobre EBS?",
+    "code": null,
+    "options": [
+      "EFS es almacenamiento de objetos como S3 pero con interfaz POSIX",
+      "EBS permite montarse en múltiples instancias; EFS solo en una",
+      "EFS y EBS son idénticos; EFS solo es más caro",
+      "EFS es un sistema de archivos NFS que múltiples instancias EC2 o tasks ECS pueden montar simultáneamente; EBS solo se puede montar en una instancia a la vez"
+    ],
+    "correct": 3,
+    "explanation": "EBS: un volumen, una instancia. EFS: NFS elástico, múltiples instancias o tasks ECS lo montan en paralelo. Útil para contenido compartido entre instancias: configuración, modelos de ML, archivos subidos por usuarios en arquitecturas horizontalmente escaladas."
+  },
+  {
+    "id": 52,
+    "level": "Junior-Mid",
+    "category": "Gobernanza",
+    "question": "¿Qué es AWS Organizations y para qué lo usarías?",
+    "code": null,
+    "options": [
+      "Es un organigrama visual de los empleados que usan AWS",
+      "Un servicio para gestionar múltiples cuentas AWS: aplicar SCPs para restricciones de seguridad globales, consolidar facturación y separar entornos en cuentas aisladas",
+      "Es un servicio de directorio de usuarios como Active Directory",
+      "Una herramienta para organizar recursos dentro de una sola cuenta"
+    ],
+    "correct": 1,
+    "explanation": "Organizations permite gestionar muchas cuentas AWS como una unidad. SCPs (Service Control Policies) limitan qué puede hacer cada cuenta. Consolidated billing agrupa facturas. Esencial para empresas con múltiples equipos."
+  },
+  {
+    "id": 53,
+    "level": "Junior-Mid",
+    "category": "Seguridad",
+    "question": "¿Qué es AWS WAF y cuándo lo usarías con una API Java?",
+    "code": null,
+    "options": [
+      "Un firewall de red de capa 4 para filtrar tráfico TCP",
+      "Un Web Application Firewall que protege APIs contra SQL injection, XSS y bots, integrado con ALB, API Gateway o CloudFront",
+      "Un antivirus para instancias EC2",
+      "Una VPN entre la aplicación y el cliente móvil"
+    ],
+    "correct": 1,
+    "explanation": "WAF inspecciona HTTP/HTTPS y bloquea SQL injection, XSS, floods y IPs maliciosas. AWS ofrece Managed Rule Groups listos para usar. Se adjunta a ALB, API Gateway o CloudFront sin cambios en el código de la app."
+  },
+  {
+    "id": 54,
+    "level": "Junior-Mid",
+    "category": "Mensajería",
+    "question": "¿Qué es Amazon SQS batch y qué ventaja tiene en Java?",
+    "code": null,
+    "options": [
+      "Es una función para duplicar mensajes automáticamente",
+      "Permite enviar hasta 10 mensajes en un solo request (SendMessageBatch) o recibir hasta 10 a la vez, reduciendo llamadas API y costo hasta 10x",
+      "Es un grupo de colas SQS lógicamente relacionadas",
+      "Es la función para ordenar mensajes por prioridad"
+    ],
+    "correct": 1,
+    "explanation": "El batching reduce llamadas API y costo. Con el AWS SDK Java: SendMessageBatchRequest agrupa hasta 10 mensajes en un request. ReceiveMessage con MaxNumberOfMessages=10 obtiene hasta 10 mensajes por poll, mejorando el throughput del consumidor."
+  },
+  {
+    "id": 55,
+    "level": "Junior-Mid",
+    "category": "Observabilidad",
+    "question": "¿Qué es Amazon CloudWatch Logs Insights?",
+    "code": null,
+    "options": [
+      "Un servicio de logs separado de CloudWatch",
+      "Un motor de queries que permite buscar, filtrar y analizar logs en CloudWatch Logs con un lenguaje de query propio, útil para debugging y análisis de errores",
+      "Es la interfaz de CloudWatch para métricas únicamente",
+      "Un servicio de machine learning para detectar anomalías en logs"
+    ],
+    "correct": 1,
+    "explanation": "Logs Insights permite queries interactivas sobre grupos de logs de CloudWatch. Puedes filtrar por nivel de log, buscar stack traces, calcular percentiles de latencia o contar errores por tipo. Mucho más potente que buscar manualmente."
+  },
+  {
+    "id": 56,
+    "level": "Junior-Mid",
+    "category": "Streaming",
+    "question": "¿Cuándo usarías Amazon Kinesis Data Streams en lugar de SQS?",
+    "code": null,
+    "options": [
+      "Cuando necesitas colas FIFO con exactly-once delivery",
+      "Siempre que el volumen de mensajes sea mayor a 1,000/segundo",
+      "Kinesis es mejor para streaming de eventos a alta escala con múltiples consumidores leyendo el mismo stream simultáneamente (logs, clickstream, telemetría IoT en tiempo real)",
+      "Kinesis y SQS son intercambiables; solo difieren en el precio"
+    ],
+    "correct": 2,
+    "explanation": "SQS: un mensaje lo procesa un consumidor, luego se borra. Kinesis: todos los consumer groups leen el mismo stream de forma independiente, con retención hasta 365 días. Ideal para múltiples sistemas procesando el mismo flujo: analytics, ML, alertas y archivado en paralelo."
+  },
+  {
+    "id": 57,
+    "level": "Junior-Mid",
+    "category": "Gobernanza",
+    "question": "¿Qué es AWS Cost Explorer y cómo lo usarías?",
+    "code": null,
+    "options": [
+      "Es la calculadora de precios de AWS",
+      "Una herramienta de visualización y análisis de costos AWS que permite ver tendencias, identificar servicios costosos y proyectar gastos futuros",
+      "Es un servicio para reducir el costo de las instancias EC2 automáticamente",
+      "Es igual a Trusted Advisor pero solo para costos de S3"
+    ],
+    "correct": 1,
+    "explanation": "Cost Explorer muestra el desglose de costos por servicio, tag, región y cuenta. Para tu app: identifica si EC2 es sobredimensionado, si hay transferencia de datos inesperada, o si conviene Reserved Instances vs On-Demand."
+  },
+  {
+    "id": 58,
+    "level": "Junior-Mid",
+    "category": "Contenedores",
+    "question": "¿Cuál es la diferencia entre EKS y ECS en AWS?",
+    "code": null,
+    "options": [
+      "EKS y ECS son el mismo servicio con distinto nombre",
+      "EKS es Kubernetes gestionado por AWS; ECS es el orquestador de contenedores nativo de AWS, más simple",
+      "ECS soporta más lenguajes de programación que EKS",
+      "EKS es siempre más barato y simple que ECS"
+    ],
+    "correct": 1,
+    "explanation": "ECS es el orquestador nativo AWS: más simple y profundamente integrado con IAM, ALB, CloudWatch. EKS es Kubernetes gestionado: portabilidad, ecosistema Helm/operators, pero mayor complejidad y costo operativo."
+  },
+  {
+    "id": 59,
+    "level": "Junior-Mid",
+    "category": "Redes",
+    "question": "¿Qué hace AWS CloudFront para una app Java con usuarios globales?",
+    "code": null,
+    "options": [
+      "Es una base de datos distribuida globalmente",
+      "Es una CDN global con 400+ edge locations que cachea contenido y reduce latencia para usuarios lejanos al origen",
+      "Es un servicio de DNS como Route 53",
+      "Es un servicio de streaming de video exclusivamente"
+    ],
+    "correct": 1,
+    "explanation": "CloudFront sirve contenido desde el edge más cercano. Para APIs Java: cachea GETs idempotentes, termina SSL cerca del usuario, integra WAF y Shield anti-DDoS. Reduce latencia global aunque el origen esté en una sola región."
+  },
+  {
+    "id": 60,
+    "level": "Junior-Mid",
+    "category": "CI/CD",
+    "question": "¿Qué es AWS CodePipeline y cómo lo usarías para desplegar un microservicio Java a ECS?",
+    "code": null,
+    "options": [
+      "Un editor de código colaborativo en la nube tipo VS Code",
+      "Un servicio de análisis estático de código Java",
+      "Un servicio para gestionar ramas de Git en AWS CodeCommit",
+      "Un servicio de CI/CD que orquesta Source → Build (CodeBuild) → Deploy (CodeDeploy a ECS Blue/Green) de forma automática"
+    ],
+    "correct": 3,
+    "explanation": "Pipeline típico para Java/ECS: Source (GitHub push) → Build (CodeBuild: mvn package, docker build, push a ECR) → Deploy (CodeDeploy con ECS Blue/Green: levanta nuevas tasks, valida health checks en ALB, cambia el tráfico, termina tasks antiguas)."
+  },
+  {
+    "id": 61,
+    "level": "Mid",
+    "category": "Bases de datos",
+    "question": "¿Cuál es la ventaja de usar RDS Proxy con funciones Lambda Java que acceden a PostgreSQL?",
+    "code": null,
+    "options": [
+      "RDS Proxy hace backups automáticos más frecuentes de la base de datos",
+      "Es solo un alias de DNS para el endpoint de RDS, sin beneficio real",
+      "RDS Proxy gestiona un pool de conexiones compartido: evita que cada invocación Lambda abra y cierre una conexión nueva, previniendo la saturación de max_connections en RDS",
+      "RDS Proxy cifra las queries SQL en tránsito automáticamente"
+    ],
+    "correct": 2,
+    "explanation": "Lambda puede escalar a miles de instancias simultáneas. Sin proxy, cada una abre una conexión a PostgreSQL saturando max_connections. RDS Proxy mantiene un pool de conexiones y las reutiliza entre invocaciones. También hace failover transparente ante reinicio de RDS."
+  },
+  {
+    "id": 62,
+    "level": "Mid",
+    "category": "Serverless",
+    "question": "¿Qué problema resuelve Lambda SnapStart para funciones Java y qué restricción impone?",
+    "code": null,
+    "options": [
+      "Permite funciones Lambda Java con más de 10GB de RAM; la restricción es el costo",
+      "Elimina el límite de 15 minutos de timeout de Lambda para Java",
+      "SnapStart captura un snapshot de la JVM inicializada (~1s de cold start vs 5-10s normal); la restricción es que el código de init no debe generar datos únicos (UUID, claves criptográficas) porque el snapshot se comparte",
+      "Es solo para Java 8; no funciona con Java 17 o 21"
+    ],
+    "correct": 2,
+    "explanation": "SnapStart restaura el snapshot de la JVM en lugar de inicializarla desde cero. La restricción crítica: si generas un UUID o clave aleatoria en el constructor o bloque static, todas las instancias restauradas tendrán el mismo valor. Genera valores únicos en el handler, no en init."
+  },
+  {
+    "id": 63,
+    "level": "Mid",
+    "category": "Mensajería",
+    "question": "¿Qué es Amazon EventBridge y en qué se diferencia de SNS?",
+    "code": null,
+    "options": [
+      "Es lo mismo que SNS con mayor latencia y precio",
+      "EventBridge es un event bus con enrutamiento por contenido del evento (filtros JSON), schema registry y replay; SNS es pub/sub simple para fan-out de notificaciones",
+      "SNS tiene más integraciones nativas que EventBridge",
+      "EventBridge solo conecta servicios AWS; SNS también envía a endpoints externos"
+    ],
+    "correct": 1,
+    "explanation": "EventBridge filtra eventos por su contenido JSON. Tiene schema registry para descubrir y validar estructuras de eventos, y permite replay de eventos históricos. SNS es más simple y tiene menor latencia para fan-out directo a múltiples suscriptores."
+  },
+  {
+    "id": 64,
+    "level": "Mid",
+    "category": "IaC",
+    "question": "¿Cómo detectarías y corregirías 'drift' en un stack de CloudFormation?",
+    "code": null,
+    "options": [
+      "El drift es un error de red; se corrige reiniciando el stack",
+      "Drift ocurre cuando alguien modifica manualmente un recurso gestionado por CloudFormation; se detecta con 'Detect Drift' y se corrige actualizando la plantilla o con un drift remediation",
+      "Drift solo ocurre en stacks con más de 100 recursos",
+      "No hay forma de detectar drift; por eso se prefiere Terraform"
+    ],
+    "correct": 1,
+    "explanation": "Cuando alguien modifica un Security Group o variable de entorno desde la consola, el stack entra en estado 'drifted'. Detect Drift compara el estado real vs la plantilla y lista recursos MODIFIED o DELETED. Para corregir: actualiza la plantilla con el estado deseado y haz deploy."
+  },
+  {
+    "id": 65,
+    "level": "Mid",
+    "category": "Bases de datos",
+    "question": "¿Qué es Amazon Aurora Serverless v2 y cuándo lo elegirías?",
+    "code": null,
+    "options": [
+      "Aurora sin soporte para transacciones SQL ACID",
+      "Solo apto para entornos de desarrollo, no para producción",
+      "Una versión de Aurora sin réplicas de lectura para reducir costos",
+      "Aurora que escala automáticamente la capacidad de cómputo en fracciones de ACU según la carga real, ideal para workloads impredecibles o con picos muy variables"
+    ],
+    "correct": 3,
+    "explanation": "Aurora Serverless v2 escala en milisegundos de 0.5 ACU a 128 ACU sin downtime. Ideal para: SaaS con tenants de tamaños muy distintos, APIs con picos impredecibles, o entornos de staging donde no quieres pagar por capacidad ociosa."
+  },
+  {
+    "id": 66,
+    "level": "Mid",
+    "category": "Arquitectura",
+    "question": "¿Qué estrategia usarías para hacer multi-tenancy en DynamoDB desde Java?",
+    "code": null,
+    "options": [
+      "Crear una tabla DynamoDB separada por cada tenant",
+      "Usar una base de datos relacional diferente para multi-tenancy",
+      "No es posible multi-tenancy en DynamoDB de forma eficiente",
+      "Incluir el tenant_id como prefijo en la Partition Key (ej: TENANT_A#ORDER#123), aislando datos por partición y usando condiciones IAM por tenant si se requiere aislamiento fuerte"
+    ],
+    "correct": 3,
+    "explanation": "El prefijo en la PK (tenant_id#tipo#id) agrupa los datos de cada tenant en particiones diferentes. Para aislamiento fuerte en entornos SaaS: IAM Fine-Grained Access Control puede restringir el acceso a solo los ítems donde la PK empieza con el tenant_id del token JWT."
+  },
+  {
+    "id": 67,
+    "level": "Mid",
+    "category": "Seguridad",
+    "question": "¿Qué es AWS IAM Permission Boundary y para qué se usa?",
+    "code": null,
+    "options": [
+      "Es el límite de cuota de servicio en una cuenta AWS",
+      "Es una política que define el máximo de permisos posibles para un usuario o rol, sin importar las políticas que le asignes; útil para delegar creación de roles a developers de forma segura",
+      "Son las políticas SCP de AWS Organizations aplicadas a cuentas",
+      "Es el límite de ancho de banda de red de una instancia EC2"
+    ],
+    "correct": 1,
+    "explanation": "Sin boundaries: si delegas creación de roles a un developer, podría crear un rol con AdministratorAccess y escalar privilegios. Con una Permission Boundary: aunque asignes AdministratorAccess, si la boundary solo permite S3 y SQS, el rol solo puede hacer esas acciones."
+  },
+  {
+    "id": 68,
+    "level": "Mid",
+    "category": "Arquitectura",
+    "question": "¿Cómo gestionarías múltiples entornos (dev/staging/prod) con IaC en AWS?",
+    "code": null,
+    "options": [
+      "Usar la misma cuenta AWS para todos los entornos, separando por prefijos en los nombres de recursos",
+      "Crear diferentes usuarios IAM para cada entorno en la misma cuenta",
+      "Usar AWS Organizations con cuentas separadas por entorno, CloudFormation/Terraform para reproducir infraestructura idéntica, y pipelines CI/CD que promueven artefactos de dev a staging a prod",
+      "Desplegar todo en prod y usar feature flags para simular dev y staging"
+    ],
+    "correct": 2,
+    "explanation": "Best practice (AWS Well-Architected): cuentas separadas por entorno en Organizations. Aísla el blast radius, separa la facturación y simplifica los permisos. IaC garantiza que dev, staging y prod sean infrastructuralmente idénticos."
+  },
+  {
+    "id": 69,
+    "level": "Mid",
+    "category": "Datos",
+    "question": "¿Qué es Amazon Athena y cuándo lo usarías con datos de tu app Java?",
+    "code": null,
+    "options": [
+      "Un servicio de base de datos de grafos de AWS",
+      "Un servicio de machine learning para modelos predictivos",
+      "Una base de datos en memoria para queries OLTP de alta velocidad",
+      "Un motor de queries SQL serverless sobre datos en S3; útil para analizar logs de la app, eventos o datos exportados sin mantener un data warehouse"
+    ],
+    "correct": 3,
+    "explanation": "Athena consulta directamente archivos en S3 (JSON, CSV, Parquet) sin cargarlos en una BD. Tu app Java puede exportar logs de errores o eventos a S3, y el equipo de datos los analiza con SQL en Athena. Pagas solo por los datos escaneados."
+  },
+  {
+    "id": 70,
+    "level": "Mid",
+    "category": "Arquitectura",
+    "question": "¿Cómo configurarías alta disponibilidad para Spring Boot en AWS?",
+    "code": null,
+    "options": [
+      "Desplegar en una sola AZ con backups diarios como tolerancia a fallos",
+      "Multi-AZ: EC2/ECS en 2+ AZs detrás de ALB, RDS Multi-AZ, ElastiCache con réplica, Auto Scaling con health checks",
+      "Un servidor muy potente (scale-up) con RAID de discos locales",
+      "Solo es posible con Kubernetes (EKS), no con ECS ni EC2"
+    ],
+    "correct": 1,
+    "explanation": "HA requiere eliminar single points of failure: ALB distribuye entre AZs, Auto Scaling reemplaza instancias unhealthy, RDS Multi-AZ hace failover automático al standby en otra AZ, ElastiCache con réplica en otra AZ."
+  },
+  {
+    "id": 71,
+    "level": "Mid",
+    "category": "Arquitectura",
+    "question": "¿Qué es el patrón Saga y cómo se implementa en AWS?",
+    "code": null,
+    "options": [
+      "Es un servicio de AWS para transacciones distribuidas ACID",
+      "Es un patrón para gestionar transacciones distribuidas entre microservicios con transacciones locales y compensaciones en caso de fallo, implementado via SNS/SQS (coreografía) o Step Functions (orquestación)",
+      "Es el nombre del servicio AWS Distributed Transactions",
+      "Solo aplica con bases de datos relacionales y JTA"
+    ],
+    "correct": 1,
+    "explanation": "Sin transacciones distribuidas ACID, Saga encadena transacciones locales. Si un paso falla, ejecuta compensaciones hacia atrás. Coreografía: microservicios emiten/escuchan eventos via SQS/SNS. Orquestación: Step Functions dirige el flujo completo."
+  },
+  {
+    "id": 72,
+    "level": "Mid",
+    "category": "Mensajería",
+    "question": "¿Qué hace este código al configurar un consumidor SQS con Spring y por qué importa el visibility timeout?",
+    "code": "@SqsListener(value = \"payment-queue\",\n             deletionPolicy = SqsMessageDeletionPolicy.ON_SUCCESS)\npublic void handlePayment(PaymentEvent event) {\n    // Si lanza excepción → el mensaje vuelve a la cola\n    // Si tarda más del visibility timeout → también vuelve\n    paymentService.process(event);\n}",
+    "options": [
+      "Configura un consumidor que siempre borra el mensaje, haya o no error",
+      "Es un producer de mensajes, no un consumer",
+      "Configura un consumidor que solo elimina el mensaje si el método no lanza excepción; si el procesamiento supera el visibility timeout, el mensaje vuelve a la cola y puede duplicarse",
+      "Es código de AWS SDK v1; en Spring Boot moderno ya no funciona"
+    ],
+    "correct": 2,
+    "explanation": "ON_SUCCESS: el mensaje se borra solo si el método termina sin excepción. El visibility timeout define cuánto tiempo el mensaje está oculto para otros consumidores. Si tu procesamiento tarda más, el mensaje vuelve a ser visible y puede duplicarse. Ajusta el timeout o extiéndelo programáticamente."
+  },
+  {
+    "id": 73,
+    "level": "Mid",
+    "category": "Bases de datos",
+    "question": "¿Qué es el concepto de 'eventual consistency' en DynamoDB y cómo afecta a tu app Java?",
+    "code": null,
+    "options": [
+      "DynamoDB siempre tiene consistencia fuerte; no existe eventual consistency",
+      "Por defecto las lecturas son eventualmente consistentes (pueden devolver datos milliseconds antes de propagar); con ConsistentRead=true obtienes strong consistency a mayor costo",
+      "Eventual consistency solo aplica entre regiones con Global Tables",
+      "Hace DynamoDB inapropiado para aplicaciones en producción"
+    ],
+    "correct": 1,
+    "explanation": "DynamoDB replica en múltiples nodos. La lectura eventualmente consistente (default) puede leer réplicas no actualizadas aún. Con ConsistentRead=true va al líder y garantiza últimos datos, pero cuesta el doble en Read Capacity Units."
+  },
+  {
+    "id": 74,
+    "level": "Mid",
+    "category": "Streaming",
+    "question": "¿Qué es Amazon MSK (Managed Streaming for Apache Kafka) y cuándo lo preferirías sobre Kinesis?",
+    "code": null,
+    "options": [
+      "MSK es el mismo servicio que Kinesis con interfaz diferente",
+      "MSK es una base de datos de series de tiempo gestionada",
+      "MSK es siempre más barato y simple que Kinesis para todos los casos",
+      "MSK provisiona clusters Kafka gestionados; lo preferirías cuando ya usas Kafka (Kafka Streams, Connect, ecosistema existente) y necesitas portabilidad entre AWS y on-premise"
+    ],
+    "correct": 3,
+    "explanation": "Kinesis es más simple y profundamente integrado en AWS. MSK da el ecosistema Kafka completo: Kafka Streams para procesamiento stateful, Kafka Connect para integraciones, Schema Registry, y la posibilidad de migrar a/desde un cluster Kafka on-premise sin cambiar el código Java."
+  },
+  {
+    "id": 75,
+    "level": "Mid",
+    "category": "Serverless",
+    "question": "¿Qué es AWS Step Functions?",
+    "code": null,
+    "options": [
+      "Un servicio de CI/CD para despliegues en múltiples pasos",
+      "Un servicio de orquestación de workflows que coordina servicios AWS (Lambda, ECS, SQS) en state machines con manejo de errores y reintentos",
+      "Una herramienta de IaC como CloudFormation",
+      "Un servicio para gestionar migraciones de base de datos paso a paso"
+    ],
+    "correct": 1,
+    "explanation": "Step Functions define flujos de trabajo como state machines JSON/YAML. Cada estado puede invocar Lambda, ECS, SQS, SNS, etc. Gestiona reintentos, timeouts y bifurcaciones. Ideal para procesos multi-paso: pagos, onboarding, pipelines de datos."
+  },
+  {
+    "id": 76,
+    "level": "Mid",
+    "category": "Observabilidad",
+    "question": "¿Cómo implementarías trazabilidad distribuida en microservicios Java en AWS con OpenTelemetry?",
+    "code": null,
+    "options": [
+      "OpenTelemetry no es compatible con AWS, usar solo X-Ray SDK",
+      "Instrumentar con el agente de OpenTelemetry (ADOT) o el SDK, exportar trazas a X-Ray o CloudWatch; los trace IDs se propagan en headers HTTP entre servicios",
+      "Agregar System.out.println en cada endpoint de cada microservicio",
+      "Solo es posible con EKS usando Jaeger, no con ECS o Lambda"
+    ],
+    "correct": 1,
+    "explanation": "ADOT (AWS Distro for OpenTelemetry) instrumenta automáticamente Spring Boot. Exporta a X-Ray para el service map y a CloudWatch for traces. Los trace IDs se propagan en headers (X-Amzn-Trace-Id) automáticamente entre servicios."
+  },
+  {
+    "id": 77,
+    "level": "Mid",
+    "category": "Seguridad",
+    "question": "¿Cómo protegerías una API Spring Boot en AWS ante ataques de SQL injection y DDoS?",
+    "code": null,
+    "options": [
+      "Usando security groups para filtrar peticiones HTTP maliciosas",
+      "Solo con validación en el código Java; la infraestructura no puede ayudar",
+      "Con HTTPS en el ALB es suficiente para todos los ataques",
+      "ALB + AWS WAF (reglas managed para SQLi/XSS) + AWS Shield Standard (DDoS automático) + validación de inputs en la app Java con Bean Validation"
+    ],
+    "correct": 3,
+    "explanation": "Defensa en capas: (1) AWS Shield Standard protege automáticamente contra DDoS volumétricos. (2) WAF con Managed Rules bloquea SQL injection y XSS antes de llegar a tu app. (3) Bean Validation (@Valid, @Pattern) en los DTOs de Spring. (4) Prepared statements en JPA/JDBC previenen SQLi."
+  },
+  {
+    "id": 78,
+    "level": "Mid",
+    "category": "Almacenamiento",
+    "question": "¿Qué es Amazon S3 Object Lock y cuándo lo usarías?",
+    "code": null,
+    "options": [
+      "Un mecanismo para hacer objetos privados en buckets públicos",
+      "Un sistema de versionado automático de objetos similar a Git",
+      "Una función para bloquear el acceso de lectura a objetos sensibles",
+      "Una función WORM (Write Once Read Many) que impide modificar o eliminar objetos durante un período definido; requerido en sectores financieros, legales o de salud para compliance"
+    ],
+    "correct": 3,
+    "explanation": "Object Lock implementa retención inmutable. Modo Governance: admins pueden sobreescribir. Modo Compliance: nadie puede eliminar el objeto (ni root) hasta que expire el retention period. Útil para contratos firmados, registros médicos, logs de auditoría."
+  },
+  {
+    "id": 79,
+    "level": "Mid",
+    "category": "Seguridad",
+    "question": "¿Qué diferencia hay entre usar RDS IAM Authentication vs usuario/contraseña estático para conectar desde ECS?",
+    "code": "// Con IAM Authentication:\nRdsIamAuthTokenGenerator generator = RdsIamAuthTokenGenerator.builder()\n    .credentials(DefaultCredentialsProvider.create())\n    .region(region)\n    .build();\nString token = generator.generateAuthToken(\n    GetIamAuthTokenRequest.builder()\n        .hostname(rdsEndpoint).port(5432)\n        .userName(\"app_user\").build());\n// token expira en 15 minutos",
+    "options": [
+      "No hay diferencia real; son igualmente seguros",
+      "IAM Auth es más lenta y no apta para producción",
+      "Usuario/contraseña estático es más seguro porque no depende de IAM",
+      "IAM Authentication genera tokens temporales de 15 min via el IAM Role del Task ECS; no hay contraseñas estáticas que rotar ni que puedan filtrarse"
+    ],
+    "correct": 3,
+    "explanation": "Con IAM Auth: el Task Role de ECS tiene permiso rds-db:connect. El SDK genera un token temporal (15 min) que se usa como contraseña. Si el token se filtra en un log, expira en minutos. Con usuario/contraseña estático: si se filtra, es válido indefinidamente hasta rotación manual."
+  },
+  {
+    "id": 80,
+    "level": "Mid",
+    "category": "Gobernanza",
+    "question": "¿Qué son las SCP (Service Control Policies) de AWS Organizations?",
+    "code": null,
+    "options": [
+      "Políticas de seguridad a nivel de Security Group que aplican a toda la VPC",
+      "Son idénticas a las IAM policies pero con diferente nombre en Organizations",
+      "Políticas que definen el máximo de permisos posibles para todas las cuentas de una OU, incluso sobrepasando AdminAccess de esa cuenta",
+      "Son las cuotas de servicio aplicadas automáticamente a cuentas nuevas"
+    ],
+    "correct": 2,
+    "explanation": "Las SCPs operan como un filtro sobre IAM: si una SCP prohíbe DeleteBucket en S3, ningún usuario ni rol de esa cuenta puede hacerlo, aunque tenga AdministratorAccess. Úsalas para prohibir crear recursos fuera de ciertas regiones o prevenir cambios en roles de seguridad críticos."
+  },
+  {
+    "id": 81,
+    "level": "Mid",
+    "category": "Arquitectura",
+    "question": "¿Qué es AWS App Mesh y qué ventaja da a microservicios Java?",
+    "code": null,
+    "options": [
+      "Es un gestor de dominios DNS privados para microservicios",
+      "Un service mesh con proxy sidecar (Envoy) que gestiona mTLS, circuit breaking, retries y observabilidad entre microservicios sin modificar el código Java",
+      "Es un CDN especializado para APIs de microservicios",
+      "Es un sustituto de API Gateway para tráfico interno"
+    ],
+    "correct": 1,
+    "explanation": "App Mesh despliega un proxy Envoy como sidecar junto a cada servicio. Gestiona mTLS automático entre servicios, retries, timeouts y circuit breaking, y emite métricas y trazas a CloudWatch/X-Ray. El código Java no necesita librerías adicionales."
+  },
+  {
+    "id": 82,
+    "level": "Mid",
+    "category": "Bases de datos",
+    "question": "¿Cómo protegerías datos sensibles en DynamoDB con cifrado a nivel de aplicación Java?",
+    "code": null,
+    "options": [
+      "DynamoDB ya cifra todo automáticamente, no hay que hacer nada adicional",
+      "Usar AWS Encryption SDK o DynamoDB Encryption Client para cifrar atributos sensibles antes de escribirlos en la tabla, usando claves de KMS",
+      "Guardar los datos sensibles en S3 en lugar de DynamoDB",
+      "Usar solo SSL/TLS en tránsito, no es necesario cifrar en reposo"
+    ],
+    "correct": 1,
+    "explanation": "DynamoDB cifra en reposo con KMS por defecto, pero eso no protege contra accesos de AWS o errores de permisos. El DynamoDB Encryption Client cifra atributos específicos en el cliente Java antes de enviarlos, garantizando que solo tu app pueda descifrarlos."
+  },
+  {
+    "id": 83,
+    "level": "Mid",
+    "category": "Costos",
+    "question": "¿Qué es AWS Savings Plans y cuándo conviene usarlos?",
+    "code": null,
+    "options": [
+      "Son descuentos retroactivos aplicados automáticamente por AWS cada mes",
+      "Son equivalentes a Reserved Instances sin ninguna diferencia práctica",
+      "Son más caros que On-Demand pero incluyen soporte premium",
+      "Compromisos de uso mínimo ($/hora) por 1 o 3 años que dan hasta 72% de descuento sobre On-Demand, ideales cuando tienes un baseline de carga predecible en EC2, Fargate o Lambda"
+    ],
+    "correct": 3,
+    "explanation": "Savings Plans son más flexibles que Reserved Instances: aplican automáticamente a cualquier tipo de instancia EC2, región (Compute Savings Plans), Fargate y Lambda. Para un backend Java con tráfico predecible: compromete el baseline con Savings Plans y usa On-Demand para los picos."
+  },
+  {
+    "id": 84,
+    "level": "Mid",
+    "category": "Contenedores",
+    "question": "¿Qué es Amazon ECS Service Connect?",
+    "code": null,
+    "options": [
+      "Una función para conectar ECS a bases de datos externas",
+      "Una capacidad de ECS que permite service discovery y comunicación entre servicios ECS con balanceo de carga, retries y métricas integrados, sin configurar un service mesh completo",
+      "Es el nombre del VPC peering entre clusters ECS",
+      "Es una herramienta de CI/CD para ECS"
+    ],
+    "correct": 1,
+    "explanation": "Service Connect (sucesor de Cloud Map para ECS) provee service discovery DNS, balanceo de carga client-side y métricas de tráfico entre servicios ECS. Es más simple que App Mesh para casos de uso básicos de comunicación entre servicios."
+  },
+  {
+    "id": 85,
+    "level": "Mid",
+    "category": "Streaming",
+    "question": "¿Qué es Amazon MSK Connect?",
+    "code": null,
+    "options": [
+      "La interfaz de usuario web para gestionar clústeres MSK",
+      "Un servicio gestionado para ejecutar conectores de Kafka Connect (source/sink), que mueve datos entre Kafka y sistemas externos como S3, RDS, Elasticsearch, sin gestionar workers",
+      "Es un servicio de mensajería diferente a Kafka",
+      "Es el servicio de autenticación para clústeres Kafka"
+    ],
+    "correct": 1,
+    "explanation": "MSK Connect gestiona conectores Kafka Connect sin servidores: conectores source (de sistemas externos a Kafka) y sink (de Kafka a S3, Elasticsearch, RDS, etc). AWS maneja el escalado y la disponibilidad de los workers de Kafka Connect."
+  },
+  {
+    "id": 86,
+    "level": "Mid",
+    "category": "Serverless",
+    "question": "¿Qué es AWS Lambda@Edge y cuándo lo usarías?",
+    "code": null,
+    "options": [
+      "Es Lambda con más memoria RAM para workloads intensivos",
+      "Permite ejecutar funciones Lambda en los edge locations de CloudFront para personalizar requests/responses cerca del usuario (A/B testing, auth, redirects, header manipulation)",
+      "Es Lambda con acceso a EBS para almacenamiento persistente",
+      "Es solo para funciones con timeout mayor a 15 minutos"
+    ],
+    "correct": 1,
+    "explanation": "Lambda@Edge ejecuta código en los edge locations de CloudFront con latencias muy bajas. Casos de uso: reescribir URLs, agregar headers de seguridad, autenticación en el edge, A/B testing, personalización de contenido por país."
+  },
+  {
+    "id": 87,
+    "level": "Mid",
+    "category": "Redes",
+    "question": "¿Cuál es la diferencia entre S3 Gateway Endpoint e Interface Endpoint?",
+    "code": null,
+    "options": [
+      "Solo existen Interface Endpoints para S3",
+      "Gateway Endpoint para S3/DynamoDB es gratuito y modifica la tabla de rutas de la VPC; Interface Endpoint crea una ENI en la subnet con IP privada y tiene costo por hora",
+      "Son idénticos con diferente nombre en la consola",
+      "Gateway Endpoint es más lento que Interface Endpoint siempre"
+    ],
+    "correct": 1,
+    "explanation": "Gateway Endpoint: gratuito, solo para S3 y DynamoDB, modifica la route table. Interface Endpoint (AWS PrivateLink): crea una ENI con IP privada en tu subnet, funciona con casi todos los servicios AWS, tiene costo por hora y por datos procesados."
+  },
+  {
+    "id": 88,
+    "level": "Mid",
+    "category": "Observabilidad",
+    "question": "¿Qué es Amazon CloudWatch Container Insights?",
+    "code": null,
+    "options": [
+      "Una herramienta de análisis de logs de aplicaciones Java únicamente",
+      "Una función de CloudWatch que recolecta métricas detalladas de rendimiento de contenedores en ECS y EKS: CPU, memoria, red, disco por tarea y servicio",
+      "Es solo para clusters de EKS, no funciona con ECS",
+      "Es el mismo que CloudWatch Logs Insights pero con diferente interfaz"
+    ],
+    "correct": 1,
+    "explanation": "Container Insights despliega el CloudWatch agent como sidecar en ECS/EKS y recolecta métricas granulares por container, task y service. Permite crear alarmas de OOM (Out Of Memory), CPU throttling o network saturation a nivel de contenedor."
+  },
+  {
+    "id": 89,
+    "level": "Mid",
+    "category": "Datos",
+    "question": "¿Qué es AWS Glue y cómo se relaciona con un backend Java?",
+    "code": null,
+    "options": [
+      "Un servicio de pegamento para unir VPCs",
+      "Un servicio serverless de ETL y catálogo de datos; el backend Java puede disparar jobs Glue via SDK para procesar grandes volúmenes de datos",
+      "Un servicio de base de datos de grafos",
+      "Un servicio de autenticación federada"
+    ],
+    "correct": 1,
+    "explanation": "Glue es ETL serverless: descubre esquemas, transforma y carga datos entre fuentes (S3, RDS, DynamoDB). El backend Java puede disparar Glue Jobs vía SDK para pipelines de datos sin gestionar Spark clusters."
+  },
+  {
+    "id": 90,
+    "level": "Mid",
+    "category": "Gobernanza",
+    "question": "¿Qué es AWS Service Quotas y por qué importa en producción?",
+    "code": null,
+    "options": [
+      "Es el catálogo de precios de servicios AWS",
+      "Un servicio que gestiona los límites máximos de uso de servicios AWS y permite solicitar aumentos antes de llegar al límite",
+      "Es un sistema de cuotas de almacenamiento en S3",
+      "Es un servicio de balanceo de carga inteligente"
+    ],
+    "correct": 1,
+    "explanation": "AWS impone límites por servicio/región (ej: 5 VPCs por región, X instancias EC2). Alcanzarlos en producción causa errores. Service Quotas permite ver límites actuales, uso actual y solicitar aumentos proactivamente antes de que afecten la app."
+  },
+  {
+    "id": 91,
+    "level": "Mid",
+    "category": "Almacenamiento",
+    "question": "¿Qué es Amazon S3 Transfer Acceleration?",
+    "code": null,
+    "options": [
+      "Una opción para hacer los uploads de S3 más seguros con doble cifrado",
+      "Una función que acelera uploads a S3 desde ubicaciones lejanas usando la red global de AWS (CloudFront edge locations) como punto de entrada más cercano al cliente",
+      "Una función para acelerar queries SQL sobre datos en S3",
+      "Un servicio de sincronización de archivos entre S3 y EFS"
+    ],
+    "correct": 1,
+    "explanation": "Transfer Acceleration enruta los uploads a través del edge de CloudFront más cercano al cliente, luego viaja por la red backbone de AWS hasta el bucket. Mejora hasta 60x las velocidades de upload para usuarios con alta latencia al bucket."
+  },
+  {
+    "id": 92,
+    "level": "Mid",
+    "category": "Seguridad",
+    "question": "¿Cómo harías para que tu app Spring Boot en ECS acceda a RDS sin credenciales hardcodeadas?",
+    "code": null,
+    "options": [
+      "Pasar usuario y contraseña como variables de entorno en la task definition de ECS",
+      "Usar IAM Authentication para RDS con el IAM Role del Task en ECS: el SDK genera un token temporal de 15 min, sin contraseña estática",
+      "Guardar las credenciales en el código y cifrar el JAR",
+      "Usar solo instancias RDS en la misma subnet y confiar en la red"
+    ],
+    "correct": 1,
+    "explanation": "RDS IAM Authentication genera tokens temporales via AWS SDK. El Task IAM Role de ECS permite rds-db:connect. Spring Boot obtiene el token con GenerateAuthToken y lo usa como contraseña. No hay credenciales estáticas, todo se rota automáticamente."
+  },
+  {
+    "id": 93,
+    "level": "Mid",
+    "category": "Contenedores",
+    "question": "¿Qué es AWS ECR lifecycle policy y por qué es importante para CI/CD en Java?",
+    "code": null,
+    "options": [
+      "Una política para controlar quién puede hacer push de imágenes",
+      "Reglas que eliminan automáticamente imágenes antiguas del repositorio ECR según criterios (antigüedad, número de versiones), evitando costos por almacenamiento excesivo",
+      "Una política de acceso de red para el registry",
+      "Una política de cifrado de imágenes Docker"
+    ],
+    "correct": 1,
+    "explanation": "En CI/CD se hace push de imágenes constantemente. Sin lifecycle policies, ECR acumula cientos de imágenes antiguas generando costos innecesarios. Define: mantener últimas N versiones, eliminar imágenes sin tag, etc."
+  },
+  {
+    "id": 94,
+    "level": "Mid",
+    "category": "Despliegue",
+    "question": "¿Cómo harías rollback automático en ECS si una nueva versión falla los health checks?",
+    "code": null,
+    "options": [
+      "El rollback automático no es posible en ECS, solo manual",
+      "Configurar ECS deployment circuit breaker: si N tasks consecutivas fallan los health checks del ALB, ECS detiene el deployment y puede revertir automáticamente a la versión anterior",
+      "Revisar los logs en CloudWatch y hacer rollback manual via CLI",
+      "Solo es posible con Kubernetes, no con ECS"
+    ],
+    "correct": 1,
+    "explanation": "ECS deployment circuit breaker: configuras rollbackOnFailure=true en el Service. Si las nuevas tasks no pasan el health check del target group dentro del timeout configurado, ECS para el rollout y restaura la revisión anterior automáticamente."
+  },
+  {
+    "id": 95,
+    "level": "Mid",
+    "category": "Mensajería",
+    "question": "¿Qué es Amazon SQS visibility timeout y por qué importa en Java?",
+    "code": null,
+    "options": [
+      "El tiempo que SQS guarda un mensaje antes de eliminarlo permanentemente",
+      "El tiempo durante el cual un mensaje recibido está invisible para otros consumidores mientras se procesa; si el procesamiento no termina antes, el mensaje vuelve a ser visible y puede ser reprocesado",
+      "El tiempo máximo que SQS espera nuevas conexiones",
+      "El intervalo entre intentos de reintento automático de SQS"
+    ],
+    "correct": 1,
+    "explanation": "Al recibir un mensaje, se hace invisible por el visibility timeout. Tu handler Java debe completar el procesamiento y eliminar el mensaje antes de que expire. Si no, SQS lo re-entrega (posible duplicado). Ajusta el timeout según tu tiempo de procesamiento."
+  },
+  {
+    "id": 96,
+    "level": "Mid",
+    "category": "Seguridad",
+    "question": "¿Cómo funcionan las S3 bucket policies y en qué se diferencian de IAM policies?",
+    "code": null,
+    "options": [
+      "Son idénticas; solo difieren en dónde se aplican visualmente",
+      "Las IAM policies se adjuntan a identidades y controlan qué pueden hacer; las bucket policies se adjuntan al bucket S3 y controlan quién puede acceder a ese bucket específico",
+      "Las bucket policies tienen más privilegios que IAM policies",
+      "Solo puedes usar uno de los dos tipos, no ambos a la vez"
+    ],
+    "correct": 1,
+    "explanation": "IAM policies: 'este rol puede hacer PUT en cualquier S3'. Bucket policy: 'solo este rol puede acceder a este bucket'. Para acceso cross-account o público, solo bucket policies funcionan. Para controlar acceso de servicios internos, IAM policies son más limpias."
+  },
+  {
+    "id": 97,
+    "level": "Mid",
+    "category": "Bases de datos",
+    "question": "¿Cuándo usarías Aurora en lugar de RDS MySQL estándar?",
+    "code": null,
+    "options": [
+      "Cuando necesitas bajo costo, ya que Aurora es siempre más barato",
+      "Cuando necesitas mayor rendimiento, alta disponibilidad multi-AZ nativa, almacenamiento auto-escalable y capacidades serverless",
+      "Para tener compatibilidad con Oracle Database",
+      "Aurora y RDS MySQL son idénticos en rendimiento"
+    ],
+    "correct": 1,
+    "explanation": "Aurora es compatible con MySQL/PostgreSQL pero diseñado para la nube: hasta 5x más rápido que MySQL estándar, hasta 15 read replicas, failover en segundos, almacenamiento que crece automáticamente y Aurora Serverless para cargas variables."
+  },
+  {
+    "id": 98,
+    "level": "Mid",
+    "category": "Costos",
+    "question": "¿Qué es AWS Savings Plans vs Reserved Instances para EC2?",
+    "code": null,
+    "options": [
+      "Son lo mismo con diferente nombre en la interfaz",
+      "Reserved Instances reservan capacidad en una región/AZ específica con hasta 72% descuento; Savings Plans son compromisos de uso ($/hora) más flexibles que aplican a EC2, Fargate y Lambda",
+      "Savings Plans son más baratos siempre que Reserved Instances",
+      "Reserved Instances aplican a EC2; Savings Plans solo a Lambda"
+    ],
+    "correct": 1,
+    "explanation": "Reserved Instances: compromiso de instancia específica (tipo, región, OS), mayor descuento. Savings Plans: compromiso de gasto mínimo ($/hora) más flexible, aplica a cualquier instancia EC2, Fargate y Lambda. Para workloads estables ambos dan ~60-72% de ahorro vs On-Demand."
+  },
+  {
+    "id": 99,
+    "level": "Mid",
+    "category": "Arquitectura",
+    "question": "¿Qué es un Multi-Region Active-Active deployment y qué complejidades introduce?",
+    "code": null,
+    "options": [
+      "Es simplemente tener backups en otra región",
+      "Correr la app en 2+ regiones recibiendo tráfico simultáneamente para ultra-baja latencia global y máxima disponibilidad; introduce conflictos de datos, latencia de replicación y mayor costo y complejidad operativa",
+      "Es lo mismo que Multi-AZ",
+      "Solo es posible con bases de datos NoSQL"
+    ],
+    "correct": 1,
+    "explanation": "Active-Active multi-región: Route 53 con latency/geolocation routing dirige usuarios a la región más cercana. El mayor reto es la base de datos: Aurora Global Database o DynamoDB Global Tables replican con ~1s latencia. Hay que manejar conflictos de escritura y el costo es 2x+."
+  },
+  {
+    "id": 100,
+    "level": "Mid",
+    "category": "Observabilidad",
+    "question": "¿Qué es Amazon CloudWatch y cuáles son sus tres pilares principales para observabilidad en Java?",
+    "code": null,
+    "options": [
+      "Solo monitorea EC2 y RDS; no es apto para arquitecturas de microservicios",
+      "Sus pilares son: Logs (centralización y búsqueda), Metrics (series de tiempo de recursos y app), y Alarms (notificaciones y acciones automáticas ante anomalías)",
+      "Es equivalente a Datadog pero solo para instancias EC2",
+      "Sus pilares son: Backups, Seguridad y Costos"
+    ],
+    "correct": 1,
+    "explanation": "CloudWatch cubre los tres pilares: (1) Logs: centraliza logs de EC2, Lambda, ECS via agent o SDK; Logs Insights para queries. (2) Metrics: métricas de infraestructura y custom desde código Java via PutMetricData. (3) Alarms: disparan SNS, Auto Scaling o Lambda ante umbrales definidos."
+  }
+]

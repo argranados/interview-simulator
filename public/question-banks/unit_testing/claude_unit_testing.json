@@ -1,0 +1,557 @@
+[
+  {
+    "id": 1,
+    "level": "Junior",
+    "category": "Fundamentos de Testing",
+    "question": "¿Qué describe mejor la Pirámide de Testing?",
+    "code": null,
+    "options": [
+      "Muchas pruebas E2E, pocas unitarias",
+      "Muchas pruebas unitarias, pocas E2E",
+      "Igual cantidad de cada tipo",
+      "Solo pruebas de integración"
+    ],
+    "correct": 1,
+    "explanation": "La pirámide propone la base más grande en unitarias (rápidas y baratas), un nivel medio de integración y una punta pequeña de E2E. Esto optimiza velocidad de feedback y costo de mantenimiento."
+  },
+  {
+    "id": 2,
+    "level": "Junior",
+    "category": "Fundamentos de Testing",
+    "question": "¿Cuál es el objetivo principal de un Smoke Test?",
+    "code": null,
+    "options": [
+      "Verificar cada caso de negocio en detalle",
+      "Confirmar que el build mínimo funciona antes de pruebas completas",
+      "Medir el rendimiento en producción",
+      "Detectar regresiones en código legacy"
+    ],
+    "correct": 1,
+    "explanation": "El smoke test valida rápidamente que las funciones críticas del sistema están operativas. Si falla, no vale la pena continuar con las suites completas, ahorrando tiempo en el pipeline de CI/CD."
+  },
+  {
+    "id": 3,
+    "level": "Junior",
+    "category": "Fundamentos de Testing",
+    "question": "¿Qué mide la cobertura de código (code coverage)?",
+    "code": null,
+    "options": [
+      "El número de bugs encontrados",
+      "El porcentaje de líneas/branches ejecutados por los tests",
+      "La velocidad de ejecución de pruebas",
+      "La calidad del diseño de clases"
+    ],
+    "correct": 1,
+    "explanation": "La cobertura indica qué porcentaje del código fuente fue ejercido durante las pruebas. Es una métrica útil pero 100% de cobertura no garantiza ausencia de bugs; solo indica que las líneas fueron ejecutadas, no que todos los escenarios fueron validados."
+  },
+  {
+    "id": 4,
+    "level": "Mid",
+    "category": "Fundamentos de Testing",
+    "question": "¿Cuál es la diferencia principal entre una prueba de regresión y una prueba funcional?",
+    "code": null,
+    "options": [
+      "Son sinónimos, no hay diferencia",
+      "La funcional verifica requisitos nuevos; la regresión verifica que cambios no rompieron lo existente",
+      "La regresión solo corre en producción",
+      "La funcional solo usa mocks"
+    ],
+    "correct": 1,
+    "explanation": "Las pruebas funcionales validan comportamiento según requisitos de negocio. Las de regresión se re-ejecutan tras cada cambio para garantizar que nuevas funcionalidades no introdujeron defectos en código previamente estable."
+  },
+  {
+    "id": 5,
+    "level": "Mid",
+    "category": "Fundamentos de Testing",
+    "question": "¿Qué son las pruebas de mutación (mutation testing)?",
+    "code": null,
+    "options": [
+      "Pruebas que cambian aleatoriamente los datos de entrada",
+      "Introduce pequeños cambios al código fuente para verificar que los tests los detectan",
+      "Pruebas ejecutadas en múltiples ambientes simultáneamente",
+      "Técnica para probar migraciones de base de datos"
+    ],
+    "correct": 1,
+    "explanation": "Herramientas como PIT Mutation insertan mutaciones (cambiar > por >=, remover return, etc.) y verifican que al menos un test falle. Esto mide la calidad real de los tests, no solo si el código fue ejecutado."
+  },
+  {
+    "id": 6,
+    "level": "Junior",
+    "category": "Pruebas Unitarias",
+    "question": "En JUnit 5, ¿qué anotación se usa para marcar un método como prueba?",
+    "code": null,
+    "options": [
+      "@Test (JUnit 4 y 5)",
+      "@TestMethod",
+      "@Unit",
+      "@Check"
+    ],
+    "correct": 0,
+    "explanation": "@Test es la anotación estándar. En JUnit 5 se importa de org.junit.jupiter.api.Test, a diferencia de JUnit 4 que la importa de org.junit.Test. Es importante no mezclar los imports entre versiones."
+  },
+  {
+    "id": 7,
+    "level": "Junior",
+    "category": "Pruebas Unitarias",
+    "question": "¿Qué representa el patrón AAA en pruebas unitarias?",
+    "code": null,
+    "options": [
+      "Arrange, Act, Assert",
+      "Assign, Apply, Analyze",
+      "Assert, Arrange, Act",
+      "Authentication, Authorization, Audit"
+    ],
+    "correct": 0,
+    "explanation": "Arrange = preparar datos y dependencias; Act = ejecutar el método bajo prueba; Assert = verificar el resultado esperado. Es el estándar de legibilidad para tests y facilita entender qué está probando cada test con solo leerlo."
+  },
+  {
+    "id": 8,
+    "level": "Junior",
+    "category": "Pruebas Unitarias",
+    "question": "¿Cuál anotación de JUnit 5 ejecuta código UNA VEZ antes de todos los tests de la clase?",
+    "code": null,
+    "options": [
+      "@BeforeEach",
+      "@BeforeAll",
+      "@Before",
+      "@SetupOnce"
+    ],
+    "correct": 1,
+    "explanation": "@BeforeAll corre el método una sola vez antes de cualquier test de la clase. Debe ser static por defecto, o la clase debe anotarse con @TestInstance(Lifecycle.PER_CLASS) para permitir métodos de instancia."
+  },
+  {
+    "id": 9,
+    "level": "Mid",
+    "category": "Pruebas Unitarias",
+    "question": "¿Qué hace @ParameterizedTest en JUnit 5?",
+    "code": null,
+    "options": [
+      "Crea tests con parámetros aleatorios",
+      "Permite ejecutar el mismo test con múltiples conjuntos de datos",
+      "Marca el test como paralelo",
+      "Inyecta dependencias Spring"
+    ],
+    "correct": 1,
+    "explanation": "Combinado con fuentes como @ValueSource, @CsvSource o @MethodSource permite correr la misma lógica de test con distintos inputs sin duplicar código, mejorando mantenibilidad y cobertura de casos de borde."
+  },
+  {
+    "id": 10,
+    "level": "Mid",
+    "category": "Pruebas Unitarias",
+    "question": "¿Cuándo usarías @Nested en JUnit 5?",
+    "code": null,
+    "options": [
+      "Para paralelizar tests",
+      "Para agrupar tests relacionados dentro de una clase padre y mejorar legibilidad",
+      "Para ignorar ciertos tests",
+      "Para cargar un contexto Spring reducido"
+    ],
+    "correct": 1,
+    "explanation": "@Nested permite clases internas que comparten su propio setup (BeforeEach), agrupando escenarios relacionados. Por ejemplo: clase interna 'WhenUserExists' vs 'WhenUserNotFound', cada una con su propio contexto."
+  },
+  {
+    "id": 11,
+    "level": "Mid",
+    "category": "Pruebas Unitarias",
+    "question": "¿Qué problema resuelven las AssertJ fluent assertions frente a los asserts clásicos de JUnit?",
+    "code": null,
+    "options": [
+      "Son más rápidas de ejecutar",
+      "Ofrecen mensajes de error más descriptivos y una API legible en cadena",
+      "Funcionan sin necesidad de JUnit",
+      "Permiten assertions asíncronas"
+    ],
+    "correct": 1,
+    "explanation": "AssertJ permite encadenar assertions como assertThat(list).hasSize(3).contains('x').doesNotContain('y') y genera mensajes de error muy claros al fallar, mejorando significativamente la mantenibilidad del código de prueba."
+  },
+  {
+    "id": 12,
+    "level": "Junior",
+    "category": "Mocking & Stubbing",
+    "question": "En Mockito, ¿qué diferencia hay entre un mock y un stub?",
+    "code": null,
+    "options": [
+      "Son exactamente lo mismo",
+      "Mock verifica interacciones; stub solo devuelve valores predefinidos",
+      "Stub lanza excepciones; mock devuelve valores",
+      "Mock es para clases; stub para interfaces"
+    ],
+    "correct": 1,
+    "explanation": "Un stub solo provee respuestas prefabricadas (when/thenReturn) para aislar la dependencia. Un mock además permite verificar que ciertos métodos fueron llamados con ciertos argumentos usando verify(), comprobando el comportamiento de interacción."
+  },
+  {
+    "id": 13,
+    "level": "Junior",
+    "category": "Mocking & Stubbing",
+    "question": "¿Qué hace Mockito.when(service.findById(1L)).thenReturn(user)?",
+    "code": "when(service.findById(1L)).thenReturn(user);",
+    "options": [
+      "Llama al método real y guarda el resultado",
+      "Define que cuando findById(1L) sea invocado, retorne el objeto user sin ejecutar lógica real",
+      "Verifica que findById fue llamado con 1L",
+      "Lanza una excepción si findById no existe"
+    ],
+    "correct": 1,
+    "explanation": "Es un stub: intercepta la llamada al método del mock y retorna el valor configurado, aislando el test de la implementación real de findById. Esto permite probar la lógica del servicio superior sin depender de la base de datos."
+  },
+  {
+    "id": 14,
+    "level": "Junior",
+    "category": "Mocking & Stubbing",
+    "question": "¿Qué anotación de Mockito crea la instancia bajo prueba e inyecta automáticamente los campos @Mock?",
+    "code": null,
+    "options": [
+      "@Spy",
+      "@InjectMocks",
+      "@MockBean",
+      "@Autowired"
+    ],
+    "correct": 1,
+    "explanation": "@InjectMocks crea la instancia de la clase bajo prueba e inyecta todos los campos @Mock o @Spy de la misma clase de test, simulando la inyección de dependencias sin necesidad de contexto Spring."
+  },
+  {
+    "id": 15,
+    "level": "Mid",
+    "category": "Mocking & Stubbing",
+    "question": "¿Cuál es la diferencia entre @Mock y @Spy en Mockito?",
+    "code": null,
+    "options": [
+      "@Mock usa la implementación real; @Spy crea un doble total",
+      "@Spy envuelve un objeto real y permite sobrescribir métodos selectivamente; @Mock reemplaza todo",
+      "Son equivalentes, solo cambia el nombre",
+      "@Mock es para beans de Spring; @Spy para POJOs"
+    ],
+    "correct": 1,
+    "explanation": "Con @Spy el objeto real es instanciado; puedes stubear métodos específicos mientras el resto ejecuta la implementación real. @Mock reemplaza todos los métodos retornando null/0/false por defecto, sin ejecutar ninguna lógica real."
+  },
+  {
+    "id": 16,
+    "level": "Mid",
+    "category": "Mocking & Stubbing",
+    "question": "¿Para qué sirve ArgumentCaptor en Mockito?",
+    "code": "ArgumentCaptor<Email> captor = ArgumentCaptor.forClass(Email.class);\nverify(emailService).send(captor.capture());\nEmail sent = captor.getValue();",
+    "options": [
+      "Para configurar el valor de retorno de un mock",
+      "Para capturar el argumento real pasado a un método mockeado y realizar asserts sobre él",
+      "Para verificar el número exacto de invocaciones",
+      "Para lanzar excepciones al invocar un mock"
+    ],
+    "correct": 1,
+    "explanation": "ArgumentCaptor permite extraer el objeto real que fue pasado al método mockeado durante la ejecución del test. Es útil cuando quieres validar el contenido del argumento, no solo que el método fue invocado."
+  },
+  {
+    "id": 17,
+    "level": "Mid",
+    "category": "Mocking & Stubbing",
+    "question": "¿Qué problema puede indicar un test que necesita muchos mocks anidados?",
+    "code": null,
+    "options": [
+      "Que la cobertura es alta",
+      "Posible violación de la Ley de Demeter y alto acoplamiento en el diseño",
+      "Que se está usando TDD correctamente",
+      "Que el test es de integración y no unitario"
+    ],
+    "correct": 1,
+    "explanation": "Necesitar mock.getA().getB().getC() (train wreck) es señal de que la clase accede a objetos a través de cadenas largas, violando la Ley de Demeter. Indica un test smell y posible necesidad de refactorizar el diseño."
+  },
+  {
+    "id": 18,
+    "level": "Junior",
+    "category": "Pruebas de Integración",
+    "question": "¿Qué hace @SpringBootTest en una clase de prueba?",
+    "code": null,
+    "options": [
+      "Crea solo un slice del contexto Spring",
+      "Levanta el contexto Spring completo de la aplicación para la prueba",
+      "Deshabilita la base de datos",
+      "Es equivalente a @WebMvcTest"
+    ],
+    "correct": 1,
+    "explanation": "@SpringBootTest carga el ApplicationContext completo. Es costoso en tiempo de arranque pero necesario cuando quieres probar la integración real entre múltiples beans, filtros, configuración de seguridad, etc."
+  },
+  {
+    "id": 19,
+    "level": "Junior",
+    "category": "Pruebas de Integración",
+    "question": "¿Qué es Testcontainers y para qué se usa en pruebas de integración?",
+    "code": null,
+    "options": [
+      "Un framework de mocking para contenedores Docker",
+      "Permite levantar contenedores Docker reales (MySQL, Redis, Kafka) durante las pruebas",
+      "Una alternativa a JUnit para tests de contenedores",
+      "Un plugin de Maven para ejecutar tests en paralelo"
+    ],
+    "correct": 1,
+    "explanation": "Testcontainers levanta instancias reales de infraestructura (DB, broker, cache) en Docker para tests de integración, eliminando la necesidad de mocks de base de datos y garantizando que los tests se ejecutan contra el mismo motor que producción."
+  },
+  {
+    "id": 20,
+    "level": "Mid",
+    "category": "Pruebas de Integración",
+    "question": "¿Qué ventaja ofrece @DataJpaTest sobre @SpringBootTest para pruebas de repositorio?",
+    "code": null,
+    "options": [
+      "Carga más beans y es más completo",
+      "Carga solo el slice JPA (entidades, repositorios, DataSource) haciendo los tests más rápidos",
+      "Permite pruebas de controladores REST",
+      "Incluye configuración de seguridad automáticamente"
+    ],
+    "correct": 1,
+    "explanation": "@DataJpaTest es un 'test slice': carga solo la capa JPA, configura una DB en memoria (H2 por defecto) y excluye beans no relacionados como servicios o controladores, acelerando significativamente el tiempo de arranque."
+  },
+  {
+    "id": 21,
+    "level": "Mid",
+    "category": "Pruebas de Integración",
+    "question": "¿Cómo se asegura el aislamiento entre tests de integración con base de datos?",
+    "code": null,
+    "options": [
+      "Usando solo H2 en memoria",
+      "Con @Transactional en el test (rollback automático) o reseteando el estado con @Sql",
+      "Ejecutando todos los tests en paralelo",
+      "Mockeando el EntityManager"
+    ],
+    "correct": 1,
+    "explanation": "@Transactional en el test hace rollback automático al final de cada método, devolviendo la DB a estado limpio. Alternativamente @Sql puede insertar fixtures antes y limpiar después de cada test con scripts SQL dedicados."
+  },
+  {
+    "id": 22,
+    "level": "Mid",
+    "category": "Pruebas de Integración",
+    "question": "¿Cuándo preferirías usar WireMock en lugar de Mockito para simular una dependencia?",
+    "code": null,
+    "options": [
+      "Cuando la dependencia es un bean Spring local",
+      "Cuando la dependencia es un servicio HTTP externo y quieres simular respuestas reales de red",
+      "Son equivalentes para cualquier caso",
+      "Cuando necesitas alta velocidad de ejecución"
+    ],
+    "correct": 1,
+    "explanation": "WireMock levanta un servidor HTTP real que simula respuestas de APIs externas, probando también la serialización/deserialización HTTP, manejo de timeouts y códigos de error. Mockito no puede probar la capa HTTP del cliente REST."
+  },
+  {
+    "id": 23,
+    "level": "Junior",
+    "category": "Pruebas de API",
+    "question": "¿Qué permite hacer MockMvc en Spring Boot?",
+    "code": null,
+    "options": [
+      "Simula llamadas HTTP a controladores sin levantar un servidor real",
+      "Prueba repositorios JPA directamente",
+      "Crea datos de prueba automáticamente",
+      "Es un mock de la capa de servicios"
+    ],
+    "correct": 0,
+    "explanation": "MockMvc permite ejecutar requests HTTP simulados sobre el DispatcherServlet, probando controllers, serialización JSON, validaciones de Bean Validation, status codes y headers sin necesidad de un servidor embebido real."
+  },
+  {
+    "id": 24,
+    "level": "Junior",
+    "category": "Pruebas de API",
+    "question": "¿Qué anotación carga solo la capa web (controllers) en Spring Boot Test?",
+    "code": null,
+    "options": [
+      "@SpringBootTest",
+      "@DataJpaTest",
+      "@WebMvcTest",
+      "@RestClientTest"
+    ],
+    "correct": 2,
+    "explanation": "@WebMvcTest carga solo los beans del tier web: controllers, filtros, interceptors, @ControllerAdvice, etc. Ideal para tests de controladores donde los servicios se mockean con @MockBean, haciendo el test rápido y enfocado."
+  },
+  {
+    "id": 25,
+    "level": "Mid",
+    "category": "Pruebas de API",
+    "question": "¿Cuál es la diferencia entre MockMvc y WebTestClient?",
+    "code": null,
+    "options": [
+      "Son idénticos en funcionalidad",
+      "MockMvc es síncrono/servlet; WebTestClient soporta programación reactiva (WebFlux)",
+      "WebTestClient solo funciona con bases de datos reactivas",
+      "MockMvc es más moderno que WebTestClient"
+    ],
+    "correct": 1,
+    "explanation": "MockMvc trabaja con la API Servlet bloqueante (Spring MVC). WebTestClient es el cliente de pruebas para Spring WebFlux (reactivo) pero también puede usarse con MockMvc si la app no es reactiva, ofreciendo una API fluida similar."
+  },
+  {
+    "id": 26,
+    "level": "Mid",
+    "category": "Pruebas de API",
+    "question": "En RestAssured, ¿qué representa el patrón given/when/then?",
+    "code": "given()\n  .header(\"Authorization\", \"Bearer \" + token)\n  .contentType(ContentType.JSON)\n.when()\n  .get(\"/api/users/1\")\n.then()\n  .statusCode(200)\n  .body(\"name\", equalTo(\"Alfonso\"));",
+    "options": [
+      "Es el mismo patrón AAA pero con nombres distintos para decoración",
+      "given = headers/body/auth; when = método HTTP y path; then = validaciones de respuesta",
+      "given y when son opcionales en RestAssured",
+      "then ejecuta el request HTTP"
+    ],
+    "correct": 1,
+    "explanation": "given() configura la petición (headers, body, auth, params), when() ejecuta la acción HTTP (get/post/put/delete con el path), then() declara las aserciones sobre status, body y headers usando Hamcrest matchers."
+  },
+  {
+    "id": 27,
+    "level": "Mid",
+    "category": "Pruebas de API",
+    "question": "¿Para qué se usa @MockBean en pruebas de Spring Boot?",
+    "code": null,
+    "options": [
+      "Para crear una instancia real del bean en el contexto",
+      "Para registrar un mock de Mockito como bean Spring, reemplazando el real en el contexto",
+      "Para inyectar el bean real en el test sin modificarlo",
+      "Para deshabilitar un bean de seguridad en tests"
+    ],
+    "correct": 1,
+    "explanation": "@MockBean reemplaza el bean real en el ApplicationContext por un mock de Mockito. Esto permite aislar el controlador de la lógica de negocio real en tests de @WebMvcTest, y también invalida el caché del contexto Spring."
+  },
+  {
+    "id": 28,
+    "level": "Junior",
+    "category": "Smoke, Regression & E2E",
+    "question": "¿En qué momento del ciclo de CI/CD se ejecutan típicamente los smoke tests?",
+    "code": null,
+    "options": [
+      "Solo en producción después de cada release",
+      "Inmediatamente después del deploy a un ambiente, antes de las suites completas",
+      "Solo en el ambiente de desarrollo local",
+      "Una vez por semana en horario nocturno"
+    ],
+    "correct": 1,
+    "explanation": "Los smoke tests son la primera validación post-deploy: si fallan, se aborta el pipeline inmediatamente sin perder tiempo en suites más largas. Validan que el servicio arranca, responde y tiene conectividad básica con sus dependencias."
+  },
+  {
+    "id": 29,
+    "level": "Mid",
+    "category": "Smoke, Regression & E2E",
+    "question": "¿Qué herramienta/configuración se usa comúnmente para pruebas E2E de APIs REST en proyectos Java?",
+    "code": null,
+    "options": [
+      "Solo MockMvc porque es nativo de Spring",
+      "Selenium WebDriver para todos los casos",
+      "RestAssured o Karate DSL contra el servidor real levantado con RANDOM_PORT",
+      "JUnit 5 con @SpringBootTest es suficiente sin cliente HTTP"
+    ],
+    "correct": 2,
+    "explanation": "Para E2E de APIs se levanta el servidor completo con @SpringBootTest(webEnvironment=RANDOM_PORT) y se usan clientes HTTP reales como RestAssured o Karate DSL para simular flujos completos de negocio extremo a extremo."
+  },
+  {
+    "id": 30,
+    "level": "Mid",
+    "category": "Smoke, Regression & E2E",
+    "question": "¿Cuál es el mayor riesgo de tener una suite de pruebas E2E muy grande en un proyecto de microservicios?",
+    "code": null,
+    "options": [
+      "Detectan muy pocos bugs comparado con tests unitarios",
+      "Son lentas, frágiles y costosas de mantener, ralentizando el pipeline de CI/CD",
+      "Solo funcionan en ambiente local sin Docker",
+      "No se pueden automatizar fácilmente con Maven"
+    ],
+    "correct": 1,
+    "explanation": "Las pruebas E2E son necesarias pero costosas: tardan minutos por test, son sensibles a cambios de contrato entre servicios y requieren infraestructura completa. En microservicios, el número de combinaciones crece exponencialmente. Por eso la pirámide recomienda muy pocas."
+  },
+  {
+    "id": 31,
+    "level": "Junior",
+    "category": "Herramientas & CI/CD",
+    "question": "¿Qué es JaCoCo y qué genera?",
+    "code": null,
+    "options": [
+      "Un framework de mocking para Java",
+      "Un plugin que mide y reporta la cobertura de código durante los tests",
+      "Un servidor de CI/CD alternativo a Jenkins",
+      "Una herramienta de análisis estático como SonarQube"
+    ],
+    "correct": 1,
+    "explanation": "JaCoCo (Java Code Coverage) instrumenta el bytecode en tiempo de ejecución y genera reportes HTML/XML con cobertura por línea, branch e instrucción. Se integra con Maven/Gradle y SonarQube para definir quality gates."
+  },
+  {
+    "id": 32,
+    "level": "Junior",
+    "category": "Herramientas & CI/CD",
+    "question": "¿Qué plugin de Maven es responsable de ejecutar los tests unitarios?",
+    "code": null,
+    "options": [
+      "maven-compiler-plugin",
+      "maven-surefire-plugin",
+      "maven-failsafe-plugin",
+      "maven-jar-plugin"
+    ],
+    "correct": 1,
+    "explanation": "maven-surefire-plugin ejecuta los tests unitarios en la fase 'test'. maven-failsafe-plugin ejecuta los tests de integración en las fases 'integration-test' y 'verify'. Son dos plugins distintos con propósitos y fases del ciclo de vida diferentes."
+  },
+  {
+    "id": 33,
+    "level": "Mid",
+    "category": "Herramientas & CI/CD",
+    "question": "¿Qué diferencia hay entre maven-surefire-plugin y maven-failsafe-plugin?",
+    "code": null,
+    "options": [
+      "Son idénticos, solo cambia el nombre",
+      "Surefire ejecuta tests unitarios (fase test); Failsafe ejecuta tests de integración y no falla el build hasta la fase verify",
+      "Failsafe es más rápido que Surefire",
+      "Surefire solo funciona con JUnit 4, Failsafe con JUnit 5"
+    ],
+    "correct": 1,
+    "explanation": "Failsafe está diseñado para tests de integración que requieren levantar/bajar servidores o contenedores. Ejecuta los tests en 'integration-test', realiza teardown y solo reporta el fallo en 'verify', garantizando que el cleanup siempre ocurra."
+  },
+  {
+    "id": 34,
+    "level": "Mid",
+    "category": "Herramientas & CI/CD",
+    "question": "¿Cómo configuras SonarQube para fallar el pipeline si la cobertura baja del 80%?",
+    "code": null,
+    "options": [
+      "Es imposible configurar umbrales en SonarQube",
+      "Definiendo un Quality Gate con condición coverage < 80% y añadiendo el step sonar:sonar con verificación de status al pipeline",
+      "Editando el pom.xml con una propiedad jacoco.minimumCoverage=0.80",
+      "SonarQube siempre falla automáticamente si la cobertura baja"
+    ],
+    "correct": 1,
+    "explanation": "Los Quality Gates de SonarQube permiten definir condiciones (cobertura mínima, deuda técnica, bugs críticos, code smells). El step 'sonar:sonar' sube las métricas y el step de 'quality-gate check' falla el pipeline si alguna condición del gate no se cumple."
+  },
+  {
+    "id": 35,
+    "level": "Junior",
+    "category": "Buenas Prácticas & Patrones",
+    "question": "¿Qué significa TDD (Test-Driven Development)?",
+    "code": null,
+    "options": [
+      "Escribir todos los tests después de terminar el código de producción",
+      "Escribir el test primero (falla), luego el código mínimo para pasar, luego refactorizar (Red-Green-Refactor)",
+      "Tener un equipo dedicado solo a la actividad de testing",
+      "Usar únicamente mocks en todos los tests de la aplicación"
+    ],
+    "correct": 1,
+    "explanation": "TDD sigue el ciclo Red (escribir test que falla) → Green (código mínimo que lo hace pasar) → Refactor (mejorar el código sin romper tests). Guía el diseño desde la perspectiva del consumidor de la API y produce código más testeable por naturaleza."
+  },
+  {
+    "id": 36,
+    "level": "Mid",
+    "category": "Buenas Prácticas & Patrones",
+    "question": "¿Qué es un 'test smell' y cuál es un ejemplo común en Java?",
+    "code": null,
+    "options": [
+      "Un test que tarda más de 1 segundo en ejecutarse",
+      "Antipatrón en tests que reduce su calidad; ej: Assertion Roulette (un test que verifica demasiadas cosas sin mensajes claros)",
+      "Un test que usa datos reales de producción",
+      "Tests que solo pasan en el ambiente de desarrollo local"
+    ],
+    "correct": 1,
+    "explanation": "Test smells son señales de diseño pobre en el código de prueba: Assertion Roulette (muchos asserts sin mensaje descriptivo), Magic Numbers, tests acoplados entre sí, nombres como testMethod1, Giant Setup o Erratic Tests (tests que pasan a veces y otras no)."
+  },
+  {
+    "id": 37,
+    "level": "Mid",
+    "category": "Buenas Prácticas & Patrones",
+    "question": "¿Qué propone BDD (Behavior-Driven Development) diferente a TDD?",
+    "code": null,
+    "options": [
+      "BDD usa solo tests de integración y E2E, nunca unitarios",
+      "BDD centra los tests en comportamiento de negocio con lenguaje ubícuo (Gherkin: Given/When/Then), facilitando colaboración con stakeholders",
+      "BDD no usa código, solo documentos de requisitos",
+      "Son exactamente lo mismo con diferente nombre"
+    ],
+    "correct": 1,
+    "explanation": "BDD extiende TDD enfocándose en el comportamiento desde la perspectiva del negocio. Herramientas como Cucumber o JBehave usan Gherkin (Given/When/Then) para crear especificaciones ejecutables legibles por stakeholders no técnicos, cerrando la brecha entre negocio y desarrollo."
+  }
+]

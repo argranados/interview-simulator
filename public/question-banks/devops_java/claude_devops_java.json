@@ -1,0 +1,1172 @@
+[
+  {
+    "id": 1,
+    "level": "Junior",
+    "category": "Git",
+    "question": "¿Cuál es la diferencia entre git merge y git rebase?",
+    "code": null,
+    "options": [
+      "Son idénticos en resultado",
+      "merge crea un commit de fusión preservando historial; rebase reescribe el historial aplicando commits encima de otra rama",
+      "rebase es siempre más seguro",
+      "merge solo funciona localmente"
+    ],
+    "correct": 1,
+    "explanation": "Merge preserva el historial completo con un merge commit. Rebase crea historial lineal pero reescribe los SHA. Nunca hagas rebase en ramas compartidas como main."
+  },
+  {
+    "id": 2,
+    "level": "Junior",
+    "category": "Git",
+    "question": "¿Qué hace git stash y cuándo lo usarías?",
+    "code": null,
+    "options": [
+      "Borra cambios sin confirmar permanentemente",
+      "Crea una rama automáticamente con tus cambios",
+      "Guarda temporalmente cambios no confirmados para poder cambiar de rama sin perderlos",
+      "Hace commit de todos los archivos modificados"
+    ],
+    "correct": 2,
+    "explanation": "git stash guarda el WIP en una pila temporal. Recuperas los cambios con git stash pop. Útil ante cambios urgentes en otras ramas."
+  },
+  {
+    "id": 3,
+    "level": "Junior",
+    "category": "Git",
+    "question": "¿Qué es un git tag y para qué se usa en proyectos Java?",
+    "code": null,
+    "options": [
+      "Un marcador inmutable que apunta a un commit específico, usado para marcar versiones de release (v1.2.0)",
+      "Un alias para ramas largas",
+      "Un tipo especial de commit que no se puede eliminar",
+      "Una rama protegida del repositorio"
+    ],
+    "correct": 0,
+    "explanation": "Los tags marcan puntos históricos. En Java se usan para marcar releases: git tag -a v1.2.0. El pipeline CI/CD puede dispararse automáticamente al detectar un tag nuevo."
+  },
+  {
+    "id": 4,
+    "level": "Junior",
+    "category": "Git",
+    "question": "¿Qué significa hacer git pull --rebase en lugar de git pull?",
+    "code": null,
+    "options": [
+      "Descarga los cambios sin aplicarlos",
+      "Elimina las ramas remotas obsoletas automáticamente",
+      "Hace un pull solo de los archivos modificados",
+      "En vez de crear un merge commit al integrar cambios remotos, reaplica tus commits locales encima, generando un historial más limpio y lineal"
+    ],
+    "correct": 3,
+    "explanation": "git pull = fetch + merge (genera un merge commit). git pull --rebase = fetch + rebase (historial lineal). Muchos equipos lo configuran como default con git config pull.rebase true."
+  },
+  {
+    "id": 5,
+    "level": "Mid",
+    "category": "Git",
+    "question": "¿Qué estrategia de branching usarías para un equipo con deploys frecuentes a producción?",
+    "code": null,
+    "options": [
+      "GitFlow siempre con ramas develop, release y hotfix",
+      "Feature branches de larga duración sin integración frecuente",
+      "Una sola rama main sin branches",
+      "Trunk Based Development con ramas de vida corta mergeadas frecuentemente a main, combinado con feature flags"
+    ],
+    "correct": 3,
+    "explanation": "Trunk Based Development favorece la integración continua real. Las ramas viven horas o 1-2 días máximo. Feature flags permiten mergear código incompleto sin exponerlo. GitFlow es mejor para ciclos de release largos."
+  },
+  {
+    "id": 6,
+    "level": "Mid",
+    "category": "Git",
+    "question": "¿Qué hace git cherry-pick y cuándo es útil?",
+    "code": null,
+    "options": [
+      "Fusiona solo los archivos seleccionados de otra rama",
+      "Aplica los cambios de un commit específico en la rama actual sin fusionar toda la rama origen",
+      "Elimina commits seleccionados del historial",
+      "Selecciona los mejores commits por calidad de código"
+    ],
+    "correct": 1,
+    "explanation": "Cherry-pick es útil para llevar un hotfix a múltiples ramas de release, o para rescatar un commit puntual sin traer todo el contexto de una feature branch."
+  },
+  {
+    "id": 7,
+    "level": "Mid",
+    "category": "Git",
+    "question": "¿Qué es un git hook y qué automatizaciones permite?",
+    "code": null,
+    "options": [
+      "Un tipo de alias para comandos de Git",
+      "Un mecanismo de autenticación de Git",
+      "Un plugin de visualización del historial",
+      "Scripts que se ejecutan automáticamente ante eventos de Git (pre-commit, pre-push), útiles para ejecutar linters o tests localmente antes de pushear"
+    ],
+    "correct": 3,
+    "explanation": "El hook pre-commit puede ejecutar checkstyle o mvn test antes de confirmar cambios. Son locales, no se suben al repositorio. Husky es una herramienta popular para gestionarlos."
+  },
+  {
+    "id": 8,
+    "level": "Mid",
+    "category": "Git",
+    "question": "¿Cómo revertirías un commit ya pusheado a una rama compartida?",
+    "code": null,
+    "options": [
+      "Eliminar el repositorio y volver a clonarlo",
+      "git revert <sha> que crea un nuevo commit que deshace los cambios, preservando el historial",
+      "git reset --hard HEAD~1 y force push",
+      "git checkout <sha> del archivo afectado"
+    ],
+    "correct": 1,
+    "explanation": "En ramas compartidas nunca usar reset+force push. git revert crea un nuevo commit que invierte los cambios del commit indicado, es la forma segura y auditable."
+  },
+  {
+    "id": 9,
+    "level": "Mid",
+    "category": "Git",
+    "question": "¿Qué es git bisect y cuándo lo usarías?",
+    "code": null,
+    "options": [
+      "Una forma de hacer merge selectivo",
+      "Un alias para git blame",
+      "Un comando que usa búsqueda binaria para encontrar el commit que introdujo un bug, marcando commits como buenos o malos",
+      "Una herramienta para comparar dos ramas visualmente"
+    ],
+    "correct": 2,
+    "explanation": "git bisect start, marcas HEAD como malo y un commit antiguo como bueno. Git hace checkout a la mitad del historial, pruebas y marcas bueno/malo. En ~10 pasos encuentra el commit culpable entre miles."
+  },
+  {
+    "id": 10,
+    "level": "Mid",
+    "category": "Git",
+    "question": "¿Qué diferencia hay entre git fetch y git pull?",
+    "code": null,
+    "options": [
+      "pull solo funciona en la rama main",
+      "Son idénticos",
+      "fetch elimina ramas obsoletas del remoto",
+      "fetch descarga los cambios remotos sin integrarlos en tu rama local; pull hace fetch + merge automáticamente"
+    ],
+    "correct": 3,
+    "explanation": "fetch es seguro: actualiza las referencias remotas sin tocar tu rama local. Puedes revisar los cambios antes de integrarlos. pull es fetch + merge, conveniente pero puede generar merge commits inesperados."
+  },
+  {
+    "id": 11,
+    "level": "Junior",
+    "category": "CI/CD",
+    "question": "¿Cuál es la diferencia entre CI, Continuous Delivery y Continuous Deployment?",
+    "code": null,
+    "options": [
+      "Solo CI es automatizable",
+      "CI es solo para tests, CD es solo para infraestructura",
+      "Son sinónimos del mismo proceso",
+      "CI = integrar y validar frecuentemente; Delivery = listo para prod con aprobación manual; Deployment = despliegue automático hasta producción sin intervención humana"
+    ],
+    "correct": 3,
+    "explanation": "CI: cada push dispara build + tests. Continuous Delivery: llega a staging automáticamente pero un humano aprueba producción. Continuous Deployment: todo automático hasta producción."
+  },
+  {
+    "id": 12,
+    "level": "Junior",
+    "category": "CI/CD",
+    "question": "¿Cuáles son las etapas típicas de un pipeline CI/CD para Spring Boot?",
+    "code": null,
+    "options": [
+      "Compilar → Deploy directo a producción",
+      "Checkout → Compilar → Unit tests → Análisis estático → Integration tests → Build Docker → Push registry → Deploy staging → Smoke tests → Deploy prod",
+      "Solo ejecutar tests y hacer deploy",
+      "Solo compilar y desplegar"
+    ],
+    "correct": 1,
+    "explanation": "Un pipeline robusto valida en múltiples capas. El análisis estático va antes de los tests de integración para fallar rápido. El smoke test verifica que la app arrancó correctamente."
+  },
+  {
+    "id": 13,
+    "level": "Junior",
+    "category": "CI/CD",
+    "question": "¿Qué es un artefacto en CI/CD para Java?",
+    "code": null,
+    "options": [
+      "El resultado del build (JAR, imagen Docker) que se versionea y propaga entre etapas; se construye una vez y ese mismo binario va a todos los entornos",
+      "Un log de errores del servidor",
+      "Un contenedor Docker en ejecución",
+      "Una variable de entorno del pipeline"
+    ],
+    "correct": 0,
+    "explanation": "El artefacto es inmutable: se construye una vez en CI y ese mismo binario se despliega en staging y producción. Nunca se recompila. Se almacena en un registry (Nexus, Artifactory, ECR)."
+  },
+  {
+    "id": 14,
+    "level": "Junior",
+    "category": "CI/CD",
+    "question": "¿Qué hace mvn verify y por qué se usa en pipelines CI?",
+    "code": null,
+    "options": [
+      "Solo comprueba las dependencias",
+      "Valida la conexión con el repositorio Maven remoto",
+      "Solo verifica que el pom.xml es válido",
+      "Ejecuta compilación, unit tests, integration tests y verificaciones de calidad, sin instalar en ~/.m2"
+    ],
+    "correct": 3,
+    "explanation": "mvn verify es la fase estándar de CI porque incluye compilación, unit tests (surefire), integration tests (failsafe) y plugins de verificación como checkstyle. No contamina el repositorio local."
+  },
+  {
+    "id": 15,
+    "level": "Mid",
+    "category": "CI/CD",
+    "question": "¿Qué es la estrategia Blue-Green y cuál es su principal ventaja?",
+    "code": null,
+    "options": [
+      "Desplegar 50% de usuarios al nuevo código",
+      "Un sistema de coloreo de logs",
+      "Mantener dos entornos idénticos; el nuevo release va al inactivo, se valida, y el tráfico se redirige atómicamente permitiendo rollback instantáneo",
+      "Desplegar en servidores físicos alternados"
+    ],
+    "correct": 2,
+    "explanation": "Blue (producción actual) y Green (nuevo release). Se valida en Green. El router conmuta en segundos. Rollback = volver a apuntar a Blue. Costo: necesitas doble infraestructura simultáneamente."
+  },
+  {
+    "id": 16,
+    "level": "Mid",
+    "category": "CI/CD",
+    "question": "¿Qué es un Canary Release y en qué se diferencia de Blue-Green?",
+    "code": null,
+    "options": [
+      "Un patrón para versionar APIs REST",
+      "Es idéntico a Blue-Green con diferente nombre",
+      "Se dirige un porcentaje pequeño de tráfico real (5-10%) al nuevo release; si las métricas son buenas se incrementa progresivamente hasta el 100%",
+      "Un test de performance automatizado"
+    ],
+    "correct": 2,
+    "explanation": "Canary expone el nuevo código a tráfico real gradualmente. Detectas problemas antes de afectar a todos. Desventaja: necesitas infraestructura para tráfico dividido y métricas claras para decidir el rollout."
+  },
+  {
+    "id": 17,
+    "level": "Mid",
+    "category": "CI/CD",
+    "question": "¿Qué es un feature flag y cómo apoya la estrategia CI/CD?",
+    "code": null,
+    "options": [
+      "Una variable de entorno para distinguir prod de staging",
+      "Un tipo de branch protegido",
+      "Una bandera en el Dockerfile para modo debug",
+      "Un switch en código que permite activar/desactivar funcionalidades en producción sin re-deployar, desacoplando el deploy del release"
+    ],
+    "correct": 3,
+    "explanation": "Feature flags permiten mergear código incompleto a main sin exponerlo (Trunk Based Dev). También permiten releases graduales, A/B testing, y rollback instantáneo sin rollback de infraestructura."
+  },
+  {
+    "id": 18,
+    "level": "Mid",
+    "category": "CI/CD",
+    "question": "¿Cuál es la diferencia entre mvn package y mvn install?",
+    "code": null,
+    "options": [
+      "install despliega a producción",
+      "package genera el JAR en /target; install además lo copia a ~/.m2 para que otros módulos del proyecto lo usen",
+      "Son idénticos",
+      "package solo funciona con Spring Boot"
+    ],
+    "correct": 1,
+    "explanation": "En pipelines multi-módulo, mvn install es necesario para que el módulo A use el JAR del módulo B como dependencia local. En pipelines simples, package suele ser suficiente."
+  },
+  {
+    "id": 19,
+    "level": "Mid",
+    "category": "CI/CD",
+    "question": "¿Qué es SonarQube y cuándo se usa en un pipeline Java?",
+    "code": null,
+    "options": [
+      "Un gestor de dependencias alternativo a Maven",
+      "Un servidor de CI",
+      "Plataforma de análisis estático que detecta bugs, vulnerabilidades y code smells; se ejecuta después de los tests y define Quality Gates para bloquear el pipeline si no se cumplen umbrales",
+      "Un servidor de logs"
+    ],
+    "correct": 2,
+    "explanation": "SonarQube analiza el código fuente tras los tests. Quality Gates: si el código nuevo tiene coverage < 80% o vulnerabilidades críticas, el pipeline falla y no avanza al siguiente stage."
+  },
+  {
+    "id": 20,
+    "level": "Mid",
+    "category": "CI/CD",
+    "question": "¿Qué es un smoke test post-deploy y por qué es importante?",
+    "code": null,
+    "options": [
+      "Un análisis de seguridad del artefacto desplegado",
+      "Un test de migración de base de datos",
+      "Un test de performance de alta carga",
+      "Conjunto mínimo de tests que verifican que la app arrancó correctamente y sus funciones críticas responden, ejecutado inmediatamente después del deploy"
+    ],
+    "correct": 3,
+    "explanation": "Valida: /actuator/health responde 200, el endpoint de login funciona, las dependencias críticas están conectadas. Si falla, el pipeline dispara un rollback automático."
+  },
+  {
+    "id": 21,
+    "level": "Mid",
+    "category": "CI/CD",
+    "question": "¿Qué es el concepto de 'fail fast' en pipelines CI/CD?",
+    "code": null,
+    "options": [
+      "Que los tests de integración son opcionales",
+      "Fallar en producción antes que en staging",
+      "Que el pipeline siempre termina rápido",
+      "Ejecutar primero las validaciones más rápidas (compilación, unit tests) para detectar errores cuanto antes y evitar ejecutar stages lentos sobre código roto"
+    ],
+    "correct": 3,
+    "explanation": "Fail fast ordena: compilación (~10s) → unit tests (~1min) → análisis estático → integration tests (~5min) → deploy. Si el código no compila, no ejecutas 10 minutos de tests innecesariamente."
+  },
+  {
+    "id": 22,
+    "level": "Mid",
+    "category": "CI/CD",
+    "question": "¿Qué es un rollback en CI/CD y cuándo lo ejecutarías?",
+    "code": null,
+    "options": [
+      "La capacidad de volver a la versión anterior rápidamente ante un incidente post-deploy; se dispara cuando error rate o latencia superan umbrales definidos",
+      "Restaurar el backup de la base de datos",
+      "Solo cuando la app está completamente caída",
+      "Reiniciar el servidor de producción"
+    ],
+    "correct": 0,
+    "explanation": "Trigger de rollback: error rate > umbral, latencia p99 degradada, health checks fallando. En K8s: kubectl rollout undo. En Blue-Green: redirigir tráfico al entorno anterior. Debe ensayarse periódicamente."
+  },
+  {
+    "id": 23,
+    "level": "Junior",
+    "category": "Docker",
+    "question": "¿Cuál es la diferencia entre una imagen Docker y un contenedor?",
+    "code": null,
+    "options": [
+      "Las imágenes solo existen en Docker Hub",
+      "Un contenedor siempre pesa menos que una imagen",
+      "Son lo mismo con diferente nombre",
+      "La imagen es la plantilla inmutable en capas; el contenedor es una instancia en ejecución con una capa writable encima"
+    ],
+    "correct": 3,
+    "explanation": "Imagen = plantilla de solo lectura (como una clase). Contenedor = proceso en ejecución a partir de esa imagen (como una instancia). Múltiples contenedores pueden compartir la misma imagen base."
+  },
+  {
+    "id": 24,
+    "level": "Junior",
+    "category": "Docker",
+    "question": "¿Qué hace la instrucción EXPOSE en un Dockerfile?",
+    "code": null,
+    "options": [
+      "Documenta el puerto en el que la app escucha dentro del contenedor, pero no lo publica al host; eso se hace con -p en docker run",
+      "Es obligatoria para que la app funcione en Kubernetes",
+      "Mapea automáticamente el puerto al mismo del host",
+      "Abre el puerto en el firewall del host automáticamente"
+    ],
+    "correct": 0,
+    "explanation": "EXPOSE es documentación. Para publicar al host se usa docker run -p 8080:8080. En docker-compose se usa ports. EXPOSE no abre ningún firewall ni hace port mapping automático."
+  },
+  {
+    "id": 25,
+    "level": "Junior",
+    "category": "Docker",
+    "question": "¿Qué diferencia hay entre CMD y ENTRYPOINT en un Dockerfile?",
+    "code": null,
+    "options": [
+      "Son idénticos",
+      "CMD es para Linux, ENTRYPOINT para Windows",
+      "ENTRYPOINT solo funciona con scripts bash",
+      "ENTRYPOINT define el ejecutable principal (difícil de sobreescribir); CMD define argumentos por defecto que el usuario puede reemplazar al hacer docker run"
+    ],
+    "correct": 3,
+    "explanation": "Patrón común: ENTRYPOINT ['java','-jar'] y CMD ['/app/app.jar']. El usuario puede sobreescribir CMD al hacer docker run. Para cambiar ENTRYPOINT se necesita --entrypoint explícitamente."
+  },
+  {
+    "id": 26,
+    "level": "Junior",
+    "category": "Docker",
+    "question": "¿Qué es el sistema de capas (layers) de Docker y cómo afecta el build de imágenes Java?",
+    "code": null,
+    "options": [
+      "No afecta el tiempo de build",
+      "Solo afecta el tamaño final",
+      "Las capas solo aplican en Linux",
+      "Cada instrucción crea una capa cacheada; si no cambia, Docker la reutiliza. Copiar dependencias antes que el código fuente maximiza el cache"
+    ],
+    "correct": 3,
+    "explanation": "Patrón clave: primero COPY pom.xml y RUN mvn dependency:resolve (cambia poco), luego COPY src (cambia frecuentemente). Las dependencias se cachean y el build baja de 3min a 20seg."
+  },
+  {
+    "id": 27,
+    "level": "Junior",
+    "category": "Docker",
+    "question": "¿Para qué se usa docker-compose en desarrollo Java?",
+    "code": null,
+    "options": [
+      "Para reemplazar Kubernetes en producción",
+      "Solo para gestionar imágenes Docker",
+      "Para desplegar en producción con múltiples servidores",
+      "Para definir y levantar múltiples servicios (app Java, PostgreSQL, Redis) con un solo comando, ideal para desarrollo y testing local"
+    ],
+    "correct": 3,
+    "explanation": "docker-compose.yml define todos los servicios del stack. docker-compose up levanta todo con red y volúmenes configurados automáticamente. Esencial para replicar el entorno completo localmente."
+  },
+  {
+    "id": 28,
+    "level": "Mid",
+    "category": "Docker",
+    "question": "¿Qué es un multi-stage build en Docker y por qué es crítico para Java?",
+    "code": null,
+    "options": [
+      "Una estrategia de cache avanzada",
+      "Un tipo de docker-compose con múltiples servicios",
+      "Usar múltiples etapas FROM: una con JDK para compilar, otra solo con JRE para ejecutar, resultando en imágenes finales mucho más pequeñas y seguras",
+      "Una forma de construir la misma imagen en múltiples máquinas"
+    ],
+    "correct": 2,
+    "explanation": "Stage 1 (builder): maven:3.9-eclipse-temurin-17 para compilar (~500MB). Stage 2 (runtime): eclipse-temurin:17-jre (~200MB) copiando solo el JAR. La imagen final no contiene JDK, Maven ni código fuente."
+  },
+  {
+    "id": 29,
+    "level": "Mid",
+    "category": "Docker",
+    "question": "¿Cómo manejarías variables sensibles (passwords, tokens) en Docker?",
+    "code": null,
+    "options": [
+      "Encriptarlas en Base64 dentro del Dockerfile",
+      "Guardarlas en application.properties",
+      "Hardcodearlas en el Dockerfile con ENV",
+      "Usando variables en docker run -e o docker-compose con env_file apuntando a un .env no versionado, o Docker Secrets; nunca en el Dockerfile"
+    ],
+    "correct": 3,
+    "explanation": "Nunca en el Dockerfile (quedan en el historial de la imagen). Opciones: archivo .env excluido del .gitignore, gestores de secretos (Vault, AWS Secrets Manager), o inyección desde variables del pipeline CI."
+  },
+  {
+    "id": 30,
+    "level": "Mid",
+    "category": "Docker",
+    "question": "¿Qué son los health checks en Docker y cómo se relacionan con Spring Boot Actuator?",
+    "code": null,
+    "options": [
+      "Son logs especiales que Docker genera",
+      "Solo aplican en Kubernetes",
+      "Solo sirven para reiniciar contenedores",
+      "Instrucciones que Docker ejecuta periódicamente para verificar si el contenedor está sano; /actuator/health de Spring Boot es el endpoint ideal a verificar"
+    ],
+    "correct": 3,
+    "explanation": "HEALTHCHECK CMD curl -f http://localhost:8080/actuator/health || exit 1. Docker marca el contenedor como unhealthy si falla repetidamente. En docker-compose, depends_on con condition: service_healthy espera que el health check pase."
+  },
+  {
+    "id": 31,
+    "level": "Mid",
+    "category": "Docker",
+    "question": "¿Por qué no deberías ejecutar tu app Java como root dentro del contenedor?",
+    "code": null,
+    "options": [
+      "Solo es necesario en producción",
+      "Porque root no tiene permisos para leer el JAR",
+      "Porque Java no funciona como root",
+      "Por seguridad: si el contenedor es comprometido, el atacante obtiene privilegios de root en el host. Se crea un usuario no privilegiado con USER en el Dockerfile"
+    ],
+    "correct": 3,
+    "explanation": "Principio de least privilege. En Dockerfile: RUN groupadd -r app && useradd -r -g app app, luego USER app. Las imágenes de Eclipse Temurin ya incluyen un usuario no root. En K8s se refuerza con securityContext.runAsNonRoot."
+  },
+  {
+    "id": 32,
+    "level": "Mid",
+    "category": "Docker",
+    "question": "¿Qué es una imagen distroless y cuándo la usarías para una app Java?",
+    "code": null,
+    "options": [
+      "Una imagen que usa Alpine Linux",
+      "Una imagen solo para desarrollo",
+      "Una imagen base mínima sin shell ni herramientas del OS, reduciendo la superficie de ataque; ideal para producción",
+      "Una imagen sin sistema de archivos"
+    ],
+    "correct": 2,
+    "explanation": "gcr.io/distroless/java17 no tiene bash, apt, wget. Si un atacante compromete el contenedor, no puede ejecutar comandos. Desventaja: debugging más difícil. Para debug puedes usar temporalmente una imagen debug distroless."
+  },
+  {
+    "id": 33,
+    "level": "Mid",
+    "category": "Kubernetes",
+    "question": "¿Qué es un Pod en Kubernetes y cuál es su relación con los contenedores Docker?",
+    "code": null,
+    "options": [
+      "Un nodo físico del cluster",
+      "Un servicio para exponer aplicaciones",
+      "Es equivalente a una máquina virtual",
+      "La unidad mínima desplegable: uno o más contenedores que comparten la misma red (IP) y almacenamiento. Generalmente 1 contenedor por Pod"
+    ],
+    "correct": 3,
+    "explanation": "El Pod es efímero: si muere, un controlador (Deployment) crea uno nuevo con diferente IP. Por eso se necesita un Service con IP estable. Los contenedores dentro de un Pod se comunican por localhost."
+  },
+  {
+    "id": 34,
+    "level": "Mid",
+    "category": "Kubernetes",
+    "question": "¿Cuál es la diferencia entre un Deployment y un Service en Kubernetes?",
+    "code": null,
+    "options": [
+      "Service crea los contenedores y Deployment los expone",
+      "Son lo mismo",
+      "Deployment es para bases de datos y Service para apps",
+      "Deployment gestiona el ciclo de vida de los Pods (réplicas, rolling updates); Service provee una IP/DNS estable y balancea tráfico hacia los Pods"
+    ],
+    "correct": 3,
+    "explanation": "Deployment declara el estado deseado: 'quiero 3 réplicas de myapp:1.2.3'. Service actúa como load balancer estable: aunque los Pods mueran y renazcan con distintas IPs, el Service siempre resuelve a los Pods sanos."
+  },
+  {
+    "id": 35,
+    "level": "Mid",
+    "category": "Kubernetes",
+    "question": "¿Para qué sirven los liveness y readiness probes en K8s?",
+    "code": null,
+    "options": [
+      "Son configuraciones del Dockerfile",
+      "Solo aplican para bases de datos",
+      "Son idénticos",
+      "Liveness indica si el Pod debe reiniciarse (app colgada); Readiness indica si el Pod puede recibir tráfico. Spring Actuator expone /actuator/health/liveness y /readiness"
+    ],
+    "correct": 3,
+    "explanation": "Si liveness falla K8s mata y reinicia el Pod. Si readiness falla K8s deja de enviarle tráfico pero no lo reinicia, útil durante startup o cuando está sobrecargado. Spring Boot Actuator expone ambos endpoints."
+  },
+  {
+    "id": 36,
+    "level": "Mid",
+    "category": "Kubernetes",
+    "question": "¿Qué son ConfigMaps y Secrets en K8s y cómo los consume una app Java?",
+    "code": null,
+    "options": [
+      "Son equivalentes a variables de entorno del OS",
+      "Solo funcionan con Helm",
+      "Son tipos de volúmenes persistentes",
+      "ConfigMap almacena configuración no sensible; Secret almacena datos sensibles. Ambos se inyectan como variables de entorno o archivos montados que Spring Boot lee automáticamente"
+    ],
+    "correct": 3,
+    "explanation": "Patrón: ConfigMap con application.yml montado en /config/ (Spring Boot lo detecta). Secret con credenciales como env vars. La imagen Docker es inmutable y la configuración varía por entorno sin reconstruirla."
+  },
+  {
+    "id": 37,
+    "level": "Mid",
+    "category": "Kubernetes",
+    "question": "¿Qué es un Rolling Update en K8s y cómo protege la disponibilidad?",
+    "code": null,
+    "options": [
+      "Actualiza todos los Pods simultáneamente",
+      "Una actualización con downtime completo",
+      "Solo funciona con estrategia Blue-Green",
+      "K8s reemplaza Pods de la versión antigua con los nuevos de forma gradual, verificando que pasen el readiness probe antes de eliminar los viejos, garantizando zero-downtime"
+    ],
+    "correct": 3,
+    "explanation": "Con maxSurge:1 y maxUnavailable:0, K8s levanta el Pod nuevo, espera que readiness pase, y solo entonces mata uno antiguo. Si los nuevos fallan el readiness, el update se detiene automáticamente."
+  },
+  {
+    "id": 38,
+    "level": "Mid",
+    "category": "Kubernetes",
+    "question": "¿Qué es un Namespace en Kubernetes y para qué sirve?",
+    "code": null,
+    "options": [
+      "Un tipo especial de Pod",
+      "Un tipo de red virtual en K8s",
+      "Un alias para un Deployment",
+      "Un mecanismo de aislamiento lógico dentro del cluster que permite separar recursos por equipo, proyecto o entorno (dev/staging/prod)"
+    ],
+    "correct": 3,
+    "explanation": "Los namespaces permiten multi-tenancy: cada equipo tiene su namespace con sus propios ResourceQuotas, RBAC y NetworkPolicies. En producción cada app o equipo suele tener el suyo propio."
+  },
+  {
+    "id": 39,
+    "level": "Mid",
+    "category": "Kubernetes",
+    "question": "¿Qué es un HorizontalPodAutoscaler (HPA) en K8s?",
+    "code": null,
+    "options": [
+      "Una herramienta para gestionar Secrets",
+      "Un tipo de Service para balanceo avanzado",
+      "Un controlador que ajusta automáticamente el número de réplicas basándose en métricas (CPU, memoria, métricas custom) para manejar picos de carga",
+      "Un plugin para distribuir tráfico manualmente"
+    ],
+    "correct": 2,
+    "explanation": "HPA monitorea métricas (ej: CPU > 70%) y escala de 2 a 10 réplicas automáticamente. Para apps Java hay que configurar bien los requests/limits de CPU. También puede escalar por métricas custom de Prometheus."
+  },
+  {
+    "id": 40,
+    "level": "Mid",
+    "category": "Kubernetes",
+    "question": "¿Qué son los Resource Requests y Limits en K8s y por qué importan en apps Java?",
+    "code": null,
+    "options": [
+      "Son configuraciones opcionales de red",
+      "Son configuraciones del Dockerfile",
+      "Requests: recursos garantizados para el Pod; Limits: máximo que puede usar. En Java es crítico para evitar OOMKilled y para que el HPA funcione correctamente",
+      "Solo aplican para bases de datos"
+    ],
+    "correct": 2,
+    "explanation": "Sin limits, un Pod Java puede consumir toda la memoria del nodo. Con requests bien configurados, el scheduler asigna el Pod a un nodo con recursos suficientes. -XX:MaxRAMPercentage=75 evita que la JVM exceda los limits del contenedor."
+  },
+  {
+    "id": 41,
+    "level": "Junior",
+    "category": "Observabilidad",
+    "question": "¿Cuáles son los tres pilares de la observabilidad en microservicios Java?",
+    "code": null,
+    "options": [
+      "Alertas, dashboards y reportes",
+      "Solo logs y métricas son necesarios",
+      "CPU, memoria y disco",
+      "Logs (eventos discretos), Métricas (valores numéricos en tiempo) y Trazas distribuidas. Stack típico: ELK/Loki + Prometheus/Grafana + Jaeger/Zipkin"
+    ],
+    "correct": 3,
+    "explanation": "Logs: qué pasó y cuándo. Métricas: indicadores numéricos como latencia, tasa de error. Trazas: recorrido de un request en múltiples servicios. Los tres juntos permiten entender el estado interno del sistema."
+  },
+  {
+    "id": 42,
+    "level": "Junior",
+    "category": "Observabilidad",
+    "question": "¿Qué provee Spring Boot Actuator y por qué es esencial en DevOps?",
+    "code": null,
+    "options": [
+      "Solo funciona detrás de un API Gateway",
+      "Es un servidor de logs integrado",
+      "Solo reiniciar la app remotamente",
+      "Expone endpoints HTTP para health checks, métricas, beans del contexto e info de la app; /health es usado por K8s para probes y /metrics por Prometheus para scraping"
+    ],
+    "correct": 3,
+    "explanation": "/actuator/health: liveness y readiness para orquestadores. /actuator/metrics: datos para Prometheus. /actuator/info: versión del artefacto y commit de Git. Imprescindible para integrar la app con cualquier stack de monitoreo."
+  },
+  {
+    "id": 43,
+    "level": "Mid",
+    "category": "Observabilidad",
+    "question": "¿Qué es un distributed trace y por qué es imprescindible en microservicios?",
+    "code": null,
+    "options": [
+      "Solo es útil con más de 20 microservicios",
+      "Un log detallado de errores en producción",
+      "Un rastro que sigue un request a través de múltiples servicios usando un Trace ID propagado en headers HTTP, permitiendo identificar exactamente dónde falló o se tardó",
+      "Un tipo de test de performance distribuido"
+    ],
+    "correct": 2,
+    "explanation": "Sin tracing: si /api/orders tarda 3s sabes que algo está lento pero no dónde. Con Jaeger/Zipkin ves: API Gateway 10ms → Order Service 50ms → Inventory Service 2800ms → DB query 2750ms. El problema era una query sin índice."
+  },
+  {
+    "id": 44,
+    "level": "Mid",
+    "category": "Observabilidad",
+    "question": "¿Qué es Micrometer en Spring Boot y para qué sirve?",
+    "code": null,
+    "options": [
+      "Un sistema de logging alternativo a Logback",
+      "Un cliente HTTP para llamadas entre microservicios",
+      "Un framework de testing de microservicios",
+      "Una fachada de instrumentación que permite exponer métricas de la JVM y app de forma agnóstica al backend (Prometheus, Datadog, CloudWatch) solo cambiando la dependencia"
+    ],
+    "correct": 3,
+    "explanation": "Micrometer es el 'SLF4J de métricas'. Instrumentas con @Timed, Counter, Gauge y simplemente cambias la dependencia para enviar a Prometheus o Datadog sin cambiar el código de la aplicación."
+  },
+  {
+    "id": 45,
+    "level": "Mid",
+    "category": "Observabilidad",
+    "question": "¿Cuál es la diferencia entre SLI, SLO y SLA?",
+    "code": null,
+    "options": [
+      "Son herramientas de monitoreo de K8s",
+      "Son niveles de severidad de incidentes",
+      "SLI = métrica real medida; SLO = objetivo interno del equipo; SLA = compromiso contractual con el cliente con consecuencias económicas",
+      "Son tipos de contratos entre microservicios"
+    ],
+    "correct": 2,
+    "explanation": "SLI mide la realidad: '99.94% de uptime este mes'. SLO es tu meta: '99.9%'. SLA es el contrato. Error Budget = 100% - SLO. Si se agota, se pausa el feature development para mejorar estabilidad."
+  },
+  {
+    "id": 46,
+    "level": "Mid",
+    "category": "Observabilidad",
+    "question": "¿Cómo estructurarías los logs de una app Spring Boot para producción?",
+    "code": null,
+    "options": [
+      "Solo logueando errores para minimizar volumen",
+      "Con System.out.println() para simplicidad",
+      "Con Logback/Log4j2 en formato JSON estructurado incluyendo traceId, spanId, servicio y usuario, enviando a un aggregador centralizado (ELK, Loki)",
+      "Con logs en texto plano sin estructura fija"
+    ],
+    "correct": 2,
+    "explanation": "Logs JSON permiten queries avanzadas en Kibana/Grafana. MDC (Mapped Diagnostic Context) de SLF4J inyecta el traceId en cada log del thread. Campos clave: timestamp, level, service, traceId, userId, message, exception."
+  },
+  {
+    "id": 47,
+    "level": "Mid",
+    "category": "Observabilidad",
+    "question": "¿Qué es alert fatigue y cómo lo evitarías?",
+    "code": null,
+    "options": [
+      "Un tipo de bug en la aplicación",
+      "Solo ocurre en equipos muy grandes",
+      "Un error de configuración de Prometheus",
+      "Cuando hay demasiadas alertas ruidosas que hacen que el equipo las ignore; se evita alertando solo sobre síntomas que afectan al usuario con umbrales bien calibrados"
+    ],
+    "correct": 3,
+    "explanation": "Alertar sobre síntomas del usuario (latencia p99 > 1s, error rate > 1%) no sobre causas técnicas (CPU > 70%). Usar for: 5m para evitar alertas por spikes momentáneos. Si una alerta no requiere acción inmediata, elimínala."
+  },
+  {
+    "id": 48,
+    "level": "Mid",
+    "category": "Observabilidad",
+    "question": "¿Qué es el error budget en Site Reliability Engineering?",
+    "code": null,
+    "options": [
+      "El presupuesto del equipo para corregir bugs",
+      "El número máximo de deploys por semana",
+      "Un límite de errores por hora en producción",
+      "La diferencia entre 100% de disponibilidad y el SLO definido (ej: SLO 99.9% = 0.1% = ~43min/mes de downtime permitido); define cuánto riesgo puede tomar el equipo"
+    ],
+    "correct": 3,
+    "explanation": "Si el error budget está agotado, se pausa el feature development y se prioriza la estabilidad. Si está lleno, el equipo puede hacer deploys arriesgados. Alinea incentivos entre velocidad de features y confiabilidad."
+  },
+  {
+    "id": 49,
+    "level": "Mid",
+    "category": "DevSecOps",
+    "question": "¿Qué es DevSecOps y en qué parte del pipeline integrarías controles de seguridad?",
+    "code": null,
+    "options": [
+      "Solo aplica a aplicaciones financieras",
+      "La seguridad siempre va como fase final antes de producción",
+      "Integrar la seguridad en el ciclo DevOps: SAST en el build, DAST en staging, escaneo de dependencias y escaneo de imágenes Docker antes de pushear",
+      "Un equipo separado que revisa el código después del deploy"
+    ],
+    "correct": 2,
+    "explanation": "Shift Left Security: cuanto antes detectas la vulnerabilidad, más barato corregirla. SAST (SonarQube) analiza código en CI. OWASP Dependency Check detecta CVEs en libs. Trivy escanea la imagen Docker."
+  },
+  {
+    "id": 50,
+    "level": "Mid",
+    "category": "DevSecOps",
+    "question": "¿Cómo gestionarías secretos en un pipeline CI/CD?",
+    "code": null,
+    "options": [
+      "Cifrándolos en Base64 en el código",
+      "Guardándolos en Git en un archivo .env",
+      "Usando variables secretas del CI/CD (GitHub Secrets, GitLab Variables masked), gestores de secretos como HashiCorp Vault o AWS Secrets Manager; nunca en el código ni en el Dockerfile",
+      "Solo con variables de entorno del OS del servidor"
+    ],
+    "correct": 2,
+    "explanation": "Regla: ningún secreto en el repositorio. En CI: variables masked/protected del proveedor. En runtime: Vault Agent inyecta secretos al arrancar, o K8s Secrets con External Secrets Operator sincronizando desde AWS SM."
+  },
+  {
+    "id": 51,
+    "level": "Mid",
+    "category": "DevSecOps",
+    "question": "¿Qué es el escaneo de vulnerabilidades en imágenes Docker?",
+    "code": null,
+    "options": [
+      "Es responsabilidad del equipo de infraestructura",
+      "Solo aplica para imágenes Ubuntu",
+      "Verificar que el Dockerfile tiene sintaxis correcta",
+      "Analizar las capas de la imagen en busca de CVEs en paquetes del OS y dependencias; herramientas: Trivy, Grype, Docker Scout; se ejecuta en el pipeline antes de pushear al registry"
+    ],
+    "correct": 3,
+    "explanation": "trivy image myapp:1.2.3 detecta CVEs en librerías del OS y en JARs de Maven. Se puede configurar para fallar el pipeline si hay vulnerabilidades CRITICAL. Imágenes distroless minimizan la superficie de ataque."
+  },
+  {
+    "id": 52,
+    "level": "Mid",
+    "category": "DevSecOps",
+    "question": "¿Qué es SAST y DAST en el contexto de seguridad en pipelines?",
+    "code": null,
+    "options": [
+      "Son herramientas de monitoreo de infraestructura",
+      "SAST analiza el código fuente sin ejecutarlo; DAST prueba la app en ejecución con tráfico simulado buscando vulnerabilidades en tiempo de ejecución",
+      "Son frameworks de testing alternativos a JUnit",
+      "Son tipos de tests de performance"
+    ],
+    "correct": 1,
+    "explanation": "SAST (SpotBugs, SonarQube): se ejecuta en CI sobre el código fuente, detecta SQL injection potencial. DAST (OWASP ZAP): se ejecuta contra la app desplegada en staging, detecta XSS y configuraciones inseguras reales."
+  },
+  {
+    "id": 53,
+    "level": "Mid",
+    "category": "DevSecOps",
+    "question": "¿Qué es el principio de least privilege en contenedores y pipelines?",
+    "code": null,
+    "options": [
+      "Ejecutar todos los servicios con el mismo usuario para simplificar",
+      "Deshabilitar todos los puertos excepto el 8080",
+      "Usar la contraseña más corta posible",
+      "Cada componente tiene solo los permisos mínimos indispensables: contenedores sin root, service accounts de K8s con RBAC mínimo, secrets accesibles solo para el servicio que los necesita"
+    ],
+    "correct": 3,
+    "explanation": "En Docker: USER nonroot en el Dockerfile. En K8s: securityContext.runAsNonRoot:true, readOnlyRootFilesystem:true. En CI: el service account solo puede hacer docker push al registry de staging, no al de prod."
+  },
+  {
+    "id": 54,
+    "level": "Junior",
+    "category": "Cloud & Entornos",
+    "question": "¿Cómo carga Spring Boot configuraciones diferentes según el entorno?",
+    "code": null,
+    "options": [
+      "Con variables que reemplazan el application.properties completo",
+      "Requiere recompilar el JAR para cada entorno",
+      "Mediante perfiles: application-dev.yml, application-prod.yml; se activan con SPRING_PROFILES_ACTIVE=prod como variable de entorno o argumento JVM",
+      "Solo tiene una configuración para todos los entornos"
+    ],
+    "correct": 2,
+    "explanation": "El JAR es el mismo para todos los entornos. Lo que cambia es el perfil activo inyectado como env var. Spring Boot carga: application.yml (base) + application-{profile}.yml (sobreescribe). En K8s se inyecta con ConfigMap."
+  },
+  {
+    "id": 55,
+    "level": "Mid",
+    "category": "Cloud & Entornos",
+    "question": "¿Qué es un entorno efímero (ephemeral environment)?",
+    "code": null,
+    "options": [
+      "Un contenedor Docker que se reinicia solo",
+      "Un servidor de CI temporal",
+      "Un entorno que se borra automáticamente después de 24 horas fijas",
+      "Un entorno completo creado automáticamente para cada Pull Request y destruido al cerrarla, permitiendo QA y revisión en aislamiento sin compartir staging"
+    ],
+    "correct": 3,
+    "explanation": "Review Apps (GitLab) o Preview Environments permiten que cada PR tenga su propio entorno con URL única. QA prueba la feature antes del merge. Evita el cuello de botella de un staging compartido."
+  },
+  {
+    "id": 56,
+    "level": "Mid",
+    "category": "Cloud & Entornos",
+    "question": "¿Qué es la inmutabilidad de infraestructura y cómo aplica a deploys Java?",
+    "code": null,
+    "options": [
+      "Que las variables de entorno no pueden cambiar",
+      "Que la BD no puede tener migraciones",
+      "Que el servidor nunca puede actualizarse",
+      "Nunca modificar un servidor o contenedor en producción: en vez de actualizar el JAR en el servidor existente, se construye una nueva imagen Docker y se despliega; la imagen antigua se descarta"
+    ],
+    "correct": 3,
+    "explanation": "Infraestructura mutable: ssh al servidor y reemplazar el JAR (genera drift). Infraestructura inmutable: nueva versión = nueva imagen Docker = nuevo contenedor. El estado de producción siempre está reflejado en el tag de la imagen."
+  },
+  {
+    "id": 57,
+    "level": "Mid",
+    "category": "Cloud & Entornos",
+    "question": "¿Qué es el patrón de 12-Factor App y cuáles factores son más relevantes para Java Backend?",
+    "code": null,
+    "options": [
+      "Son 12 pruebas que debe pasar una app para ir a producción",
+      "Es una guía solo para microservicios",
+      "Una metodología cloud-native; más relevantes: configuración en env vars, dependencias declaradas en pom.xml, procesos stateless, logs como streams stdout, paridad dev/prod",
+      "Un framework de desarrollo para apps Java empresariales"
+    ],
+    "correct": 2,
+    "explanation": "Factores clave: III (Config en env vars), IV (dependencias en pom.xml), VI (procesos stateless: sesión en Redis), XI (logs a stdout), V (build/release/run separados). Facilita portabilidad y escalado horizontal."
+  },
+  {
+    "id": 58,
+    "level": "Mid",
+    "category": "Cloud & Entornos",
+    "question": "¿Qué es GitOps y cómo difiere del CI/CD tradicional?",
+    "code": null,
+    "options": [
+      "Es igual al CI/CD tradicional con diferente nombre",
+      "Es una herramienta de CI/CD",
+      "Solo aplica para infraestructura, no para apps",
+      "Un paradigma donde el estado deseado se define en Git; herramientas como ArgoCD/Flux observan el repositorio y sincronizan el cluster K8s automáticamente, siendo Git la única fuente de verdad"
+    ],
+    "correct": 3,
+    "explanation": "CI/CD tradicional: el pipeline hace kubectl apply activamente (push). GitOps: ArgoCD corre dentro del cluster y 'jala' los cambios del repo (pull). Si alguien modifica el cluster manualmente, ArgoCD lo revierte. Todo cambio en producción tiene un commit."
+  },
+  {
+    "id": 59,
+    "level": "Mid",
+    "category": "GitLab CI",
+    "question": "¿Qué es el .gitlab-ci.yml y cuál es su estructura mínima funcional?",
+    "code": null,
+    "options": [
+      "Es opcional y solo necesario para deploys en prod",
+      "Solo se usa para configurar acceso de usuarios",
+      "Define el pipeline CI/CD: stages (orden de ejecución), jobs con su stage asignado y scripts de comandos. GitLab Runner lo ejecuta automáticamente en cada push o MR",
+      "Un archivo de configuración de seguridad del repo"
+    ],
+    "correct": 2,
+    "explanation": "Estructura mínima: stages: [build, test, deploy] y jobs que referencian un stage con script de comandos. Cada job puede especificar su imagen Docker, artefactos que genera y condiciones de ejecución (rules)."
+  },
+  {
+    "id": 60,
+    "level": "Mid",
+    "category": "GitLab CI",
+    "question": "¿Qué son los artifacts en GitLab CI y cómo se usan entre stages?",
+    "code": null,
+    "options": [
+      "Son las variables de entorno del pipeline",
+      "Las imágenes Docker producidas por el pipeline",
+      "Solo sirven para guardar reportes de tests",
+      "Archivos generados en un job que GitLab almacena y pone disponibles para jobs de stages posteriores (ej: el JAR compilado en build se usa en el job de Docker en el stage deploy)"
+    ],
+    "correct": 3,
+    "explanation": "Job 'build': genera target/app.jar como artifact. Job 'docker-build' del stage siguiente lo descarga automáticamente. También se usan para reportes JUnit que GitLab renderiza en la UI del Merge Request."
+  },
+  {
+    "id": 61,
+    "level": "Mid",
+    "category": "GitLab CI",
+    "question": "¿Cómo controlarías en qué branches o eventos se ejecuta cada job en GitLab CI?",
+    "code": null,
+    "options": [
+      "Creando un .gitlab-ci.yml diferente para cada rama",
+      "Los jobs siempre se ejecutan en todos los eventos",
+      "Solo se puede controlar con variables manuales",
+      "Usando la sección rules: para definir condiciones: deploy solo en main, tests en todas las MRs, deploy a prod solo con tags de versión"
+    ],
+    "correct": 3,
+    "explanation": "rules: - if: '$CI_COMMIT_BRANCH == \"main\"' ejecuta el job solo en pushes a main. - if: '$CI_PIPELINE_SOURCE == \"merge_request_event\"' en MRs. rules es más potente y flexible que el antiguo only/except."
+  },
+  {
+    "id": 62,
+    "level": "Mid",
+    "category": "GitLab CI",
+    "question": "¿Qué son las variables en GitLab CI y cuáles tipos existen?",
+    "code": null,
+    "options": [
+      "Solo las variables de entorno del sistema operativo",
+      "Variables disponibles en el pipeline: predefinidas por GitLab (CI_COMMIT_SHA, CI_REGISTRY_IMAGE), definidas por el usuario en Settings (con opción masked y protected para secretos) y definidas en el .gitlab-ci.yml",
+      "Solo sirven para configurar el entorno de staging",
+      "No pueden usarse dentro de scripts del pipeline"
+    ],
+    "correct": 1,
+    "explanation": "Variables predefinidas: CI_COMMIT_BRANCH, CI_PIPELINE_SOURCE, CI_REGISTRY. Variables de usuario: secretos como DOCKER_PASSWORD marcadas como masked (oculta el valor en logs). Variables de archivo: para certificados o credenciales JSON."
+  },
+  {
+    "id": 63,
+    "level": "Mid",
+    "category": "GitLab CI",
+    "question": "¿Qué es un GitLab Runner y cuáles tipos existen?",
+    "code": null,
+    "options": [
+      "El usuario admin que ejecuta los pipelines manualmente",
+      "Un proceso que ejecuta los jobs del pipeline; tipos: Shared (para todos los proyectos), Group (para un grupo) y Specific (para un proyecto concreto)",
+      "Un tipo de variable de entorno especial",
+      "Una interfaz gráfica para monitorear pipelines"
+    ],
+    "correct": 1,
+    "explanation": "Los runners pueden ejecutar jobs en Docker, VMs, K8s o shell. En pipelines Java se usan runners Docker con la imagen maven:3.9-eclipse-temurin-17 para el job de build. Los runners específicos permiten ejecutar jobs en hardware especializado."
+  },
+  {
+    "id": 64,
+    "level": "Mid",
+    "category": "Jenkins",
+    "question": "¿Qué es un Jenkinsfile y cuáles son sus dos tipos principales?",
+    "code": null,
+    "options": [
+      "Un tipo de Dockerfile específico para Jenkins",
+      "Un archivo que define el pipeline CI/CD como código versionado en el repositorio; tipos: Declarative (estructura fija y legible, recomendado) y Scripted (Groovy puro, más flexible)",
+      "Solo configura acceso al repositorio Git",
+      "Un archivo de configuración de servidores Java"
+    ],
+    "correct": 1,
+    "explanation": "Declarative: estructura clara con agent, stages, steps, post. Recomendado para la mayoría de casos. Scripted: Groovy completo, necesario para lógica compleja y dinámica. Ambos viven en el repositorio y se versionan igual que el código."
+  },
+  {
+    "id": 65,
+    "level": "Mid",
+    "category": "Jenkins",
+    "question": "¿Qué es un Jenkins agent y por qué es importante en pipelines Java?",
+    "code": null,
+    "options": [
+      "El servidor donde se almacenan los artefactos Maven",
+      "Una librería compartida de Jenkins",
+      "Un nodo donde Jenkins ejecuta los jobs; en pipelines modernos se usan agents Docker con el JDK y Maven, ejecutándose en contenedores efímeros sin contaminar el servidor",
+      "El usuario administrador de Jenkins"
+    ],
+    "correct": 2,
+    "explanation": "El controller de Jenkins orquesta, los agents ejecutan. Con agent { docker { image 'maven:3.9-eclipse-temurin-17' } }, el job se ejecuta en un contenedor efímero con el toolchain exacto, sin contaminar el agente."
+  },
+  {
+    "id": 66,
+    "level": "Mid",
+    "category": "Jenkins",
+    "question": "¿Qué son las Jenkins Shared Libraries y para qué sirven?",
+    "code": null,
+    "options": [
+      "Librerías Java que se cargan en el classpath del proyecto",
+      "Código Groovy reutilizable versionado en un repositorio Git que múltiples Jenkinsfiles pueden importar para estandarizar steps como build, deploy o notify sin duplicar código",
+      "Plugins de Jenkins para conectar con Docker",
+      "Configuraciones globales del servidor Jenkins"
+    ],
+    "correct": 1,
+    "explanation": "Una Shared Library puede tener un step deployToECS que todos los proyectos Java usan. Si cambias el proceso de deploy, lo cambias en un solo lugar y todos los proyectos lo heredan en su siguiente ejecución."
+  },
+  {
+    "id": 67,
+    "level": "Mid",
+    "category": "Config & IaC",
+    "question": "¿Qué es Terraform y cómo se relaciona con el trabajo de un Java Backend developer?",
+    "code": null,
+    "options": [
+      "Es un gestor de dependencias para Java",
+      "Un orquestador de contenedores alternativo a K8s",
+      "Es un framework de testing de infraestructura",
+      "Una herramienta de IaC que permite definir y provisionar infraestructura en archivos declarativos versionables; el developer debe entender cómo sus apps se despliegan en la infra que el equipo provisiona"
+    ],
+    "correct": 3,
+    "explanation": "En equipos DevOps modernos, los developers participan en la definición de la infra de sus servicios. El estado de la infra vive en código (terraform plan, terraform apply) y se versiona en Git, haciendo los cambios auditables y reproducibles."
+  },
+  {
+    "id": 68,
+    "level": "Mid",
+    "category": "Config & IaC",
+    "question": "¿Qué es Helm en Kubernetes y para qué sirve a un equipo Java?",
+    "code": null,
+    "options": [
+      "Una herramienta de logging para contenedores",
+      "Un alternativo a Docker para construir imágenes",
+      "Un sistema de monitoreo para K8s",
+      "Un gestor de paquetes para K8s que permite templatizar manifiestos YAML y desplegar apps como charts reutilizables con diferentes valores por entorno (dev, staging, prod)"
+    ],
+    "correct": 3,
+    "explanation": "Sin Helm: copias y modificas los mismos YAMLs para cada entorno. Con Helm: un Chart con templates y un values-prod.yaml. helm upgrade myapp ./chart -f values-prod.yaml despliega o actualiza la app. Facilita el versionado de releases de infraestructura."
+  },
+  {
+    "id": 69,
+    "level": "Mid",
+    "category": "Config & IaC",
+    "question": "¿Qué es un manifiesto YAML en K8s y por qué se versiona en Git?",
+    "code": null,
+    "options": [
+      "Son archivos generados automáticamente que no deben editarse",
+      "Solo son útiles con Helm, sin Helm no tienen valor",
+      "Un archivo de configuración de Java",
+      "Un archivo declarativo que describe el estado deseado de recursos K8s (Deployment, Service, ConfigMap); versionarlo en Git permite reproducir cualquier estado pasado y revisar cambios en PRs"
+    ],
+    "correct": 3,
+    "explanation": "Los manifiestos son la 'fuente de verdad' del estado de la app en K8s. En Git permiten: saber quién cambió qué y cuándo (git blame), hacer rollback (git revert), y revisar cambios de infraestructura en PRs igual que el código."
+  },
+  {
+    "id": 70,
+    "level": "Mid",
+    "category": "CI/CD",
+    "question": "¿Qué es pipeline como código y cuál es su ventaja principal?",
+    "code": null,
+    "options": [
+      "Escribir scripts de deploy en Java",
+      "Definir el pipeline en un archivo versionado en el mismo repositorio (Jenkinsfile, .gitlab-ci.yml, GitHub Actions), tratándolo como código con review y versionado",
+      "Usar una interfaz gráfica para configurar el pipeline",
+      "Un pipeline que genera código automáticamente"
+    ],
+    "correct": 1,
+    "explanation": "Pipeline as Code significa que el archivo de configuración vive junto al código fuente. Evoluciona con la app, se revisa en PRs, se hace rollback junto con el código y es reproducible en cualquier entorno."
+  },
+  {
+    "id": 71,
+    "level": "Mid",
+    "category": "CI/CD",
+    "question": "¿Qué es un Quality Gate en CI/CD?",
+    "code": null,
+    "options": [
+      "Una puerta de acceso físico al servidor",
+      "Un tipo de test de aceptación de usuario",
+      "Un conjunto de condiciones (coverage, bugs, vulnerabilidades) que el código debe cumplir para que el pipeline avance al siguiente stage",
+      "Un proceso de revisión manual obligatorio"
+    ],
+    "correct": 2,
+    "explanation": "Un Quality Gate define umbrales mínimos: cobertura > 75%, 0 bugs críticos, 0 vulnerabilidades críticas. Si no se cumplen, el pipeline falla antes de generar el artefacto."
+  },
+  {
+    "id": 72,
+    "level": "Mid",
+    "category": "Observabilidad",
+    "question": "¿Qué es un dashboard de Grafana y cómo se alimenta con datos de Spring Boot?",
+    "code": null,
+    "options": [
+      "Una interfaz para gestionar contenedores Docker",
+      "Un sistema de alertas que reemplaza PagerDuty",
+      "Solo funciona con bases de datos SQL",
+      "Herramienta de visualización que consume métricas de Prometheus (que scrapea /actuator/prometheus via Micrometer) para mostrar gráficos en tiempo real"
+    ],
+    "correct": 3,
+    "explanation": "Flujo: Spring Boot + Micrometer → expone /actuator/prometheus → Prometheus hace scraping cada 15s → Grafana consulta Prometheus y renderiza dashboards. La dependencia clave es micrometer-registry-prometheus."
+  },
+  {
+    "id": 73,
+    "level": "Mid",
+    "category": "Observabilidad",
+    "question": "¿Qué métricas clave monitorearías en una app Java en producción?",
+    "code": null,
+    "options": [
+      "Solo métricas que el cliente solicita",
+      "Solo el tiempo de respuesta promedio",
+      "Solo CPU y memoria del servidor",
+      "JVM: heap usado, GC pause time, threads; App: latencia p50/p95/p99, tasa de errores HTTP 4xx/5xx, throughput; Negocio: órdenes procesadas, pagos fallidos"
+    ],
+    "correct": 3,
+    "explanation": "Los 'Four Golden Signals': Latency, Traffic, Errors, Saturation. Para Java: GC pressure (pauses > 200ms indican problemas de heap), connection pool usage (HikariCP), thread pool saturation y métricas de negocio."
+  },
+  {
+    "id": 74,
+    "level": "Mid",
+    "category": "DevSecOps",
+    "question": "¿Qué es el escaneo de dependencias en un proyecto Java?",
+    "code": null,
+    "options": [
+      "Verificar que todas las dependencias están actualizadas",
+      "Es responsabilidad exclusiva del equipo de seguridad",
+      "Solo aplica para dependencias de front-end",
+      "Analizar el pom.xml para detectar librerías con CVEs conocidos usando OWASP Dependency Check o Snyk; integrado en el pipeline para bloquear builds con vulnerabilidades críticas"
+    ],
+    "correct": 3,
+    "explanation": "OWASP Dependency Check tiene plugin para Maven/Gradle. Analiza el classpath contra la NVD (National Vulnerability Database). Snyk ofrece auto-PRs para actualizar versiones vulnerables."
+  },
+  {
+    "id": 75,
+    "level": "Mid",
+    "category": "DevSecOps",
+    "question": "¿Qué es 'supply chain security' en el contexto de Java?",
+    "code": null,
+    "options": [
+      "Solo aplica a proyectos open source",
+      "Garantizar la integridad de las dependencias Maven, las imágenes base Docker y el pipeline CI/CD para evitar que código malicioso llegue a producción",
+      "La seguridad entre microservicios en producción",
+      "La seguridad de la cadena de suministro física de servidores"
+    ],
+    "correct": 1,
+    "explanation": "Log4Shell demostró el riesgo. Medidas: usar SBOMs (Software Bill of Materials), fijar versiones de dependencias con hashes, usar imágenes base de registries de confianza, firmar artefactos con Cosign, y auditar el acceso al pipeline."
+  },
+  {
+    "id": 76,
+    "level": "Mid",
+    "category": "Cloud & Entornos",
+    "question": "¿Qué es una estrategia de disaster recovery y cómo aplica a microservicios Java?",
+    "code": null,
+    "options": [
+      "Solo hacer backups de la base de datos",
+      "Es responsabilidad exclusiva del equipo de infraestructura",
+      "Solo aplica a aplicaciones legacy",
+      "Un plan con RTO y RPO que define cómo restaurar el servicio tras un fallo catastrófico, incluyendo runbooks, backups y entornos alternativos"
+    ],
+    "correct": 3,
+    "explanation": "RTO: cuánto tiempo tardas en recuperarte. RPO: cuántos datos puedes perder. Para microservicios: imágenes Docker versionadas en el registry, manifiestos K8s en Git, backups automatizados de BD, runbooks de recuperación ensayados."
+  },
+  {
+    "id": 77,
+    "level": "Mid",
+    "category": "Docker",
+    "question": "¿Qué hace docker-compose up --build vs docker-compose up?",
+    "code": null,
+    "options": [
+      "--build inicia en background",
+      "--build solo funciona en CI",
+      "Son idénticos",
+      "--build fuerza reconstruir imágenes desde el Dockerfile; sin él usa imágenes cacheadas aunque el código haya cambiado"
+    ],
+    "correct": 3,
+    "explanation": "Sin --build, docker-compose levanta contenedores con las imágenes ya construidas. Con --build, ejecuta docker build para cada servicio antes de levantarlo. Esencial cuando modificas el Dockerfile o el código."
+  },
+  {
+    "id": 78,
+    "level": "Mid",
+    "category": "Docker",
+    "question": "¿Qué es un Docker registry y cuáles son las opciones comunes para equipos Java?",
+    "code": null,
+    "options": [
+      "Una base de datos de contenedores en ejecución",
+      "Un orquestador de contenedores",
+      "Un repositorio donde se almacenan y versionan las imágenes Docker; opciones: Docker Hub, GitHub Container Registry, GitLab Registry, AWS ECR, Nexus/Artifactory",
+      "Un servidor de logs de Docker"
+    ],
+    "correct": 2,
+    "explanation": "El pipeline construye la imagen, la tagea (myapp:1.2.3 y myapp:latest) y la pushea al registry. Staging y producción hacen pull desde el registry. Nexus/Artifactory son populares en empresas por el control y proxy de imágenes."
+  }
+]
