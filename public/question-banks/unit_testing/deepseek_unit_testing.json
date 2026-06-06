@@ -1,0 +1,778 @@
+[
+  {
+    "id": 1,
+    "level": "Junior",
+    "category": "Fundamentos",
+    "question": "¿Cuál de las siguientes afirmaciones define correctamente una prueba unitaria?",
+    "options": [
+      "Prueba que verifica la interacción entre múltiples módulos del sistema.",
+      "Prueba que valida el comportamiento de una unidad de código aislada (generalmente un método o clase).",
+      "Prueba que se ejecuta automáticamente en un entorno de producción.",
+      "Prueba que verifica únicamente la interfaz de usuario."
+    ],
+    "correct": 1,
+    "explanation": "Prueba unitaria se enfoca en la unidad más pequeña de código (método, función) de forma aislada, sin dependencias externas como BD o red."
+  },
+  {
+    "id": 2,
+    "level": "Junior",
+    "category": "Fundamentos",
+    "question": "¿Qué característica diferencia una prueba unitaria de una prueba de integración?",
+    "options": [
+      "La prueba unitaria siempre usa una base de datos real.",
+      "La prueba unitaria verifica el sistema completo, mientras que la de integración solo un componente.",
+      "La prueba unitaria aísla la unidad de código (usa mocks/stubs) y la prueba de integración verifica colaboración entre componentes reales.",
+      "No hay diferencia significativa."
+    ],
+    "correct": 2,
+    "explanation": "Unit test aísla la unidad bajo prueba, reemplazando dependencias reales por dobles (mocks). Integration test prueba la comunicación entre módulos reales."
+  },
+  {
+    "id": 3,
+    "level": "Junior",
+    "category": "Fundamentos",
+    "question": "¿Cuál de los siguientes NO es un beneficio típico de las pruebas unitarias?",
+    "options": [
+      "Detección temprana de errores.",
+      "Documentación viva del comportamiento del código.",
+      "Verificación de la interfaz gráfica de usuario.",
+      "Facilita la refactorización segura."
+    ],
+    "correct": 2,
+    "explanation": "Las pruebas unitarias se centran en lógica, no en UI. La interfaz gráfica requiere pruebas de integración o end-to-end."
+  },
+  {
+    "id": 4,
+    "level": "Mid",
+    "category": "Fundamentos",
+    "question": "Dado el siguiente método, ¿qué prueba unitaría estaría justificada? public int divide(int a, int b) { if (b == 0) throw new IllegalArgumentException(); return a/b; }",
+    "code": "public int divide(int a, int b) { if (b == 0) throw new IllegalArgumentException(); return a/b; }",
+    "options": [
+      "Probar que lanza excepción cuando b es 0.",
+      "Probar que la UI muestra un error de división por cero.",
+      "Probar que la base de datos guarda el resultado.",
+      "Probar que el sistema envía un correo al loguear la excepción."
+    ],
+    "correct": 0,
+    "explanation": "Prueba unitaria debe validar la lógica de división y el manejo de la excepción, no la UI, BD o correo."
+  },
+  {
+    "id": 5,
+    "level": "Mid",
+    "category": "Fundamentos",
+    "question": "¿Qué significa que una prueba unitaria sea 'determinista'?",
+    "options": [
+      "Siempre da el mismo resultado para las mismas condiciones de entrada.",
+      "Puede fallar aleatoriamente según el entorno.",
+      "Depende del orden de ejecución de las pruebas.",
+      "Requiere conexión a internet."
+    ],
+    "correct": 0,
+    "explanation": "Determinismo: para las mismas entradas y estado inicial, la prueba siempre pasa o siempre falla. No debe depender de factores externos o aleatorios."
+  },
+  {
+    "id": 6,
+    "level": "Junior",
+    "category": "JUnit",
+    "question": "En JUnit 5, ¿qué anotación se usa para marcar un método que se ejecuta antes de cada prueba (antes de cada @Test)?",
+    "options": [
+      "@BeforeClass",
+      "@BeforeEach",
+      "@BeforeAll",
+      "@Before"
+    ],
+    "correct": 1,
+    "explanation": "En JUnit 5, @BeforeEach ejecuta antes de cada método @Test. @BeforeAll se ejecuta una vez antes de todas las pruebas."
+  },
+  {
+    "id": 7,
+    "level": "Junior",
+    "category": "JUnit",
+    "question": "¿Cuál de las siguientes aserciones de JUnit 5 verifica que un valor sea nulo?",
+    "options": [
+      "assertEquals(null, objeto)",
+      "assertNull(objeto)",
+      "assertNotNull(objeto)",
+      "assertSame(null, objeto)"
+    ],
+    "correct": 1,
+    "explanation": "assertNull(objeto) es el método específico para verificar nulidad. assertEquals(null, objeto) también funciona pero es menos semántico."
+  },
+  {
+    "id": 8,
+    "level": "Junior",
+    "category": "JUnit",
+    "question": "¿Qué anotación de JUnit 5 permite ejecutar una prueba parametrizada con múltiples argumentos?",
+    "options": [
+      "@RepeatedTest",
+      "@ParameterizedTest",
+      "@TestFactory",
+      "@ValueSource"
+    ],
+    "correct": 1,
+    "explanation": "@ParameterizedTest indica que el método es parametrizado. Debe combinarse con una fuente de argumentos como @ValueSource, @CsvSource, etc."
+  },
+  {
+    "id": 9,
+    "level": "Mid",
+    "category": "JUnit",
+    "question": "Dado el siguiente test, ¿qué assert fallaría? int resultado = sumar(2,3); assertEquals(5, resultado); assertTrue(resultado > 4); assertFalse(resultado == 6);",
+    "code": "int resultado = sumar(2,3);\nassertEquals(5, resultado);\nassertTrue(resultado > 4);\nassertFalse(resultado == 6);",
+    "options": [
+      "assertEquals(5, resultado)",
+      "assertTrue(resultado > 4)",
+      "assertFalse(resultado == 6)",
+      "Ninguna falla"
+    ],
+    "correct": 3,
+    "explanation": "Si sumar(2,3) retorna 5, todas las aserciones son correctas: 5==5, 5>4 true, 5==6 false. Todas pasan."
+  },
+  {
+    "id": 10,
+    "level": "Junior",
+    "category": "JUnit",
+    "question": "En JUnit 5, ¿cómo se espera que una prueba lance una excepción específica?",
+    "options": [
+      "@Test(expected = ArithmeticException.class)",
+      "assertThrows(ArithmeticException.class, () -> metodo())",
+      "try-catch y fail()",
+      "@Test(exception = ArithmeticException.class)"
+    ],
+    "correct": 1,
+    "explanation": "JUnit 5 usa assertThrows, que recibe la clase de excepción y un ejecutable lambda. La opción @Test(expected) es de JUnit 4."
+  },
+  {
+    "id": 11,
+    "level": "Mid",
+    "category": "JUnit",
+    "question": "¿Cuál es el orden de ejecución de los métodos de test en JUnit 5 si no se usa ninguna anotación de orden?",
+    "options": [
+      "Orden alfabético del nombre del método.",
+      "Orden definido por el desarrollador en el código fuente.",
+      "Orden no especificado; depende del motor de ejecución.",
+      "Orden de prioridad basado en anotaciones @Tag."
+    ],
+    "correct": 2,
+    "explanation": "Sin anotación @TestMethodOrder, el orden es no determinado intencionalmente para fomentar que los tests sean independientes."
+  },
+  {
+    "id": 12,
+    "level": "Junior",
+    "category": "JUnit",
+    "question": "¿Qué anotación de JUnit 5 se usa para ejecutar código una sola vez antes de todas las pruebas de la clase?",
+    "options": [
+      "@BeforeEach",
+      "@BeforeAll",
+      "@PostConstruct",
+      "@BeforeClass"
+    ],
+    "correct": 1,
+    "explanation": "@BeforeAll (JUnit5) o @BeforeClass (JUnit4) ejecuta método estático una sola vez antes de todas las pruebas de la clase."
+  },
+  {
+    "id": 13,
+    "level": "Mid",
+    "category": "JUnit",
+    "question": "Considerando JUnit 5, ¿cuál de las siguientes aserciones verifica que dos arrays de enteros sean iguales elemento por elemento?",
+    "options": [
+      "assertEquals(array1, array2)",
+      "assertArrayEquals(array1, array2)",
+      "assertSame(array1, array2)",
+      "assertIterableEquals(array1, array2)"
+    ],
+    "correct": 1,
+    "explanation": "assertArrayEquals es específico para arrays y compara cada elemento. assertEquals para arrays en JUnit5 también funciona pero no da detalles detallados de la diferencia."
+  },
+  {
+    "id": 14,
+    "level": "Junior",
+    "category": "JUnit",
+    "question": "¿Cuál es el propósito de la anotación @Disabled en JUnit 5?",
+    "options": [
+      "Eliminar permanentemente la prueba del código fuente.",
+      "Deshabilitar temporalmente la ejecución de una prueba o clase.",
+      "Marcar una prueba como obsoleta.",
+      "Ignorar una prueba solo en entornos de desarrollo."
+    ],
+    "correct": 1,
+    "explanation": "@Disabled desactiva la prueba o clase contenedora. No se ejecutará, pero se reportará como ignorada."
+  },
+  {
+    "id": 15,
+    "level": "Mid",
+    "category": "JUnit",
+    "question": "En JUnit 5, ¿cómo se puede ejecutar la misma prueba varias veces con diferentes valores sin usar @ParameterizedTest?",
+    "options": [
+      "@RepeatedTest(value = 5)",
+      "@TestFactory + Stream<DynamicTest>",
+      "No se puede, es obligatorio usar @ParameterizedTest",
+      "@ValueSource"
+    ],
+    "correct": 1,
+    "explanation": "@TestFactory permite generar pruebas dinámicamente. @RepeatedTest repite la misma prueba con los mismos valores, no diferentes."
+  },
+  {
+    "id": 16,
+    "level": "Junior",
+    "category": "JUnit",
+    "question": "¿Cuál es la dependencia Maven mínima para usar JUnit 5 (Jupiter) en un proyecto?",
+    "options": [
+      "junit:junit:4.13.2",
+      "org.junit.jupiter:junit-jupiter-engine",
+      "org.junit.vintage:junit-vintage-engine",
+      "org.junit:junit-bom"
+    ],
+    "correct": 1,
+    "explanation": "junit-jupiter-engine es el módulo núcleo para ejecutar pruebas JUnit5. El vintage permite ejecutar JUnit4."
+  },
+  {
+    "id": 17,
+    "level": "Mid",
+    "category": "JUnit",
+    "question": "Observa el siguiente test. ¿Qué anotación falta para usar @TempDir? @Test void testArchivoTemporal(@TempDir Path tempDir) { ... }",
+    "code": "@Test void testArchivoTemporal(@TempDir Path tempDir) { ... }",
+    "options": [
+      "Falta @ExtendWith(TempDirExtension.class)",
+      "No falta ninguna, @TempDir funciona directamente en JUnit 5",
+      "Falta @RegisterExtension",
+      "Falta @Rule"
+    ],
+    "correct": 1,
+    "explanation": "@TempDir es una extensión integrada en JUnit 5 desde versión 5.4, funciona sin anotación adicional."
+  },
+  {
+    "id": 18,
+    "level": "Junior",
+    "category": "Mockito",
+    "question": "¿Cuál es el propósito principal de Mockito en pruebas unitarias?",
+    "options": [
+      "Generar informes de cobertura.",
+      "Crear objetos simulados (mocks) para aislar la unidad bajo prueba.",
+      "Ejecutar pruebas de integración con base de datos real.",
+      "Automatizar pruebas de interfaz gráfica."
+    ],
+    "correct": 1,
+    "explanation": "Mockito permite crear mocks, stubs y verificar interacciones, facilitando el aislamiento de dependencias externas en unit tests."
+  },
+  {
+    "id": 19,
+    "level": "Junior",
+    "category": "Mockito",
+    "question": "Dada la dependencia `UserService userService = mock(UserService.class);`, ¿cuál de las siguientes líneas crea un stub para que `userService.findById(1L)` retorne un objeto `User`?",
+    "options": [
+      "when(userService.findById(1L)).thenReturn(user);",
+      "doReturn(user).when(userService).findById(1L);",
+      "Mockito.when(userService.findById(1L)).thenReturn(user);",
+      "Todas las anteriores son válidas en Mockito"
+    ],
+    "correct": 3,
+    "explanation": "Las tres formas son sintaxis válida: when-thenReturn estándar, doReturn-when para spies o métodos void, y con import estático de Mockito."
+  },
+  {
+    "id": 20,
+    "level": "Mid",
+    "category": "Mockito",
+    "question": "¿Cuál de las siguientes opciones verifica que el método `save` del mock `userRepository` fue llamado exactamente una vez con cualquier argumento de tipo `User`?",
+    "code": "userService.register(new User(\"john\"));",
+    "options": [
+      "verify(userRepository, times(1)).save(any(User.class));",
+      "verify(userRepository, atLeastOnce()).save(any(User.class));",
+      "verify(userRepository).save(any());",
+      "verify(userRepository, times(1)).save(any());"
+    ],
+    "correct": 0,
+    "explanation": "verify(..., times(1)).save(any(User.class)) es explícito. any() también funciona pero menos específico. La opción 0 es la más correcta y explícita."
+  },
+  {
+    "id": 21,
+    "level": "Junior",
+    "category": "Mockito",
+    "question": "¿Qué anotación de Mockito se usa para crear automáticamente un mock e inyectarlo en el campo anotado con @InjectMocks?",
+    "options": [
+      "@Mock",
+      "@Spy",
+      "@InjectMocks",
+      "@Captor"
+    ],
+    "correct": 0,
+    "explanation": "@Mock crea el mock. @InjectMocks inyecta los mocks (o spies) en el objeto bajo prueba. La pregunta pide la anotación para crear el mock, no para inyectar."
+  },
+  {
+    "id": 22,
+    "level": "Mid",
+    "category": "Mockito",
+    "question": "Observa el código: `List<String> mockedList = mock(List.class); mockedList.add(\"uno\");` ¿Qué devuelve `mockedList.get(0)` sin hacer stub?",
+    "code": "List<String> mockedList = mock(List.class);\nmockedList.add(\"uno\");\nSystem.out.println(mockedList.get(0));",
+    "options": [
+      "\"uno\"",
+      "null",
+      "Lanza excepción",
+      "0"
+    ],
+    "correct": 1,
+    "explanation": "Por defecto, los métodos de mock retornan valores por defecto: null para objetos, false para boolean, 0 para numéricos. El método add no almacena realmente el valor."
+  },
+  {
+    "id": 23,
+    "level": "Junior",
+    "category": "Mockito",
+    "question": "¿Cuál es la diferencia entre `mock()` y `spy()` en Mockito?",
+    "options": [
+      "spy() es solo para clases finales, mock() para interfaces.",
+      "spy() crea un objeto real y envuelve sus métodos reales por defecto; mock() crea un objeto simulado completamente.",
+      "mock() se usa para bases de datos, spy() para servicios REST.",
+      "No hay diferencia, son sinónimos."
+    ],
+    "correct": 1,
+    "explanation": "Spy usa la implementación real del objeto a menos que se stubee. Mock tiene todas las respuestas por defecto (null, 0)."
+  },
+  {
+    "id": 24,
+    "level": "Mid",
+    "category": "Mockito",
+    "question": "¿Cómo se captura un argumento pasado a un mock para inspeccionarlo después?",
+    "options": [
+      "ArgumentCaptor<User> captor = ArgumentCaptor.forClass(User.class); verify(mock).metodo(captor.capture()); User captured = captor.getValue();",
+      "Usando @Captor y luego captor.getAllValues()",
+      "Con ArgumentMatcher personalizado",
+      "Todas las anteriores son formas válidas de capturar argumentos"
+    ],
+    "correct": 3,
+    "explanation": "ArgumentCaptor es la herramienta principal. @Captor es una alternativa de anotación. También se puede usar ArgumentMatcher implementado, pero es menos común. Las tres son válidas."
+  },
+  {
+    "id": 25,
+    "level": "Junior",
+    "category": "Mockito",
+    "question": "¿Qué anotación de Mockito debe activarse con `MockitoAnnotations.openMocks(this)` o `@ExtendWith(MockitoExtension.class)`?",
+    "options": [
+      "@Mock, @Spy, @InjectMocks, @Captor",
+      "Solo @Mock",
+      "@RunWith(MockitoJUnitRunner.class) para JUnit4",
+      "Todas las anteriores"
+    ],
+    "correct": 3,
+    "explanation": "Todas esas anotaciones requieren inicialización. En JUnit5, @ExtendWith(MockitoExtension.class) lo hace. En JUnit4, @RunWith o MockitoAnnotations.openMocks()."
+  },
+  {
+    "id": 26,
+    "level": "Mid",
+    "category": "Mockito",
+    "question": "Dado el siguiente código, ¿qué verificación asegura que `procesar()` nunca fue llamado? `List<String> mock = mock(List.class);`",
+    "code": "List<String> mock = mock(List.class);",
+    "options": [
+      "verify(mock, never()).add(anyString());",
+      "verify(mock, times(0)).add(anyString());",
+      "verifyNoInteractions(mock);",
+      "Todas las anteriores son equivalentes en este contexto"
+    ],
+    "correct": 3,
+    "explanation": "never() es alias de times(0). verifyNoInteractions verifica que no haya interacción alguna. Si solo interesa un método, las tres valen."
+  },
+  {
+    "id": 27,
+    "level": "Junior",
+    "category": "Mockito",
+    "question": "En Mockito, ¿qué hace `doThrow(new RuntimeException()).when(mock).metodoVoid()`?",
+    "options": [
+      "Configura el mock para que lance excepción cuando se llame a métodoVoid.",
+      "Configura el mock para que retorne una excepción como valor.",
+      "No es válido para métodos void.",
+      "Captura la excepción lanzada por el método real."
+    ],
+    "correct": 0,
+    "explanation": "Para métodos void, se debe usar doThrow cuando se quiere que lancen excepción. when-thenThrow no es posible en método void."
+  },
+  {
+    "id": 28,
+    "level": "Mid",
+    "category": "Mockito",
+    "question": "¿Qué problema resuelve Mockito con `lenient()`?",
+    "options": [
+      "Permite que las interacciones no stubbeadas no fallen la prueba.",
+      "Permite crear mocks de clases finales.",
+      "Relaja la verificación de argumentos para que cualquier coincidencia pase.",
+      "Ignora los stubs no utilizados y evita excepciones por stubs no usados."
+    ],
+    "correct": 3,
+    "explanation": "A partir de Mockito 2, los stubs no utilizados generan advertencias o errores con StrictStubs. lenient() desactiva esa verificación estricta."
+  },
+  {
+    "id": 29,
+    "level": "Junior",
+    "category": "Mockito",
+    "question": "¿Cuál es la forma correcta de inyectar un mock en un objeto anotado con @InjectMocks?",
+    "options": [
+      "Mockito usa reflexión para inyectar mocks en campos, setters o constructor automáticamente.",
+      "Hay que llamar a injectMocks manualmente.",
+      "Solo funciona con constructor y requiere configuración XML.",
+      "No se puede, se deben usar setters públicos."
+    ],
+    "correct": 0,
+    "explanation": "Mockito intenta inyectar mediante constructor, setters o campos, en ese orden, usando reflexión. No requiere configuración adicional si los mocks están creados."
+  },
+  {
+    "id": 30,
+    "level": "Mid",
+    "category": "Otros Frameworks",
+    "question": "¿Qué librería de aserciones proporciona un estilo fluente (fluent API) como `assertThat(user.getName()).isEqualTo(\"John\");`?",
+    "options": [
+      "JUnit Assert",
+      "Hamcrest",
+      "AssertJ",
+      "TestNG Assert"
+    ],
+    "correct": 2,
+    "explanation": "AssertJ provee una API fluida muy legible. Hamcrest usa assertThat(..., matcher) pero no es encadenado como AssertJ."
+  },
+  {
+    "id": 31,
+    "level": "Junior",
+    "category": "Otros Frameworks",
+    "question": "¿Cuál de estas es una diferencia entre TestNG y JUnit?",
+    "options": [
+      "TestNG permite dependencias entre pruebas, JUnit no nativamente.",
+      "JUnit tiene mejor integración con Maven que TestNG.",
+      "TestNG no permite pruebas parametrizadas.",
+      "JUnit5 tiene todas las características de TestNG, sin diferencias."
+    ],
+    "correct": 0,
+    "explanation": "TestNG permite definir dependencias (dependsOnMethods) y grupos, mientras que JUnit (hasta JUnit4) no. JUnit5 introdujo @TestInstance y orden, pero dependencias explícitas no son nativas."
+  },
+  {
+    "id": 32,
+    "level": "Mid",
+    "category": "Otros Frameworks",
+    "question": "¿Qué hace la siguiente aserción de Hamcrest? `assertThat(list, hasItem(\"John\"));`",
+    "options": [
+      "Verifica que la lista contiene al menos un elemento igual a \"John\".",
+      "Verifica que la lista contiene exactamente un elemento \"John\".",
+      "Verifica que la lista tiene un solo elemento.",
+      "Verifica que \"John\" es igual a la lista."
+    ],
+    "correct": 0,
+    "explanation": "hasItem es un matcher que verifica existencia de al menos un elemento igual al valor. Para exactamente uno, se usa contains o containsInAnyOrder."
+  },
+  {
+    "id": 33,
+    "level": "Junior",
+    "category": "Otros Frameworks",
+    "question": "¿Para qué sirve PowerMock?",
+    "options": [
+      "Simular métodos estáticos, constructores y clases finales, que Mockito solo no puede.",
+      "Ejecutar pruebas de rendimiento.",
+      "Generar reportes de cobertura de código.",
+      "Es un framework de pruebas de UI."
+    ],
+    "correct": 0,
+    "explanation": "PowerMock extiende Mockito o EasyMock permitiendo mockear código que normalmente no es posible (estáticos, final, new)."
+  },
+  {
+    "id": 34,
+    "level": "Mid",
+    "category": "Otros Frameworks",
+    "question": "¿Cuál es el beneficio de usar AssertJ sobre las aserciones nativas de JUnit?",
+    "options": [
+      "Sintaxis más legible y encadenable, además de más matchers específicos (colecciones, excepciones, fechas).",
+      "Mayor rendimiento en ejecución.",
+      "No requiere configuración adicional.",
+      "Integración con bases de datos."
+    ],
+    "correct": 0,
+    "explanation": "AssertJ ofrece API fluida, mensajes de error claros y muchos matchers. No mejora rendimiento, sí requiere dependencia."
+  },
+  {
+    "id": 35,
+    "level": "Junior",
+    "category": "Tipos de pruebas",
+    "question": "¿Qué tipo de prueba valida que las funcionalidades principales de la aplicación funcionan sin errores críticos después de un despliegue, de forma rápida?",
+    "options": [
+      "Prueba de integración",
+      "Prueba de regresión",
+      "Smoke test (prueba de humo)",
+      "Prueba de estrés"
+    ],
+    "correct": 2,
+    "explanation": "Smoke test es un conjunto mínimo de pruebas para verificar que el sistema no \"se incendia\" antes de pruebas más profundas. Se ejecuta rápido."
+  },
+  {
+    "id": 36,
+    "level": "Mid",
+    "category": "Tipos de pruebas",
+    "question": "Una prueba funcional se diferencia de una unitaria principalmente en que:",
+    "options": [
+      "La prueba funcional prueba desde la perspectiva del usuario final, validando requerimientos, a menudo involucra múltiples unidades.",
+      "La prueba funcional se escribe después de la unitaria.",
+      "La prueba funcional no puede ser automatizada.",
+      "La prueba funcional solo la hace el equipo de QA."
+    ],
+    "correct": 0,
+    "explanation": "Functional test prueba un comportamiento que entrega valor al usuario, usualmente involucra varios componentes, pero aún puede ser automatizada."
+  },
+  {
+    "id": 37,
+    "level": "Junior",
+    "category": "Tipos de pruebas",
+    "question": "¿Cuál es el objetivo de las pruebas de regresión?",
+    "options": [
+      "Verificar que cambios nuevos no rompan funcionalidades existentes.",
+      "Medir el rendimiento del sistema.",
+      "Probar únicamente las nuevas características.",
+      "Ejecutar pruebas solo en producción."
+    ],
+    "correct": 0,
+    "explanation": "Regresión: asegurar que modificación no introduzca defectos en partes que ya funcionaban."
+  },
+  {
+    "id": 38,
+    "level": "Junior",
+    "category": "Tipos de pruebas",
+    "question": "¿Qué tipo de prueba se centra en la interacción entre dos o más módulos, usando dependencias reales o parcialmente simuladas?",
+    "options": [
+      "Prueba unitaria",
+      "Prueba de integración",
+      "Prueba de aceptación",
+      "Prueba de carga"
+    ],
+    "correct": 1,
+    "explanation": "Prueba de integración: verifica que los módulos funcionen correctamente juntos. Puede usar bases de datos reales o servicios reales pero también dobles."
+  },
+  {
+    "id": 39,
+    "level": "Mid",
+    "category": "Tipos de pruebas",
+    "question": "Dentro de la pirámide de pruebas (Mike Cohn), ¿qué nivel ocupan las pruebas unitarias?",
+    "options": [
+      "Base (la más numerosa)",
+      "Cima (pocas, costosas)",
+      "Medio (integraciones)",
+      "No aparecen en la pirámide"
+    ],
+    "correct": 0,
+    "explanation": "La pirámide recomienda muchas pruebas unitarias (base), menos de integración y aún menos end-to-end."
+  },
+  {
+    "id": 40,
+    "level": "Junior",
+    "category": "Tipos de pruebas",
+    "question": "¿Cuál es la principal característica de una prueba E2E (end-to-end)?",
+    "options": [
+      "Prueba el flujo completo de la aplicación simulando un usuario real (UI, API, BD).",
+      "Prueba solo la capa de base de datos.",
+      "Se ejecuta en memoria sin dependencias.",
+      "Es equivalente a una prueba unitaria múltiple."
+    ],
+    "correct": 0,
+    "explanation": "E2E prueba el sistema integrado en un entorno similar a producción, desde la interacción del usuario hasta las capas traseras."
+  },
+  {
+    "id": 41,
+    "level": "Mid",
+    "category": "Cobertura",
+    "question": "¿Qué mide la cobertura de líneas (line coverage)?",
+    "options": [
+      "Porcentaje de líneas de código ejecutadas por las pruebas.",
+      "Porcentaje de ramas condicionales cubiertas.",
+      "Porcentaje de métodos llamados.",
+      "Porcentaje de clases probadas."
+    ],
+    "correct": 0,
+    "explanation": "Line coverage (o statement coverage) mide qué líneas de código fuente fueron ejecutadas al menos una vez."
+  },
+  {
+    "id": 42,
+    "level": "Junior",
+    "category": "Cobertura",
+    "question": "¿Qué herramienta de cobertura de código es más común en ecosistema Java?",
+    "options": [
+      "SonarQube",
+      "JaCoCo",
+      "Emma",
+      "Surefire"
+    ],
+    "correct": 1,
+    "explanation": "JaCoCo es el estándar de facto, soportado por Maven, Gradle, y herramientas como Jenkins. SonarQube usa JaCoCo internamente."
+  },
+  {
+    "id": 43,
+    "level": "Mid",
+    "category": "Cobertura",
+    "question": "Una cobertura de ramas (branch coverage) del 80% significa que:",
+    "options": [
+      "El 80% de las líneas se ejecutaron.",
+      "El 80% de las ramas condicionales (if/else, switch) se evaluaron ambas (true y false).",
+      "El 80% de los métodos fueron invocados.",
+      "El 80% de las excepciones fueron lanzadas."
+    ],
+    "correct": 1,
+    "explanation": "Branch coverage: cada posible rama booleana de una condición debe tomarse al menos una vez (verdadero y falso)."
+  },
+  {
+    "id": 44,
+    "level": "Junior",
+    "category": "Cobertura",
+    "question": "¿Es suficiente tener 100% de cobertura de código para garantizar que el software no tiene errores?",
+    "options": [
+      "Sí, 100% cobertura asegura que no hay defectos.",
+      "No, la cobertura mide solo qué código se ejecuta, no la corrección de la lógica ni casos no considerados en pruebas.",
+      "Depende del lenguaje de programación.",
+      "Sí, es el estándar industrial."
+    ],
+    "correct": 1,
+    "explanation": "Alta cobertura es deseable pero no suficiente; pueden existir errores de lógica o casos no cubiertos por las aserciones."
+  },
+  {
+    "id": 45,
+    "level": "Mid",
+    "category": "Herramientas",
+    "question": "¿Cuál de las siguientes herramientas se integra comúnmente con Maven para ejecutar pruebas unitarias y generar reportes?",
+    "options": [
+      "Maven Surefire Plugin",
+      "Maven Failsafe Plugin",
+      "Maven Compiler Plugin",
+      "Maven Dependency Plugin"
+    ],
+    "correct": 0,
+    "explanation": "Surefire está diseñado para pruebas unitarias. Failsafe para pruebas de integración."
+  },
+  {
+    "id": 46,
+    "level": "Junior",
+    "category": "Herramientas",
+    "question": "¿Qué función cumple SonarQube en relación con las pruebas?",
+    "options": [
+      "Ejecuta las pruebas automáticamente.",
+      "Analiza calidad del código, incluyendo cobertura, duplicación, y reglas de estilo.",
+      "Es un framework de mock.",
+      "Es un servidor de integración continua."
+    ],
+    "correct": 1,
+    "explanation": "SonarQube es una plataforma de inspección continua de calidad, que muestra cobertura de pruebas, bugs, vulnerabilidades, etc."
+  },
+  {
+    "id": 47,
+    "level": "Mid",
+    "category": "Herramientas",
+    "question": "¿Qué beneficio aporta ejecutar pruebas unitarias automáticamente en un pipeline de CI/CD (ej. Jenkins, GitLab CI)?",
+    "options": [
+      "Detectar regresiones temprano, impedir despliegues si fallan pruebas críticas.",
+      "Aumentar la cobertura mágicamente.",
+      "Eliminar la necesidad de pruebas manuales por completo.",
+      "Mejorar el rendimiento de la aplicación."
+    ],
+    "correct": 0,
+    "explanation": "CI/CD integra pruebas automatizadas para validar cambios frecuentemente, evitando errores en producción."
+  },
+  {
+    "id": 48,
+    "level": "Junior",
+    "category": "Herramientas",
+    "question": "¿Cuál de los siguientes es un framework de pruebas unitarias para Java?",
+    "options": [
+      "Selenium",
+      "JUnit",
+      "JMeter",
+      "MockMVC"
+    ],
+    "correct": 1,
+    "explanation": "JUnit es framework para unit testing. Selenium es para UI automatizada, JMeter para carga, MockMVC para pruebas de controladores Spring."
+  },
+  {
+    "id": 49,
+    "level": "Mid",
+    "category": "Buenas prácticas",
+    "question": "¿Qué significa el patrón AAA en pruebas unitarias?",
+    "options": [
+      "Arrange, Act, Assert",
+      "Abstract, Actual, Assert",
+      "Act, Avoid, Assert",
+      "Arrange, Apply, Analyze"
+    ],
+    "correct": 0,
+    "explanation": "Arrange (preparar datos y mocks), Act (ejecutar el método bajo prueba), Assert (verificar resultados)."
+  },
+  {
+    "id": 50,
+    "level": "Junior",
+    "category": "Buenas prácticas",
+    "question": "¿Cuál de los siguientes es un ejemplo de mal nombre para un método de test?",
+    "options": [
+      "test1()",
+      "shouldReturnEmptyListWhenNoUsersFound()",
+      "givenValidUser_whenRegister_thenSuccess()",
+      "registerUserShouldPersistInDatabase()"
+    ],
+    "correct": 0,
+    "explanation": "Nombres como test1 son poco descriptivos. Los otros nombres expresan comportamiento o condiciones. Ideal: nombre legible que describa la situación y resultado esperado."
+  },
+  {
+    "id": 51,
+    "level": "Mid",
+    "category": "Buenas prácticas",
+    "question": "¿Por qué los tests unitarios no deben depender del orden de ejecución?",
+    "options": [
+      "Porque los tests deben ser independientes y repetibles; el orden puede causar falsos positivos/negativos si comparten estado.",
+      "Porque JUnit no permite definir orden.",
+      "Por cuestiones de rendimiento.",
+      "Porque el orden está determinado por el sistema operativo."
+    ],
+    "correct": 0,
+    "explanation": "La independencia evita que el fallo de una prueba contamine otra, y asegura que se puedan ejecutar en cualquier orden."
+  },
+  {
+    "id": 52,
+    "level": "Junior",
+    "category": "Buenas prácticas",
+    "question": "¿Qué es una prueba 'falsa positiva'?",
+    "options": [
+      "Una prueba que falla cuando el código está correcto.",
+      "Una prueba que pasa cuando el código tiene un error.",
+      "Una prueba que no se ejecuta.",
+      "Una prueba que es ignorada por @Disabled."
+    ],
+    "correct": 1,
+    "explanation": "Falso positivo: prueba pasa aunque el código bajo prueba es incorrecto (no detecta el error). Falso negativo: prueba falla cuando el código está correcto."
+  },
+  {
+    "id": 53,
+    "level": "Mid",
+    "category": "TDD",
+    "question": "¿Cuál es el ciclo fundamental de TDD (Test-Driven Development)?",
+    "options": [
+      "Red (escribir prueba fallida) -> Green (escribir código mínimo para que pase) -> Refactor (mejorar código).",
+      "Green -> Red -> Refactor",
+      "Refactor -> Red -> Green",
+      "Code -> Test -> Debug"
+    ],
+    "correct": 0,
+    "explanation": "TDD: primero prueba que falla (red), luego código que la hace pasar (green), luego refactorización manteniendo verde."
+  },
+  {
+    "id": 54,
+    "level": "Junior",
+    "category": "TDD",
+    "question": "¿Qué beneficio directo aporta escribir la prueba antes del código de producción?",
+    "options": [
+      "Fuerza a pensar en el diseño y requisitos antes de implementar, y asegura que el código sea testeable.",
+      "Ahorra tiempo porque no hay que depurar.",
+      "No requiere mocks.",
+      "Garantiza 100% de cobertura."
+    ],
+    "correct": 0,
+    "explanation": "TDD mejora el diseño, evita código innecesario y garantiza que cada funcionalidad tenga al menos una prueba automática."
+  },
+  {
+    "id": 55,
+    "level": "Mid",
+    "category": "TDD",
+    "question": "En TDD, ¿qué debe hacerse si al escribir una nueva prueba fallida el código anterior también falla?",
+    "options": [
+      "Continuar para hacer pasar la nueva prueba sin arreglar las anteriores.",
+      "Revertir los cambios y arreglar primero las pruebas rotas.",
+      "Ignorar la nueva prueba y enfocarse en refactorizar.",
+      "Eliminar la suite de pruebas completa."
+    ],
+    "correct": 1,
+    "explanation": "TDD requiere que todas las pruebas pasen antes de añadir nueva funcionalidad. Si una prueba existente falla, se debe corregir antes de continuar."
+  }
+]

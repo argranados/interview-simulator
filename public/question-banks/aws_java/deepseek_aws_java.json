@@ -1,0 +1,780 @@
+[
+  {
+    "id": 1,
+    "level": "Junior",
+    "category": "Compute",
+    "question": "Tienes una aplicación Spring Boot empaquetada como JAR. Quieres desplegarla en AWS sin gestionar servidores ni contenedores. ¿Qué servicio deberías usar principalmente?",
+    "options": [
+      "AWS Lambda con custom runtime",
+      "AWS Elastic Beanstalk",
+      "Amazon ECS con Fargate",
+      "EC2 con Auto Scaling"
+    ],
+    "correct": 1,
+    "explanation": "Elastic Beanstalk es un PaaS que abstrae servidores y contenedores. Solo subes el JAR y él gestiona el entorno. Lambda requiere adaptación para cargas largas. ECS/Fargate también es contenedor, no directo JAR."
+  },
+  {
+    "id": 2,
+    "level": "Mid",
+    "category": "Compute",
+    "question": "Estás desplegando una función Java en AWS Lambda que se ejecuta bajo demanda. ¿Cuál es una desventaja conocida llamada 'cold start' y cómo se puede mitigar para Java?",
+    "options": [
+      "La JVM tarda en inicializarse; se puede mitigar con provisioned concurrency o SnapStart.",
+      "El código no se compila; se mitiga usando GraalVM nativo.",
+      "La función se ejecuta en una región diferente; se mitiga con Global Accelerator.",
+      "Es un error de memoria; se mitiga aumentando el timeout."
+    ],
+    "correct": 0,
+    "explanation": "Cold start es la latencia inicial al crear un nuevo entorno de ejecución. Para Java, AWS Lambda SnapStart (para Java 11/17) reduce drásticamente los cold starts. También se puede usar provisioned concurrency o compilar a nativo con GraalVM."
+  },
+  {
+    "id": 3,
+    "level": "Junior",
+    "category": "Compute",
+    "question": "Necesitas ejecutar contenedores Docker (de una app Spring Boot) en AWS sin aprovisionar ni gestionar servidores EC2. ¿Cuál servicio es el más adecuado?",
+    "options": [
+      "EC2 con Docker instalado manualmente",
+      "AWS Fargate (sobre ECS o EKS)",
+      "Lambda con imágenes de contenedor",
+      "Elastic Beanstalk con plataforma Docker"
+    ],
+    "correct": 1,
+    "explanation": "Fargate es serverless para contenedores: no gestionas servidores. Lambda soporta contenedores pero tiene limitaciones (tiempo, memoria). Elastic Beanstalk Docker también es válido pero menos estándar que ECS/Fargate hoy."
+  },
+  {
+    "id": 4,
+    "level": "Mid",
+    "category": "Compute",
+    "question": "Durante un despliegue en ECS con Fargate, tu aplicación Java falla porque no puede conectarse a una base de datos RDS que está en la misma VPC. ¿Cuál es la causa más probable?",
+    "options": [
+      "Falta un Internet Gateway",
+      "El grupo de seguridad del task de ECS no permite salida al puerto de RDS",
+      "La imagen Docker es demasiado grande",
+      "Falta una NAT Gateway"
+    ],
+    "correct": 1,
+    "explanation": "Los tasks de ECS en Fargate tienen grupos de seguridad. Si no permiten tráfico de salida (o entrada desde el task) al puerto de RDS, la conexión falla. RDS suele estar en subred privada, pero el problema típico es de seguridad."
+  },
+  {
+    "id": 5,
+    "level": "Junior",
+    "category": "Compute",
+    "question": "¿Qué servicio de AWS usarías para ejecutar un trabajo batch de Java que puede durar hasta 15 minutos, pero que no necesita estar siempre activo?",
+    "options": [
+      "AWS Batch",
+      "AWS Lambda",
+      "EC2 cron job",
+      "ECS Scheduled Task"
+    ],
+    "correct": 0,
+    "explanation": "AWS Batch está diseñado para jobs batch. Lambda tiene límite de 15 minutos. ECS Scheduled Task también sirve, pero Batch es más específico."
+  },
+  {
+    "id": 6,
+    "level": "Mid",
+    "category": "Compute",
+    "question": "¿Cuál de las siguientes opciones permite que una aplicación Java ejecutada en Lambda pueda escribir en un bucket S3 sin usar credenciales estáticas?",
+    "code": "// Código dentro de la función Lambda",
+    "options": [
+      "Configurar Access Key y Secret Key como variables de entorno.",
+      "Asignar un rol IAM a la función Lambda con permisos de escritura en S3.",
+      "Usar el archivo ~/.aws/credentials dentro del deployment.",
+      "Establecer políticas de bucket públicas."
+    ],
+    "correct": 1,
+    "explanation": "Lambda asume un rol IAM. Si ese rol tiene la política adecuada (ej. s3:PutObject), el SDK de AWS lo usará automáticamente."
+  },
+  {
+    "id": 7,
+    "level": "Junior",
+    "category": "Compute",
+    "question": "¿Qué significa 'zona de disponibilidad' (Availability Zone) en AWS?",
+    "options": [
+      "Un centro de datos o grupo de centros de datos aislados dentro de una región.",
+      "Una región completa.",
+      "Un borde de CloudFront.",
+      "Un clúster de ECS."
+    ],
+    "correct": 0,
+    "explanation": "AZ son ubicaciones físicas aisladas con baja latencia y redundancia dentro de una región."
+  },
+  {
+    "id": 8,
+    "level": "Mid",
+    "category": "Compute",
+    "question": "Para reducir el tiempo de inicio de una aplicación Java Spring Boot en Lambda, una práctica recomendada es:",
+    "options": [
+      "Usar la dependencia spring-boot-starter-web y evitar Tomcat embebido.",
+      "Implementar el 'Initialization Code' fuera del handler y usar SnapStart.",
+      "Aumentar la memoria de la función hasta 10240 MB.",
+      "Usar el runtime Java 8 exclusivamente."
+    ],
+    "correct": 1,
+    "explanation": "Inicializar recursos (conexiones, cargar datos) fuera del handler (en el constructor o bloque estático) y activar SnapStart para Java 11/17 reduce cold starts. Aumentar memoria ayuda pero no resuelve el cold start."
+  },
+  {
+    "id": 9,
+    "level": "Mid",
+    "category": "Almacenamiento (S3)",
+    "question": "Desde una aplicación Java usando AWS SDK, quieres subir un archivo a S3 con la máxima durabilidad y opción de versionado. ¿Qué clase del SDK usarías típicamente?",
+    "code": "// Ejemplo de subida",
+    "options": [
+      "AmazonS3.putObject(PutObjectRequest)",
+      "S3TransferManager.uploadFile",
+      "S3Client.putObject (Sdk v2)",
+      "Todas las anteriores son válidas dependiendo de la versión del SDK."
+    ],
+    "correct": 3,
+    "explanation": "Tanto S3Client.putObject (v2) como AmazonS3.putObject (v1) como TransferManager son válidas. El versionado se habilita en el bucket, no en el SDK."
+  },
+  {
+    "id": 10,
+    "level": "Junior",
+    "category": "Almacenamiento (S3)",
+    "question": "¿Qué política de ciclo de vida (Lifecycle Policy) de S3 aplicaría para mover objetos a la clase de almacenamiento Glacier después de 90 días?",
+    "options": [
+      "Transición a Glacier después de 90 días de creación.",
+      "Eliminación después de 90 días.",
+      "Transición a S3 Standard-IA después de 30 días.",
+      "No se puede, Glacier es independiente."
+    ],
+    "correct": 0,
+    "explanation": "Lifecycle rules permiten transición a clases como S3 Glacier después de un número de días."
+  },
+  {
+    "id": 11,
+    "level": "Mid",
+    "category": "Almacenamiento (S3)",
+    "question": "Necesitas generar una URL firmada (pre-signed URL) para que un usuario descargue un archivo privado de S3 por tiempo limitado. ¿Qué método del SDK de Java usarías?",
+    "code": "// Generar URL",
+    "options": [
+      "s3Client.generatePresignedUrl(bucket, key, expiration)",
+      "s3Client.getObject(bucket, key)",
+      "URL url = new URL(\"https://bucket.s3.amazonaws.com/\" + key + \"?Signature=...\")",
+      "CloudFront signed URL"
+    ],
+    "correct": 0,
+    "explanation": "El SDK proporciona generatePresignedUrl que devuelve una URL temporal con credenciales firmadas. No requiere que el archivo sea público."
+  },
+  {
+    "id": 12,
+    "level": "Junior",
+    "category": "Almacenamiento (S3)",
+    "question": "¿Cuál es el límite de tamaño de un objeto individual en S3?",
+    "options": [
+      "5 GB",
+      "5 TB",
+      "No tiene límite",
+      "1 GB"
+    ],
+    "correct": 1,
+    "explanation": "El tamaño máximo de un objeto en S3 es 5 TB. Para objetos mayores a 5 GB se recomienda multipart upload."
+  },
+  {
+    "id": 13,
+    "level": "Mid",
+    "category": "Bases de datos",
+    "question": "Tu aplicación Java usa una base de datos PostgreSQL en RDS. Quieres eliminar el punto único de falla y mejorar la disponibilidad. ¿Qué opción elegirías?",
+    "options": [
+      "Multi-AZ deployment (réplica síncrona en otra AZ)",
+      "Read Replica en la misma AZ",
+      "Snapshot automáticos diarios",
+      "Cambiar a DynamoDB"
+    ],
+    "correct": 0,
+    "explanation": "Multi-AZ despliega una réplica en otra AZ con failover automático. Read replicas son para lecturas, no failover automático."
+  },
+  {
+    "id": 14,
+    "level": "Junior",
+    "category": "Bases de datos",
+    "question": "¿Qué tipo de índice en DynamoDB permite realizar consultas sobre atributos que no son la clave de partición principal, con consistencia eventual?",
+    "options": [
+      "Local Secondary Index (LSI)",
+      "Global Secondary Index (GSI)",
+      "Clave de ordenamiento (Sort Key)",
+      "Índice esparcido"
+    ],
+    "correct": 1,
+    "explanation": "GSI permite consultar por atributos no clave, con su propia clave de partición/ordenamiento. LSI solo funciona con la misma clave de partición."
+  },
+  {
+    "id": 15,
+    "level": "Mid",
+    "category": "Bases de datos",
+    "question": "¿Cuál de las siguientes opciones permite conectar una aplicación Java en EC2 a una base de datos RDS de forma segura sin exponer la base de datos a internet?",
+    "options": [
+      "Asignar una IP pública a RDS y usar SSL.",
+      "Colocar RDS en una subred privada y EC2 en la misma VPC, con Security Group que permita el puerto.",
+      "Usar RDS con 'Publicly accessible = true' y restringir por Security Group.",
+      "Usar un bastion host para RDS."
+    ],
+    "correct": 1,
+    "explanation": "Buena práctica: RDS en subred privada, EC2 en subred pública o privada, mismo VPC, y Security Group que permita tráfico desde EC2 hacia RDS."
+  },
+  {
+    "id": 16,
+    "level": "Junior",
+    "category": "Bases de datos",
+    "question": "En DynamoDB, ¿qué significa 'capacidad provisionada' vs 'bajo demanda'?",
+    "options": [
+      "Provisionada requiere especificar RCU/WCU por adelantado; bajo demanda escala automáticamente y se paga por solicitud.",
+      "Bajo demanda no permite escrituras.",
+      "Provisionada es solo para tablas pequeñas.",
+      "Son lo mismo con diferente nombre."
+    ],
+    "correct": 0,
+    "explanation": "Provisionada fija capacidad de lectura/escritura (RCU/WCU). Bajo demanda (on-demand) escala automáticamente sin planificar capacidad."
+  },
+  {
+    "id": 17,
+    "level": "Mid",
+    "category": "Bases de datos",
+    "question": "Tu app Java usa RDS MySQL y notas alta latencia en consultas de solo lectura. ¿Qué solución de RDS implementarías para distribuir la carga de lecturas sin modificar la app?",
+    "options": [
+      "Crear una réplica de lectura y configurar el endpoint de lectura en la aplicación.",
+      "Cambiar a Aurora Serverless.",
+      "Aumentar el tamaño de la instancia.",
+      "Usar ElastiCache para caché de consultas."
+    ],
+    "correct": 0,
+    "explanation": "Las réplicas de lectura (hasta 5) permiten escalar lecturas. La aplicación debe apuntar al endpoint de réplica para consultas selectivas."
+  },
+  {
+    "id": 18,
+    "level": "Junior",
+    "category": "Bases de datos",
+    "question": "¿Cuál es la diferencia principal entre RDS y DynamoDB para una aplicación Java?",
+    "options": [
+      "RDS es relacional (SQL) con esquema fijo; DynamoDB es NoSQL (documentos/clave-valor) sin esquema.",
+      "RDS es más rápido que DynamoDB siempre.",
+      "DynamoDB no soporta Java SDK.",
+      "RDS es serverless y DynamoDB no."
+    ],
+    "correct": 0,
+    "explanation": "RDS ofrece motores SQL tradicionales. DynamoDB es NoSQL, escalable horizontalmente, sin esquema."
+  },
+  {
+    "id": 19,
+    "level": "Mid",
+    "category": "Bases de datos",
+    "question": "¿Qué estrategia usarías en DynamoDB para manejar acceso a un elemento que recibe muchas lecturas/escrituras (hot partition)?",
+    "options": [
+      "Agregar un sufijo aleatorio a la clave de partición y distribuir consultas.",
+      "Aumentar la capacidad provisionada al máximo.",
+      "Crear un índice GSI con clave diferente.",
+      "Migrar a RDS."
+    ],
+    "correct": 0,
+    "explanation": "Para evitar hot partitions, se puede añadir un número aleatorio (sharding) a la clave de partición y luego la aplicación barre esos valores."
+  },
+  {
+    "id": 20,
+    "level": "Junior",
+    "category": "Redes (VPC)",
+    "question": "En una VPC, ¿qué recurso permite que una instancia EC2 en una subred privada acceda a internet (por ejemplo, para descargar parches) sin tener IP pública?",
+    "options": [
+      "Internet Gateway",
+      "NAT Gateway (o NAT Instance)",
+      "Virtual Private Gateway",
+      "VPC Peering"
+    ],
+    "correct": 1,
+    "explanation": "NAT Gateway se coloca en subred pública y permite que instancias en subredes privadas tengan acceso saliente a internet."
+  },
+  {
+    "id": 21,
+    "level": "Mid",
+    "category": "Redes (VPC)",
+    "question": "Una aplicación Java en EC2 necesita comunicarse con un servicio en otra cuenta de AWS a través de IP privada. ¿Qué mecanismo de red se debe configurar?",
+    "options": [
+      "Internet Gateway + IP pública",
+      "VPC Peering o Transit Gateway",
+      "AWS Direct Connect",
+      "Un Application Load Balancer público"
+    ],
+    "correct": 1,
+    "explanation": "VPC Peering conecta dos VPCs (misma o distinta región/cuenta) usando IPs privadas. Transit Gateway para más complejidad."
+  },
+  {
+    "id": 22,
+    "level": "Junior",
+    "category": "Redes (VPC)",
+    "question": "¿Cuál es la función de un Security Group en AWS?",
+    "options": [
+      "Firewall a nivel de subred (estatal)",
+      "Firewall a nivel de instancia/ENI (stateful)",
+      "Reglas de enrutamiento entre subredes",
+      "Lista de control de acceso a nivel de subred (stateless)"
+    ],
+    "correct": 1,
+    "explanation": "Security Groups actúan como firewall virtual a nivel de instancia/ENI, con estado (stateful). NACLs son a nivel de subred."
+  },
+  {
+    "id": 23,
+    "level": "Mid",
+    "category": "Redes (VPC)",
+    "question": "Tienes un Application Load Balancer (ALB) delante de tus servicios Java en ECS. ¿Dónde se debe ubicar el ALB respecto a los tasks?",
+    "options": [
+      "ALB y tasks en la misma subred privada.",
+      "ALB en subred pública (o ambas), tasks en subred privada.",
+      "ALB en subred privada, tasks en pública.",
+      "ALB no requiere VPC."
+    ],
+    "correct": 1,
+    "explanation": "ALB debe estar al menos en subredes públicas para recibir tráfico externo, mientras que los tasks pueden estar en privadas por seguridad."
+  },
+  {
+    "id": 24,
+    "level": "Junior",
+    "category": "Redes (VPC)",
+    "question": "¿Qué es una subred 'pública' en AWS VPC?",
+    "options": [
+      "Subred que tiene una ruta hacia un Internet Gateway.",
+      "Subred que tiene acceso a NAT Gateway.",
+      "Subred con IP pública automática.",
+      "Subred que no tiene acceso a internet."
+    ],
+    "correct": 0,
+    "explanation": "Una subred pública tiene asociada una tabla de rutas que envía el tráfico 0.0.0.0/0 a un Internet Gateway."
+  },
+  {
+    "id": 25,
+    "level": "Mid",
+    "category": "Redes (VPC)",
+    "question": "Una aplicación Java necesita resolver nombres de dominio internos de AWS (como *.amazonaws.com) desde una VPC sin acceso a internet. ¿Qué servicio usa?",
+    "options": [
+      "Route53 Resolver (VPC+ DNS)",
+      "CloudFront",
+      "API Gateway",
+      "NAT Gateway"
+    ],
+    "correct": 0,
+    "explanation": "Route53 Resolver permite resolución de DNS en VPC, incluyendo endpoints de servicio. Con endpoint VPC se puede alcanzar servicios de AWS sin internet."
+  },
+  {
+    "id": 26,
+    "level": "Junior",
+    "category": "Seguridad e IAM",
+    "question": "¿Cuál es el principio de mínimo privilegio en IAM?",
+    "options": [
+      "Asignar todos los permisos posibles para evitar errores.",
+      "Asignar solo los permisos estrictamente necesarios para realizar la función.",
+      "No asignar ningún permiso hasta que se solicite.",
+      "Usar solo credenciales de root."
+    ],
+    "correct": 1,
+    "explanation": "Mínimo privilegio significa otorgar únicamente los permisos requeridos para la tarea, reduciendo riesgos de seguridad."
+  },
+  {
+    "id": 27,
+    "level": "Mid",
+    "category": "Seguridad e IAM",
+    "question": "Desde una aplicación Java en EC2, quieres acceder a un bucket S3 sin usar Access Keys estáticas. ¿Cuál es la mejor práctica?",
+    "options": [
+      "Guardar las credenciales en application.properties cifradas.",
+      "Asignar un rol IAM a la instancia EC2 con permisos adecuados.",
+      "Usar variables de entorno AWS_ACCESS_KEY_ID y AWS_SECRET_ACCESS_KEY.",
+      "Poner el bucket público."
+    ],
+    "correct": 1,
+    "explanation": "Un rol de IAM para EC2 proporciona credenciales temporales automáticas mediante el metadata service. No se almacenan credenciales estáticas."
+  },
+  {
+    "id": 28,
+    "level": "Junior",
+    "category": "Seguridad e IAM",
+    "question": "¿Qué servicio de AWS usarías para almacenar de forma segura una contraseña de base de datos que tu aplicación Java leerá en tiempo de ejecución?",
+    "options": [
+      "AWS Systems Manager Parameter Store (SecureString) o AWS Secrets Manager.",
+      "Un archivo de propiedades en S3 con cifrado.",
+      "AWS KMS solo.",
+      "IAM policy."
+    ],
+    "correct": 0,
+    "explanation": "Parameter Store con tipo SecureString o Secrets Manager están diseñados para secretos, con cifrado opcional y rotación."
+  },
+  {
+    "id": 29,
+    "level": "Mid",
+    "category": "Seguridad e IAM",
+    "question": "¿Qué política debe tener un rol IAM para que una función Lambda pueda escribir en un bucket S3 llamado 'mi-bucket-logs'?",
+    "options": [
+      "s3:ListBucket en todos los buckets",
+      "s3:PutObject en arn:aws:s3:::mi-bucket-logs/*",
+      "s3:* en *",
+      "s3:GetObject en mi-bucket-logs"
+    ],
+    "correct": 1,
+    "explanation": "Se necesita el permiso s3:PutObject en el recurso específico. Por seguridad, no se dan permisos amplios."
+  },
+  {
+    "id": 30,
+    "level": "Junior",
+    "category": "Seguridad e IAM",
+    "question": "¿Qué servicio AWS permite auditar quién realizó una acción específica (ej. eliminar un bucket) y cuándo?",
+    "options": [
+      "AWS CloudTrail",
+      "CloudWatch Logs",
+      "AWS Config",
+      "GuardDuty"
+    ],
+    "correct": 0,
+    "explanation": "CloudTrail registra llamadas a la API de AWS (quién, qué, cuándo, desde dónde)."
+  },
+  {
+    "id": 31,
+    "level": "Mid",
+    "category": "SDK de AWS para Java",
+    "question": "En el SDK de AWS para Java v2, ¿cuál es la forma recomendada de crear un cliente S3 que use las credenciales predeterminadas del entorno (como un rol de EC2)?",
+    "code": "S3Client s3 = S3Client.create();",
+    "options": [
+      "S3Client.builder().region(Region.US_EAST_1).build();",
+      "S3Client.create();",
+      "new AmazonS3Client(new DefaultAWSCredentialsProviderChain());",
+      "S3ClientBuilder.defaultClient();"
+    ],
+    "correct": 0,
+    "explanation": "En v2, se usa builder con región. Si no se especifica el credentials provider, usa DefaultCredentialsProvider por defecto, que busca en orden: variables de entorno, perfil, metadata de EC2, etc."
+  },
+  {
+    "id": 32,
+    "level": "Junior",
+    "category": "SDK de AWS para Java",
+    "question": "¿Qué excepción lanza el SDK de Java cuando una solicitud a DynamoDB excede la capacidad provisionada?",
+    "options": [
+      "ProvisionedThroughputExceededException",
+      "DynamoDBException",
+      "ResourceNotFoundException",
+      "ThrottlingException"
+    ],
+    "correct": 0,
+    "explanation": "ProvisionedThroughputExceededException (en v2) indica que se excedieron las unidades de capacidad provisionadas. Se recomienda implementar exponential backoff."
+  },
+  {
+    "id": 33,
+    "level": "Mid",
+    "category": "SDK de AWS para Java",
+    "question": "¿Cómo se configura un cliente S3 asíncrono en el SDK v2 para mejorar el rendimiento de operaciones de lectura/escritura desde una aplicación Java reactiva?",
+    "options": [
+      "S3AsyncClient.create()",
+      "S3Client.builder().async(true).build()",
+      "S3AsyncClient.builder().region(region).build()",
+      "No existe cliente asíncrono en v2."
+    ],
+    "correct": 2,
+    "explanation": "El SDK v2 provee S3AsyncClient con métodos que devuelven CompletableFuture. Se construye con builder."
+  },
+  {
+    "id": 34,
+    "level": "Junior",
+    "category": "SDK de AWS para Java",
+    "question": "¿Qué dependencia Maven necesitas para usar el SDK v2 para S3?",
+    "options": [
+      "software.amazon.awssdk:s3",
+      "com.amazonaws:aws-java-sdk-s3",
+      "software.amazon.awssdk:s3-client",
+      "aws-java-sdk-bom"
+    ],
+    "correct": 0,
+    "explanation": "En v2, la dependencia es software.amazon.awssdk:s3. Para v1, com.amazonaws:aws-java-sdk-s3."
+  },
+  {
+    "id": 35,
+    "level": "Mid",
+    "category": "SDK de AWS para Java",
+    "question": "¿Cómo manejarías la paginación al listar objetos en un bucket S3 con muchos archivos usando SDK v2?",
+    "code": "ListObjectsV2Request request = ListObjectsV2Request.builder().bucket(\"mi-bucket\").build();",
+    "options": [
+      "Iterar manualmente con nextToken usando un loop while.",
+      "Usar el método listObjectsV2Paginator() que devuelve un iterable automático.",
+      "Usar listObjectsV2 una sola vez con maxKeys=1000.",
+      "No se puede, S3 no soporta paginación."
+    ],
+    "correct": 1,
+    "explanation": "El SDK v2 ofrece métodos paginadores (listObjectsV2Paginator) que manejan automáticamente los tokens de continuación."
+  },
+  {
+    "id": 36,
+    "level": "Junior",
+    "category": "SDK de AWS para Java",
+    "question": "¿Cuál es el propósito de la clase 'SdkHttpClient' en el SDK v2?",
+    "options": [
+      "Permite personalizar la capa HTTP (timeouts, número máximo de conexiones) y se puede compartir entre múltiples clientes.",
+      "Es un cliente HTTP para invocar APIs REST externas.",
+      "Se usa para conexiones a bases de datos.",
+      "Es el cliente de baja nivel para S3."
+    ],
+    "correct": 0,
+    "explanation": "SdkHttpClient (ej. ApacheHttpClient, NettyNioAsyncHttpClient) permite configurar timeouts, conexiones, etc., y reutilizarse."
+  },
+  {
+    "id": 37,
+    "level": "Mid",
+    "category": "SDK de AWS para Java",
+    "question": "¿Cuál de los siguientes es un anti-patrón al usar el SDK de AWS para Java en Lambda?",
+    "options": [
+      "Inicializar clientes SDK (S3Client, DynamoDbClient) fuera del handler.",
+      "Crear un nuevo cliente SDK dentro del handler en cada invocación.",
+      "Usar credenciales de roles IAM.",
+      "Usar conexiones HTTP con pool."
+    ],
+    "correct": 1,
+    "explanation": "Crear clientes repetidamente dentro del handler causa overhead. Mejor inicializarlos en el constructor o bloque estático."
+  },
+  {
+    "id": 38,
+    "level": "Mid",
+    "category": "Despliegue y CI/CD",
+    "question": "En un pipeline de AWS CodeBuild con un proyecto Java (Maven), ¿qué archivo define los comandos de build (compilar, ejecutar tests, empaquetar)?",
+    "options": [
+      "Jenkinsfile",
+      "buildspec.yml",
+      "pipeline.yaml",
+      "Dockerfile"
+    ],
+    "correct": 1,
+    "explanation": "CodeBuild usa un archivo buildspec.yml en la raíz del repositorio que especifica las fases (install, pre_build, build, post_build) y los artefactos."
+  },
+  {
+    "id": 39,
+    "level": "Junior",
+    "category": "Despliegue y CI/CD",
+    "question": "¿Qué servicio de AWS actúa como registro de imágenes Docker para almacenar imágenes de aplicaciones Java?",
+    "options": [
+      "Amazon ECR (Elastic Container Registry)",
+      "S3",
+      "Docker Hub",
+      "AWS CodeArtifact"
+    ],
+    "correct": 0,
+    "explanation": "ECR es el registro privado de contenedores de AWS, integrado con ECS, EKS y CodeBuild."
+  },
+  {
+    "id": 40,
+    "level": "Mid",
+    "category": "Despliegue y CI/CD",
+    "question": "¿Qué comando suele usarse en CodeBuild para compilar una aplicación Spring Boot con Maven y luego construir una imagen Docker?",
+    "code": "buildspec.yml fragmento",
+    "options": [
+      "mvn clean package && docker build -t $REPOSITORY_URI:$IMAGE_TAG .",
+      "gradle build && ecr login && docker push",
+      "mvn compile && aws ecr push",
+      "javac Main.java && docker commit"
+    ],
+    "correct": 0,
+    "explanation": "Primero se construye el JAR con Maven, luego se construye la imagen Docker (que copiará el JAR) usando el Dockerfile."
+  },
+  {
+    "id": 41,
+    "level": "Junior",
+    "category": "Despliegue y CI/CD",
+    "question": "¿Qué servicio de AWS permite orquestar un pipeline completo que incluya Source (GitHub), Build (CodeBuild) y Deploy (CodeDeploy)?",
+    "options": [
+      "AWS CodePipeline",
+      "Jenkins on EC2",
+      "AWS OpsWorks",
+      "AWS CloudFormation"
+    ],
+    "correct": 0,
+    "explanation": "CodePipeline es el servicio de CI/CD nativo que integra CodeCommit, CodeBuild, CodeDeploy, y otros."
+  },
+  {
+    "id": 42,
+    "level": "Mid",
+    "category": "Despliegue y CI/CD",
+    "question": "¿Cuál es la ventaja de usar 'Blue/Green deployment' con CodeDeploy para una aplicación Java en EC2?",
+    "options": [
+      "Cero downtime, permitiendo probar la nueva versión antes de cambiar el tráfico.",
+      "Menor costo porque se usa solo un servidor.",
+      "Automatiza la creación de la base de datos.",
+      "No requiere pruebas."
+    ],
+    "correct": 0,
+    "explanation": "Blue/Green despliega una nueva versión (green) junto a la actual (blue) y luego redirige tráfico, minimizando downtime."
+  },
+  {
+    "id": 43,
+    "level": "Mid",
+    "category": "Monitoreo y logging",
+    "question": "Desde una aplicación Spring Boot, ¿cómo envías logs a Amazon CloudWatch Logs usando Logback?",
+    "options": [
+      "Agregar la dependencia aws-logback y configurar un appender que apunte al grupo de logs.",
+      "Usar System.out.println y CloudWatch lo captura automáticamente.",
+      "Configurar un agente CloudWatch en EC2 que lea el archivo de logs.",
+      "No se puede, CloudWatch solo captura logs de Lambda."
+    ],
+    "correct": 0,
+    "explanation": "Existe la librería logback-cloudwatch-appender. También se puede usar el agente CloudWatch. La opción 0 es la más directa para Spring Boot con Logback."
+  },
+  {
+    "id": 44,
+    "level": "Junior",
+    "category": "Monitoreo y logging",
+    "question": "¿Qué servicio de AWS permite rastrear una solicitud a través de múltiples microservicios Java (trazas distribuidas) e identificar cuellos de botella?",
+    "options": [
+      "AWS X-Ray",
+      "CloudWatch Logs",
+      "AWS CloudTrail",
+      "AWS Config"
+    ],
+    "correct": 0,
+    "explanation": "X-Ray proporciona tracing distribuido. Se integra con el SDK de AWS, Spring Boot, Lambda, etc."
+  },
+  {
+    "id": 45,
+    "level": "Mid",
+    "category": "Monitoreo y logging",
+    "question": "¿Cómo habilitarías métricas personalizadas (ej. tiempo de respuesta de un método) desde una aplicación Java hacia CloudWatch?",
+    "code": "// ejemplo",
+    "options": [
+      "Usar CloudWatchClient.putMetricData del SDK de AWS.",
+      "Usar SLF4J con appender de CloudWatch.",
+      "X-Ray no puede enviar métricas.",
+      "No se pueden enviar métricas personalizadas."
+    ],
+    "correct": 0,
+    "explanation": "AWS SDK para CloudWatch permite enviar métricas personalizadas con PutMetricDataRequest. También se puede usar el agente CloudWatch."
+  },
+  {
+    "id": 46,
+    "level": "Junior",
+    "category": "Monitoreo y logging",
+    "question": "¿Qué servicio de AWS notifica cuando una métrica de CloudWatch (ej. CPU de EC2) supera un umbral durante cierto tiempo?",
+    "options": [
+      "CloudWatch Alarm",
+      "EventBridge Rule",
+      "SNS Topic directamente",
+      "CloudWatch Logs filter"
+    ],
+    "correct": 0,
+    "explanation": "CloudWatch Alarm supervisa métricas y puede enviar notificaciones a SNS o ejecutar acciones de Auto Scaling."
+  },
+  {
+    "id": 47,
+    "level": "Mid",
+    "category": "Mensajería e integración",
+    "question": "Tu aplicación Java necesita enviar un mensaje a un servicio para que sea procesado posteriormente, garantizando al menos una entrega y tolerando fallos. ¿Qué servicio AWS elegirías?",
+    "options": [
+      "Amazon SQS (Simple Queue Service)",
+      "SNS (Simple Notification Service)",
+      "Kinesis Data Streams",
+      "EventBridge"
+    ],
+    "correct": 0,
+    "explanation": "SQS es cola de mensajes con al menos una entrega, visibilidad, y reenvío tras fallos. SNS es pub/sub sin cola persistente por defecto."
+  },
+  {
+    "id": 48,
+    "level": "Junior",
+    "category": "Mensajería e integración",
+    "question": "¿Cuándo deberías usar SQS FIFO en lugar de SQS Standard para una aplicación Java?",
+    "options": [
+      "Cuando el orden exacto de los mensajes y la deduplicación son críticos (máximo 300 mensajes/segundo).",
+      "Para mayor rendimiento (más de 3000 mensajes/segundo).",
+      "Para enviar mensajes a múltiples suscriptores.",
+      "Para procesar mensajes en paralelo sin orden."
+    ],
+    "correct": 0,
+    "explanation": "SQS FIFO garantiza orden estricto y mensajes únicos, pero con menor throughput. Standard ofrece mayor rendimiento sin orden."
+  },
+  {
+    "id": 49,
+    "level": "Mid",
+    "category": "Mensajería e integración",
+    "question": "¿Cómo se configura un consumer Java de SQS usando el SDK v2 para recibir mensajes en bucle?",
+    "code": "receiveMessageRequest",
+    "options": [
+      "sqsClient.receiveMessage(receiveRequest).messages().forEach(m -> procesar(m)) dentro de un while(true) con sleep.",
+      "SqsAsyncClient no lo permite.",
+      "Se debe usar un listener de JMS.",
+      "No hay forma, SQS no soporta polling."
+    ],
+    "correct": 0,
+    "explanation": "El patrón común es un loop que recibe mensajes (long polling) y los procesa. Se debe eliminar tras procesar."
+  },
+  {
+    "id": 50,
+    "level": "Junior",
+    "category": "Mensajería e integración",
+    "question": "¿Qué servicio de AWS permite enviar una notificación a múltiples suscriptores (email, SMS, HTTP, SQS, Lambda) desde un solo mensaje?",
+    "options": [
+      "Amazon SNS",
+      "Amazon SQS",
+      "Amazon EventBridge",
+      "Amazon MQ"
+    ],
+    "correct": 0,
+    "explanation": "SNS es pub/sub: un mensaje se publica en un topic y se distribuye a todos los suscriptores."
+  },
+  {
+    "id": 51,
+    "level": "Mid",
+    "category": "Mensajería e integración",
+    "question": "¿Qué es una 'dead-letter queue' (DLQ) en SQS y para qué sirve?",
+    "options": [
+      "Una cola separada donde se envían mensajes que no pudieron ser procesados después de varios intentos, para análisis o reproceso manual.",
+      "Una cola con prioridad alta.",
+      "Una cola que elimina mensajes duplicados.",
+      "Un tipo de cola FIFO."
+    ],
+    "correct": 0,
+    "explanation": "DLQ captura mensajes fallidos después de superar el 'maxReceiveCount', permitiendo depurar sin bloquear la cola principal."
+  },
+  {
+    "id": 52,
+    "level": "Mid",
+    "category": "Despliegue y CI/CD",
+    "question": "¿Qué servicio de AWS permite definir infraestructura como código (IaC) para desplegar una aplicación Java completa (EC2, RDS, S3) usando plantillas YAML o JSON?",
+    "options": [
+      "AWS CloudFormation",
+      "AWS CodeDeploy",
+      "AWS OpsWorks",
+      "Elastic Beanstalk"
+    ],
+    "correct": 0,
+    "explanation": "CloudFormation es el servicio IaC nativo. Elastic Beanstalk también tiene opciones de configuración pero es más alto nivel."
+  },
+  {
+    "id": 53,
+    "level": "Junior",
+    "category": "Misceláneos",
+    "question": "¿Qué servicio de CDN (Content Delivery Network) de AWS se usa comúnmente para distribuir contenido estático (imágenes, CSS) y reducir latencia?",
+    "options": [
+      "Amazon CloudFront",
+      "AWS Global Accelerator",
+      "Amazon Route53",
+      "AWS WAF"
+    ],
+    "correct": 0,
+    "explanation": "CloudFront es la CDN de AWS, integrada con S3, EC2, Lambda, etc. Global Accelerator mejora el rendimiento TCP/UDP."
+  },
+  {
+    "id": 54,
+    "level": "Mid",
+    "category": "Compute",
+    "question": "¿Qué diferencia hay entre un despliegue en ECS con Fargate vs ECS con EC2 (auto-gestionado)?",
+    "options": [
+      "Fargate no requiere gestionar las instancias EC2 subyacentes; EC2 te da control sobre el tipo de instancia, parches, etc.",
+      "Fargate es más caro en todos los casos.",
+      "EC2 con ECS no permite usar imágenes de Docker.",
+      "Fargate no soporta Spring Boot."
+    ],
+    "correct": 0,
+    "explanation": "Fargate es serverless: AWS gestiona los servidores. EC2 launch type requiere que aprovisiones y mantengas el cluster de EC2."
+  },
+  {
+    "id": 55,
+    "level": "Junior",
+    "category": "Seguridad e IAM",
+    "question": "¿Qué política de IAM permitiría a una aplicación Java ejecutada en EC2 leer un objeto de S3, sin permisos de escritura?",
+    "options": [
+      "{\"Effect\": \"Allow\", \"Action\": \"s3:GetObject\", \"Resource\": \"arn:aws:s3:::mi-bucket/*\"}",
+      "{\"Effect\": \"Allow\", \"Action\": \"s3:*\", \"Resource\": \"*\"}",
+      "{\"Effect\": \"Allow\", \"Action\": \"s3:ListBucket\", \"Resource\": \"arn:aws:s3:::mi-bucket\"}",
+      "{\"Effect\": \"Allow\", \"Action\": \"s3:PutObject\", \"Resource\": \"arn:aws:s3:::mi-bucket/*\"}"
+    ],
+    "correct": 0,
+    "explanation": "Se debe conceder exclusivamente s3:GetObject sobre los objetos del bucket. La opción 1 es la correcta y de mínimo privilegio."
+  }
+]

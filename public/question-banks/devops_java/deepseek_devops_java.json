@@ -1,0 +1,913 @@
+[
+  {
+    "id": 1,
+    "level": "Mid",
+    "category": "Fundamentos DevOps",
+    "question": "¿Cuál de las siguientes métricas forma parte del conjunto DORA (DevOps Research and Assessment) para medir el rendimiento DevOps?",
+    "options": [
+      "Tiempo medio entre fallos (MTBF)",
+      "Frecuencia de despliegue (Deployment Frequency)",
+      "Número de líneas de código",
+      "Cobertura de pruebas unitarias"
+    ],
+    "correct": 1,
+    "explanation": "DORA mide: Frecuencia de despliegue, Tiempo de entrega de cambios, Tiempo de recuperación del servicio, Tasa de fallo de cambios."
+  },
+  {
+    "id": 2,
+    "level": "Junior",
+    "category": "Fundamentos DevOps",
+    "question": "¿Qué representa el acrónimo 'CAMS' comúnmente asociado a la cultura DevOps?",
+    "options": [
+      "Continuous, Automation, Monitoring, Security",
+      "Culture, Automation, Measurement, Sharing",
+      "Code, Acceptance, Merge, Security",
+      "Containers, Artifacts, Microservices, Scheduling"
+    ],
+    "correct": 1,
+    "explanation": "CAMS: Cultura, Automatización, Medición, Compartir (Culture, Automation, Measurement, Sharing)."
+  },
+  {
+    "id": 3,
+    "level": "Mid",
+    "category": "Fundamentos DevOps",
+    "question": "¿Cuál es uno de los principales objetivos del enfoque DevOps para un equipo de desarrollo Java?",
+    "options": [
+      "Eliminar la necesidad de operaciones (ops).",
+      "Reducir la colaboración entre desarrolladores y administradores de sistemas.",
+      "Acortar el ciclo de desarrollo y entregar valor más rápido con estabilidad.",
+      "Aumentar el tamaño de los equipos."
+    ],
+    "correct": 2,
+    "explanation": "DevOps busca integración entre desarrollo y operaciones, entregas más rápidas y confiables, no eliminar roles ni aislar equipos."
+  },
+  {
+    "id": 4,
+    "level": "Junior",
+    "category": "Fundamentos DevOps",
+    "question": "¿Qué es el 'Three Ways' de Gene Kim en DevOps?",
+    "options": [
+      "Desarrollo, pruebas, despliegue",
+      "Flujo, retroalimentación, mejora continua",
+      "Planificar, construir, ejecutar",
+      "Git, Jenkins, Docker"
+    ],
+    "correct": 1,
+    "explanation": "Las tres vías: flujo rápido (izquierda a derecha), retroalimentación constante (derecha a izquierda), aprendizaje y experimentación continua."
+  },
+  {
+    "id": 5,
+    "level": "Mid",
+    "category": "Control de versiones (Git)",
+    "question": "En una estrategia de branching para CI/CD, ¿qué representa la rama 'main' (o 'master')?",
+    "options": [
+      "Rama donde se desarrollan todas las características nuevas.",
+      "Rama que contiene el código en producción o listo para desplegar.",
+      "Rama personal de cada desarrollador.",
+      "Rama exclusiva para pruebas de estrés."
+    ],
+    "correct": 1,
+    "explanation": "Main/master debe reflejar un estado estable y desplegable. Desarrollo en ramas de características, no en main."
+  },
+  {
+    "id": 6,
+    "level": "Junior",
+    "category": "Control de versiones (Git)",
+    "question": "¿Qué comando de Git permite integrar los cambios de una rama a la actual reescribiendo el historial (sin merge commit) pero manteniendo linealidad?",
+    "options": [
+      "git merge --no-ff",
+      "git rebase",
+      "git cherry-pick",
+      "git squash"
+    ],
+    "correct": 1,
+    "explanation": "Rebase aplica commits de la rama origen sobre la actual, reescribiendo el historial. Produce historial lineal."
+  },
+  {
+    "id": 7,
+    "level": "Mid",
+    "category": "Control de versiones (Git)",
+    "question": "Un desarrollador Java quiere aplicar un solo commit específico de la rama 'feature/login' a la rama 'main'. ¿Qué comando debe usar?",
+    "options": [
+      "git merge --squash",
+      "git rebase --onto",
+      "git cherry-pick",
+      "git apply"
+    ],
+    "correct": 2,
+    "explanation": "cherry-pick toma un commit identificado por su hash y lo aplica en la rama actual."
+  },
+  {
+    "id": 8,
+    "level": "Junior",
+    "category": "Control de versiones (Git)",
+    "question": "¿Qué significa un 'conflicto' durante un git merge o rebase?",
+    "options": [
+      "Git no puede combinar automáticamente cambios que afectan las mismas líneas del mismo archivo.",
+      "El repositorio remoto no está disponible.",
+      "No hay suficientes permisos para hacer merge.",
+      "La rama destino está protegida."
+    ],
+    "correct": 0,
+    "explanation": "Conflicto ocurre cuando dos cambios modifican la misma parte de un archivo y Git no sabe cuál elegir."
+  },
+  {
+    "id": 9,
+    "level": "Mid",
+    "category": "Control de versiones (Git)",
+    "question": "¿Qué es un 'git hook' en el contexto de automatización DevOps?",
+    "options": [
+      "Un script que se ejecuta automáticamente ante ciertos eventos (pre-commit, pre-push, etc.) para validar o formatear código.",
+      "Un comando para conectar dos repositorios.",
+      "Una alternativa a git rebase.",
+      "Un comando para eliminar ramas remotas."
+    ],
+    "correct": 0,
+    "explanation": "Git hooks permiten ejecutar scripts personalizados en acciones como commit, push, permitiendo validaciones automáticas (ejecutar pruebas, linters)."
+  },
+  {
+    "id": 10,
+    "level": "Junior",
+    "category": "Control de versiones (Git)",
+    "question": "¿Cuál es el propósito de un 'git tag' semántico como 'v1.2.3'?",
+    "options": [
+      "Crear una rama de características.",
+      "Marcar un commit específico como un hito (release) para facilitar despliegues o versionado.",
+      "Ignorar archivos temporalmente.",
+      "Hacer un squash de varios commits."
+    ],
+    "correct": 1,
+    "explanation": "Los tags marcan versiones estables (releases) para poder desplegar o referenciar fácilmente."
+  },
+  {
+    "id": 11,
+    "level": "Mid",
+    "category": "Control de versiones (Git)",
+    "question": "Al resolver un conflicto, ¿qué comando se usa para marcar un archivo como resuelto?",
+    "options": [
+      "git add <archivo>",
+      "git resolve <archivo>",
+      "git commit --resolve",
+      "git merge --continue"
+    ],
+    "correct": 0,
+    "explanation": "Después de editar el archivo conflictivo, se ejecuta git add para marcarlo como resuelto, luego git commit (o git merge --continue)."
+  },
+  {
+    "id": 12,
+    "level": "Junior",
+    "category": "Control de versiones (Git)",
+    "question": "¿Qué comando mostraría el historial de commits en forma de gráfico con líneas?",
+    "options": [
+      "git log --graph --oneline --decorate",
+      "git status --graph",
+      "git show --graph",
+      "git tree --visual"
+    ],
+    "correct": 0,
+    "explanation": "git log --graph es la forma estándar de ver el historial con representación gráfica de ramificaciones."
+  },
+  {
+    "id": 13,
+    "level": "Mid",
+    "category": "CI/CD conceptos generales",
+    "question": "¿Qué se entiende por 'Pipeline' en CI/CD?",
+    "options": [
+      "Una secuencia de etapas automatizadas que construye, prueba y despliega código.",
+      "Un archivo de configuración de Docker.",
+      "Una herramienta de monitoreo.",
+      "Un comando de Git."
+    ],
+    "correct": 0,
+    "explanation": "Pipeline CI/CD define etapas (build, test, deploy) ejecutadas automáticamente tras cada cambio."
+  },
+  {
+    "id": 14,
+    "level": "Junior",
+    "category": "CI/CD conceptos generales",
+    "question": "¿Qué es un 'artefacto' en el contexto de un pipeline de CI?",
+    "options": [
+      "Un error en el código.",
+      "Un archivo generado durante el build (ej. JAR, WAR) que se almacena para despliegues posteriores.",
+      "Una variable de entorno.",
+      "Un commit de Git."
+    ],
+    "correct": 1,
+    "explanation": "Artefacto: resultado compilado o empaquetado (JAR, informe de pruebas, etc.) que se pasa entre etapas del pipeline."
+  },
+  {
+    "id": 15,
+    "level": "Mid",
+    "category": "CI/CD conceptos generales",
+    "question": "¿Qué etapa suele ejecutarse después de un build exitoso y antes del despliegue a producción?",
+    "options": [
+      "Compilación",
+      "Pruebas automatizadas (unitarias, integración)",
+      "Limpieza de artefactos",
+      "Escaneo de vulnerabilidades"
+    ],
+    "correct": 1,
+    "explanation": "Por lo general: build -> pruebas -> análisis estático -> empaquetado -> despliegue. Las pruebas son inmediatamente después del build."
+  },
+  {
+    "id": 16,
+    "level": "Junior",
+    "category": "CI/CD conceptos generales",
+    "question": "¿Qué significa que un pipeline sea 'declarativo'?",
+    "options": [
+      "Que usa comandos Shell en cada etapa.",
+      "Que define la estructura de etapas en un formato de alto nivel (YAML, DSL) sin programar el flujo imperativamente.",
+      "Que solo se ejecuta manualmente.",
+      "Que requiere aprobación manual en cada paso."
+    ],
+    "correct": 1,
+    "explanation": "Pipeline declarativo especifica 'qué' hacer, no 'cómo'; ejemplos: GitLab CI, declarative Jenkins pipeline, GitHub Actions."
+  },
+  {
+    "id": 17,
+    "level": "Mid",
+    "category": "CI/CD conceptos generales",
+    "question": "¿Cuál es un propósito común de los 'triggers' en un pipeline?",
+    "options": [
+      "Iniciar el pipeline automáticamente ante un push en una rama específica.",
+      "Detener el pipeline si hay errores.",
+      "Ejecutar comandos después del despliegue.",
+      "Configurar alertas de monitoreo."
+    ],
+    "correct": 0,
+    "explanation": "Triggers determinan cuándo ejecutar el pipeline: push, schedule, manual, etc."
+  },
+  {
+    "id": 18,
+    "level": "Junior",
+    "category": "CI/CD conceptos generales",
+    "question": "¿Qué herramienta se usa comúnmente para almacenar artefactos de build (como JARs) y compartirlos entre pipelines?",
+    "options": [
+      "Docker Hub",
+      "Repositorio de artefactos (Artifactory, Nexus)",
+      "Git LFS",
+      "El sistema de archivos local del agente"
+    ],
+    "correct": 1,
+    "explanation": "Repositorios como Nexus o Artifactory centralizan artefactos. Docker Hub es para imágenes, no JARs en general."
+  },
+  {
+    "id": 19,
+    "level": "Mid",
+    "category": "Gestión de dependencias y builds",
+    "question": "En un proyecto Java multi-módulo con Maven, ¿qué comando compila todos los módulos y ejecuta pruebas en el orden correcto?",
+    "options": [
+      "mvn compile",
+      "mvn test",
+      "mvn clean install",
+      "mvn package -pl"
+    ],
+    "correct": 2,
+    "explanation": "mvn clean install compila, prueba y empaqueta todos los módulos respetando dependencias entre módulos."
+  },
+  {
+    "id": 20,
+    "level": "Junior",
+    "category": "Gestión de dependencias y builds",
+    "question": "¿Qué variable de entorno suele usar Maven para definir la ubicación del repositorio local de dependencias?",
+    "options": [
+      "MAVEN_HOME",
+      "M2_REPO",
+      "MAVEN_OPTS",
+      "JAVA_HOME"
+    ],
+    "correct": 1,
+    "explanation": "M2_REPO (o la propiedad maven.repo.local) define el path del repositorio local. MAVEN_HOME apunta a instalación."
+  },
+  {
+    "id": 21,
+    "level": "Mid",
+    "category": "Gestión de dependencias y builds",
+    "question": "Al construir una imagen Docker para una aplicación Java, ¿por qué es recomendable copiar primero el archivo pom.xml (o build.gradle) y luego descargar dependencias, antes de copiar el código fuente?",
+    "options": [
+      "Para ofuscar el código fuente.",
+      "Para aprovechar la caché de Docker: las dependencias se descargan una sola vez y se reutilizan si el pom no cambia.",
+      "Para reducir el tamaño final de la imagen.",
+      "Es un requisito de seguridad."
+    ],
+    "correct": 1,
+    "explanation": "Docker cachea capas. Si se copia pom y se ejecuta mvn dependency:go-offline, esa capa se reutiliza mientras pom no cambie, acelerando builds."
+  },
+  {
+    "id": 22,
+    "level": "Junior",
+    "category": "Gestión de dependencias y builds",
+    "question": "¿Qué flag de Gradle permite ejecutar las tareas en modo sin conexión (offline) usando dependencias cacheadas localmente?",
+    "options": [
+      "--no-daemon",
+      "--offline",
+      "--refresh-dependencies",
+      "--stacktrace"
+    ],
+    "correct": 1,
+    "explanation": "--offline indica a Gradle que no intente descargar dependencias de internet. Útil en pipelines sin acceso externo."
+  },
+  {
+    "id": 23,
+    "level": "Mid",
+    "category": "Gestión de dependencias y builds",
+    "question": "¿Qué es el 'versionado semántico' (SemVer) aplicado a un artefacto Java?",
+    "options": [
+      "Formato MAJOR.MINOR.PATCH donde MAJOR cambia con cambios incompatibles, MINOR con nuevas funcionalidades compatibles, PATCH con fixes.",
+      "Cualquier número incremental automático.",
+      "Versión igual a la fecha de compilación.",
+      "Solo números pares para versiones estables."
+    ],
+    "correct": 0,
+    "explanation": "SemVer: vMAJOR.MINOR.PATCH, reglas claras para compatibilidad."
+  },
+  {
+    "id": 24,
+    "level": "Mid",
+    "category": "Contenerización básica",
+    "question": "¿Cuál de los siguientes es un ejemplo de imagen base ligera para una aplicación Java, que reduce el tamaño final del contenedor?",
+    "options": [
+      "ubuntu:latest",
+      "openjdk:8-jre-alpine",
+      "centos:7",
+      "windows/servercore"
+    ],
+    "correct": 1,
+    "explanation": "Alpine Linux es distribución mínima (~5MB). La imagen openjdk:8-jre-alpine es mucho más pequeña que las basadas en Ubuntu o CentOS."
+  },
+  {
+    "id": 25,
+    "level": "Mid",
+    "category": "Contenerización básica",
+    "question": "¿Qué beneficio aporta usar una imagen 'distroless' para una aplicación Java?",
+    "options": [
+      "Mayor compatibilidad con Windows.",
+      "Reduce superficie de ataque al no incluir shell ni paquetes no esenciales.",
+      "Acelera el inicio del contenedor.",
+      "Incluye herramientas de depuración."
+    ],
+    "correct": 1,
+    "explanation": "Imágenes distroless (ej. gcr.io/distroless/java) contienen solo la app y sus runtime, sin shell ni utilidades, mejorando seguridad."
+  },
+  {
+    "id": 26,
+    "level": "Junior",
+    "category": "Contenerización básica",
+    "question": "¿Cuál es la instrucción en un Dockerfile para definir el comando que se ejecutará por defecto al iniciar el contenedor (puede ser sobrescrito)?",
+    "options": [
+      "RUN",
+      "ENTRYPOINT",
+      "CMD",
+      "START"
+    ],
+    "correct": 2,
+    "explanation": "CMD proporciona argumentos por defecto o comando; puede ser sobrescrito al ejecutar docker run. ENTRYPOINT define ejecutable principal."
+  },
+  {
+    "id": 27,
+    "level": "Mid",
+    "category": "Contenerización básica",
+    "question": "Observa el siguiente Dockerfile para una app Spring Boot. ¿Qué optimización de multi-stage se aplica?",
+    "code": "FROM maven:3.8.4-openjdk-11 AS builder\nWORKDIR /app\nCOPY pom.xml .\nRUN mvn dependency:go-offline\nCOPY src ./src\nRUN mvn package\n\nFROM openjdk:11-jre-slim\nCOPY --from=builder /app/target/*.jar app.jar\nENTRYPOINT [\"java\", \"-jar\", \"/app.jar\"]",
+    "options": [
+      "Se usan dos etapas: una para compilar y otra para ejecutar, reduciendo tamaño final al no incluir Maven ni código fuente.",
+      "Se usa la misma imagen para compilar y ejecutar.",
+      "No hay mejora; es solo un Dockerfile normal.",
+      "Se usa un volumen para compartir el jar."
+    ],
+    "correct": 0,
+    "explanation": "Multi-stage: builder produce el JAR, la segunda imagen (slim) solo contiene JRE y el JAR, resultado más pequeño y seguro."
+  },
+  {
+    "id": 28,
+    "level": "Junior",
+    "category": "Contenerización básica",
+    "question": "¿Qué flag de `docker run` permite mapear un puerto del host a un puerto del contenedor (ej. 8080:8080)?",
+    "options": [
+      "-e",
+      "-v",
+      "-p",
+      "--link"
+    ],
+    "correct": 2,
+    "explanation": "-p (publicar) mapea puerto host:contenedor. -e variables entorno, -v volúmenes."
+  },
+  {
+    "id": 29,
+    "level": "Mid",
+    "category": "Contenerización básica",
+    "question": "¿Cuál es una diferencia importante al desplegar una aplicación Java 8 vs Java 17 en un contenedor Docker?",
+    "options": [
+      "Java 17 requiere más capas en el Dockerfile.",
+      "Las imágenes base oficiales de Java 8 pueden estar obsoletas; Java 17 tiene mejor soporte para contenedores (awareness de límites de CPU/memoria).",
+      "Java 17 no es compatible con Alpine.",
+      "No hay diferencia relevante."
+    ],
+    "correct": 1,
+    "explanation": "Java 10+ introdujo soporte para contenedores (conociendo límites de cgroups). Java 8 requiere flags como -XX:+UseContainerSupport (añadido en update 191)."
+  },
+  {
+    "id": 30,
+    "level": "Mid",
+    "category": "Contenerización básica",
+    "question": "¿Cómo se configura una variable de entorno `JAVA_OPTS` dentro de un Dockerfile para que sea modificable en tiempo de ejecución?",
+    "options": [
+      "ENV JAVA_OPTS=\"-Xmx512m\"",
+      "ARG JAVA_OPTS",
+      "ENV JAVA_OPTS=\"-Xmx512m\" luego en CMD: java $JAVA_OPTS -jar app.jar",
+      "No se puede, se debe usar docker run -e directamente."
+    ],
+    "correct": 2,
+    "explanation": "Se define ENV con valor por defecto, y en CMD se referencia. Luego docker run -e puede sobreescribir la variable."
+  },
+  {
+    "id": 31,
+    "level": "Junior",
+    "category": "Contenerización básica",
+    "question": "¿Qué comando muestra los contenedores en ejecución actualmente?",
+    "options": [
+      "docker ps",
+      "docker container ls",
+      "docker stats",
+      "docker ps -a"
+    ],
+    "correct": 0,
+    "explanation": "docker ps (o docker container ls) muestra contenedores en ejecución. -a muestra también detenidos."
+  },
+  {
+    "id": 32,
+    "level": "Mid",
+    "category": "Contenerización básica",
+    "question": "¿Cuál es el propósito del archivo .dockerignore?",
+    "options": [
+      "Especificar qué archivos no deben incluirse en el contexto de build (evitar enviar .git, logs, etc.).",
+      "Ignorar contenedores durante la limpieza.",
+      "Listar imágenes que no se deben descargar.",
+      "Configurar variables de entorno ignoradas."
+    ],
+    "correct": 0,
+    "explanation": ".dockerignore mejora velocidad y seguridad al excluir archivos innecesarios del contexto de construcción."
+  },
+  {
+    "id": 33,
+    "level": "Mid",
+    "category": "Orquestación básica (K8s)",
+    "question": "¿Cuál es la unidad más pequeña desplegable en Kubernetes?",
+    "options": [
+      "Container",
+      "Pod",
+      "Deployment",
+      "Node"
+    ],
+    "correct": 1,
+    "explanation": "Un Pod contiene uno o más contenedores y comparte red/almacenamiento. Es la unidad básica."
+  },
+  {
+    "id": 34,
+    "level": "Junior",
+    "category": "Orquestación básica (K8s)",
+    "question": "¿Qué recurso de Kubernetes se encarga de mantener un conjunto de réplicas de Pods actualizadas y gestionar actualizaciones (rolling updates)?",
+    "options": [
+      "ReplicaSet",
+      "Deployment",
+      "StatefulSet",
+      "DaemonSet"
+    ],
+    "correct": 1,
+    "explanation": "Deployment gestiona ReplicaSets y permite actualizaciones declarativas, rollbacks, etc."
+  },
+  {
+    "id": 35,
+    "level": "Mid",
+    "category": "Orquestación básica (K8s)",
+    "question": "¿Qué tipo de Service en Kubernetes expone un conjunto de Pods internamente dentro del clúster sin IP pública?",
+    "options": [
+      "ClusterIP",
+      "NodePort",
+      "LoadBalancer",
+      "ExternalName"
+    ],
+    "correct": 0,
+    "explanation": "ClusterIP asigna una IP virtual interna solo accesible desde el clúster. NodePort y LoadBalancer exponen externamente."
+  },
+  {
+    "id": 36,
+    "level": "Junior",
+    "category": "Orquestación básica (K8s)",
+    "question": "¿Cómo se define un secreto en Kubernetes para almacenar una contraseña?",
+    "options": [
+      "En un ConfigMap con tipo 'secret'.",
+      "Con un recurso Secret, y los datos se codifican en base64.",
+      "No se puede, se usan variables de entorno en el Pod.",
+      "Mediante un archivo .env montado."
+    ],
+    "correct": 1,
+    "explanation": "Kubernetes tiene el recurso Secret, que almacena datos sensibles codificados en base64 (no cifrado por defecto, pero es mejor que texto plano)."
+  },
+  {
+    "id": 37,
+    "level": "Mid",
+    "category": "Orquestación básica (K8s)",
+    "question": "¿Qué son los 'readiness probes' en Kubernetes?",
+    "options": [
+      "Indican si el contenedor está listo para recibir tráfico.",
+      "Indican si el contenedor sigue vivo (reinicia si falla).",
+      "Miden el consumo de memoria.",
+      "Configuran el límite de CPU."
+    ],
+    "correct": 0,
+    "explanation": "Readiness probe determina si un Pod puede recibir tráfico. Liveness probe determina si debe reiniciarse."
+  },
+  {
+    "id": 38,
+    "level": "Junior",
+    "category": "Orquestación básica (K8s)",
+    "question": "¿Qué comando de kubectl aplica un manifiesto YAML a un clúster Kubernetes?",
+    "options": [
+      "kubectl create -f",
+      "kubectl apply -f",
+      "kubectl run -f",
+      "kubectl add -f"
+    ],
+    "correct": 1,
+    "explanation": "kubectl apply -f es declarativo; crea o actualiza recursos. create es imperativo y falla si ya existe."
+  },
+  {
+    "id": 39,
+    "level": "Mid",
+    "category": "Monitoreo y logging",
+    "question": "¿Qué herramienta se usa comúnmente para recolectar métricas de la JVM (como uso de heap, GC) en un entorno Kubernetes, junto con Prometheus?",
+    "options": [
+      "Micrometer",
+      "Logstash",
+      "Kibana",
+      "Jaeger"
+    ],
+    "correct": 0,
+    "explanation": "Micrometer es una librería de métricas que expone endpoint /actuator/prometheus para que Prometheus scrapee. Las otras son para logs o tracing."
+  },
+  {
+    "id": 40,
+    "level": "Junior",
+    "category": "Monitoreo y logging",
+    "question": "¿Qué componente del stack ELK se encarga de almacenar y buscar logs?",
+    "options": [
+      "Elasticsearch",
+      "Logstash",
+      "Kibana",
+      "Beats"
+    ],
+    "correct": 0,
+    "explanation": "Elasticsearch es el motor de búsqueda y almacenamiento. Logstash procesa, Kibana visualiza."
+  },
+  {
+    "id": 41,
+    "level": "Mid",
+    "category": "Monitoreo y logging",
+    "question": "¿Qué expresión se usa en Prometheus para consultar el uso de CPU de los contenedores?",
+    "options": [
+      "SQL",
+      "PromQL (Prometheus Query Language)",
+      "GraphQL",
+      "JMX query"
+    ],
+    "correct": 1,
+    "explanation": "Prometheus usa PromQL para consultar series temporales."
+  },
+  {
+    "id": 42,
+    "level": "Junior",
+    "category": "Monitoreo y logging",
+    "question": "¿Cuál de los siguientes es un beneficio de usar Grafana junto con Prometheus?",
+    "options": [
+      "Grafana ejecuta las pruebas de carga.",
+      "Grafana permite crear dashboards visuales de las métricas recolectadas por Prometheus.",
+      "Grafana reemplaza a Prometheus.",
+      "Grafana es un sistema de logging."
+    ],
+    "correct": 1,
+    "explanation": "Grafana es herramienta de visualización que usa Prometheus como fuente de datos."
+  },
+  {
+    "id": 43,
+    "level": "Mid",
+    "category": "Monitoreo y logging",
+    "question": "¿Qué es un 'trace distribuido' y qué herramienta se asocia comúnmente?",
+    "options": [
+      "Seguimiento de una solicitud a través de múltiples microservicios; herramientas como Jaeger o Zipkin.",
+      "Monitoreo de logs centralizados.",
+      "Métricas de negocio.",
+      "Alertas en tiempo real."
+    ],
+    "correct": 0,
+    "explanation": "Tracing distribuido (Jaeger, Zipkin) permite seguir una petición a través de servicios para identificar cuellos de botella."
+  },
+  {
+    "id": 44,
+    "level": "Mid",
+    "category": "Estrategias de despliegue",
+    "question": "En un despliegue Blue-Green, ¿qué representa cada entorno?",
+    "options": [
+      "Blue es producción, Green es staging; se intercambian enroutando tráfico al nuevo entorno.",
+      "Blue es canary, Green es producción.",
+      "Blue es backup, Green es activo.",
+      "Ambos entornos ejecutan versiones diferentes al mismo tiempo sin intercambio."
+    ],
+    "correct": 0,
+    "explanation": "Blue-Green: dos entornos idénticos. Uno activo (blue), el otro (green) con nueva versión; después se cambia el tráfico al green."
+  },
+  {
+    "id": 45,
+    "level": "Junior",
+    "category": "Estrategias de despliegue",
+    "question": "¿Qué característica define un despliegue Canary?",
+    "options": [
+      "Se reemplazan todos los pods simultáneamente.",
+      "Se despliega la nueva versión solo para un pequeño porcentaje de usuarios antes de expandir al 100%.",
+      "Se detiene el tráfico durante el despliegue.",
+      "Se usan dos clusters completamente separados."
+    ],
+    "correct": 1,
+    "explanation": "Canary: lanzamiento gradual, inicialmente pequeño grupo, monitoreo, luego incremento."
+  },
+  {
+    "id": 46,
+    "level": "Mid",
+    "category": "Estrategias de despliegue",
+    "question": "¿Qué es un 'rolling update' en Kubernetes?",
+    "options": [
+      "Actualización recreando todos los Pods a la vez.",
+      "Actualización gradual, reemplazando Pods de a uno o en batches, asegurando disponibilidad.",
+      "Actualización manual de cada Pod.",
+      "Actualización que requiere downtime."
+    ],
+    "correct": 1,
+    "explanation": "Rolling update cambia Pods gradualmente, manteniendo algunos en ejecución para evitar downtime."
+  },
+  {
+    "id": 47,
+    "level": "Mid",
+    "category": "Estrategias de despliegue",
+    "question": "¿Qué métrica es crítica para decidir si se continúa con un despliegue Canary?",
+    "options": [
+      "Tasa de error (error rate) o latencia en el grupo canary vs grupo estable.",
+      "Número de commits.",
+      "Tamaño de la imagen Docker.",
+      "Versión de Java."
+    ],
+    "correct": 0,
+    "explanation": "Se monitorean errores o rendimiento; si empeoran, se revierte el canary."
+  },
+  {
+    "id": 48,
+    "level": "Junior",
+    "category": "Estrategias de despliegue",
+    "question": "¿Cuál es una ventaja del despliegue Blue-Green sobre Rolling Update?",
+    "options": [
+      "Menor uso de recursos.",
+      "Cambio instantáneo de tráfico, facilitando rollback rápido (solo cambiar el balanceador).",
+      "No requiere duplicar infraestructura.",
+      "Es más fácil de implementar en entornos serverless."
+    ],
+    "correct": 1,
+    "explanation": "Blue-Green necesita doble infraestructura pero el rollback es inmediato cambiando el enrutamiento."
+  },
+  {
+    "id": 49,
+    "level": "Mid",
+    "category": "Microservicios en DevOps",
+    "question": "¿Cuál es la función principal de un API Gateway en una arquitectura de microservicios?",
+    "options": [
+      "Autenticación, rate limiting, routing, agregación de respuestas.",
+      "Almacenar datos de microservicios.",
+      "Ejecutar el código de negocio.",
+      "Reemplazar a Kubernetes."
+    ],
+    "correct": 0,
+    "explanation": "API Gateway actúa como punto de entrada único, gestionando seguridad, enrutamiento, límites, etc."
+  },
+  {
+    "id": 50,
+    "level": "Junior",
+    "category": "Microservicios en DevOps",
+    "question": "¿Qué problema resuelve un Service Mesh (ej. Istio, Linkerd)?",
+    "options": [
+      "Gestión de comunicaciones entre microservicios (mTLS, observabilidad, circuit breakers) sin modificar el código de la aplicación.",
+      "Compilar el código Java.",
+      "Almacenar logs centralizados.",
+      "Desplegar bases de datos."
+    ],
+    "correct": 0,
+    "explanation": "Service Mesh añade una capa de proxy sidecar para manejar la comunicación red, seguridad y telemetría de manera transparente."
+  },
+  {
+    "id": 51,
+    "level": "Mid",
+    "category": "Microservicios en DevOps",
+    "question": "¿Qué es un 'sidecar container' en el contexto de Service Mesh?",
+    "options": [
+      "Un contenedor auxiliar dentro del mismo Pod que maneja tráfico de red o logging.",
+      "Un contenedor independiente en otro nodo.",
+      "Un tipo de Deployment.",
+      "Una imagen de Java específica."
+    ],
+    "correct": 0,
+    "explanation": "El proxy sidecar (Envoy) se despliega junto al contenedor de aplicación en el mismo Pod, interceptando tráfico."
+  },
+  {
+    "id": 52,
+    "level": "Junior",
+    "category": "Microservicios en DevOps",
+    "question": "¿Qué beneficio aporta Istio en términos de seguridad?",
+    "options": [
+      "Cifrado mTLS automático entre servicios sin modificar la aplicación.",
+      "Escaneo de vulnerabilidades de librerías.",
+      "Firewall de aplicaciones web.",
+      "Antivirus para contenedores."
+    ],
+    "correct": 0,
+    "explanation": "Istio puede habilitar mTLS (cifrado y autenticación mutua) entre servicios de forma transparente."
+  },
+  {
+    "id": 53,
+    "level": "Mid",
+    "category": "Microservicios en DevOps",
+    "question": "¿Qué es un 'circuit breaker' en el contexto de microservicios y cómo lo implementa un Service Mesh?",
+    "options": [
+      "Un mecanismo que detiene solicitudes a un servicio que falla para evitar efecto cascada.",
+      "Un componente que rompe el cifrado.",
+      "Un sistema de logging avanzado.",
+      "Una estrategia de despliegue."
+    ],
+    "correct": 0,
+    "explanation": "Circuit breaker previene sobrecarga al servicio caído; Service Mesh puede configurarlo a nivel de proxy."
+  },
+  {
+    "id": 54,
+    "level": "Mid",
+    "category": "Cloud computing básico",
+    "question": "¿Cuál es la diferencia fundamental entre IaaS y PaaS?",
+    "options": [
+      "IaaS proporciona máquinas virtuales, almacenamiento; PaaS proporciona plataforma para desplegar aplicaciones sin gestionar el SO.",
+      "IaaS es solo para almacenamiento, PaaS para cómputo.",
+      "No hay diferencia.",
+      "PaaS no es parte de la nube."
+    ],
+    "correct": 0,
+    "explanation": "IaaS: infraestructura (VM, redes). PaaS: plataforma de ejecución (App Engine, Elastic Beanstalk)."
+  },
+  {
+    "id": 55,
+    "level": "Junior",
+    "category": "Cloud computing básico",
+    "question": "¿Qué significa 'escalado horizontal' en la nube?",
+    "options": [
+      "Aumentar el tamaño de una máquina (más CPU/RAM).",
+      "Agregar más instancias o réplicas de una aplicación.",
+      "Mover la aplicación a otra región.",
+      "Optimizar el código para usar menos recursos."
+    ],
+    "correct": 1,
+    "explanation": "Horizontal: añadir más nodos. Vertical: aumentar recursos de un nodo."
+  },
+  {
+    "id": 56,
+    "level": "Mid",
+    "category": "Cloud computing básico",
+    "question": "¿Qué es una 'zona de disponibilidad' (Availability Zone) en un proveedor cloud?",
+    "options": [
+      "Un centro de datos o grupo de centros de datos aislados con baja latencia y redundancia.",
+      "Una región completa.",
+      "Un clúster de Kubernetes.",
+      "Un tipo de servicio de base de datos."
+    ],
+    "correct": 0,
+    "explanation": "AZ son ubicaciones físicas aisladas dentro de una región, con conectividad redundante para alta disponibilidad."
+  },
+  {
+    "id": 57,
+    "level": "Junior",
+    "category": "Cloud computing básico",
+    "question": "¿Cuál es una ventaja del modelo serverless (ej. AWS Lambda) para aplicaciones Java?",
+    "options": [
+      "No hay límite de tiempo de ejecución.",
+      "Escalado automático y pago por ejecución, sin administrar servidores.",
+      "La JVM se inicia instantáneamente siempre.",
+      "No requiere empaquetar el código."
+    ],
+    "correct": 1,
+    "explanation": "Serverless abstrae servidores, escala automáticamente y factura por uso. Java puede tener cold starts, pero es manejable."
+  },
+  {
+    "id": 58,
+    "level": "Mid",
+    "category": "Linux/Shell scripting",
+    "question": "¿Qué comando en Linux muestra los procesos en ejecución con información de CPU y memoria?",
+    "options": [
+      "ps aux",
+      "ls -la",
+      "cat /proc/cpu",
+      "df -h"
+    ],
+    "correct": 0,
+    "explanation": "ps aux muestra todos los procesos con detalles de CPU, memoria, etc. top o htop también, pero ps es común en scripts."
+  },
+  {
+    "id": 59,
+    "level": "Junior",
+    "category": "Linux/Shell scripting",
+    "question": "¿Cómo se define una variable de entorno temporal en un script bash para un comando específico?",
+    "options": [
+      "export VAR=value && comando",
+      "VAR=value comando",
+      "env VAR=value comando",
+      "set VAR=value comando"
+    ],
+    "correct": 1,
+    "explanation": "Prefijando la asignación al comando: VAR=valor comando. La variable solo existe para ese proceso hijo."
+  },
+  {
+    "id": 60,
+    "level": "Mid",
+    "category": "Linux/Shell scripting",
+    "question": "¿Qué comando se usa para buscar archivos por nombre en Linux?",
+    "options": [
+      "grep",
+      "find",
+      "locate",
+      "which"
+    ],
+    "correct": 1,
+    "explanation": "find . -name '*.java' busca recursivamente. locate usa base de datos, grep busca contenido."
+  },
+  {
+    "id": 61,
+    "level": "Junior",
+    "category": "Linux/Shell scripting",
+    "question": "¿Qué hace el comando 'chmod +x script.sh'?",
+    "options": [
+      "Cambia el propietario del archivo.",
+      "Agrega permiso de ejecución al script.",
+      "Cambia el grupo del script.",
+      "Cifra el script."
+    ],
+    "correct": 1,
+    "explanation": "chmod +x añade permiso de ejecución (eXecute)."
+  },
+  {
+    "id": 62,
+    "level": "Mid",
+    "category": "Seguridad en DevOps",
+    "question": "¿Qué herramienta se usa para escanear vulnerabilidades en dependencias de proyectos Java (por ejemplo, librerías con CVEs conocidos)?",
+    "options": [
+      "OWASP Dependency-Check",
+      "SonarQube (solo para código)",
+      "Kubernetes Scanner",
+      "Nmap"
+    ],
+    "correct": 0,
+    "explanation": "OWASP Dependency-Check analiza dependencias (JAR, pom.xml) y reporta vulnerabilidades conocidas."
+  },
+  {
+    "id": 63,
+    "level": "Junior",
+    "category": "Seguridad en DevOps",
+    "question": "¿Qué práctica es recomendada para manejar secretos (passwords, tokens) en un pipeline CI/CD?",
+    "options": [
+      "Guardarlos en un archivo .env dentro del repositorio.",
+      "Usar un administrador de secretos (Vault, GitLab CI variables, GitHub Secrets) y no exponerlos en logs.",
+      "Codificarlos en base64 en el código fuente.",
+      "Enviarlos por correo electrónico al equipo."
+    ],
+    "correct": 1,
+    "explanation": "Los secretos deben inyectarse desde un almacén seguro y no aparecer en logs ni código fuente."
+  },
+  {
+    "id": 64,
+    "level": "Mid",
+    "category": "Seguridad en DevOps",
+    "question": "¿Qué es un 'container image scan' y cuándo se recomienda ejecutarlo?",
+    "options": [
+      "Análisis de la imagen en busca de vulnerabilidades conocidas en capas; se recomienda durante el pipeline antes de desplegar.",
+      "Escanear el código fuente de la aplicación.",
+      "Analizar permisos de Kubernetes.",
+      "Revisar logs del contenedor."
+    ],
+    "correct": 0,
+    "explanation": "Herramientas como Trivy, Clair escanean imágenes base y capas adicionales por CVEs. Mejor ejecutarlo en pipeline para evitar imágenes inseguras."
+  },
+  {
+    "id": 65,
+    "level": "Junior",
+    "category": "Seguridad en DevOps",
+    "question": "¿Qué es el principio de 'mínimo privilegio' aplicado a contenedores?",
+    "options": [
+      "Ejecutar el contenedor como root siempre.",
+      "Ejecutar el contenedor con un usuario no root y sin capacidades innecesarias (dropar CAPs).",
+      "Dar todos los permisos al contenedor para evitar problemas.",
+      "Usar siempre imágenes oficiales."
+    ],
+    "correct": 1,
+    "explanation": "Mínimo privilegio: ejecutar aplicaciones con los permisos estrictamente necesarios. En Docker: USER no root, --cap-drop=ALL, etc."
+  }
+]
