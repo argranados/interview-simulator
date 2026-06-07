@@ -12,7 +12,8 @@
       "Mover el método a una clase utilitaria estática"
     ],
     "correct": 0,
-    "explanation": "Los if/else anidados profundos violan el principio de responsabilidad única y reducen legibilidad. La solución es extraer métodos privados con nombres descriptivos (Early Return / Guard Clauses) o aplicar Strategy Pattern para eliminar los condicionales por polimorfismo."
+    "explanation": "Los if/else anidados profundos violan el principio de responsabilidad única y reducen legibilidad. La solución es extraer métodos privados con nombres descriptivos (Early Return / Guard Clauses) o aplicar Strategy Pattern para eliminar los condicionales por polimorfismo.",
+    "active": true
   },
   {
     "id": 2,
@@ -27,7 +28,8 @@
       "Agregar un comentario en cada clase indicando que la lógica es intencionalmente duplicada"
     ],
     "correct": 1,
-    "explanation": "La duplicación viola DRY (Don't Repeat Yourself). Un cambio en la regla de validación requeriría modificar 3 clases. Lo correcto es extraer la lógica a un EmailValidator reutilizable. Herencia no aplica porque no hay relación 'es un' entre las clases."
+    "explanation": "La duplicación viola DRY (Don't Repeat Yourself). Un cambio en la regla de validación requeriría modificar 3 clases. Lo correcto es extraer la lógica a un EmailValidator reutilizable. Herencia no aplica porque no hay relación 'es un' entre las clases.",
+    "active": true
   },
   {
     "id": 3,
@@ -42,7 +44,8 @@
       "Usar variables locales con el mismo valor en cada método"
     ],
     "correct": 0,
-    "explanation": "Las magic strings son frágiles: un typo produce bugs silenciosos, y cambiar el valor requiere buscar y reemplazar en todo el código. Usar enum o constantes tipadas centraliza el valor, activa el autocompletado del IDE y hace imposible los typos."
+    "explanation": "Las magic strings son frágiles: un typo produce bugs silenciosos, y cambiar el valor requiere buscar y reemplazar en todo el código. Usar enum o constantes tipadas centraliza el valor, activa el autocompletado del IDE y hace imposible los typos.",
+    "active": true
   },
   {
     "id": 4,
@@ -57,7 +60,8 @@
       "Usar anotaciones de Bean Validation (@NotNull) en todos los campos del modelo"
     ],
     "correct": 0,
-    "explanation": "Validar en múltiples capas con la misma lógica es duplicación. La validación de negocio pertenece a la capa de servicio o al modelo de dominio. Bean Validation (@NotNull) es complementaria para constraints de formato, pero la lógica de negocio debe estar centralizada y testeable."
+    "explanation": "Validar en múltiples capas con la misma lógica es duplicación. La validación de negocio pertenece a la capa de servicio o al modelo de dominio. Bean Validation (@NotNull) es complementaria para constraints de formato, pero la lógica de negocio debe estar centralizada y testeable.",
+    "active": true
   },
   {
     "id": 5,
@@ -72,7 +76,8 @@
       "Shotgun Surgery"
     ],
     "correct": 2,
-    "explanation": "Primitive Obsession ocurre cuando se usan primitivos (String, int) para representar conceptos de dominio que merecen su propio tipo (enum UserState). Magic Numbers/Strings es una variante. Shotgun Surgery sería el efecto: un cambio requiere modificar múltiples clases."
+    "explanation": "Primitive Obsession ocurre cuando se usan primitivos (String, int) para representar conceptos de dominio que merecen su propio tipo (enum UserState). Magic Numbers/Strings es una variante. Shotgun Surgery sería el efecto: un cambio requiere modificar múltiples clases.",
+    "active": true
   },
   {
     "id": 6,
@@ -87,7 +92,8 @@
       "Middle Man"
     ],
     "correct": 2,
-    "explanation": "God Class (también llamada Blob) es una clase que sabe demasiado y hace demasiado, acumulando responsabilidades de múltiples dominios. Viola SRP. La solución es extraer responsabilidades a clases dedicadas: PaymentService, NotificationService, ReportService."
+    "explanation": "God Class (también llamada Blob) es una clase que sabe demasiado y hace demasiado, acumulando responsabilidades de múltiples dominios. Viola SRP. La solución es extraer responsabilidades a clases dedicadas: PaymentService, NotificationService, ReportService.",
+    "active": true
   },
   {
     "id": 7,
@@ -102,7 +108,8 @@
       "Lazy Class"
     ],
     "correct": 1,
-    "explanation": "Shotgun Surgery: un solo cambio lógico requiere modificar muchas clases. Es el opuesto de Divergent Change (una clase cambia por muchas razones). La solución es consolidar la lógica relacionada con tipos de pago en un solo lugar (Strategy Pattern o enum con comportamiento)."
+    "explanation": "Shotgun Surgery: un solo cambio lógico requiere modificar muchas clases. Es el opuesto de Divergent Change (una clase cambia por muchas razones). La solución es consolidar la lógica relacionada con tipos de pago en un solo lugar (Strategy Pattern o enum con comportamiento).",
+    "active": true
   },
   {
     "id": 8,
@@ -117,7 +124,8 @@
       "Speculative Generality"
     ],
     "correct": 1,
-    "explanation": "Long Parameter List (y Data Clumps cuando esos parámetros aparecen juntos en varios métodos). La solución es agrupar parámetros relacionados en un objeto: un record/clase Address para los datos de ubicación y un CreateUserRequest como DTO de entrada."
+    "explanation": "Long Parameter List (y Data Clumps cuando esos parámetros aparecen juntos en varios métodos). La solución es agrupar parámetros relacionados en un objeto: un record/clase Address para los datos de ubicación y un CreateUserRequest como DTO de entrada.",
+    "active": true
   },
   {
     "id": 9,
@@ -132,7 +140,8 @@
       "La duplicación es aceptable si está en clases del mismo paquete"
     ],
     "correct": 1,
-    "explanation": "DRY trata de no duplicar conocimiento, no de eliminar toda similitud de código. En tests, la duplicación puede mejorar legibilidad y aislamiento. El problema real es cuando cambiar una regla de negocio obliga a buscar y modificar múltiples lugares."
+    "explanation": "DRY trata de no duplicar conocimiento, no de eliminar toda similitud de código. En tests, la duplicación puede mejorar legibilidad y aislamiento. El problema real es cuando cambiar una regla de negocio obliga a buscar y modificar múltiples lugares.",
+    "active": true
   },
   {
     "id": 10,
@@ -147,7 +156,8 @@
       "Cuando las subclases sobrescriben algún método de la base"
     ],
     "correct": 1,
-    "explanation": "Herencia para reutilización (sin relación 'es un') es un antipatrón llamado 'Inheritance for code reuse'. OrderService no 'es un' BaseService. Lo correcto es composición: inyectar ValidationService, LogService como dependencias. 'Favor composition over inheritance'."
+    "explanation": "Herencia para reutilización (sin relación 'es un') es un antipatrón llamado 'Inheritance for code reuse'. OrderService no 'es un' BaseService. Lo correcto es composición: inyectar ValidationService, LogService como dependencias. 'Favor composition over inheritance'.",
+    "active": true
   },
   {
     "id": 11,
@@ -162,7 +172,8 @@
       "Crear una clase abstracta con el método de mapeo"
     ],
     "correct": 1,
-    "explanation": "Extraer a un método privado toEntity() elimina la triplicación. En proyectos reales, MapStruct genera el código de mapeo en compilación, eliminando boilerplate y errores. Es una aplicación directa de DRY en la capa de transformación."
+    "explanation": "Extraer a un método privado toEntity() elimina la triplicación. En proyectos reales, MapStruct genera el código de mapeo en compilación, eliminando boilerplate y errores. Es una aplicación directa de DRY en la capa de transformación.",
+    "active": true
   },
   {
     "id": 12,
@@ -177,7 +188,8 @@
       "Las abstracciones solo funcionan con más de 5 usos"
     ],
     "correct": 1,
-    "explanation": "La abstracción prematura (también conocida como 'wrong abstraction') es peor que duplicación. Sandi Metz dice: 'duplication is far cheaper than the wrong abstraction'. Extraer abstracción tiene sentido con 3+ usos reales con el mismo comportamiento."
+    "explanation": "La abstracción prematura (también conocida como 'wrong abstraction') es peor que duplicación. Sandi Metz dice: 'duplication is far cheaper than the wrong abstraction'. Extraer abstracción tiene sentido con 3+ usos reales con el mismo comportamiento.",
+    "active": true
   },
   {
     "id": 13,
@@ -192,7 +204,8 @@
       "Duplicar es aceptable para constantes porque son solo números"
     ],
     "correct": 1,
-    "explanation": "Constantes duplicadas son un caso claro de DRY violation. Si el valor cambia (MAX_RETRIES = 5) hay que buscarlo en todo el proyecto. Lo correcto: centralizar en AppConstants o mejor aún en application.properties con @Value('${app.max-retries}') para que sea configurable sin recompilar."
+    "explanation": "Constantes duplicadas son un caso claro de DRY violation. Si el valor cambia (MAX_RETRIES = 5) hay que buscarlo en todo el proyecto. Lo correcto: centralizar en AppConstants o mejor aún en application.properties con @Value('${app.max-retries}') para que sea configurable sin recompilar.",
+    "active": true
   },
   {
     "id": 14,
@@ -207,7 +220,8 @@
       "Dependency Inversion Principle"
     ],
     "correct": 1,
-    "explanation": "SRP: una clase/método debe tener una sola razón para cambiar. Este método tiene 4 razones para cambiar: cambio en reglas de validación, en lógica de precios, en persistencia o en notificaciones. La solución es dividir en métodos privados o delegar a servicios especializados."
+    "explanation": "SRP: una clase/método debe tener una sola razón para cambiar. Este método tiene 4 razones para cambiar: cambio en reglas de validación, en lógica de precios, en persistencia o en notificaciones. La solución es dividir en métodos privados o delegar a servicios especializados.",
+    "active": true
   },
   {
     "id": 15,
@@ -222,7 +236,8 @@
       "Dependency Inversion Principle"
     ],
     "correct": 0,
-    "explanation": "SRP aplicado a nombres: cada variable y método debe tener una responsabilidad clara y su nombre debe comunicarla. 'd' debería ser 'precioBase', 'x' debería ser 'cantidad', 'tmp' debería ser 'subtotal', '0.21' debería ser la constante IVA. El código debe documentarse a sí mismo."
+    "explanation": "SRP aplicado a nombres: cada variable y método debe tener una responsabilidad clara y su nombre debe comunicarla. 'd' debería ser 'precioBase', 'x' debería ser 'cantidad', 'tmp' debería ser 'subtotal', '0.21' debería ser la constante IVA. El código debe documentarse a sí mismo.",
+    "active": true
   },
   {
     "id": 16,
@@ -237,7 +252,8 @@
       "Dependency Inversion Principle"
     ],
     "correct": 1,
-    "explanation": "OCP: abierto para extensión, cerrado para modificación. Cada nueva regla de descuento modifica el método existente, arriesgando romper las reglas anteriores. La solución: crear una interfaz DiscountStrategy con implementaciones por tipo, e inyectar la estrategia correspondiente sin tocar el código original."
+    "explanation": "OCP: abierto para extensión, cerrado para modificación. Cada nueva regla de descuento modifica el método existente, arriesgando romper las reglas anteriores. La solución: crear una interfaz DiscountStrategy con implementaciones por tipo, e inyectar la estrategia correspondiente sin tocar el código original.",
+    "active": true
   },
   {
     "id": 17,
@@ -252,7 +268,8 @@
       "Dependency Inversion Principle"
     ],
     "correct": 2,
-    "explanation": "ISP: los clientes no deben depender de interfaces que no usan. Dog se ve forzado a implementar fly() con UnsupportedOperationException. La solución: segregar en interfaces Flyable, Swimmable, Runnable y que cada clase implemente solo las que corresponden."
+    "explanation": "ISP: los clientes no deben depender de interfaces que no usan. Dog se ve forzado a implementar fly() con UnsupportedOperationException. La solución: segregar en interfaces Flyable, Swimmable, Runnable y que cada clase implemente solo las que corresponden.",
+    "active": true
   },
   {
     "id": 18,
@@ -267,7 +284,8 @@
       "Dependency Inversion Principle"
     ],
     "correct": 3,
-    "explanation": "DIP: depende de abstracciones, no de implementaciones concretas. OrderService está acoplado a MySQL, SMTP y Stripe. Para testear o cambiar de proveedor hay que modificar OrderService. La solución: inyectar interfaces (OrderRepository, EmailService, PaymentGateway) via constructor injection."
+    "explanation": "DIP: depende de abstracciones, no de implementaciones concretas. OrderService está acoplado a MySQL, SMTP y Stripe. Para testear o cambiar de proveedor hay que modificar OrderService. La solución: inyectar interfaces (OrderRepository, EmailService, PaymentGateway) via constructor injection.",
+    "active": true
   },
   {
     "id": 19,
@@ -282,7 +300,8 @@
       "Dependency Inversion Principle"
     ],
     "correct": 0,
-    "explanation": "SRP: Report tiene tres razones para cambiar: cambio en generación PDF, en envío de email, en persistencia. Cada responsabilidad debe separarse: ReportGenerator, ReportEmailSender, ReportRepository. Esto también facilita el testing unitario de cada pieza de forma independiente."
+    "explanation": "SRP: Report tiene tres razones para cambiar: cambio en generación PDF, en envío de email, en persistencia. Cada responsabilidad debe separarse: ReportGenerator, ReportEmailSender, ReportRepository. Esto también facilita el testing unitario de cada pieza de forma independiente.",
+    "active": true
   },
   {
     "id": 20,
@@ -297,7 +316,8 @@
       "Rectangle debería ser abstracta para que funcione correctamente"
     ],
     "correct": 1,
-    "explanation": "LSP: los subtipos deben poder sustituir a sus tipos base sin alterar el comportamiento esperado. Un test que hace rect.setWidth(5); rect.setHeight(3); assert rect.area() == 15 fallará con Square. El diseño geométrico no equivale a relación de herencia en OOP."
+    "explanation": "LSP: los subtipos deben poder sustituir a sus tipos base sin alterar el comportamiento esperado. Un test que hace rect.setWidth(5); rect.setHeight(3); assert rect.area() == 15 fallará con Square. El diseño geométrico no equivale a relación de herencia en OOP.",
+    "active": true
   },
   {
     "id": 21,
@@ -312,7 +332,8 @@
       "El mapper debería ser estático para mejor rendimiento"
     ],
     "correct": 1,
-    "explanation": "El problema N+1 es uno de los bugs de rendimiento más comunes en Java/JPA. Con 1000 IDs se ejecutan 1000 queries en lugar de 1. La solución: orderRepository.findAllById(ids) ejecuta un solo SELECT WHERE id IN (...). Crítico en code reviews de backend."
+    "explanation": "El problema N+1 es uno de los bugs de rendimiento más comunes en Java/JPA. Con 1000 IDs se ejecutan 1000 queries en lugar de 1. La solución: orderRepository.findAllById(ids) ejecuta un solo SELECT WHERE id IN (...). Crítico en code reviews de backend.",
+    "active": true
   },
   {
     "id": 22,
@@ -327,7 +348,8 @@
       "Solo falta agregar finally para cerrar recursos"
     ],
     "correct": 1,
-    "explanation": "Tres antipatrones en 3 líneas: (1) catch(Exception) captura hasta OutOfMemoryError, (2) return null fuerza al llamador a hacer null-checks o falla con NPE silenciosa, (3) printStackTrace en lugar de logger.error impide correlación de logs. Correcto: catch específico, lanzar excepción de dominio, usar SLF4J."
+    "explanation": "Tres antipatrones en 3 líneas: (1) catch(Exception) captura hasta OutOfMemoryError, (2) return null fuerza al llamador a hacer null-checks o falla con NPE silenciosa, (3) printStackTrace en lugar de logger.error impide correlación de logs. Correcto: catch específico, lanzar excepción de dominio, usar SLF4J.",
+    "active": true
   },
   {
     "id": 23,
@@ -342,7 +364,8 @@
       "Usar varargs: generate(boolean... options)"
     ],
     "correct": 1,
-    "explanation": "Flag Arguments es un code smell de Martin Fowler. Una llamada como generate(true,false,true,false,true,false) es completamente ilegible. La solución: ReportOptions.builder().includeHeaders(true).includeCharts(true).sendEmail(true).build(). Builder Pattern o record para opciones de configuración."
+    "explanation": "Flag Arguments es un code smell de Martin Fowler. Una llamada como generate(true,false,true,false,true,false) es completamente ilegible. La solución: ReportOptions.builder().includeHeaders(true).includeCharts(true).sendEmail(true).build(). Builder Pattern o record para opciones de configuración.",
+    "active": true
   },
   {
     "id": 24,
@@ -357,7 +380,8 @@
       "Falta anotación @Component para que Spring gestione el bean"
     ],
     "correct": 1,
-    "explanation": "Estado mutable estático es uno de los problemas más graves en aplicaciones concurrentes: múltiples threads modifican la misma lista sin sincronización. Además, en tests el estado persiste entre casos de prueba. Solución: lista como campo de instancia, inyección de dependencias vía Spring, o CopyOnWriteArrayList si necesita ser compartida."
+    "explanation": "Estado mutable estático es uno de los problemas más graves en aplicaciones concurrentes: múltiples threads modifican la misma lista sin sincronización. Además, en tests el estado persiste entre casos de prueba. Solución: lista como campo de instancia, inyección de dependencias vía Spring, o CopyOnWriteArrayList si necesita ser compartida.",
+    "active": true
   },
   {
     "id": 25,
@@ -372,7 +396,8 @@
       "Solo falta agregar @RequiredArgsConstructor de Lombok"
     ],
     "correct": 1,
-    "explanation": "Field injection es un antipatrón: (1) dependencias no son visibles en la API pública, (2) no permite final, (3) testing requiere reflection. Constructor injection (recomendado por Spring team y facilitado por @RequiredArgsConstructor) hace dependencias explícitas. 10 dependencias en un controller también indica SRP violation."
+    "explanation": "Field injection es un antipatrón: (1) dependencias no son visibles en la API pública, (2) no permite final, (3) testing requiere reflection. Constructor injection (recomendado por Spring team y facilitado por @RequiredArgsConstructor) hace dependencias explícitas. 10 dependencias en un controller también indica SRP violation.",
+    "active": true
   },
   {
     "id": 26,
@@ -387,7 +412,8 @@
       "El método debería ser POST, no GET"
     ],
     "correct": 1,
-    "explanation": "Retornar entidades JPA directamente en la API es un antipatrón grave: (1) expone campos internos como contraseñas o campos de auditoría, (2) acopla el contrato API al modelo de BD, (3) en relaciones lazy puede serializar todo el grafo. Solución: usar DTOs (record UserDTO) con solo los campos necesarios."
+    "explanation": "Retornar entidades JPA directamente en la API es un antipatrón grave: (1) expone campos internos como contraseñas o campos de auditoría, (2) acopla el contrato API al modelo de BD, (3) en relaciones lazy puede serializar todo el grafo. Solución: usar DTOs (record UserDTO) con solo los campos necesarios.",
+    "active": true
   },
   {
     "id": 27,
@@ -402,7 +428,8 @@
       "orderRepository.save() hace commit automático, no hay problema"
     ],
     "correct": 1,
-    "explanation": "Sin @Transactional no hay atomicidad: si paymentService.charge() lanza excepción, la orden ya existe en BD y el stock ya fue reducido — datos inconsistentes. @Transactional garantiza que todo el método sea una unidad atómica: si algo falla, el rollback deshace todos los cambios anteriores."
+    "explanation": "Sin @Transactional no hay atomicidad: si paymentService.charge() lanza excepción, la orden ya existe en BD y el stock ya fue reducido — datos inconsistentes. @Transactional garantiza que todo el método sea una unidad atómica: si algo falla, el rollback deshace todos los cambios anteriores.",
+    "active": true
   },
   {
     "id": 28,
@@ -417,7 +444,8 @@
       "El stream debería usar parallelStream() para mejor rendimiento"
     ],
     "correct": 1,
-    "explanation": "Filtrado en memoria en lugar de en BD: si hay 1 millón de usuarios se cargan todos en heap para contar los activos. La solución: long countByStatus(UserStatus status) o @Query('SELECT COUNT(u) FROM User u WHERE u.status = :status'). Siempre filtrar, agregar y proyectar en la BD."
+    "explanation": "Filtrado en memoria en lugar de en BD: si hay 1 millón de usuarios se cargan todos en heap para contar los activos. La solución: long countByStatus(UserStatus status) o @Query('SELECT COUNT(u) FROM User u WHERE u.status = :status'). Siempre filtrar, agregar y proyectar en la BD.",
+    "active": true
   },
   {
     "id": 29,
@@ -432,7 +460,8 @@
       "B, D y F son correctos"
     ],
     "correct": 1,
-    "explanation": "Estándares Java (Oracle Code Conventions): Clases/Interfaces: PascalCase (OrderService). Constantes (static final): UPPER_SNAKE_CASE (MAX_SIZE). Métodos/Variables: camelCase (getUserName). Paquetes: lowercase (com.example.order). Seguirlos facilita la lectura por cualquier desarrollador Java."
+    "explanation": "Estándares Java (Oracle Code Conventions): Clases/Interfaces: PascalCase (OrderService). Constantes (static final): UPPER_SNAKE_CASE (MAX_SIZE). Métodos/Variables: camelCase (getUserName). Paquetes: lowercase (com.example.order). Seguirlos facilita la lectura por cualquier desarrollador Java.",
+    "active": true
   },
   {
     "id": 30,
@@ -447,7 +476,8 @@
       "Optional debería evitarse siempre, usar null es más eficiente"
     ],
     "correct": 1,
-    "explanation": "Usar isPresent()+get() reproduce el patrón null-check que Optional intenta eliminar. La forma idiomática: userOpt.map(User::getName).orElse('Unknown'). Otras formas: orElseGet(() -> computeDefault()), orElseThrow(() -> new NotFoundException()). Optional comunica intención y fuerza al llamador a pensar en el caso vacío."
+    "explanation": "Usar isPresent()+get() reproduce el patrón null-check que Optional intenta eliminar. La forma idiomática: userOpt.map(User::getName).orElse('Unknown'). Otras formas: orElseGet(() -> computeDefault()), orElseThrow(() -> new NotFoundException()). Optional comunica intención y fuerza al llamador a pensar en el caso vacío.",
+    "active": true
   },
   {
     "id": 31,
@@ -462,7 +492,8 @@
       "Los tres son equivalentes en Java moderno"
     ],
     "correct": 1,
-    "explanation": "== compara referencias, no contenido (falla con new String()). B usa equals() correctamente pero lanza NPE si status es null. C ('ACTIVE'.equals(status)) es null-safe: si status es null retorna false en lugar de NPE. Patrón recomendado en Java. Con enums se puede usar == sin problema."
+    "explanation": "== compara referencias, no contenido (falla con new String()). B usa equals() correctamente pero lanza NPE si status es null. C ('ACTIVE'.equals(status)) es null-safe: si status es null retorna false en lugar de NPE. Patrón recomendado en Java. Con enums se puede usar == sin problema.",
+    "active": true
   },
   {
     "id": 32,
@@ -477,7 +508,8 @@
       "Usar String.join() siempre es preferible a ambas opciones"
     ],
     "correct": 1,
-    "explanation": "String + en bucle: el compilador optimiza dentro de una expresión pero NO entre iteraciones. Cada result += crea un nuevo String. Con 10k elementos: 10k objetos temporales en heap. StringBuilder reutiliza el mismo buffer. El compilador solo optimiza a SB dentro de una sola expresión, no en bucles."
+    "explanation": "String + en bucle: el compilador optimiza dentro de una expresión pero NO entre iteraciones. Cada result += crea un nuevo String. Con 10k elementos: 10k objetos temporales en heap. StringBuilder reutiliza el mismo buffer. El compilador solo optimiza a SB dentro de una sola expresión, no en bucles.",
+    "active": true
   },
   {
     "id": 33,
@@ -492,7 +524,8 @@
       "Marcar el método como synchronized"
     ],
     "correct": 1,
-    "explanation": "Exposición de representación interna (Effective Java Item 50: defensive copies). Si el repositorio retorna su lista interna y el servicio la expone directamente, el consumidor puede corromper el estado. Solución: return List.copyOf(list) o Collections.unmodifiableList(list). En APIs públicas, siempre hacer defensive copies."
+    "explanation": "Exposición de representación interna (Effective Java Item 50: defensive copies). Si el repositorio retorna su lista interna y el servicio la expone directamente, el consumidor puede corromper el estado. Solución: return List.copyOf(list) o Collections.unmodifiableList(list). En APIs públicas, siempre hacer defensive copies.",
+    "active": true
   },
   {
     "id": 34,
@@ -507,7 +540,8 @@
       "Iterator<String> it = scores.keySet().iterator(); while(it.hasNext())"
     ],
     "correct": 1,
-    "explanation": "Iterar keySet() y llamar get(key) es doble lookup en el mapa. entrySet() da clave+valor en una sola operación. En Java 8+, forEach con BiConsumer es la forma más expresiva. Para transformaciones: scores.entrySet().stream().filter(...).collect(...). Evitar iterator manual salvo que necesites remove() durante la iteración."
+    "explanation": "Iterar keySet() y llamar get(key) es doble lookup en el mapa. entrySet() da clave+valor en una sola operación. En Java 8+, forEach con BiConsumer es la forma más expresiva. Para transformaciones: scores.entrySet().stream().filter(...).collect(...). Evitar iterator manual salvo que necesites remove() durante la iteración.",
+    "active": true
   },
   {
     "id": 35,
@@ -522,7 +556,8 @@
       "Ambas son equivalentes porque RuntimeException ya incluye el mensaje"
     ],
     "correct": 1,
-    "explanation": "Excepciones de dominio tipadas son esenciales en Spring Boot: @ControllerAdvice puede mapear OrderNotFoundException → 404, PaymentException → 402, etc. Con RuntimeException genérico todo se mapea a 500. Además facilita logging estructurado, monitoreo por tipo de error y documentación de la API (Swagger muestra las excepciones posibles)."
+    "explanation": "Excepciones de dominio tipadas son esenciales en Spring Boot: @ControllerAdvice puede mapear OrderNotFoundException → 404, PaymentException → 402, etc. Con RuntimeException genérico todo se mapea a 500. Además facilita logging estructurado, monitoreo por tipo de error y documentación de la API (Swagger muestra las excepciones posibles).",
+    "active": true
   },
   {
     "id": 36,
@@ -537,7 +572,8 @@
       "Debería usarse throws Throwable para mayor cobertura"
     ],
     "correct": 1,
-    "explanation": "'throws Exception' es el equivalente de catch(Exception): borra información de tipo y contagia a toda la cadena de llamadas. Cada método debe declarar solo las excepciones que realmente puede lanzar (throws FileNotFoundException, throws IOException) o encapsularlas en excepciones de dominio unchecked. Spring prefiere unchecked exceptions."
+    "explanation": "'throws Exception' es el equivalente de catch(Exception): borra información de tipo y contagia a toda la cadena de llamadas. Cada método debe declarar solo las excepciones que realmente puede lanzar (throws FileNotFoundException, throws IOException) o encapsularlas en excepciones de dominio unchecked. Spring prefiere unchecked exceptions.",
+    "active": true
   },
   {
     "id": 37,
@@ -552,7 +588,8 @@
       "Opción A si hay pocos endpoints, Opción B solo con más de 10 controllers"
     ],
     "correct": 1,
-    "explanation": "@RestControllerAdvice es el patrón estándar en Spring Boot para manejo global de excepciones: (1) controllers quedan limpios sin try-catch, (2) respuestas de error son consistentes (mismo formato JSON), (3) fácil agregar logging centralizado, (4) un solo lugar para mapear excepción → HTTP status. Patrón universal en proyectos profesionales."
+    "explanation": "@RestControllerAdvice es el patrón estándar en Spring Boot para manejo global de excepciones: (1) controllers quedan limpios sin try-catch, (2) respuestas de error son consistentes (mismo formato JSON), (3) fácil agregar logging centralizado, (4) un solo lugar para mapear excepción → HTTP status. Patrón universal en proyectos profesionales.",
+    "active": true
   },
   {
     "id": 38,
@@ -567,7 +604,8 @@
       "Solo falta hacer e.printStackTrace() antes de re-lanzar"
     ],
     "correct": 1,
-    "explanation": "Exception wrapping incorrecto: new RuntimeException(e.getMessage()) descarta el stack trace original. Correcto: throw new RuntimeException(e) — pasando la excepción original como causa. Aún mejor: throw new PersistenceException('Error saving entity', e) con una excepción de dominio tipada que encadena la causa original."
+    "explanation": "Exception wrapping incorrecto: new RuntimeException(e.getMessage()) descarta el stack trace original. Correcto: throw new RuntimeException(e) — pasando la excepción original como causa. Aún mejor: throw new PersistenceException('Error saving entity', e) con una excepción de dominio tipada que encadena la causa original.",
+    "active": true
   },
   {
     "id": 39,
@@ -582,7 +620,8 @@
       "Usar el operador ternario anidado"
     ],
     "correct": 1,
-    "explanation": "Guard Clauses (también llamado Early Return o Fail Fast): if (user == null) return '0%'; if (!user.isActive()) return '0%'; return user.isPremium() ? '30%' : '10%'. Elimina la pirámide de la muerte, reduce anidamiento y hace el flujo feliz más evidente. Técnica de refactoring de Martin Fowler."
+    "explanation": "Guard Clauses (también llamado Early Return o Fail Fast): if (user == null) return '0%'; if (!user.isActive()) return '0%'; return user.isPremium() ? '30%' : '10%'. Elimina la pirámide de la muerte, reduce anidamiento y hace el flujo feliz más evidente. Técnica de refactoring de Martin Fowler.",
+    "active": true
   },
   {
     "id": 40,
@@ -597,7 +636,8 @@
       "Reducir el método eliminando la lógica de validación"
     ],
     "correct": 1,
-    "explanation": "Extract Method es la refactorización más fundamental (Martin Fowler). Cada sección con comentario es candidata a método propio. Resultado: createOrder queda como orquestador de 4 llamadas legibles. Cada método es testeable individualmente. Los comentarios desaparecen porque el nombre del método los reemplaza."
+    "explanation": "Extract Method es la refactorización más fundamental (Martin Fowler). Cada sección con comentario es candidata a método propio. Resultado: createOrder queda como orquestador de 4 llamadas legibles. Cada método es testeable individualmente. Los comentarios desaparecen porque el nombre del método los reemplaza.",
+    "active": true
   },
   {
     "id": 41,
@@ -612,7 +652,8 @@
       "Mover la lógica a la base de datos"
     ],
     "correct": 1,
-    "explanation": "Replace Conditional with Polymorphism: interface TaxCalculator { double calculate(double amount); }. Implementaciones: MexicoTaxCalculator, USTaxCalculator, EUTaxCalculator. Un Map<String,TaxCalculator> permite agregar nuevos países sin modificar el código existente (OCP). En Spring cada implementación puede ser un @Component con @Qualifier."
+    "explanation": "Replace Conditional with Polymorphism: interface TaxCalculator { double calculate(double amount); }. Implementaciones: MexicoTaxCalculator, USTaxCalculator, EUTaxCalculator. Un Map<String,TaxCalculator> permite agregar nuevos países sin modificar el código existente (OCP). En Spring cada implementación puede ser un @Component con @Qualifier.",
+    "active": true
   },
   {
     "id": 42,
@@ -627,7 +668,8 @@
       "Tanto B como C son válidos; B con herencia (@MappedSuperclass), C con composición (@Embedded)"
     ],
     "correct": 3,
-    "explanation": "Ambas son técnicas válidas de refactoring para eliminar duplicación de campos de auditoría: @MappedSuperclass herencia para entidades JPA con campos idénticos; @Embedded/@Embeddable para composición si los campos son un concepto cohesivo (AuditInfo). En Spring Data JPA, @EntityListeners(AuditingEntityListener.class) + @CreatedDate/@LastModifiedDate automatiza el llenado."
+    "explanation": "Ambas son técnicas válidas de refactoring para eliminar duplicación de campos de auditoría: @MappedSuperclass herencia para entidades JPA con campos idénticos; @Embedded/@Embeddable para composición si los campos son un concepto cohesivo (AuditInfo). En Spring Data JPA, @EntityListeners(AuditingEntityListener.class) + @CreatedDate/@LastModifiedDate automatiza el llenado.",
+    "active": true
   },
   {
     "id": 43,
@@ -642,7 +684,8 @@
       "Agregar @JsonProperty en cada campo para mejorar la serialización"
     ],
     "correct": 1,
-    "explanation": "Para DTOs inmutables (Java 16+): record UserDTO(String name, String email, String role) {} — una línea genera constructor, getters, equals, hashCode, toString. Para objetos mutables con builder: @Data @Builder de Lombok elimina todo el boilerplate. En entrevistas se valora conocer estas herramientas modernas."
+    "explanation": "Para DTOs inmutables (Java 16+): record UserDTO(String name, String email, String role) {} — una línea genera constructor, getters, equals, hashCode, toString. Para objetos mutables con builder: @Data @Builder de Lombok elimina todo el boilerplate. En entrevistas se valora conocer estas herramientas modernas.",
+    "active": true
   },
   {
     "id": 44,
@@ -657,7 +700,8 @@
       "Usar herencia para que cada clase implemente su propio filtro"
     ],
     "correct": 1,
-    "explanation": "Parameterize Method: la única diferencia entre los dos métodos es el valor de status. Extraer getOrdersByStatus(userId, status) y hacer que getActiveOrders/getCancelledOrders deleguen en él. Los métodos públicos se mantienen para una API clara pero sin duplicar la implementación. Aplicación directa de DRY."
+    "explanation": "Parameterize Method: la única diferencia entre los dos métodos es el valor de status. Extraer getOrdersByStatus(userId, status) y hacer que getActiveOrders/getCancelledOrders deleguen en él. Los métodos públicos se mantienen para una API clara pero sin duplicar la implementación. Aplicación directa de DRY.",
+    "active": true
   },
   {
     "id": 45,
@@ -672,7 +716,8 @@
       "Mover la lógica a un archivo de propiedades externo"
     ],
     "correct": 1,
-    "explanation": "Enum con comportamiento: enum Country { MX(0.16), US(0.08), EU(0.21); private final double taxRate; public double applyTax(double amount) { return amount * (1 + taxRate); } }. Uso: Country.MX.applyTax(100). El switch desaparece. Agregar un nuevo país solo requiere un nuevo enum value, no tocar la lógica existente (OCP)."
+    "explanation": "Enum con comportamiento: enum Country { MX(0.16), US(0.08), EU(0.21); private final double taxRate; public double applyTax(double amount) { return amount * (1 + taxRate); } }. Uso: Country.MX.applyTax(100). El switch desaparece. Agregar un nuevo país solo requiere un nuevo enum value, no tocar la lógica existente (OCP).",
+    "active": true
   },
   {
     "id": 46,
@@ -687,7 +732,8 @@
       "Los enums solo aplican cuando hay menos de 10 estados"
     ],
     "correct": 1,
-    "explanation": "Enum con comportamiento implementa el patrón State sin clases adicionales: enum OrderStatus { PENDING { public void handle(Order o) { o.sendConfirmation(); } }, PAID { public void handle(Order o) { o.prepareShipment(); } }; abstract void handle(Order o); }. Ventajas: no hay switch, agregar estado = agregar enum value con su comportamiento, imposible tener typo."
+    "explanation": "Enum con comportamiento implementa el patrón State sin clases adicionales: enum OrderStatus { PENDING { public void handle(Order o) { o.sendConfirmation(); } }, PAID { public void handle(Order o) { o.prepareShipment(); } }; abstract void handle(Order o); }. Ventajas: no hay switch, agregar estado = agregar enum value con su comportamiento, imposible tener typo.",
+    "active": true
   },
   {
     "id": 47,
@@ -702,7 +748,8 @@
       "Solo aplica si hay exactamente 2 tipos de pago"
     ],
     "correct": 1,
-    "explanation": "enum PaymentType { CREDIT { public void validate(PaymentData d) { validateCard(d); } }, DEBIT { public void validate(PaymentData d) { validatePin(d); } }; abstract void validate(PaymentData d); }. Ahora PaymentService, ReportService y AuditService solo llaman type.validate(data). La lógica vive en un solo lugar."
+    "explanation": "enum PaymentType { CREDIT { public void validate(PaymentData d) { validateCard(d); } }, DEBIT { public void validate(PaymentData d) { validatePin(d); } }; abstract void validate(PaymentData d); }. Ahora PaymentService, ReportService y AuditService solo llaman type.validate(data). La lógica vive en un solo lugar.",
+    "active": true
   },
   {
     "id": 48,
@@ -717,7 +764,8 @@
       "Usar valueOf() directamente sin necesidad de from()"
     ],
     "correct": 1,
-    "explanation": "El bloque estático inicializa el Map UNA sola vez al cargar la clase: private static final Map<String,HttpMethod> BY_NAME = Arrays.stream(values()).collect(Collectors.toMap(Enum::name, Function.identity())). Lookup O(1) vs O(n) con for. valueOf() funciona pero lanza IllegalArgumentException no controlable. El Map permite retornar Optional.ofNullable(BY_NAME.get(method))."
+    "explanation": "El bloque estático inicializa el Map UNA sola vez al cargar la clase: private static final Map<String,HttpMethod> BY_NAME = Arrays.stream(values()).collect(Collectors.toMap(Enum::name, Function.identity())). Lookup O(1) vs O(n) con for. valueOf() funciona pero lanza IllegalArgumentException no controlable. El Map permite retornar Optional.ofNullable(BY_NAME.get(method)).",
+    "active": true
   },
   {
     "id": 49,
@@ -732,7 +780,8 @@
       "Crear un @Bean en @Configuration que retorne la implementación correcta"
     ],
     "correct": 1,
-    "explanation": "Spring inyecta automáticamente todas las implementaciones de una interfaz: @Autowired List<NotificationSender> senders — o mejor, un Map<String,NotificationSender> donde el key es el bean name. Agregar WHATSAPP solo requiere crear WhatsappSender @Component sin tocar el servicio existente. OCP + Strategy + IoC de Spring trabajando juntos."
+    "explanation": "Spring inyecta automáticamente todas las implementaciones de una interfaz: @Autowired List<NotificationSender> senders — o mejor, un Map<String,NotificationSender> donde el key es el bean name. Agregar WHATSAPP solo requiere crear WhatsappSender @Component sin tocar el servicio existente. OCP + Strategy + IoC de Spring trabajando juntos.",
+    "active": true
   },
   {
     "id": 50,
@@ -747,7 +796,8 @@
       "Specification Pattern solo aplica en bases de datos relacionales"
     ],
     "correct": 1,
-    "explanation": "Specification Pattern (Evans DDD): encapsula una regla de negocio en un objeto combinable. Spring Data JPA lo implementa con la interfaz Specification<T>: isSatisfiedBy() y métodos and/or/not. Perfecto para búsquedas con múltiples filtros dinámicos. Strategy es para algoritmos intercambiables; Specification es para criterios de selección combinables."
+    "explanation": "Specification Pattern (Evans DDD): encapsula una regla de negocio en un objeto combinable. Spring Data JPA lo implementa con la interfaz Specification<T>: isSatisfiedBy() y métodos and/or/not. Perfecto para búsquedas con múltiples filtros dinámicos. Strategy es para algoritmos intercambiables; Specification es para criterios de selección combinables.",
+    "active": true
   },
   {
     "id": 51,
@@ -762,7 +812,8 @@
       "Solo usar Map cuando hay menos de 5 estrategias"
     ],
     "correct": 1,
-    "explanation": "Map<String,Function> es ideal para lógica simple y stateless. Strategy con interfaz aplica cuando: (1) las estrategias tienen estado o dependencias, (2) necesitan múltiples métodos (apply + isEligible + describe), (3) deben ser beans Spring con @Autowired, (4) requieren testing individual. No hay solución universal: elegir según complejidad."
+    "explanation": "Map<String,Function> es ideal para lógica simple y stateless. Strategy con interfaz aplica cuando: (1) las estrategias tienen estado o dependencias, (2) necesitan múltiples métodos (apply + isEligible + describe), (3) deben ser beans Spring con @Autowired, (4) requieren testing individual. No hay solución universal: elegir según complejidad.",
+    "active": true
   },
   {
     "id": 52,
@@ -777,7 +828,8 @@
       "Crear una clase por cada par origen-destino de transición"
     ],
     "correct": 1,
-    "explanation": "State Pattern: interface OrderState { void confirm(Order o); void pay(Order o); void ship(Order o); } Cada estado implementa sus transiciones válidas. DraftState.pay() lanza IllegalStateException('Must confirm first'). PaidState.confirm() lanza IllegalStateException('Already confirmed'). Order solo tiene order.getState().pay(order). Sin if/else de estado en ningún lado."
+    "explanation": "State Pattern: interface OrderState { void confirm(Order o); void pay(Order o); void ship(Order o); } Cada estado implementa sus transiciones válidas. DraftState.pay() lanza IllegalStateException('Must confirm first'). PaidState.confirm() lanza IllegalStateException('Already confirmed'). Order solo tiene order.getState().pay(order). Sin if/else de estado en ningún lado.",
+    "active": true
   },
   {
     "id": 53,
@@ -792,7 +844,8 @@
       "Solo usar State Pattern cuando hay más de 10 estados"
     ],
     "correct": 1,
-    "explanation": "Enum con comportamiento: excelente para lógica simple sin estado de instancia variable. State Pattern completo: cada estado es un objeto con su propio estado (PaidOrderState guarda PaymentInfo), puede ser un Spring bean con dependencias inyectadas. Para flujos de trabajo complejos como saga en microservicios, State Pattern es superior. Para catálogos simples, enum es suficiente."
+    "explanation": "Enum con comportamiento: excelente para lógica simple sin estado de instancia variable. State Pattern completo: cada estado es un objeto con su propio estado (PaidOrderState guarda PaymentInfo), puede ser un Spring bean con dependencias inyectadas. Para flujos de trabajo complejos como saga en microservicios, State Pattern es superior. Para catálogos simples, enum es suficiente.",
+    "active": true
   },
   {
     "id": 54,
@@ -807,7 +860,8 @@
       "Para implementar lazy loading de objetos pesados"
     ],
     "correct": 1,
-    "explanation": "Composite Pattern: interface Discount { double apply(double amount); }. SimpleDiscount implementa Discount. CompositeDiscount tiene List<Discount> y aplica todos. Uso: new CompositeDiscount(vipDiscount, seasonalDiscount, volumeDiscount).apply(amount). El cliente trata un descuento simple igual que una combinación de descuentos. Útil para reglas de negocio combinables."
+    "explanation": "Composite Pattern: interface Discount { double apply(double amount); }. SimpleDiscount implementa Discount. CompositeDiscount tiene List<Discount> y aplica todos. Uso: new CompositeDiscount(vipDiscount, seasonalDiscount, volumeDiscount).apply(amount). El cliente trata un descuento simple igual que una combinación de descuentos. Útil para reglas de negocio combinables.",
+    "active": true
   },
   {
     "id": 55,
@@ -822,7 +876,8 @@
       "Solo se relacionan cuando se usa con Spring beans"
     ],
     "correct": 1,
-    "explanation": "Composite Pattern es una implementación natural de OCP para colecciones de comportamiento: NotNullValidator, EmailFormatValidator, UniquenessValidator son independientes. CompositeValidator los compone. Agregar MinLengthValidator no toca nada existente. En Spring: @Autowired List<Validator<UserDTO>> validators se inyecta automáticamente con todos los beans que implementan la interfaz."
+    "explanation": "Composite Pattern es una implementación natural de OCP para colecciones de comportamiento: NotNullValidator, EmailFormatValidator, UniquenessValidator son independientes. CompositeValidator los compone. Agregar MinLengthValidator no toca nada existente. En Spring: @Autowired List<Validator<UserDTO>> validators se inyecta automáticamente con todos los beans que implementan la interfaz.",
+    "active": true
   },
   {
     "id": 56,
@@ -837,7 +892,8 @@
       "Strategy es para Java, Policy es para Spring Boot específicamente"
     ],
     "correct": 1,
-    "explanation": "Policy Pattern (variante de Strategy en DDD): encapsula una política de negocio con múltiples aspectos relacionados (elegibilidad + cálculo + restricciones). ShippingPolicy tiene canShipTo() + calculateCost() + getEstimatedDays(). Permite intercambiar políticas completas: FreeShippingPolicy, ExpressShippingPolicy, InternationalShippingPolicy. Más cohesivo que Strategy cuando hay múltiples decisiones relacionadas."
+    "explanation": "Policy Pattern (variante de Strategy en DDD): encapsula una política de negocio con múltiples aspectos relacionados (elegibilidad + cálculo + restricciones). ShippingPolicy tiene canShipTo() + calculateCost() + getEstimatedDays(). Permite intercambiar políticas completas: FreeShippingPolicy, ExpressShippingPolicy, InternationalShippingPolicy. Más cohesivo que Strategy cuando hay múltiples decisiones relacionadas.",
+    "active": true
   },
   {
     "id": 57,
@@ -852,7 +908,8 @@
       "Crear un @Bean condicional con @ConditionalOnProperty"
     ],
     "correct": 1,
-    "explanation": "Spring inyecta Map<String,PaymentProvider> automáticamente: key=bean name, value=implementación. @Component('stripe') StripeProvider, @Component('paypal') PayPalProvider. Factory: return providers.get(merchant.getPaymentProvider()). Agregar MercadoPago: crear @Component('mercadopago') sin tocar el factory. Patrón Service Locator gestionado por Spring, sin if/else."
+    "explanation": "Spring inyecta Map<String,PaymentProvider> automáticamente: key=bean name, value=implementación. @Component('stripe') StripeProvider, @Component('paypal') PayPalProvider. Factory: return providers.get(merchant.getPaymentProvider()). Agregar MercadoPago: crear @Component('mercadopago') sin tocar el factory. Patrón Service Locator gestionado por Spring, sin if/else.",
+    "active": true
   },
   {
     "id": 58,
@@ -867,7 +924,8 @@
       "Solo cuando los providers tienen dependencias externas"
     ],
     "correct": 1,
-    "explanation": "Un switch de factory que crece es el síntoma clásico de OCP violation. Con Map<String,PaymentProvider>: (1) agregar proveedor = nueva clase @Component, sin tocar el factory, (2) testing: mockear solo el proveedor bajo prueba, (3) carga dinámica: en runtime se puede registrar/desregistrar providers, (4) el switch desaparece. Usado extensamente en Spring (HandlerMapping, MessageConverter, etc)."
+    "explanation": "Un switch de factory que crece es el síntoma clásico de OCP violation. Con Map<String,PaymentProvider>: (1) agregar proveedor = nueva clase @Component, sin tocar el factory, (2) testing: mockear solo el proveedor bajo prueba, (3) carga dinámica: en runtime se puede registrar/desregistrar providers, (4) el switch desaparece. Usado extensamente en Spring (HandlerMapping, MessageConverter, etc).",
+    "active": true
   },
   {
     "id": 59,
@@ -882,7 +940,8 @@
       "Poner todas las validaciones en un solo método de 200 líneas"
     ],
     "correct": 1,
-    "explanation": "Chain of Responsibility: cada validator decide si procesa la solicitud o la rechaza. En Spring: List<OrderValidator> validators inyectada (respetando @Order). Se itera hasta el primer fallo. Variante funcional: validators.stream().map(v -> v.validate(request)).filter(Result::isFailure).findFirst(). Desacopla las validaciones: cada una es testeable individualmente."
+    "explanation": "Chain of Responsibility: cada validator decide si procesa la solicitud o la rechaza. En Spring: List<OrderValidator> validators inyectada (respetando @Order). Se itera hasta el primer fallo. Variante funcional: validators.stream().map(v -> v.validate(request)).filter(Result::isFailure).findFirst(). Desacopla las validaciones: cada una es testeable individualmente.",
+    "active": true
   },
   {
     "id": 60,
@@ -897,7 +956,8 @@
       "Es equivalente a usar lambdas, no necesita interfaz propia"
     ],
     "correct": 1,
-    "explanation": "Command Pattern: CreateOrderCommand { execute(): crea orden, guarda estado previo; undo(): revierte la creación }. Una pila de comandos ejecutados permite undo/redo. Usos en microservicios: queue de comandos procesados asincrónicamente, event sourcing (cada comando = evento), auditoría (log de comandos). Spring Batch usa este patrón para steps reversibles."
+    "explanation": "Command Pattern: CreateOrderCommand { execute(): crea orden, guarda estado previo; undo(): revierte la creación }. Una pila de comandos ejecutados permite undo/redo. Usos en microservicios: queue de comandos procesados asincrónicamente, event sourcing (cada comando = evento), auditoría (log de comandos). Spring Batch usa este patrón para steps reversibles.",
+    "active": true
   },
   {
     "id": 61,
@@ -912,7 +972,8 @@
       "Factory Pattern creando el paso correcto según configuración"
     ],
     "correct": 1,
-    "explanation": "Chain of Responsibility como pipeline configurable: cada PaymentStep es un bean Spring con @Order. La lista se inyecta ordenada. En application.properties se puede activar/desactivar pasos con @ConditionalOnProperty. Para reordenar: cambiar @Order. Para agregar un paso: nueva clase @Component. Sin modificar el motor del pipeline. Patrón usado en Spring Security (FilterChain)."
+    "explanation": "Chain of Responsibility como pipeline configurable: cada PaymentStep es un bean Spring con @Order. La lista se inyecta ordenada. En application.properties se puede activar/desactivar pasos con @ConditionalOnProperty. Para reordenar: cambiar @Order. Para agregar un paso: nueva clase @Component. Sin modificar el motor del pipeline. Patrón usado en Spring Security (FilterChain).",
+    "active": true
   },
   {
     "id": 62,
@@ -927,6 +988,7 @@
       "Usar un solo topic genérico para todos los comandos sin tipado"
     ],
     "correct": 1,
-    "explanation": "Command como mensaje: PlaceOrderCommand { orderId, userId, items, correlationId, timestamp }. Publicado en Kafka/SQS como JSON. Consumer lo deserializa y ejecuta PlaceOrderCommandHandler. Beneficios: trazabilidad por correlationId, idempotencia por orderId, reintento sin duplicación, audit log natural. Este es el fundamento de CQRS y Event Sourcing en microservicios."
+    "explanation": "Command como mensaje: PlaceOrderCommand { orderId, userId, items, correlationId, timestamp }. Publicado en Kafka/SQS como JSON. Consumer lo deserializa y ejecuta PlaceOrderCommandHandler. Beneficios: trazabilidad por correlationId, idempotencia por orderId, reintento sin duplicación, audit log natural. Este es el fundamento de CQRS y Event Sourcing en microservicios.",
+    "active": true
   }
 ]

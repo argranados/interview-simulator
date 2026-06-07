@@ -12,7 +12,8 @@
       "HashMap"
     ],
     "correct": 2,
-    "explanation": "ArrayList permite elementos duplicados y acceso rápido por índice gracias a su implementación basada en arreglos dinámicos."
+    "explanation": "ArrayList permite elementos duplicados y acceso rápido por índice gracias a su implementación basada en arreglos dinámicos.",
+    "active": true
   },
   {
     "id": 2,
@@ -27,7 +28,8 @@
       "Evitar uso de interfaces"
     ],
     "correct": 1,
-    "explanation": "La encapsulación protege el estado interno del objeto y obliga a interactuar mediante métodos controlados."
+    "explanation": "La encapsulación protege el estado interno del objeto y obliga a interactuar mediante métodos controlados.",
+    "active": true
   },
   {
     "id": 3,
@@ -42,7 +44,8 @@
       "Deadlocks"
     ],
     "correct": 2,
-    "explanation": "volatile garantiza visibilidad de cambios entre threads, aunque no hace operaciones atómicas."
+    "explanation": "volatile garantiza visibilidad de cambios entre threads, aunque no hace operaciones atómicas.",
+    "active": true
   },
   {
     "id": 4,
@@ -57,7 +60,8 @@
       "Porque JVM no soporta Strings mutables"
     ],
     "correct": 2,
-    "explanation": "La inmutabilidad permite seguridad, reutilización en pool y comportamiento thread-safe."
+    "explanation": "La inmutabilidad permite seguridad, reutilización en pool y comportamiento thread-safe.",
+    "active": true
   },
   {
     "id": 5,
@@ -72,7 +76,8 @@
       "Agrupa elementos"
     ],
     "correct": 1,
-    "explanation": "map() transforma cada elemento del stream en otro valor."
+    "explanation": "map() transforma cada elemento del stream en otro valor.",
+    "active": true
   },
   {
     "id": 6,
@@ -87,7 +92,8 @@
       "No existe diferencia"
     ],
     "correct": 1,
-    "explanation": "Las checked exceptions obligan al desarrollador a manejarlas o declararlas."
+    "explanation": "Las checked exceptions obligan al desarrollador a manejarlas o declararlas.",
+    "active": true
   },
   {
     "id": 7,
@@ -102,7 +108,8 @@
       "Usa menos memoria"
     ],
     "correct": 2,
-    "explanation": "ConcurrentHashMap permite acceso concurrente eficiente sin bloquear completamente el mapa."
+    "explanation": "ConcurrentHashMap permite acceso concurrente eficiente sin bloquear completamente el mapa.",
+    "active": true
   },
   {
     "id": 8,
@@ -117,7 +124,8 @@
       "Un hilo"
     ],
     "correct": 1,
-    "explanation": "Las lambdas simplifican implementaciones de interfaces funcionales."
+    "explanation": "Las lambdas simplifican implementaciones de interfaces funcionales.",
+    "active": true
   },
   {
     "id": 9,
@@ -132,7 +140,8 @@
       "Optimizar performance"
     ],
     "correct": 2,
-    "explanation": "Optional ayuda a representar explícitamente ausencia de valor y evitar NullPointerException."
+    "explanation": "Optional ayuda a representar explícitamente ausencia de valor y evitar NullPointerException.",
+    "active": true
   },
   {
     "id": 10,
@@ -147,7 +156,8 @@
       "Optimiza queries SQL"
     ],
     "correct": 1,
-    "explanation": "El Garbage Collector elimina objetos sin referencias para liberar memoria."
+    "explanation": "El Garbage Collector elimina objetos sin referencias para liberar memoria.",
+    "active": true
   },
   {
     "id": 11,
@@ -162,7 +172,8 @@
       "La JVM se reinicia"
     ],
     "correct": 2,
-    "explanation": "Un deadlock ocurre cuando threads quedan bloqueados esperando recursos mutuamente."
+    "explanation": "Un deadlock ocurre cuando threads quedan bloqueados esperando recursos mutuamente.",
+    "active": true
   },
   {
     "id": 12,
@@ -177,7 +188,8 @@
       "Solo dentro del constructor"
     ],
     "correct": 2,
-    "explanation": "Los métodos static pertenecen a la clase y no tienen acceso directo a miembros de instancia."
+    "explanation": "Los métodos static pertenecen a la clase y no tienen acceso directo a miembros de instancia.",
+    "active": true
   },
   {
     "id": 13,
@@ -192,7 +204,8 @@
       "Evitar uso de Streams"
     ],
     "correct": 1,
-    "explanation": "Los records reducen código repetitivo para clases inmutables de datos."
+    "explanation": "Los records reducen código repetitivo para clases inmutables de datos.",
+    "active": true
   },
   {
     "id": 14,
@@ -207,7 +220,8 @@
       "Vector"
     ],
     "correct": 2,
-    "explanation": "HashSet no permite elementos duplicados."
+    "explanation": "HashSet no permite elementos duplicados.",
+    "active": true
   },
   {
     "id": 15,
@@ -222,7 +236,8 @@
       "Menos uso de memoria"
     ],
     "correct": 0,
-    "explanation": "Crear demasiados objetos temporales incrementa presión sobre el Garbage Collector."
+    "explanation": "Crear demasiados objetos temporales incrementa presión sobre el Garbage Collector.",
+    "active": true
   },
   {
     "id": 16,
@@ -237,7 +252,8 @@
       "Error"
     ],
     "correct": 1,
-    "explanation": "La concatenación comienza desde String y convierte los números a texto."
+    "explanation": "La concatenación comienza desde String y convierte los números a texto.",
+    "active": true
   },
   {
     "id": 17,
@@ -252,7 +268,8 @@
       "Ordena elementos"
     ],
     "correct": 2,
-    "explanation": "filter() permite conservar solo elementos que cumplen una condición."
+    "explanation": "filter() permite conservar solo elementos que cumplen una condición.",
+    "active": true
   },
   {
     "id": 18,
@@ -267,7 +284,8 @@
       "Eliminar constructores"
     ],
     "correct": 1,
-    "explanation": "El polimorfismo permite tratar objetos hijos como su tipo padre."
+    "explanation": "El polimorfismo permite tratar objetos hijos como su tipo padre.",
+    "active": true
   },
   {
     "id": 19,
@@ -282,7 +300,8 @@
       "Usa Garbage Collector manual"
     ],
     "correct": 1,
-    "explanation": "StringBuilder evita overhead de sincronización."
+    "explanation": "StringBuilder evita overhead de sincronización.",
+    "active": true
   },
   {
     "id": 20,
@@ -297,7 +316,8 @@
       "Eliminar interfaces"
     ],
     "correct": 1,
-    "explanation": "Sealed classes permiten controlar explícitamente la jerarquía de herencia."
+    "explanation": "Sealed classes permiten controlar explícitamente la jerarquía de herencia.",
+    "active": true
   },
   {
     "id": 21,
@@ -312,7 +332,8 @@
       "Cuando necesitas duplicados"
     ],
     "correct": 0,
-    "explanation": "TreeMap mantiene las claves ordenadas."
+    "explanation": "TreeMap mantiene las claves ordenadas.",
+    "active": true
   },
   {
     "id": 22,
@@ -327,7 +348,8 @@
       "Rompe el Garbage Collector"
     ],
     "correct": 1,
-    "explanation": "Ignorar excepciones dificulta debugging y puede ocultar fallos graves."
+    "explanation": "Ignorar excepciones dificulta debugging y puede ocultar fallos graves.",
+    "active": true
   },
   {
     "id": 23,
@@ -342,7 +364,8 @@
       "Son más rápidas que métodos normales"
     ],
     "correct": 2,
-    "explanation": "Las method references simplifican lambdas cuando solo se llama un método existente."
+    "explanation": "Las method references simplifican lambdas cuando solo se llama un método existente.",
+    "active": true
   },
   {
     "id": 24,
@@ -357,7 +380,8 @@
       "Problema de Streams"
     ],
     "correct": 1,
-    "explanation": "StackOverflowError suele ocurrir por llamadas recursivas infinitas."
+    "explanation": "StackOverflowError suele ocurrir por llamadas recursivas infinitas.",
+    "active": true
   },
   {
     "id": 25,
@@ -372,7 +396,8 @@
       "Eliminación automática de objetos"
     ],
     "correct": 0,
-    "explanation": "Compartir objetos mutables sin sincronización puede causar estados inconsistentes."
+    "explanation": "Compartir objetos mutables sin sincronización puede causar estados inconsistentes.",
+    "active": true
   },
   {
     "id": 26,
@@ -387,7 +412,8 @@
       "Implementar la interfaz Thread y sobreescribir el método execute()"
     ],
     "correct": 0,
-    "explanation": "La forma correcta es extender Thread o implementar Runnable, pero la opción válida es extender Thread y override run(). La otra forma es implementar Runnable y pasar a un Thread."
+    "explanation": "La forma correcta es extender Thread o implementar Runnable, pero la opción válida es extender Thread y override run(). La otra forma es implementar Runnable y pasar a un Thread.",
+    "active": true
   },
   {
     "id": 27,
@@ -402,7 +428,8 @@
       "Ninguno libera el monitor"
     ],
     "correct": 1,
-    "explanation": "wait() libera el monitor (lock) del objeto, mientras que sleep() mantiene el monitor bloqueado."
+    "explanation": "wait() libera el monitor (lock) del objeto, mientras que sleep() mantiene el monitor bloqueado.",
+    "active": true
   },
   {
     "id": 28,
@@ -417,7 +444,8 @@
       "public"
     ],
     "correct": 2,
-    "explanation": "protected permite acceso desde el mismo paquete y desde subclases (incluso en otros paquetes)."
+    "explanation": "protected permite acceso desde el mismo paquete y desde subclases (incluso en otros paquetes).",
+    "active": true
   },
   {
     "id": 29,
@@ -432,7 +460,8 @@
       "Error porque Perro no es subtipo de Animal"
     ],
     "correct": 2,
-    "explanation": "El código compila y ejecuta bien porque a realmente es una instancia de Perro, el cast es válido."
+    "explanation": "El código compila y ejecuta bien porque a realmente es una instancia de Perro, el cast es válido.",
+    "active": true
   },
   {
     "id": 30,
@@ -447,7 +476,8 @@
       "6 y 7"
     ],
     "correct": 1,
-    "explanation": "x++ imprime 5 y luego x se incrementa a 6; ++x incrementa de 6 a 7 e imprime 7."
+    "explanation": "x++ imprime 5 y luego x se incrementa a 6; ++x incrementa de 6 a 7 e imprime 7.",
+    "active": true
   },
   {
     "id": 31,
@@ -462,7 +492,8 @@
       "Clase abstracta con un método abstracto"
     ],
     "correct": 1,
-    "explanation": "Una interfaz funcional tiene exactamente un método abstracto, pero puede tener métodos default o static."
+    "explanation": "Una interfaz funcional tiene exactamente un método abstracto, pero puede tener métodos default o static.",
+    "active": true
   },
   {
     "id": 32,
@@ -477,7 +508,8 @@
       "filter()"
     ],
     "correct": 1,
-    "explanation": "reduce() combina elementos repetidamente usando una función asociativa para obtener un solo resultado."
+    "explanation": "reduce() combina elementos repetidamente usando una función asociativa para obtener un solo resultado.",
+    "active": true
   },
   {
     "id": 33,
@@ -492,7 +524,8 @@
       "throw"
     ],
     "correct": 1,
-    "explanation": "El bloque finally se ejecuta siempre (excepto si JVM termina abruptamente)."
+    "explanation": "El bloque finally se ejecuta siempre (excepto si JVM termina abruptamente).",
+    "active": true
   },
   {
     "id": 34,
@@ -507,7 +540,8 @@
       "Iterator es más antiguo que Enumeration"
     ],
     "correct": 1,
-    "explanation": "Iterator tiene método remove(), mientras que Enumeration solo permite lectura."
+    "explanation": "Iterator tiene método remove(), mientras que Enumeration solo permite lectura.",
+    "active": true
   },
   {
     "id": 35,
@@ -522,7 +556,8 @@
       "Mejora el rendimiento en tiempo de ejecución"
     ],
     "correct": 2,
-    "explanation": "Los genéricos proporcionan seguridad de tipos (type-safety) en tiempo de compilación evitando casts incorrectos."
+    "explanation": "Los genéricos proporcionan seguridad de tipos (type-safety) en tiempo de compilación evitando casts incorrectos.",
+    "active": true
   },
   {
     "id": 36,
@@ -537,7 +572,8 @@
       "HashCode debe ser único por objeto"
     ],
     "correct": 0,
-    "explanation": "Si a.equals(b) es true, entonces a.hashCode() == b.hashCode() debe cumplirse."
+    "explanation": "Si a.equals(b) es true, entonces a.hashCode() == b.hashCode() debe cumplirse.",
+    "active": true
   },
   {
     "id": 37,
@@ -552,7 +588,8 @@
       "NullPointerException"
     ],
     "correct": 1,
-    "explanation": "== compara referencias, s1 está en pool de strings y s2 en heap, son objetos distintos."
+    "explanation": "== compara referencias, s1 está en pool de strings y s2 en heap, son objetos distintos.",
+    "active": true
   },
   {
     "id": 38,
@@ -567,7 +604,8 @@
       "volatile"
     ],
     "correct": 2,
-    "explanation": "synchronized se usa para adquirir el monitor (lock) de un objeto y controlar acceso concurrente."
+    "explanation": "synchronized se usa para adquirir el monitor (lock) de un objeto y controlar acceso concurrente.",
+    "active": true
   },
   {
     "id": 39,
@@ -582,7 +620,8 @@
       "Compila e imprime null"
     ],
     "correct": 1,
-    "explanation": "Compila pero lanza ArrayIndexOutOfBoundsException porque el índice 3 está fuera de rango (0-2)."
+    "explanation": "Compila pero lanza ArrayIndexOutOfBoundsException porque el índice 3 está fuera de rango (0-2).",
+    "active": true
   },
   {
     "id": 40,
@@ -597,7 +636,8 @@
       "Métodos final"
     ],
     "correct": 1,
-    "explanation": "Java 8 introdujo métodos default y static en interfaces, permitiendo tener implementación concreta."
+    "explanation": "Java 8 introdujo métodos default y static en interfaces, permitiendo tener implementación concreta.",
+    "active": true
   },
   {
     "id": 41,
@@ -612,7 +652,8 @@
       "Code Cache"
     ],
     "correct": 1,
-    "explanation": "La pila (stack) almacena frames con variables locales, operand stack y referencias a objetos del heap."
+    "explanation": "La pila (stack) almacena frames con variables locales, operand stack y referencias a objetos del heap.",
+    "active": true
   },
   {
     "id": 42,
@@ -627,7 +668,8 @@
       "Supplier<T>"
     ],
     "correct": 1,
-    "explanation": "Predicate<T> tiene método test(T t) que retorna boolean."
+    "explanation": "Predicate<T> tiene método test(T t) que retorna boolean.",
+    "active": true
   },
   {
     "id": 43,
@@ -642,7 +684,8 @@
       "Java no soporta ninguna forma de herencia múltiple"
     ],
     "correct": 1,
-    "explanation": "Java no permite herencia múltiple de clases, pero sí una clase puede implementar múltiples interfaces."
+    "explanation": "Java no permite herencia múltiple de clases, pero sí una clase puede implementar múltiples interfaces.",
+    "active": true
   },
   {
     "id": 44,
@@ -657,7 +700,8 @@
       "O(1) para put y O(n) para get"
     ],
     "correct": 0,
-    "explanation": "Un HashMap con buena función hash y factor de carga ofrece tiempo constante O(1) promedio para inserción y búsqueda."
+    "explanation": "Un HashMap con buena función hash y factor de carga ofrece tiempo constante O(1) promedio para inserción y búsqueda.",
+    "active": true
   },
   {
     "id": 45,
@@ -672,7 +716,8 @@
       "sealed"
     ],
     "correct": 1,
-    "explanation": "final aplicado a una clase impide que sea heredada."
+    "explanation": "final aplicado a una clase impide que sea heredada.",
+    "active": true
   },
   {
     "id": 46,
@@ -687,7 +732,8 @@
       "stream()"
     ],
     "correct": 1,
-    "explanation": "Java 11 añadió isEmpty() como contraparte de isPresent() para verificar ausencia de valor."
+    "explanation": "Java 11 añadió isEmpty() como contraparte de isPresent() para verificar ausencia de valor.",
+    "active": true
   },
   {
     "id": 47,
@@ -702,7 +748,8 @@
       "ClassNotFoundException"
     ],
     "correct": 2,
-    "explanation": "NullPointerException extiende RuntimeException, por lo tanto es unchecked."
+    "explanation": "NullPointerException extiende RuntimeException, por lo tanto es unchecked.",
+    "active": true
   },
   {
     "id": 48,
@@ -717,7 +764,8 @@
       "join() sin parámetro"
     ],
     "correct": 1,
-    "explanation": "Thread.sleep(millis) hace que el hilo espere un tiempo específico sin liberar locks, entrando en TIMED_WAITING."
+    "explanation": "Thread.sleep(millis) hace que el hilo espere un tiempo específico sin liberar locks, entrando en TIMED_WAITING.",
+    "active": true
   },
   {
     "id": 49,
@@ -732,7 +780,8 @@
       "Clase que debe ser final"
     ],
     "correct": 1,
-    "explanation": "Una clase abstracta no se puede instanciar y puede contener métodos abstractos (sin cuerpo) y concretos."
+    "explanation": "Una clase abstracta no se puede instanciar y puede contener métodos abstractos (sin cuerpo) y concretos.",
+    "active": true
   },
   {
     "id": 50,
@@ -747,7 +796,8 @@
       "Integer, Double, etc."
     ],
     "correct": 2,
-    "explanation": "Con upper bounded wildcard (? extends T) no se pueden agregar elementos excepto null, porque se desconoce el tipo exacto."
+    "explanation": "Con upper bounded wildcard (? extends T) no se pueden agregar elementos excepto null, porque se desconoce el tipo exacto.",
+    "active": true
   },
   {
     "id": 51,
@@ -762,7 +812,8 @@
       "false"
     ],
     "correct": 1,
-    "explanation": "El operador ternario retorna b porque a > b es falso."
+    "explanation": "El operador ternario retorna b porque a > b es falso.",
+    "active": true
   },
   {
     "id": 52,
@@ -777,7 +828,8 @@
       "Stream pipeline"
     ],
     "correct": 1,
-    "explanation": "El operador de doble colon (::) es una referencia a método, una forma abreviada de lambda."
+    "explanation": "El operador de doble colon (::) es una referencia a método, una forma abreviada de lambda.",
+    "active": true
   },
   {
     "id": 53,
@@ -792,7 +844,8 @@
       "Se convierte en unchecked"
     ],
     "correct": 1,
-    "explanation": "El compilador obliga a manejar o declarar checked exceptions; de lo contrario produce error de compilación."
+    "explanation": "El compilador obliga a manejar o declarar checked exceptions; de lo contrario produce error de compilación.",
+    "active": true
   },
   {
     "id": 54,
@@ -807,7 +860,8 @@
       "TreeSet"
     ],
     "correct": 1,
-    "explanation": "LinkedList mantiene orden de inserción pero el acceso por índice es O(n) comparado con ArrayList O(1)."
+    "explanation": "LinkedList mantiene orden de inserción pero el acceso por índice es O(n) comparado con ArrayList O(1).",
+    "active": true
   },
   {
     "id": 55,
@@ -822,7 +876,8 @@
       "Un hilo que no puede ser interrumpido"
     ],
     "correct": 2,
-    "explanation": "Los daemon threads son hilos de servicio que no evitan la terminación de la JVM cuando solo quedan ellos."
+    "explanation": "Los daemon threads son hilos de servicio que no evitan la terminación de la JVM cuando solo quedan ellos.",
+    "active": true
   },
   {
     "id": 56,
@@ -837,7 +892,8 @@
       "ifPresent()"
     ],
     "correct": 0,
-    "explanation": "get() lanza NoSuchElementException si el Optional está vacío; se recomienda usar orElseThrow() en versiones modernas."
+    "explanation": "get() lanza NoSuchElementException si el Optional está vacío; se recomienda usar orElseThrow() en versiones modernas.",
+    "active": true
   },
   {
     "id": 57,
@@ -852,7 +908,8 @@
       "No existe en Java"
     ],
     "correct": 1,
-    "explanation": "Autoboxing es la conversión automática que hace el compilador de un tipo primitivo a su clase wrapper correspondiente."
+    "explanation": "Autoboxing es la conversión automática que hace el compilador de un tipo primitivo a su clase wrapper correspondiente.",
+    "active": true
   },
   {
     "id": 58,
@@ -867,7 +924,8 @@
       "Módulos"
     ],
     "correct": 2,
-    "explanation": "Pattern Matching para instanceof se estandarizó en Java 16 y está presente en Java 17. Records también pero llegó en Java 16. La opción más distintiva de LTS 17 es pattern matching finalizado."
+    "explanation": "Pattern Matching para instanceof se estandarizó en Java 16 y está presente en Java 17. Records también pero llegó en Java 16. La opción más distintiva de LTS 17 es pattern matching finalizado.",
+    "active": true
   },
   {
     "id": 59,
@@ -882,7 +940,8 @@
       "stripTrailing()"
     ],
     "correct": 1,
-    "explanation": "strip() es el método introducido en Java 11 que elimina espacios Unicode al inicio y final, similar a trim() pero con soporte Unicode."
+    "explanation": "strip() es el método introducido en Java 11 que elimina espacios Unicode al inicio y final, similar a trim() pero con soporte Unicode.",
+    "active": true
   },
   {
     "id": 60,
@@ -897,6 +956,7 @@
       "La palabra volatile soluciona el problema"
     ],
     "correct": 2,
-    "explanation": "Aunque increment es synchronized, getCount() no lo es, por lo que un hilo puede leer un valor inconsistente (stale data)."
+    "explanation": "Aunque increment es synchronized, getCount() no lo es, por lo que un hilo puede leer un valor inconsistente (stale data).",
+    "active": true
   }
 ]

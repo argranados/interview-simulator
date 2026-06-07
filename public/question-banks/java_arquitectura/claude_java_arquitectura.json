@@ -12,7 +12,8 @@
     "correct": 1,
     "explanation": "El API Gateway actúa como punto de entrada único. Centraliza: autenticación/autorización, rate limiting, logging, transformación de requests y routing. Herramientas: Spring Cloud Gateway, Kong, AWS API Gateway.",
     "category": "Microservices Patterns",
-    "code": "@Bean\npublic RouteLocator routes(RouteLocatorBuilder b) {\n  return b.routes()\n    .route(\"orders\", r -> r.path(\"/orders/**\")\n      .filters(f -> f.addRequestHeader(\"X-Source\",\"gateway\"))\n      .uri(\"lb://order-service\"))\n    .build();\n}"
+    "code": "@Bean\npublic RouteLocator routes(RouteLocatorBuilder b) {\n  return b.routes()\n    .route(\"orders\", r -> r.path(\"/orders/**\")\n      .filters(f -> f.addRequestHeader(\"X-Source\",\"gateway\"))\n      .uri(\"lb://order-service\"))\n    .build();\n}",
+    "active": true
   },
   {
     "id": 2,
@@ -27,7 +28,8 @@
     "correct": 2,
     "explanation": "Database per Service es fundamental para la autonomía. Cada servicio es dueño exclusivo de sus datos. La comunicación entre servicios es por API REST o eventos (Kafka), nunca accediendo directamente a la BD ajena.",
     "category": "Microservices Patterns",
-    "code": null
+    "code": null,
+    "active": true
   },
   {
     "id": 3,
@@ -42,7 +44,8 @@
     "correct": 0,
     "explanation": "SAGA gestiona transacciones distribuidas con una secuencia de transacciones locales. Si un paso falla, se ejecutan transacciones compensatorias. Variantes: Choreography (eventos) y Orchestration (coordinador central).",
     "category": "Microservices Patterns",
-    "code": "public class OrderSaga {\n  public void execute(Order order) {\n    inventoryService.reserve(order);\n    try {\n      paymentService.charge(order);\n    } catch (PaymentException e) {\n      inventoryService.release(order); // compensación\n      throw e;\n    }\n  }\n}"
+    "code": "public class OrderSaga {\n  public void execute(Order order) {\n    inventoryService.reserve(order);\n    try {\n      paymentService.charge(order);\n    } catch (PaymentException e) {\n      inventoryService.release(order); // compensación\n      throw e;\n    }\n  }\n}",
+    "active": true
   },
   {
     "id": 4,
@@ -57,7 +60,8 @@
     "correct": 3,
     "explanation": "Choreography: mayor desacoplamiento pero difícil de trazar el flujo completo. Orchestration: un orquestador llama explícitamente a cada servicio — más trazable pero puede ser un punto de acoplamiento.",
     "category": "Microservices Patterns",
-    "code": null
+    "code": null,
+    "active": true
   },
   {
     "id": 5,
@@ -72,7 +76,8 @@
     "correct": 2,
     "explanation": "Strangler Fig (Martin Fowler): el API Gateway redirige rutas al nuevo microservicio mientras el monolito sigue activo. Cuando el 100% del tráfico de una funcionalidad está en el microservicio, esa parte del monolito se elimina.",
     "category": "Microservices Patterns",
-    "code": "// API Gateway redirige tráfico gradualmente\n// /users/** → nuevo UserService\n// /orders/** → todavía en el monolito\nrouter.route(\"/users/**\").uri(\"lb://user-service\");\nrouter.route(\"/orders/**\").uri(\"http://legacy-monolith\");"
+    "code": "// API Gateway redirige tráfico gradualmente\n// /users/** → nuevo UserService\n// /orders/** → todavía en el monolito\nrouter.route(\"/users/**\").uri(\"lb://user-service\");\nrouter.route(\"/orders/**\").uri(\"http://legacy-monolith\");",
+    "active": true
   },
   {
     "id": 6,
@@ -87,7 +92,8 @@
     "correct": 0,
     "explanation": "El Sidecar corre junto al microservicio principal (mismo pod en Kubernetes). Maneja concerns sin que el servicio lo sepa: logs, métricas, mTLS, service discovery. Es la base del patrón Service Mesh (Istio, Linkerd).",
     "category": "Microservices Patterns",
-    "code": null
+    "code": null,
+    "active": true
   },
   {
     "id": 7,
@@ -102,7 +108,8 @@
     "correct": 3,
     "explanation": "El problema del Outbox: si guardas en BD y falla al publicar el evento, hay inconsistencia. Solución: guarda el evento en tabla 'outbox' dentro de la misma transacción. Un proceso separado (o Debezium/CDC) lee la tabla y publica al broker.",
     "category": "Microservices Patterns",
-    "code": "@Transactional\npublic void createOrder(Order order) {\n  orderRepository.save(order);\n  // mismo TX — si falla el save, el evento no existe\n  outboxRepository.save(new OutboxEvent(\"ORDER_CREATED\", order));\n}"
+    "code": "@Transactional\npublic void createOrder(Order order) {\n  orderRepository.save(order);\n  // mismo TX — si falla el save, el evento no existe\n  outboxRepository.save(new OutboxEvent(\"ORDER_CREATED\", order));\n}",
+    "active": true
   },
   {
     "id": 8,
@@ -117,7 +124,8 @@
     "correct": 1,
     "explanation": "BFF crea una capa intermedia específica para cada tipo de cliente. La app móvil recibe respuestas compactas; el web recibe respuestas más ricas. El BFF agrega llamadas a múltiples microservicios y devuelve exactamente lo que cada cliente necesita.",
     "category": "Microservices Patterns",
-    "code": null
+    "code": null,
+    "active": true
   },
   {
     "id": 9,
@@ -132,7 +140,8 @@
     "correct": 2,
     "explanation": "Stateless: cualquier instancia puede atender cualquier petición porque el estado está externamente (BD, Redis, JWT en el request). Prerequisito para escalar horizontalmente sin sticky sessions.",
     "category": "Microservices Patterns",
-    "code": null
+    "code": null,
+    "active": true
   },
   {
     "id": 10,
@@ -147,7 +156,8 @@
     "correct": 0,
     "explanation": "Rate Limiting protege de sobrecarga y ataques DDoS. Se implementa en el API Gateway. Algoritmos: Token Bucket, Fixed Window, Sliding Window. Herramientas: Bucket4j, Redis + Spring, Kong.",
     "category": "Microservices Patterns",
-    "code": "@Bean\npublic Bucket createBucket() {\n  Bandwidth limit = Bandwidth.classic(100,\n      Refill.greedy(100, Duration.ofMinutes(1)));\n  return Bucket.builder().addLimit(limit).build();\n  // 100 requests por minuto\n}"
+    "code": "@Bean\npublic Bucket createBucket() {\n  Bandwidth limit = Bandwidth.classic(100,\n      Refill.greedy(100, Duration.ofMinutes(1)));\n  return Bucket.builder().addLimit(limit).build();\n  // 100 requests por minuto\n}",
+    "active": true
   },
   {
     "id": 11,
@@ -162,7 +172,8 @@
     "correct": 1,
     "explanation": "Regla: si el caller NO necesita la respuesta para continuar, usa async. Ventajas: el caller no se bloquea si el destino está caído, los servicios se desacoplan en tiempo. Desventaja: consistencia eventual.",
     "category": "Communication & Integration",
-    "code": "// Síncrono — necesitas saber si el pago fue aprobado\nPaymentResponse r = paymentClient.charge(order);\nif (r.isApproved()) { ... }\n\n// Asíncrono — email no bloquea el flujo\nkafkaTemplate.send(\"order-events\", new OrderCreatedEvent(order));"
+    "code": "// Síncrono — necesitas saber si el pago fue aprobado\nPaymentResponse r = paymentClient.charge(order);\nif (r.isApproved()) { ... }\n\n// Asíncrono — email no bloquea el flujo\nkafkaTemplate.send(\"order-events\", new OrderCreatedEvent(order));",
+    "active": true
   },
   {
     "id": 12,
@@ -177,7 +188,8 @@
     "correct": 2,
     "explanation": "gRPC usa Protocol Buffers (binario): payloads 3-10x más pequeños, serialización mucho más rápida. Genera código cliente automáticamente. Ideal para comunicación interna entre servicios.",
     "category": "Communication & Integration",
-    "code": "service OrderService {\n  rpc GetOrder (OrderRequest) returns (OrderResponse);\n  rpc StreamOrders (Empty) returns (stream OrderResponse);\n}\nmessage OrderRequest { int64 order_id = 1; }"
+    "code": "service OrderService {\n  rpc GetOrder (OrderRequest) returns (OrderResponse);\n  rpc StreamOrders (Empty) returns (stream OrderResponse);\n}\nmessage OrderRequest { int64 order_id = 1; }",
+    "active": true
   },
   {
     "id": 13,
@@ -192,7 +204,8 @@
     "correct": 0,
     "explanation": "Sin idempotency: cliente envía pago, servidor procesa pero falla al responder — cliente reintenta y el pago se cobra dos veces. Con idempotency-key: el servidor guarda qué keys ya procesó y devuelve el mismo resultado sin re-ejecutar. Stripe y otros gateways lo requieren.",
     "category": "Communication & Integration",
-    "code": "@PostMapping(\"/payments\")\npublic PaymentResponse pay(\n    @RequestHeader(\"Idempotency-Key\") String key,\n    @RequestBody PaymentRequest req) {\n  if (idempotencyStore.exists(key))\n    return idempotencyStore.get(key);\n  PaymentResponse result = processPayment(req);\n  idempotencyStore.save(key, result);\n  return result;\n}"
+    "code": "@PostMapping(\"/payments\")\npublic PaymentResponse pay(\n    @RequestHeader(\"Idempotency-Key\") String key,\n    @RequestBody PaymentRequest req) {\n  if (idempotencyStore.exists(key))\n    return idempotencyStore.get(key);\n  PaymentResponse result = processPayment(req);\n  idempotencyStore.save(key, result);\n  return result;\n}",
+    "active": true
   },
   {
     "id": 14,
@@ -207,7 +220,8 @@
     "correct": 3,
     "explanation": "Competing Consumers escala el procesamiento horizontalmente. En Kafka: las partitions del topic se distribuyen entre los consumers del mismo grupo. 6 partitions + 3 consumers = 2 partitions por consumer.",
     "category": "Communication & Integration",
-    "code": "@KafkaListener(topics = \"orders\", groupId = \"order-processor\")\npublic void processOrder(OrderEvent event) {\n  // Solo UNA instancia del grupo procesa cada mensaje\n  orderService.process(event);\n}"
+    "code": "@KafkaListener(topics = \"orders\", groupId = \"order-processor\")\npublic void processOrder(OrderEvent event) {\n  // Solo UNA instancia del grupo procesa cada mensaje\n  orderService.process(event);\n}",
+    "active": true
   },
   {
     "id": 15,
@@ -222,7 +236,8 @@
     "correct": 0,
     "explanation": "Sin DLQ, un 'poison message' que siempre falla puede bloquear la queue indefinidamente. Con DLQ: después de N reintentos fallidos, el mensaje va a la Dead Letter Queue para análisis y corrección.",
     "category": "Communication & Integration",
-    "code": "@Bean\npublic DefaultErrorHandler errorHandler(KafkaOperations<String,Object> ops) {\n  var recover = new DeadLetterPublishingRecoverer(ops,\n      (r,e) -> new TopicPartition(r.topic()+\".DLT\", r.partition()));\n  return new DefaultErrorHandler(recover,\n      new FixedBackOff(1000L, 3)); // 3 reintentos, luego DLQ\n}"
+    "code": "@Bean\npublic DefaultErrorHandler errorHandler(KafkaOperations<String,Object> ops) {\n  var recover = new DeadLetterPublishingRecoverer(ops,\n      (r,e) -> new TopicPartition(r.topic()+\".DLT\", r.partition()));\n  return new DefaultErrorHandler(recover,\n      new FixedBackOff(1000L, 3)); // 3 reintentos, luego DLQ\n}",
+    "active": true
   },
   {
     "id": 16,
@@ -237,7 +252,8 @@
     "correct": 1,
     "explanation": "GraphQL: el cliente define la forma exacta de los datos. Evita over-fetching (REST devuelve campos que no usas) y under-fetching (necesitas múltiples llamadas). Ideal para BFF, apps móviles, frontends con necesidades variables.",
     "category": "Communication & Integration",
-    "code": "query {\n  order(id: \"123\") {\n    id status\n    customer { name email }\n    items { product { name } quantity }\n  }\n}"
+    "code": "query {\n  order(id: \"123\") {\n    id status\n    customer { name email }\n    items { product { name } quantity }\n  }\n}",
+    "active": true
   },
   {
     "id": 17,
@@ -252,7 +268,8 @@
     "correct": 2,
     "explanation": "Contract-first (API-first): define el contrato primero. Beneficios: equipos trabajan en paralelo, código generado automáticamente, tests de contrato (Pact) garantizan compatibilidad, breaking changes detectadas antes de producción.",
     "category": "Communication & Integration",
-    "code": null
+    "code": null,
+    "active": true
   },
   {
     "id": 18,
@@ -267,7 +284,8 @@
     "correct": 3,
     "explanation": "Webhook es comunicación 'push'. El servidor llama al cliente cuando ocurre algo. El cliente registra una URL callback. Ampliamente usado: Stripe al procesar pagos, GitHub al hacer push.",
     "category": "Communication & Integration",
-    "code": "@PostMapping(\"/webhooks/stripe\")\npublic ResponseEntity<Void> handleWebhook(\n    @RequestBody String payload,\n    @RequestHeader(\"Stripe-Signature\") String sig) {\n  stripeService.constructEvent(payload, sig);\n  return ResponseEntity.ok().build();\n}"
+    "code": "@PostMapping(\"/webhooks/stripe\")\npublic ResponseEntity<Void> handleWebhook(\n    @RequestBody String payload,\n    @RequestHeader(\"Stripe-Signature\") String sig) {\n  stripeService.constructEvent(payload, sig);\n  return ResponseEntity.ok().build();\n}",
+    "active": true
   },
   {
     "id": 19,
@@ -282,7 +300,8 @@
     "correct": 1,
     "explanation": "Command: imperativo — 'ProcessPayment', tiene intención y destinatario, puede ser rechazado. Event: descriptivo pasado — 'PaymentProcessed', el emisor no sabe quién lo consume. Diferencia fundamental en arquitecturas event-driven y CQRS.",
     "category": "Communication & Integration",
-    "code": null
+    "code": null,
+    "active": true
   },
   {
     "id": 20,
@@ -297,7 +316,8 @@
     "correct": 2,
     "explanation": "SAGA no garantiza ACID global. Si el paso N falla, se ejecutan compensaciones para los pasos 1..N-1 ya completados. La compensación es una operación de negocio inversa, puede ser visible al usuario.",
     "category": "Communication & Integration",
-    "code": null
+    "code": null,
+    "active": true
   },
   {
     "id": 21,
@@ -312,7 +332,8 @@
     "correct": 2,
     "explanation": "Circuit Breaker imita un disyuntor eléctrico. Closed → Open cuando el % de fallos supera el umbral. Open → Half-Open después del tiempo configurable. Half-Open → Closed si las pruebas tienen éxito.",
     "category": "Resilience & Fault Tolerance",
-    "code": "@CircuitBreaker(name=\"inventory\", fallbackMethod=\"fallback\")\npublic List<Product> getProducts() {\n  return inventoryClient.getAll();\n}\npublic List<Product> fallback(Exception e) {\n  return cachedProducts; // respuesta degradada\n}"
+    "code": "@CircuitBreaker(name=\"inventory\", fallbackMethod=\"fallback\")\npublic List<Product> getProducts() {\n  return inventoryClient.getAll();\n}\npublic List<Product> fallback(Exception e) {\n  return cachedProducts; // respuesta degradada\n}",
+    "active": true
   },
   {
     "id": 22,
@@ -327,7 +348,8 @@
     "correct": 0,
     "explanation": "Bulkhead viene de los compartimentos estancos de un barco. Sin él: el Servicio A lento ocupa todos los threads del pool compartido y el Servicio B (que funciona bien) también falla. Bulkhead asigna pools separados a cada dependencia.",
     "category": "Resilience & Fault Tolerance",
-    "code": "@Bulkhead(name=\"payment\", type=Bulkhead.Type.SEMAPHORE)\npublic PaymentResult pay(Order order) {\n  return paymentClient.charge(order);\n}\n// maxConcurrentCalls: 10\n// maxWaitDuration: 100ms"
+    "code": "@Bulkhead(name=\"payment\", type=Bulkhead.Type.SEMAPHORE)\npublic PaymentResult pay(Order order) {\n  return paymentClient.charge(order);\n}\n// maxConcurrentCalls: 10\n// maxWaitDuration: 100ms",
+    "active": true
   },
   {
     "id": 23,
@@ -342,7 +364,8 @@
     "correct": 3,
     "explanation": "Son complementarios. Timeout: si una petición tarda más de Xms, falla — previene hilos bloqueados. Circuit Breaker: observa el patrón de fallos en el tiempo — si el 50% de peticiones en 10s fallan, abre el circuito. Úsalos juntos.",
     "category": "Resilience & Fault Tolerance",
-    "code": null
+    "code": null,
+    "active": true
   },
   {
     "id": 24,
@@ -357,7 +380,8 @@
     "correct": 2,
     "explanation": "Sin jitter: 1000 clientes fallan, todos esperan 2s exactos → atacan el servidor en sincronía (thundering herd). Con jitter: cada cliente elige tiempo aleatorio dentro de la ventana, distribuyendo la carga.",
     "category": "Resilience & Fault Tolerance",
-    "code": null
+    "code": null,
+    "active": true
   },
   {
     "id": 25,
@@ -372,7 +396,8 @@
     "correct": 1,
     "explanation": "El fallback es el 'plan B'. Estrategias: (1) Caché — datos no actualizados pero disponibles. (2) Valor por defecto. (3) Servicio alternativo. (4) Error amigable. La clave: el fallback debe ser mejor que propagar el error.",
     "category": "Resilience & Fault Tolerance",
-    "code": "@CircuitBreaker(name=\"rec\", fallbackMethod=\"cachedFallback\")\npublic List<Product> getRecommendations(Long userId) {\n  return recommendationService.getFor(userId);\n}\npublic List<Product> cachedFallback(Long userId, Exception e) {\n  return cacheService.getTopProducts();\n}"
+    "code": "@CircuitBreaker(name=\"rec\", fallbackMethod=\"cachedFallback\")\npublic List<Product> getRecommendations(Long userId) {\n  return recommendationService.getFor(userId);\n}\npublic List<Product> cachedFallback(Long userId, Exception e) {\n  return cacheService.getTopProducts();\n}",
+    "active": true
   },
   {
     "id": 26,
@@ -387,7 +412,8 @@
     "correct": 2,
     "explanation": "Liveness: falla → Kubernetes reinicia el pod. Readiness: falla → Kubernetes saca el pod del LB pero no lo reinicia. Spring Boot Actuator expone /actuator/health/liveness y /actuator/health/readiness.",
     "category": "Resilience & Fault Tolerance",
-    "code": "livenessProbe:\n  httpGet:\n    path: /actuator/health/liveness\n    port: 8080\n  initialDelaySeconds: 60\nreadinessProbe:\n  httpGet:\n    path: /actuator/health/readiness\n    port: 8080\n  initialDelaySeconds: 30"
+    "code": "livenessProbe:\n  httpGet:\n    path: /actuator/health/liveness\n    port: 8080\n  initialDelaySeconds: 60\nreadinessProbe:\n  httpGet:\n    path: /actuator/health/readiness\n    port: 8080\n  initialDelaySeconds: 30",
+    "active": true
   },
   {
     "id": 27,
@@ -402,7 +428,8 @@
     "correct": 3,
     "explanation": "Chaos Engineering (Netflix Chaos Monkey, Gremlin): introduce fallos reales en producción — mata pods aleatoriamente, introduce latencia, corta la red. Si el sistema aguanta fallos controlados, aguanta fallos reales.",
     "category": "Resilience & Fault Tolerance",
-    "code": null
+    "code": null,
+    "active": true
   },
   {
     "id": 28,
@@ -417,7 +444,8 @@
     "correct": 0,
     "explanation": "Sin graceful shutdown: al matar un pod las peticiones en curso se cortan — errores 500 para los clientes. Con él: (1) deja de aceptar nuevos requests, (2) espera que terminen los actuales, (3) cierra conexiones a BD y Kafka, (4) se apaga.",
     "category": "Resilience & Fault Tolerance",
-    "code": "# application.yml\nserver:\n  shutdown: graceful\nspring:\n  lifecycle:\n    timeout-per-shutdown-phase: 30s"
+    "code": "# application.yml\nserver:\n  shutdown: graceful\nspring:\n  lifecycle:\n    timeout-per-shutdown-phase: 30s",
+    "active": true
   },
   {
     "id": 29,
@@ -432,7 +460,8 @@
     "correct": 3,
     "explanation": "La Dependency Rule (Robert C. Martin): el código solo apunta hacia adentro. Entities no conocen Use Cases. Use Cases no conocen Controllers. Resultado: puedes cambiar Spring por Quarkus o PostgreSQL por MongoDB sin tocar la lógica de negocio.",
     "category": "Architecture Styles",
-    "code": "// Dominio — sin anotaciones Spring\npublic class Order {\n  private OrderId id;\n  public void confirm() { this.status = CONFIRMED; }\n}\n// Use Case — depende solo del dominio\npublic class CreateOrderUseCase {\n  private final OrderRepository repo; // interfaz del dominio\n}\n// Infraestructura — aquí vive Spring\n@Repository\npublic class JpaOrderRepository implements OrderRepository {}"
+    "code": "// Dominio — sin anotaciones Spring\npublic class Order {\n  private OrderId id;\n  public void confirm() { this.status = CONFIRMED; }\n}\n// Use Case — depende solo del dominio\npublic class CreateOrderUseCase {\n  private final OrderRepository repo; // interfaz del dominio\n}\n// Infraestructura — aquí vive Spring\n@Repository\npublic class JpaOrderRepository implements OrderRepository {}",
+    "active": true
   },
   {
     "id": 30,
@@ -447,7 +476,8 @@
     "correct": 1,
     "explanation": "Arquitectura Hexagonal (Alistair Cockburn): el dominio está completamente aislado. Puertos de entrada: interfaces que el dominio expone. Puertos de salida: interfaces que el dominio necesita (OrderRepository, EmailSender). Adaptadores: implementaciones concretas.",
     "category": "Architecture Styles",
-    "code": "// Puerto de salida — en el dominio\npublic interface OrderRepository {\n  Order findById(OrderId id);\n  void save(Order order);\n}\n// Adaptador de salida — en infraestructura\n@Repository\npublic class JpaOrderRepository implements OrderRepository {\n  // el dominio nunca ve JPA\n}"
+    "code": "// Puerto de salida — en el dominio\npublic interface OrderRepository {\n  Order findById(OrderId id);\n  void save(Order order);\n}\n// Adaptador de salida — en infraestructura\n@Repository\npublic class JpaOrderRepository implements OrderRepository {\n  // el dominio nunca ve JPA\n}",
+    "active": true
   },
   {
     "id": 31,
@@ -462,7 +492,8 @@
     "correct": 2,
     "explanation": "Multi-tenancy es la base del modelo SaaS. Silo: BD separada — máximo aislamiento, costoso. Bridge: schema separado, misma BD — balance. Pool: mismas tablas, columna tenant_id — más eficiente pero requiere filtrado cuidadoso en todas las queries.",
     "category": "Architecture Styles",
-    "code": "// Pool model — filtrado por tenant\n@Query(\"SELECT o FROM Order o WHERE o.tenantId = :tenantId\")\nList<Order> findByTenant(@Param(\"tenantId\") String tenantId);"
+    "code": "// Pool model — filtrado por tenant\n@Query(\"SELECT o FROM Order o WHERE o.tenantId = :tenantId\")\nList<Order> findByTenant(@Param(\"tenantId\") String tenantId);",
+    "active": true
   },
   {
     "id": 32,
@@ -477,7 +508,8 @@
     "correct": 3,
     "explanation": "CQRS (Greg Young): lectura y escritura tienen necesidades distintas. Escritura: validaciones, transacciones, consistencia. Lectura: velocidad, desnormalización, proyecciones. Puedes tener PostgreSQL para escritura y Elasticsearch para lectura.",
     "category": "Architecture Styles",
-    "code": "// Command side — PostgreSQL normalizado\npublic class CreateOrderCommandHandler {\n  public void handle(CreateOrderCommand cmd) {\n    orderRepository.save(Order.create(cmd));\n    eventBus.publish(new OrderCreatedEvent(order));\n  }\n}\n// Query side — Elasticsearch desnormalizado\npublic class GetOrderQueryHandler {\n  public OrderSummaryDTO handle(GetOrderQuery q) {\n    return elasticsearchRepo.findSummary(q.getOrderId());\n  }\n}"
+    "code": "// Command side — PostgreSQL normalizado\npublic class CreateOrderCommandHandler {\n  public void handle(CreateOrderCommand cmd) {\n    orderRepository.save(Order.create(cmd));\n    eventBus.publish(new OrderCreatedEvent(order));\n  }\n}\n// Query side — Elasticsearch desnormalizado\npublic class GetOrderQueryHandler {\n  public OrderSummaryDTO handle(GetOrderQuery q) {\n    return elasticsearchRepo.findSummary(q.getOrderId());\n  }\n}",
+    "active": true
   },
   {
     "id": 33,
@@ -492,7 +524,8 @@
     "correct": 2,
     "explanation": "Ley de Conway: el sistema refleja la estructura de comunicación de la organización. Microservicios brillan con equipos grandes y autónomos, servicios con escalado muy distinto, tecnologías diferentes por servicio. Desventajas: latencia de red, consistencia eventual, complejidad operacional.",
     "category": "Architecture Styles",
-    "code": null
+    "code": null,
+    "active": true
   },
   {
     "id": 34,
@@ -507,7 +540,8 @@
     "correct": 1,
     "explanation": "Fowler advierte: es más difícil distribuir un sistema que no entiendes bien. Los microservicios requieren Bounded Contexts bien definidos. Empieza con módulos con interfaces claras y extrae cuando el costo de no hacerlo sea real.",
     "category": "Architecture Styles",
-    "code": null
+    "code": null,
+    "active": true
   },
   {
     "id": 35,
@@ -522,7 +556,8 @@
     "correct": 2,
     "explanation": "EDA invierte el modelo. En REST el emisor conoce al receptor y espera respuesta. En EDA el productor publica un evento ('OrderPlaced') y no sabe quién lo consume ni cuántos consumidores hay. Ventajas: desacoplamiento extremo. Desventajas: consistencia eventual, complejidad de trazar flujos.",
     "category": "Architecture Styles",
-    "code": null
+    "code": null,
+    "active": true
   },
   {
     "id": 36,
@@ -537,7 +572,8 @@
     "correct": 1,
     "explanation": "El Bounded Context define el ámbito donde un término tiene significado específico. 'Customer' en Ventas tiene atributos distintos que 'Customer' en Soporte. Esta es la base para definir límites de microservicios.",
     "category": "Domain-Driven Design",
-    "code": "// Dos BCs — 'Order' tiene modelos distintos\n// BC: Order Management\npublic class Order {\n  private List<OrderItem> items;\n  private ShippingAddress address;\n}\n// BC: Payment\npublic class Order { // mismo nombre, modelo diferente\n  private Money amount;\n  private PaymentMethod paymentMethod;\n}"
+    "code": "// Dos BCs — 'Order' tiene modelos distintos\n// BC: Order Management\npublic class Order {\n  private List<OrderItem> items;\n  private ShippingAddress address;\n}\n// BC: Payment\npublic class Order { // mismo nombre, modelo diferente\n  private Money amount;\n  private PaymentMethod paymentMethod;\n}",
+    "active": true
   },
   {
     "id": 37,
@@ -552,7 +588,8 @@
     "correct": 2,
     "explanation": "Entity: su ID la define — dos Customers con mismo nombre son distintos si tienen distinto ID. Value Object: no tiene identidad — Money(100, USD) es igual a otro Money(100, USD). Los VO deben ser inmutables. En Java moderno, los records son perfectos para VO.",
     "category": "Domain-Driven Design",
-    "code": "// Entity — tiene identidad propia\npublic class Customer {\n  private final CustomerId id;\n  private String name;\n}\n// Value Object — inmutable, definido por atributos\npublic record Money(BigDecimal amount, Currency currency) {\n  public Money add(Money other) {\n    return new Money(this.amount.add(other.amount), this.currency);\n  }\n}"
+    "code": "// Entity — tiene identidad propia\npublic class Customer {\n  private final CustomerId id;\n  private String name;\n}\n// Value Object — inmutable, definido por atributos\npublic record Money(BigDecimal amount, Currency currency) {\n  public Money add(Money other) {\n    return new Money(this.amount.add(other.amount), this.currency);\n  }\n}",
+    "active": true
   },
   {
     "id": 38,
@@ -567,7 +604,8 @@
     "correct": 0,
     "explanation": "El Aggregate Root es el guardián de las invariantes. Solo se accede a los objetos internos a través del Root. Para añadir un ítem: order.addItem() — no crear un OrderItem directamente. Referencias a otros Aggregates son por ID, nunca directas.",
     "category": "Domain-Driven Design",
-    "code": "public class Order { // Aggregate Root\n  private List<OrderItem> items = new ArrayList<>();\n  public void addItem(ProductId productId, int qty, Money price) {\n    if (status != DRAFT)\n      throw new IllegalStateException(\"Order already confirmed\");\n    items.add(new OrderItem(productId, qty, price));\n    // invariante: total recalculado internamente\n  }\n}"
+    "code": "public class Order { // Aggregate Root\n  private List<OrderItem> items = new ArrayList<>();\n  public void addItem(ProductId productId, int qty, Money price) {\n    if (status != DRAFT)\n      throw new IllegalStateException(\"Order already confirmed\");\n    items.add(new OrderItem(productId, qty, price));\n    // invariante: total recalculado internamente\n  }\n}",
+    "active": true
   },
   {
     "id": 39,
@@ -582,7 +620,8 @@
     "correct": 3,
     "explanation": "Domain Events representan hechos del negocio en tiempo pasado: OrderPlaced, PaymentProcessed. Son inmutables y autocontenidos: incluir toda la información necesaria para que los consumidores actúen sin llamadas adicionales.",
     "category": "Domain-Driven Design",
-    "code": "public record OrderPlacedEvent(\n  String eventId,\n  Instant occurredAt,\n  OrderId orderId,\n  CustomerId customerId,\n  Money totalAmount\n) {}\npublic class Order {\n  public void place() {\n    this.status = PLACED;\n    registerEvent(new OrderPlacedEvent(...));\n  }\n}"
+    "code": "public record OrderPlacedEvent(\n  String eventId,\n  Instant occurredAt,\n  OrderId orderId,\n  CustomerId customerId,\n  Money totalAmount\n) {}\npublic class Order {\n  public void place() {\n    this.status = PLACED;\n    registerEvent(new OrderPlacedEvent(...));\n  }\n}",
+    "active": true
   },
   {
     "id": 40,
@@ -597,7 +636,8 @@
     "correct": 1,
     "explanation": "El ACL protege tu Bounded Context de la 'corrupción' del modelo externo. Si el sistema externo tiene 'Client', tu dominio puede tener 'Customer' — el ACL traduce. Tu dominio nunca ve el modelo externo directamente.",
     "category": "Domain-Driven Design",
-    "code": "public class LegacySystemACL {\n  public Customer getCustomer(CustomerId id) {\n    LegacyClient data = legacyClient.getClient(id.value());\n    return new Customer(\n      CustomerId.of(data.getClientCode()),\n      new PersonName(data.getFirstName(), data.getLastName()),\n      Email.of(data.getEmailAddress())\n    );\n  }\n}"
+    "code": "public class LegacySystemACL {\n  public Customer getCustomer(CustomerId id) {\n    LegacyClient data = legacyClient.getClient(id.value());\n    return new Customer(\n      CustomerId.of(data.getClientCode()),\n      new PersonName(data.getFirstName(), data.getLastName()),\n      Email.of(data.getEmailAddress())\n    );\n  }\n}",
+    "active": true
   },
   {
     "id": 41,
@@ -612,7 +652,8 @@
     "correct": 1,
     "explanation": "El Ubiquitous Language cierra la brecha entre técnico y negocio. Si el negocio habla de 'Reservation', el código tiene una clase Reservation — no Booking, ni BookingRecord. Cuando el lenguaje diverge, el conocimiento del dominio se pierde.",
     "category": "Domain-Driven Design",
-    "code": null
+    "code": null,
+    "active": true
   },
   {
     "id": 42,
@@ -627,7 +668,8 @@
     "correct": 2,
     "explanation": "Si no puedes decidir a cuál Entity asignar una operación, probablemente sea un Domain Service. Ejemplo: transferencia de dinero entre dos cuentas. ¿Pertenece a cuál Account? Es un Domain Service. Sin anotaciones de infraestructura, contiene lógica de negocio real.",
     "category": "Domain-Driven Design",
-    "code": "public class MoneyTransferService { // parte del dominio\n  public void transfer(Account source, Account target, Money amount) {\n    if (!source.hasSufficientFunds(amount))\n      throw new InsufficientFundsException();\n    source.debit(amount);\n    target.credit(amount);\n  }\n}"
+    "code": "public class MoneyTransferService { // parte del dominio\n  public void transfer(Account source, Account target, Money amount) {\n    if (!source.hasSufficientFunds(amount))\n      throw new InsufficientFundsException();\n    source.debit(amount);\n    target.credit(amount);\n  }\n}",
+    "active": true
   },
   {
     "id": 43,
@@ -642,7 +684,8 @@
     "correct": 1,
     "explanation": "Event Sourcing: guardas [OrderCreated, PaymentProcessed, OrderShipped] en lugar de {status: 'SHIPPED'}. El estado se reconstruye reproduciendo eventos. Ventajas: auditoría completa, estado en cualquier punto del tiempo. Desventajas: complejidad mayor, queries requieren proyecciones.",
     "category": "Domain-Driven Design",
-    "code": "public class Order {\n  public void apply(OrderCreatedEvent e) { this.status = DRAFT; }\n  public void apply(OrderConfirmedEvent e) { this.status = CONFIRMED; }\n  public void apply(OrderShippedEvent e) { this.status = SHIPPED; }\n  public static Order reconstitute(List<DomainEvent> history) {\n    Order o = new Order();\n    history.forEach(o::apply);\n    return o;\n  }\n}"
+    "code": "public class Order {\n  public void apply(OrderCreatedEvent e) { this.status = DRAFT; }\n  public void apply(OrderConfirmedEvent e) { this.status = CONFIRMED; }\n  public void apply(OrderShippedEvent e) { this.status = SHIPPED; }\n  public static Order reconstitute(List<DomainEvent> history) {\n    Order o = new Order();\n    history.forEach(o::apply);\n    return o;\n  }\n}",
+    "active": true
   },
   {
     "id": 44,
@@ -657,7 +700,8 @@
     "correct": 3,
     "explanation": "Inyección por campo (@Autowired) está desaconsejada: oculta dependencias, complica testing, puede llevar a dependencias circulares. Inyección por constructor: dependencias finales, explícitas, el objeto no puede crearse sin ellas.",
     "category": "Spring Boot & Spring Cloud",
-    "code": "// Recomendado — constructor + Lombok\n@Service\n@RequiredArgsConstructor\npublic class OrderService {\n  private final OrderRepository orderRepository; // final!\n  private final PaymentService paymentService;\n}\n// No recomendado — campo\n@Service\npublic class OrderService {\n  @Autowired // oculta dependencias\n  private OrderRepository orderRepository;\n}"
+    "code": "// Recomendado — constructor + Lombok\n@Service\n@RequiredArgsConstructor\npublic class OrderService {\n  private final OrderRepository orderRepository; // final!\n  private final PaymentService paymentService;\n}\n// No recomendado — campo\n@Service\npublic class OrderService {\n  @Autowired // oculta dependencias\n  private OrderRepository orderRepository;\n}",
+    "active": true
   },
   {
     "id": 45,
@@ -672,7 +716,8 @@
     "correct": 0,
     "explanation": "Sin Config Server: cambiar una configuración requiere redesplegar todos los servicios. Con Config Server: la configuración vive en Git, los servicios la obtienen al arrancar. Con @RefreshScope se puede actualizar en runtime sin redesplegar.",
     "category": "Spring Boot & Spring Cloud",
-    "code": "# bootstrap.yml en cada microservicio\nspring:\n  application:\n    name: order-service\n  cloud:\n    config:\n      uri: http://config-server:8888\n      fail-fast: true"
+    "code": "# bootstrap.yml en cada microservicio\nspring:\n  application:\n    name: order-service\n  cloud:\n    config:\n      uri: http://config-server:8888\n      fail-fast: true",
+    "active": true
   },
   {
     "id": 46,
@@ -687,7 +732,8 @@
     "correct": 3,
     "explanation": "@Transactional usa proxies AOP. Llamada externa → Spring intercepta → gestiona TX. Llamada interna (mismo bean) → el proxy NO intercepta → TX no aplica. Solución: extraer el método a un bean separado.",
     "category": "Spring Boot & Spring Cloud",
-    "code": "@Service\npublic class OrderService {\n  // Llamada interna — @Transactional NO funciona\n  public void processAll() {\n    orders.forEach(o -> this.processOne(o)); // bypasea proxy!\n  }\n  @Transactional\n  public void processOne(Order o) { ... }\n  // Solución: extraer processOne a otro @Service\n}"
+    "code": "@Service\npublic class OrderService {\n  // Llamada interna — @Transactional NO funciona\n  public void processAll() {\n    orders.forEach(o -> this.processOne(o)); // bypasea proxy!\n  }\n  @Transactional\n  public void processOne(Order o) { ... }\n  // Solución: extraer processOne a otro @Service\n}",
+    "active": true
   },
   {
     "id": 47,
@@ -702,7 +748,8 @@
     "correct": 1,
     "explanation": "Feign elimina el boilerplate HTTP. Defines una interfaz con anotaciones y Spring Cloud la implementa. Se integra con Spring Cloud LoadBalancer, Resilience4j y Eureka. El código cliente es idéntico a llamar a una clase local.",
     "category": "Spring Boot & Spring Cloud",
-    "code": "@FeignClient(\n  name = \"inventory-service\",\n  fallback = InventoryClientFallback.class\n)\npublic interface InventoryClient {\n  @GetMapping(\"/inventory/{productId}\")\n  StockResponse getStock(@PathVariable String productId);\n}\n// Uso — como si fuera local\nStockResponse stock = inventoryClient.getStock(productId);"
+    "code": "@FeignClient(\n  name = \"inventory-service\",\n  fallback = InventoryClientFallback.class\n)\npublic interface InventoryClient {\n  @GetMapping(\"/inventory/{productId}\")\n  StockResponse getStock(@PathVariable String productId);\n}\n// Uso — como si fuera local\nStockResponse stock = inventoryClient.getStock(productId);",
+    "active": true
   },
   {
     "id": 48,
@@ -717,7 +764,8 @@
     "correct": 2,
     "explanation": "@ConditionalOnProperty es clave para feature flags. Puedes deshabilitar Kafka en tests de integración, habilitar mock de pagos en staging, activar features por cliente sin tocar el código de negocio.",
     "category": "Spring Boot & Spring Cloud",
-    "code": "@Bean\n@ConditionalOnProperty(\n  name = \"features.stripe.enabled\",\n  havingValue = \"true\",\n  matchIfMissing = false\n)\npublic PaymentGateway stripeGateway() {\n  return new StripeGateway(stripeApiKey);\n}"
+    "code": "@Bean\n@ConditionalOnProperty(\n  name = \"features.stripe.enabled\",\n  havingValue = \"true\",\n  matchIfMissing = false\n)\npublic PaymentGateway stripeGateway() {\n  return new StripeGateway(stripeApiKey);\n}",
+    "active": true
   },
   {
     "id": 49,
@@ -732,7 +780,8 @@
     "correct": 0,
     "explanation": "Actuator es esencial en producción. /actuator/health → Kubernetes liveness/readiness probes. /actuator/prometheus → Prometheus hace scraping para Grafana. /actuator/loggers → debug en producción sin redesplegar.",
     "category": "Spring Boot & Spring Cloud",
-    "code": "management:\n  endpoints:\n    web:\n      exposure:\n        include: health,metrics,prometheus,loggers\n  endpoint:\n    health:\n      show-details: always\n      probes:\n        enabled: true"
+    "code": "management:\n  endpoints:\n    web:\n      exposure:\n        include: health,metrics,prometheus,loggers\n  endpoint:\n    health:\n      show-details: always\n      probes:\n        enabled: true",
+    "active": true
   },
   {
     "id": 50,
@@ -747,7 +796,8 @@
     "correct": 1,
     "explanation": "Los Profiles resuelven 'funciona en mi máquina'. application-dev.yml apunta a H2 en memoria; application-prod.yml apunta a RDS. En contenedores: SPRING_PROFILES_ACTIVE=prod. Best practice: usar Config Server para diferencias por entorno.",
     "category": "Spring Boot & Spring Cloud",
-    "code": "# application-prod.yml — sobreescribe para prod\nspring:\n  datasource:\n    url: ${DB_URL}\n    username: ${DB_USER}\n    password: ${DB_PASSWORD}\n\n# Activar profile:\nSPRING_PROFILES_ACTIVE=prod java -jar service.jar"
+    "code": "# application-prod.yml — sobreescribe para prod\nspring:\n  datasource:\n    url: ${DB_URL}\n    username: ${DB_USER}\n    password: ${DB_PASSWORD}\n\n# Activar profile:\nSPRING_PROFILES_ACTIVE=prod java -jar service.jar",
+    "active": true
   },
   {
     "id": 51,
@@ -762,7 +812,8 @@
     "correct": 2,
     "explanation": "Zuul 1 es bloqueante — cada request ocupa un thread. Spring Cloud Gateway es reactivo (Project Reactor y Netty): maneja miles de conexiones simultáneas con pocos threads usando I/O no bloqueante. Gateway tiene mejores primitivas de filtros y está mantenido activamente.",
     "category": "Spring Boot & Spring Cloud",
-    "code": "@Bean\npublic RouteLocator routes(RouteLocatorBuilder b) {\n  return b.routes()\n    .route(\"orders\", r -> r.path(\"/orders/**\")\n      .filters(f -> f\n        .stripPrefix(1)\n        .circuitBreaker(c -> c.setName(\"orderCB\")\n          .setFallbackUri(\"/fallback\")))\n      .uri(\"lb://order-service\"))\n    .build();\n}"
+    "code": "@Bean\npublic RouteLocator routes(RouteLocatorBuilder b) {\n  return b.routes()\n    .route(\"orders\", r -> r.path(\"/orders/**\")\n      .filters(f -> f\n        .stripPrefix(1)\n        .circuitBreaker(c -> c.setName(\"orderCB\")\n          .setFallbackUri(\"/fallback\")))\n      .uri(\"lb://order-service\"))\n    .build();\n}",
+    "active": true
   },
   {
     "id": 52,
@@ -777,7 +828,8 @@
     "correct": 2,
     "explanation": "Los tres pilares (Google SRE Book): Logs — qué pasó y cuándo (Logback, ELK Stack). Metrics — mediciones en el tiempo (Micrometer, Prometheus, Grafana). Distributed Tracing — seguir el camino de una petición entre microservicios (Zipkin, Jaeger, OpenTelemetry).",
     "category": "Observability & DevOps",
-    "code": null
+    "code": null,
+    "active": true
   },
   {
     "id": 53,
@@ -792,7 +844,8 @@
     "correct": 3,
     "explanation": "SLI: métrica concreta — latencia p99, tasa de éxito. SLO: objetivo interno — 'p99 < 200ms el 99.9% del tiempo'. Error Budget: 0.1% = ~43 min/mes de margen. SLA: contrato legal — si incumples hay consecuencias. Los SLOs son más estrictos que los SLAs para tener margen de maniobra.",
     "category": "Observability & DevOps",
-    "code": "// SLI medido\n// SLO: >= 99.9% en 30 días → Error Budget ~43 min\n// SLA con cliente: >= 99.5% (más permisivo)\ntimer = Timer.builder(\"http.server.requests\")\n  .percentiles(0.5, 0.95, 0.99)\n  .register(meterRegistry);"
+    "code": "// SLI medido\n// SLO: >= 99.9% en 30 días → Error Budget ~43 min\n// SLA con cliente: >= 99.5% (más permisivo)\ntimer = Timer.builder(\"http.server.requests\")\n  .percentiles(0.5, 0.95, 0.99)\n  .register(meterRegistry);",
+    "active": true
   },
   {
     "id": 54,
@@ -807,7 +860,8 @@
     "correct": 1,
     "explanation": "Sin Correlation ID: tienes logs de 10 servicios y no puedes correlacionarlos. Con él: buscas ese UUID en Kibana y ves el flujo completo. Spring Cloud Sleuth/Micrometer Tracing lo gestiona automáticamente.",
     "category": "Observability & DevOps",
-    "code": "MDC.put(\"correlationId\", correlationId);\n// aparece en todos los logs automáticamente\n// propagado en header X-Correlation-ID entre servicios"
+    "code": "MDC.put(\"correlationId\", correlationId);\n// aparece en todos los logs automáticamente\n// propagado en header X-Correlation-ID entre servicios",
+    "active": true
   },
   {
     "id": 55,
@@ -822,7 +876,8 @@
     "correct": 2,
     "explanation": "Four Golden Signals (Google SRE Book): Latency — p50, p95, p99, no solo el promedio. Traffic — RPS. Errors — % de 4xx/5xx. Saturation — qué tan lleno está el recurso crítico (pool de conexiones, CPU). Base para definir SLIs.",
     "category": "Observability & DevOps",
-    "code": null
+    "code": null,
+    "active": true
   },
   {
     "id": 56,
@@ -837,7 +892,8 @@
     "correct": 2,
     "explanation": "Blue-Green elimina el downtime de deploy. Blue: entorno actual con 100% del tráfico. Despliegas en Green y pruebas. El load balancer cambia todo el tráfico de Blue a Green en milisegundos. Rollback instantáneo = volver a apuntar a Blue.",
     "category": "Observability & DevOps",
-    "code": null
+    "code": null,
+    "active": true
   },
   {
     "id": 57,
@@ -852,7 +908,8 @@
     "correct": 0,
     "explanation": "12-Factor App (Heroku): define características de una app fácil de desplegar y escalar. Factor III: configuración en variables de entorno. Factor VI: procesos stateless. Factor XI: logs como streams a stdout. Spring Boot cumple la mayoría por diseño.",
     "category": "Observability & DevOps",
-    "code": "# Factor III — Config en variables de entorno\nDB_URL=jdbc:postgresql://prod-db:5432/orders\nKAFKA_BROKERS=kafka-1:9092,kafka-2:9092\n# NUNCA hardcodeado en YML versionado en Git"
+    "code": "# Factor III — Config en variables de entorno\nDB_URL=jdbc:postgresql://prod-db:5432/orders\nKAFKA_BROKERS=kafka-1:9092,kafka-2:9092\n# NUNCA hardcodeado en YML versionado en Git",
+    "active": true
   },
   {
     "id": 58,
@@ -867,7 +924,8 @@
     "correct": 3,
     "explanation": "Cada request tiene un traceId (único para todo el flujo) y cada operación genera un span (con su duración). En Spring Boot con Micrometer Tracing: el traceId se propaga en headers HTTP y Kafka, y se incluye en todos los logs via MDC. Zipkin/Jaeger visualizan el flujo.",
     "category": "Observability & DevOps",
-    "code": "# Micrometer Tracing — application.yml\nmanagement:\n  tracing:\n    sampling:\n      probability: 1.0  # 100% en dev, 0.1 en prod\n# Log: INFO [order-service,traceId123,spanId456] OrderService - Order created"
+    "code": "# Micrometer Tracing — application.yml\nmanagement:\n  tracing:\n    sampling:\n      probability: 1.0  # 100% en dev, 0.1 en prod\n# Log: INFO [order-service,traceId123,spanId456] OrderService - Order created",
+    "active": true
   },
   {
     "id": 59,
@@ -882,7 +940,8 @@
     "correct": 2,
     "explanation": "Si el SLO es 99.9%, el error budget mensual es 0.1% = ~43 minutos de downtime. Si el equipo ha gastado 40 minutos del budget en releases, solo quedan 3 minutos — momento de enfocarse en estabilidad antes de nuevas features.",
     "category": "Observability & DevOps",
-    "code": "// Si el SLO es 99.9% mensual:\n// Error Budget = 0.1% = ~43 minutos al mes\n// Si se gastaron 40 min en releases → solo quedan 3 min\n// → parar features y enfocarse en estabilidad\n\ntimer = Timer.builder(\"http.server.requests\")\n  .percentiles(0.99)\n  .register(meterRegistry);\n// Alertar si p99 > 200ms → gastando Error Budget"
+    "code": "// Si el SLO es 99.9% mensual:\n// Error Budget = 0.1% = ~43 minutos al mes\n// Si se gastaron 40 min en releases → solo quedan 3 min\n// → parar features y enfocarse en estabilidad\n\ntimer = Timer.builder(\"http.server.requests\")\n  .percentiles(0.99)\n  .register(meterRegistry);\n// Alertar si p99 > 200ms → gastando Error Budget",
+    "active": true
   },
   {
     "id": 60,
@@ -897,7 +956,8 @@
     "correct": 1,
     "explanation": "Canary reduce el riesgo de releases. 5% → métricas OK → 25% → 50% → 100%. Si hay problemas: rollback instantáneo cambiando los pesos del load balancer. En AWS: ALB soporta pesos de target groups. CodeDeploy tiene canary nativo para ECS.",
     "category": "Observability & DevOps",
-    "code": "# CodeDeploy Canary para ECS\n# ECSCanary10Percent5Minutes:\n# → 10% del tráfico por 5 minutos\n# → si métricas OK → 100%\n# → si métricas fallan → rollback automático"
+    "code": "# CodeDeploy Canary para ECS\n# ECSCanary10Percent5Minutes:\n# → 10% del tráfico por 5 minutos\n# → si métricas OK → 100%\n# → si métricas fallan → rollback automático",
+    "active": true
   },
   {
     "id": 61,
@@ -912,7 +972,8 @@
     "correct": 3,
     "explanation": "Cache-Aside es el patrón más común con Redis. (1) App busca en Redis. (2) Hit → devuelve. (3) Miss → lee de BD, guarda en Redis con TTL, devuelve. Desventaja: el primer request siempre es lento.",
     "category": "Data Patterns & Caching",
-    "code": "@Cacheable(\n  value = \"products\",\n  key = \"#productId\",\n  unless = \"#result == null\"\n)\npublic Product findById(String productId) {\n  return productRepository.findById(productId)\n    .orElseThrow(() -> new ProductNotFoundException(productId));\n}\n@CacheEvict(value = \"products\", key = \"#product.id\")\npublic void updateProduct(Product product) {\n  productRepository.save(product);\n}"
+    "code": "@Cacheable(\n  value = \"products\",\n  key = \"#productId\",\n  unless = \"#result == null\"\n)\npublic Product findById(String productId) {\n  return productRepository.findById(productId)\n    .orElseThrow(() -> new ProductNotFoundException(productId));\n}\n@CacheEvict(value = \"products\", key = \"#product.id\")\npublic void updateProduct(Product product) {\n  productRepository.save(product);\n}",
+    "active": true
   },
   {
     "id": 62,
@@ -927,7 +988,8 @@
     "correct": 2,
     "explanation": "Sharding escala horizontalmente cuando una BD ya no puede manejar la carga. La shard key es crítica: una mala elección crea hotspots. Problemas: no puedes hacer JOINs entre shards, transacciones distribuidas son complejas.",
     "category": "Data Patterns & Caching",
-    "code": "public class ShardRouter {\n  public DataSource getShardFor(Long userId) {\n    int shardIndex = (int)(userId % shards.size());\n    return shards.get(shardIndex);\n  }\n  // userId=123 → 123 % 4 = 3 → shard 3\n}"
+    "code": "public class ShardRouter {\n  public DataSource getShardFor(Long userId) {\n    int shardIndex = (int)(userId % shards.size());\n    return shards.get(shardIndex);\n  }\n  // userId=123 → 123 % 4 = 3 → shard 3\n}",
+    "active": true
   },
   {
     "id": 63,
@@ -942,7 +1004,8 @@
     "correct": 1,
     "explanation": "1000 requests leen el mismo producto. La key expira → 1000 threads detectan cache miss → 1000 queries idénticas a la BD. Soluciones: (1) Mutex/Lock — solo el primer thread va a la BD. (2) TTL con jitter para que las keys no expiren simultáneamente.",
     "category": "Data Patterns & Caching",
-    "code": "// Prevención con Redis SETNX (mutex)\npublic Product getWithLock(String productId) {\n  String cached = redis.get(\"product:\" + productId);\n  if (cached != null) return deserialize(cached);\n  boolean locked = redis.setIfAbsent(\n      \"lock:\" + productId, \"1\", 5, SECONDS);\n  if (locked) {\n    Product p = db.findById(productId);\n    redis.set(\"product:\" + productId, serialize(p), 5, MINUTES);\n    redis.delete(\"lock:\" + productId);\n    return p;\n  }\n  Thread.sleep(100);\n  return getWithLock(productId); // reintenta\n}"
+    "code": "// Prevención con Redis SETNX (mutex)\npublic Product getWithLock(String productId) {\n  String cached = redis.get(\"product:\" + productId);\n  if (cached != null) return deserialize(cached);\n  boolean locked = redis.setIfAbsent(\n      \"lock:\" + productId, \"1\", 5, SECONDS);\n  if (locked) {\n    Product p = db.findById(productId);\n    redis.set(\"product:\" + productId, serialize(p), 5, MINUTES);\n    redis.delete(\"lock:\" + productId);\n    return p;\n  }\n  Thread.sleep(100);\n  return getWithLock(productId); // reintenta\n}",
+    "active": true
   },
   {
     "id": 64,
@@ -957,7 +1020,8 @@
     "correct": 0,
     "explanation": "CDC (Debezium con PostgreSQL/MySQL) lee el transaction log directamente — no hace polling a la BD. Captura todos los cambios incluyendo los de herramientas externas. Publica a Kafka automáticamente.",
     "category": "Data Patterns & Caching",
-    "code": "// Debezium connector\n{\n  \"connector.class\": \"io.debezium.connector.postgresql.PostgresConnector\",\n  \"database.dbname\": \"orders_db\",\n  \"table.include.list\": \"public.orders\"\n}\n// Publica a Kafka:\n// {\"op\":\"u\",\"before\":{\"status\":\"PENDING\"},\"after\":{\"status\":\"SHIPPED\"}}"
+    "code": "// Debezium connector\n{\n  \"connector.class\": \"io.debezium.connector.postgresql.PostgresConnector\",\n  \"database.dbname\": \"orders_db\",\n  \"table.include.list\": \"public.orders\"\n}\n// Publica a Kafka:\n// {\"op\":\"u\",\"before\":{\"status\":\"PENDING\"},\"after\":{\"status\":\"SHIPPED\"}}",
+    "active": true
   },
   {
     "id": 65,
@@ -972,7 +1036,8 @@
     "correct": 3,
     "explanation": "Redis es uno de los componentes más versátiles. Distributed Locks con Redisson (SETNX). Rate Limiting con INCR + EXPIRE. Sesiones distribuidas (stateless services). Sorted Sets para leaderboards. Lists para work queues.",
     "category": "Data Patterns & Caching",
-    "code": "// Distributed Lock\nRLock lock = redisson.getLock(\"order:\" + orderId);\nif (lock.tryLock(5, 30, TimeUnit.SECONDS)) {\n  try { processOrder(orderId); }\n  finally { lock.unlock(); }\n}\n// Rate Limiting\nlong count = redis.increment(\"rate:\" + userId);\nif (count == 1) redis.expire(\"rate:\" + userId, 60, SECONDS);\nif (count > 100) throw new RateLimitExceededException();"
+    "code": "// Distributed Lock\nRLock lock = redisson.getLock(\"order:\" + orderId);\nif (lock.tryLock(5, 30, TimeUnit.SECONDS)) {\n  try { processOrder(orderId); }\n  finally { lock.unlock(); }\n}\n// Rate Limiting\nlong count = redis.increment(\"rate:\" + userId);\nif (count == 1) redis.expire(\"rate:\" + userId, 60, SECONDS);\nif (count > 100) throw new RateLimitExceededException();",
+    "active": true
   },
   {
     "id": 66,
@@ -987,7 +1052,8 @@
     "correct": 2,
     "explanation": "La consistencia eventual es el trade-off fundamental en sistemas distribuidos. Con Database per Service + eventos: cuando OrderService actualiza un pedido y publica un evento, InventoryService puede tardar ms o segundos en procesarlo. Durante ese tiempo puede haber datos 'viejos'.",
     "category": "Data Patterns & Caching",
-    "code": null
+    "code": null,
+    "active": true
   },
   {
     "id": 67,
@@ -1002,7 +1068,8 @@
     "correct": 1,
     "explanation": "NoSQL brilla en: esquema flexible (catálogos de productos con atributos variables), escala horizontal masiva (sharding nativo), documentos jerárquicos, patrones de acceso por clave primaria (DynamoDB). Relacionales brillan en: relaciones complejas, transacciones ACID, queries ad-hoc complejas.",
     "category": "Data Patterns & Caching",
-    "code": null
+    "code": null,
+    "active": true
   },
   {
     "id": 68,
@@ -1017,7 +1084,8 @@
     "correct": 1,
     "explanation": "Read Replica: copia actualizada en tiempo casi real (replicación asíncrona). Soporta queries SQL complejas, JOINs, aggregations. Los datos están casi en sincronía con la primary. Usarla junto a Redis es común: Redis para datos de acceso frecuente y simple, Read Replica para queries complejas.",
     "category": "Data Patterns & Caching",
-    "code": null
+    "code": null,
+    "active": true
   },
   {
     "id": 69,
@@ -1032,7 +1100,8 @@
     "correct": 3,
     "explanation": "ECS: orquestador propio de AWS, más fácil de configurar, integración nativa con ALB/IAM/CloudWatch, te ata a AWS. EKS: Kubernetes gestionado, portátil (mismo YAML corre en GKE o AKS), más complejo. Ambos soportan Fargate para compute serverless.",
     "category": "Cloud & Deployment (AWS)",
-    "code": "# ECS Task Definition\n{\n  \"containerDefinitions\": [{\n    \"name\": \"order-service\",\n    \"image\": \"123.dkr.ecr.us-east-1.amazonaws.com/order-service:1.2\",\n    \"portMappings\": [{\"containerPort\": 8080}],\n    \"secrets\": [{\"name\":\"DB_PASSWORD\",\"valueFrom\":\"arn:aws:secretsmanager:...\"}]\n  }]\n}"
+    "code": "# ECS Task Definition\n{\n  \"containerDefinitions\": [{\n    \"name\": \"order-service\",\n    \"image\": \"123.dkr.ecr.us-east-1.amazonaws.com/order-service:1.2\",\n    \"portMappings\": [{\"containerPort\": 8080}],\n    \"secrets\": [{\"name\":\"DB_PASSWORD\",\"valueFrom\":\"arn:aws:secretsmanager:...\"}]\n  }]\n}",
+    "active": true
   },
   {
     "id": 70,
@@ -1047,7 +1116,8 @@
     "correct": 2,
     "explanation": "SQS: cola — un mensaje va a UN consumidor. Ideal para Competing Consumers. SNS: pub/sub — un mensaje llega a TODOS los suscriptores. Patrón fanout: SNS → múltiples SQS queues, cada servicio tiene su propia queue.",
     "category": "Cloud & Deployment (AWS)",
-    "code": "// SNS → múltiples SQS (fanout)\nPublishRequest req = PublishRequest.builder()\n  .topicArn(\"arn:aws:sns:...:order-events\")\n  .message(objectMapper.writeValueAsString(orderEvent))\n  .build();\nsnsClient.publish(req);\n// Entrega a: inventory-queue, notification-queue, analytics-queue"
+    "code": "// SNS → múltiples SQS (fanout)\nPublishRequest req = PublishRequest.builder()\n  .topicArn(\"arn:aws:sns:...:order-events\")\n  .message(objectMapper.writeValueAsString(orderEvent))\n  .build();\nsnsClient.publish(req);\n// Entrega a: inventory-queue, notification-queue, analytics-queue",
+    "active": true
   },
   {
     "id": 71,
@@ -1062,7 +1132,8 @@
     "correct": 1,
     "explanation": "Fargate es compute serverless para ECS y EKS. No patcheas OS, no defines grupos de nodos, escalas por tarea/pod, facturas por vCPU y memoria del contenedor. Ideal para equipos pequeños y tráfico variable. Algo más caro que EC2 Spot para cargas constantes.",
     "category": "Cloud & Deployment (AWS)",
-    "code": null
+    "code": null,
+    "active": true
   },
   {
     "id": 72,
@@ -1077,7 +1148,8 @@
     "correct": 3,
     "explanation": "NUNCA en Git. AWS Secrets Manager: almacena cifrados con KMS, rotación automática de credenciales RDS. En ECS, la task definition referencia el secreto por ARN — ECS inyecta el valor como variable de entorno. Spring Boot solo lee process.env.",
     "category": "Cloud & Deployment (AWS)",
-    "code": "# ECS Task Definition — secretos por ARN\n\"secrets\": [\n  {\n    \"name\": \"DB_PASSWORD\",\n    \"valueFrom\": \"arn:aws:secretsmanager:us-east-1:...:secret:prod/db\"\n  }\n]\n# Spring Boot: @Value(\"${DB_PASSWORD}\")"
+    "code": "# ECS Task Definition — secretos por ARN\n\"secrets\": [\n  {\n    \"name\": \"DB_PASSWORD\",\n    \"valueFrom\": \"arn:aws:secretsmanager:us-east-1:...:secret:prod/db\"\n  }\n]\n# Spring Boot: @Value(\"${DB_PASSWORD}\")",
+    "active": true
   },
   {
     "id": 73,
@@ -1092,7 +1164,8 @@
     "correct": 1,
     "explanation": "ALB (L7): entiende HTTP. Ruta /api/orders/* al servicio Orders, /api/users/* al servicio Users. Soporta WebSockets, gRPC, content-based routing. NLB (L4): TCP/UDP, latencia ~100 microsegundos, preserva IP del cliente. Para microservicios Spring Boot: ALB.",
     "category": "Cloud & Deployment (AWS)",
-    "code": "# ALB — path-based routing\nRules:\n  - Condition: path-pattern /api/orders/*\n    Action: forward to order-service\n  - Condition: path-pattern /api/users/*\n    Action: forward to user-service"
+    "code": "# ALB — path-based routing\nRules:\n  - Condition: path-pattern /api/orders/*\n    Action: forward to order-service\n  - Condition: path-pattern /api/users/*\n    Action: forward to user-service",
+    "active": true
   },
   {
     "id": 74,
@@ -1107,7 +1180,8 @@
     "correct": 2,
     "explanation": "IaC (Terraform, AWS CDK): infraestructura como código versionado en Git, revisada en PR, aplicada en CI/CD. Beneficios: reproducibilidad (staging idéntico a prod), auditoría, disaster recovery (recrear toda la infraestructura desde Git en horas).",
     "category": "Cloud & Deployment (AWS)",
-    "code": "// AWS CDK — infraestructura como código Java\npublic class OrderServiceStack extends Stack {\n  public OrderServiceStack(Construct scope, String id) {\n    super(scope, id);\n    DatabaseInstance db = DatabaseInstance.Builder\n      .create(this, \"OrderDB\")\n      .engine(DatabaseInstanceEngine.postgres(...))\n      .build();\n    FargateService svc = FargateService.Builder\n      .create(this, \"OrderService\")\n      .desiredCount(2).build();\n  }\n}"
+    "code": "// AWS CDK — infraestructura como código Java\npublic class OrderServiceStack extends Stack {\n  public OrderServiceStack(Construct scope, String id) {\n    super(scope, id);\n    DatabaseInstance db = DatabaseInstance.Builder\n      .create(this, \"OrderDB\")\n      .engine(DatabaseInstanceEngine.postgres(...))\n      .build();\n    FargateService svc = FargateService.Builder\n      .create(this, \"OrderService\")\n      .desiredCount(2).build();\n  }\n}",
+    "active": true
   },
   {
     "id": 75,
@@ -1122,7 +1196,8 @@
     "correct": 1,
     "explanation": "Target Tracking: define un objetivo (CPU al 60%) y AWS ajusta automáticamente — la más simple. Step Scaling: reglas explícitas por umbrales. Scheduled: anticipa picos conocidos (escala a las 9am cada día laboral). Para microservicios stateless, Scale Out horizontal es el estándar.",
     "category": "Cloud & Deployment (AWS)",
-    "code": null
+    "code": null,
+    "active": true
   },
   {
     "id": 76,
@@ -1137,7 +1212,8 @@
     "correct": 2,
     "explanation": "Lambda: escala de 0 a miles, pagas por milisegundo. Ideal para: procesar imagen al subirse a S3, trigger de SQS, webhooks, APIs con tráfico muy esporádico. Limitaciones: cold start JVM (~200-500ms — usar GraalVM SnapStart), máximo 15 min de ejecución, sin estado.",
     "category": "Cloud & Deployment (AWS)",
-    "code": "// Spring Cloud Function → Lambda\n@SpringBootApplication\npublic class OrderProcessorApp {\n  @Bean\n  public Function<OrderEvent, ProcessedOrder> processOrder() {\n    return event -> orderService.process(event);\n    // mismo código puede correr como REST O como Lambda\n  }\n}"
+    "code": "// Spring Cloud Function → Lambda\n@SpringBootApplication\npublic class OrderProcessorApp {\n  @Bean\n  public Function<OrderEvent, ProcessedOrder> processOrder() {\n    return event -> orderService.process(event);\n    // mismo código puede correr como REST O como Lambda\n  }\n}",
+    "active": true
   },
   {
     "id": 77,
@@ -1152,7 +1228,8 @@
     "correct": 3,
     "explanation": "VPC es tu red privada virtual en AWS. Arquitectura típica: Subnet pública — solo ALB y API Gateway. Subnet privada — todos los microservicios. Subnet aislada — RDS y Redis. Security Groups actúan como firewalls: el microservicio solo puede recibir tráfico del ALB y llamar a los servicios autorizados.",
     "category": "Cloud & Deployment (AWS)",
-    "code": null
+    "code": null,
+    "active": true
   },
   {
     "id": 78,
@@ -1167,7 +1244,8 @@
     "correct": 1,
     "explanation": "El Service Mesh resuelve tener que implementar concerns de red (mTLS, retries, circuit breaking, observabilidad) en cada microservicio individualmente. Con Istio/Linkerd, un sidecar proxy (Envoy) maneja todo esto de forma transparente. Los desarrolladores solo escriben lógica de negocio.",
     "category": "Cloud & Deployment (AWS)",
-    "code": null
+    "code": null,
+    "active": true
   },
   {
     "id": 79,
@@ -1182,7 +1260,8 @@
     "correct": 3,
     "explanation": "AOP (Aspect-Oriented Programming) separa los concerns transversales del código de negocio usando proxies dinámicos. Casos de uso: @Transactional, @Cacheable, logging de tiempos de respuesta, métricas con Micrometer, auditoría. Sin AOP, cada método repetiría el mismo boilerplate.",
     "category": "Spring Boot & Spring Cloud",
-    "code": "// Aspecto personalizado — mide tiempo de ejecución\n@Aspect\n@Component\npublic class PerformanceAspect {\n  @Around(\"@annotation(Timed)\")\n  public Object measureTime(ProceedingJoinPoint pjp) throws Throwable {\n    long start = System.currentTimeMillis();\n    try {\n      return pjp.proceed();\n    } finally {\n      long elapsed = System.currentTimeMillis() - start;\n      meterRegistry.timer(pjp.getSignature().getName())\n                   .record(elapsed, TimeUnit.MILLISECONDS);\n    }\n  }\n}"
+    "code": "// Aspecto personalizado — mide tiempo de ejecución\n@Aspect\n@Component\npublic class PerformanceAspect {\n  @Around(\"@annotation(Timed)\")\n  public Object measureTime(ProceedingJoinPoint pjp) throws Throwable {\n    long start = System.currentTimeMillis();\n    try {\n      return pjp.proceed();\n    } finally {\n      long elapsed = System.currentTimeMillis() - start;\n      meterRegistry.timer(pjp.getSignature().getName())\n                   .record(elapsed, TimeUnit.MILLISECONDS);\n    }\n  }\n}",
+    "active": true
   },
   {
     "id": 80,
@@ -1197,7 +1276,8 @@
     "correct": 2,
     "explanation": "Eureka Server es el directorio telefónico de la arquitectura. Al arrancar, cada servicio se registra con su nombre, IP y puerto. Cuando OrderService necesita llamar a InventoryService, pregunta a Eureka: '¿dónde está inventory-service?' y obtiene las instancias disponibles con load balancing integrado.",
     "category": "Spring Boot & Spring Cloud",
-    "code": "# application.yml del microservicio\nspring.application.name: order-service\neureka:\n  client:\n    serviceUrl:\n      defaultZone: http://eureka-server:8761/eureka/\n\n// FeignClient usa el nombre registrado en Eureka\n@FeignClient(name = \"inventory-service\") // Eureka resuelve → IP"
+    "code": "# application.yml del microservicio\nspring.application.name: order-service\neureka:\n  client:\n    serviceUrl:\n      defaultZone: http://eureka-server:8761/eureka/\n\n// FeignClient usa el nombre registrado en Eureka\n@FeignClient(name = \"inventory-service\") // Eureka resuelve → IP",
+    "active": true
   },
   {
     "id": 81,
@@ -1212,7 +1292,8 @@
     "correct": 1,
     "explanation": "Son conceptos independientes que se complementan. Saga coordina transacciones distribuidas con compensación. Event Sourcing persiste eventos en lugar de estado. Combinación: el estado del Saga Orchestrator se persiste con Event Sourcing — guardas los eventos del Saga (SagaStarted, InventoryReserved, SagaCompleted).",
     "category": "Domain-Driven Design",
-    "code": null
+    "code": null,
+    "active": true
   },
   {
     "id": 82,
@@ -1227,7 +1308,8 @@
     "correct": 1,
     "explanation": "Read Replica: copia de la BD actualizada en tiempo casi real. Soporta queries SQL complejas, JOINs, aggregations. Latencia: ms a decenas de ms. Caché (Redis): memoria RAM, microsegundos, pero los datos pueden ser stale según el TTL. Usarlos juntos es lo más común en producción.",
     "category": "Data Patterns & Caching",
-    "code": null
+    "code": null,
+    "active": true
   },
   {
     "id": 83,
@@ -1242,7 +1324,8 @@
     "correct": 2,
     "explanation": "Debezium + Outbox: guarda el evento en la tabla outbox dentro de la misma transacción de BD. Debezium lee el WAL (Write-Ahead Log) de PostgreSQL y detecta el insert en la tabla outbox. Publica a Kafka automáticamente. Ventaja sobre polling: sin latencia adicional ni carga extra sobre la BD.",
     "category": "Microservices Patterns",
-    "code": "// Tabla outbox guardada en la misma transacción\n@Transactional\npublic void createOrder(Order order) {\n  orderRepository.save(order);\n  outboxRepository.save(new OutboxEvent(\"ORDER_CREATED\", order));\n}\n\n// Debezium lee el WAL automáticamente y publica a Kafka:\n// Conector config: table.include.list=public.outbox_events\n// Kafka topic: dbserver1.public.outbox_events"
+    "code": "// Tabla outbox guardada en la misma transacción\n@Transactional\npublic void createOrder(Order order) {\n  orderRepository.save(order);\n  outboxRepository.save(new OutboxEvent(\"ORDER_CREATED\", order));\n}\n\n// Debezium lee el WAL automáticamente y publica a Kafka:\n// Conector config: table.include.list=public.outbox_events\n// Kafka topic: dbserver1.public.outbox_events",
+    "active": true
   },
   {
     "id": 84,
@@ -1257,7 +1340,8 @@
     "correct": 1,
     "explanation": "Retry Storm: muchos clientes fallan al mismo tiempo y todos reintentan con el mismo delay → picos de carga sincronizados que pueden hundir un servicio en recuperación. Prevención: exponential backoff para reducir la tasa, jitter aleatorio para desincronizar, Circuit Breaker para cortar reintentos temporalmente.",
     "category": "Resilience & Fault Tolerance",
-    "code": null
+    "code": null,
+    "active": true
   },
   {
     "id": 85,
@@ -1272,7 +1356,8 @@
     "correct": 2,
     "explanation": "Los indicadores reales: tiene un dominio propio bien definido (Bounded Context), su ritmo de cambio es distinto al resto, necesita escalar de forma independiente, tiene equipos dedicados, o su disponibilidad es crítica y diferente (SLA distinto). No se extrae por tamaño de código sino por autonomía de dominio y equipo.",
     "category": "Architecture Styles",
-    "code": null
+    "code": null,
+    "active": true
   },
   {
     "id": 86,
@@ -1287,7 +1372,8 @@
     "correct": 3,
     "explanation": "Activo-activo: ambas instancias sirven tráfico real simultáneamente — mayor throughput, failover instantáneo. Requiere sincronización. Activo-pasivo: la instancia pasiva está en standby, no sirve tráfico normal. Cuando la activa falla, la pasiva 'despierta'. Hay tiempo de conmutación. Más simple pero menor utilización de recursos.",
     "category": "Resilience & Fault Tolerance",
-    "code": null
+    "code": null,
+    "active": true
   },
   {
     "id": 87,
@@ -1302,7 +1388,8 @@
     "correct": 3,
     "explanation": "La comunicación entre BCs via eventos es la forma más desacoplada: el BC de Orders publica OrderPlaced; el BC de Inventory escucha y reserva stock. Cada BC traduce los eventos externos a su propio modelo (ACL). Alternativas sincrónicas: Open Host Service (REST API bien definida) o Shared Kernel (modelo compartido explícito).",
     "category": "Domain-Driven Design",
-    "code": null
+    "code": null,
+    "active": true
   },
   {
     "id": 88,
@@ -1317,7 +1404,8 @@
     "correct": 2,
     "explanation": "Strangler Fig + Feature Flags es una combinación poderosa. El API Gateway puede enrutar según flags: usuarios con flag 'new-checkout=true' van al nuevo microservicio, el resto sigue en el monolito. Esto permite pruebas A/B durante la migración, rollback instantáneo desactivando el flag, y migración gradual por segmento de usuarios.",
     "category": "Microservices Patterns",
-    "code": null
+    "code": null,
+    "active": true
   },
   {
     "id": 89,
@@ -1332,7 +1420,8 @@
     "correct": 1,
     "explanation": "Teorema CAP (Brewer): Consistency (todos leen el mismo dato), Availability (el sistema siempre responde), Partition tolerance (funciona si hay partición de red). En sistemas distribuidos P es inevitable, así que eliges CA, CP o AP. Ejemplo: Kafka es CP (consistente y tolerante a particiones). DynamoDB puede configurarse como AP (disponible y tolerante). La elección depende del negocio.",
     "category": "Architecture Styles",
-    "code": null
+    "code": null,
+    "active": true
   },
   {
     "id": 90,
@@ -1347,6 +1436,7 @@
     "correct": 2,
     "explanation": "2PC: el coordinador pregunta a todos los participantes si pueden hacer commit, espera que todos confirmen, luego hace commit global. Problema: el coordinador es un SPOF, bloquea recursos durante la coordinación, no escala bien en sistemas distribuidos. SAGA: cada servicio hace su TX local y publica eventos. Si algo falla, compensaciones. Sin coordinador global, sin bloqueos — ideal para microservicios.",
     "category": "Microservices Patterns",
-    "code": null
+    "code": null,
+    "active": true
   }
 ]

@@ -12,7 +12,8 @@
       "SELF JOIN"
     ],
     "correct": 1,
-    "explanation": "LEFT JOIN devuelve todas las filas de la tabla izquierda (users) incluso si no hay coincidencia en orders. INNER JOIN excluiría usuarios sin órdenes, CROSS JOIN generaría producto cartesiano, SELF JOIN es para unir una tabla consigo misma."
+    "explanation": "LEFT JOIN devuelve todas las filas de la tabla izquierda (users) incluso si no hay coincidencia en orders. INNER JOIN excluiría usuarios sin órdenes, CROSS JOIN generaría producto cartesiano, SELF JOIN es para unir una tabla consigo misma.",
+    "active": true
   },
   {
     "id": 2,
@@ -27,7 +28,8 @@
       "SELECT vendedor_id, COUNT(vendedor_id) FROM ventas;"
     ],
     "correct": 2,
-    "explanation": "GROUP BY vendedor_id seguido de COUNT(*) devuelve la cantidad de filas por grupo. COUNT(monto) también funcionaría si no hay nulos, pero COUNT(*) es estándar. Las otras opciones no tienen GROUP BY o usan SUM incorrectamente."
+    "explanation": "GROUP BY vendedor_id seguido de COUNT(*) devuelve la cantidad de filas por grupo. COUNT(monto) también funcionaría si no hay nulos, pero COUNT(*) es estándar. Las otras opciones no tienen GROUP BY o usan SUM incorrectamente.",
+    "active": true
   },
   {
     "id": 3,
@@ -42,7 +44,8 @@
       "NTILE(4)"
     ],
     "correct": 2,
-    "explanation": "ROW_NUMBER() asigna un número único secuencial por partición. RANK y DENSE_RANK pueden dejar huecos o repetir números en empates. NTILE divide en grupos, no asigna número secuencial por fila."
+    "explanation": "ROW_NUMBER() asigna un número único secuencial por partición. RANK y DENSE_RANK pueden dejar huecos o repetir números en empates. NTILE divide en grupos, no asigna número secuencial por fila.",
+    "active": true
   },
   {
     "id": 4,
@@ -57,7 +60,8 @@
       "WHERE nombre <> NULL"
     ],
     "correct": 1,
-    "explanation": "NULL no es un valor sino la ausencia de valor. No se puede comparar con =, debe usarse IS NULL o IS NOT NULL."
+    "explanation": "NULL no es un valor sino la ausencia de valor. No se puede comparar con =, debe usarse IS NULL o IS NOT NULL.",
+    "active": true
   },
   {
     "id": 5,
@@ -72,7 +76,8 @@
       "Usando HAVING sin GROUP BY"
     ],
     "correct": 0,
-    "explanation": "La subconsulta correlacionada calcula el promedio por departamento para cada fila. Las otras opciones no permiten comparar contra el promedio por grupo sin agrupar toda la consulta."
+    "explanation": "La subconsulta correlacionada calcula el promedio por departamento para cada fila. Las otras opciones no permiten comparar contra el promedio por grupo sin agrupar toda la consulta.",
+    "active": true
   },
   {
     "id": 6,
@@ -86,7 +91,8 @@
       "EXCEPT"
     ],
     "correct": 1,
-    "explanation": "UNION elimina duplicados entre ambos conjuntos. UNION ALL los conserva todos. INTERSECT devuelve solo comunes, EXCEPT los de la primera no presentes en segunda."
+    "explanation": "UNION elimina duplicados entre ambos conjuntos. UNION ALL los conserva todos. INTERSECT devuelve solo comunes, EXCEPT los de la primera no presentes en segunda.",
+    "active": true
   },
   {
     "id": 7,
@@ -100,7 +106,8 @@
       "ALTER TABLE"
     ],
     "correct": 2,
-    "explanation": "TRUNCATE elimina todas las filas y libera espacio, no registra fila por fila en el log (más rápido). DELETE es más lento y no libera espacio inmediatamente. DROP elimina la tabla."
+    "explanation": "TRUNCATE elimina todas las filas y libera espacio, no registra fila por fila en el log (más rápido). DELETE es más lento y no libera espacio inmediatamente. DROP elimina la tabla.",
+    "active": true
   },
   {
     "id": 8,
@@ -114,7 +121,8 @@
       "TINYINT"
     ],
     "correct": 2,
-    "explanation": "INT (o INTEGER) tiene ese rango típico. SMALLINT es -32,768 a 32,767; BIGINT es mucho mayor; TINYINT es 0-255."
+    "explanation": "INT (o INTEGER) tiene ese rango típico. SMALLINT es -32,768 a 32,767; BIGINT es mucho mayor; TINYINT es 0-255.",
+    "active": true
   },
   {
     "id": 9,
@@ -128,7 +136,8 @@
       "Los índices no mejoran las consultas con WHERE, solo las de ORDER BY."
     ],
     "correct": 0,
-    "explanation": "El índice clustered define el orden físico de almacenamiento de la tabla (solo uno por tabla). Los non-clustered son estructuras separadas. No siempre son más rápidos; dependen de la consulta."
+    "explanation": "El índice clustered define el orden físico de almacenamiento de la tabla (solo uno por tabla). Los non-clustered son estructuras separadas. No siempre son más rápidos; dependen de la consulta.",
+    "active": true
   },
   {
     "id": 10,
@@ -142,7 +151,8 @@
       "Durability"
     ],
     "correct": 0,
-    "explanation": "Atomicidad garantiza que la transacción es una unidad indivisible: o se aplican todos los cambios o ninguno."
+    "explanation": "Atomicidad garantiza que la transacción es una unidad indivisible: o se aplican todos los cambios o ninguno.",
+    "active": true
   },
   {
     "id": 11,
@@ -156,7 +166,8 @@
       "CHECK"
     ],
     "correct": 2,
-    "explanation": "FOREIGN KEY establece integridad referencial entre tablas. PRIMARY KEY identifica filas, UNIQUE evita duplicados, CHECK valida condiciones."
+    "explanation": "FOREIGN KEY establece integridad referencial entre tablas. PRIMARY KEY identifica filas, UNIQUE evita duplicados, CHECK valida condiciones.",
+    "active": true
   },
   {
     "id": 12,
@@ -170,7 +181,8 @@
       "MAKE_UPPER(cadena)"
     ],
     "correct": 0,
-    "explanation": "UPPER es la función estándar ANSI SQL. UCASE existe en algunos motores (MySQL) pero no es estándar. Las otras no son estándar."
+    "explanation": "UPPER es la función estándar ANSI SQL. UCASE existe en algunos motores (MySQL) pero no es estándar. Las otras no son estándar.",
+    "active": true
   },
   {
     "id": 13,
@@ -184,7 +196,8 @@
       "Usar BETWEEN en columna indexada"
     ],
     "correct": 0,
-    "explanation": "Aplicar una función a la columna anula el uso del índice, porque la base de datos debe calcular la función para cada fila. Las otras opciones son favorables para índices."
+    "explanation": "Aplicar una función a la columna anula el uso del índice, porque la base de datos debe calcular la función para cada fila. Las otras opciones son favorables para índices.",
+    "active": true
   },
   {
     "id": 14,
@@ -198,7 +211,8 @@
       "0"
     ],
     "correct": 1,
-    "explanation": "COALESCE devuelve el primer valor no nulo de la lista. El segundo argumento es 5, por lo tanto retorna 5."
+    "explanation": "COALESCE devuelve el primer valor no nulo de la lista. El segundo argumento es 5, por lo tanto retorna 5.",
+    "active": true
   },
   {
     "id": 15,
@@ -213,7 +227,8 @@
       "CROSS JOIN"
     ],
     "correct": 1,
-    "explanation": "SELF JOIN (unir la tabla consigo misma) usando LEFT JOIN para incluir empleados sin jefe (el CEO). INNER JOIN excluiría al CEO porque no tiene jefe_id coincidente."
+    "explanation": "SELF JOIN (unir la tabla consigo misma) usando LEFT JOIN para incluir empleados sin jefe (el CEO). INNER JOIN excluiría al CEO porque no tiene jefe_id coincidente.",
+    "active": true
   },
   {
     "id": 16,
@@ -227,7 +242,8 @@
       "TRUNCATE TABLE"
     ],
     "correct": 2,
-    "explanation": "DROP TABLE elimina la estructura y los datos. TRUNCATE solo vacía, DELETE filtra filas."
+    "explanation": "DROP TABLE elimina la estructura y los datos. TRUNCATE solo vacía, DELETE filtra filas.",
+    "active": true
   },
   {
     "id": 17,
@@ -241,7 +257,8 @@
       "EXISTS no se puede usar con subconsultas correlacionadas."
     ],
     "correct": 1,
-    "explanation": "EXISTS evalúa si existe al menos una fila; puede cortar la ejecución temprano. IN compara valores y a veces es menos eficiente con subconsultas grandes. Ambas pueden ser correlacionadas."
+    "explanation": "EXISTS evalúa si existe al menos una fila; puede cortar la ejecución temprano. IN compara valores y a veces es menos eficiente con subconsultas grandes. Ambas pueden ser correlacionadas.",
+    "active": true
   },
   {
     "id": 18,
@@ -255,7 +272,8 @@
       "GROUP BY"
     ],
     "correct": 1,
-    "explanation": "HAVING filtra grupos resultantes de GROUP BY (e.g., HAVING COUNT(*) > 5). WHERE filtra filas antes de agrupar."
+    "explanation": "HAVING filtra grupos resultantes de GROUP BY (e.g., HAVING COUNT(*) > 5). WHERE filtra filas antes de agrupar.",
+    "active": true
   },
   {
     "id": 19,
@@ -269,7 +287,8 @@
       "DATEPART(year, fecha_creacion)"
     ],
     "correct": 0,
-    "explanation": "En MySQL, YEAR() extrae el año. EXTRACT también funciona en MySQL pero no es la única. DATE_PART es PostgreSQL, DATEPART SQL Server."
+    "explanation": "En MySQL, YEAR() extrae el año. EXTRACT también funciona en MySQL pero no es la única. DATE_PART es PostgreSQL, DATEPART SQL Server.",
+    "active": true
   },
   {
     "id": 20,
@@ -283,7 +302,8 @@
       "Cada atributo no clave depende completamente de la clave primaria."
     ],
     "correct": 1,
-    "explanation": "Primera Forma Normal: valores atómicos y sin repetición de grupos. La segunda opción describe 2FN, tercera no es definición, cuarta es 2FN."
+    "explanation": "Primera Forma Normal: valores atómicos y sin repetición de grupos. La segunda opción describe 2FN, tercera no es definición, cuarta es 2FN.",
+    "active": true
   },
   {
     "id": 21,
@@ -297,7 +317,8 @@
       "SERIALIZABLE"
     ],
     "correct": 2,
-    "explanation": "REPEATABLE READ evita lecturas sucias y lecturas no repetibles, pero permite fantasmas (nuevas filas insertadas por otra transacción). SERIALIZABLE evita fantasmas."
+    "explanation": "REPEATABLE READ evita lecturas sucias y lecturas no repetibles, pero permite fantasmas (nuevas filas insertadas por otra transacción). SERIALIZABLE evita fantasmas.",
+    "active": true
   },
   {
     "id": 22,
@@ -311,7 +332,8 @@
       "UNION ALL"
     ],
     "correct": 2,
-    "explanation": "EXCEPT (en SQL Server, PostgreSQL) o MINUS (Oracle) devuelve filas distintas de la primera consulta que no aparecen en la segunda."
+    "explanation": "EXCEPT (en SQL Server, PostgreSQL) o MINUS (Oracle) devuelve filas distintas de la primera consulta que no aparecen en la segunda.",
+    "active": true
   },
   {
     "id": 23,
@@ -326,7 +348,8 @@
       "NTILE(3)"
     ],
     "correct": 1,
-    "explanation": "RANK() asigna el mismo rango a empates y luego salta el siguiente número (huecos). DENSE_RANK() no deja huecos."
+    "explanation": "RANK() asigna el mismo rango a empates y luego salta el siguiente número (huecos). DENSE_RANK() no deja huecos.",
+    "active": true
   },
   {
     "id": 24,
@@ -340,7 +363,8 @@
       "MODIFY"
     ],
     "correct": 1,
-    "explanation": "UPDATE modifica filas existentes. INSERT agrega nuevas, ALTER modifica estructura, MODIFY no es DML estándar."
+    "explanation": "UPDATE modifica filas existentes. INSERT agrega nuevas, ALTER modifica estructura, MODIFY no es DML estándar.",
+    "active": true
   },
   {
     "id": 25,
@@ -354,7 +378,8 @@
       "Solo se crean con WITH CHECK OPTION."
     ],
     "correct": 1,
-    "explanation": "Las vistas materializadas guardan los datos físicamente, mejorando rendimiento en consultas pesadas pero requieren refresco. Las vistas normales son solo definiciones."
+    "explanation": "Las vistas materializadas guardan los datos físicamente, mejorando rendimiento en consultas pesadas pero requieren refresco. Las vistas normales son solo definiciones.",
+    "active": true
   },
   {
     "id": 26,
@@ -368,7 +393,8 @@
       "CHECK"
     ],
     "correct": 1,
-    "explanation": "UNIQUE permite valores nulos (dependiendo del motor) y garantiza unicidad. PRIMARY KEY también es único pero no permite nulos y solo uno por tabla."
+    "explanation": "UNIQUE permite valores nulos (dependiendo del motor) y garantiza unicidad. PRIMARY KEY también es único pero no permite nulos y solo uno por tabla.",
+    "active": true
   },
   {
     "id": 27,
@@ -382,7 +408,8 @@
       "WHERE nombre LIKE 'J%'"
     ],
     "correct": 1,
-    "explanation": "El índice compuesto (apellido, nombre) se aprovecha cuando se filtra por apellido (prefijo izquierdo). Filtrar solo por nombre no usa el índice eficientemente, y LIKE con comodín al inicio tampoco."
+    "explanation": "El índice compuesto (apellido, nombre) se aprovecha cuando se filtra por apellido (prefijo izquierdo). Filtrar solo por nombre no usa el índice eficientemente, y LIKE con comodín al inicio tampoco.",
+    "active": true
   },
   {
     "id": 28,
@@ -396,7 +423,8 @@
       "CROSS JOIN"
     ],
     "correct": 3,
-    "explanation": "CROSS JOIN explícitamente produce producto cartesiano. INNER JOIN sin condición también lo produce en muchos motores, pero CROSS JOIN es la forma explícita y estándar."
+    "explanation": "CROSS JOIN explícitamente produce producto cartesiano. INNER JOIN sin condición también lo produce en muchos motores, pero CROSS JOIN es la forma explícita y estándar.",
+    "active": true
   },
   {
     "id": 29,
@@ -411,7 +439,8 @@
       "SELECT nombre FROM (SELECT * FROM productos) as sub;"
     ],
     "correct": 1,
-    "explanation": "La subconsulta referencia la tabla exterior 'p.categoria_id', por lo tanto es correlacionada (se ejecuta por cada fila exterior). Las otras son independientes."
+    "explanation": "La subconsulta referencia la tabla exterior 'p.categoria_id', por lo tanto es correlacionada (se ejecuta por cada fila exterior). Las otras son independientes.",
+    "active": true
   },
   {
     "id": 30,
@@ -425,7 +454,8 @@
       "1"
     ],
     "correct": 1,
-    "explanation": "COUNT(*) devuelve 0 cuando no hay filas. COUNT(columna) también devolvería 0. Ninguna función agregada devuelve NULL en ausencia de filas excepto otras como AVG."
+    "explanation": "COUNT(*) devuelve 0 cuando no hay filas. COUNT(columna) también devolvería 0. Ninguna función agregada devuelve NULL en ausencia de filas excepto otras como AVG.",
+    "active": true
   },
   {
     "id": 31,
@@ -439,7 +469,8 @@
       "ADD COLUMN telefono VARCHAR(15) TO clientes;"
     ],
     "correct": 0,
-    "explanation": "La sintaxis estándar es ALTER TABLE nombre ADD nombre_columna tipo. Algunos motores permiten ADD COLUMN pero no todos, la opción 0 es más universal."
+    "explanation": "La sintaxis estándar es ALTER TABLE nombre ADD nombre_columna tipo. Algunos motores permiten ADD COLUMN pero no todos, la opción 0 es más universal.",
+    "active": true
   },
   {
     "id": 32,
@@ -453,7 +484,8 @@
       "CLEAN(cadena)"
     ],
     "correct": 1,
-    "explanation": "TRIM() es estándar ANSI SQL para eliminar espacios (u otros caracteres) por ambos lados. LTRIM+RTRIM funciona en algunos motores pero TRIM es más directo."
+    "explanation": "TRIM() es estándar ANSI SQL para eliminar espacios (u otros caracteres) por ambos lados. LTRIM+RTRIM funciona en algunos motores pero TRIM es más directo.",
+    "active": true
   },
   {
     "id": 33,
@@ -467,7 +499,8 @@
       "La transacción continúa normalmente."
     ],
     "correct": 1,
-    "explanation": "ROLLBACK deshace todos los cambios hechos en la transacción actual, revirtiendo al estado anterior al BEGIN."
+    "explanation": "ROLLBACK deshace todos los cambios hechos en la transacción actual, revirtiendo al estado anterior al BEGIN.",
+    "active": true
   },
   {
     "id": 34,
@@ -481,7 +514,8 @@
       "Error"
     ],
     "correct": 2,
-    "explanation": "NULL no es igual a nada, ni siquiera a otro NULL. Cualquier comparación con NULL devuelve NULL (desconocido)."
+    "explanation": "NULL no es igual a nada, ni siquiera a otro NULL. Cualquier comparación con NULL devuelve NULL (desconocido).",
+    "active": true
   },
   {
     "id": 35,
@@ -495,7 +529,8 @@
       "EXCEPT ALL"
     ],
     "correct": 1,
-    "explanation": "UNION ALL conserva todas las filas duplicadas. UNION las elimina. INTERSECT y EXCEPT también eliminan duplicados por defecto (aunque algunos motores tienen variantes ALL)."
+    "explanation": "UNION ALL conserva todas las filas duplicadas. UNION las elimina. INTERSECT y EXCEPT también eliminan duplicados por defecto (aunque algunos motores tienen variantes ALL).",
+    "active": true
   },
   {
     "id": 36,
@@ -509,7 +544,8 @@
       "LOGICAL"
     ],
     "correct": 1,
-    "explanation": "En SQL Server se usa BIT (0/1/NULL). BOOLEAN no es tipo nativo. TINYINT podría usarse pero no es el más adecuado."
+    "explanation": "En SQL Server se usa BIT (0/1/NULL). BOOLEAN no es tipo nativo. TINYINT podría usarse pero no es el más adecuado.",
+    "active": true
   },
   {
     "id": 37,
@@ -523,7 +559,8 @@
       "Tiene solo una columna."
     ],
     "correct": 2,
-    "explanation": "Un índice cubriente contiene todas las columnas que necesita la consulta, evitando acceder a la tabla base. No necesariamente todas las columnas de la tabla."
+    "explanation": "Un índice cubriente contiene todas las columnas que necesita la consulta, evitando acceder a la tabla base. No necesariamente todas las columnas de la tabla.",
+    "active": true
   },
   {
     "id": 38,
@@ -537,7 +574,8 @@
       "REMOVE FROM"
     ],
     "correct": 1,
-    "explanation": "TRUNCATE TABLE vacía la tabla rápidamente. DELETE sin WHERE también eliminaría todas las filas pero es más lento y no reinicia autoincrementales en algunos motores."
+    "explanation": "TRUNCATE TABLE vacía la tabla rápidamente. DELETE sin WHERE también eliminaría todas las filas pero es más lento y no reinicia autoincrementales en algunos motores.",
+    "active": true
   },
   {
     "id": 39,
@@ -551,7 +589,8 @@
       "FIRST_VALUE()"
     ],
     "correct": 1,
-    "explanation": "LAG() accede a la fila anterior. LEAD() a la siguiente. ROW_NUMBER() numera, FIRST_VALUE() da el primer valor."
+    "explanation": "LAG() accede a la fila anterior. LEAD() a la siguiente. ROW_NUMBER() numera, FIRST_VALUE() da el primer valor.",
+    "active": true
   },
   {
     "id": 40,
@@ -565,7 +604,8 @@
       "Clave primaria compuesta"
     ],
     "correct": 1,
-    "explanation": "2FN elimina dependencias parciales (atributos que dependen de parte de clave compuesta). 3FN elimina dependencias transitivas (atributo no clave depende de otro no clave)."
+    "explanation": "2FN elimina dependencias parciales (atributos que dependen de parte de clave compuesta). 3FN elimina dependencias transitivas (atributo no clave depende de otro no clave).",
+    "active": true
   },
   {
     "id": 41,
@@ -579,7 +619,8 @@
       "5"
     ],
     "correct": 3,
-    "explanation": "FULL OUTER JOIN devuelve todas las filas de ambas tablas. Coincidencia: 1 fila combinada. Luego las no coincidentes: 2 de A que no coinciden + 1 de B que no coinciden = 4 filas totales."
+    "explanation": "FULL OUTER JOIN devuelve todas las filas de ambas tablas. Coincidencia: 1 fila combinada. Luego las no coincidentes: 2 de A que no coinciden + 1 de B que no coinciden = 4 filas totales.",
+    "active": true
   },
   {
     "id": 42,
@@ -593,7 +634,8 @@
       "SOME"
     ],
     "correct": 1,
-    "explanation": "EXISTS es específico para probar existencia de filas. IN compara valores, ANY/SOME también comparan pero con operadores."
+    "explanation": "EXISTS es específico para probar existencia de filas. IN compara valores, ANY/SOME también comparan pero con operadores.",
+    "active": true
   },
   {
     "id": 43,
@@ -607,7 +649,8 @@
       "La consulta usa solo índices cubrientes."
     ],
     "correct": 1,
-    "explanation": "Table Scan (o Clustered Index Scan) significa leer todas las filas. Suele ser ineficiente en tablas grandes. Index Seek busca directamente pocas filas."
+    "explanation": "Table Scan (o Clustered Index Scan) significa leer todas las filas. Suele ser ineficiente en tablas grandes. Index Seek busca directamente pocas filas.",
+    "active": true
   },
   {
     "id": 44,
@@ -621,7 +664,8 @@
       "DEFAULT"
     ],
     "correct": 2,
-    "explanation": "CHECK define una condición que los valores deben cumplir (ej: CHECK (edad >= 18)). DEFAULT asigna valor por defecto."
+    "explanation": "CHECK define una condición que los valores deben cumplir (ej: CHECK (edad >= 18)). DEFAULT asigna valor por defecto.",
+    "active": true
   },
   {
     "id": 45,
@@ -636,7 +680,8 @@
       "GROUP BY"
     ],
     "correct": 1,
-    "explanation": "ORDER BY dentro de OVER define el orden para el acumulado. Por defecto, SUM() con ORDER BY acumula desde el inicio hasta la fila actual si no se especifica frame. PARTITION BY reiniciaría el acumulado por grupos."
+    "explanation": "ORDER BY dentro de OVER define el orden para el acumulado. Por defecto, SUM() con ORDER BY acumula desde el inicio hasta la fila actual si no se especifica frame. PARTITION BY reiniciaría el acumulado por grupos.",
+    "active": true
   },
   {
     "id": 46,
@@ -650,7 +695,8 @@
       "CHANGE TABLE"
     ],
     "correct": 0,
-    "explanation": "ALTER TABLE se usa para agregar, eliminar o modificar columnas y restricciones."
+    "explanation": "ALTER TABLE se usa para agregar, eliminar o modificar columnas y restricciones.",
+    "active": true
   },
   {
     "id": 47,
@@ -664,7 +710,8 @@
       "fecha + 7"
     ],
     "correct": 1,
-    "explanation": "En PostgreSQL se usa fecha + INTERVAL '7 days'. DATE_ADD es MySQL, ADD_DAYS no existe estándar, fecha+7 sumaría 7 días si fecha es tipo date pero no es estándar."
+    "explanation": "En PostgreSQL se usa fecha + INTERVAL '7 days'. DATE_ADD es MySQL, ADD_DAYS no existe estándar, fecha+7 sumaría 7 días si fecha es tipo date pero no es estándar.",
+    "active": true
   },
   {
     "id": 48,
@@ -678,7 +725,8 @@
       "La ignora y devuelve NULL."
     ],
     "correct": 0,
-    "explanation": "SQL estándar y la mayoría de motores (modo ONLY_FULL_GROUP_BY en MySQL) rechazan la consulta porque no es determinista."
+    "explanation": "SQL estándar y la mayoría de motores (modo ONLY_FULL_GROUP_BY en MySQL) rechazan la consulta porque no es determinista.",
+    "active": true
   },
   {
     "id": 49,
@@ -692,7 +740,8 @@
       "Nunca, las correlacionadas son siempre mejores."
     ],
     "correct": 2,
-    "explanation": "Una subconsulta en FROM (vista derivada) se ejecuta una sola vez y puede ser más eficiente si la subconsulta es pesada y no depende de fila externa. Las correlacionadas se ejecutan por cada fila."
+    "explanation": "Una subconsulta en FROM (vista derivada) se ejecuta una sola vez y puede ser más eficiente si la subconsulta es pesada y no depende de fila externa. Las correlacionadas se ejecutan por cada fila.",
+    "active": true
   },
   {
     "id": 50,
@@ -706,7 +755,8 @@
       "Misma tabla base."
     ],
     "correct": 0,
-    "explanation": "UNION requiere que ambas consultas tengan la misma cantidad de columnas y tipos de datos compatibles. Los nombres de columna se toman de la primera consulta."
+    "explanation": "UNION requiere que ambas consultas tengan la misma cantidad de columnas y tipos de datos compatibles. Los nombres de columna se toman de la primera consulta.",
+    "active": true
   },
   {
     "id": 51,
@@ -720,7 +770,8 @@
       "SERIALIZABLE"
     ],
     "correct": 0,
-    "explanation": "READ UNCOMMITTED permite leer datos modificados por transacciones no confirmadas (lecturas sucias). Los demás niveles evitan eso."
+    "explanation": "READ UNCOMMITTED permite leer datos modificados por transacciones no confirmadas (lecturas sucias). Los demás niveles evitan eso.",
+    "active": true
   },
   {
     "id": 52,
@@ -734,7 +785,8 @@
       "CONCATENATE(cad1, cad2)"
     ],
     "correct": 0,
-    "explanation": "CONCAT es la función estándar. El operador + funciona en SQL Server, pero no es ANSI. || es estándar en algunos motores, pero CONCAT también es ampliamente soportado."
+    "explanation": "CONCAT es la función estándar. El operador + funciona en SQL Server, pero no es ANSI. || es estándar en algunos motores, pero CONCAT también es ampliamente soportado.",
+    "active": true
   },
   {
     "id": 53,
@@ -748,7 +800,8 @@
       "Los NULL se ignoran automáticamente."
     ],
     "correct": 1,
-    "explanation": "La mayoría de motores incluyen NULL en índices (depende del motor) y pueden usarse para búsquedas IS NULL, aunque no siempre eficiente. No falla ni los ignora completamente."
+    "explanation": "La mayoría de motores incluyen NULL en índices (depende del motor) y pueden usarse para búsquedas IS NULL, aunque no siempre eficiente. No falla ni los ignora completamente.",
+    "active": true
   },
   {
     "id": 54,
@@ -762,7 +815,8 @@
       "REMOVE"
     ],
     "correct": 2,
-    "explanation": "DROP TABLE elimina tanto los datos como la estructura (la tabla ya no existe). TRUNCATE solo datos, mantiene estructura."
+    "explanation": "DROP TABLE elimina tanto los datos como la estructura (la tabla ya no existe). TRUNCATE solo datos, mantiene estructura.",
+    "active": true
   },
   {
     "id": 55,
@@ -776,6 +830,7 @@
       "BCNF"
     ],
     "correct": 1,
-    "explanation": "Si la clave es compuesta (PedidoID, ProductoID), y NombreProducto depende solo de ProductoID (dependencia parcial), viola 2FN. 2FN requiere eliminación de dependencias parciales."
+    "explanation": "Si la clave es compuesta (PedidoID, ProductoID), y NombreProducto depende solo de ProductoID (dependencia parcial), viola 2FN. 2FN requiere eliminación de dependencias parciales.",
+    "active": true
   }
 ]

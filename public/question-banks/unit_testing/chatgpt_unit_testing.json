@@ -12,7 +12,8 @@
       "Validar el comportamiento de una unidad aislada de código"
     ],
     "correct": 3,
-    "explanation": "Una prueba unitaria busca validar el comportamiento de una unidad específica de código, normalmente una clase o método, de forma aislada. El objetivo es detectar errores rápidamente, facilitar refactorizaciones y proporcionar retroalimentación inmediata sin depender de infraestructura externa como bases de datos o APIs."
+    "explanation": "Una prueba unitaria busca validar el comportamiento de una unidad específica de código, normalmente una clase o método, de forma aislada. El objetivo es detectar errores rápidamente, facilitar refactorizaciones y proporcionar retroalimentación inmediata sin depender de infraestructura externa como bases de datos o APIs.",
+    "active": true
   },
   {
     "id": 2,
@@ -27,7 +28,8 @@
       "@Test"
     ],
     "correct": 3,
-    "explanation": "La anotación @Test marca un método como un caso de prueba que debe ser ejecutado por JUnit. Es la anotación fundamental para definir pruebas unitarias y reemplaza el mecanismo utilizado en versiones anteriores del framework."
+    "explanation": "La anotación @Test marca un método como un caso de prueba que debe ser ejecutado por JUnit. Es la anotación fundamental para definir pruebas unitarias y reemplaza el mecanismo utilizado en versiones anteriores del framework.",
+    "active": true
   },
   {
     "id": 3,
@@ -42,7 +44,8 @@
       "Cuando existe lógica común que debe ejecutarse antes de cada prueba"
     ],
     "correct": 3,
-    "explanation": "La anotación @BeforeEach permite centralizar la preparación compartida por múltiples pruebas. Esto reduce duplicación, mejora legibilidad y facilita mantenimiento cuando se crean objetos, mocks o configuraciones utilizadas repetidamente."
+    "explanation": "La anotación @BeforeEach permite centralizar la preparación compartida por múltiples pruebas. Esto reduce duplicación, mejora legibilidad y facilita mantenimiento cuando se crean objetos, mocks o configuraciones utilizadas repetidamente.",
+    "active": true
   },
   {
     "id": 4,
@@ -57,7 +60,8 @@
       "verify()"
     ],
     "correct": 1,
-    "explanation": "assertEquals() compara explícitamente el valor esperado contra el valor obtenido. Es una de las aserciones más utilizadas porque expresa claramente la intención de la prueba y produce mensajes de error útiles cuando la comparación falla."
+    "explanation": "assertEquals() compara explícitamente el valor esperado contra el valor obtenido. Es una de las aserciones más utilizadas porque expresa claramente la intención de la prueba y produce mensajes de error útiles cuando la comparación falla.",
+    "active": true
   },
   {
     "id": 5,
@@ -72,7 +76,8 @@
       "Simular dependencias para aislar la unidad bajo prueba"
     ],
     "correct": 3,
-    "explanation": "Mockito permite crear objetos simulados que reemplazan dependencias reales. Esto ayuda a aislar la lógica que se desea probar, evitando dependencias de bases de datos, servicios externos o componentes complejos."
+    "explanation": "Mockito permite crear objetos simulados que reemplazan dependencias reales. Esto ayuda a aislar la lógica que se desea probar, evitando dependencias de bases de datos, servicios externos o componentes complejos.",
+    "active": true
   },
   {
     "id": 6,
@@ -87,7 +92,8 @@
       "Un Stub proporciona datos; un Mock además verifica interacciones"
     ],
     "correct": 3,
-    "explanation": "Los Stubs se utilizan principalmente para devolver respuestas controladas al código bajo prueba. Los Mocks, además de devolver datos, permiten verificar que ciertas interacciones ocurrieron correctamente, por ejemplo que un método fue invocado con determinados argumentos."
+    "explanation": "Los Stubs se utilizan principalmente para devolver respuestas controladas al código bajo prueba. Los Mocks, además de devolver datos, permiten verificar que ciertas interacciones ocurrieron correctamente, por ejemplo que un método fue invocado con determinados argumentos.",
+    "active": true
   },
   {
     "id": 7,
@@ -102,7 +108,8 @@
       "Lanzar una excepción controlada desde una dependencia simulada"
     ],
     "correct": 2,
-    "explanation": "verify() permite validar el comportamiento del sistema bajo prueba verificando que ciertas interacciones ocurrieron. Es especialmente útil cuando el resultado esperado consiste en una acción realizada sobre una dependencia y no únicamente en un valor retornado."
+    "explanation": "verify() permite validar el comportamiento del sistema bajo prueba verificando que ciertas interacciones ocurrieron. Es especialmente útil cuando el resultado esperado consiste en una acción realizada sobre una dependencia y no únicamente en un valor retornado.",
+    "active": true
   },
   {
     "id": 8,
@@ -117,7 +124,8 @@
       "Cuando se desea evitar assertions"
     ],
     "correct": 2,
-    "explanation": "Un Spy permite observar y verificar llamadas realizadas sobre un objeto real sin reemplazar completamente su implementación. Es útil cuando se desea reutilizar comportamiento existente mientras se monitorean interacciones específicas."
+    "explanation": "Un Spy permite observar y verificar llamadas realizadas sobre un objeto real sin reemplazar completamente su implementación. Es útil cuando se desea reutilizar comportamiento existente mientras se monitorean interacciones específicas.",
+    "active": true
   },
   {
     "id": 9,
@@ -132,7 +140,8 @@
       "El uso de @InjectMocks no es suficiente y se deben crear los objetos manualmente"
     ],
     "correct": 2,
-    "explanation": "Una cantidad excesiva de mocks suele ser una señal de alto acoplamiento o de una clase que viola el principio de responsabilidad única. Este tipo de situaciones suele aparecer en entrevistas porque permite evaluar conocimientos de diseño además de testing."
+    "explanation": "Una cantidad excesiva de mocks suele ser una señal de alto acoplamiento o de una clase que viola el principio de responsabilidad única. Este tipo de situaciones suele aparecer en entrevistas porque permite evaluar conocimientos de diseño además de testing.",
+    "active": true
   },
   {
     "id": 10,
@@ -147,7 +156,8 @@
       "Organizar claramente preparación, ejecución y validación de la prueba"
     ],
     "correct": 3,
-    "explanation": "AAA es uno de los patrones más utilizados para estructurar pruebas unitarias. Divide claramente la preparación de datos (Arrange), la ejecución del comportamiento bajo prueba (Act) y la validación de resultados (Assert), mejorando considerablemente la legibilidad y mantenibilidad."
+    "explanation": "AAA es uno de los patrones más utilizados para estructurar pruebas unitarias. Divide claramente la preparación de datos (Arrange), la ejecución del comportamiento bajo prueba (Act) y la validación de resultados (Assert), mejorando considerablemente la legibilidad y mantenibilidad.",
+    "active": true
   },
   {
     "id": 11,
@@ -162,7 +172,8 @@
       "assertThrows()"
     ],
     "correct": 3,
-    "explanation": "assertThrows() permite validar explícitamente que una operación genera una excepción determinada. Además de comprobar que la excepción ocurre, también puede utilizarse para inspeccionar su mensaje o propiedades. Es la forma recomendada en JUnit 5 para probar escenarios de error."
+    "explanation": "assertThrows() permite validar explícitamente que una operación genera una excepción determinada. Además de comprobar que la excepción ocurre, también puede utilizarse para inspeccionar su mensaje o propiedades. Es la forma recomendada en JUnit 5 para probar escenarios de error.",
+    "active": true
   },
   {
     "id": 12,
@@ -177,7 +188,8 @@
       "Reemplazan completamente Mockito"
     ],
     "correct": 2,
-    "explanation": "Los Parameterized Tests permiten ejecutar la misma lógica de prueba varias veces utilizando distintos valores de entrada. Esto reduce la duplicación de código, mejora la mantenibilidad y facilita la incorporación de nuevos escenarios sin crear métodos de prueba adicionales."
+    "explanation": "Los Parameterized Tests permiten ejecutar la misma lógica de prueba varias veces utilizando distintos valores de entrada. Esto reduce la duplicación de código, mejora la mantenibilidad y facilita la incorporación de nuevos escenarios sin crear métodos de prueba adicionales.",
+    "active": true
   },
   {
     "id": 13,
@@ -192,7 +204,8 @@
       "@Test"
     ],
     "correct": 0,
-    "explanation": "La anotación @ParameterizedTest permite ejecutar una misma prueba utilizando múltiples valores de entrada. Es especialmente útil cuando se desea validar comportamiento repetitivo con diferentes combinaciones de datos."
+    "explanation": "La anotación @ParameterizedTest permite ejecutar una misma prueba utilizando múltiples valores de entrada. Es especialmente útil cuando se desea validar comportamiento repetitivo con diferentes combinaciones de datos.",
+    "active": true
   },
   {
     "id": 14,
@@ -207,7 +220,8 @@
       "Porque la cobertura al 100% indica que todas las ramas lógicas fueron evaluadas con valores límite"
     ],
     "correct": 1,
-    "explanation": "La cobertura únicamente indica qué líneas fueron ejecutadas durante las pruebas. Una prueba puede ejecutar una línea sin verificar ningún comportamiento relevante. En entrevistas es común evaluar si el candidato comprende que cobertura alta no implica necesariamente pruebas efectivas."
+    "explanation": "La cobertura únicamente indica qué líneas fueron ejecutadas durante las pruebas. Una prueba puede ejecutar una línea sin verificar ningún comportamiento relevante. En entrevistas es común evaluar si el candidato comprende que cobertura alta no implica necesariamente pruebas efectivas.",
+    "active": true
   },
   {
     "id": 15,
@@ -222,7 +236,8 @@
       "Falla de forma intermitente sin cambios en el código"
     ],
     "correct": 3,
-    "explanation": "Una Flaky Test produce resultados inconsistentes: algunas ejecuciones pasan y otras fallan sin cambios en el código. Suelen estar relacionadas con dependencias externas, condiciones de carrera, fechas, temporizadores o estados compartidos entre pruebas."
+    "explanation": "Una Flaky Test produce resultados inconsistentes: algunas ejecuciones pasan y otras fallan sin cambios en el código. Suelen estar relacionadas con dependencias externas, condiciones de carrera, fechas, temporizadores o estados compartidos entre pruebas.",
+    "active": true
   },
   {
     "id": 16,
@@ -237,7 +252,8 @@
       "Para evitar el uso de assertions"
     ],
     "correct": 2,
-    "explanation": "Las pruebas independientes pueden ejecutarse en cualquier orden sin afectar los resultados. Cuando una prueba depende del estado generado por otra, aparecen comportamientos difíciles de reproducir y mantener, especialmente en pipelines CI/CD."
+    "explanation": "Las pruebas independientes pueden ejecutarse en cualquier orden sin afectar los resultados. Cuando una prueba depende del estado generado por otra, aparecen comportamientos difíciles de reproducir y mantener, especialmente en pipelines CI/CD.",
+    "active": true
   },
   {
     "id": 17,
@@ -252,7 +268,8 @@
       "shouldReturnDiscountWhenCustomerIsPremium()"
     ],
     "correct": 3,
-    "explanation": "Los nombres de pruebas deben comunicar claramente el comportamiento esperado. Un formato descriptivo como shouldReturnDiscountWhenCustomerIsPremium() facilita entender rápidamente qué escenario se está validando y qué resultado se espera."
+    "explanation": "Los nombres de pruebas deben comunicar claramente el comportamiento esperado. Un formato descriptivo como shouldReturnDiscountWhenCustomerIsPremium() facilita entender rápidamente qué escenario se está validando y qué resultado se espera.",
+    "active": true
   },
   {
     "id": 18,
@@ -267,7 +284,8 @@
       "Unit Tests"
     ],
     "correct": 3,
-    "explanation": "La Test Pyramid propone una base amplia de pruebas unitarias porque son rápidas, económicas y fáciles de mantener. A medida que se asciende hacia pruebas de integración y end-to-end, la cantidad disminuye debido a su mayor costo y complejidad."
+    "explanation": "La Test Pyramid propone una base amplia de pruebas unitarias porque son rápidas, económicas y fáciles de mantener. A medida que se asciende hacia pruebas de integración y end-to-end, la cantidad disminuye debido a su mayor costo y complejidad.",
+    "active": true
   },
   {
     "id": 19,
@@ -282,7 +300,8 @@
       "Eliminar la necesidad de revisar código"
     ],
     "correct": 2,
-    "explanation": "Las pruebas proporcionan una red de seguridad que permite modificar el diseño interno del código con mayor confianza. Si un cambio rompe comportamiento existente, las pruebas fallarán y alertarán inmediatamente sobre la regresión."
+    "explanation": "Las pruebas proporcionan una red de seguridad que permite modificar el diseño interno del código con mayor confianza. Si un cambio rompe comportamiento existente, las pruebas fallarán y alertarán inmediatamente sobre la regresión.",
+    "active": true
   },
   {
     "id": 20,
@@ -297,7 +316,8 @@
       "Porque JUnit la ejecuta más lentamente"
     ],
     "correct": 1,
-    "explanation": "Una prueba debería validar un único comportamiento claramente definido. Cuando se mezclan múltiples escenarios en el mismo método, resulta más difícil diagnosticar errores, entender la intención de la prueba y mantenerla a largo plazo."
+    "explanation": "Una prueba debería validar un único comportamiento claramente definido. Cuando se mezclan múltiples escenarios en el mismo método, resulta más difícil diagnosticar errores, entender la intención de la prueba y mantenerla a largo plazo.",
+    "active": true
   },
   {
     "id": 21,
@@ -312,7 +332,8 @@
       "Crear un objeto real de la dependencia"
     ],
     "correct": 2,
-    "explanation": "La anotación @Mock permite crear automáticamente una implementación simulada de una dependencia. Esto facilita aislar la unidad bajo prueba y evita depender de componentes reales como bases de datos, servicios externos o sistemas de archivos."
+    "explanation": "La anotación @Mock permite crear automáticamente una implementación simulada de una dependencia. Esto facilita aislar la unidad bajo prueba y evita depender de componentes reales como bases de datos, servicios externos o sistemas de archivos.",
+    "active": true
   },
   {
     "id": 22,
@@ -327,7 +348,8 @@
       "Inserta automáticamente los mocks en el objeto bajo prueba"
     ],
     "correct": 3,
-    "explanation": "@InjectMocks crea la instancia del objeto bajo prueba e intenta inyectar automáticamente los mocks disponibles. Esto reduce código repetitivo y facilita la construcción del escenario de prueba."
+    "explanation": "@InjectMocks crea la instancia del objeto bajo prueba e intenta inyectar automáticamente los mocks disponibles. Esto reduce código repetitivo y facilita la construcción del escenario de prueba.",
+    "active": true
   },
   {
     "id": 23,
@@ -342,7 +364,8 @@
       "Crear una base de datos embebida"
     ],
     "correct": 2,
-    "explanation": "MockitoExtension integra Mockito con JUnit 5. Gracias a esta extensión los objetos anotados con @Mock, @Spy e @InjectMocks son inicializados automáticamente sin necesidad de configuración manual."
+    "explanation": "MockitoExtension integra Mockito con JUnit 5. Gracias a esta extensión los objetos anotados con @Mock, @Spy e @InjectMocks son inicializados automáticamente sin necesidad de configuración manual.",
+    "active": true
   },
   {
     "id": 24,
@@ -357,7 +380,8 @@
       "Crear mocks dinámicos"
     ],
     "correct": 2,
-    "explanation": "Los matchers como any(), anyString() o anyLong() permiten configurar mocks sin depender de valores específicos. Son útiles cuando el valor exacto no es relevante para el comportamiento que se desea probar."
+    "explanation": "Los matchers como any(), anyString() o anyLong() permiten configurar mocks sin depender de valores específicos. Son útiles cuando el valor exacto no es relevante para el comportamiento que se desea probar.",
+    "active": true
   },
   {
     "id": 25,
@@ -372,7 +396,8 @@
       "Que el método fue invocado al menos una vez con cualquier argumento"
     ],
     "correct": 1,
-    "explanation": "La función times(2) permite verificar cuántas veces fue invocado un método. Esta validación es útil cuando el comportamiento esperado depende del número de interacciones realizadas sobre una dependencia."
+    "explanation": "La función times(2) permite verificar cuántas veces fue invocado un método. Esta validación es útil cuando el comportamiento esperado depende del número de interacciones realizadas sobre una dependencia.",
+    "active": true
   },
   {
     "id": 26,
@@ -387,7 +412,8 @@
       "Cuando se usan pruebas parametrizadas"
     ],
     "correct": 2,
-    "explanation": "verifyNoInteractions() valida que no ocurrió ninguna llamada sobre un mock determinado. Es especialmente útil para verificar escenarios donde una operación debería detenerse antes de interactuar con servicios externos."
+    "explanation": "verifyNoInteractions() valida que no ocurrió ninguna llamada sobre un mock determinado. Es especialmente útil para verificar escenarios donde una operación debería detenerse antes de interactuar con servicios externos.",
+    "active": true
   },
   {
     "id": 27,
@@ -402,7 +428,8 @@
       "Reemplazar verify()"
     ],
     "correct": 2,
-    "explanation": "ArgumentCaptor permite inspeccionar los valores enviados a métodos de dependencias simuladas. Es muy útil cuando se necesita validar el contenido exacto de un objeto construido internamente por la clase bajo prueba."
+    "explanation": "ArgumentCaptor permite inspeccionar los valores enviados a métodos de dependencias simuladas. Es muy útil cuando se necesita validar el contenido exacto de un objeto construido internamente por la clase bajo prueba.",
+    "active": true
   },
   {
     "id": 28,
@@ -417,7 +444,8 @@
       "La prueba está demasiado acoplada al diseño interno y se romperá ante refactorings"
     ],
     "correct": 3,
-    "explanation": "Cuando una prueba conoce demasiados detalles internos, pequeños refactorings pueden romperla aunque el comportamiento funcional siga siendo correcto. Las pruebas deberían enfocarse principalmente en comportamiento observable."
+    "explanation": "Cuando una prueba conoce demasiados detalles internos, pequeños refactorings pueden romperla aunque el comportamiento funcional siga siendo correcto. Las pruebas deberían enfocarse principalmente en comportamiento observable.",
+    "active": true
   },
   {
     "id": 29,
@@ -432,7 +460,8 @@
       "Que la clase cumple correctamente con el principio de responsabilidad única"
     ],
     "correct": 1,
-    "explanation": "Una gran cantidad de mocks suele ser una señal de diseño cuestionable. Frecuentemente indica clases demasiado grandes, múltiples responsabilidades o dependencias excesivas que dificultan tanto las pruebas como el mantenimiento."
+    "explanation": "Una gran cantidad de mocks suele ser una señal de diseño cuestionable. Frecuentemente indica clases demasiado grandes, múltiples responsabilidades o dependencias excesivas que dificultan tanto las pruebas como el mantenimiento.",
+    "active": true
   },
   {
     "id": 30,
@@ -447,7 +476,8 @@
       "Behavior Testing reemplaza JUnit"
     ],
     "correct": 1,
-    "explanation": "State Testing verifica el estado final producido por una operación, como un valor retornado o un cambio en un objeto. Behavior Testing valida que determinadas interacciones ocurrieron correctamente, por ejemplo mediante verify() sobre mocks."
+    "explanation": "State Testing verifica el estado final producido por una operación, como un valor retornado o un cambio en un objeto. Behavior Testing valida que determinadas interacciones ocurrieron correctamente, por ejemplo mediante verify() sobre mocks.",
+    "active": true
   },
   {
     "id": 31,
@@ -462,7 +492,8 @@
       "Levantar el contexto completo de Spring para ejecutar la prueba"
     ],
     "correct": 3,
-    "explanation": "@SpringBootTest carga el ApplicationContext completo de Spring. Esto permite probar la integración entre múltiples componentes reales, pero también incrementa el tiempo de ejecución debido al costo de inicializar todo el contexto de la aplicación."
+    "explanation": "@SpringBootTest carga el ApplicationContext completo de Spring. Esto permite probar la integración entre múltiples componentes reales, pero también incrementa el tiempo de ejecución debido al costo de inicializar todo el contexto de la aplicación.",
+    "active": true
   },
   {
     "id": 32,
@@ -477,7 +508,8 @@
       "No es compatible con JUnit 5"
     ],
     "correct": 2,
-    "explanation": "Aunque @SpringBootTest es muy útil para pruebas de integración, cargar el contexto completo de Spring para cada prueba puede incrementar significativamente los tiempos de ejecución. Por esta razón suelen preferirse test slices cuando solo se necesita validar una parte específica de la aplicación."
+    "explanation": "Aunque @SpringBootTest es muy útil para pruebas de integración, cargar el contexto completo de Spring para cada prueba puede incrementar significativamente los tiempos de ejecución. Por esta razón suelen preferirse test slices cuando solo se necesita validar una parte específica de la aplicación.",
+    "active": true
   },
   {
     "id": 33,
@@ -492,7 +524,8 @@
       "Crear bases de datos temporales"
     ],
     "correct": 2,
-    "explanation": "@WebMvcTest permite cargar únicamente los componentes necesarios para probar controladores web. Esto reduce considerablemente el tiempo de ejecución comparado con @SpringBootTest y facilita aislar la lógica HTTP."
+    "explanation": "@WebMvcTest permite cargar únicamente los componentes necesarios para probar controladores web. Esto reduce considerablemente el tiempo de ejecución comparado con @SpringBootTest y facilita aislar la lógica HTTP.",
+    "active": true
   },
   {
     "id": 34,
@@ -507,7 +540,8 @@
       "MockMvc"
     ],
     "correct": 3,
-    "explanation": "MockMvc permite ejecutar peticiones HTTP simuladas contra controladores Spring sin necesidad de iniciar un servidor web real. Esto facilita validar endpoints, códigos de respuesta y contenido JSON de manera rápida y controlada."
+    "explanation": "MockMvc permite ejecutar peticiones HTTP simuladas contra controladores Spring sin necesidad de iniciar un servidor web real. Esto facilita validar endpoints, códigos de respuesta y contenido JSON de manera rápida y controlada.",
+    "active": true
   },
   {
     "id": 35,
@@ -522,7 +556,8 @@
       "Uso de CPU del servidor"
     ],
     "correct": 1,
-    "explanation": "MockMvc se utiliza principalmente para verificar respuestas HTTP, contenido JSON, cabeceras y comportamiento de controladores REST. No está orientado a medir métricas de rendimiento o recursos del sistema."
+    "explanation": "MockMvc se utiliza principalmente para verificar respuestas HTTP, contenido JSON, cabeceras y comportamiento de controladores REST. No está orientado a medir métricas de rendimiento o recursos del sistema.",
+    "active": true
   },
   {
     "id": 36,
@@ -537,7 +572,8 @@
       "Levantar un contexto parcial de Spring para pruebas de slice"
     ],
     "correct": 1,
-    "explanation": "WireMock permite crear servidores HTTP simulados para representar servicios externos. Esto ayuda a ejecutar pruebas repetibles y controladas sin depender de APIs reales, evitando problemas de disponibilidad, latencia o cambios inesperados."
+    "explanation": "WireMock permite crear servidores HTTP simulados para representar servicios externos. Esto ayuda a ejecutar pruebas repetibles y controladas sin depender de APIs reales, evitando problemas de disponibilidad, latencia o cambios inesperados.",
+    "active": true
   },
   {
     "id": 37,
@@ -552,7 +588,8 @@
       "La prueba unitaria siempre utiliza HTTP"
     ],
     "correct": 1,
-    "explanation": "Las pruebas unitarias buscan validar una unidad aislada de código. Las pruebas de integración verifican que múltiples componentes trabajen correctamente en conjunto, incluyendo configuraciones, dependencias y colaboraciones reales."
+    "explanation": "Las pruebas unitarias buscan validar una unidad aislada de código. Las pruebas de integración verifican que múltiples componentes trabajen correctamente en conjunto, incluyendo configuraciones, dependencias y colaboraciones reales.",
+    "active": true
   },
   {
     "id": 38,
@@ -567,7 +604,8 @@
       "Reducir tiempo de ejecución cargando solo parte del contexto"
     ],
     "correct": 3,
-    "explanation": "Los Test Slices permiten cargar únicamente los componentes necesarios para un tipo específico de prueba. Esto mejora considerablemente la velocidad de ejecución y reduce el consumo de recursos respecto a cargar toda la aplicación."
+    "explanation": "Los Test Slices permiten cargar únicamente los componentes necesarios para un tipo específico de prueba. Esto mejora considerablemente la velocidad de ejecución y reduce el consumo de recursos respecto a cargar toda la aplicación.",
+    "active": true
   },
   {
     "id": 39,
@@ -582,7 +620,8 @@
       "Porque incrementan la cobertura de código sin mejorar la confianza en el sistema"
     ],
     "correct": 2,
-    "explanation": "Las pruebas de integración son más costosas que las unitarias. Si se abusa de ellas, los pipelines CI/CD se vuelven lentos y difíciles de mantener. La estrategia habitual es combinar una base amplia de unit tests con una cantidad menor de integration tests."
+    "explanation": "Las pruebas de integración son más costosas que las unitarias. Si se abusa de ellas, los pipelines CI/CD se vuelven lentos y difíciles de mantener. La estrategia habitual es combinar una base amplia de unit tests con una cantidad menor de integration tests.",
+    "active": true
   },
   {
     "id": 40,
@@ -597,7 +636,8 @@
       "Necesita levantar toda la aplicación"
     ],
     "correct": 1,
-    "explanation": "Cuando el comportamiento puede verificarse aislando colaboraciones mediante mocks o stubs, normalmente se trata de un candidato ideal para una prueba unitaria. Esto permite obtener retroalimentación rápida y mantener las pruebas simples y confiables."
+    "explanation": "Cuando el comportamiento puede verificarse aislando colaboraciones mediante mocks o stubs, normalmente se trata de un candidato ideal para una prueba unitaria. Esto permite obtener retroalimentación rápida y mantener las pruebas simples y confiables.",
+    "active": true
   },
   {
     "id": 41,
@@ -612,7 +652,8 @@
       "Probar endpoints HTTP de forma programática verificando status, headers y body de la respuesta"
     ],
     "correct": 3,
-    "explanation": "WebTestClient permite realizar solicitudes HTTP y validar respuestas de manera fluida. Es especialmente popular en aplicaciones Spring WebFlux, aunque también puede utilizarse en otros contextos. Facilita validar status codes, headers y payloads sin necesidad de herramientas externas."
+    "explanation": "WebTestClient permite realizar solicitudes HTTP y validar respuestas de manera fluida. Es especialmente popular en aplicaciones Spring WebFlux, aunque también puede utilizarse en otros contextos. Facilita validar status codes, headers y payloads sin necesidad de herramientas externas.",
+    "active": true
   },
   {
     "id": 42,
@@ -627,7 +668,8 @@
       "Simular servicios HTTP externos de forma controlada"
     ],
     "correct": 3,
-    "explanation": "MockWebServer permite simular respuestas HTTP de servicios externos. Esto ayuda a ejecutar pruebas repetibles sin depender de sistemas remotos, evitando fallos causados por indisponibilidad, cambios inesperados o problemas de conectividad."
+    "explanation": "MockWebServer permite simular respuestas HTTP de servicios externos. Esto ayuda a ejecutar pruebas repetibles sin depender de sistemas remotos, evitando fallos causados por indisponibilidad, cambios inesperados o problemas de conectividad.",
+    "active": true
   },
   {
     "id": 43,
@@ -642,7 +684,8 @@
       "Las pruebas contienen grandes cantidades de código duplicado"
     ],
     "correct": 3,
-    "explanation": "La duplicación excesiva suele generar costos de mantenimiento elevados. Cuando un cambio requiere modificar decenas de pruebas similares, aumenta el riesgo de inconsistencias y errores. En estos casos suelen aplicarse refactorizaciones o patrones como Test Data Builders."
+    "explanation": "La duplicación excesiva suele generar costos de mantenimiento elevados. Cuando un cambio requiere modificar decenas de pruebas similares, aumenta el riesgo de inconsistencias y errores. En estos casos suelen aplicarse refactorizaciones o patrones como Test Data Builders.",
+    "active": true
   },
   {
     "id": 44,
@@ -657,7 +700,8 @@
       "Eliminar la necesidad de mocks"
     ],
     "correct": 1,
-    "explanation": "Los Test Data Builders encapsulan la creación de objetos complejos y permiten personalizar únicamente los atributos relevantes para cada escenario. Esto reduce ruido visual, mejora legibilidad y facilita la evolución de las pruebas."
+    "explanation": "Los Test Data Builders encapsulan la creación de objetos complejos y permiten personalizar únicamente los atributos relevantes para cada escenario. Esto reduce ruido visual, mejora legibilidad y facilita la evolución de las pruebas.",
+    "active": true
   },
   {
     "id": 45,
@@ -672,7 +716,8 @@
       "El conjunto de datos y objetos necesarios para ejecutar una prueba"
     ],
     "correct": 3,
-    "explanation": "Una Test Fixture representa el contexto necesario para ejecutar una prueba: objetos, datos, configuraciones y dependencias. Una fixture bien diseñada facilita la comprensión del escenario y evita duplicación innecesaria."
+    "explanation": "Una Test Fixture representa el contexto necesario para ejecutar una prueba: objetos, datos, configuraciones y dependencias. Una fixture bien diseñada facilita la comprensión del escenario y evita duplicación innecesaria.",
+    "active": true
   },
   {
     "id": 46,
@@ -687,7 +732,8 @@
       "Producir siempre el mismo resultado bajo las mismas condiciones"
     ],
     "correct": 3,
-    "explanation": "Las pruebas determinísticas generan resultados consistentes cuando las condiciones de entrada son iguales. Este principio es fundamental para evitar flaky tests y mantener confianza en la suite de pruebas durante ejecuciones repetidas."
+    "explanation": "Las pruebas determinísticas generan resultados consistentes cuando las condiciones de entrada son iguales. Este principio es fundamental para evitar flaky tests y mantener confianza en la suite de pruebas durante ejecuciones repetidas.",
+    "active": true
   },
   {
     "id": 47,
@@ -702,7 +748,8 @@
       "Reemplazar todas las pruebas unitarias"
     ],
     "correct": 1,
-    "explanation": "Las pruebas de contrato ayudan a detectar incompatibilidades entre sistemas que se comunican entre sí. Validan que las estructuras de solicitudes y respuestas sigan respetando los acuerdos establecidos entre productor y consumidor."
+    "explanation": "Las pruebas de contrato ayudan a detectar incompatibilidades entre sistemas que se comunican entre sí. Validan que las estructuras de solicitudes y respuestas sigan respetando los acuerdos establecidos entre productor y consumidor.",
+    "active": true
   },
   {
     "id": 48,
@@ -717,7 +764,8 @@
       "Porque proporcionan retroalimentación temprana sobre errores introducidos"
     ],
     "correct": 3,
-    "explanation": "Uno de los principales beneficios de las pruebas unitarias es ofrecer feedback rápido. Si las pruebas tardan demasiado, los desarrolladores reciben información tarde y disminuye la efectividad del pipeline de integración continua."
+    "explanation": "Uno de los principales beneficios de las pruebas unitarias es ofrecer feedback rápido. Si las pruebas tardan demasiado, los desarrolladores reciben información tarde y disminuye la efectividad del pipeline de integración continua.",
+    "active": true
   },
   {
     "id": 49,
@@ -732,7 +780,8 @@
       "Porque Mockito no puede simular la clase java.time.LocalDateTime correctamente"
     ],
     "correct": 2,
-    "explanation": "Las dependencias directas sobre el reloj del sistema suelen generar pruebas frágiles y difíciles de reproducir. Una práctica común es abstraer el tiempo mediante interfaces o proveedores que puedan ser simulados durante las pruebas."
+    "explanation": "Las dependencias directas sobre el reloj del sistema suelen generar pruebas frágiles y difíciles de reproducir. Una práctica común es abstraer el tiempo mediante interfaces o proveedores que puedan ser simulados durante las pruebas.",
+    "active": true
   },
   {
     "id": 50,
@@ -747,6 +796,7 @@
       "Convertirla en una prueba de rendimiento"
     ],
     "correct": 2,
-    "explanation": "Las pruebas demasiado grandes suelen ser difíciles de entender, mantener y diagnosticar cuando fallan. Una buena práctica consiste en dividirlas en escenarios independientes, cada uno enfocado en validar un único comportamiento claramente identificado."
+    "explanation": "Las pruebas demasiado grandes suelen ser difíciles de entender, mantener y diagnosticar cuando fallan. Una buena práctica consiste en dividirlas en escenarios independientes, cada uno enfocado en validar un único comportamiento claramente identificado.",
+    "active": true
   }
 ]

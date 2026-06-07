@@ -12,7 +12,8 @@
       "@Component"
     ],
     "correct": 0,
-    "explanation": "@RestController combina @Controller y @ResponseBody, ideal para APIs REST. En Spring Boot 3.x sigue siendo la anotación estándar."
+    "explanation": "@RestController combina @Controller y @ResponseBody, ideal para APIs REST. En Spring Boot 3.x sigue siendo la anotación estándar.",
+    "active": true
   },
   {
     "id": 2,
@@ -27,7 +28,8 @@
       "Las pruebas end-to-end son más sencillas"
     ],
     "correct": 0,
-    "explanation": "Permite escalar servicios de forma independiente. La comunicación en red añade complejidad."
+    "explanation": "Permite escalar servicios de forma independiente. La comunicación en red añade complejidad.",
+    "active": true
   },
   {
     "id": 3,
@@ -42,7 +44,8 @@
       "logback.xml"
     ],
     "correct": 0,
-    "explanation": "Spring Boot externaliza configuración en application.properties/yml."
+    "explanation": "Spring Boot externaliza configuración en application.properties/yml.",
+    "active": true
   },
   {
     "id": 4,
@@ -57,7 +60,8 @@
       "DELETE"
     ],
     "correct": 0,
-    "explanation": "PATCH permite modificaciones parciales, PUT reemplaza todo el recurso."
+    "explanation": "PATCH permite modificaciones parciales, PUT reemplaza todo el recurso.",
+    "active": true
   },
   {
     "id": 5,
@@ -72,7 +76,8 @@
       "@Document"
     ],
     "correct": 0,
-    "explanation": "@Entity define una entidad gestionada por JPA."
+    "explanation": "@Entity define una entidad gestionada por JPA.",
+    "active": true
   },
   {
     "id": 6,
@@ -87,7 +92,8 @@
       "Configura automáticamente la conexión a base de datos"
     ],
     "correct": 0,
-    "explanation": "Es una anotación de conveniencia que activa configuración automática, escaneo de componentes y configuración."
+    "explanation": "Es una anotación de conveniencia que activa configuración automática, escaneo de componentes y configuración.",
+    "active": true
   },
   {
     "id": 7,
@@ -102,7 +108,8 @@
       "Proveer autenticación unificada"
     ],
     "correct": 0,
-    "explanation": "Los servicios se registran y consultan a Eureka para localizar otros servicios dinámicamente."
+    "explanation": "Los servicios se registran y consultan a Eureka para localizar otros servicios dinámicamente.",
+    "active": true
   },
   {
     "id": 8,
@@ -117,7 +124,8 @@
       "Se requiere configurar un MessageConverter de Jackson explícitamente"
     ],
     "correct": 0,
-    "explanation": "Spring Boot configura Jackson por defecto, @RestController serializa la respuesta a JSON."
+    "explanation": "Spring Boot configura Jackson por defecto, @RestController serializa la respuesta a JSON.",
+    "active": true
   },
   {
     "id": 9,
@@ -132,7 +140,8 @@
       "Un servicio que genera documentación de API"
     ],
     "correct": 0,
-    "explanation": "Actúa como proxy inverso centralizando enrutamiento, autenticación, etc."
+    "explanation": "Actúa como proxy inverso centralizando enrutamiento, autenticación, etc.",
+    "active": true
   },
   {
     "id": 10,
@@ -147,7 +156,8 @@
       "Un repositorio REST automático"
     ],
     "correct": 0,
-    "explanation": "El starter autoconfigura JPA proporcionando esos beans."
+    "explanation": "El starter autoconfigura JPA proporcionando esos beans.",
+    "active": true
   },
   {
     "id": 11,
@@ -162,7 +172,8 @@
       "301 Moved Permanently"
     ],
     "correct": 2,
-    "explanation": "201 Created indica que la solicitud resultó en un nuevo recurso."
+    "explanation": "201 Created indica que la solicitud resultó en un nuevo recurso.",
+    "active": true
   },
   {
     "id": 12,
@@ -177,7 +188,8 @@
       "@ManyToMany"
     ],
     "correct": 1,
-    "explanation": "@ManyToOne establece una relación muchos a uno con otra entidad."
+    "explanation": "@ManyToOne establece una relación muchos a uno con otra entidad.",
+    "active": true
   },
   {
     "id": 13,
@@ -192,7 +204,8 @@
       "mvn war:war"
     ],
     "correct": 0,
-    "explanation": "spring-boot:run arranca la aplicación con el plugin de Spring Boot."
+    "explanation": "spring-boot:run arranca la aplicación con el plugin de Spring Boot.",
+    "active": true
   },
   {
     "id": 14,
@@ -207,7 +220,8 @@
       "Definiéndolo en application.yml únicamente"
     ],
     "correct": 2,
-    "explanation": "Se construye un RouteLocator usando el builder y el método .route()."
+    "explanation": "Se construye un RouteLocator usando el builder y el método .route().",
+    "active": true
   },
   {
     "id": 15,
@@ -222,7 +236,8 @@
       "@SpringBootTest"
     ],
     "correct": 3,
-    "explanation": "@SpringBootTest carga el contexto completo para pruebas de integración."
+    "explanation": "@SpringBootTest carga el contexto completo para pruebas de integración.",
+    "active": true
   },
   {
     "id": 16,
@@ -237,7 +252,8 @@
       "Git"
     ],
     "correct": 1,
-    "explanation": "Docker crea imágenes de contenedor a partir de un Dockerfile."
+    "explanation": "Docker crea imágenes de contenedor a partir de un Dockerfile.",
+    "active": true
   },
   {
     "id": 17,
@@ -252,7 +268,8 @@
       "Saga"
     ],
     "correct": 2,
-    "explanation": "Circuit Breaker evita que fallos se propaguen abriendo el circuito temporalmente."
+    "explanation": "Circuit Breaker evita que fallos se propaguen abriendo el circuito temporalmente.",
+    "active": true
   },
   {
     "id": 18,
@@ -267,7 +284,8 @@
       "Anotando el método con @Pageable"
     ],
     "correct": 1,
-    "explanation": "Se usa Page<T> como retorno y un parámetro Pageable, Spring Data genera la consulta paginada."
+    "explanation": "Se usa Page<T> como retorno y un parámetro Pageable, Spring Data genera la consulta paginada.",
+    "active": true
   },
   {
     "id": 19,
@@ -282,7 +300,8 @@
       "spring-boot-starter-web"
     ],
     "correct": 3,
-    "explanation": "spring-boot-starter-web incluye Spring MVC y Tomcat embebido."
+    "explanation": "spring-boot-starter-web incluye Spring MVC y Tomcat embebido.",
+    "active": true
   },
   {
     "id": 20,
@@ -297,7 +316,8 @@
       "YAML"
     ],
     "correct": 2,
-    "explanation": "JSON es ligero y ampliamente soportado."
+    "explanation": "JSON es ligero y ampliamente soportado.",
+    "active": true
   },
   {
     "id": 21,
@@ -312,7 +332,8 @@
       "spring-cloud-starter-sleuth"
     ],
     "correct": 1,
-    "explanation": "spring-cloud-starter-config habilita Config Server/Client para configuración centralizada."
+    "explanation": "spring-cloud-starter-config habilita Config Server/Client para configuración centralizada.",
+    "active": true
   },
   {
     "id": 22,
@@ -327,7 +348,8 @@
       "Un balanceador de carga hardware"
     ],
     "correct": 0,
-    "explanation": "Un service mesh como Istio maneja la red de microservicios de forma transparente."
+    "explanation": "Un service mesh como Istio maneja la red de microservicios de forma transparente.",
+    "active": true
   },
   {
     "id": 23,
@@ -342,7 +364,8 @@
       "Nada, javax sigue igual"
     ],
     "correct": 2,
-    "explanation": "Spring Boot 3 usa Jakarta EE 9+, cambiando javax a jakarta."
+    "explanation": "Spring Boot 3 usa Jakarta EE 9+, cambiando javax a jakarta.",
+    "active": true
   },
   {
     "id": 24,
@@ -357,7 +380,8 @@
       "@MockBean"
     ],
     "correct": 1,
-    "explanation": "@WebMvcTest carga controladores y configuración MVC sin cargar el contexto completo."
+    "explanation": "@WebMvcTest carga controladores y configuración MVC sin cargar el contexto completo.",
+    "active": true
   },
   {
     "id": 25,
@@ -372,7 +396,8 @@
       "spring-boot-starter-actuator"
     ],
     "correct": 1,
-    "explanation": "spring-boot-starter-security incluye Spring Security con configuración básica."
+    "explanation": "spring-boot-starter-security incluye Spring Security con configuración básica.",
+    "active": true
   },
   {
     "id": 26,
@@ -387,7 +412,8 @@
       "immutable"
     ],
     "correct": 1,
-    "explanation": "final indica que una variable no puede cambiar su valor."
+    "explanation": "final indica que una variable no puede cambiar su valor.",
+    "active": true
   },
   {
     "id": 27,
@@ -402,7 +428,8 @@
       "@Scheduled"
     ],
     "correct": 1,
-    "explanation": "@RabbitListener se usa para consumir mensajes de RabbitMQ."
+    "explanation": "@RabbitListener se usa para consumir mensajes de RabbitMQ.",
+    "active": true
   },
   {
     "id": 28,
@@ -417,7 +444,8 @@
       "Usando propiedades spring.datasource.*"
     ],
     "correct": 3,
-    "explanation": "Spring Boot permite configurar la fuente de datos a través de estas propiedades."
+    "explanation": "Spring Boot permite configurar la fuente de datos a través de estas propiedades.",
+    "active": true
   },
   {
     "id": 29,
@@ -432,7 +460,8 @@
       "Circuit Breaker"
     ],
     "correct": 1,
-    "explanation": "El patrón Saga coordina transacciones distribuidas mediante una secuencia de transacciones locales y eventos."
+    "explanation": "El patrón Saga coordina transacciones distribuidas mediante una secuencia de transacciones locales y eventos.",
+    "active": true
   },
   {
     "id": 30,
@@ -447,7 +476,8 @@
       "@Path"
     ],
     "correct": 1,
-    "explanation": "@PathVariable vincula la variable de la plantilla de ruta."
+    "explanation": "@PathVariable vincula la variable de la plantilla de ruta.",
+    "active": true
   },
   {
     "id": 31,
@@ -462,7 +492,8 @@
       "Resilience4j"
     ],
     "correct": 1,
-    "explanation": "Spring Cloud LoadBalancer (sucesor de Ribbon) provee balanceo en el cliente con integración a Service Discovery."
+    "explanation": "Spring Cloud LoadBalancer (sucesor de Ribbon) provee balanceo en el cliente con integración a Service Discovery.",
+    "active": true
   },
   {
     "id": 32,
@@ -477,7 +508,8 @@
       "Ejecutar pruebas unitarias"
     ],
     "correct": 2,
-    "explanation": "Dockerfile contiene instrucciones para crear la imagen Docker."
+    "explanation": "Dockerfile contiene instrucciones para crear la imagen Docker.",
+    "active": true
   },
   {
     "id": 33,
@@ -492,7 +524,8 @@
       "Flyway ejecuta automáticamente scripts SQL en classpath:db/migration"
     ],
     "correct": 3,
-    "explanation": "Flyway busca scripts en db/migration y los aplica al iniciar la aplicación."
+    "explanation": "Flyway busca scripts en db/migration y los aplica al iniciar la aplicación.",
+    "active": true
   },
   {
     "id": 34,
@@ -507,7 +540,8 @@
       "Builder"
     ],
     "correct": 1,
-    "explanation": "El patrón Singleton garantiza una sola instancia."
+    "explanation": "El patrón Singleton garantiza una sola instancia.",
+    "active": true
   },
   {
     "id": 35,
@@ -522,7 +556,8 @@
       "Grafana"
     ],
     "correct": 2,
-    "explanation": "Actuator provee endpoints como /health, /metrics, /info."
+    "explanation": "Actuator provee endpoints como /health, /metrics, /info.",
+    "active": true
   },
   {
     "id": 36,
@@ -537,7 +572,8 @@
       "Collection"
     ],
     "correct": 3,
-    "explanation": "Collection es la raíz de las colecciones, heredando de Iterable."
+    "explanation": "Collection es la raíz de las colecciones, heredando de Iterable.",
+    "active": true
   },
   {
     "id": 37,
@@ -552,7 +588,8 @@
       "Todas las anteriores son válidas"
     ],
     "correct": 3,
-    "explanation": "Cualquiera de esos métodos funciona en Spring Security 6, y se pueden combinar."
+    "explanation": "Cualquiera de esos métodos funciona en Spring Security 6, y se pueden combinar.",
+    "active": true
   },
   {
     "id": 38,
@@ -567,7 +604,8 @@
       "El contenedor se reinicia inmediatamente"
     ],
     "correct": 1,
-    "explanation": "Spring Boot termina el arranque si condiciones como conexión a BD no se cumplen, a menos que se configure un reintento."
+    "explanation": "Spring Boot termina el arranque si condiciones como conexión a BD no se cumplen, a menos que se configure un reintento.",
+    "active": true
   },
   {
     "id": 39,
@@ -582,7 +620,8 @@
       "Amazon SQS"
     ],
     "correct": 1,
-    "explanation": "spring-boot-starter-amqp configura RabbitMQ mediante el protocolo AMQP."
+    "explanation": "spring-boot-starter-amqp configura RabbitMQ mediante el protocolo AMQP.",
+    "active": true
   },
   {
     "id": 40,
@@ -597,7 +636,8 @@
       "@Bulkhead"
     ],
     "correct": 2,
-    "explanation": "@RateLimiter controla la cantidad de solicitudes en un período de tiempo."
+    "explanation": "@RateLimiter controla la cantidad de solicitudes en un período de tiempo.",
+    "active": true
   },
   {
     "id": 41,
@@ -612,7 +652,8 @@
       "Resilience4j"
     ],
     "correct": 3,
-    "explanation": "Resilience4j es la implementación recomendada para circuit breaker en Spring Cloud."
+    "explanation": "Resilience4j es la implementación recomendada para circuit breaker en Spring Cloud.",
+    "active": true
   },
   {
     "id": 42,
@@ -627,7 +668,8 @@
       "@EntityManager"
     ],
     "correct": 2,
-    "explanation": "@PersistenceContext inyecta el EntityManager gestionado por el contenedor."
+    "explanation": "@PersistenceContext inyecta el EntityManager gestionado por el contenedor.",
+    "active": true
   },
   {
     "id": 43,
@@ -642,7 +684,8 @@
       "Ninguno, se debe usar @SpyBean"
     ],
     "correct": 0,
-    "explanation": "@MockBean integra el mock en el contexto; @Mock se usa en pruebas unitarias puras. Ambos son útiles."
+    "explanation": "@MockBean integra el mock en el contexto; @Mock se usa en pruebas unitarias puras. Ambos son útiles.",
+    "active": true
   },
   {
     "id": 44,
@@ -657,7 +700,8 @@
       "singleton"
     ],
     "correct": 3,
-    "explanation": "Por defecto los beans son singleton (una instancia por contenedor)."
+    "explanation": "Por defecto los beans son singleton (una instancia por contenedor).",
+    "active": true
   },
   {
     "id": 45,
@@ -672,7 +716,8 @@
       "Se usa un solo lenguaje de programación"
     ],
     "correct": 2,
-    "explanation": "Busca independencia para cambios y despliegues."
+    "explanation": "Busca independencia para cambios y despliegues.",
+    "active": true
   },
   {
     "id": 46,
@@ -687,7 +732,8 @@
       "Factory Method"
     ],
     "correct": 1,
-    "explanation": "Builder separa la construcción de un objeto complejo de su representación."
+    "explanation": "Builder separa la construcción de un objeto complejo de su representación.",
+    "active": true
   },
   {
     "id": 47,
@@ -702,7 +748,8 @@
       "Un bean de configuración de CORS"
     ],
     "correct": 1,
-    "explanation": "SecurityFilterChain define cómo se aplican los filtros de seguridad a las peticiones."
+    "explanation": "SecurityFilterChain define cómo se aplican los filtros de seguridad a las peticiones.",
+    "active": true
   },
   {
     "id": 48,
@@ -717,7 +764,8 @@
       "Actuator"
     ],
     "correct": 2,
-    "explanation": "Spring Boot 3 usa Micrometer Tracing para propagar trace IDs, compatible con Zipkin, Jaeger, etc."
+    "explanation": "Spring Boot 3 usa Micrometer Tracing para propagar trace IDs, compatible con Zipkin, Jaeger, etc.",
+    "active": true
   },
   {
     "id": 49,
@@ -732,7 +780,8 @@
       "docker pull"
     ],
     "correct": 1,
-    "explanation": "docker build construye la imagen; -t asigna un tag."
+    "explanation": "docker build construye la imagen; -t asigna un tag.",
+    "active": true
   },
   {
     "id": 50,
@@ -747,7 +796,8 @@
       "Agregando spring-cloud-starter-config y la propiedad spring.config.import"
     ],
     "correct": 3,
-    "explanation": "Desde Spring Boot 3.x se usa spring.config.import para vincular config server."
+    "explanation": "Desde Spring Boot 3.x se usa spring.config.import para vincular config server.",
+    "active": true
   },
   {
     "id": 51,
@@ -762,7 +812,8 @@
       "@ModelAttribute"
     ],
     "correct": 0,
-    "explanation": "@RequestBody deserializa el JSON del cuerpo a un objeto Java."
+    "explanation": "@RequestBody deserializa el JSON del cuerpo a un objeto Java.",
+    "active": true
   },
   {
     "id": 52,
@@ -777,7 +828,8 @@
       "MappedSuperclass"
     ],
     "correct": 1,
-    "explanation": "SINGLE_TABLE mapea todas las clases a una tabla con discriminador."
+    "explanation": "SINGLE_TABLE mapea todas las clases a una tabla con discriminador.",
+    "active": true
   },
   {
     "id": 53,
@@ -792,7 +844,8 @@
       "Un tipo de colección sincronizada"
     ],
     "correct": 2,
-    "explanation": "Los streams facilitan operaciones como filter, map, reduce de manera declarativa."
+    "explanation": "Los streams facilitan operaciones como filter, map, reduce de manera declarativa.",
+    "active": true
   },
   {
     "id": 54,
@@ -807,7 +860,8 @@
       "Una plataforma de streaming distribuida, integrable con spring-kafka"
     ],
     "correct": 3,
-    "explanation": "Kafka permite publicar y consumir eventos; Spring Boot proporciona spring-kafka."
+    "explanation": "Kafka permite publicar y consumir eventos; Spring Boot proporciona spring-kafka.",
+    "active": true
   },
   {
     "id": 55,
@@ -822,7 +876,8 @@
       "Todas las anteriores son válidas"
     ],
     "correct": 3,
-    "explanation": "Se puede excluir a nivel de anotación o con propiedades, ambas funcionan."
+    "explanation": "Se puede excluir a nivel de anotación o con propiedades, ambas funcionan.",
+    "active": true
   },
   {
     "id": 56,
@@ -837,7 +892,8 @@
       "No se utilizan bases de datos relacionales"
     ],
     "correct": 2,
-    "explanation": "Garantiza bajo acoplamiento y permite que cada servicio elija el tipo de almacenamiento."
+    "explanation": "Garantiza bajo acoplamiento y permite que cada servicio elija el tipo de almacenamiento.",
+    "active": true
   },
   {
     "id": 57,
@@ -852,7 +908,8 @@
       "Observer"
     ],
     "correct": 1,
-    "explanation": "La Inyección de Dependencias (DI) delega la creación de dependencias a un contenedor externo."
+    "explanation": "La Inyección de Dependencias (DI) delega la creación de dependencias a un contenedor externo.",
+    "active": true
   },
   {
     "id": 58,
@@ -867,7 +924,8 @@
       "@Mock es para servicios, @MockBean para controladores"
     ],
     "correct": 2,
-    "explanation": "@MockBean agrega el mock al ApplicationContext, útil para pruebas de integración."
+    "explanation": "@MockBean agrega el mock al ApplicationContext, útil para pruebas de integración.",
+    "active": true
   },
   {
     "id": 59,
@@ -882,7 +940,8 @@
       "Un plugin de Maven para Docker"
     ],
     "correct": 1,
-    "explanation": "docker-compose levanta múltiples contenedores (servicios, bases de datos, etc.) de forma sencilla."
+    "explanation": "docker-compose levanta múltiples contenedores (servicios, bases de datos, etc.) de forma sencilla.",
+    "active": true
   },
   {
     "id": 60,
@@ -897,7 +956,8 @@
       "Anotando el método con @CircuitBreaker de Resilience4j"
     ],
     "correct": 3,
-    "explanation": "Resilience4j expone la anotación @CircuitBreaker para aplicar el patrón."
+    "explanation": "Resilience4j expone la anotación @CircuitBreaker para aplicar el patrón.",
+    "active": true
   },
   {
     "id": 61,
@@ -912,7 +972,8 @@
       "Ninguna de las anteriores"
     ],
     "correct": 2,
-    "explanation": "REST usa recursos identificados por URIs y verbos HTTP."
+    "explanation": "REST usa recursos identificados por URIs y verbos HTTP.",
+    "active": true
   },
   {
     "id": 62,
@@ -927,7 +988,8 @@
       "Mediante SecurityFilterChain"
     ],
     "correct": 1,
-    "explanation": "Se puede configurar globalmente con WebMvcConfigurer.addCorsMappings."
+    "explanation": "Se puede configurar globalmente con WebMvcConfigurer.addCorsMappings.",
+    "active": true
   },
   {
     "id": 63,
@@ -942,7 +1004,8 @@
       "Migración gradual de un monolito a microservicios"
     ],
     "correct": 3,
-    "explanation": "Consiste en reemplazar partes del monolito por microservicios progresivamente."
+    "explanation": "Consiste en reemplazar partes del monolito por microservicios progresivamente.",
+    "active": true
   },
   {
     "id": 64,
@@ -957,7 +1020,8 @@
       "Solo aplica para sistemas batch"
     ],
     "correct": 1,
-    "explanation": "Promueve desacoplamiento y escalabilidad al reaccionar a eventos."
+    "explanation": "Promueve desacoplamiento y escalabilidad al reaccionar a eventos.",
+    "active": true
   },
   {
     "id": 65,
@@ -972,7 +1036,8 @@
       "@Select"
     ],
     "correct": 2,
-    "explanation": "@Query sobre un método del repositorio permite escribir JPQL o SQL nativo."
+    "explanation": "@Query sobre un método del repositorio permite escribir JPQL o SQL nativo.",
+    "active": true
   },
   {
     "id": 66,
@@ -987,7 +1052,8 @@
       "/health"
     ],
     "correct": 3,
-    "explanation": "/health muestra el estado, incluyendo componentes como BD, disco, etc."
+    "explanation": "/health muestra el estado, incluyendo componentes como BD, disco, etc.",
+    "active": true
   },
   {
     "id": 67,
@@ -1002,7 +1068,8 @@
       "Es exclusiva de Spring Boot"
     ],
     "correct": 1,
-    "explanation": "AOP intercepta métodos para aplicar lógica común sin modificar el código."
+    "explanation": "AOP intercepta métodos para aplicar lógica común sin modificar el código.",
+    "active": true
   },
   {
     "id": 68,
@@ -1017,7 +1084,8 @@
       "Con @Lazy"
     ],
     "correct": 2,
-    "explanation": "@ConditionalOnMissingBean crea el bean solo si no existe otro del mismo tipo."
+    "explanation": "@ConditionalOnMissingBean crea el bean solo si no existe otro del mismo tipo.",
+    "active": true
   },
   {
     "id": 69,
@@ -1032,7 +1100,8 @@
       "Proxy"
     ],
     "correct": 1,
-    "explanation": "Bridge separa la interfaz de la implementación para que puedan variar independientemente."
+    "explanation": "Bridge separa la interfaz de la implementación para que puedan variar independientemente.",
+    "active": true
   },
   {
     "id": 70,
@@ -1047,7 +1116,8 @@
       "Usando una base de datos más potente"
     ],
     "correct": 2,
-    "explanation": "Se configura replicas en el Deployment y Kubernetes gestiona los pods."
+    "explanation": "Se configura replicas en el Deployment y Kubernetes gestiona los pods.",
+    "active": true
   },
   {
     "id": 71,
@@ -1062,7 +1132,8 @@
       "Un API Gateway reactivo basado en Spring WebFlux"
     ],
     "correct": 3,
-    "explanation": "Spring Cloud Gateway proporciona enrutamiento, filtros y se basa en programación reactiva."
+    "explanation": "Spring Cloud Gateway proporciona enrutamiento, filtros y se basa en programación reactiva.",
+    "active": true
   },
   {
     "id": 72,
@@ -1077,7 +1148,8 @@
       "Solo documentación"
     ],
     "correct": 1,
-    "explanation": "Las versiones en URL o en headers Accept son prácticas comunes."
+    "explanation": "Las versiones en URL o en headers Accept son prácticas comunes.",
+    "active": true
   },
   {
     "id": 73,
@@ -1092,7 +1164,8 @@
       "Una biblioteca de aserciones para JSON"
     ],
     "correct": 2,
-    "explanation": "Spring Boot Starter Test ya incluye JUnit 5 y otras herramientas."
+    "explanation": "Spring Boot Starter Test ya incluye JUnit 5 y otras herramientas.",
+    "active": true
   },
   {
     "id": 74,
@@ -1107,7 +1180,8 @@
       "Desacoplamiento, resiliencia y escalabilidad"
     ],
     "correct": 3,
-    "explanation": "Permite que productor y consumidor evolucionen independientemente y manejar picos de carga."
+    "explanation": "Permite que productor y consumidor evolucionen independientemente y manejar picos de carga.",
+    "active": true
   },
   {
     "id": 75,
@@ -1122,7 +1196,8 @@
       "Una alerta de seguridad"
     ],
     "correct": 1,
-    "explanation": "Se usa para monitoreo y orquestadores como Kubernetes para reiniciar pods no saludables."
+    "explanation": "Se usa para monitoreo y orquestadores como Kubernetes para reiniciar pods no saludables.",
+    "active": true
   },
   {
     "id": 76,
@@ -1137,7 +1212,8 @@
       "No es posible, debe usarse OAuth2"
     ],
     "correct": 2,
-    "explanation": "Se implementa un filtro que extrae y valida el token JWT, agregándolo a la cadena."
+    "explanation": "Se implementa un filtro que extrae y valida el token JWT, agregándolo a la cadena.",
+    "active": true
   },
   {
     "id": 77,
@@ -1152,7 +1228,8 @@
       "Un pool de conexiones a base de datos rápido, usado por defecto en Spring Boot"
     ],
     "correct": 3,
-    "explanation": "Spring Boot 3.x configura HikariCP automáticamente al incluir spring-boot-starter-data-jpa."
+    "explanation": "Spring Boot 3.x configura HikariCP automáticamente al incluir spring-boot-starter-data-jpa.",
+    "active": true
   },
   {
     "id": 78,
@@ -1167,7 +1244,8 @@
       "Un balanceador de carga"
     ],
     "correct": 1,
-    "explanation": "Micrometer abstrae la recolección de métricas y Actuator las expone."
+    "explanation": "Micrometer abstrae la recolección de métricas y Actuator las expone.",
+    "active": true
   },
   {
     "id": 79,
@@ -1182,7 +1260,8 @@
       "Un archivo de configuración"
     ],
     "correct": 2,
-    "explanation": "El fat jar contiene la aplicación, dependencias y un contenedor web, ejecutable con java -jar."
+    "explanation": "El fat jar contiene la aplicación, dependencias y un contenedor web, ejecutable con java -jar.",
+    "active": true
   },
   {
     "id": 80,
@@ -1197,6 +1276,7 @@
       "Centraliza la configuración de múltiples microservicios en un repositorio externo"
     ],
     "correct": 3,
-    "explanation": "Spring Cloud Config Server sirve configuración desde un backend (Git, archivos) a los clientes."
+    "explanation": "Spring Cloud Config Server sirve configuración desde un backend (Git, archivos) a los clientes.",
+    "active": true
   }
 ]

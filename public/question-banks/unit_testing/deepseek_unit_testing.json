@@ -11,7 +11,8 @@
       "Prueba que verifica únicamente la interfaz de usuario."
     ],
     "correct": 1,
-    "explanation": "Prueba unitaria se enfoca en la unidad más pequeña de código (método, función) de forma aislada, sin dependencias externas como BD o red."
+    "explanation": "Prueba unitaria se enfoca en la unidad más pequeña de código (método, función) de forma aislada, sin dependencias externas como BD o red.",
+    "active": true
   },
   {
     "id": 2,
@@ -25,7 +26,8 @@
       "No hay diferencia significativa."
     ],
     "correct": 2,
-    "explanation": "Unit test aísla la unidad bajo prueba, reemplazando dependencias reales por dobles (mocks). Integration test prueba la comunicación entre módulos reales."
+    "explanation": "Unit test aísla la unidad bajo prueba, reemplazando dependencias reales por dobles (mocks). Integration test prueba la comunicación entre módulos reales.",
+    "active": true
   },
   {
     "id": 3,
@@ -39,7 +41,8 @@
       "Facilita la refactorización segura."
     ],
     "correct": 2,
-    "explanation": "Las pruebas unitarias se centran en lógica, no en UI. La interfaz gráfica requiere pruebas de integración o end-to-end."
+    "explanation": "Las pruebas unitarias se centran en lógica, no en UI. La interfaz gráfica requiere pruebas de integración o end-to-end.",
+    "active": true
   },
   {
     "id": 4,
@@ -54,7 +57,8 @@
       "Probar que el sistema envía un correo al loguear la excepción."
     ],
     "correct": 0,
-    "explanation": "Prueba unitaria debe validar la lógica de división y el manejo de la excepción, no la UI, BD o correo."
+    "explanation": "Prueba unitaria debe validar la lógica de división y el manejo de la excepción, no la UI, BD o correo.",
+    "active": true
   },
   {
     "id": 5,
@@ -68,7 +72,8 @@
       "Requiere conexión a internet."
     ],
     "correct": 0,
-    "explanation": "Determinismo: para las mismas entradas y estado inicial, la prueba siempre pasa o siempre falla. No debe depender de factores externos o aleatorios."
+    "explanation": "Determinismo: para las mismas entradas y estado inicial, la prueba siempre pasa o siempre falla. No debe depender de factores externos o aleatorios.",
+    "active": true
   },
   {
     "id": 6,
@@ -82,7 +87,8 @@
       "@Before"
     ],
     "correct": 1,
-    "explanation": "En JUnit 5, @BeforeEach ejecuta antes de cada método @Test. @BeforeAll se ejecuta una vez antes de todas las pruebas."
+    "explanation": "En JUnit 5, @BeforeEach ejecuta antes de cada método @Test. @BeforeAll se ejecuta una vez antes de todas las pruebas.",
+    "active": true
   },
   {
     "id": 7,
@@ -96,7 +102,8 @@
       "assertSame(null, objeto)"
     ],
     "correct": 1,
-    "explanation": "assertNull(objeto) es el método específico para verificar nulidad. assertEquals(null, objeto) también funciona pero es menos semántico."
+    "explanation": "assertNull(objeto) es el método específico para verificar nulidad. assertEquals(null, objeto) también funciona pero es menos semántico.",
+    "active": true
   },
   {
     "id": 8,
@@ -110,7 +117,8 @@
       "@ValueSource"
     ],
     "correct": 1,
-    "explanation": "@ParameterizedTest indica que el método es parametrizado. Debe combinarse con una fuente de argumentos como @ValueSource, @CsvSource, etc."
+    "explanation": "@ParameterizedTest indica que el método es parametrizado. Debe combinarse con una fuente de argumentos como @ValueSource, @CsvSource, etc.",
+    "active": true
   },
   {
     "id": 9,
@@ -125,7 +133,8 @@
       "Ninguna falla"
     ],
     "correct": 3,
-    "explanation": "Si sumar(2,3) retorna 5, todas las aserciones son correctas: 5==5, 5>4 true, 5==6 false. Todas pasan."
+    "explanation": "Si sumar(2,3) retorna 5, todas las aserciones son correctas: 5==5, 5>4 true, 5==6 false. Todas pasan.",
+    "active": true
   },
   {
     "id": 10,
@@ -139,7 +148,8 @@
       "@Test(exception = ArithmeticException.class)"
     ],
     "correct": 1,
-    "explanation": "JUnit 5 usa assertThrows, que recibe la clase de excepción y un ejecutable lambda. La opción @Test(expected) es de JUnit 4."
+    "explanation": "JUnit 5 usa assertThrows, que recibe la clase de excepción y un ejecutable lambda. La opción @Test(expected) es de JUnit 4.",
+    "active": true
   },
   {
     "id": 11,
@@ -153,7 +163,8 @@
       "Orden de prioridad basado en anotaciones @Tag."
     ],
     "correct": 2,
-    "explanation": "Sin anotación @TestMethodOrder, el orden es no determinado intencionalmente para fomentar que los tests sean independientes."
+    "explanation": "Sin anotación @TestMethodOrder, el orden es no determinado intencionalmente para fomentar que los tests sean independientes.",
+    "active": true
   },
   {
     "id": 12,
@@ -167,7 +178,8 @@
       "@BeforeClass"
     ],
     "correct": 1,
-    "explanation": "@BeforeAll (JUnit5) o @BeforeClass (JUnit4) ejecuta método estático una sola vez antes de todas las pruebas de la clase."
+    "explanation": "@BeforeAll (JUnit5) o @BeforeClass (JUnit4) ejecuta método estático una sola vez antes de todas las pruebas de la clase.",
+    "active": true
   },
   {
     "id": 13,
@@ -181,7 +193,8 @@
       "assertIterableEquals(array1, array2)"
     ],
     "correct": 1,
-    "explanation": "assertArrayEquals es específico para arrays y compara cada elemento. assertEquals para arrays en JUnit5 también funciona pero no da detalles detallados de la diferencia."
+    "explanation": "assertArrayEquals es específico para arrays y compara cada elemento. assertEquals para arrays en JUnit5 también funciona pero no da detalles detallados de la diferencia.",
+    "active": true
   },
   {
     "id": 14,
@@ -195,7 +208,8 @@
       "Ignorar una prueba solo en entornos de desarrollo."
     ],
     "correct": 1,
-    "explanation": "@Disabled desactiva la prueba o clase contenedora. No se ejecutará, pero se reportará como ignorada."
+    "explanation": "@Disabled desactiva la prueba o clase contenedora. No se ejecutará, pero se reportará como ignorada.",
+    "active": true
   },
   {
     "id": 15,
@@ -209,7 +223,8 @@
       "@ValueSource"
     ],
     "correct": 1,
-    "explanation": "@TestFactory permite generar pruebas dinámicamente. @RepeatedTest repite la misma prueba con los mismos valores, no diferentes."
+    "explanation": "@TestFactory permite generar pruebas dinámicamente. @RepeatedTest repite la misma prueba con los mismos valores, no diferentes.",
+    "active": true
   },
   {
     "id": 16,
@@ -223,7 +238,8 @@
       "org.junit:junit-bom"
     ],
     "correct": 1,
-    "explanation": "junit-jupiter-engine es el módulo núcleo para ejecutar pruebas JUnit5. El vintage permite ejecutar JUnit4."
+    "explanation": "junit-jupiter-engine es el módulo núcleo para ejecutar pruebas JUnit5. El vintage permite ejecutar JUnit4.",
+    "active": true
   },
   {
     "id": 17,
@@ -238,7 +254,8 @@
       "Falta @Rule"
     ],
     "correct": 1,
-    "explanation": "@TempDir es una extensión integrada en JUnit 5 desde versión 5.4, funciona sin anotación adicional."
+    "explanation": "@TempDir es una extensión integrada en JUnit 5 desde versión 5.4, funciona sin anotación adicional.",
+    "active": true
   },
   {
     "id": 18,
@@ -252,7 +269,8 @@
       "Automatizar pruebas de interfaz gráfica."
     ],
     "correct": 1,
-    "explanation": "Mockito permite crear mocks, stubs y verificar interacciones, facilitando el aislamiento de dependencias externas en unit tests."
+    "explanation": "Mockito permite crear mocks, stubs y verificar interacciones, facilitando el aislamiento de dependencias externas en unit tests.",
+    "active": true
   },
   {
     "id": 19,
@@ -266,7 +284,8 @@
       "Todas las anteriores son válidas en Mockito"
     ],
     "correct": 3,
-    "explanation": "Las tres formas son sintaxis válida: when-thenReturn estándar, doReturn-when para spies o métodos void, y con import estático de Mockito."
+    "explanation": "Las tres formas son sintaxis válida: when-thenReturn estándar, doReturn-when para spies o métodos void, y con import estático de Mockito.",
+    "active": true
   },
   {
     "id": 20,
@@ -281,7 +300,8 @@
       "verify(userRepository, times(1)).save(any());"
     ],
     "correct": 0,
-    "explanation": "verify(..., times(1)).save(any(User.class)) es explícito. any() también funciona pero menos específico. La opción 0 es la más correcta y explícita."
+    "explanation": "verify(..., times(1)).save(any(User.class)) es explícito. any() también funciona pero menos específico. La opción 0 es la más correcta y explícita.",
+    "active": true
   },
   {
     "id": 21,
@@ -295,7 +315,8 @@
       "@Captor"
     ],
     "correct": 0,
-    "explanation": "@Mock crea el mock. @InjectMocks inyecta los mocks (o spies) en el objeto bajo prueba. La pregunta pide la anotación para crear el mock, no para inyectar."
+    "explanation": "@Mock crea el mock. @InjectMocks inyecta los mocks (o spies) en el objeto bajo prueba. La pregunta pide la anotación para crear el mock, no para inyectar.",
+    "active": true
   },
   {
     "id": 22,
@@ -310,7 +331,8 @@
       "0"
     ],
     "correct": 1,
-    "explanation": "Por defecto, los métodos de mock retornan valores por defecto: null para objetos, false para boolean, 0 para numéricos. El método add no almacena realmente el valor."
+    "explanation": "Por defecto, los métodos de mock retornan valores por defecto: null para objetos, false para boolean, 0 para numéricos. El método add no almacena realmente el valor.",
+    "active": true
   },
   {
     "id": 23,
@@ -324,7 +346,8 @@
       "No hay diferencia, son sinónimos."
     ],
     "correct": 1,
-    "explanation": "Spy usa la implementación real del objeto a menos que se stubee. Mock tiene todas las respuestas por defecto (null, 0)."
+    "explanation": "Spy usa la implementación real del objeto a menos que se stubee. Mock tiene todas las respuestas por defecto (null, 0).",
+    "active": true
   },
   {
     "id": 24,
@@ -338,7 +361,8 @@
       "Todas las anteriores son formas válidas de capturar argumentos"
     ],
     "correct": 3,
-    "explanation": "ArgumentCaptor es la herramienta principal. @Captor es una alternativa de anotación. También se puede usar ArgumentMatcher implementado, pero es menos común. Las tres son válidas."
+    "explanation": "ArgumentCaptor es la herramienta principal. @Captor es una alternativa de anotación. También se puede usar ArgumentMatcher implementado, pero es menos común. Las tres son válidas.",
+    "active": true
   },
   {
     "id": 25,
@@ -352,7 +376,8 @@
       "Todas las anteriores"
     ],
     "correct": 3,
-    "explanation": "Todas esas anotaciones requieren inicialización. En JUnit5, @ExtendWith(MockitoExtension.class) lo hace. En JUnit4, @RunWith o MockitoAnnotations.openMocks()."
+    "explanation": "Todas esas anotaciones requieren inicialización. En JUnit5, @ExtendWith(MockitoExtension.class) lo hace. En JUnit4, @RunWith o MockitoAnnotations.openMocks().",
+    "active": true
   },
   {
     "id": 26,
@@ -367,7 +392,8 @@
       "Todas las anteriores son equivalentes en este contexto"
     ],
     "correct": 3,
-    "explanation": "never() es alias de times(0). verifyNoInteractions verifica que no haya interacción alguna. Si solo interesa un método, las tres valen."
+    "explanation": "never() es alias de times(0). verifyNoInteractions verifica que no haya interacción alguna. Si solo interesa un método, las tres valen.",
+    "active": true
   },
   {
     "id": 27,
@@ -381,7 +407,8 @@
       "Captura la excepción lanzada por el método real."
     ],
     "correct": 0,
-    "explanation": "Para métodos void, se debe usar doThrow cuando se quiere que lancen excepción. when-thenThrow no es posible en método void."
+    "explanation": "Para métodos void, se debe usar doThrow cuando se quiere que lancen excepción. when-thenThrow no es posible en método void.",
+    "active": true
   },
   {
     "id": 28,
@@ -395,7 +422,8 @@
       "Ignora los stubs no utilizados y evita excepciones por stubs no usados."
     ],
     "correct": 3,
-    "explanation": "A partir de Mockito 2, los stubs no utilizados generan advertencias o errores con StrictStubs. lenient() desactiva esa verificación estricta."
+    "explanation": "A partir de Mockito 2, los stubs no utilizados generan advertencias o errores con StrictStubs. lenient() desactiva esa verificación estricta.",
+    "active": true
   },
   {
     "id": 29,
@@ -409,7 +437,8 @@
       "No se puede, se deben usar setters públicos."
     ],
     "correct": 0,
-    "explanation": "Mockito intenta inyectar mediante constructor, setters o campos, en ese orden, usando reflexión. No requiere configuración adicional si los mocks están creados."
+    "explanation": "Mockito intenta inyectar mediante constructor, setters o campos, en ese orden, usando reflexión. No requiere configuración adicional si los mocks están creados.",
+    "active": true
   },
   {
     "id": 30,
@@ -423,7 +452,8 @@
       "TestNG Assert"
     ],
     "correct": 2,
-    "explanation": "AssertJ provee una API fluida muy legible. Hamcrest usa assertThat(..., matcher) pero no es encadenado como AssertJ."
+    "explanation": "AssertJ provee una API fluida muy legible. Hamcrest usa assertThat(..., matcher) pero no es encadenado como AssertJ.",
+    "active": true
   },
   {
     "id": 31,
@@ -437,7 +467,8 @@
       "JUnit5 tiene todas las características de TestNG, sin diferencias."
     ],
     "correct": 0,
-    "explanation": "TestNG permite definir dependencias (dependsOnMethods) y grupos, mientras que JUnit (hasta JUnit4) no. JUnit5 introdujo @TestInstance y orden, pero dependencias explícitas no son nativas."
+    "explanation": "TestNG permite definir dependencias (dependsOnMethods) y grupos, mientras que JUnit (hasta JUnit4) no. JUnit5 introdujo @TestInstance y orden, pero dependencias explícitas no son nativas.",
+    "active": true
   },
   {
     "id": 32,
@@ -451,7 +482,8 @@
       "Verifica que \"John\" es igual a la lista."
     ],
     "correct": 0,
-    "explanation": "hasItem es un matcher que verifica existencia de al menos un elemento igual al valor. Para exactamente uno, se usa contains o containsInAnyOrder."
+    "explanation": "hasItem es un matcher que verifica existencia de al menos un elemento igual al valor. Para exactamente uno, se usa contains o containsInAnyOrder.",
+    "active": true
   },
   {
     "id": 33,
@@ -465,7 +497,8 @@
       "Es un framework de pruebas de UI."
     ],
     "correct": 0,
-    "explanation": "PowerMock extiende Mockito o EasyMock permitiendo mockear código que normalmente no es posible (estáticos, final, new)."
+    "explanation": "PowerMock extiende Mockito o EasyMock permitiendo mockear código que normalmente no es posible (estáticos, final, new).",
+    "active": true
   },
   {
     "id": 34,
@@ -479,7 +512,8 @@
       "Integración con bases de datos."
     ],
     "correct": 0,
-    "explanation": "AssertJ ofrece API fluida, mensajes de error claros y muchos matchers. No mejora rendimiento, sí requiere dependencia."
+    "explanation": "AssertJ ofrece API fluida, mensajes de error claros y muchos matchers. No mejora rendimiento, sí requiere dependencia.",
+    "active": true
   },
   {
     "id": 35,
@@ -493,7 +527,8 @@
       "Prueba de estrés"
     ],
     "correct": 2,
-    "explanation": "Smoke test es un conjunto mínimo de pruebas para verificar que el sistema no \"se incendia\" antes de pruebas más profundas. Se ejecuta rápido."
+    "explanation": "Smoke test es un conjunto mínimo de pruebas para verificar que el sistema no \"se incendia\" antes de pruebas más profundas. Se ejecuta rápido.",
+    "active": true
   },
   {
     "id": 36,
@@ -507,7 +542,8 @@
       "La prueba funcional solo la hace el equipo de QA."
     ],
     "correct": 0,
-    "explanation": "Functional test prueba un comportamiento que entrega valor al usuario, usualmente involucra varios componentes, pero aún puede ser automatizada."
+    "explanation": "Functional test prueba un comportamiento que entrega valor al usuario, usualmente involucra varios componentes, pero aún puede ser automatizada.",
+    "active": true
   },
   {
     "id": 37,
@@ -521,7 +557,8 @@
       "Ejecutar pruebas solo en producción."
     ],
     "correct": 0,
-    "explanation": "Regresión: asegurar que modificación no introduzca defectos en partes que ya funcionaban."
+    "explanation": "Regresión: asegurar que modificación no introduzca defectos en partes que ya funcionaban.",
+    "active": true
   },
   {
     "id": 38,
@@ -535,7 +572,8 @@
       "Prueba de carga"
     ],
     "correct": 1,
-    "explanation": "Prueba de integración: verifica que los módulos funcionen correctamente juntos. Puede usar bases de datos reales o servicios reales pero también dobles."
+    "explanation": "Prueba de integración: verifica que los módulos funcionen correctamente juntos. Puede usar bases de datos reales o servicios reales pero también dobles.",
+    "active": true
   },
   {
     "id": 39,
@@ -549,7 +587,8 @@
       "No aparecen en la pirámide"
     ],
     "correct": 0,
-    "explanation": "La pirámide recomienda muchas pruebas unitarias (base), menos de integración y aún menos end-to-end."
+    "explanation": "La pirámide recomienda muchas pruebas unitarias (base), menos de integración y aún menos end-to-end.",
+    "active": true
   },
   {
     "id": 40,
@@ -563,7 +602,8 @@
       "Es equivalente a una prueba unitaria múltiple."
     ],
     "correct": 0,
-    "explanation": "E2E prueba el sistema integrado en un entorno similar a producción, desde la interacción del usuario hasta las capas traseras."
+    "explanation": "E2E prueba el sistema integrado en un entorno similar a producción, desde la interacción del usuario hasta las capas traseras.",
+    "active": true
   },
   {
     "id": 41,
@@ -577,7 +617,8 @@
       "Porcentaje de clases probadas."
     ],
     "correct": 0,
-    "explanation": "Line coverage (o statement coverage) mide qué líneas de código fuente fueron ejecutadas al menos una vez."
+    "explanation": "Line coverage (o statement coverage) mide qué líneas de código fuente fueron ejecutadas al menos una vez.",
+    "active": true
   },
   {
     "id": 42,
@@ -591,7 +632,8 @@
       "Surefire"
     ],
     "correct": 1,
-    "explanation": "JaCoCo es el estándar de facto, soportado por Maven, Gradle, y herramientas como Jenkins. SonarQube usa JaCoCo internamente."
+    "explanation": "JaCoCo es el estándar de facto, soportado por Maven, Gradle, y herramientas como Jenkins. SonarQube usa JaCoCo internamente.",
+    "active": true
   },
   {
     "id": 43,
@@ -605,7 +647,8 @@
       "El 80% de las excepciones fueron lanzadas."
     ],
     "correct": 1,
-    "explanation": "Branch coverage: cada posible rama booleana de una condición debe tomarse al menos una vez (verdadero y falso)."
+    "explanation": "Branch coverage: cada posible rama booleana de una condición debe tomarse al menos una vez (verdadero y falso).",
+    "active": true
   },
   {
     "id": 44,
@@ -619,7 +662,8 @@
       "Sí, es el estándar industrial."
     ],
     "correct": 1,
-    "explanation": "Alta cobertura es deseable pero no suficiente; pueden existir errores de lógica o casos no cubiertos por las aserciones."
+    "explanation": "Alta cobertura es deseable pero no suficiente; pueden existir errores de lógica o casos no cubiertos por las aserciones.",
+    "active": true
   },
   {
     "id": 45,
@@ -633,7 +677,8 @@
       "Maven Dependency Plugin"
     ],
     "correct": 0,
-    "explanation": "Surefire está diseñado para pruebas unitarias. Failsafe para pruebas de integración."
+    "explanation": "Surefire está diseñado para pruebas unitarias. Failsafe para pruebas de integración.",
+    "active": true
   },
   {
     "id": 46,
@@ -647,7 +692,8 @@
       "Es un servidor de integración continua."
     ],
     "correct": 1,
-    "explanation": "SonarQube es una plataforma de inspección continua de calidad, que muestra cobertura de pruebas, bugs, vulnerabilidades, etc."
+    "explanation": "SonarQube es una plataforma de inspección continua de calidad, que muestra cobertura de pruebas, bugs, vulnerabilidades, etc.",
+    "active": true
   },
   {
     "id": 47,
@@ -661,7 +707,8 @@
       "Mejorar el rendimiento de la aplicación."
     ],
     "correct": 0,
-    "explanation": "CI/CD integra pruebas automatizadas para validar cambios frecuentemente, evitando errores en producción."
+    "explanation": "CI/CD integra pruebas automatizadas para validar cambios frecuentemente, evitando errores en producción.",
+    "active": true
   },
   {
     "id": 48,
@@ -675,7 +722,8 @@
       "MockMVC"
     ],
     "correct": 1,
-    "explanation": "JUnit es framework para unit testing. Selenium es para UI automatizada, JMeter para carga, MockMVC para pruebas de controladores Spring."
+    "explanation": "JUnit es framework para unit testing. Selenium es para UI automatizada, JMeter para carga, MockMVC para pruebas de controladores Spring.",
+    "active": true
   },
   {
     "id": 49,
@@ -689,7 +737,8 @@
       "Arrange, Apply, Analyze"
     ],
     "correct": 0,
-    "explanation": "Arrange (preparar datos y mocks), Act (ejecutar el método bajo prueba), Assert (verificar resultados)."
+    "explanation": "Arrange (preparar datos y mocks), Act (ejecutar el método bajo prueba), Assert (verificar resultados).",
+    "active": true
   },
   {
     "id": 50,
@@ -703,7 +752,8 @@
       "registerUserShouldPersistInDatabase()"
     ],
     "correct": 0,
-    "explanation": "Nombres como test1 son poco descriptivos. Los otros nombres expresan comportamiento o condiciones. Ideal: nombre legible que describa la situación y resultado esperado."
+    "explanation": "Nombres como test1 son poco descriptivos. Los otros nombres expresan comportamiento o condiciones. Ideal: nombre legible que describa la situación y resultado esperado.",
+    "active": true
   },
   {
     "id": 51,
@@ -717,7 +767,8 @@
       "Porque el orden está determinado por el sistema operativo."
     ],
     "correct": 0,
-    "explanation": "La independencia evita que el fallo de una prueba contamine otra, y asegura que se puedan ejecutar en cualquier orden."
+    "explanation": "La independencia evita que el fallo de una prueba contamine otra, y asegura que se puedan ejecutar en cualquier orden.",
+    "active": true
   },
   {
     "id": 52,
@@ -731,7 +782,8 @@
       "Una prueba que es ignorada por @Disabled."
     ],
     "correct": 1,
-    "explanation": "Falso positivo: prueba pasa aunque el código bajo prueba es incorrecto (no detecta el error). Falso negativo: prueba falla cuando el código está correcto."
+    "explanation": "Falso positivo: prueba pasa aunque el código bajo prueba es incorrecto (no detecta el error). Falso negativo: prueba falla cuando el código está correcto.",
+    "active": true
   },
   {
     "id": 53,
@@ -745,7 +797,8 @@
       "Code -> Test -> Debug"
     ],
     "correct": 0,
-    "explanation": "TDD: primero prueba que falla (red), luego código que la hace pasar (green), luego refactorización manteniendo verde."
+    "explanation": "TDD: primero prueba que falla (red), luego código que la hace pasar (green), luego refactorización manteniendo verde.",
+    "active": true
   },
   {
     "id": 54,
@@ -759,7 +812,8 @@
       "Garantiza 100% de cobertura."
     ],
     "correct": 0,
-    "explanation": "TDD mejora el diseño, evita código innecesario y garantiza que cada funcionalidad tenga al menos una prueba automática."
+    "explanation": "TDD mejora el diseño, evita código innecesario y garantiza que cada funcionalidad tenga al menos una prueba automática.",
+    "active": true
   },
   {
     "id": 55,
@@ -773,6 +827,7 @@
       "Eliminar la suite de pruebas completa."
     ],
     "correct": 1,
-    "explanation": "TDD requiere que todas las pruebas pasen antes de añadir nueva funcionalidad. Si una prueba existente falla, se debe corregir antes de continuar."
+    "explanation": "TDD requiere que todas las pruebas pasen antes de añadir nueva funcionalidad. Si una prueba existente falla, se debe corregir antes de continuar.",
+    "active": true
   }
 ]

@@ -12,7 +12,8 @@
       "Crear redes privadas"
     ],
     "correct": 0,
-    "explanation": "Amazon S3 es un servicio de almacenamiento de objetos altamente escalable y duradero. Es común utilizarlo para almacenar archivos cargados por usuarios, imágenes, documentos PDF, respaldos, reportes y contenido estático consumido por aplicaciones backend." 
+    "explanation": "Amazon S3 es un servicio de almacenamiento de objetos altamente escalable y duradero. Es común utilizarlo para almacenar archivos cargados por usuarios, imágenes, documentos PDF, respaldos, reportes y contenido estático consumido por aplicaciones backend.",
+    "active": true
   },
   {
     "id": 2,
@@ -27,7 +28,8 @@
       "Una política IAM"
     ],
     "correct": 1,
-    "explanation": "Un Bucket es el contenedor principal utilizado por S3 para almacenar objetos. Todos los archivos almacenados en S3 pertenecen a un bucket específico y deben tener una clave única dentro de ese bucket." 
+    "explanation": "Un Bucket es el contenedor principal utilizado por S3 para almacenar objetos. Todos los archivos almacenados en S3 pertenecen a un bucket específico y deben tener una clave única dentro de ese bucket.",
+    "active": true
   },
   {
     "id": 3,
@@ -42,7 +44,8 @@
       "Reemplaza IAM"
     ],
     "correct": 2,
-    "explanation": "Versioning permite conservar múltiples versiones de un mismo objeto. Esto facilita recuperación ante eliminaciones accidentales, sobrescrituras involuntarias y errores operativos." 
+    "explanation": "Versioning permite conservar múltiples versiones de un mismo objeto. Esto facilita recuperación ante eliminaciones accidentales, sobrescrituras involuntarias y errores operativos.",
+    "active": true
   },
   {
     "id": 4,
@@ -57,7 +60,8 @@
       "Step Functions"
     ],
     "correct": 2,
-    "explanation": "Las Bucket Policies permiten definir quién puede acceder a los objetos almacenados y qué acciones están permitidas. Son una pieza fundamental para proteger contenido almacenado en S3." 
+    "explanation": "Las Bucket Policies permiten definir quién puede acceder a los objetos almacenados y qué acciones están permitidas. Son una pieza fundamental para proteger contenido almacenado en S3.",
+    "active": true
   },
   {
     "id": 5,
@@ -72,7 +76,8 @@
       "Ejecutar código serverless"
     ],
     "correct": 0,
-    "explanation": "IAM (Identity and Access Management) permite controlar quién puede acceder a recursos AWS y qué acciones puede realizar. Es uno de los servicios más importantes desde el punto de vista de seguridad." 
+    "explanation": "IAM (Identity and Access Management) permite controlar quién puede acceder a recursos AWS y qué acciones puede realizar. Es uno de los servicios más importantes desde el punto de vista de seguridad.",
+    "active": true
   },
   {
     "id": 6,
@@ -87,7 +92,8 @@
       "No existe diferencia"
     ],
     "correct": 0,
-    "explanation": "IAM Users suelen representar personas o aplicaciones específicas. IAM Roles son asumidos temporalmente por usuarios o servicios para obtener permisos sin necesidad de compartir credenciales permanentes." 
+    "explanation": "IAM Users suelen representar personas o aplicaciones específicas. IAM Roles son asumidos temporalmente por usuarios o servicios para obtener permisos sin necesidad de compartir credenciales permanentes.",
+    "active": true
   },
   {
     "id": 7,
@@ -102,7 +108,8 @@
       "Usar credenciales compartidas entre todos los servicios"
     ],
     "correct": 1,
-    "explanation": "La mejor práctica consiste en asignar un IAM Role con permisos mínimos necesarios. Esto evita exponer credenciales y sigue el principio de menor privilegio." 
+    "explanation": "La mejor práctica consiste en asignar un IAM Role con permisos mínimos necesarios. Esto evita exponer credenciales y sigue el principio de menor privilegio.",
+    "active": true
   },
   {
     "id": 8,
@@ -117,7 +124,8 @@
       "Una instancia EC2"
     ],
     "correct": 0,
-    "explanation": "Las IAM Policies son documentos JSON que describen acciones permitidas o denegadas sobre recursos AWS. Constituyen la base del modelo de autorización de AWS." 
+    "explanation": "Las IAM Policies son documentos JSON que describen acciones permitidas o denegadas sobre recursos AWS. Constituyen la base del modelo de autorización de AWS.",
+    "active": true
   },
   {
     "id": 9,
@@ -132,7 +140,8 @@
       "Usar políticas específicas"
     ],
     "correct": 2,
-    "explanation": "Las credenciales nunca deben almacenarse dentro del código fuente. Esto representa un riesgo grave de seguridad y suele ser un hallazgo común en auditorías de aplicaciones cloud." 
+    "explanation": "Las credenciales nunca deben almacenarse dentro del código fuente. Esto representa un riesgo grave de seguridad y suele ser un hallazgo común en auditorías de aplicaciones cloud.",
+    "active": true
   },
   {
     "id": 10,
@@ -147,7 +156,8 @@
       "AWS Step Functions"
     ],
     "correct": 0,
-    "explanation": "S3 fue diseñado específicamente para almacenamiento masivo de objetos con alta durabilidad, disponibilidad y escalabilidad. Es una de las soluciones más utilizadas para almacenamiento de archivos en aplicaciones backend modernas."
+    "explanation": "S3 fue diseñado específicamente para almacenamiento masivo de objetos con alta durabilidad, disponibilidad y escalabilidad. Es una de las soluciones más utilizadas para almacenamiento de archivos en aplicaciones backend modernas.",
+    "active": true
   },
   {
     "id": 11,
@@ -162,7 +172,8 @@
       "Funciona únicamente con Java"
     ],
     "correct": 0,
-    "explanation": "AWS Lambda es un servicio serverless que permite ejecutar código en respuesta a eventos sin administrar servidores. AWS se encarga del aprovisionamiento, escalado y mantenimiento de la infraestructura."
+    "explanation": "AWS Lambda es un servicio serverless que permite ejecutar código en respuesta a eventos sin administrar servidores. AWS se encarga del aprovisionamiento, escalado y mantenimiento de la infraestructura.",
+    "active": true
   },
   {
     "id": 12,
@@ -177,7 +188,8 @@
       "El sistema de monitoreo"
     ],
     "correct": 1,
-    "explanation": "El Handler es el método que AWS Lambda invoca cuando se ejecuta la función. Recibe el evento de entrada y contiene la lógica principal que debe procesarse."
+    "explanation": "El Handler es el método que AWS Lambda invoca cuando se ejecuta la función. Recibe el evento de entrada y contiene la lógica principal que debe procesarse.",
+    "active": true
   },
   {
     "id": 13,
@@ -192,7 +204,8 @@
       "Permisos IAM"
     ],
     "correct": 2,
-    "explanation": "Las variables de entorno permiten configurar comportamientos de la función sin recompilar ni modificar el código fuente. Son ampliamente utilizadas para URLs, configuraciones y parámetros operativos."
+    "explanation": "Las variables de entorno permiten configurar comportamientos de la función sin recompilar ni modificar el código fuente. Son ampliamente utilizadas para URLs, configuraciones y parámetros operativos.",
+    "active": true
   },
   {
     "id": 14,
@@ -207,7 +220,8 @@
       "Una alerta de CloudWatch"
     ],
     "correct": 1,
-    "explanation": "Cold Start ocurre cuando AWS necesita crear un nuevo entorno de ejecución para una función Lambda. Este proceso introduce una latencia adicional antes de atender la solicitud inicial."
+    "explanation": "Cold Start ocurre cuando AWS necesita crear un nuevo entorno de ejecución para una función Lambda. Este proceso introduce una latencia adicional antes de atender la solicitud inicial.",
+    "active": true
   },
   {
     "id": 15,
@@ -222,7 +236,8 @@
       "No existe diferencia"
     ],
     "correct": 0,
-    "explanation": "Durante un Warm Start Lambda reutiliza un entorno previamente inicializado, evitando gran parte del costo asociado a la creación de un nuevo runtime."
+    "explanation": "Durante un Warm Start Lambda reutiliza un entorno previamente inicializado, evitando gran parte del costo asociado a la creación de un nuevo runtime.",
+    "active": true
   },
   {
     "id": 16,
@@ -237,7 +252,8 @@
       "Elastic Load Balancer"
     ],
     "correct": 1,
-    "explanation": "Event Source Mapping actúa como puente entre servicios como SQS, DynamoDB Streams o Kinesis y Lambda. AWS realiza polling automáticamente e invoca la función cuando existen mensajes disponibles."
+    "explanation": "Event Source Mapping actúa como puente entre servicios como SQS, DynamoDB Streams o Kinesis y Lambda. AWS realiza polling automáticamente e invoca la función cuando existen mensajes disponibles.",
+    "active": true
   },
   {
     "id": 17,
@@ -252,7 +268,8 @@
       "Hacer públicos los recursos"
     ],
     "correct": 1,
-    "explanation": "Lambda debe utilizar IAM Roles para acceder a otros servicios AWS. Esto evita almacenar credenciales estáticas y facilita aplicar el principio de menor privilegio."
+    "explanation": "Lambda debe utilizar IAM Roles para acceder a otros servicios AWS. Esto evita almacenar credenciales estáticas y facilita aplicar el principio de menor privilegio.",
+    "active": true
   },
   {
     "id": 18,
@@ -267,7 +284,8 @@
       "Crear bases de datos"
     ],
     "correct": 0,
-    "explanation": "API Gateway proporciona endpoints HTTP seguros y escalables. Es común utilizarlo para exponer APIs REST que delegan el procesamiento a funciones Lambda."
+    "explanation": "API Gateway proporciona endpoints HTTP seguros y escalables. Es común utilizarlo para exponer APIs REST que delegan el procesamiento a funciones Lambda.",
+    "active": true
   },
   {
     "id": 19,
@@ -282,7 +300,8 @@
       "CloudTrail + S3"
     ],
     "correct": 0,
-    "explanation": "La combinación API Gateway + Lambda permite construir APIs escalables sin administrar servidores. Es uno de los patrones serverless más populares dentro de AWS."
+    "explanation": "La combinación API Gateway + Lambda permite construir APIs escalables sin administrar servidores. Es uno de los patrones serverless más populares dentro de AWS.",
+    "active": true
   },
   {
     "id": 20,
@@ -297,7 +316,8 @@
       "Crear más cuentas AWS"
     ],
     "correct": 0,
-    "explanation": "Reducir dependencias innecesarias, optimizar inicialización y minimizar el tamaño del deployment package ayuda a disminuir tiempos de arranque. Es una práctica habitual en aplicaciones Java desplegadas sobre Lambda."
+    "explanation": "Reducir dependencias innecesarias, optimizar inicialización y minimizar el tamaño del deployment package ayuda a disminuir tiempos de arranque. Es una práctica habitual en aplicaciones Java desplegadas sobre Lambda.",
+    "active": true
   },
   {
     "id": 21,
@@ -312,7 +332,8 @@
       "Exponer APIs REST"
     ],
     "correct": 1,
-    "explanation": "Amazon SQS permite intercambiar mensajes entre componentes sin que estos dependan directamente unos de otros. Esto mejora resiliencia, escalabilidad y tolerancia a fallos en aplicaciones distribuidas."
+    "explanation": "Amazon SQS permite intercambiar mensajes entre componentes sin que estos dependan directamente unos de otros. Esto mejora resiliencia, escalabilidad y tolerancia a fallos en aplicaciones distribuidas.",
+    "active": true
   },
   {
     "id": 22,
@@ -327,7 +348,8 @@
       "Elimina la necesidad de monitoreo"
     ],
     "correct": 0,
-    "explanation": "SQS desacopla productores y consumidores. Si uno de los servicios se encuentra temporalmente fuera de línea, los mensajes permanecen almacenados hasta ser procesados."
+    "explanation": "SQS desacopla productores y consumidores. Si uno de los servicios se encuentra temporalmente fuera de línea, los mensajes permanecen almacenados hasta ser procesados.",
+    "active": true
   },
   {
     "id": 23,
@@ -342,7 +364,8 @@
       "Ejecutar funciones Lambda"
     ],
     "correct": 1,
-    "explanation": "SNS permite publicar mensajes a múltiples consumidores simultáneamente. Es ampliamente utilizado cuando un evento debe ser distribuido a varios sistemas interesados."
+    "explanation": "SNS permite publicar mensajes a múltiples consumidores simultáneamente. Es ampliamente utilizado cuando un evento debe ser distribuido a varios sistemas interesados.",
+    "active": true
   },
   {
     "id": 24,
@@ -357,7 +380,8 @@
       "No existe diferencia relevante"
     ],
     "correct": 0,
-    "explanation": "SNS implementa un modelo publish-subscribe donde múltiples consumidores reciben el mismo evento. SQS utiliza colas para desacoplar productores y consumidores mediante procesamiento asíncrono."
+    "explanation": "SNS implementa un modelo publish-subscribe donde múltiples consumidores reciben el mismo evento. SQS utiliza colas para desacoplar productores y consumidores mediante procesamiento asíncrono.",
+    "active": true
   },
   {
     "id": 25,
@@ -372,7 +396,8 @@
       "Bucket Versioning"
     ],
     "correct": 0,
-    "explanation": "Este escenario es un ejemplo clásico de Fan-Out. SNS permite publicar un único evento que será recibido por múltiples consumidores especializados."
+    "explanation": "Este escenario es un ejemplo clásico de Fan-Out. SNS permite publicar un único evento que será recibido por múltiples consumidores especializados.",
+    "active": true
   },
   {
     "id": 26,
@@ -387,7 +412,8 @@
       "Porque incrementa el tamaño de los buckets"
     ],
     "correct": 0,
-    "explanation": "El procesamiento asíncrono permite responder rápidamente al usuario mientras las tareas más costosas son ejecutadas posteriormente por consumidores especializados."
+    "explanation": "El procesamiento asíncrono permite responder rápidamente al usuario mientras las tareas más costosas son ejecutadas posteriormente por consumidores especializados.",
+    "active": true
   },
   {
     "id": 27,
@@ -402,7 +428,8 @@
       "Gestionar permisos IAM"
     ],
     "correct": 0,
-    "explanation": "Las DLQ permiten aislar mensajes problemáticos que no pudieron procesarse correctamente tras varios intentos. Esto evita bloqueos permanentes y facilita análisis posteriores."
+    "explanation": "Las DLQ permiten aislar mensajes problemáticos que no pudieron procesarse correctamente tras varios intentos. Esto evita bloqueos permanentes y facilita análisis posteriores.",
+    "active": true
   },
   {
     "id": 28,
@@ -417,7 +444,8 @@
       "Lambda reemplaza la cola"
     ],
     "correct": 0,
-    "explanation": "Event Source Mapping permite que Lambda lea mensajes desde SQS sin necesidad de implementar mecanismos manuales de polling."
+    "explanation": "Event Source Mapping permite que Lambda lea mensajes desde SQS sin necesidad de implementar mecanismos manuales de polling.",
+    "active": true
   },
   {
     "id": 29,
@@ -432,7 +460,8 @@
       "Elimina la necesidad de bases de datos"
     ],
     "correct": 0,
-    "explanation": "Las colas ayudan a desacoplar velocidad de producción y velocidad de consumo. Esto permite absorber picos temporales sin saturar servicios downstream."
+    "explanation": "Las colas ayudan a desacoplar velocidad de producción y velocidad de consumo. Esto permite absorber picos temporales sin saturar servicios downstream.",
+    "active": true
   },
   {
     "id": 30,
@@ -447,7 +476,8 @@
       "Cuando se gestionan permisos IAM"
     ],
     "correct": 0,
-    "explanation": "SNS está diseñado para distribuir eventos a múltiples consumidores. Cuando varios sistemas necesitan reaccionar al mismo evento, SNS suele ser la solución más adecuada."
+    "explanation": "SNS está diseñado para distribuir eventos a múltiples consumidores. Cuando varios sistemas necesitan reaccionar al mismo evento, SNS suele ser la solución más adecuada.",
+    "active": true
   },
   {
     "id": 31,
@@ -462,7 +492,8 @@
       "RDS no requiere configuración de seguridad"
     ],
     "correct": 0,
-    "explanation": "Amazon RDS es un servicio administrado que reduce significativamente la carga operativa. AWS se encarga de tareas como backups automáticos, actualizaciones, monitoreo y alta disponibilidad, permitiendo que los equipos se concentren en el desarrollo de la aplicación."
+    "explanation": "Amazon RDS es un servicio administrado que reduce significativamente la carga operativa. AWS se encarga de tareas como backups automáticos, actualizaciones, monitoreo y alta disponibilidad, permitiendo que los equipos se concentren en el desarrollo de la aplicación.",
+    "active": true
   },
   {
     "id": 32,
@@ -477,7 +508,8 @@
       "Eliminan la necesidad de escalamiento"
     ],
     "correct": 0,
-    "explanation": "Las Read Replicas están diseñadas para escalar operaciones de lectura. Son especialmente útiles cuando una aplicación recibe muchas consultas pero relativamente pocas operaciones de escritura."
+    "explanation": "Las Read Replicas están diseñadas para escalar operaciones de lectura. Son especialmente útiles cuando una aplicación recibe muchas consultas pero relativamente pocas operaciones de escritura.",
+    "active": true
   },
   {
     "id": 33,
@@ -492,7 +524,8 @@
       "Utilizar únicamente CloudWatch"
     ],
     "correct": 0,
-    "explanation": "Cuando el cuello de botella se encuentra en operaciones de lectura, las Read Replicas permiten escalar horizontalmente sin afectar el nodo principal encargado de escrituras."
+    "explanation": "Cuando el cuello de botella se encuentra en operaciones de lectura, las Read Replicas permiten escalar horizontalmente sin afectar el nodo principal encargado de escrituras.",
+    "active": true
   },
   {
     "id": 34,
@@ -507,7 +540,8 @@
       "No existe diferencia importante"
     ],
     "correct": 0,
-    "explanation": "Amazon RDS está orientado a bases de datos relacionales, mientras que DynamoDB es una base de datos NoSQL diseñada para baja latencia y escalabilidad masiva."
+    "explanation": "Amazon RDS está orientado a bases de datos relacionales, mientras que DynamoDB es una base de datos NoSQL diseñada para baja latencia y escalabilidad masiva.",
+    "active": true
   },
   {
     "id": 35,
@@ -522,7 +556,8 @@
       "El Bucket S3"
     ],
     "correct": 0,
-    "explanation": "La Partition Key determina cómo se distribuyen los datos internamente. Una mala elección puede provocar particiones desbalanceadas y problemas de rendimiento."
+    "explanation": "La Partition Key determina cómo se distribuyen los datos internamente. Una mala elección puede provocar particiones desbalanceadas y problemas de rendimiento.",
+    "active": true
   },
   {
     "id": 36,
@@ -537,7 +572,8 @@
       "Porque elimina la necesidad de particiones"
     ],
     "correct": 0,
-    "explanation": "DynamoDB fue diseñado para operar a gran escala con tiempos de respuesta de pocos milisegundos, distribuyendo automáticamente los datos entre múltiples particiones."
+    "explanation": "DynamoDB fue diseñado para operar a gran escala con tiempos de respuesta de pocos milisegundos, distribuyendo automáticamente los datos entre múltiples particiones.",
+    "active": true
   },
   {
     "id": 37,
@@ -552,7 +588,8 @@
       "No puede almacenar documentos JSON"
     ],
     "correct": 0,
-    "explanation": "DynamoDB no fue diseñado para consultas relacionales complejas. El modelado de datos suele orientarse a patrones de acceso específicos y no a relaciones tradicionales mediante JOINs."
+    "explanation": "DynamoDB no fue diseñado para consultas relacionales complejas. El modelado de datos suele orientarse a patrones de acceso específicos y no a relaciones tradicionales mediante JOINs.",
+    "active": true
   },
   {
     "id": 38,
@@ -567,7 +604,8 @@
       "CloudFront"
     ],
     "correct": 0,
-    "explanation": "Los sistemas financieros suelen beneficiarse de las capacidades ACID y las relaciones complejas que ofrecen las bases de datos relacionales administradas mediante RDS."
+    "explanation": "Los sistemas financieros suelen beneficiarse de las capacidades ACID y las relaciones complejas que ofrecen las bases de datos relacionales administradas mediante RDS.",
+    "active": true
   },
   {
     "id": 39,
@@ -582,7 +620,8 @@
       "Un motor analítico tipo Data Warehouse"
     ],
     "correct": 0,
-    "explanation": "DynamoDB destaca cuando se requieren cargas masivas, baja latencia y patrones de acceso bien definidos. Es común en sistemas de alta escala y arquitecturas serverless."
+    "explanation": "DynamoDB destaca cuando se requieren cargas masivas, baja latencia y patrones de acceso bien definidos. Es común en sistemas de alta escala y arquitecturas serverless.",
+    "active": true
   },
   {
     "id": 40,
@@ -597,7 +636,8 @@
       "Cuando se requiere SQL estándar para todas las consultas"
     ],
     "correct": 0,
-    "explanation": "La decisión depende de los requisitos. DynamoDB suele ser ideal para cargas masivas y baja latencia, mientras que RDS resulta más adecuado cuando existen relaciones complejas, transacciones y consultas SQL avanzadas."
+    "explanation": "La decisión depende de los requisitos. DynamoDB suele ser ideal para cargas masivas y baja latencia, mientras que RDS resulta más adecuado cuando existen relaciones complejas, transacciones y consultas SQL avanzadas.",
+    "active": true
   },
   {
     "id": 41,
@@ -612,7 +652,8 @@
       "Ejecutar funciones Lambda"
     ],
     "correct": 1,
-    "explanation": "CloudWatch es el servicio principal de observabilidad de AWS. Permite recopilar métricas, almacenar logs, crear dashboards y configurar alarmas para detectar problemas operativos en aplicaciones y recursos cloud."
+    "explanation": "CloudWatch es el servicio principal de observabilidad de AWS. Permite recopilar métricas, almacenar logs, crear dashboards y configurar alarmas para detectar problemas operativos en aplicaciones y recursos cloud.",
+    "active": true
   },
   {
     "id": 42,
@@ -627,7 +668,8 @@
       "Versión del JDK instalada localmente"
     ],
     "correct": 0,
-    "explanation": "CPU, memoria, latencia, throughput y tasas de error son métricas típicas utilizadas para evaluar la salud y rendimiento de aplicaciones ejecutándose en AWS."
+    "explanation": "CPU, memoria, latencia, throughput y tasas de error son métricas típicas utilizadas para evaluar la salud y rendimiento de aplicaciones ejecutándose en AWS.",
+    "active": true
   },
   {
     "id": 43,
@@ -642,7 +684,8 @@
       "Eliminar la necesidad de logs"
     ],
     "correct": 0,
-    "explanation": "Las alarmas permiten detectar degradaciones o incidentes operativos rápidamente. Son una pieza fundamental para observabilidad y operación en producción."
+    "explanation": "Las alarmas permiten detectar degradaciones o incidentes operativos rápidamente. Son una pieza fundamental para observabilidad y operación en producción.",
+    "active": true
   },
   {
     "id": 44,
@@ -657,7 +700,8 @@
       "No existe diferencia importante"
     ],
     "correct": 0,
-    "explanation": "CloudTrail se enfoca en auditoría y trazabilidad de acciones realizadas dentro de AWS. CloudWatch está orientado a monitoreo operativo y observabilidad."
+    "explanation": "CloudTrail se enfoca en auditoría y trazabilidad de acciones realizadas dentro de AWS. CloudWatch está orientado a monitoreo operativo y observabilidad.",
+    "active": true
   },
   {
     "id": 45,
@@ -672,7 +716,8 @@
       "Genera funciones Lambda automáticamente"
     ],
     "correct": 0,
-    "explanation": "Secrets Manager fue diseñado específicamente para almacenar credenciales, claves API y secretos sensibles. Reduce riesgos de exposición y facilita procesos de rotación."
+    "explanation": "Secrets Manager fue diseñado específicamente para almacenar credenciales, claves API y secretos sensibles. Reduce riesgos de exposición y facilita procesos de rotación.",
+    "active": true
   },
   {
     "id": 46,
@@ -687,7 +732,8 @@
       "Gestionar tráfico HTTP"
     ],
     "correct": 0,
-    "explanation": "Parameter Store permite centralizar configuraciones y parámetros operativos. Es ampliamente utilizado para URLs, feature flags y configuraciones consumidas por múltiples aplicaciones."
+    "explanation": "Parameter Store permite centralizar configuraciones y parámetros operativos. Es ampliamente utilizado para URLs, feature flags y configuraciones consumidas por múltiples aplicaciones.",
+    "active": true
   },
   {
     "id": 47,
@@ -702,7 +748,8 @@
       "Implementar colas de mensajes"
     ],
     "correct": 0,
-    "explanation": "Cognito proporciona mecanismos de autenticación, autorización y gestión de usuarios. Permite integrarse con proveedores externos y simplifica el desarrollo de sistemas de identidad."
+    "explanation": "Cognito proporciona mecanismos de autenticación, autorización y gestión de usuarios. Permite integrarse con proveedores externos y simplifica el desarrollo de sistemas de identidad.",
+    "active": true
   },
   {
     "id": 48,
@@ -717,7 +764,8 @@
       "Reemplaza CloudFormation"
     ],
     "correct": 0,
-    "explanation": "AWS CDK permite modelar infraestructura mediante código reutilizable y versionable. Esto mejora consistencia, automatización y trazabilidad de cambios."
+    "explanation": "AWS CDK permite modelar infraestructura mediante código reutilizable y versionable. Esto mejora consistencia, automatización y trazabilidad de cambios.",
+    "active": true
   },
   {
     "id": 49,
@@ -732,7 +780,8 @@
       "Ejecutar APIs REST"
     ],
     "correct": 0,
-    "explanation": "CloudFormation permite describir infraestructura completa mediante plantillas. Esto facilita reproducibilidad, control de cambios y despliegues consistentes entre ambientes."
+    "explanation": "CloudFormation permite describir infraestructura completa mediante plantillas. Esto facilita reproducibilidad, control de cambios y despliegues consistentes entre ambientes.",
+    "active": true
   },
   {
     "id": 50,
@@ -747,6 +796,7 @@
       "Secrets Manager"
     ],
     "correct": 1,
-    "explanation": "AWS X-Ray proporciona trazabilidad distribuida entre componentes de una aplicación. Permite visualizar dependencias, identificar latencias elevadas y diagnosticar problemas en arquitecturas distribuidas."
+    "explanation": "AWS X-Ray proporciona trazabilidad distribuida entre componentes de una aplicación. Permite visualizar dependencias, identificar latencias elevadas y diagnosticar problemas en arquitecturas distribuidas.",
+    "active": true
   }
 ]

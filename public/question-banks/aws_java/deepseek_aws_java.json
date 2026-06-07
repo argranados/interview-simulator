@@ -11,7 +11,8 @@
       "EC2 con Auto Scaling"
     ],
     "correct": 1,
-    "explanation": "Elastic Beanstalk es un PaaS que abstrae servidores y contenedores. Solo subes el JAR y él gestiona el entorno. Lambda requiere adaptación para cargas largas. ECS/Fargate también es contenedor, no directo JAR."
+    "explanation": "Elastic Beanstalk es un PaaS que abstrae servidores y contenedores. Solo subes el JAR y él gestiona el entorno. Lambda requiere adaptación para cargas largas. ECS/Fargate también es contenedor, no directo JAR.",
+    "active": true
   },
   {
     "id": 2,
@@ -25,7 +26,8 @@
       "Es un error de memoria; se mitiga aumentando el timeout."
     ],
     "correct": 0,
-    "explanation": "Cold start es la latencia inicial al crear un nuevo entorno de ejecución. Para Java, AWS Lambda SnapStart (para Java 11/17) reduce drásticamente los cold starts. También se puede usar provisioned concurrency o compilar a nativo con GraalVM."
+    "explanation": "Cold start es la latencia inicial al crear un nuevo entorno de ejecución. Para Java, AWS Lambda SnapStart (para Java 11/17) reduce drásticamente los cold starts. También se puede usar provisioned concurrency o compilar a nativo con GraalVM.",
+    "active": true
   },
   {
     "id": 3,
@@ -39,7 +41,8 @@
       "Elastic Beanstalk con plataforma Docker"
     ],
     "correct": 1,
-    "explanation": "Fargate es serverless para contenedores: no gestionas servidores. Lambda soporta contenedores pero tiene limitaciones (tiempo, memoria). Elastic Beanstalk Docker también es válido pero menos estándar que ECS/Fargate hoy."
+    "explanation": "Fargate es serverless para contenedores: no gestionas servidores. Lambda soporta contenedores pero tiene limitaciones (tiempo, memoria). Elastic Beanstalk Docker también es válido pero menos estándar que ECS/Fargate hoy.",
+    "active": true
   },
   {
     "id": 4,
@@ -53,7 +56,8 @@
       "Falta una NAT Gateway"
     ],
     "correct": 1,
-    "explanation": "Los tasks de ECS en Fargate tienen grupos de seguridad. Si no permiten tráfico de salida (o entrada desde el task) al puerto de RDS, la conexión falla. RDS suele estar en subred privada, pero el problema típico es de seguridad."
+    "explanation": "Los tasks de ECS en Fargate tienen grupos de seguridad. Si no permiten tráfico de salida (o entrada desde el task) al puerto de RDS, la conexión falla. RDS suele estar en subred privada, pero el problema típico es de seguridad.",
+    "active": true
   },
   {
     "id": 5,
@@ -67,7 +71,8 @@
       "ECS Scheduled Task"
     ],
     "correct": 0,
-    "explanation": "AWS Batch está diseñado para jobs batch. Lambda tiene límite de 15 minutos. ECS Scheduled Task también sirve, pero Batch es más específico."
+    "explanation": "AWS Batch está diseñado para jobs batch. Lambda tiene límite de 15 minutos. ECS Scheduled Task también sirve, pero Batch es más específico.",
+    "active": true
   },
   {
     "id": 6,
@@ -82,7 +87,8 @@
       "Establecer políticas de bucket públicas."
     ],
     "correct": 1,
-    "explanation": "Lambda asume un rol IAM. Si ese rol tiene la política adecuada (ej. s3:PutObject), el SDK de AWS lo usará automáticamente."
+    "explanation": "Lambda asume un rol IAM. Si ese rol tiene la política adecuada (ej. s3:PutObject), el SDK de AWS lo usará automáticamente.",
+    "active": true
   },
   {
     "id": 7,
@@ -96,7 +102,8 @@
       "Un clúster de ECS."
     ],
     "correct": 0,
-    "explanation": "AZ son ubicaciones físicas aisladas con baja latencia y redundancia dentro de una región."
+    "explanation": "AZ son ubicaciones físicas aisladas con baja latencia y redundancia dentro de una región.",
+    "active": true
   },
   {
     "id": 8,
@@ -110,7 +117,8 @@
       "Usar el runtime Java 8 exclusivamente."
     ],
     "correct": 1,
-    "explanation": "Inicializar recursos (conexiones, cargar datos) fuera del handler (en el constructor o bloque estático) y activar SnapStart para Java 11/17 reduce cold starts. Aumentar memoria ayuda pero no resuelve el cold start."
+    "explanation": "Inicializar recursos (conexiones, cargar datos) fuera del handler (en el constructor o bloque estático) y activar SnapStart para Java 11/17 reduce cold starts. Aumentar memoria ayuda pero no resuelve el cold start.",
+    "active": true
   },
   {
     "id": 9,
@@ -125,7 +133,8 @@
       "Todas las anteriores son válidas dependiendo de la versión del SDK."
     ],
     "correct": 3,
-    "explanation": "Tanto S3Client.putObject (v2) como AmazonS3.putObject (v1) como TransferManager son válidas. El versionado se habilita en el bucket, no en el SDK."
+    "explanation": "Tanto S3Client.putObject (v2) como AmazonS3.putObject (v1) como TransferManager son válidas. El versionado se habilita en el bucket, no en el SDK.",
+    "active": true
   },
   {
     "id": 10,
@@ -139,7 +148,8 @@
       "No se puede, Glacier es independiente."
     ],
     "correct": 0,
-    "explanation": "Lifecycle rules permiten transición a clases como S3 Glacier después de un número de días."
+    "explanation": "Lifecycle rules permiten transición a clases como S3 Glacier después de un número de días.",
+    "active": true
   },
   {
     "id": 11,
@@ -154,7 +164,8 @@
       "CloudFront signed URL"
     ],
     "correct": 0,
-    "explanation": "El SDK proporciona generatePresignedUrl que devuelve una URL temporal con credenciales firmadas. No requiere que el archivo sea público."
+    "explanation": "El SDK proporciona generatePresignedUrl que devuelve una URL temporal con credenciales firmadas. No requiere que el archivo sea público.",
+    "active": true
   },
   {
     "id": 12,
@@ -168,7 +179,8 @@
       "1 GB"
     ],
     "correct": 1,
-    "explanation": "El tamaño máximo de un objeto en S3 es 5 TB. Para objetos mayores a 5 GB se recomienda multipart upload."
+    "explanation": "El tamaño máximo de un objeto en S3 es 5 TB. Para objetos mayores a 5 GB se recomienda multipart upload.",
+    "active": true
   },
   {
     "id": 13,
@@ -182,7 +194,8 @@
       "Cambiar a DynamoDB"
     ],
     "correct": 0,
-    "explanation": "Multi-AZ despliega una réplica en otra AZ con failover automático. Read replicas son para lecturas, no failover automático."
+    "explanation": "Multi-AZ despliega una réplica en otra AZ con failover automático. Read replicas son para lecturas, no failover automático.",
+    "active": true
   },
   {
     "id": 14,
@@ -196,7 +209,8 @@
       "Índice esparcido"
     ],
     "correct": 1,
-    "explanation": "GSI permite consultar por atributos no clave, con su propia clave de partición/ordenamiento. LSI solo funciona con la misma clave de partición."
+    "explanation": "GSI permite consultar por atributos no clave, con su propia clave de partición/ordenamiento. LSI solo funciona con la misma clave de partición.",
+    "active": true
   },
   {
     "id": 15,
@@ -210,7 +224,8 @@
       "Usar un bastion host para RDS."
     ],
     "correct": 1,
-    "explanation": "Buena práctica: RDS en subred privada, EC2 en subred pública o privada, mismo VPC, y Security Group que permita tráfico desde EC2 hacia RDS."
+    "explanation": "Buena práctica: RDS en subred privada, EC2 en subred pública o privada, mismo VPC, y Security Group que permita tráfico desde EC2 hacia RDS.",
+    "active": true
   },
   {
     "id": 16,
@@ -224,7 +239,8 @@
       "Son lo mismo con diferente nombre."
     ],
     "correct": 0,
-    "explanation": "Provisionada fija capacidad de lectura/escritura (RCU/WCU). Bajo demanda (on-demand) escala automáticamente sin planificar capacidad."
+    "explanation": "Provisionada fija capacidad de lectura/escritura (RCU/WCU). Bajo demanda (on-demand) escala automáticamente sin planificar capacidad.",
+    "active": true
   },
   {
     "id": 17,
@@ -238,7 +254,8 @@
       "Usar ElastiCache para caché de consultas."
     ],
     "correct": 0,
-    "explanation": "Las réplicas de lectura (hasta 5) permiten escalar lecturas. La aplicación debe apuntar al endpoint de réplica para consultas selectivas."
+    "explanation": "Las réplicas de lectura (hasta 5) permiten escalar lecturas. La aplicación debe apuntar al endpoint de réplica para consultas selectivas.",
+    "active": true
   },
   {
     "id": 18,
@@ -252,7 +269,8 @@
       "RDS es serverless y DynamoDB no."
     ],
     "correct": 0,
-    "explanation": "RDS ofrece motores SQL tradicionales. DynamoDB es NoSQL, escalable horizontalmente, sin esquema."
+    "explanation": "RDS ofrece motores SQL tradicionales. DynamoDB es NoSQL, escalable horizontalmente, sin esquema.",
+    "active": true
   },
   {
     "id": 19,
@@ -266,7 +284,8 @@
       "Migrar a RDS."
     ],
     "correct": 0,
-    "explanation": "Para evitar hot partitions, se puede añadir un número aleatorio (sharding) a la clave de partición y luego la aplicación barre esos valores."
+    "explanation": "Para evitar hot partitions, se puede añadir un número aleatorio (sharding) a la clave de partición y luego la aplicación barre esos valores.",
+    "active": true
   },
   {
     "id": 20,
@@ -280,7 +299,8 @@
       "VPC Peering"
     ],
     "correct": 1,
-    "explanation": "NAT Gateway se coloca en subred pública y permite que instancias en subredes privadas tengan acceso saliente a internet."
+    "explanation": "NAT Gateway se coloca en subred pública y permite que instancias en subredes privadas tengan acceso saliente a internet.",
+    "active": true
   },
   {
     "id": 21,
@@ -294,7 +314,8 @@
       "Un Application Load Balancer público"
     ],
     "correct": 1,
-    "explanation": "VPC Peering conecta dos VPCs (misma o distinta región/cuenta) usando IPs privadas. Transit Gateway para más complejidad."
+    "explanation": "VPC Peering conecta dos VPCs (misma o distinta región/cuenta) usando IPs privadas. Transit Gateway para más complejidad.",
+    "active": true
   },
   {
     "id": 22,
@@ -308,7 +329,8 @@
       "Lista de control de acceso a nivel de subred (stateless)"
     ],
     "correct": 1,
-    "explanation": "Security Groups actúan como firewall virtual a nivel de instancia/ENI, con estado (stateful). NACLs son a nivel de subred."
+    "explanation": "Security Groups actúan como firewall virtual a nivel de instancia/ENI, con estado (stateful). NACLs son a nivel de subred.",
+    "active": true
   },
   {
     "id": 23,
@@ -322,7 +344,8 @@
       "ALB no requiere VPC."
     ],
     "correct": 1,
-    "explanation": "ALB debe estar al menos en subredes públicas para recibir tráfico externo, mientras que los tasks pueden estar en privadas por seguridad."
+    "explanation": "ALB debe estar al menos en subredes públicas para recibir tráfico externo, mientras que los tasks pueden estar en privadas por seguridad.",
+    "active": true
   },
   {
     "id": 24,
@@ -336,7 +359,8 @@
       "Subred que no tiene acceso a internet."
     ],
     "correct": 0,
-    "explanation": "Una subred pública tiene asociada una tabla de rutas que envía el tráfico 0.0.0.0/0 a un Internet Gateway."
+    "explanation": "Una subred pública tiene asociada una tabla de rutas que envía el tráfico 0.0.0.0/0 a un Internet Gateway.",
+    "active": true
   },
   {
     "id": 25,
@@ -350,7 +374,8 @@
       "NAT Gateway"
     ],
     "correct": 0,
-    "explanation": "Route53 Resolver permite resolución de DNS en VPC, incluyendo endpoints de servicio. Con endpoint VPC se puede alcanzar servicios de AWS sin internet."
+    "explanation": "Route53 Resolver permite resolución de DNS en VPC, incluyendo endpoints de servicio. Con endpoint VPC se puede alcanzar servicios de AWS sin internet.",
+    "active": true
   },
   {
     "id": 26,
@@ -364,7 +389,8 @@
       "Usar solo credenciales de root."
     ],
     "correct": 1,
-    "explanation": "Mínimo privilegio significa otorgar únicamente los permisos requeridos para la tarea, reduciendo riesgos de seguridad."
+    "explanation": "Mínimo privilegio significa otorgar únicamente los permisos requeridos para la tarea, reduciendo riesgos de seguridad.",
+    "active": true
   },
   {
     "id": 27,
@@ -378,7 +404,8 @@
       "Poner el bucket público."
     ],
     "correct": 1,
-    "explanation": "Un rol de IAM para EC2 proporciona credenciales temporales automáticas mediante el metadata service. No se almacenan credenciales estáticas."
+    "explanation": "Un rol de IAM para EC2 proporciona credenciales temporales automáticas mediante el metadata service. No se almacenan credenciales estáticas.",
+    "active": true
   },
   {
     "id": 28,
@@ -392,7 +419,8 @@
       "IAM policy."
     ],
     "correct": 0,
-    "explanation": "Parameter Store con tipo SecureString o Secrets Manager están diseñados para secretos, con cifrado opcional y rotación."
+    "explanation": "Parameter Store con tipo SecureString o Secrets Manager están diseñados para secretos, con cifrado opcional y rotación.",
+    "active": true
   },
   {
     "id": 29,
@@ -406,7 +434,8 @@
       "s3:GetObject en mi-bucket-logs"
     ],
     "correct": 1,
-    "explanation": "Se necesita el permiso s3:PutObject en el recurso específico. Por seguridad, no se dan permisos amplios."
+    "explanation": "Se necesita el permiso s3:PutObject en el recurso específico. Por seguridad, no se dan permisos amplios.",
+    "active": true
   },
   {
     "id": 30,
@@ -420,7 +449,8 @@
       "GuardDuty"
     ],
     "correct": 0,
-    "explanation": "CloudTrail registra llamadas a la API de AWS (quién, qué, cuándo, desde dónde)."
+    "explanation": "CloudTrail registra llamadas a la API de AWS (quién, qué, cuándo, desde dónde).",
+    "active": true
   },
   {
     "id": 31,
@@ -435,7 +465,8 @@
       "S3ClientBuilder.defaultClient();"
     ],
     "correct": 0,
-    "explanation": "En v2, se usa builder con región. Si no se especifica el credentials provider, usa DefaultCredentialsProvider por defecto, que busca en orden: variables de entorno, perfil, metadata de EC2, etc."
+    "explanation": "En v2, se usa builder con región. Si no se especifica el credentials provider, usa DefaultCredentialsProvider por defecto, que busca en orden: variables de entorno, perfil, metadata de EC2, etc.",
+    "active": true
   },
   {
     "id": 32,
@@ -449,7 +480,8 @@
       "ThrottlingException"
     ],
     "correct": 0,
-    "explanation": "ProvisionedThroughputExceededException (en v2) indica que se excedieron las unidades de capacidad provisionadas. Se recomienda implementar exponential backoff."
+    "explanation": "ProvisionedThroughputExceededException (en v2) indica que se excedieron las unidades de capacidad provisionadas. Se recomienda implementar exponential backoff.",
+    "active": true
   },
   {
     "id": 33,
@@ -463,7 +495,8 @@
       "No existe cliente asíncrono en v2."
     ],
     "correct": 2,
-    "explanation": "El SDK v2 provee S3AsyncClient con métodos que devuelven CompletableFuture. Se construye con builder."
+    "explanation": "El SDK v2 provee S3AsyncClient con métodos que devuelven CompletableFuture. Se construye con builder.",
+    "active": true
   },
   {
     "id": 34,
@@ -477,7 +510,8 @@
       "aws-java-sdk-bom"
     ],
     "correct": 0,
-    "explanation": "En v2, la dependencia es software.amazon.awssdk:s3. Para v1, com.amazonaws:aws-java-sdk-s3."
+    "explanation": "En v2, la dependencia es software.amazon.awssdk:s3. Para v1, com.amazonaws:aws-java-sdk-s3.",
+    "active": true
   },
   {
     "id": 35,
@@ -492,7 +526,8 @@
       "No se puede, S3 no soporta paginación."
     ],
     "correct": 1,
-    "explanation": "El SDK v2 ofrece métodos paginadores (listObjectsV2Paginator) que manejan automáticamente los tokens de continuación."
+    "explanation": "El SDK v2 ofrece métodos paginadores (listObjectsV2Paginator) que manejan automáticamente los tokens de continuación.",
+    "active": true
   },
   {
     "id": 36,
@@ -506,7 +541,8 @@
       "Es el cliente de baja nivel para S3."
     ],
     "correct": 0,
-    "explanation": "SdkHttpClient (ej. ApacheHttpClient, NettyNioAsyncHttpClient) permite configurar timeouts, conexiones, etc., y reutilizarse."
+    "explanation": "SdkHttpClient (ej. ApacheHttpClient, NettyNioAsyncHttpClient) permite configurar timeouts, conexiones, etc., y reutilizarse.",
+    "active": true
   },
   {
     "id": 37,
@@ -520,7 +556,8 @@
       "Usar conexiones HTTP con pool."
     ],
     "correct": 1,
-    "explanation": "Crear clientes repetidamente dentro del handler causa overhead. Mejor inicializarlos en el constructor o bloque estático."
+    "explanation": "Crear clientes repetidamente dentro del handler causa overhead. Mejor inicializarlos en el constructor o bloque estático.",
+    "active": true
   },
   {
     "id": 38,
@@ -534,7 +571,8 @@
       "Dockerfile"
     ],
     "correct": 1,
-    "explanation": "CodeBuild usa un archivo buildspec.yml en la raíz del repositorio que especifica las fases (install, pre_build, build, post_build) y los artefactos."
+    "explanation": "CodeBuild usa un archivo buildspec.yml en la raíz del repositorio que especifica las fases (install, pre_build, build, post_build) y los artefactos.",
+    "active": true
   },
   {
     "id": 39,
@@ -548,7 +586,8 @@
       "AWS CodeArtifact"
     ],
     "correct": 0,
-    "explanation": "ECR es el registro privado de contenedores de AWS, integrado con ECS, EKS y CodeBuild."
+    "explanation": "ECR es el registro privado de contenedores de AWS, integrado con ECS, EKS y CodeBuild.",
+    "active": true
   },
   {
     "id": 40,
@@ -563,7 +602,8 @@
       "javac Main.java && docker commit"
     ],
     "correct": 0,
-    "explanation": "Primero se construye el JAR con Maven, luego se construye la imagen Docker (que copiará el JAR) usando el Dockerfile."
+    "explanation": "Primero se construye el JAR con Maven, luego se construye la imagen Docker (que copiará el JAR) usando el Dockerfile.",
+    "active": true
   },
   {
     "id": 41,
@@ -577,7 +617,8 @@
       "AWS CloudFormation"
     ],
     "correct": 0,
-    "explanation": "CodePipeline es el servicio de CI/CD nativo que integra CodeCommit, CodeBuild, CodeDeploy, y otros."
+    "explanation": "CodePipeline es el servicio de CI/CD nativo que integra CodeCommit, CodeBuild, CodeDeploy, y otros.",
+    "active": true
   },
   {
     "id": 42,
@@ -591,7 +632,8 @@
       "No requiere pruebas."
     ],
     "correct": 0,
-    "explanation": "Blue/Green despliega una nueva versión (green) junto a la actual (blue) y luego redirige tráfico, minimizando downtime."
+    "explanation": "Blue/Green despliega una nueva versión (green) junto a la actual (blue) y luego redirige tráfico, minimizando downtime.",
+    "active": true
   },
   {
     "id": 43,
@@ -605,7 +647,8 @@
       "No se puede, CloudWatch solo captura logs de Lambda."
     ],
     "correct": 0,
-    "explanation": "Existe la librería logback-cloudwatch-appender. También se puede usar el agente CloudWatch. La opción 0 es la más directa para Spring Boot con Logback."
+    "explanation": "Existe la librería logback-cloudwatch-appender. También se puede usar el agente CloudWatch. La opción 0 es la más directa para Spring Boot con Logback.",
+    "active": true
   },
   {
     "id": 44,
@@ -619,7 +662,8 @@
       "AWS Config"
     ],
     "correct": 0,
-    "explanation": "X-Ray proporciona tracing distribuido. Se integra con el SDK de AWS, Spring Boot, Lambda, etc."
+    "explanation": "X-Ray proporciona tracing distribuido. Se integra con el SDK de AWS, Spring Boot, Lambda, etc.",
+    "active": true
   },
   {
     "id": 45,
@@ -634,7 +678,8 @@
       "No se pueden enviar métricas personalizadas."
     ],
     "correct": 0,
-    "explanation": "AWS SDK para CloudWatch permite enviar métricas personalizadas con PutMetricDataRequest. También se puede usar el agente CloudWatch."
+    "explanation": "AWS SDK para CloudWatch permite enviar métricas personalizadas con PutMetricDataRequest. También se puede usar el agente CloudWatch.",
+    "active": true
   },
   {
     "id": 46,
@@ -648,7 +693,8 @@
       "CloudWatch Logs filter"
     ],
     "correct": 0,
-    "explanation": "CloudWatch Alarm supervisa métricas y puede enviar notificaciones a SNS o ejecutar acciones de Auto Scaling."
+    "explanation": "CloudWatch Alarm supervisa métricas y puede enviar notificaciones a SNS o ejecutar acciones de Auto Scaling.",
+    "active": true
   },
   {
     "id": 47,
@@ -662,7 +708,8 @@
       "EventBridge"
     ],
     "correct": 0,
-    "explanation": "SQS es cola de mensajes con al menos una entrega, visibilidad, y reenvío tras fallos. SNS es pub/sub sin cola persistente por defecto."
+    "explanation": "SQS es cola de mensajes con al menos una entrega, visibilidad, y reenvío tras fallos. SNS es pub/sub sin cola persistente por defecto.",
+    "active": true
   },
   {
     "id": 48,
@@ -676,7 +723,8 @@
       "Para procesar mensajes en paralelo sin orden."
     ],
     "correct": 0,
-    "explanation": "SQS FIFO garantiza orden estricto y mensajes únicos, pero con menor throughput. Standard ofrece mayor rendimiento sin orden."
+    "explanation": "SQS FIFO garantiza orden estricto y mensajes únicos, pero con menor throughput. Standard ofrece mayor rendimiento sin orden.",
+    "active": true
   },
   {
     "id": 49,
@@ -691,7 +739,8 @@
       "No hay forma, SQS no soporta polling."
     ],
     "correct": 0,
-    "explanation": "El patrón común es un loop que recibe mensajes (long polling) y los procesa. Se debe eliminar tras procesar."
+    "explanation": "El patrón común es un loop que recibe mensajes (long polling) y los procesa. Se debe eliminar tras procesar.",
+    "active": true
   },
   {
     "id": 50,
@@ -705,7 +754,8 @@
       "Amazon MQ"
     ],
     "correct": 0,
-    "explanation": "SNS es pub/sub: un mensaje se publica en un topic y se distribuye a todos los suscriptores."
+    "explanation": "SNS es pub/sub: un mensaje se publica en un topic y se distribuye a todos los suscriptores.",
+    "active": true
   },
   {
     "id": 51,
@@ -719,7 +769,8 @@
       "Un tipo de cola FIFO."
     ],
     "correct": 0,
-    "explanation": "DLQ captura mensajes fallidos después de superar el 'maxReceiveCount', permitiendo depurar sin bloquear la cola principal."
+    "explanation": "DLQ captura mensajes fallidos después de superar el 'maxReceiveCount', permitiendo depurar sin bloquear la cola principal.",
+    "active": true
   },
   {
     "id": 52,
@@ -733,7 +784,8 @@
       "Elastic Beanstalk"
     ],
     "correct": 0,
-    "explanation": "CloudFormation es el servicio IaC nativo. Elastic Beanstalk también tiene opciones de configuración pero es más alto nivel."
+    "explanation": "CloudFormation es el servicio IaC nativo. Elastic Beanstalk también tiene opciones de configuración pero es más alto nivel.",
+    "active": true
   },
   {
     "id": 53,
@@ -747,7 +799,8 @@
       "AWS WAF"
     ],
     "correct": 0,
-    "explanation": "CloudFront es la CDN de AWS, integrada con S3, EC2, Lambda, etc. Global Accelerator mejora el rendimiento TCP/UDP."
+    "explanation": "CloudFront es la CDN de AWS, integrada con S3, EC2, Lambda, etc. Global Accelerator mejora el rendimiento TCP/UDP.",
+    "active": true
   },
   {
     "id": 54,
@@ -761,7 +814,8 @@
       "Fargate no soporta Spring Boot."
     ],
     "correct": 0,
-    "explanation": "Fargate es serverless: AWS gestiona los servidores. EC2 launch type requiere que aprovisiones y mantengas el cluster de EC2."
+    "explanation": "Fargate es serverless: AWS gestiona los servidores. EC2 launch type requiere que aprovisiones y mantengas el cluster de EC2.",
+    "active": true
   },
   {
     "id": 55,
@@ -775,6 +829,7 @@
       "{\"Effect\": \"Allow\", \"Action\": \"s3:PutObject\", \"Resource\": \"arn:aws:s3:::mi-bucket/*\"}"
     ],
     "correct": 0,
-    "explanation": "Se debe conceder exclusivamente s3:GetObject sobre los objetos del bucket. La opción 1 es la correcta y de mínimo privilegio."
+    "explanation": "Se debe conceder exclusivamente s3:GetObject sobre los objetos del bucket. La opción 1 es la correcta y de mínimo privilegio.",
+    "active": true
   }
 ]

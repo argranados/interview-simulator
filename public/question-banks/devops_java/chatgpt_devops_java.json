@@ -12,7 +12,8 @@
       "Gestionar contenedores Docker"
     ],
     "correct": 2,
-    "explanation": "Un repositorio Git almacena el código fuente junto con todo el historial de cambios realizados por los desarrolladores. Esto permite rastrear modificaciones, colaborar entre equipos, revertir cambios problemáticos y mantener distintas ramas de trabajo de forma controlada."
+    "explanation": "Un repositorio Git almacena el código fuente junto con todo el historial de cambios realizados por los desarrolladores. Esto permite rastrear modificaciones, colaborar entre equipos, revertir cambios problemáticos y mantener distintas ramas de trabajo de forma controlada.",
+    "active": true
   },
   {
     "id": 2,
@@ -27,7 +28,8 @@
       "Reduce automáticamente los conflictos"
     ],
     "correct": 2,
-    "explanation": "Las branches permiten aislar cambios hasta que estén listos para integrarse. Esto facilita el trabajo paralelo entre desarrolladores y reduce el riesgo de introducir código incompleto en ramas principales."
+    "explanation": "Las branches permiten aislar cambios hasta que estén listos para integrarse. Esto facilita el trabajo paralelo entre desarrolladores y reduce el riesgo de introducir código incompleto en ramas principales.",
+    "active": true
   },
   {
     "id": 3,
@@ -42,7 +44,8 @@
       "git pull solo descarga cambios"
     ],
     "correct": 0,
-    "explanation": "git fetch descarga cambios desde el repositorio remoto sin modificar la rama actual. git pull realiza fetch y posteriormente merge sobre la rama activa. Esta diferencia suele preguntarse frecuentemente en entrevistas DevOps."
+    "explanation": "git fetch descarga cambios desde el repositorio remoto sin modificar la rama actual. git pull realiza fetch y posteriormente merge sobre la rama activa. Esta diferencia suele preguntarse frecuentemente en entrevistas DevOps.",
+    "active": true
   },
   {
     "id": 4,
@@ -57,7 +60,8 @@
       "Solicitar revisión antes de integrar cambios al código principal"
     ],
     "correct": 3,
-    "explanation": "Los Pull Requests permiten revisar cambios antes de incorporarlos a ramas compartidas. Facilitan revisiones de código, validaciones automáticas y discusiones técnicas dentro del equipo."
+    "explanation": "Los Pull Requests permiten revisar cambios antes de incorporarlos a ramas compartidas. Facilitan revisiones de código, validaciones automáticas y discusiones técnicas dentro del equipo.",
+    "active": true
   },
   {
     "id": 5,
@@ -72,7 +76,8 @@
       "No existe diferencia significativa"
     ],
     "correct": 2,
-    "explanation": "Merge combina historiales creando un commit de integración. Rebase mueve commits sobre una nueva base y genera un historial más lineal, aunque modifica la historia existente."
+    "explanation": "Merge combina historiales creando un commit de integración. Rebase mueve commits sobre una nueva base y genera un historial más lineal, aunque modifica la historia existente.",
+    "active": true
   },
   {
     "id": 6,
@@ -87,7 +92,8 @@
       "Ejecutar git pull nuevamente"
     ],
     "correct": 2,
-    "explanation": "Los conflictos requieren intervención manual para decidir qué cambios conservar. Una vez resueltos, los archivos se agregan nuevamente al staging area y se finaliza la operación."
+    "explanation": "Los conflictos requieren intervención manual para decidir qué cambios conservar. Una vez resueltos, los archivos se agregan nuevamente al staging area y se finaliza la operación.",
+    "active": true
   },
   {
     "id": 7,
@@ -102,7 +108,8 @@
       "develop"
     ],
     "correct": 1,
-    "explanation": "La rama main representa el estado estable y desplegable del sistema. Generalmente contiene únicamente versiones que han sido probadas y aprobadas para producción."
+    "explanation": "La rama main representa el estado estable y desplegable del sistema. Generalmente contiene únicamente versiones que han sido probadas y aprobadas para producción.",
+    "active": true
   },
   {
     "id": 8,
@@ -117,7 +124,8 @@
       "Una referencia a un punto específico de la historia utilizado para marcar versiones"
     ],
     "correct": 3,
-    "explanation": "Los tags suelen utilizarse para identificar releases o hitos importantes del proyecto. Permiten referenciar fácilmente versiones específicas del código."
+    "explanation": "Los tags suelen utilizarse para identificar releases o hitos importantes del proyecto. Permiten referenciar fácilmente versiones específicas del código.",
+    "active": true
   },
   {
     "id": 9,
@@ -132,7 +140,8 @@
       "Porque facilitan revisión de código y controles de calidad"
     ],
     "correct": 3,
-    "explanation": "Los Pull Requests introducen validaciones adicionales, revisiones por pares y ejecución automática de pipelines antes de aceptar cambios en ramas críticas."
+    "explanation": "Los Pull Requests introducen validaciones adicionales, revisiones por pares y ejecución automática de pipelines antes de aceptar cambios en ramas críticas.",
+    "active": true
   },
   {
     "id": 10,
@@ -147,7 +156,8 @@
       "Monitorizar aplicaciones"
     ],
     "correct": 0,
-    "explanation": "Git permite rastrear cambios, colaborar entre desarrolladores, recuperar versiones anteriores y coordinar el trabajo simultáneo sobre el mismo proyecto."
+    "explanation": "Git permite rastrear cambios, colaborar entre desarrolladores, recuperar versiones anteriores y coordinar el trabajo simultáneo sobre el mismo proyecto.",
+    "active": true
   },
   {
     "id": 11,
@@ -162,7 +172,8 @@
       "Automatizar despliegues a producción"
     ],
     "correct": 2,
-    "explanation": "Continuous Integration busca que los desarrolladores integren cambios frecuentemente en una rama compartida. Cada integración dispara validaciones automáticas como compilación, análisis estático y pruebas, permitiendo detectar problemas tempranamente antes de que lleguen a etapas posteriores."
+    "explanation": "Continuous Integration busca que los desarrolladores integren cambios frecuentemente en una rama compartida. Cada integración dispara validaciones automáticas como compilación, análisis estático y pruebas, permitiendo detectar problemas tempranamente antes de que lleguen a etapas posteriores.",
+    "active": true
   },
   {
     "id": 12,
@@ -177,7 +188,8 @@
       "Continuous Deployment solo funciona con Jenkins"
     ],
     "correct": 2,
-    "explanation": "Continuous Delivery automatiza el proceso hasta dejar una versión lista para liberar. Continuous Deployment va un paso más allá y realiza la publicación en producción automáticamente cuando las validaciones son exitosas."
+    "explanation": "Continuous Delivery automatiza el proceso hasta dejar una versión lista para liberar. Continuous Deployment va un paso más allá y realiza la publicación en producción automáticamente cuando las validaciones son exitosas.",
+    "active": true
   },
   {
     "id": 13,
@@ -192,7 +204,8 @@
       "Automatizar pipelines de construcción, pruebas y despliegue"
     ],
     "correct": 3,
-    "explanation": "Jenkins es un servidor de automatización ampliamente utilizado para ejecutar pipelines CI/CD. Puede detectar cambios en repositorios, compilar aplicaciones, ejecutar pruebas y desplegar artefactos en diferentes ambientes."
+    "explanation": "Jenkins es un servidor de automatización ampliamente utilizado para ejecutar pipelines CI/CD. Puede detectar cambios en repositorios, compilar aplicaciones, ejecutar pruebas y desplegar artefactos en diferentes ambientes.",
+    "active": true
   },
   {
     "id": 14,
@@ -207,7 +220,8 @@
       "Reemplaza Docker"
     ],
     "correct": 1,
-    "explanation": "GitHub Actions se integra nativamente con GitHub y permite definir pipelines mediante archivos YAML versionados junto al código. Esto simplifica configuración y mantenimiento comparado con muchas instalaciones tradicionales de Jenkins."
+    "explanation": "GitHub Actions se integra nativamente con GitHub y permite definir pipelines mediante archivos YAML versionados junto al código. Esto simplifica configuración y mantenimiento comparado con muchas instalaciones tradicionales de Jenkins.",
+    "active": true
   },
   {
     "id": 15,
@@ -222,7 +236,8 @@
       "Gestionar dependencias y automatizar builds"
     ],
     "correct": 3,
-    "explanation": "Maven es una herramienta de automatización de builds y gestión de dependencias. Permite definir librerías, plugins y ciclo de vida del proyecto mediante el archivo pom.xml."
+    "explanation": "Maven es una herramienta de automatización de builds y gestión de dependencias. Permite definir librerías, plugins y ciclo de vida del proyecto mediante el archivo pom.xml.",
+    "active": true
   },
   {
     "id": 16,
@@ -237,7 +252,8 @@
       "settings.gradle"
     ],
     "correct": 0,
-    "explanation": "El archivo pom.xml contiene dependencias, plugins, configuración de compilación y metadatos del proyecto. Es el elemento central de cualquier proyecto Maven."
+    "explanation": "El archivo pom.xml contiene dependencias, plugins, configuración de compilación y metadatos del proyecto. Es el elemento central de cualquier proyecto Maven.",
+    "active": true
   },
   {
     "id": 17,
@@ -252,7 +268,8 @@
       "Propiedades del servidor en el archivo settings.xml de Maven"
     ],
     "correct": 2,
-    "explanation": "Las coordenadas Maven identifican de forma única cada artefacto dentro de repositorios. Permiten resolver dependencias correctamente y gestionar versiones entre proyectos."
+    "explanation": "Las coordenadas Maven identifican de forma única cada artefacto dentro de repositorios. Permiten resolver dependencias correctamente y gestionar versiones entre proyectos.",
+    "active": true
   },
   {
     "id": 18,
@@ -267,7 +284,8 @@
       "Builds incrementales y mayor flexibilidad mediante DSL en Groovy o Kotlin"
     ],
     "correct": 3,
-    "explanation": "Gradle ofrece mayor flexibilidad gracias a sus DSL basados en Groovy o Kotlin y suele destacar por sus builds incrementales y optimizaciones de rendimiento en proyectos grandes."
+    "explanation": "Gradle ofrece mayor flexibilidad gracias a sus DSL basados en Groovy o Kotlin y suele destacar por sus builds incrementales y optimizaciones de rendimiento en proyectos grandes.",
+    "active": true
   },
   {
     "id": 19,
@@ -282,7 +300,8 @@
       "Compilar → Ejecutar pruebas → Generar artefacto → Desplegar"
     ],
     "correct": 3,
-    "explanation": "La secuencia habitual consiste en compilar el código, ejecutar validaciones automáticas, generar artefactos desplegables y posteriormente realizar despliegues hacia distintos ambientes."
+    "explanation": "La secuencia habitual consiste en compilar el código, ejecutar validaciones automáticas, generar artefactos desplegables y posteriormente realizar despliegues hacia distintos ambientes.",
+    "active": true
   },
   {
     "id": 20,
@@ -297,7 +316,8 @@
       "Para acelerar Docker"
     ],
     "correct": 2,
-    "explanation": "El principio Fail Fast permite detectar errores tan pronto como ocurren. Continuar ejecutando etapas posteriores sobre una build ya inválida incrementa tiempo de ejecución, costo operativo y complejidad de diagnóstico."
+    "explanation": "El principio Fail Fast permite detectar errores tan pronto como ocurren. Continuar ejecutando etapas posteriores sobre una build ya inválida incrementa tiempo de ejecución, costo operativo y complejidad de diagnóstico.",
+    "active": true
   },
   {
     "id": 21,
@@ -312,7 +332,8 @@
       "Reemplaza completamente Kubernetes"
     ],
     "correct": 2,
-    "explanation": "Uno de los principales beneficios de Docker es la portabilidad. La aplicación, junto con sus dependencias y configuración, viaja dentro de una imagen que puede ejecutarse de forma consistente en distintos entornos, reduciendo problemas clásicos como 'funciona en mi máquina'."
+    "explanation": "Uno de los principales beneficios de Docker es la portabilidad. La aplicación, junto con sus dependencias y configuración, viaja dentro de una imagen que puede ejecutarse de forma consistente en distintos entornos, reduciendo problemas clásicos como 'funciona en mi máquina'.",
+    "active": true
   },
   {
     "id": 22,
@@ -327,7 +348,8 @@
       "Una imagen es una plantilla; un contenedor es una instancia en ejecución de esa imagen"
     ],
     "correct": 3,
-    "explanation": "Una Docker Image es un paquete inmutable que contiene aplicación, dependencias y configuración. Un Container es una instancia en ejecución creada a partir de una imagen."
+    "explanation": "Una Docker Image es un paquete inmutable que contiene aplicación, dependencias y configuración. Un Container es una instancia en ejecución creada a partir de una imagen.",
+    "active": true
   },
   {
     "id": 23,
@@ -342,7 +364,8 @@
       "Declarar los volúmenes y redes que utilizará el contenedor en producción"
     ],
     "correct": 2,
-    "explanation": "Dockerfile es un archivo declarativo que especifica cómo construir una imagen. Define imagen base, copia de archivos, instalación de dependencias y comando de inicio de la aplicación."
+    "explanation": "Dockerfile es un archivo declarativo que especifica cómo construir una imagen. Define imagen base, copia de archivos, instalación de dependencias y comando de inicio de la aplicación.",
+    "active": true
   },
   {
     "id": 24,
@@ -357,7 +380,8 @@
       "-v 8080:8080"
     ],
     "correct": 0,
-    "explanation": "La opción -p permite mapear un puerto del host hacia un puerto interno del contenedor. Esto hace posible acceder a servicios que se ejecutan dentro del contenedor desde el exterior."
+    "explanation": "La opción -p permite mapear un puerto del host hacia un puerto interno del contenedor. Esto hace posible acceder a servicios que se ejecutan dentro del contenedor desde el exterior.",
+    "active": true
   },
   {
     "id": 25,
@@ -372,7 +396,8 @@
       "Reducir el tamaño de las imágenes"
     ],
     "correct": 2,
-    "explanation": "Los contenedores son efímeros. Sin mecanismos de persistencia, los datos pueden perderse cuando el contenedor desaparece. Los volúmenes permiten almacenar información fuera del ciclo de vida del contenedor."
+    "explanation": "Los contenedores son efímeros. Sin mecanismos de persistencia, los datos pueden perderse cuando el contenedor desaparece. Los volúmenes permiten almacenar información fuera del ciclo de vida del contenedor.",
+    "active": true
   },
   {
     "id": 26,
@@ -387,7 +412,8 @@
       "Reemplazar GitHub"
     ],
     "correct": 2,
-    "explanation": "Docker Compose permite definir aplicaciones compuestas por múltiples servicios, como una API Java, una base de datos y Redis, utilizando un único archivo YAML."
+    "explanation": "Docker Compose permite definir aplicaciones compuestas por múltiples servicios, como una API Java, una base de datos y Redis, utilizando un único archivo YAML.",
+    "active": true
   },
   {
     "id": 27,
@@ -402,7 +428,8 @@
       "None"
     ],
     "correct": 2,
-    "explanation": "Bridge es la red predeterminada en Docker. Permite comunicación entre contenedores del mismo host utilizando direcciones IP privadas administradas por Docker."
+    "explanation": "Bridge es la red predeterminada en Docker. Permite comunicación entre contenedores del mismo host utilizando direcciones IP privadas administradas por Docker.",
+    "active": true
   },
   {
     "id": 28,
@@ -417,7 +444,8 @@
       "Reducen superficie de ataque, tiempo de descarga y consumo de almacenamiento"
     ],
     "correct": 3,
-    "explanation": "Las imágenes pequeñas suelen descargarse más rápido, consumir menos almacenamiento y contener menos paquetes potencialmente vulnerables. Esto mejora seguridad y eficiencia operativa."
+    "explanation": "Las imágenes pequeñas suelen descargarse más rápido, consumir menos almacenamiento y contener menos paquetes potencialmente vulnerables. Esto mejora seguridad y eficiencia operativa.",
+    "active": true
   },
   {
     "id": 29,
@@ -432,7 +460,8 @@
       "ENTRYPOINT define el ejecutable principal; CMD proporciona argumentos o comportamiento por defecto"
     ],
     "correct": 3,
-    "explanation": "ENTRYPOINT define el proceso principal que se ejecutará dentro del contenedor. CMD suele utilizarse para proporcionar argumentos por defecto que pueden ser sobrescritos durante la ejecución."
+    "explanation": "ENTRYPOINT define el proceso principal que se ejecutará dentro del contenedor. CMD suele utilizarse para proporcionar argumentos por defecto que pueden ser sobrescritos durante la ejecución.",
+    "active": true
   },
   {
     "id": 30,
@@ -447,7 +476,8 @@
       "Para evitar que un contenedor consuma recursos excesivos y afecte a otros servicios"
     ],
     "correct": 3,
-    "explanation": "La limitación de recursos ayuda a mantener estabilidad en entornos compartidos. Sin restricciones, una aplicación defectuosa o con fugas de memoria podría consumir recursos críticos y afectar otros servicios ejecutándose en el mismo host."
+    "explanation": "La limitación de recursos ayuda a mantener estabilidad en entornos compartidos. Sin restricciones, una aplicación defectuosa o con fugas de memoria podría consumir recursos críticos y afectar otros servicios ejecutándose en el mismo host.",
+    "active": true
   },
   {
     "id": 31,
@@ -462,7 +492,8 @@
       "Pod"
     ],
     "correct": 3,
-    "explanation": "El Pod es la unidad mínima desplegable en Kubernetes. Generalmente contiene uno o varios contenedores que comparten red y almacenamiento. En aplicaciones Java es común que cada Pod ejecute una instancia de la aplicación."
+    "explanation": "El Pod es la unidad mínima desplegable en Kubernetes. Generalmente contiene uno o varios contenedores que comparten red y almacenamiento. En aplicaciones Java es común que cada Pod ejecute una instancia de la aplicación.",
+    "active": true
   },
   {
     "id": 32,
@@ -477,7 +508,8 @@
       "Gestionar el estado deseado de Pods y actualizaciones"
     ],
     "correct": 3,
-    "explanation": "Deployment permite declarar cuántas réplicas deben existir, qué imagen utilizar y cómo realizar actualizaciones. Kubernetes se encarga de mantener ese estado deseado automáticamente."
+    "explanation": "Deployment permite declarar cuántas réplicas deben existir, qué imagen utilizar y cómo realizar actualizaciones. Kubernetes se encarga de mantener ese estado deseado automáticamente.",
+    "active": true
   },
   {
     "id": 33,
@@ -492,7 +524,8 @@
       "Ingress"
     ],
     "correct": 1,
-    "explanation": "Los Deployments utilizan internamente ReplicaSets para garantizar que el número deseado de Pods permanezca disponible incluso si algunos fallan."
+    "explanation": "Los Deployments utilizan internamente ReplicaSets para garantizar que el número deseado de Pods permanezca disponible incluso si algunos fallan.",
+    "active": true
   },
   {
     "id": 34,
@@ -507,7 +540,8 @@
       "Escalar Pods automáticamente"
     ],
     "correct": 1,
-    "explanation": "ConfigMap permite externalizar configuraciones como URLs, parámetros o flags de comportamiento sin necesidad de reconstruir imágenes Docker."
+    "explanation": "ConfigMap permite externalizar configuraciones como URLs, parámetros o flags de comportamiento sin necesidad de reconstruir imágenes Docker.",
+    "active": true
   },
   {
     "id": 35,
@@ -522,7 +556,8 @@
       "Deployment"
     ],
     "correct": 2,
-    "explanation": "Secrets están diseñados para almacenar información sensible. Aunque no sustituyen completamente una estrategia de seguridad, son preferibles a almacenar credenciales directamente en imágenes o archivos de configuración."
+    "explanation": "Secrets están diseñados para almacenar información sensible. Aunque no sustituyen completamente una estrategia de seguridad, son preferibles a almacenar credenciales directamente en imágenes o archivos de configuración.",
+    "active": true
   },
   {
     "id": 36,
@@ -537,7 +572,8 @@
       "Reduce o elimina interrupciones para los usuarios"
     ],
     "correct": 3,
-    "explanation": "Rolling Updates reemplazan gradualmente instancias antiguas por nuevas, permitiendo mantener disponibilidad durante el despliegue."
+    "explanation": "Rolling Updates reemplazan gradualmente instancias antiguas por nuevas, permitiendo mantener disponibilidad durante el despliegue.",
+    "active": true
   },
   {
     "id": 37,
@@ -552,7 +588,8 @@
       "Gestionar secretos"
     ],
     "correct": 1,
-    "explanation": "La Liveness Probe detecta procesos bloqueados o en estados irrecuperables. Si la validación falla repetidamente, Kubernetes reinicia el contenedor."
+    "explanation": "La Liveness Probe detecta procesos bloqueados o en estados irrecuperables. Si la validación falla repetidamente, Kubernetes reinicia el contenedor.",
+    "active": true
   },
   {
     "id": 38,
@@ -567,7 +604,8 @@
       "Readiness determina si el Pod puede recibir tráfico; Liveness si debe reiniciarse"
     ],
     "correct": 3,
-    "explanation": "Readiness controla cuándo un Pod está preparado para recibir tráfico. Liveness verifica si el proceso sigue sano y requiere reinicio cuando se detectan fallos graves."
+    "explanation": "Readiness controla cuándo un Pod está preparado para recibir tráfico. Liveness verifica si el proceso sigue sano y requiere reinicio cuando se detectan fallos graves.",
+    "active": true
   },
   {
     "id": 39,
@@ -582,7 +620,8 @@
       "Reemplazar Pods fallidos manteniendo el número deseado de réplicas declarado en el Deployment"
     ],
     "correct": 2,
-    "explanation": "HPA permite escalar horizontalmente aplicaciones basándose en métricas como CPU, memoria o métricas personalizadas, mejorando capacidad de respuesta ante cambios de carga."
+    "explanation": "HPA permite escalar horizontalmente aplicaciones basándose en métricas como CPU, memoria o métricas personalizadas, mejorando capacidad de respuesta ante cambios de carga.",
+    "active": true
   },
   {
     "id": 40,
@@ -597,7 +636,8 @@
       "Los commits Git"
     ],
     "correct": 1,
-    "explanation": "Uno de los problemas más comunes es que los Pods no estén marcados como Ready o que el Service no esté correctamente configurado. En ambos casos la aplicación puede estar ejecutándose pero no recibir tráfico."
+    "explanation": "Uno de los problemas más comunes es que los Pods no estén marcados como Ready o que el Service no esté correctamente configurado. En ambos casos la aplicación puede estar ejecutándose pero no recibir tráfico.",
+    "active": true
   },
   {
     "id": 41,
@@ -612,7 +652,8 @@
       "Reemplazar herramientas CI/CD"
     ],
     "correct": 2,
-    "explanation": "La observabilidad busca proporcionar suficiente información para comprender qué está ocurriendo dentro de un sistema complejo. Se apoya principalmente en métricas, logs y trazas distribuidas para diagnosticar problemas, analizar rendimiento y entender el comportamiento de aplicaciones en producción."
+    "explanation": "La observabilidad busca proporcionar suficiente información para comprender qué está ocurriendo dentro de un sistema complejo. Se apoya principalmente en métricas, logs y trazas distribuidas para diagnosticar problemas, analizar rendimiento y entender el comportamiento de aplicaciones en producción.",
+    "active": true
   },
   {
     "id": 42,
@@ -627,7 +668,8 @@
       "Configuración de Maven"
     ],
     "correct": 1,
-    "explanation": "Las métricas representan valores numéricos que permiten medir el comportamiento de un sistema. Ejemplos comunes incluyen latencia, uso de CPU, consumo de memoria, throughput y cantidad de errores."
+    "explanation": "Las métricas representan valores numéricos que permiten medir el comportamiento de un sistema. Ejemplos comunes incluyen latencia, uso de CPU, consumo de memoria, throughput y cantidad de errores.",
+    "active": true
   },
   {
     "id": 43,
@@ -642,7 +684,8 @@
       "Medir el tiempo de respuesta individual de cada microservicio de forma independiente"
     ],
     "correct": 1,
-    "explanation": "El TraceId permite seguir una solicitud de extremo a extremo mientras atraviesa distintos componentes de la arquitectura. Es fundamental para diagnosticar problemas en sistemas distribuidos donde participan múltiples servicios."
+    "explanation": "El TraceId permite seguir una solicitud de extremo a extremo mientras atraviesa distintos componentes de la arquitectura. Es fundamental para diagnosticar problemas en sistemas distribuidos donde participan múltiples servicios.",
+    "active": true
   },
   {
     "id": 44,
@@ -657,7 +700,8 @@
       "El identificador único que agrupa todas las operaciones de una solicitud distribuida"
     ],
     "correct": 1,
-    "explanation": "Un Span representa una operación concreta realizada durante una solicitud. Por ejemplo, una llamada HTTP, una consulta a base de datos o una invocación entre microservicios."
+    "explanation": "Un Span representa una operación concreta realizada durante una solicitud. Por ejemplo, una llamada HTTP, una consulta a base de datos o una invocación entre microservicios.",
+    "active": true
   },
   {
     "id": 45,
@@ -672,7 +716,8 @@
       "El Dockerfile"
     ],
     "correct": 2,
-    "explanation": "Los logs proporcionan información detallada sobre eventos ocurridos dentro de la aplicación. Son una de las herramientas más utilizadas para diagnosticar excepciones, errores de integración y problemas operativos."
+    "explanation": "Los logs proporcionan información detallada sobre eventos ocurridos dentro de la aplicación. Son una de las herramientas más utilizadas para diagnosticar excepciones, errores de integración y problemas operativos.",
+    "active": true
   },
   {
     "id": 46,
@@ -687,7 +732,8 @@
       "Recolectar y almacenar métricas de series de tiempo desde múltiples fuentes"
     ],
     "correct": 2,
-    "explanation": "Grafana es una herramienta ampliamente utilizada para construir dashboards, visualizar métricas provenientes de distintas fuentes y configurar alertas que permitan detectar incidentes operativos."
+    "explanation": "Grafana es una herramienta ampliamente utilizada para construir dashboards, visualizar métricas provenientes de distintas fuentes y configurar alertas que permitan detectar incidentes operativos.",
+    "active": true
   },
   {
     "id": 47,
@@ -702,7 +748,8 @@
       "Una herramienta de monitoreo"
     ],
     "correct": 1,
-    "explanation": "Un SLO define metas medibles de calidad del servicio, por ejemplo mantener disponibilidad del 99.9% o tiempos de respuesta por debajo de determinado umbral. Sirve como referencia para evaluar la salud operativa."
+    "explanation": "Un SLO define metas medibles de calidad del servicio, por ejemplo mantener disponibilidad del 99.9% o tiempos de respuesta por debajo de determinado umbral. Sirve como referencia para evaluar la salud operativa.",
+    "active": true
   },
   {
     "id": 48,
@@ -717,7 +764,8 @@
       "Permite exponer gradualmente la nueva versión a un porcentaje reducido de usuarios para validar antes del rollout completo"
     ],
     "correct": 3,
-    "explanation": "Canary Deployment reduce riesgo liberando una nueva versión inicialmente a un pequeño subconjunto de usuarios. Si se detectan problemas, el impacto queda limitado antes de expandir el despliegue."
+    "explanation": "Canary Deployment reduce riesgo liberando una nueva versión inicialmente a un pequeño subconjunto de usuarios. Si se detectan problemas, el impacto queda limitado antes de expandir el despliegue.",
+    "active": true
   },
   {
     "id": 49,
@@ -732,7 +780,8 @@
       "Mantener dos entornos idénticos activos y cambiar el tráfico completo de uno al otro de forma instantánea"
     ],
     "correct": 3,
-    "explanation": "Blue-Green Deployment utiliza dos entornos completos. Uno atiende tráfico mientras el otro recibe la nueva versión. Cuando la validación es exitosa, el tráfico se redirige al entorno actualizado, facilitando rollback rápido."
+    "explanation": "Blue-Green Deployment utiliza dos entornos completos. Uno atiende tráfico mientras el otro recibe la nueva versión. Cuando la validación es exitosa, el tráfico se redirige al entorno actualizado, facilitando rollback rápido.",
+    "active": true
   },
   {
     "id": 50,
@@ -747,6 +796,7 @@
       "Reconstruir todos los contenedores sin analizar evidencia"
     ],
     "correct": 2,
-    "explanation": "Cuando una liberación coincide con un incremento de errores, la prioridad es recopilar evidencia mediante observabilidad. Métricas, logs y trazas permiten identificar rápidamente si la nueva versión es responsable. Si el impacto es significativo, un rollback controlado suele ser la decisión más segura."
+    "explanation": "Cuando una liberación coincide con un incremento de errores, la prioridad es recopilar evidencia mediante observabilidad. Métricas, logs y trazas permiten identificar rápidamente si la nueva versión es responsable. Si el impacto es significativo, un rollback controlado suele ser la decisión más segura.",
+    "active": true
   }
 ]

@@ -12,7 +12,8 @@
       "Ejecutar pruebas de integración"
     ],
     "correct": 1,
-    "explanation": "Un API Gateway centraliza el acceso a los microservicios, manejando enrutamiento, autenticación, rate limiting, etc."
+    "explanation": "Un API Gateway centraliza el acceso a los microservicios, manejando enrutamiento, autenticación, rate limiting, etc.",
+    "active": true
   },
   {
     "id": 2,
@@ -27,7 +28,8 @@
       "Balanceo de carga entre réplicas"
     ],
     "correct": 1,
-    "explanation": "SAGA coordina transacciones distribuidas mediante una secuencia de transacciones locales y eventos compensatorios."
+    "explanation": "SAGA coordina transacciones distribuidas mediante una secuencia de transacciones locales y eventos compensatorios.",
+    "active": true
   },
   {
     "id": 3,
@@ -42,7 +44,8 @@
       "Implementar circuit breaker"
     ],
     "correct": 0,
-    "explanation": "El patrón Outbox asegura que un evento se publique si y solo si la transacción en la base de datos se confirma, usando una tabla de salida."
+    "explanation": "El patrón Outbox asegura que un evento se publique si y solo si la transacción en la base de datos se confirma, usando una tabla de salida.",
+    "active": true
   },
   {
     "id": 4,
@@ -57,7 +60,8 @@
       "Big Fast Function"
     ],
     "correct": 1,
-    "explanation": "El patrón Backend For Frontend crea un backend específico para las necesidades de cada cliente (web, móvil, etc.)."
+    "explanation": "El patrón Backend For Frontend crea un backend específico para las necesidades de cada cliente (web, móvil, etc.).",
+    "active": true
   },
   {
     "id": 5,
@@ -72,7 +76,8 @@
       "Centralizar logs con ELK"
     ],
     "correct": 1,
-    "explanation": "Strangler Fig envuelve el monolito y redirige tráfico incrementalmente a nuevos servicios hasta que el monolito se apaga."
+    "explanation": "Strangler Fig envuelve el monolito y redirige tráfico incrementalmente a nuevos servicios hasta que el monolito se apaga.",
+    "active": true
   },
   {
     "id": 6,
@@ -87,7 +92,8 @@
       "No necesita definición de esquema"
     ],
     "correct": 2,
-    "explanation": "gRPC usa Protobuf, que es más compacto y rápido; además admite streaming nativo, ideal para baja latencia."
+    "explanation": "gRPC usa Protobuf, que es más compacto y rápido; además admite streaming nativo, ideal para baja latencia.",
+    "active": true
   },
   {
     "id": 7,
@@ -102,7 +108,8 @@
       "Un protocolo de mensajería asíncrona"
     ],
     "correct": 1,
-    "explanation": "Un webhook permite que un sistema notifique a otro mediante una solicitud HTTP a una URL registrada cuando ocurre un evento."
+    "explanation": "Un webhook permite que un sistema notifique a otro mediante una solicitud HTTP a una URL registrada cuando ocurre un evento.",
+    "active": true
   },
   {
     "id": 8,
@@ -117,7 +124,8 @@
       "Aumentando el timeout"
     ],
     "correct": 2,
-    "explanation": "Una clave de idempotencia permite que el servidor identifique si ya procesó una solicitud, devolviendo la misma respuesta sin efectos secundarios."
+    "explanation": "Una clave de idempotencia permite que el servidor identifique si ya procesó una solicitud, devolviendo la misma respuesta sin efectos secundarios.",
+    "active": true
   },
   {
     "id": 9,
@@ -132,7 +140,8 @@
       "GraphQL no necesita autenticación"
     ],
     "correct": 1,
-    "explanation": "GraphQL es un lenguaje de consulta para APIs que da al cliente control sobre la forma de la respuesta."
+    "explanation": "GraphQL es un lenguaje de consulta para APIs que da al cliente control sobre la forma de la respuesta.",
+    "active": true
   },
   {
     "id": 10,
@@ -147,7 +156,8 @@
       "Un mecanismo de encriptación"
     ],
     "correct": 0,
-    "explanation": "La DLQ almacena mensajes fallidos para su análisis posterior, evitando que bloqueen el procesamiento normal."
+    "explanation": "La DLQ almacena mensajes fallidos para su análisis posterior, evitando que bloqueen el procesamiento normal.",
+    "active": true
   },
   {
     "id": 11,
@@ -162,7 +172,8 @@
       "Escalado horizontal"
     ],
     "correct": 1,
-    "explanation": "El Circuit Breaker evita llamadas a servicios que están fallando, dando tiempo para recuperarse y previniendo fallos en cadena."
+    "explanation": "El Circuit Breaker evita llamadas a servicios que están fallando, dando tiempo para recuperarse y previniendo fallos en cadena.",
+    "active": true
   },
   {
     "id": 12,
@@ -177,7 +188,8 @@
       "Con un interceptor de Spring MVC"
     ],
     "correct": 1,
-    "explanation": "Resilience4j expone la anotación @CircuitBreaker para métodos; se configura también en application.yml."
+    "explanation": "Resilience4j expone la anotación @CircuitBreaker para métodos; se configura también en application.yml.",
+    "active": true
   },
   {
     "id": 13,
@@ -192,7 +204,8 @@
       "Una base de datos de respaldo"
     ],
     "correct": 0,
-    "explanation": "Bulkhead limita la cantidad de recursos (hilos, conexiones) que una parte del sistema puede consumir, conteniendo fallos."
+    "explanation": "Bulkhead limita la cantidad de recursos (hilos, conexiones) que una parte del sistema puede consumir, conteniendo fallos.",
+    "active": true
   },
   {
     "id": 14,
@@ -207,7 +220,8 @@
       "Chaos Engineering es un tipo de prueba unitaria"
     ],
     "correct": 1,
-    "explanation": "Chaos Engineering realiza experimentos en sistemas productivos para verificar su comportamiento bajo condiciones adversas."
+    "explanation": "Chaos Engineering realiza experimentos en sistemas productivos para verificar su comportamiento bajo condiciones adversas.",
+    "active": true
   },
   {
     "id": 15,
@@ -222,7 +236,8 @@
       "Usar un patrón de reintento fijo"
     ],
     "correct": 1,
-    "explanation": "El backoff exponencial evita sobrecargar el servicio destino dando tiempo para su recuperación."
+    "explanation": "El backoff exponencial evita sobrecargar el servicio destino dando tiempo para su recuperación.",
+    "active": true
   },
   {
     "id": 16,
@@ -237,7 +252,8 @@
       "Implementar una base de datos hexagonal"
     ],
     "correct": 0,
-    "explanation": "La arquitectura hexagonal aísla el núcleo de la aplicación de interfaces externas como web, base de datos, etc."
+    "explanation": "La arquitectura hexagonal aísla el núcleo de la aplicación de interfaces externas como web, base de datos, etc.",
+    "active": true
   },
   {
     "id": 17,
@@ -252,7 +268,8 @@
       "CQRS no necesita base de datos"
     ],
     "correct": 1,
-    "explanation": "CQRS (Command Query Responsibility Segregation) divide las operaciones de lectura y escritura en modelos distintos, optimizados por separado."
+    "explanation": "CQRS (Command Query Responsibility Segregation) divide las operaciones de lectura y escritura en modelos distintos, optimizados por separado.",
+    "active": true
   },
   {
     "id": 18,
@@ -267,7 +284,8 @@
       "Una forma de programación síncrona"
     ],
     "correct": 1,
-    "explanation": "EDA promueve que los servicios publiquen eventos y otros reaccionen a ellos, logrando desacoplamiento temporal."
+    "explanation": "EDA promueve que los servicios publiquen eventos y otros reaccionen a ellos, logrando desacoplamiento temporal.",
+    "active": true
   },
   {
     "id": 19,
@@ -282,7 +300,8 @@
       "Uso de varios lenguajes de programación"
     ],
     "correct": 1,
-    "explanation": "Multi-tenancy permite compartir infraestructura manteniendo los datos y configuraciones de cada cliente separados."
+    "explanation": "Multi-tenancy permite compartir infraestructura manteniendo los datos y configuraciones de cada cliente separados.",
+    "active": true
   },
   {
     "id": 20,
@@ -297,7 +316,8 @@
       "No se permiten frameworks"
     ],
     "correct": 1,
-    "explanation": "Clean Architecture define capas concéntricas donde las dependencias siempre apuntan hacia adentro, protegiendo el dominio."
+    "explanation": "Clean Architecture define capas concéntricas donde las dependencias siempre apuntan hacia adentro, protegiendo el dominio.",
+    "active": true
   },
   {
     "id": 21,
@@ -312,7 +332,8 @@
       "Una implementación de caché"
     ],
     "correct": 1,
-    "explanation": "Un Bounded Context delimita un área del dominio donde un modelo particular aplica, ayudando a gestionar la complejidad."
+    "explanation": "Un Bounded Context delimita un área del dominio donde un modelo particular aplica, ayudando a gestionar la complejidad.",
+    "active": true
   },
   {
     "id": 22,
@@ -327,7 +348,8 @@
       "Un grupo de usuarios"
     ],
     "correct": 1,
-    "explanation": "Un Aggregate es un conjunto de entidades y value objects que se manipulan a través de una raíz (Aggregate Root)."
+    "explanation": "Un Aggregate es un conjunto de entidades y value objects que se manipulan a través de una raíz (Aggregate Root).",
+    "active": true
   },
   {
     "id": 23,
@@ -342,7 +364,8 @@
       "Un patrón de comunicación asíncrona"
     ],
     "correct": 1,
-    "explanation": "Event Sourcing persiste el estado como una serie de eventos, permitiendo reconstruir el estado actual y el historial completo."
+    "explanation": "Event Sourcing persiste el estado como una serie de eventos, permitiendo reconstruir el estado actual y el historial completo.",
+    "active": true
   },
   {
     "id": 24,
@@ -357,7 +380,8 @@
       "Optimizar consultas de base de datos"
     ],
     "correct": 2,
-    "explanation": "Una ACL crea una capa de traducción entre dos bounded contexts para que el dominio no se contamine."
+    "explanation": "Una ACL crea una capa de traducción entre dos bounded contexts para que el dominio no se contamine.",
+    "active": true
   },
   {
     "id": 25,
@@ -372,7 +396,8 @@
       "Monitorizar la salud de los servicios"
     ],
     "correct": 1,
-    "explanation": "Config Server externaliza la configuración, permitiendo cambios sin reconstruir los servicios."
+    "explanation": "Config Server externaliza la configuración, permitiendo cambios sin reconstruir los servicios.",
+    "active": true
   },
   {
     "id": 26,
@@ -387,7 +412,8 @@
       "@HttpClient"
     ],
     "correct": 0,
-    "explanation": "@FeignClient declara una interfaz que se conecta a un servicio remoto, integrando balanceo de carga."
+    "explanation": "@FeignClient declara una interfaz que se conecta a un servicio remoto, integrando balanceo de carga.",
+    "active": true
   },
   {
     "id": 27,
@@ -402,7 +428,8 @@
       "No se puede usar código, solo XML"
     ],
     "correct": 1,
-    "explanation": "Se puede definir rutas programáticamente con RouteLocatorBuilder y exponer un bean de RouteLocator."
+    "explanation": "Se puede definir rutas programáticamente con RouteLocatorBuilder y exponer un bean de RouteLocator.",
+    "active": true
   },
   {
     "id": 28,
@@ -417,7 +444,8 @@
       "Crear bases de datos relacionales"
     ],
     "correct": 0,
-    "explanation": "AOP permite extraer preocupaciones transversales como logging, seguridad o métricas de manera no intrusiva."
+    "explanation": "AOP permite extraer preocupaciones transversales como logging, seguridad o métricas de manera no intrusiva.",
+    "active": true
   },
   {
     "id": 29,
@@ -432,7 +460,8 @@
       "Requiere configuración manual de EntityManager"
     ],
     "correct": 1,
-    "explanation": "@Transactional gestiona automáticamente el ciclo de vida de la transacción, haciendo rollback ante excepciones unchecked."
+    "explanation": "@Transactional gestiona automáticamente el ciclo de vida de la transacción, haciendo rollback ante excepciones unchecked.",
+    "active": true
   },
   {
     "id": 30,
@@ -447,7 +476,8 @@
       "Feign no soporta balanceo de carga"
     ],
     "correct": 0,
-    "explanation": "Spring Cloud LoadBalancer se integra con Feign; si el cliente usa un nombre de servicio, aplica balanceo."
+    "explanation": "Spring Cloud LoadBalancer se integra con Feign; si el cliente usa un nombre de servicio, aplica balanceo.",
+    "active": true
   },
   {
     "id": 31,
@@ -462,7 +492,8 @@
       "Ninguna de las anteriores"
     ],
     "correct": 0,
-    "explanation": "SLI mide el rendimiento, SLO define el objetivo, y SLA es el compromiso formal con el cliente."
+    "explanation": "SLI mide el rendimiento, SLO define el objetivo, y SLA es el compromiso formal con el cliente.",
+    "active": true
   },
   {
     "id": 32,
@@ -477,7 +508,8 @@
       "Peticiones por segundo, throughput, tiempo de respuesta y uptime"
     ],
     "correct": 0,
-    "explanation": "Las cuatro señales doradas (latency, traffic, errors, saturation) son métricas clave para monitorear sistemas."
+    "explanation": "Las cuatro señales doradas (latency, traffic, errors, saturation) son métricas clave para monitorear sistemas.",
+    "active": true
   },
   {
     "id": 33,
@@ -492,7 +524,8 @@
       "Reemplaza los logs"
     ],
     "correct": 1,
-    "explanation": "El trazado distribuido asigna un ID único a cada solicitud y lo propaga, facilitando la depuración de flujos complejos."
+    "explanation": "El trazado distribuido asigna un ID único a cada solicitud y lo propaga, facilitando la depuración de flujos complejos.",
+    "active": true
   },
   {
     "id": 34,
@@ -507,7 +540,8 @@
       "Uso de una única base de datos relacional"
     ],
     "correct": 3,
-    "explanation": "La metodología no impone una única base de datos; los servicios deben ser autónomos y pueden usar distintos backends."
+    "explanation": "La metodología no impone una única base de datos; los servicios deben ser autónomos y pueden usar distintos backends.",
+    "active": true
   },
   {
     "id": 35,
@@ -522,7 +556,8 @@
       "Logging solo se usa en desarrollo"
     ],
     "correct": 1,
-    "explanation": "Son los tres pilares de la observabilidad: logs, métricas y trazas, cada uno con propósito distinto."
+    "explanation": "Son los tres pilares de la observabilidad: logs, métricas y trazas, cada uno con propósito distinto.",
+    "active": true
   },
   {
     "id": 36,
@@ -537,7 +572,8 @@
       "Un balanceador de carga con caché"
     ],
     "correct": 0,
-    "explanation": "Cache-Aside (o lazy loading) pone a la aplicación a cargo de la lógica de caché: leer de caché, cargar de BD si miss, y almacenar."
+    "explanation": "Cache-Aside (o lazy loading) pone a la aplicación a cargo de la lógica de caché: leer de caché, cargar de BD si miss, y almacenar.",
+    "active": true
   },
   {
     "id": 37,
@@ -552,7 +588,8 @@
       "La invalidación manual de caché"
     ],
     "correct": 0,
-    "explanation": "Cache Stampede ocurre cuando un elemento muy consultado expira y múltiples peticiones intentan regenerarlo a la vez."
+    "explanation": "Cache Stampede ocurre cuando un elemento muy consultado expira y múltiples peticiones intentan regenerarlo a la vez.",
+    "active": true
   },
   {
     "id": 38,
@@ -567,7 +604,8 @@
       "Una herramienta de CI/CD"
     ],
     "correct": 1,
-    "explanation": "Redis es un almacén en memoria versátil, comúnmente usado para caché y publicación/subscripción."
+    "explanation": "Redis es un almacén en memoria versátil, comúnmente usado para caché y publicación/subscripción.",
+    "active": true
   },
   {
     "id": 39,
@@ -582,7 +620,8 @@
       "Un mecanismo de respaldo"
     ],
     "correct": 1,
-    "explanation": "CDC permite reaccionar a cambios en la base de datos (inserts, updates, deletes) y notificar a otros sistemas."
+    "explanation": "CDC permite reaccionar a cambios en la base de datos (inserts, updates, deletes) y notificar a otros sistemas.",
+    "active": true
   },
   {
     "id": 40,
@@ -597,7 +636,8 @@
       "Un tipo de caché"
     ],
     "correct": 1,
-    "explanation": "Sharding particiona los datos horizontalmente en múltiples servidores para escalar y mejorar el rendimiento."
+    "explanation": "Sharding particiona los datos horizontalmente en múltiples servidores para escalar y mejorar el rendimiento.",
+    "active": true
   },
   {
     "id": 41,
@@ -612,7 +652,8 @@
       "EKS solo funciona con Docker Swarm"
     ],
     "correct": 1,
-    "explanation": "ECS es el orquestador nativo de AWS, más sencillo; EKS ofrece Kubernetes gestionado, con mayor ecosistema y portabilidad."
+    "explanation": "ECS es el orquestador nativo de AWS, más sencillo; EKS ofrece Kubernetes gestionado, con mayor ecosistema y portabilidad.",
+    "active": true
   },
   {
     "id": 42,
@@ -627,7 +668,8 @@
       "Un balanceador de carga"
     ],
     "correct": 1,
-    "explanation": "Fargate permite ejecutar contenedores sin administrar la infraestructura subyacente de EC2."
+    "explanation": "Fargate permite ejecutar contenedores sin administrar la infraestructura subyacente de EC2.",
+    "active": true
   },
   {
     "id": 43,
@@ -642,7 +684,8 @@
       "Ejecutar pruebas en producción"
     ],
     "correct": 1,
-    "explanation": "Canary deployment reduce el riesgo exponiendo gradualmente la nueva versión a una fracción de tráfico."
+    "explanation": "Canary deployment reduce el riesgo exponiendo gradualmente la nueva versión a una fracción de tráfico.",
+    "active": true
   },
   {
     "id": 44,
@@ -657,7 +700,8 @@
       "Solo funciona con bases de datos"
     ],
     "correct": 0,
-    "explanation": "Auto Scaling ajusta la capacidad para mantener el rendimiento y optimizar costos."
+    "explanation": "Auto Scaling ajusta la capacidad para mantener el rendimiento y optimizar costos.",
+    "active": true
   },
   {
     "id": 45,
@@ -672,7 +716,8 @@
       "No se puede integrar con otros servicios de AWS"
     ],
     "correct": 1,
-    "explanation": "Lambda es un servicio serverless que ejecuta funciones sin necesidad de aprovisionar servidores."
+    "explanation": "Lambda es un servicio serverless que ejecuta funciones sin necesidad de aprovisionar servidores.",
+    "active": true
   },
   {
     "id": 46,
@@ -687,7 +732,8 @@
       "Un protocolo de autenticación"
     ],
     "correct": 1,
-    "explanation": "Una VPC permite controlar la red, subredes, gateways y reglas de firewall, crucial para aislar servicios."
+    "explanation": "Una VPC permite controlar la red, subredes, gateways y reglas de firewall, crucial para aislar servicios.",
+    "active": true
   },
   {
     "id": 47,
@@ -702,7 +748,8 @@
       "Se delega en un API Gateway"
     ],
     "correct": 1,
-    "explanation": "En coreografía, los servicios se coordinan mediante eventos; cada uno sabe cómo reaccionar a eventos de otros."
+    "explanation": "En coreografía, los servicios se coordinan mediante eventos; cada uno sabe cómo reaccionar a eventos de otros.",
+    "active": true
   },
   {
     "id": 48,
@@ -717,7 +764,8 @@
       "Generar documentación automática"
     ],
     "correct": 1,
-    "explanation": "Un API Gateway moderno maneja autenticación, autorización, limitación de tasa, y transformaciones."
+    "explanation": "Un API Gateway moderno maneja autenticación, autorización, limitación de tasa, y transformaciones.",
+    "active": true
   },
   {
     "id": 49,
@@ -732,7 +780,8 @@
       "Enviar correos de notificación"
     ],
     "correct": 1,
-    "explanation": "La DLQ aisla mensajes que no se pudieron procesar, permitiendo su inspección y reintento sin bloquear la cola principal."
+    "explanation": "La DLQ aisla mensajes que no se pudieron procesar, permitiendo su inspección y reintento sin bloquear la cola principal.",
+    "active": true
   },
   {
     "id": 50,
@@ -747,7 +796,8 @@
       "Es un sinónimo de Circuit Breaker"
     ],
     "correct": 1,
-    "explanation": "El reintento con backoff maneja fallos transitorios; si persisten, el Circuit Breaker corta las llamadas para no agravar el problema."
+    "explanation": "El reintento con backoff maneja fallos transitorios; si persisten, el Circuit Breaker corta las llamadas para no agravar el problema.",
+    "active": true
   },
   {
     "id": 51,
@@ -762,7 +812,8 @@
       "Usa exclusivamente REST"
     ],
     "correct": 1,
-    "explanation": "La arquitectura hexagonal (Ports and Adapters) desacopla el núcleo de los detalles externos mediante puertos (interfaces) y adaptadores."
+    "explanation": "La arquitectura hexagonal (Ports and Adapters) desacopla el núcleo de los detalles externos mediante puertos (interfaces) y adaptadores.",
+    "active": true
   },
   {
     "id": 52,
@@ -777,7 +828,8 @@
       "Para reducir el número de microservicios"
     ],
     "correct": 1,
-    "explanation": "Un Bounded Context bien definido ayuda a delimitar responsabilidades y evita la corrupción del modelo."
+    "explanation": "Un Bounded Context bien definido ayuda a delimitar responsabilidades y evita la corrupción del modelo.",
+    "active": true
   },
   {
     "id": 53,
@@ -792,7 +844,8 @@
       "Aumenta la latencia siempre"
     ],
     "correct": 1,
-    "explanation": "Un fallo de caché puede provocar una avalancha de consultas a la base de datos si muchos hilos ejecutan la lógica de recarga simultáneamente."
+    "explanation": "Un fallo de caché puede provocar una avalancha de consultas a la base de datos si muchos hilos ejecutan la lógica de recarga simultáneamente.",
+    "active": true
   },
   {
     "id": 54,
@@ -807,7 +860,8 @@
       "Medir el rendimiento de la base de datos"
     ],
     "correct": 1,
-    "explanation": "Los health checks (liveness/readiness) son fundamentales para la orquestación y el ruteo de tráfico."
+    "explanation": "Los health checks (liveness/readiness) son fundamentales para la orquestación y el ruteo de tráfico.",
+    "active": true
   },
   {
     "id": 55,
@@ -822,6 +876,7 @@
       "Se requiere un archivo de configuración por cada servicio"
     ],
     "correct": 1,
-    "explanation": "Spring Cloud Sleuth (ahora Micrometer Tracing) agrega automáticamente encabezados de trazado a las peticiones salientes y los extrae en las entrantes."
+    "explanation": "Spring Cloud Sleuth (ahora Micrometer Tracing) agrega automáticamente encabezados de trazado a las peticiones salientes y los extrae en las entrantes.",
+    "active": true
   }
 ]

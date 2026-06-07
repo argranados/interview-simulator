@@ -6,12 +6,12 @@
     "question": "¿Qué es un microservicio?",
     "code": null,
     "options": [
-      "Un tipo especial de servlet Java EE",
       "Un framework de Java para APIs REST",
+      "Un servicio pequeño e independiente que encapsula una función de negocio y puede desplegarse por separado",
       "Una librería de Spring para bases de datos",
-      "Un servicio pequeño e independiente que encapsula una función de negocio y puede desplegarse por separado"
+      "Un tipo especial de servlet Java EE"
     ],
-    "correct": 3,
+    "correct": 1,
     "explanation": "Un microservicio encapsula una capacidad de negocio y se comunica vía APIs (REST, mensajería). Su independencia de despliegue y escalado es su característica definitoria.",
     "active": true
   },
@@ -23,11 +23,11 @@
     "code": null,
     "options": [
       "POST",
-      "DELETE",
       "PUT",
-      "GET"
+      "GET",
+      "DELETE"
     ],
-    "correct": 3,
+    "correct": 2,
     "explanation": "GET es seguro (no modifica estado) e idempotente. POST crea, PUT reemplaza, DELETE elimina.",
     "active": true
   },
@@ -39,11 +39,11 @@
     "code": null,
     "options": [
       "GET",
-      "HEAD",
       "POST",
-      "PATCH"
+      "PATCH",
+      "HEAD"
     ],
-    "correct": 2,
+    "correct": 1,
     "explanation": "POST envía datos al servidor para crear un recurso. La respuesta típica es 201 Created con el header Location apuntando al nuevo recurso.",
     "active": true
   },
@@ -54,12 +54,12 @@
     "question": "¿Qué código de estado indica una solicitud exitosa?",
     "code": null,
     "options": [
-      "500",
-      "301",
       "404",
-      "200"
+      "500",
+      "200",
+      "301"
     ],
-    "correct": 3,
+    "correct": 2,
     "explanation": "2xx son éxito: 200 OK, 201 Created, 204 No Content. 4xx son errores del cliente, 5xx del servidor.",
     "active": true
   },
@@ -71,11 +71,11 @@
     "code": null,
     "options": [
       "500 Internal Server Error",
-      "301 Moved Permanently",
       "200 OK",
-      "400 Bad Request"
+      "400 Bad Request",
+      "301 Moved Permanently"
     ],
-    "correct": 3,
+    "correct": 2,
     "explanation": "400 Bad Request: datos malformados, validación fallida, JSON inválido. No uses 500 para errores del cliente — 500 es para errores inesperados del servidor.",
     "active": true
   },
@@ -86,12 +86,12 @@
     "question": "¿Qué código retornas al crear exitosamente un recurso?",
     "code": null,
     "options": [
-      "400 Bad Request",
       "200 OK",
+      "201 Created",
       "204 No Content",
-      "201 Created"
+      "400 Bad Request"
     ],
-    "correct": 3,
+    "correct": 1,
     "explanation": "201 Created para POST exitoso. Incluye el header Location con la URL del nuevo recurso.",
     "active": true
   },
@@ -102,12 +102,12 @@
     "question": "¿Qué código indica que el usuario no está autenticado?",
     "code": null,
     "options": [
+      "403 Forbidden",
       "404 Not Found",
-      "401 Unauthorized",
       "400 Bad Request",
-      "403 Forbidden"
+      "401 Unauthorized"
     ],
-    "correct": 1,
+    "correct": 3,
     "explanation": "401: sin credenciales válidas. 403: autenticado pero sin permisos. La distinción le dice al cliente si debe autenticarse (401) o si simplemente no tiene acceso (403).",
     "active": true
   },
@@ -118,12 +118,12 @@
     "question": "¿Qué código retornas al eliminar un recurso sin cuerpo de respuesta?",
     "code": null,
     "options": [
-      "404 Not Found",
+      "200 OK",
       "201 Created",
-      "204 No Content",
-      "200 OK"
+      "404 Not Found",
+      "204 No Content"
     ],
-    "correct": 2,
+    "correct": 3,
     "explanation": "204 No Content: éxito sin cuerpo de respuesta. Ideal para DELETE exitoso.",
     "active": true
   },
@@ -134,12 +134,12 @@
     "question": "¿Cuál URL sigue correctamente las convenciones REST para obtener el producto con ID 42?",
     "code": null,
     "options": [
-      "/fetchProduct/42",
-      "/api/products/42",
       "/getProduct?id=42",
-      "/api/getProductById/42"
+      "/api/getProductById/42",
+      "/api/products/42",
+      "/fetchProduct/42"
     ],
-    "correct": 1,
+    "correct": 2,
     "explanation": "Las URIs REST identifican recursos (sustantivos), no acciones. /api/products/42 es correcto. Las acciones se expresan con el verbo HTTP (GET, POST, etc.).",
     "active": true
   },
@@ -150,12 +150,12 @@
     "question": "¿Qué significa que REST sea stateless (sin estado)?",
     "code": null,
     "options": [
-      "No puede manejar más de una petición simultánea",
       "El servidor no puede guardar datos en BD",
-      "Cada petición contiene toda la información necesaria — el servidor no guarda contexto entre peticiones del cliente",
-      "Los endpoints no pueden retornar errores HTTP"
+      "Los endpoints no pueden retornar errores HTTP",
+      "No puede manejar más de una petición simultánea",
+      "Cada petición contiene toda la información necesaria — el servidor no guarda contexto entre peticiones del cliente"
     ],
-    "correct": 2,
+    "correct": 3,
     "explanation": "Stateless facilita el escalado horizontal: cualquier instancia puede responder cualquier petición. El cliente envía el token de auth en cada request.",
     "active": true
   },
@@ -166,12 +166,12 @@
     "question": "¿Cuál es la diferencia entre PUT y PATCH?",
     "code": null,
     "options": [
-      "PUT valida todos los campos automáticamente, PATCH no",
-      "PUT reemplaza el recurso completo; PATCH aplica actualización parcial enviando solo los campos que cambian",
       "Son idénticos — solo es preferencia del equipo",
-      "PUT crea recursos y PATCH los elimina parcialmente"
+      "PUT crea recursos y PATCH los elimina parcialmente",
+      "PUT valida todos los campos automáticamente, PATCH no",
+      "PUT reemplaza el recurso completo; PATCH aplica actualización parcial enviando solo los campos que cambian"
     ],
-    "correct": 1,
+    "correct": 3,
     "explanation": "Con PUT, campos omitidos se sobreescriben a null. PATCH solo envía los campos que cambian. PUT es idempotente por definición.",
     "active": true
   },
@@ -182,12 +182,12 @@
     "question": "¿Qué hace @SpringBootApplication?",
     "code": null,
     "options": [
-      "Expone automáticamente todos los métodos como endpoints REST",
-      "Solo configura la conexión a base de datos",
+      "Solo activa el servidor embebido Tomcat",
       "Combina @Configuration, @EnableAutoConfiguration y @ComponentScan — es el punto de entrada y activa toda la infraestructura de Spring",
-      "Solo activa el servidor embebido Tomcat"
+      "Solo configura la conexión a base de datos",
+      "Expone automáticamente todos los métodos como endpoints REST"
     ],
-    "correct": 2,
+    "correct": 1,
     "explanation": "Meta-anotación que combina las tres más usadas. Activa la autoconfiguración de Spring Boot y el escaneo de componentes en el paquete y sus subpaquetes.",
     "active": true
   },
@@ -200,10 +200,10 @@
     "options": [
       "Configura automáticamente el puerto del servidor",
       "Solo permite métodos GET en la clase",
-      "Marca la clase como un componente de acceso a datos",
-      "Combina @Controller y @ResponseBody: todos los métodos retornan datos JSON/XML directamente, sin buscar una vista"
+      "Combina @Controller y @ResponseBody: todos los métodos retornan datos JSON/XML directamente, sin buscar una vista",
+      "Marca la clase como un componente de acceso a datos"
     ],
-    "correct": 3,
+    "correct": 2,
     "explanation": "Sin @RestController, Spring buscaría una vista (Thymeleaf, JSP). Con él, el objeto retornado se serializa automáticamente a JSON usando Jackson.",
     "active": true
   },
@@ -215,11 +215,11 @@
     "code": null,
     "options": [
       "@PathVariable",
-      "@RequestParam",
+      "@RequestBody",
       "@RequestHeader",
-      "@RequestBody"
+      "@RequestParam"
     ],
-    "correct": 1,
+    "correct": 3,
     "explanation": "@RequestParam captura query params (después del ?). @PathVariable captura segmentos de la ruta /productos/{id}.",
     "active": true
   },
@@ -231,11 +231,11 @@
     "code": null,
     "options": [
       "Crea automáticamente una tabla en BD",
-      "Activa la inyección de dependencias: Spring inyecta automáticamente un bean del tipo requerido",
       "Hace el campo de solo lectura en toda la clase",
-      "Expone el campo como un endpoint público de la API"
+      "Expone el campo como un endpoint público de la API",
+      "Activa la inyección de dependencias: Spring inyecta automáticamente un bean del tipo requerido"
     ],
-    "correct": 1,
+    "correct": 3,
     "explanation": "@Autowired delega la creación e inyección a Spring. Hoy se prefiere inyección por constructor sobre inyección por campo.",
     "active": true
   },
@@ -246,12 +246,12 @@
     "question": "¿Cuál es la diferencia entre @Component, @Service y @Repository?",
     "code": null,
     "options": [
-      "Son funcionalmente equivalentes para registro de beans, pero su nombre comunica el rol: genérico, lógica de negocio y acceso a datos",
-      "Tienen comportamiento completamente distinto en runtime",
+      "@Repository solo puede usar MySQL",
       "Solo @Service y @Repository crean beans, @Component no",
-      "@Repository solo puede usar MySQL"
+      "Tienen comportamiento completamente distinto en runtime",
+      "Son funcionalmente equivalentes para registro de beans, pero su nombre comunica el rol: genérico, lógica de negocio y acceso a datos"
     ],
-    "correct": 0,
+    "correct": 3,
     "explanation": "Las tres son especializaciones de @Component. @Repository añade traducción automática de excepciones de BD a DataAccessException.",
     "active": true
   },
@@ -262,12 +262,12 @@
     "question": "¿Qué hace Spring Boot Actuator?",
     "code": null,
     "options": [
-      "Expone endpoints como /actuator/health, /actuator/metrics e /actuator/info para monitorear el estado de la aplicación en producción",
+      "Despliega la aplicación automáticamente al hacer commit",
       "Gestiona automáticamente las transacciones de BD",
       "Genera la documentación de la API desde el código",
-      "Despliega la aplicación automáticamente al hacer commit"
+      "Expone endpoints como /actuator/health, /actuator/metrics e /actuator/info para monitorear el estado de la aplicación en producción"
     ],
-    "correct": 0,
+    "correct": 3,
     "explanation": "Actuator es esencial para producción. /health es usado por Kubernetes para liveness/readiness probes. Se agrega con spring-boot-starter-actuator.",
     "active": true
   },
@@ -278,12 +278,12 @@
     "question": "¿Qué es JPA?",
     "code": null,
     "options": [
-      "Java Persistence API — estándar para mapear objetos Java a tablas de BD relacional (ORM)",
-      "Java Protocol Architecture — protocolo entre microservicios",
       "Java Parallel API — framework para procesamiento paralelo",
-      "Java Processing Application — motor de reglas de negocio"
+      "Java Protocol Architecture — protocolo entre microservicios",
+      "Java Processing Application — motor de reglas de negocio",
+      "Java Persistence API — estándar para mapear objetos Java a tablas de BD relacional (ORM)"
     ],
-    "correct": 0,
+    "correct": 3,
     "explanation": "JPA es la especificación; Hibernate es la implementación más usada. Spring Data JPA genera automáticamente las operaciones CRUD.",
     "active": true
   },
@@ -295,11 +295,11 @@
     "code": null,
     "options": [
       "Convierte el método en un endpoint REST seguro",
-      "Garantiza que las operaciones de BD del método son atómicas: si algo falla, hace rollback de todo",
+      "Cachea los resultados del método para evitar consultas repetidas",
       "Optimiza automáticamente las queries SQL del método",
-      "Cachea los resultados del método para evitar consultas repetidas"
+      "Garantiza que las operaciones de BD del método son atómicas: si algo falla, hace rollback de todo"
     ],
-    "correct": 1,
+    "correct": 3,
     "explanation": "@Transactional gestiona el ciclo de vida transaccional. RuntimeException → rollback. Fin sin error → commit.",
     "active": true
   },
@@ -310,12 +310,12 @@
     "question": "¿Qué hace @Entity en Spring Boot con JPA?",
     "code": null,
     "options": [
-      "Marca la clase Java como una entidad que debe persistirse en una tabla de base de datos",
       "Define una regla de validación para el campo",
+      "Hace la clase un bean de Spring genérico",
       "Marca el método como un endpoint REST",
-      "Hace la clase un bean de Spring genérico"
+      "Marca la clase Java como una entidad que debe persistirse en una tabla de base de datos"
     ],
-    "correct": 0,
+    "correct": 3,
     "explanation": "@Entity indica a JPA que la clase debe persistirse. @Id marca la clave primaria, @Column personaliza nombres de columnas.",
     "active": true
   },
@@ -327,11 +327,11 @@
     "code": null,
     "options": [
       "Un protocolo de compresión de datos para APIs",
-      "Política del navegador que bloquea peticiones JavaScript a un dominio diferente al de la página actual",
       "Un error de validación de Spring Boot",
-      "Un estándar de autenticación para APIs REST"
+      "Un estándar de autenticación para APIs REST",
+      "Política del navegador que bloquea peticiones JavaScript a un dominio diferente al de la página actual"
     ],
-    "correct": 1,
+    "correct": 3,
     "explanation": "CORS (Cross-Origin Resource Sharing): el navegador bloquea peticiones cross-origin por seguridad. El servidor debe incluir Access-Control-Allow-Origin. En Spring: @CrossOrigin o CorsConfiguration global.",
     "active": true
   },
@@ -342,9 +342,9 @@
     "question": "¿Qué es un API Gateway?",
     "code": null,
     "options": [
-      "Un servidor de documentación automática",
       "Una base de datos compartida entre microservicios",
       "Un framework de testing para APIs REST",
+      "Un servidor de documentación automática",
       "Punto de entrada único que enruta peticiones a los microservicios correctos y centraliza auth, rate limiting y logging"
     ],
     "correct": 3,
@@ -358,12 +358,12 @@
     "question": "¿Qué es Service Discovery en microservicios?",
     "code": null,
     "options": [
-      "El mecanismo por el que los servicios se localizan dinámicamente por nombre sin hardcodear IPs o puertos",
-      "El registro manual de servicios en el API Gateway",
+      "Una herramienta para monitorear la salud de los servicios",
       "Un proceso para documentar automáticamente los endpoints",
-      "Una herramienta para monitorear la salud de los servicios"
+      "El mecanismo por el que los servicios se localizan dinámicamente por nombre sin hardcodear IPs o puertos",
+      "El registro manual de servicios en el API Gateway"
     ],
-    "correct": 0,
+    "correct": 2,
     "explanation": "En Docker/K8s los contenedores tienen IPs dinámicas. Service Discovery (Eureka, Consul) permite encontrar servicios por nombre. Spring Cloud Eureka es la implementación más usada.",
     "active": true
   },
@@ -374,12 +374,12 @@
     "question": "¿Qué hace @SpringBootTest?",
     "code": null,
     "options": [
-      "Carga el contexto completo de Spring para tests de integración con todos los componentes reales",
-      "Solo sirve para tests unitarios rápidos",
       "Genera automáticamente casos de prueba",
-      "Marca la clase como un microservicio de testing"
+      "Marca la clase como un microservicio de testing",
+      "Solo sirve para tests unitarios rápidos",
+      "Carga el contexto completo de Spring para tests de integración con todos los componentes reales"
     ],
-    "correct": 0,
+    "correct": 3,
     "explanation": "@SpringBootTest levanta la app completa: servidor, BD, beans. Para tests más rápidos: @WebMvcTest (solo capa web) o @DataJpaTest (solo persistencia).",
     "active": true
   },
@@ -391,11 +391,11 @@
     "code": null,
     "options": [
       "Una BD en memoria para tests de integración",
+      "Una herramienta de análisis de cobertura de código",
       "Un framework alternativo a JUnit",
-      "Framework para crear objetos simulados (mocks) que permiten testear clases de forma aislada sin sus dependencias reales",
-      "Una herramienta de análisis de cobertura de código"
+      "Framework para crear objetos simulados (mocks) que permiten testear clases de forma aislada sin sus dependencias reales"
     ],
-    "correct": 2,
+    "correct": 3,
     "explanation": "Mockito crea objetos falsos. En el test de un Service, mockeas el Repository para retornar datos predefinidos sin tocar la BD real. Se usa con @Mock, @InjectMocks, when().thenReturn().",
     "active": true
   },
@@ -406,9 +406,9 @@
     "question": "¿Para qué sirve ResponseEntity<T> en Spring Boot?",
     "code": null,
     "options": [
-      "Solo es útil para respuestas de error",
       "Para serializar la respuesta a XML automáticamente",
       "Es obligatorio en todos los endpoints REST",
+      "Solo es útil para respuestas de error",
       "Permite control total de la respuesta HTTP: código de estado, headers y body desde el método del controlador"
     ],
     "correct": 3,
@@ -423,8 +423,8 @@
     "code": null,
     "options": [
       "Es un servidor web alternativo a Tomcat",
-      "Es una herramienta de monitoreo de aplicaciones Java",
       "Es un framework Java para crear contenedores",
+      "Es una herramienta de monitoreo de aplicaciones Java",
       "Empaqueta una app con todas sus dependencias en una imagen portátil que corre igual en cualquier entorno"
     ],
     "correct": 3,
@@ -439,11 +439,11 @@
     "code": null,
     "options": [
       "Container Integration / Container Deployment",
+      "Code Inspection / Code Distribution",
       "Component Integration / Component Distribution",
-      "Continuous Integration / Continuous Deployment: automatiza compilación, testing y despliegue al hacer cambios en el código",
-      "Code Inspection / Code Distribution"
+      "Continuous Integration / Continuous Deployment: automatiza compilación, testing y despliegue al hacer cambios en el código"
     ],
-    "correct": 2,
+    "correct": 3,
     "explanation": "CI: cada commit activa tests automáticos. CD: si pasan, se despliega automáticamente. Con 10+ microservicios, CI/CD es imprescindible.",
     "active": true
   },
@@ -454,12 +454,12 @@
     "question": "¿Qué proporciona JpaRepository automáticamente?",
     "code": null,
     "options": [
-      "Solo funciona con bases de datos MySQL",
-      "findAll(), findById(), save(), delete() y más operaciones CRUD sin necesidad de implementación manual",
       "Solo métodos de lectura — los de escritura hay que implementarlos",
-      "Requiere implementar manualmente todos los métodos"
+      "Requiere implementar manualmente todos los métodos",
+      "Solo funciona con bases de datos MySQL",
+      "findAll(), findById(), save(), delete() y más operaciones CRUD sin necesidad de implementación manual"
     ],
-    "correct": 1,
+    "correct": 3,
     "explanation": "Solo defines la interfaz: interface ProductRepository extends JpaRepository<Product, Long>. Spring Data genera toda la implementación.",
     "active": true
   },
@@ -471,11 +471,11 @@
     "code": null,
     "options": [
       "web.xml",
+      "springboot.json",
       "config.xml",
-      "application.properties o application.yml",
-      "springboot.json"
+      "application.properties o application.yml"
     ],
-    "correct": 2,
+    "correct": 3,
     "explanation": "application.properties/yml define puerto, datasource, propiedades personalizadas, perfiles activos. Spring Boot lo carga automáticamente al iniciar.",
     "active": true
   },
@@ -486,12 +486,12 @@
     "question": "¿Qué hace @PathVariable en la anotación @GetMapping(\"/productos/{id}\")?",
     "code": null,
     "options": [
-      "Extrae el valor variable del segmento {id} de la URL y lo pasa como parámetro al método",
-      "Lee variables del application.properties",
+      "Lee parámetros del query string (?key=value)",
       "Lee el body JSON de la petición",
-      "Lee parámetros del query string (?key=value)"
+      "Lee variables del application.properties",
+      "Extrae el valor variable del segmento {id} de la URL y lo pasa como parámetro al método"
     ],
-    "correct": 0,
+    "correct": 3,
     "explanation": "Con /productos/42, @PathVariable Long id tendrá el valor 42. @PathVariable vincula un segmento dinámico de la URI al parámetro del método.",
     "active": true
   },
@@ -502,12 +502,12 @@
     "question": "¿Qué header HTTP se usa para enviar un token de autenticación?",
     "code": null,
     "options": [
-      "Authorization",
       "Content-Type",
+      "Accept",
       "X-API-Version",
-      "Accept"
+      "Authorization"
     ],
-    "correct": 0,
+    "correct": 3,
     "explanation": "Authorization: Bearer <token> es el estándar para JWT. Spring Security lo lee automáticamente. Basic Auth usa Authorization: Basic <base64>.",
     "active": true
   },
@@ -519,8 +519,8 @@
     "code": null,
     "options": [
       "Valida que el valor del campo sea numérico",
-      "Marca una constante de configuración",
       "Define el valor de retorno del método",
+      "Marca una constante de configuración",
       "Inyecta el valor de la propiedad server.port del application.properties directamente en el campo"
     ],
     "correct": 3,
@@ -534,12 +534,12 @@
     "question": "¿Qué hace @ControllerAdvice en Spring Boot?",
     "code": null,
     "options": [
-      "Gestiona transacciones de forma global",
+      "Registra todos los beans automáticamente",
       "Intercepta peticiones antes de que lleguen al controlador",
-      "Maneja excepciones de forma centralizada: captura excepciones de cualquier controlador y retorna respuestas de error consistentes",
-      "Registra todos los beans automáticamente"
+      "Gestiona transacciones de forma global",
+      "Maneja excepciones de forma centralizada: captura excepciones de cualquier controlador y retorna respuestas de error consistentes"
     ],
-    "correct": 2,
+    "correct": 3,
     "explanation": "@ControllerAdvice + @ExceptionHandler evita try-catch repetido en cada endpoint. Si cualquier controlador lanza ResourceNotFoundException, @ControllerAdvice la captura y retorna 404.",
     "active": true
   },
@@ -550,12 +550,12 @@
     "question": "¿Cuál es la principal desventaja de los microservicios comparados con un monolito?",
     "code": null,
     "options": [
-      "Mayor complejidad operacional: múltiples deploys, BD, comunicación de red, observabilidad distribuida y consistencia eventual",
       "Los microservicios siempre son más lentos",
       "No pueden usar bases de datos relacionales",
-      "No escalan horizontalmente"
+      "No escalan horizontalmente",
+      "Mayor complejidad operacional: múltiples deploys, BD, comunicación de red, observabilidad distribuida y consistencia eventual"
     ],
-    "correct": 0,
+    "correct": 3,
     "explanation": "Los microservicios NO son gratis. Con equipo pequeño o dominio simple, un monolito bien estructurado puede ser la mejor opción. La complejidad operacional debe justificarse con beneficios reales.",
     "active": true
   },
@@ -566,12 +566,12 @@
     "question": "¿Cómo defines una query personalizada en Spring Data JPA?",
     "code": null,
     "options": [
-      "Creando un archivo SQL externo con el mismo nombre del método",
-      "Con @Query(\"SELECT p FROM Product p WHERE p.price < :maxPrice\") sobre el método del repositorio",
       "Solo puedes usar los métodos generados automáticamente",
-      "Con @CustomSQL en la entidad"
+      "Con @CustomSQL en la entidad",
+      "Creando un archivo SQL externo con el mismo nombre del método",
+      "Con @Query(\"SELECT p FROM Product p WHERE p.price < :maxPrice\") sobre el método del repositorio"
     ],
-    "correct": 1,
+    "correct": 3,
     "explanation": "@Query acepta JPQL (orientado a objetos) o SQL nativo (nativeQuery=true). También puedes definir queries por nombre: findByPriceAndCategory(). Spring Data genera la implementación.",
     "active": true
   },
@@ -583,8 +583,8 @@
     "code": null,
     "options": [
       "Es un IDE alternativo a IntelliJ para Java",
-      "Es un framework de documentación automática",
       "Es un servidor proxy para interceptar tráfico",
+      "Es un framework de documentación automática",
       "Herramienta visual para probar APIs: envía peticiones HTTP con headers, body y parámetros y muestra las respuestas sin escribir código"
     ],
     "correct": 3,
@@ -598,12 +598,12 @@
     "question": "¿Qué es un health check en microservicios?",
     "code": null,
     "options": [
-      "Endpoint que indica si el servicio funciona correctamente — K8s lo usa para reiniciar servicios caídos automáticamente",
-      "Un test automático de integridad de la base de datos",
       "Una auditoría de seguridad del código fuente",
-      "Un log de todas las peticiones recibidas por el servicio"
+      "Un log de todas las peticiones recibidas por el servicio",
+      "Un test automático de integridad de la base de datos",
+      "Endpoint que indica si el servicio funciona correctamente — K8s lo usa para reiniciar servicios caídos automáticamente"
     ],
-    "correct": 0,
+    "correct": 3,
     "explanation": "Kubernetes usa liveness probe (¿está vivo?) y readiness probe (¿puede recibir tráfico?). Spring Actuator expone /actuator/health con estado detallado: BD, disco, etc.",
     "active": true
   },
@@ -614,12 +614,12 @@
     "question": "¿Qué BD embebida se usa típicamente en tests con Spring Boot?",
     "code": null,
     "options": [
-      "MySQL",
-      "H2 — base de datos en memoria, sin instalación, que se destruye al terminar el test",
       "Oracle",
-      "PostgreSQL"
+      "MySQL",
+      "PostgreSQL",
+      "H2 — base de datos en memoria, sin instalación, que se destruye al terminar el test"
     ],
-    "correct": 1,
+    "correct": 3,
     "explanation": "H2 es una BD Java en memoria. Spring Boot la detecta automáticamente cuando está en el classpath. Perfecta para tests de integración rápidos sin infraestructura externa.",
     "active": true
   },
@@ -630,8 +630,8 @@
     "question": "¿Qué es OpenAPI/Swagger?",
     "code": null,
     "options": [
-      "Una base de datos para guardar la configuración de APIs",
       "Un framework de testing para APIs",
+      "Una base de datos para guardar la configuración de APIs",
       "Un protocolo alternativo a HTTP",
       "Especificación estándar para documentar APIs REST de forma interactiva y legible por máquinas — con springdoc obtienes /swagger-ui.html automáticamente"
     ],
@@ -646,12 +646,12 @@
     "question": "¿Qué hace @Async en Spring Boot?",
     "code": null,
     "options": [
-      "Convierte el método en un endpoint WebSocket",
-      "Ejecuta el método en un thread separado del pool de Spring — requiere @EnableAsync en la configuración",
+      "Hace el endpoint no-bloqueante automáticamente",
       "Solo funciona en combinación con @Service",
-      "Hace el endpoint no-bloqueante automáticamente"
+      "Convierte el método en un endpoint WebSocket",
+      "Ejecuta el método en un thread separado del pool de Spring — requiere @EnableAsync en la configuración"
     ],
-    "correct": 1,
+    "correct": 3,
     "explanation": "@Async es útil para operaciones fire-and-forget: enviar emails, notificaciones, logging. El método puede retornar void o CompletableFuture.",
     "active": true
   },
@@ -663,11 +663,11 @@
     "code": null,
     "options": [
       "Control de versiones de código de Spring",
+      "Solo sirven para configurar el nivel de logging",
       "Feature flags para habilitar funcionalidades",
-      "Mecanismo para tener configuraciones diferentes por entorno — application-dev.yml para desarrollo, application-prod.yml para producción",
-      "Solo sirven para configurar el nivel de logging"
+      "Mecanismo para tener configuraciones diferentes por entorno — application-dev.yml para desarrollo, application-prod.yml para producción"
     ],
-    "correct": 2,
+    "correct": 3,
     "explanation": "En K8s: SPRING_PROFILES_ACTIVE=prod activa el perfil de producción. Los beans también pueden ser condicionales con @Profile(\"dev\").",
     "active": true
   },
@@ -678,12 +678,12 @@
     "question": "¿Qué es ORM?",
     "code": null,
     "options": [
-      "Online Resource Monitoring — monitoreo en tiempo real",
-      "Object-Relational Mapping: técnica que mapea automáticamente entre objetos Java y tablas de BD relacional",
       "Optional Resource Management — gestión de recursos opcionales",
-      "Output Response Management — gestión de respuestas"
+      "Online Resource Monitoring — monitoreo en tiempo real",
+      "Output Response Management — gestión de respuestas",
+      "Object-Relational Mapping: técnica que mapea automáticamente entre objetos Java y tablas de BD relacional"
     ],
-    "correct": 1,
+    "correct": 3,
     "explanation": "ORM elimina el gap objeto-relacional. Hibernate genera el SQL automáticamente. Ventaja: productividad. Desventaja: queries complejas pueden ser ineficientes.",
     "active": true
   },
@@ -694,12 +694,12 @@
     "question": "¿Qué hacen Maven/Gradle en un proyecto Java?",
     "code": null,
     "options": [
-      "Son bases de datos embebidas para desarrollo local",
+      "Son servidores de aplicaciones para desplegar Spring Boot",
       "Son frameworks de testing alternativos a JUnit",
-      "Gestionan dependencias y el ciclo de build: descargan librerías, compilan, ejecutan tests y empaquetan en JAR/WAR",
-      "Son servidores de aplicaciones para desplegar Spring Boot"
+      "Son bases de datos embebidas para desarrollo local",
+      "Gestionan dependencias y el ciclo de build: descargan librerías, compilan, ejecutan tests y empaquetan en JAR/WAR"
     ],
-    "correct": 2,
+    "correct": 3,
     "explanation": "Maven (pom.xml) y Gradle (build.gradle). Con una dependencia declarada, la descargan automáticamente de Maven Central. Definen cómo compilar, testear y empaquetar.",
     "active": true
   },
@@ -712,10 +712,10 @@
     "options": [
       "Solo documentan el método para la UI de Swagger",
       "Crean un índice en BD automáticamente",
-      "@EnableCaching activa el subsistema de caché; @Cacheable guarda el resultado del método y lo retorna desde caché en llamadas posteriores con la misma clave",
-      "Solo funcionan con Redis como backend de caché"
+      "Solo funcionan con Redis como backend de caché",
+      "@EnableCaching activa el subsistema de caché; @Cacheable guarda el resultado del método y lo retorna desde caché en llamadas posteriores con la misma clave"
     ],
-    "correct": 2,
+    "correct": 3,
     "explanation": "@Cacheable(\"productos\") en el método: primer llamado ejecuta y guarda; siguientes con misma clave retornan desde caché. Compatible con Caffeine, Redis, EhCache.",
     "active": true
   },
@@ -726,8 +726,8 @@
     "question": "¿Qué es Hibernate?",
     "code": null,
     "options": [
-      "Una herramienta de migración de esquemas de BD",
       "Un servidor de BD embebido para testing",
+      "Una herramienta de migración de esquemas de BD",
       "Un framework de caché distribuido",
       "La implementación más popular de JPA: traduce operaciones sobre entidades Java a SQL y gestiona el mapeo objeto-relacional"
     ],
@@ -742,12 +742,12 @@
     "question": "¿Qué es Git en el contexto del desarrollo de microservicios?",
     "code": null,
     "options": [
-      "Sistema de control de versiones distribuido que rastrea cambios, permite trabajo en equipo y es la base de los pipelines CI/CD",
+      "Un framework de Spring para versionar APIs",
       "Un servidor de configuración centralizada",
       "Una herramienta de deployment automático a K8s",
-      "Un framework de Spring para versionar APIs"
+      "Sistema de control de versiones distribuido que rastrea cambios, permite trabajo en equipo y es la base de los pipelines CI/CD"
     ],
-    "correct": 0,
+    "correct": 3,
     "explanation": "Con múltiples microservicios y equipos, Git es fundamental. Branches aíslan cambios, PRs facilitan code review, tags marcan versiones para deployment.",
     "active": true
   },
@@ -758,12 +758,12 @@
     "question": "¿Qué significa idempotente en el contexto de REST?",
     "code": null,
     "options": [
-      "Que ejecutar la operación múltiples veces produce el mismo resultado que ejecutarla una sola vez",
-      "Que es más rápida que operaciones no idempotentes",
       "Que siempre retorna el mismo tipo de dato",
-      "Que no requiere autenticación para ejecutarse"
+      "Que es más rápida que operaciones no idempotentes",
+      "Que no requiere autenticación para ejecutarse",
+      "Que ejecutar la operación múltiples veces produce el mismo resultado que ejecutarla una sola vez"
     ],
-    "correct": 0,
+    "correct": 3,
     "explanation": "GET es idempotente (leer 10 veces = leer 1 vez). DELETE es idempotente (el resultado final es el mismo). POST NO es idempotente (10 POST = 10 recursos creados).",
     "active": true
   },
@@ -774,12 +774,12 @@
     "question": "¿Qué anotación deserializa el body JSON de un POST en Spring Boot?",
     "code": null,
     "options": [
-      "@PathVariable",
-      "@RequestBody",
+      "@RequestParam",
       "@ResponseBody",
-      "@RequestParam"
+      "@PathVariable",
+      "@RequestBody"
     ],
-    "correct": 1,
+    "correct": 3,
     "explanation": "@RequestBody le dice a Spring que deserialice el body JSON de la petición al objeto Java especificado. Jackson hace la conversión automáticamente.",
     "active": true
   },
@@ -790,12 +790,12 @@
     "question": "¿Qué es JSON?",
     "code": null,
     "options": [
-      "Just Serialized Object Notation",
       "Java Serialized Object Notation",
-      "JavaScript Object Notation — formato ligero de intercambio de datos basado en texto, independiente del lenguaje",
-      "Java Standard Output Notation"
+      "Just Serialized Object Notation",
+      "Java Standard Output Notation",
+      "JavaScript Object Notation — formato ligero de intercambio de datos basado en texto, independiente del lenguaje"
     ],
-    "correct": 2,
+    "correct": 3,
     "explanation": "JSON es el formato estándar para APIs REST. Es legible, basado en texto, y tiene soporte en todos los lenguajes. Jackson en Spring Boot convierte entre objetos Java y JSON automáticamente.",
     "active": true
   },
@@ -806,12 +806,12 @@
     "question": "¿Cuáles son los 3 estados del Circuit Breaker y cómo transicionan?",
     "code": "@CircuitBreaker(name = \"paymentService\",\n  fallbackMethod = \"fallbackPago\")\npublic String procesarPago(Order order) {\n    return paymentClient.charge(order);\n}",
     "options": [
-      "Closed→Open (cuando errores superan el umbral)→Half-Open (tras espera)→Closed si pruebas pasan, o Open si fallan",
-      "Primary→Fallback→Recovery según reinicios del servicio",
+      "Active→Inactive→Testing según tráfico de red",
       "Running→Stopped→Paused controlado por ops manualmente",
-      "Active→Inactive→Testing según tráfico de red"
+      "Primary→Fallback→Recovery según reinicios del servicio",
+      "Closed→Open (cuando errores superan el umbral)→Half-Open (tras espera)→Closed si pruebas pasan, o Open si fallan"
     ],
-    "correct": 0,
+    "correct": 3,
     "explanation": "Closed = flujo normal. Open = fail-fast, retorna fallback inmediato. Half-Open = permite N llamadas de prueba. Si pasan → Closed; si fallan → Open. Resilience4j implementa los 3 estados.",
     "active": true
   },
@@ -822,12 +822,12 @@
     "question": "¿Cuál es la diferencia clave entre Retry y Circuit Breaker?",
     "code": null,
     "options": [
-      "Retry reintenta para fallos transitorios (timeouts puntuales); CB evita llamadas cuando hay fallos sostenidos — se complementan entre sí",
-      "Retry es para errores 4xx y CB para errores 5xx del servidor",
       "CB reemplaza completamente a Retry — nunca se usan juntos",
-      "Son equivalentes — Retry es el nombre en Spring y CB en Resilience4j"
+      "Retry es para errores 4xx y CB para errores 5xx del servidor",
+      "Son equivalentes — Retry es el nombre en Spring y CB en Resilience4j",
+      "Retry reintenta para fallos transitorios (timeouts puntuales); CB evita llamadas cuando hay fallos sostenidos — se complementan entre sí"
     ],
-    "correct": 0,
+    "correct": 3,
     "explanation": "Se combinan: @Retry para 2-3 intentos en fallos transitorios. Si el 50% de 10 llamadas fallan, el CB abre y retorna fallback sin reintentar. En Resilience4j: @Retry envuelto por @CircuitBreaker.",
     "active": true
   },
@@ -838,12 +838,12 @@
     "question": "¿Cuál es la trampa clásica de @Transactional con self-invocation?",
     "code": "@Service\npublic class OrderService {\n  public void createOrder(Order o) {\n    // Llama al método de la misma clase:\n    this.saveAndNotify(o); // ¿La transacción aplica?\n  }\n  @Transactional\n  public void saveAndNotify(Order o) { ... }\n}",
     "options": [
-      "La llamada desde la misma clase pasa por this, no por el proxy AOP — la transacción se ignora silenciosamente",
+      "Solo funciona con MySQL, no con PostgreSQL",
       "No soporta rollback manual con RuntimeException",
       "Solo funciona cuando el método es public en clases @Service",
-      "Solo funciona con MySQL, no con PostgreSQL"
+      "La llamada desde la misma clase pasa por this, no por el proxy AOP — la transacción se ignora silenciosamente"
     ],
-    "correct": 0,
+    "correct": 3,
     "explanation": "@Transactional funciona vía proxy AOP. Al llamar this.saveAndNotify(), bypasses el proxy. Solución: inyectar el bean en sí mismo (self-injection) o extraer el método a otra clase.",
     "active": true
   },
@@ -854,12 +854,12 @@
     "question": "¿Qué es un Consumer Group en Kafka y cómo afecta al paralelismo?",
     "code": null,
     "options": [
+      "Grupo de topics relacionados — todos los consumers reciben todos los mensajes",
       "Solo aplica cuando hay más de 10 consumers en el sistema",
-      "Conjunto de consumers que comparten el trabajo: cada partición asignada a exactamente un consumer del grupo — más consumers = más paralelismo",
       "Mecanismo de autenticación que agrupa servicios bajo un mismo token",
-      "Grupo de topics relacionados — todos los consumers reciben todos los mensajes"
+      "Conjunto de consumers que comparten el trabajo: cada partición asignada a exactamente un consumer del grupo — más consumers = más paralelismo"
     ],
-    "correct": 1,
+    "correct": 3,
     "explanation": "6 particiones + 3 consumers = 2 particiones por consumer. 6 consumers = máximo paralelismo. 7 consumers = uno queda idle. Spring Boot: @KafkaListener(topics=\"t\", groupId=\"grupo\").",
     "active": true
   },
@@ -870,12 +870,12 @@
     "question": "¿Qué significa idempotencia en un consumer de Kafka y por qué es crítica?",
     "code": null,
     "options": [
-      "Que confirma el offset antes de procesar para mayor velocidad",
       "Que puede procesar mensajes en paralelo sin locks",
-      "El consumer puede recibir el mismo mensaje más de una vez (at-least-once) y el resultado final es el mismo que procesarlo exactamente una vez",
-      "Que puede consumir de múltiples topics a la vez sin configuración"
+      "Que confirma el offset antes de procesar para mayor velocidad",
+      "Que puede consumir de múltiples topics a la vez sin configuración",
+      "El consumer puede recibir el mismo mensaje más de una vez (at-least-once) y el resultado final es el mismo que procesarlo exactamente una vez"
     ],
-    "correct": 2,
+    "correct": 3,
     "explanation": "Con at-least-once delivery, el mismo mensaje puede entregarse varias veces en rebalances o fallos. Soluciones: IDs únicos con upsert, deduplicación por messageId en Redis, o exactly-once con transacciones Kafka.",
     "active": true
   },
@@ -886,12 +886,12 @@
     "question": "¿Qué es un JWT y cuál es el error en la afirmación \"el JWT está cifrado, por eso es seguro\"?",
     "code": null,
     "options": [
-      "Tiene header, body y footer — la firma se genera con clave pública, no privada",
       "JWT es una BD distribuida — sí está cifrado con AES-256",
-      "JWT (Header.Payload.Signature) está codificado en Base64Url, NO cifrado — cualquiera puede decodificar el payload. La seguridad viene de la firma (integridad), no del cifrado",
-      "Es igual a una sesión HTTP — sí expira automáticamente en el servidor"
+      "Tiene header, body y footer — la firma se genera con clave pública, no privada",
+      "Es igual a una sesión HTTP — sí expira automáticamente en el servidor",
+      "JWT (Header.Payload.Signature) está codificado en Base64Url, NO cifrado — cualquiera puede decodificar el payload. La seguridad viene de la firma (integridad), no del cifrado"
     ],
-    "correct": 2,
+    "correct": 3,
     "explanation": "Pega cualquier JWT en jwt.io y verás el payload en texto plano. La firma garantiza que no fue manipulado, no protege la confidencialidad. Nunca pongas datos sensibles en el payload. Para cifrado existe JWE.",
     "active": true
   },
@@ -902,9 +902,9 @@
     "question": "¿Qué problema resuelve el patrón Outbox?",
     "code": "// Sin Outbox — dual-write INSEGURO:\norderRepo.save(order);           // paso 1: BD\nkafka.send(\"orders\", event);     // paso 2: broker\n// ¿Qué pasa si Kafka falla aquí?",
     "options": [
-      "Cachea respuestas HTTP para reducir carga en BD",
       "Expone múltiples versiones de un endpoint simultáneamente",
       "Resuelve service discovery cuando el Gateway falla",
+      "Cachea respuestas HTTP para reducir carga en BD",
       "Resuelve el dual-write: guarda el evento en la misma transacción de BD y un proceso separado lo publica al broker, garantizando consistencia"
     ],
     "correct": 3,
@@ -918,12 +918,12 @@
     "question": "¿Qué es el problema N+1 en JPA y cómo se soluciona?",
     "code": "List<Order> orders = orderRepo.findAll(); // 1 query\nfor (Order o : orders) {\n    // N queries adicionales!\n    System.out.println(o.getCustomer().getName());\n}",
     "options": [
-      "1 query para la lista + N queries para cada relación lazy — se soluciona con JOIN FETCH en JPQL o @EntityGraph",
       "Más de una conexión simultánea a la BD — HikariCP lo soluciona",
       "Problema de threading — @Synchronized en el repositorio lo resuelve",
-      "Error de índices en la BD — se soluciona con un índice compuesto"
+      "Error de índices en la BD — se soluciona con un índice compuesto",
+      "1 query para la lista + N queries para cada relación lazy — se soluciona con JOIN FETCH en JPQL o @EntityGraph"
     ],
-    "correct": 0,
+    "correct": 3,
     "explanation": "100 orders = 101 queries. Solución: @Query(\"SELECT o FROM Order o JOIN FETCH o.customer\") — una sola query con JOIN. O @EntityGraph(attributePaths={\"customer\"}) en el método del repositorio.",
     "active": true
   },
@@ -934,12 +934,12 @@
     "question": "¿Cuál es la diferencia entre logs, métricas y trazas distribuidas en microservicios?",
     "code": null,
     "options": [
-      "Logs para dev, métricas para staging, trazas solo para prod con alto tráfico",
-      "Logs = eventos discretos con contexto; métricas = valores numéricos en el tiempo; trazas = flujo completo de una request entre servicios. Se complementan: métricas alertan, logs explican, trazas localizan",
       "Son tres nombres para la misma funcionalidad — elige uno según el framework",
-      "Métricas y trazas son lo mismo — los logs son redundantes"
+      "Logs para dev, métricas para staging, trazas solo para prod con alto tráfico",
+      "Métricas y trazas son lo mismo — los logs son redundantes",
+      "Logs = eventos discretos con contexto; métricas = valores numéricos en el tiempo; trazas = flujo completo de una request entre servicios. Se complementan: métricas alertan, logs explican, trazas localizan"
     ],
-    "correct": 1,
+    "correct": 3,
     "explanation": "Ejemplo: la métrica p99 sube → alerta. Logs muestran timeouts en pagos. Traza: Gateway 2ms → Orders 5ms → Payments 2800ms. En Spring Boot: Micrometer + SLF4J + Micrometer Tracing con Zipkin.",
     "active": true
   },
@@ -950,12 +950,12 @@
     "question": "¿Cómo funciona un Resource Server con JWT en Spring Security?",
     "code": null,
     "options": [
-      "Valida la firma del JWT con la clave pública del JWKS endpoint, verifica expiración e issuer, extrae claims al SecurityContext — sin round-trip al Auth Server por petición",
       "Valida el JWT llamando al Auth Server en cada petición",
+      "Almacena los JWTs en sesión HTTP en el servidor",
       "Usa API Keys en lugar de JWT para las comunicaciones internas",
-      "Almacena los JWTs en sesión HTTP en el servidor"
+      "Valida la firma del JWT con la clave pública del JWKS endpoint, verifica expiración e issuer, extrae claims al SecurityContext — sin round-trip al Auth Server por petición"
     ],
-    "correct": 0,
+    "correct": 3,
     "explanation": "Con spring-boot-starter-oauth2-resource-server configuras spring.security.oauth2.resourceserver.jwt.jwk-set-uri. Spring valida automáticamente. @PreAuthorize(\"hasAuthority('SCOPE_read')\") controla acceso por claims.",
     "active": true
   },
@@ -966,12 +966,12 @@
     "question": "¿Cuándo usarías Saga de orquestación vs coreografía?",
     "code": null,
     "options": [
-      "Son equivalentes — la diferencia es solo de nomenclatura",
-      "Orquestación: un Saga Orchestrator coordina pasos y compensaciones (más visible, más acoplado); coreografía: cada servicio reacciona a eventos (menos acoplado, difícil de debuggear)",
       "Orquestación para sistemas pequeños, coreografía para grandes con más de 10 servicios",
-      "Orquestación usa Kafka, coreografía usa REST — depende de la infraestructura"
+      "Son equivalentes — la diferencia es solo de nomenclatura",
+      "Orquestación usa Kafka, coreografía usa REST — depende de la infraestructura",
+      "Orquestación: un Saga Orchestrator coordina pasos y compensaciones (más visible, más acoplado); coreografía: cada servicio reacciona a eventos (menos acoplado, difícil de debuggear)"
     ],
-    "correct": 1,
+    "correct": 3,
     "explanation": "Orquestación: flujo visible y fácil de debuggear; el orchestrator puede ser SPOF. Coreografía: autónoma y desacoplada; difícil trazar cuando falla. Elige según qué trade-off prefieres.",
     "active": true
   },
@@ -982,12 +982,12 @@
     "question": "¿Qué es el connection pooling y por qué es crítico en microservicios?",
     "code": null,
     "options": [
-      "Pool de conexiones BD abiertas y reutilizables — sin pool, cada petición abre y cierra una conexión (~100ms). HikariCP es el pool por defecto en Spring Boot",
-      "Agrupa instancias del servicio detrás de un balanceador de carga",
       "Almacena conexiones de red entre microservicios para reutilizarlas",
-      "Cachea los resultados de las queries más frecuentes en memoria"
+      "Agrupa instancias del servicio detrás de un balanceador de carga",
+      "Cachea los resultados de las queries más frecuentes en memoria",
+      "Pool de conexiones BD abiertas y reutilizables — sin pool, cada petición abre y cierra una conexión (~100ms). HikariCP es el pool por defecto en Spring Boot"
     ],
-    "correct": 0,
+    "correct": 3,
     "explanation": "spring.datasource.hikari.maximum-pool-size (default 10). Si tu servicio tiene alta concurrencia, ajusta este valor. Abrir una conexión BD cuesta recursos significativos.",
     "active": true
   },
@@ -1014,9 +1014,9 @@
     "question": "¿Qué es el patrón Bulkhead?",
     "code": null,
     "options": [
-      "Mecanismo de load balancing entre instancias del mismo servicio",
-      "Patrón de versionado de APIs para múltiples clientes",
       "Patrón para dividir la BD entre microservicios por dominio",
+      "Patrón de versionado de APIs para múltiples clientes",
+      "Mecanismo de load balancing entre instancias del mismo servicio",
       "Aísla recursos (thread pools) por funcionalidad para que el fallo de una parte no agote los recursos de las demás — como los mamparos de un barco"
     ],
     "correct": 3,
@@ -1030,12 +1030,12 @@
     "question": "¿Cómo implementarías versionado de una API pública con 200 clientes en producción?",
     "code": null,
     "options": [
-      "Publicar /api/v2 manteniendo /api/v1 con período de deprecación explícito (6-12 meses), headers Deprecation y Sunset, y un adapter interno que comparte la lógica de negocio",
-      "Solo content negotiation (Accept: vnd.api;v=2) — es el estándar REST puro",
       "Modificar v1 directamente y notificar por email — los breaking changes son inevitables",
-      "Añadir solo campos nuevos, nunca eliminar (no hacer breaking changes)"
+      "Solo content negotiation (Accept: vnd.api;v=2) — es el estándar REST puro",
+      "Añadir solo campos nuevos, nunca eliminar (no hacer breaking changes)",
+      "Publicar /api/v2 manteniendo /api/v1 con período de deprecación explícito (6-12 meses), headers Deprecation y Sunset, y un adapter interno que comparte la lógica de negocio"
     ],
-    "correct": 0,
+    "correct": 3,
     "explanation": "URL versioning (/v1, /v2) es el enfoque más pragmático: visible en logs, cacheable, fácil de enrutar. v1 y v2 comparten lógica de negocio — solo difiere el response transformer.",
     "active": true
   },
@@ -1047,11 +1047,11 @@
     "code": null,
     "options": [
       "Servidor para desplegar microservicios automáticamente",
+      "Servidor OAuth2 para autenticación de microservicios",
       "Servidor de mensajería asíncrona para microservicios",
-      "Servidor centralizado que externaliza la configuración de todos los microservicios — los servicios la obtienen al arrancar sin necesidad de redesplegar al cambiar propiedades",
-      "Servidor OAuth2 para autenticación de microservicios"
+      "Servidor centralizado que externaliza la configuración de todos los microservicios — los servicios la obtienen al arrancar sin necesidad de redesplegar al cambiar propiedades"
     ],
-    "correct": 2,
+    "correct": 3,
     "explanation": "Config Server centraliza la configuración en un repositorio Git. Con Spring Cloud Bus + Actuator /refresh, los servicios recargan la configuración sin redesplegar.",
     "active": true
   },
@@ -1062,12 +1062,12 @@
     "question": "¿Qué es el distributed tracing y qué herramienta lo facilita en Spring Boot?",
     "code": null,
     "options": [
-      "Log centralizado de errores de todos los servicios — ELK Stack",
-      "Capacidad de seguir el flujo de una request a través de múltiples servicios usando un traceId único propagado en headers — Micrometer Tracing con Zipkin o Jaeger",
       "Monitoreo de CPU y memoria de cada pod — Spring Actuator",
-      "Sincronización de relojes entre servicios — NTP con Spring Scheduler"
+      "Log centralizado de errores de todos los servicios — ELK Stack",
+      "Sincronización de relojes entre servicios — NTP con Spring Scheduler",
+      "Capacidad de seguir el flujo de una request a través de múltiples servicios usando un traceId único propagado en headers — Micrometer Tracing con Zipkin o Jaeger"
     ],
-    "correct": 1,
+    "correct": 3,
     "explanation": "El traceId se propaga en headers W3C traceparent. Micrometer Tracing instrumenta RestTemplate, WebClient y Kafka automáticamente. Zipkin/Jaeger visualizan flamegraphs de latencia end-to-end.",
     "active": true
   },
@@ -1078,8 +1078,8 @@
     "question": "¿Qué es el patrón Database per Service?",
     "code": null,
     "options": [
-      "Réplica de lectura de una BD central compartida",
       "BD particionada por tenant con enrutamiento automático",
+      "Réplica de lectura de una BD central compartida",
       "Caché compartido entre todos los microservicios del dominio",
       "Cada microservicio tiene su propia BD exclusiva — no hay JOINs directos entre servicios, se usa API Composition o CQRS para queries que involucran múltiples servicios"
     ],
@@ -1094,9 +1094,9 @@
     "question": "¿Qué es Spring WebFlux y cuándo lo usarías sobre Spring MVC?",
     "code": null,
     "options": [
-      "Un framework de testing para APIs asíncronas",
       "Es una versión más reciente de Spring MVC sin diferencias funcionales",
       "Solo para aplicaciones gráficas de escritorio Java",
+      "Un framework de testing para APIs asíncronas",
       "Framework reactivo no-bloqueante (Project Reactor) para alta concurrencia con pocos threads — úsalo cuando tienes alto I/O bound y el equipo domina programación reactiva"
     ],
     "correct": 3,
@@ -1110,12 +1110,12 @@
     "question": "¿Por qué es crítico configurar timeouts en llamadas entre microservicios?",
     "code": null,
     "options": [
-      "Los timeouts solo importan en ambiente de producción, no en staging",
-      "Sin timeout, un hilo queda bloqueado indefinidamente esperando un servicio caído — con carga, todos los hilos se agotan y el servicio llamador también cae (cascada de fallos)",
       "Solo afecta la experiencia del usuario, no la estabilidad del sistema",
-      "Los timeouts solo aplican a llamadas a bases de datos, no a servicios REST"
+      "Los timeouts solo importan en ambiente de producción, no en staging",
+      "Los timeouts solo aplican a llamadas a bases de datos, no a servicios REST",
+      "Sin timeout, un hilo queda bloqueado indefinidamente esperando un servicio caído — con carga, todos los hilos se agotan y el servicio llamador también cae (cascada de fallos)"
     ],
-    "correct": 1,
+    "correct": 3,
     "explanation": "Sin timeout = cascada de fallos. Con carga, los hilos se agotan y el servicio completo deja de responder. Valor típico para servicios internos: 1-3 segundos. Configura en RestTemplate, WebClient o Feign.",
     "active": true
   },
@@ -1126,12 +1126,12 @@
     "question": "¿Cuál es la diferencia entre un test unitario y un test de integración?",
     "code": null,
     "options": [
-      "Test unitario: una clase aislada con mocks, rápido (ms). Test de integración: múltiples componentes reales (BD, servicios), más lento pero más realista",
+      "Son lo mismo — difieren solo en el nombre que usa cada equipo",
       "Test unitario usa JUnit, test de integración usa Mockito — son herramientas diferentes",
       "Tests unitarios son automáticos, tests de integración son manuales",
-      "Son lo mismo — difieren solo en el nombre que usa cada equipo"
+      "Test unitario: una clase aislada con mocks, rápido (ms). Test de integración: múltiples componentes reales (BD, servicios), más lento pero más realista"
     ],
-    "correct": 0,
+    "correct": 3,
     "explanation": "Pirámide de tests: muchos unitarios, menos de integración, pocos E2E. @WebMvcTest prueba solo la capa web. @DataJpaTest solo la persistencia. @SpringBootTest levanta todo.",
     "active": false
   },
@@ -1142,9 +1142,9 @@
     "question": "¿Qué es el patrón Strangler Fig para migrar un monolito?",
     "code": null,
     "options": [
+      "Eliminar el monolito de golpe y reemplazarlo con microservicios en un gran deployment",
       "Dividir el monolito en módulos dentro del mismo deployment JVM",
       "Reescribir el monolito completo en paralelo en una rama separada de Git",
-      "Eliminar el monolito de golpe y reemplazarlo con microservicios en un gran deployment",
       "Extraer funcionalidades del monolito incrementalmente hacia microservicios mientras sigue activo — el Gateway enruta al microservicio o al monolito según la funcionalidad migrada"
     ],
     "correct": 3,
@@ -1158,12 +1158,12 @@
     "question": "¿Qué es un Feign Client en Spring Cloud?",
     "code": null,
     "options": [
-      "Cliente HTTP declarativo: defines la interfaz con anotaciones REST y Spring Cloud genera la implementación automáticamente — integra con service discovery y Resilience4j",
-      "Un balanceador de carga entre instancias del mismo microservicio",
       "Un cliente HTTP que implementas manualmente con HttpURLConnection",
-      "Una librería de seguridad para llamadas HTTPS entre servicios"
+      "Un balanceador de carga entre instancias del mismo microservicio",
+      "Una librería de seguridad para llamadas HTTPS entre servicios",
+      "Cliente HTTP declarativo: defines la interfaz con anotaciones REST y Spring Cloud genera la implementación automáticamente — integra con service discovery y Resilience4j"
     ],
-    "correct": 0,
+    "correct": 3,
     "explanation": "@FeignClient(name=\"payment-service\") define métodos con @GetMapping, @PostMapping. Feign genera la implementación. Integra con Eureka (usa el nombre, no la URL) y Circuit Breaker.",
     "active": true
   },
@@ -1174,12 +1174,12 @@
     "question": "¿Qué es CQRS (Command Query Responsibility Segregation)?",
     "code": null,
     "options": [
-      "Separar el modelo de escritura (Commands) del modelo de lectura (Queries) — permite optimizar cada lado independientemente con BD diferentes",
       "Una convención de nombres para los métodos de un repositorio JPA",
       "Un tipo especial de patrón Factory para crear entidades complejas",
-      "Un patrón de enrutamiento en el API Gateway por tipo de operación"
+      "Un patrón de enrutamiento en el API Gateway por tipo de operación",
+      "Separar el modelo de escritura (Commands) del modelo de lectura (Queries) — permite optimizar cada lado independientemente con BD diferentes"
     ],
-    "correct": 0,
+    "correct": 3,
     "explanation": "Write model: normalizado, transaccional. Read model: denormalizado, optimizado para queries. Útil cuando las necesidades de lectura y escritura son muy diferentes en rendimiento.",
     "active": true
   },
@@ -1190,12 +1190,12 @@
     "question": "¿Qué es lazy vs eager loading en JPA y sus implicaciones?",
     "code": null,
     "options": [
-      "Lazy: relación cargada solo al acceder (riesgo N+1 y LazyInitializationException fuera de sesión); Eager: carga siempre con la entidad (riesgo de datos innecesarios)",
       "Lazy carga solo strings, eager carga objetos complejos",
       "Son configuraciones del pool de conexiones HikariCP",
-      "Solo afectan al rendimiento en producción, no en desarrollo"
+      "Solo afectan al rendimiento en producción, no en desarrollo",
+      "Lazy: relación cargada solo al acceder (riesgo N+1 y LazyInitializationException fuera de sesión); Eager: carga siempre con la entidad (riesgo de datos innecesarios)"
     ],
-    "correct": 0,
+    "correct": 3,
     "explanation": "LAZY (default OneToMany): carga al acceder. Riesgo: LazyInitializationException fuera de sesión JPA. EAGER: siempre JOIN. Riesgo: datos innecesarios. Solución: LAZY + JOIN FETCH cuando necesitas la relación.",
     "active": true
   },
@@ -1206,12 +1206,12 @@
     "question": "¿Qué es un Dead Letter Queue (DLQ) y cuándo se usa?",
     "code": null,
     "options": [
-      "Cola donde van mensajes que no pudieron procesarse tras N reintentos — permite analizar y reprocesar mensajes fallidos sin perderlos permanentemente",
       "Cola de alta prioridad para mensajes críticos del negocio",
+      "Buffer temporal entre productor y consumer con confirmación",
       "Cola de mensajes pendientes de autenticación antes de procesarse",
-      "Buffer temporal entre productor y consumer con confirmación"
+      "Cola donde van mensajes que no pudieron procesarse tras N reintentos — permite analizar y reprocesar mensajes fallidos sin perderlos permanentemente"
     ],
-    "correct": 0,
+    "correct": 3,
     "explanation": "Sin DLQ, un mensaje problemático podría bloquear la cola. Con DLQ: tras 3 fallos, el mensaje va a la DLQ para análisis. El equipo corrige el problema y lo reinyecta. Esencial para sistemas críticos.",
     "active": true
   },
@@ -1222,9 +1222,9 @@
     "question": "¿Qué es OAuth2 y cómo se relaciona con JWT en microservicios?",
     "code": null,
     "options": [
-      "JWT es más moderno y reemplaza a OAuth2 en arquitecturas actuales",
       "OAuth2 es un protocolo de cifrado — JWT es su implementación de tokens",
       "Son equivalentes — OAuth2 usa JWT internamente siempre",
+      "JWT es más moderno y reemplaza a OAuth2 en arquitecturas actuales",
       "OAuth2 es el protocolo de autorización (define los flujos); JWT es el formato del token — el Auth Server emite JWTs, los microservicios los validan localmente con la clave pública"
     ],
     "correct": 3,
@@ -1240,10 +1240,10 @@
     "options": [
       "Error de cache cuando se reinicia el servidor en producción",
       "Error de sincronización entre nodos de caché distribuido en K8s",
-      "Cuando una clave popular expira y múltiples requests simultáneos van a la BD para regenerarla — se previene con mutex al regenerar, probabilistic early expiration o background refresh",
-      "Error de serialización al guardar objetos complejos en Redis"
+      "Error de serialización al guardar objetos complejos en Redis",
+      "Cuando una clave popular expira y múltiples requests simultáneos van a la BD para regenerarla — se previene con mutex al regenerar, probabilistic early expiration o background refresh"
     ],
-    "correct": 2,
+    "correct": 3,
     "explanation": "Stampede ocurre con alto tráfico. Soluciones: mutex (solo un thread regenera, el resto espera), probabilistic early expiration (regenera antes de expirar), background refresh con TTL extendido.",
     "active": true
   },
@@ -1254,9 +1254,9 @@
     "question": "¿Qué hace @Scheduled en Spring Boot?",
     "code": null,
     "options": [
+      "Programa el despliegue automático de la aplicación al hacer push",
       "Solo funciona en combinación con @Async para operaciones largas",
       "Programa la expiración de entradas del caché de la aplicación",
-      "Programa el despliegue automático de la aplicación al hacer push",
       "Ejecuta el método automáticamente según una expresión cron o intervalo fijo — requiere @EnableScheduling en la configuración"
     ],
     "correct": 3,
@@ -1286,12 +1286,12 @@
     "question": "¿Qué es el patrón Sidecar en microservicios?",
     "code": null,
     "options": [
+      "Un microservicio de respaldo que reemplaza al principal cuando falla",
       "Un patrón de versionado de configuración por entorno en K8s",
       "Una estrategia de caching coubicado junto al servicio principal",
-      "Contenedor auxiliar en el mismo pod que gestiona cross-cutting concerns (mTLS, logging, métricas, circuit breaking) sin modificar el código del servicio principal",
-      "Un microservicio de respaldo que reemplaza al principal cuando falla"
+      "Contenedor auxiliar en el mismo pod que gestiona cross-cutting concerns (mTLS, logging, métricas, circuit breaking) sin modificar el código del servicio principal"
     ],
-    "correct": 2,
+    "correct": 3,
     "explanation": "Envoy como sidecar proxy maneja mTLS, circuit breaking y distributed tracing sin que el servicio lo sepa. Istio/Linkerd inyectan sidecars automáticamente en K8s.",
     "active": true
   },
@@ -1303,11 +1303,11 @@
     "code": null,
     "options": [
       "Es un protocolo alternativo a HTTP con mayor velocidad de transmisión",
-      "Lenguaje de consulta para APIs donde el cliente especifica exactamente los campos que necesita — úsalo con múltiples clientes (mobile, web) con necesidades de datos muy diferentes",
       "Es superior a REST en todos los casos de uso — REST quedará obsoleto",
-      "Solo es útil para bases de datos con estructuras de grafos"
+      "Solo es útil para bases de datos con estructuras de grafos",
+      "Lenguaje de consulta para APIs donde el cliente especifica exactamente los campos que necesita — úsalo con múltiples clientes (mobile, web) con necesidades de datos muy diferentes"
     ],
-    "correct": 1,
+    "correct": 3,
     "explanation": "REST: múltiples endpoints con estructura fija. GraphQL: un endpoint, el cliente pide lo que necesita. Elimina over-fetching. Desventaja: caching más complejo. No reemplaza REST — es una alternativa.",
     "active": true
   },
@@ -1318,12 +1318,12 @@
     "question": "¿Qué es la partición en Kafka y por qué importa para el ordenamiento?",
     "code": null,
     "options": [
-      "Configuración de replicación de mensajes entre brokers del cluster",
-      "Unidad de paralelismo del topic: mensajes de la misma partición están ordenados; misma clave → misma partición → orden garantizado por clave de negocio",
       "División física del broker para alta disponibilidad (HA)",
-      "Fragmentación automática de mensajes grandes en partes más pequeñas"
+      "Configuración de replicación de mensajes entre brokers del cluster",
+      "Fragmentación automática de mensajes grandes en partes más pequeñas",
+      "Unidad de paralelismo del topic: mensajes de la misma partición están ordenados; misma clave → misma partición → orden garantizado por clave de negocio"
     ],
-    "correct": 1,
+    "correct": 3,
     "explanation": "Si necesitas orden para eventos de una orden, usa orderId como partition key. Sin clave: round-robin entre particiones, sin orden garantizado. Más particiones = más paralelismo pero mayor overhead.",
     "active": true
   },
@@ -1334,12 +1334,12 @@
     "question": "¿Qué es Event Sourcing y cómo difiere del modelo CRUD tradicional?",
     "code": null,
     "options": [
-      "Es almacenar eventos en el log de Kafka de forma permanente",
-      "En lugar de guardar el estado actual, guarda la secuencia completa de eventos — el estado se reconstruye reproduciéndolos. Audit log nativo y time travel incluidos",
       "Es un sistema de logging más sofisticado que ELK Stack",
-      "Solo es útil para aplicaciones financieras o bancarias"
+      "Solo es útil para aplicaciones financieras o bancarias",
+      "Es almacenar eventos en el log de Kafka de forma permanente",
+      "En lugar de guardar el estado actual, guarda la secuencia completa de eventos — el estado se reconstruye reproduciéndolos. Audit log nativo y time travel incluidos"
     ],
-    "correct": 1,
+    "correct": 3,
     "explanation": "CRUD: UPDATE orders SET status=SHIPPED. Event Sourcing: INSERT (OrderCreated, OrderPaid, OrderShipped). Estado = reproducir todos los eventos. Alta complejidad — úsalo donde el historial tenga valor de negocio.",
     "active": true
   },
@@ -1350,12 +1350,12 @@
     "question": "¿Qué es mTLS y cuándo se usa en microservicios?",
     "code": null,
     "options": [
+      "TLS con múltiples capas de cifrado para mayor seguridad",
       "Un protocolo alternativo a HTTPS para comunicación interna entre servicios",
       "Solo se usa para comunicación entre servicios y bases de datos",
-      "Autenticación bidireccional: cliente y servidor presentan certificados — garantiza que solo microservicios legítimos se comunican (zero-trust). Istio/Linkerd lo gestionan automáticamente",
-      "TLS con múltiples capas de cifrado para mayor seguridad"
+      "Autenticación bidireccional: cliente y servidor presentan certificados — garantiza que solo microservicios legítimos se comunican (zero-trust). Istio/Linkerd lo gestionan automáticamente"
     ],
-    "correct": 2,
+    "correct": 3,
     "explanation": "TLS normal: el cliente verifica al servidor. mTLS: ambos se verifican mutuamente. Elimina la confianza implícita en la red interna del cluster. El sidecar lo gestiona sin cambios en el código.",
     "active": true
   },
@@ -1366,9 +1366,9 @@
     "question": "¿Qué es rate limiting y cómo se implementa en un API Gateway?",
     "code": null,
     "options": [
-      "Restricción del número máximo de microservicios detrás del Gateway",
-      "Restricción del número de versiones activas de una API en el Gateway",
       "Límite de tamaño máximo del body JSON de las peticiones",
+      "Restricción del número de versiones activas de una API en el Gateway",
+      "Restricción del número máximo de microservicios detrás del Gateway",
       "Restricción del número de peticiones por cliente en un período de tiempo para prevenir abuso — responde 429 Too Many Requests cuando se supera"
     ],
     "correct": 3,
@@ -1382,12 +1382,12 @@
     "question": "¿Cuándo usarías @Query con nativeQuery=true?",
     "code": null,
     "options": [
+      "Siempre — SQL nativo es más eficiente que JPQL en todos los casos",
       "Nunca — JPQL es siempre suficiente para cualquier query compleja",
-      "Solo cuando necesitas funcionalidades específicas del motor de BD (window functions, JSON operators, CTEs) que JPQL no puede expresar — sacrifica portabilidad",
       "Para todas las operaciones UPDATE y DELETE sin excepción",
-      "Siempre — SQL nativo es más eficiente que JPQL en todos los casos"
+      "Solo cuando necesitas funcionalidades específicas del motor de BD (window functions, JSON operators, CTEs) que JPQL no puede expresar — sacrifica portabilidad"
     ],
-    "correct": 1,
+    "correct": 3,
     "explanation": "JPQL es portable entre motores de BD. nativeQuery=true usa SQL del motor específico. Úsalo solo cuando JPQL no puede expresar la query. Evita cuando puedas para mantener portabilidad.",
     "active": true
   },
@@ -1400,10 +1400,10 @@
     "options": [
       "Es el SLA (Service Level Agreement) de disponibilidad de la API",
       "Es el código fuente completo de la implementación de la API",
-      "Especificación formal (OpenAPI/AsyncAPI) del comportamiento de la API — permite consumer-driven contract testing y desarrollo paralelo entre equipos sin depender de una implementación real",
-      "Es el conjunto de tests automáticos que validan la API"
+      "Es el conjunto de tests automáticos que validan la API",
+      "Especificación formal (OpenAPI/AsyncAPI) del comportamiento de la API — permite consumer-driven contract testing y desarrollo paralelo entre equipos sin depender de una implementación real"
     ],
-    "correct": 2,
+    "correct": 3,
     "explanation": "Con un contrato claro (OpenAPI spec), el equipo A desarrolla contra el contrato de B sin esperar su implementación. Consumer-driven contracts (Pact) verifican que cambios en el proveedor no rompen a los consumidores.",
     "active": true
   },
@@ -1414,12 +1414,12 @@
     "question": "¿Qué son los SLIs, SLOs y SLAs?",
     "code": null,
     "options": [
-      "Metodologías de desarrollo ágil adaptadas para microservicios",
+      "Estándares de codificación para microservicios del equipo de arquitectura",
       "Protocolos de seguridad para APIs REST en microservicios",
-      "SLI = métrica medida (disponibilidad real 99.9%); SLO = objetivo interno (≥99.5%); SLA = compromiso contractual con el cliente (≥99%) — el SLO es más estricto que el SLA como margen de seguridad",
-      "Estándares de codificación para microservicios del equipo de arquitectura"
+      "Metodologías de desarrollo ágil adaptadas para microservicios",
+      "SLI = métrica medida (disponibilidad real 99.9%); SLO = objetivo interno (≥99.5%); SLA = compromiso contractual con el cliente (≥99%) — el SLO es más estricto que el SLA como margen de seguridad"
     ],
-    "correct": 2,
+    "correct": 3,
     "explanation": "SLI mide lo que ocurre realmente. SLO es el objetivo interno — si lo incumples, actúas antes de violar el SLA. Diseña tu SLO con buffer: SLA 99% → SLO interno 99.5%.",
     "active": true
   },
@@ -1431,11 +1431,11 @@
     "code": "// Ejemplo de uso:\n@Transactional(readOnly = true)\npublic List<Product> findAll() {\n    return productRepository.findAll();\n}",
     "options": [
       "Hace la BD de solo lectura permanentemente para ese bean",
-      "Indica a Hibernate que no necesita rastrear cambios en las entidades (dirty checking), mejorando el rendimiento en operaciones de solo lectura",
       "Solo funciona con PostgreSQL — MySQL lo ignora",
-      "Es igual a @Transactional normal — readOnly no tiene efecto real"
+      "Es igual a @Transactional normal — readOnly no tiene efecto real",
+      "Indica a Hibernate que no necesita rastrear cambios en las entidades (dirty checking), mejorando el rendimiento en operaciones de solo lectura"
     ],
-    "correct": 1,
+    "correct": 3,
     "explanation": "readOnly=true deshabilita el dirty checking de Hibernate (no necesita comparar el estado inicial vs final de las entidades). Mejora rendimiento en queries de lectura intensiva. Además, algunos drivers/BD enrutan a réplicas de lectura cuando ven readOnly=true.",
     "active": true
   }

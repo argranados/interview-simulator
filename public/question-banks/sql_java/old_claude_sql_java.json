@@ -12,7 +12,8 @@
       "SELF JOIN"
     ],
     "correct": 1,
-    "explanation": "LEFT JOIN retorna todas las filas de la tabla izquierda (clientes) independientemente de si existe coincidencia en la tabla derecha (pedidos). Cuando un cliente no tiene pedidos, las columnas de pedidos aparecen como NULL. INNER JOIN excluiría esos clientes porque requiere coincidencia en ambas tablas."
+    "explanation": "LEFT JOIN retorna todas las filas de la tabla izquierda (clientes) independientemente de si existe coincidencia en la tabla derecha (pedidos). Cuando un cliente no tiene pedidos, las columnas de pedidos aparecen como NULL. INNER JOIN excluiría esos clientes porque requiere coincidencia en ambas tablas.",
+    "active": true
   },
   {
     "id": 2,
@@ -27,7 +28,8 @@
       "Error de sintaxis"
     ],
     "correct": 2,
-    "explanation": "COUNT(*) siempre retorna un valor numérico, nunca NULL ni cero filas. Si ninguna fila cumple la condición WHERE, retorna 0. Esta es una diferencia importante respecto a otras funciones de agregación como SUM() o AVG(), que retornarían NULL si no hay filas."
+    "explanation": "COUNT(*) siempre retorna un valor numérico, nunca NULL ni cero filas. Si ninguna fila cumple la condición WHERE, retorna 0. Esta es una diferencia importante respecto a otras funciones de agregación como SUM() o AVG(), que retornarían NULL si no hay filas.",
+    "active": true
   },
   {
     "id": 3,
@@ -42,7 +44,8 @@
       "NULL y FALSE son equivalentes en SQL"
     ],
     "correct": 2,
-    "explanation": "NULL representa la ausencia de un valor o un valor desconocido. No es 0 ni una cadena vacía. Cualquier comparación con = NULL devuelve NULL (no TRUE ni FALSE), por lo que se debe usar IS NULL o IS NOT NULL."
+    "explanation": "NULL representa la ausencia de un valor o un valor desconocido. No es 0 ni una cadena vacía. Cualquier comparación con = NULL devuelve NULL (no TRUE ni FALSE), por lo que se debe usar IS NULL o IS NOT NULL.",
+    "active": true
   },
   {
     "id": 4,
@@ -57,7 +60,8 @@
       "Solo DELETE es reversible con ROLLBACK; TRUNCATE y DROP no existen en SQL estándar"
     ],
     "correct": 1,
-    "explanation": "DELETE elimina filas individuales, permite filtrar con WHERE, registra cada eliminación en el log de transacciones y puede revertirse con ROLLBACK. TRUNCATE elimina todas las filas de forma más eficiente sin loguear cada fila. DROP elimina completamente la tabla junto con su estructura, indices y constraints."
+    "explanation": "DELETE elimina filas individuales, permite filtrar con WHERE, registra cada eliminación en el log de transacciones y puede revertirse con ROLLBACK. TRUNCATE elimina todas las filas de forma más eficiente sin loguear cada fila. DROP elimina completamente la tabla junto con su estructura, indices y constraints.",
+    "active": true
   },
   {
     "id": 5,
@@ -72,7 +76,8 @@
       "COUNT(columna) también cuenta filas con NULL"
     ],
     "correct": 1,
-    "explanation": "COUNT(*) cuenta el número total de filas en el resultado, incluyendo filas con valores NULL en cualquier columna. COUNT(columna) ignora las filas donde esa columna específica es NULL."
+    "explanation": "COUNT(*) cuenta el número total de filas en el resultado, incluyendo filas con valores NULL en cualquier columna. COUNT(columna) ignora las filas donde esa columna específica es NULL.",
+    "active": true
   },
   {
     "id": 6,
@@ -87,7 +92,8 @@
       "WHERE puede usar COUNT(); HAVING no puede usar funciones de agregación"
     ],
     "correct": 2,
-    "explanation": "WHERE se aplica antes de agrupar y filtra filas individuales; no puede usar funciones de agregación. HAVING se aplica después del GROUP BY y filtra grupos completos; si puede usar funciones de agregación como COUNT() o SUM()."
+    "explanation": "WHERE se aplica antes de agrupar y filtra filas individuales; no puede usar funciones de agregación. HAVING se aplica después del GROUP BY y filtra grupos completos; si puede usar funciones de agregación como COUNT() o SUM().",
+    "active": true
   },
   {
     "id": 7,
@@ -102,7 +108,8 @@
       "Solo funciona con columnas VARCHAR de máximo 255 caracteres"
     ],
     "correct": 1,
-    "explanation": "En el operador LIKE: % representa cero o más caracteres de cualquier tipo, y _ representa exactamente un carácter. '%@gmail.com' encuentra cualquier email que termine en @gmail.com, mientras que 'MX-__-___' requiere exactamente 2 caracteres después del primer guion y 3 después del segundo."
+    "explanation": "En el operador LIKE: % representa cero o más caracteres de cualquier tipo, y _ representa exactamente un carácter. '%@gmail.com' encuentra cualquier email que termine en @gmail.com, mientras que 'MX-__-___' requiere exactamente 2 caracteres después del primer guion y 3 después del segundo.",
+    "active": true
   },
   {
     "id": 8,
@@ -117,7 +124,8 @@
       "Una tabla puede tener múltiples PRIMARY KEY"
     ],
     "correct": 0,
-    "explanation": "PRIMARY KEY identifica de forma única cada fila, no permite NULL ni valores duplicados, y solo puede existir una por tabla. UNIQUE garantiza valores únicos pero generalmente permite un valor NULL, y puede haber múltiples constraints UNIQUE en una misma tabla."
+    "explanation": "PRIMARY KEY identifica de forma única cada fila, no permite NULL ni valores duplicados, y solo puede existir una por tabla. UNIQUE garantiza valores únicos pero generalmente permite un valor NULL, y puede haber múltiples constraints UNIQUE en una misma tabla.",
+    "active": true
   },
   {
     "id": 9,
@@ -132,7 +140,8 @@
       "5"
     ],
     "correct": 3,
-    "explanation": "COALESCE evalúa los argumentos en orden de izquierda a derecha y retorna el primer valor que no sea NULL. Los dos primeros son NULL, el tercero es 5 (no NULL), por lo que retorna 5."
+    "explanation": "COALESCE evalúa los argumentos en orden de izquierda a derecha y retorna el primer valor que no sea NULL. Los dos primeros son NULL, el tercero es 5 (no NULL), por lo que retorna 5.",
+    "active": true
   },
   {
     "id": 10,
@@ -147,7 +156,8 @@
       "BETWEEN es equivalente a > y <, excluyendo los límites"
     ],
     "correct": 2,
-    "explanation": "BETWEEN filtra valores dentro de un rango incluyendo ambos límites. WHERE salario BETWEEN 3000 AND 7000 es exactamente equivalente a WHERE salario >= 3000 AND salario <= 7000. Funciona con números, fechas y strings."
+    "explanation": "BETWEEN filtra valores dentro de un rango incluyendo ambos límites. WHERE salario BETWEEN 3000 AND 7000 es exactamente equivalente a WHERE salario >= 3000 AND salario <= 7000. Funciona con números, fechas y strings.",
+    "active": true
   },
   {
     "id": 11,
@@ -162,7 +172,8 @@
       "12 filas (4x3)"
     ],
     "correct": 3,
-    "explanation": "CROSS JOIN produce el producto cartesiano: cada fila de la primera tabla se combina con cada fila de la segunda tabla. Con 4 filas y 3 filas el resultado es 4x3 = 12 filas."
+    "explanation": "CROSS JOIN produce el producto cartesiano: cada fila de la primera tabla se combina con cada fila de la segunda tabla. Con 4 filas y 3 filas el resultado es 4x3 = 12 filas.",
+    "active": true
   },
   {
     "id": 12,
@@ -177,7 +188,8 @@
       "Permite lógica condicional if-else dentro de una query, asignando valores distintos según condiciones"
     ],
     "correct": 3,
-    "explanation": "CASE WHEN es la estructura condicional de SQL. Evalúa las condiciones en orden y retorna el valor de la primera que sea verdadera. Puede usarse en SELECT, WHERE y ORDER BY."
+    "explanation": "CASE WHEN es la estructura condicional de SQL. Evalúa las condiciones en orden y retorna el valor de la primera que sea verdadera. Puede usarse en SELECT, WHERE y ORDER BY.",
+    "active": true
   },
   {
     "id": 13,
@@ -192,7 +204,8 @@
       "Elimina duplicados como DISTINCT"
     ],
     "correct": 2,
-    "explanation": "GROUP BY agrupa todas las filas que tienen el mismo valor en las columnas especificadas, permitiendo aplicar funciones de agregación a cada grupo. HAVING luego filtra solo los grupos que cumplen la condición."
+    "explanation": "GROUP BY agrupa todas las filas que tienen el mismo valor en las columnas especificadas, permitiendo aplicar funciones de agregación a cada grupo. HAVING luego filtra solo los grupos que cumplen la condición.",
+    "active": true
   },
   {
     "id": 14,
@@ -207,7 +220,8 @@
       "Una columna que referencia la PK de otra tabla, garantizando integridad referencial: no puedes insertar un valor que no exista en la tabla padre"
     ],
     "correct": 3,
-    "explanation": "Una FOREIGN KEY es una columna o conjunto de columnas que referencia la PRIMARY KEY de otra tabla. Garantiza la integridad referencial: no se puede insertar un valor en la FK que no exista en la tabla referenciada."
+    "explanation": "Una FOREIGN KEY es una columna o conjunto de columnas que referencia la PRIMARY KEY de otra tabla. Garantiza la integridad referencial: no se puede insertar un valor en la FK que no exista en la tabla referenciada.",
+    "active": true
   },
   {
     "id": 15,
@@ -222,7 +236,8 @@
       "CHAR no admite espacios en blanco dentro del valor"
     ],
     "correct": 2,
-    "explanation": "CHAR(10) almacena exactamente 10 caracteres siempre, rellenando con espacios si el valor es más corto. VARCHAR(10) almacena solo los caracteres del valor más 1-2 bytes para la longitud. CHAR es eficiente para valores de longitud constante; VARCHAR es más eficiente en espacio para longitudes variables."
+    "explanation": "CHAR(10) almacena exactamente 10 caracteres siempre, rellenando con espacios si el valor es más corto. VARCHAR(10) almacena solo los caracteres del valor más 1-2 bytes para la longitud. CHAR es eficiente para valores de longitud constante; VARCHAR es más eficiente en espacio para longitudes variables.",
+    "active": true
   },
   {
     "id": 16,
@@ -237,7 +252,8 @@
       "UNION elimina duplicados pero es más lento; UNION ALL conserva todos los registros y es más rápido"
     ],
     "correct": 3,
-    "explanation": "UNION combina los resultados de dos queries y elimina filas duplicadas (implica un paso adicional de comparación). UNION ALL combina todos los resultados sin eliminar duplicados, siendo más rápido. Si no habrá duplicados o no te importan, UNION ALL es preferible por rendimiento."
+    "explanation": "UNION combina los resultados de dos queries y elimina filas duplicadas (implica un paso adicional de comparación). UNION ALL combina todos los resultados sin eliminar duplicados, siendo más rápido. Si no habrá duplicados o no te importan, UNION ALL es preferible por rendimiento.",
+    "active": true
   },
   {
     "id": 17,
@@ -252,7 +268,8 @@
       "Extrae una porción de texto: SUBSTRING(texto, posicion_inicio, longitud)"
     ],
     "correct": 3,
-    "explanation": "SUBSTRING(cadena, inicio, longitud) extrae una parte de una cadena de texto comenzando en la posición indicada. En SQL el índice comienza en 1. En el ejemplo, empieza en posición 5 y toma 9 caracteres, resultando en 'Developer'."
+    "explanation": "SUBSTRING(cadena, inicio, longitud) extrae una parte de una cadena de texto comenzando en la posición indicada. En SQL el índice comienza en 1. En el ejemplo, empieza en posición 5 y toma 9 caracteres, resultando en 'Developer'.",
+    "active": true
   },
   {
     "id": 18,
@@ -267,7 +284,8 @@
       "COMMIT confirma y persiste los cambios de la transacción; ROLLBACK deshace todos los cambios de la transacción actual"
     ],
     "correct": 3,
-    "explanation": "COMMIT finaliza la transacción confirmando todos los cambios, haciéndolos permanentes. ROLLBACK deshace todos los cambios realizados desde el inicio de la transacción, dejando los datos en el estado anterior."
+    "explanation": "COMMIT finaliza la transacción confirmando todos los cambios, haciéndolos permanentes. ROLLBACK deshace todos los cambios realizados desde el inicio de la transacción, dejando los datos en el estado anterior.",
+    "active": true
   },
   {
     "id": 19,
@@ -282,7 +300,8 @@
       "Acelera las búsquedas evitando full table scans a costa de espacio en disco adicional y overhead en operaciones de escritura"
     ],
     "correct": 3,
-    "explanation": "Un índice es una estructura de datos adicional que permite al motor encontrar filas sin escanear toda la tabla. Acelera enormemente consultas con WHERE, JOIN y ORDER BY. La desventaja es que ocupa espacio adicional y ralentiza INSERT, UPDATE y DELETE porque el índice debe mantenerse actualizado."
+    "explanation": "Un índice es una estructura de datos adicional que permite al motor encontrar filas sin escanear toda la tabla. Acelera enormemente consultas con WHERE, JOIN y ORDER BY. La desventaja es que ocupa espacio adicional y ralentiza INSERT, UPDATE y DELETE porque el índice debe mantenerse actualizado.",
+    "active": true
   },
   {
     "id": 20,
@@ -297,7 +316,8 @@
       "Recupera columnas innecesarias aumentando tráfico de red, impide covering indexes y puede romper el código si se añaden o reordenan columnas"
     ],
     "correct": 3,
-    "explanation": "SELECT * transfiere datos innecesarios por la red, impide que el optimizador use covering indexes, puede retornar columnas sensibles no deseadas, y hace el código frágil ante cambios de esquema."
+    "explanation": "SELECT * transfiere datos innecesarios por la red, impide que el optimizador use covering indexes, puede retornar columnas sensibles no deseadas, y hace el código frágil ante cambios de esquema.",
+    "active": true
   },
   {
     "id": 21,
@@ -312,7 +332,8 @@
       "Convierte un valor de un tipo de dato a otro; importante para evitar comparaciones incorrectas entre tipos diferentes"
     ],
     "correct": 3,
-    "explanation": "CAST(valor AS tipo) convierte explícitamente un valor de un tipo de dato a otro. En el backend es crucial para comparaciones correctas entre tipos, formatear decimales con precisión, y manejar fechas correctamente."
+    "explanation": "CAST(valor AS tipo) convierte explícitamente un valor de un tipo de dato a otro. En el backend es crucial para comparaciones correctas entre tipos, formatear decimales con precisión, y manejar fechas correctamente.",
+    "active": true
   },
   {
     "id": 22,
@@ -327,7 +348,8 @@
       "Funciones que operan sobre un conjunto de filas y retornan un único valor: COUNT, SUM, AVG, MIN, MAX; ignoran NULL excepto COUNT(*)"
     ],
     "correct": 3,
-    "explanation": "Las funciones de agregación colapsan múltiples filas en un único valor. Las principales son: COUNT, SUM, AVG, MIN y MAX. Todas ignoran valores NULL, excepto COUNT(*) que cuenta todas las filas incluyendo las que tienen NULLs."
+    "explanation": "Las funciones de agregación colapsan múltiples filas en un único valor. Las principales son: COUNT, SUM, AVG, MIN y MAX. Todas ignoran valores NULL, excepto COUNT(*) que cuenta todas las filas incluyendo las que tienen NULLs.",
+    "active": true
   },
   {
     "id": 23,
@@ -342,7 +364,8 @@
       "Una tabla almacena datos físicamente; una VIEW es una query guardada que se ejecuta cada vez que se consulta y no almacena datos propios"
     ],
     "correct": 3,
-    "explanation": "Una tabla almacena datos físicamente en disco. Una VIEW es una consulta SQL guardada que actúa como tabla virtual: cada vez que se consulta, ejecuta la query subyacente en tiempo real. No almacena datos propios (excepto las vistas materializadas)."
+    "explanation": "Una tabla almacena datos físicamente en disco. Una VIEW es una consulta SQL guardada que actúa como tabla virtual: cada vez que se consulta, ejecuta la query subyacente en tiempo real. No almacena datos propios (excepto las vistas materializadas).",
+    "active": true
   },
   {
     "id": 24,
@@ -357,7 +380,8 @@
       "IN verifica si un valor coincide con alguno de los valores de una lista; es equivalente a múltiples OR pero más legible"
     ],
     "correct": 3,
-    "explanation": "El operador IN verifica si un valor coincide con alguno de los valores de la lista, siendo equivalente a múltiples condiciones OR pero más legible. También puede usarse con subqueries: WHERE id IN (SELECT cliente_id FROM pedidos)."
+    "explanation": "El operador IN verifica si un valor coincide con alguno de los valores de la lista, siendo equivalente a múltiples condiciones OR pero más legible. También puede usarse con subqueries: WHERE id IN (SELECT cliente_id FROM pedidos).",
+    "active": true
   },
   {
     "id": 25,
@@ -372,7 +396,8 @@
       "Redondea un número a la cantidad de decimales especificada; en reportes financieros es crucial para evitar errores de punto flotante acumulados"
     ],
     "correct": 3,
-    "explanation": "ROUND(numero, decimales) redondea un número a la cantidad de posiciones decimales indicada. En reportes financieros es indispensable para presentar precios con exactamente 2 decimales y evitar acumulación de errores de punto flotante."
+    "explanation": "ROUND(numero, decimales) redondea un número a la cantidad de posiciones decimales indicada. En reportes financieros es indispensable para presentar precios con exactamente 2 decimales y evitar acumulación de errores de punto flotante.",
+    "active": true
   },
   {
     "id": 26,
@@ -387,7 +412,8 @@
       "Ambas son válidas; la Opcion A es más portable entre DBMS; la Opcion B depende de soporte de LIMIT/OFFSET"
     ],
     "correct": 3,
-    "explanation": "Ambas son correctas. La Opcion A con subquery es más portable ya que usa SQL estándar. La Opcion B con LIMIT/OFFSET funciona en MySQL y PostgreSQL pero no en SQL Server. En entrevistas también se acepta usar DENSE_RANK() OVER(ORDER BY salario DESC) y filtrar donde rn = 2."
+    "explanation": "Ambas son correctas. La Opcion A con subquery es más portable ya que usa SQL estándar. La Opcion B con LIMIT/OFFSET funciona en MySQL y PostgreSQL pero no en SQL Server. En entrevistas también se acepta usar DENSE_RANK() OVER(ORDER BY salario DESC) y filtrar donde rn = 2.",
+    "active": true
   },
   {
     "id": 27,
@@ -402,7 +428,8 @@
       "Un resultado temporal nombrado definido con WITH que mejora legibilidad y puede referenciarse múltiples veces en la misma query"
     ],
     "correct": 3,
-    "explanation": "Una CTE se define con WITH nombre AS (query) y existe solo durante la ejecución de la consulta donde está definida. A diferencia de una subquery en el FROM, puede referenciarse múltiples veces sin repetir el código, y soporta CTEs recursivas para datos jerárquicos."
+    "explanation": "Una CTE se define con WITH nombre AS (query) y existe solo durante la ejecución de la consulta donde está definida. A diferencia de una subquery en el FROM, puede referenciarse múltiples veces sin repetir el código, y soporta CTEs recursivas para datos jerárquicos.",
+    "active": true
   },
   {
     "id": 28,
@@ -417,7 +444,8 @@
       "ROW_NUMBER asigna número único siempre; RANK deja huecos en empates; DENSE_RANK no deja huecos en empates"
     ],
     "correct": 3,
-    "explanation": "Con valores empatados: ROW_NUMBER asigna un número único a cada fila. RANK asigna el mismo número a los empatados y luego salta posiciones (1, 1, 3). DENSE_RANK asigna el mismo número a empatados pero continúa secuencialmente sin saltar (1, 1, 2)."
+    "explanation": "Con valores empatados: ROW_NUMBER asigna un número único a cada fila. RANK asigna el mismo número a los empatados y luego salta posiciones (1, 1, 3). DENSE_RANK asigna el mismo número a empatados pero continúa secuencialmente sin saltar (1, 1, 2).",
+    "active": true
   },
   {
     "id": 29,
@@ -432,7 +460,8 @@
       "Divide el resultado en particiones para calcular la función de ventana independientemente por grupo, sin colapsar las filas originales"
     ],
     "correct": 3,
-    "explanation": "PARTITION BY divide el conjunto de resultados en particiones sobre las que se calcula la función de ventana. La diferencia clave con GROUP BY es que PARTITION BY NO colapsa las filas: cada fila mantiene sus datos originales más el resultado de la función calculada para su partición."
+    "explanation": "PARTITION BY divide el conjunto de resultados en particiones sobre las que se calcula la función de ventana. La diferencia clave con GROUP BY es que PARTITION BY NO colapsa las filas: cada fila mantiene sus datos originales más el resultado de la función calculada para su partición.",
+    "active": true
   },
   {
     "id": 30,
@@ -447,7 +476,8 @@
       "LAG accede al valor de la fila anterior; LEAD accede al valor de la fila siguiente; útiles para comparaciones entre periodos consecutivos"
     ],
     "correct": 3,
-    "explanation": "LAG(columna, offset) accede al valor de una fila anterior según el offset especificado. LEAD(columna, offset) accede al valor de una fila posterior. Son fundamentales para análisis de series temporales: calcular variaciones dia a dia o mes a mes sin necesidad de hacer un SELF JOIN."
+    "explanation": "LAG(columna, offset) accede al valor de una fila anterior según el offset especificado. LEAD(columna, offset) accede al valor de una fila posterior. Son fundamentales para análisis de series temporales: calcular variaciones dia a dia o mes a mes sin necesidad de hacer un SELF JOIN.",
+    "active": true
   },
   {
     "id": 31,
@@ -462,7 +492,8 @@
       "SUM() OVER(ORDER BY fecha ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) calcula la suma acumulada fila por fila"
     ],
     "correct": 3,
-    "explanation": "SUM() OVER con ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW define una ventana desde la primera fila hasta la fila actual, calculando la suma acumulada. Es la forma más eficiente de calcular acumulados en SQL moderno sin subqueries correlacionadas."
+    "explanation": "SUM() OVER con ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW define una ventana desde la primera fila hasta la fila actual, calculando la suma acumulada. Es la forma más eficiente de calcular acumulados en SQL moderno sin subqueries correlacionadas.",
+    "active": true
   },
   {
     "id": 32,
@@ -477,7 +508,8 @@
       "ROW_NUMBER() OVER(PARTITION BY categoria ORDER BY ventas DESC) en subquery o CTE, luego filtrar donde rn <= 3"
     ],
     "correct": 3,
-    "explanation": "Se usa PARTITION BY para reiniciar el contador en cada categoria, ORDER BY ventas DESC para ordenar, y ROW_NUMBER() para numerar. El filtro rn <= 3 debe hacerse en una subquery o CTE porque no se puede filtrar por funciones de ventana directamente en WHERE."
+    "explanation": "Se usa PARTITION BY para reiniciar el contador en cada categoria, ORDER BY ventas DESC para ordenar, y ROW_NUMBER() para numerar. El filtro rn <= 3 debe hacerse en una subquery o CTE porque no se puede filtrar por funciones de ventana directamente en WHERE.",
+    "active": true
   },
   {
     "id": 33,
@@ -492,7 +524,8 @@
       "Ejecutar EXPLAIN o EXPLAIN ANALYZE para ver el plan de ejecución: si hay full table scan, qué índices usa y el costo estimado"
     ],
     "correct": 3,
-    "explanation": "Antes de hacer cualquier cambio, se debe entender por qué la query es lenta. EXPLAIN muestra el plan de ejecución: qué operaciones realiza el motor, si usa índices o hace full table scan, y el costo estimado. EXPLAIN ANALYZE también ejecuta la query y muestra tiempos reales."
+    "explanation": "Antes de hacer cualquier cambio, se debe entender por qué la query es lenta. EXPLAIN muestra el plan de ejecución: qué operaciones realiza el motor, si usa índices o hace full table scan, y el costo estimado. EXPLAIN ANALYZE también ejecuta la query y muestra tiempos reales.",
+    "active": true
   },
   {
     "id": 34,
@@ -507,7 +540,8 @@
       "Un índice sobre múltiples columnas; es efectivo si la query filtra por las columnas iniciales del índice (prefix rule)"
     ],
     "correct": 3,
-    "explanation": "Un índice compuesto cubre múltiples columnas en el orden especificado. La prefix rule establece que el índice es utilizable solo si la query filtra por las columnas iniciales. Con INDEX(cliente_id, fecha, estado): funciona filtrando por cliente_id, o cliente_id + fecha, pero NO filtrando solo por fecha."
+    "explanation": "Un índice compuesto cubre múltiples columnas en el orden especificado. La prefix rule establece que el índice es utilizable solo si la query filtra por las columnas iniciales. Con INDEX(cliente_id, fecha, estado): funciona filtrando por cliente_id, o cliente_id + fecha, pero NO filtrando solo por fecha.",
+    "active": true
   },
   {
     "id": 35,
@@ -522,7 +556,8 @@
       "Ejecutar 1 query para obtener la lista y luego 1 query por cada registro; se soluciona con JOINs o eager loading en una sola consulta"
     ],
     "correct": 3,
-    "explanation": "El problema N+1 ocurre cuando se hace 1 query inicial para obtener N registros y luego N queries adicionales por cada uno. Para 100 clientes son 101 queries en lugar de 1. Se soluciona haciendo un JOIN que obtenga toda la información en una sola query."
+    "explanation": "El problema N+1 ocurre cuando se hace 1 query inicial para obtener N registros y luego N queries adicionales por cada uno. Para 100 clientes son 101 queries en lugar de 1. Se soluciona haciendo un JOIN que obtenga toda la información en una sola query.",
+    "active": true
   },
   {
     "id": 36,
@@ -537,7 +572,8 @@
       "Keyset pagination con WHERE id > :ultimo_id es eficiente; OFFSET es lento en páginas grandes porque debe saltar todas las filas previas"
     ],
     "correct": 3,
-    "explanation": "OFFSET se vuelve cada vez más lento conforme aumenta el número de página, porque el motor debe leer y descartar todas las filas anteriores. Keyset pagination usa WHERE id > :ultimo_id_visto aprovechando el índice para ir directamente a la posición correcta, siendo O(1) independientemente de la página."
+    "explanation": "OFFSET se vuelve cada vez más lento conforme aumenta el número de página, porque el motor debe leer y descartar todas las filas anteriores. Keyset pagination usa WHERE id > :ultimo_id_visto aprovechando el índice para ir directamente a la posición correcta, siendo O(1) independientemente de la página.",
+    "active": true
   },
   {
     "id": 37,
@@ -552,7 +588,8 @@
       "EXISTS detiene la búsqueda en el primer resultado encontrado y suele ser más eficiente con subqueries correlacionadas grandes"
     ],
     "correct": 3,
-    "explanation": "EXISTS detiene la evaluación en cuanto encuentra la primera fila (short-circuit evaluation), lo que lo hace más eficiente cuando la subquery puede retornar muchas filas. IN evalúa toda la subquery y construye una lista completa. Para tablas grandes con subqueries correlacionadas, EXISTS generalmente tiene mejor rendimiento."
+    "explanation": "EXISTS detiene la evaluación en cuanto encuentra la primera fila (short-circuit evaluation), lo que lo hace más eficiente cuando la subquery puede retornar muchas filas. IN evalúa toda la subquery y construye una lista completa. Para tablas grandes con subqueries correlacionadas, EXISTS generalmente tiene mejor rendimiento.",
+    "active": true
   },
   {
     "id": 38,
@@ -567,7 +604,8 @@
       "Para recorrer estructuras jerárquicas o en árbol como org charts, categorías padre-hijo o listas de materiales (BOM)"
     ],
     "correct": 3,
-    "explanation": "Las CTEs recursivas permiten recorrer estructuras jerárquicas donde una fila referencia a otra de la misma tabla. Se componen de un anchor member (caso base) unido con UNION ALL a la parte recursiva. Son ideales para org charts, categorias anidadas o cualquier dato con relación padre-hijo."
+    "explanation": "Las CTEs recursivas permiten recorrer estructuras jerárquicas donde una fila referencia a otra de la misma tabla. Se componen de un anchor member (caso base) unido con UNION ALL a la parte recursiva. Son ideales para org charts, categorias anidadas o cualquier dato con relación padre-hijo.",
+    "active": true
   },
   {
     "id": 39,
@@ -582,7 +620,8 @@
       "Une una tabla consigo misma usando alias diferentes; útil para relaciones jerárquicas o comparar filas de la misma tabla"
     ],
     "correct": 3,
-    "explanation": "Un SELF JOIN une una tabla con ella misma asignando dos alias diferentes. Es el patrón correcto para relaciones donde una entidad referencia a otra del mismo tipo: empleados con sus managers, categorias con sus categorias padre, o comparar filas de la misma tabla entre si."
+    "explanation": "Un SELF JOIN une una tabla con ella misma asignando dos alias diferentes. Es el patrón correcto para relaciones donde una entidad referencia a otra del mismo tipo: empleados con sus managers, categorias con sus categorias padre, o comparar filas de la misma tabla entre si.",
+    "active": true
   },
   {
     "id": 40,
@@ -597,7 +636,8 @@
       "Retorna todas las filas de ambas tablas; donde no hay match pone NULL en las columnas de la otra tabla; útil para reconciliaciones de datos"
     ],
     "correct": 3,
-    "explanation": "FULL OUTER JOIN combina LEFT JOIN y RIGHT JOIN: retorna todas las filas de ambas tablas, colocando NULL donde no existe coincidencia. Util para comparar dos conjuntos y encontrar qué registros existen en uno pero no en el otro. Nota: MySQL no soporta FULL OUTER JOIN directamente; se simula con UNION de LEFT y RIGHT JOIN."
+    "explanation": "FULL OUTER JOIN combina LEFT JOIN y RIGHT JOIN: retorna todas las filas de ambas tablas, colocando NULL donde no existe coincidencia. Util para comparar dos conjuntos y encontrar qué registros existen en uno pero no en el otro. Nota: MySQL no soporta FULL OUTER JOIN directamente; se simula con UNION de LEFT y RIGHT JOIN.",
+    "active": true
   },
   {
     "id": 41,
@@ -612,7 +652,8 @@
       "ACID: Atomicidad (todo o nada), Consistencia (estado válido), Aislamiento (concurrencia controlada), Durabilidad (persiste ante fallos)"
     ],
     "correct": 3,
-    "explanation": "Las propiedades ACID garantizan la fiabilidad de las transacciones: Atomicidad (todas las operaciones se ejecutan o ninguna), Consistencia (la DB pasa de un estado válido a otro), Aislamiento (transacciones concurrentes no se interfieren), Durabilidad (los cambios confirmados persisten incluso ante fallos del sistema)."
+    "explanation": "Las propiedades ACID garantizan la fiabilidad de las transacciones: Atomicidad (todas las operaciones se ejecutan o ninguna), Consistencia (la DB pasa de un estado válido a otro), Aislamiento (transacciones concurrentes no se interfieren), Durabilidad (los cambios confirmados persisten incluso ante fallos del sistema).",
+    "active": true
   },
   {
     "id": 42,
@@ -627,7 +668,8 @@
       "Pessimistic bloquea el registro al inicio evitando conflictos; Optimistic no bloquea pero verifica versión al guardar y hace rollback si hubo conflicto"
     ],
     "correct": 3,
-    "explanation": "Pessimistic locking bloquea el registro al inicio con SELECT FOR UPDATE, impidiendo modificaciones concurrentes. Puede causar deadlocks. Optimistic locking no bloquea: verifica que la versión no haya cambiado al guardar. Si alguien modificó primero, el UPDATE afecta 0 filas y se reintenta. Mejor para sistemas con baja contención."
+    "explanation": "Pessimistic locking bloquea el registro al inicio con SELECT FOR UPDATE, impidiendo modificaciones concurrentes. Puede causar deadlocks. Optimistic locking no bloquea: verifica que la versión no haya cambiado al guardar. Si alguien modificó primero, el UPDATE afecta 0 filas y se reintenta. Mejor para sistemas con baja contención.",
+    "active": true
   },
   {
     "id": 43,
@@ -642,7 +684,8 @@
       "Leer datos no confirmados (uncommitted) de otra transacción que podría hacer ROLLBACK; se previene desde READ COMMITTED en adelante"
     ],
     "correct": 3,
-    "explanation": "Un dirty read ocurre cuando una transacción lee datos que otra modificó pero aún no ha confirmado. Si esa transacción hace ROLLBACK, los datos leídos nunca existieron realmente. Solo READ UNCOMMITTED permite dirty reads. READ COMMITTED y niveles superiores garantizan que solo se lean datos confirmados."
+    "explanation": "Un dirty read ocurre cuando una transacción lee datos que otra modificó pero aún no ha confirmado. Si esa transacción hace ROLLBACK, los datos leídos nunca existieron realmente. Solo READ UNCOMMITTED permite dirty reads. READ COMMITTED y niveles superiores garantizan que solo se lean datos confirmados.",
+    "active": true
   },
   {
     "id": 44,
@@ -657,7 +700,8 @@
       "READ UNCOMMITTED, READ COMMITTED, REPEATABLE READ, SERIALIZABLE; mayor nivel = mayor consistencia pero menor concurrencia"
     ],
     "correct": 3,
-    "explanation": "Los cuatro niveles de menor a mayor protección: READ UNCOMMITTED (permite dirty reads), READ COMMITTED (evita dirty reads), REPEATABLE READ (evita dirty y non-repeatable reads), SERIALIZABLE (máxima protección). Mayor aislamiento reduce la concurrencia y el rendimiento."
+    "explanation": "Los cuatro niveles de menor a mayor protección: READ UNCOMMITTED (permite dirty reads), READ COMMITTED (evita dirty reads), REPEATABLE READ (evita dirty y non-repeatable reads), SERIALIZABLE (máxima protección). Mayor aislamiento reduce la concurrencia y el rendimiento.",
+    "active": true
   },
   {
     "id": 45,
@@ -672,7 +716,8 @@
       "Elimina automáticamente las filas hijas cuando se elimina la fila padre, manteniendo la integridad referencial"
     ],
     "correct": 3,
-    "explanation": "ON DELETE CASCADE configura que cuando se elimina una fila en la tabla padre, todas las filas relacionadas en la tabla hija se eliminan automáticamente. Alternativas: ON DELETE SET NULL (pone NULL en la FK) y ON DELETE RESTRICT (impide el borrado si hay hijos)."
+    "explanation": "ON DELETE CASCADE configura que cuando se elimina una fila en la tabla padre, todas las filas relacionadas en la tabla hija se eliminan automáticamente. Alternativas: ON DELETE SET NULL (pone NULL en la FK) y ON DELETE RESTRICT (impide el borrado si hay hijos).",
+    "active": true
   },
   {
     "id": 46,
@@ -687,7 +732,8 @@
       "Cuando se actualiza el valor de la PK en la tabla padre, automáticamente actualiza el valor correspondiente en todas las filas hijas"
     ],
     "correct": 3,
-    "explanation": "ON UPDATE CASCADE propaga automáticamente los cambios de valor en la PK de la tabla padre a todas las filas hijas. Por ejemplo, si cambias el id de un departamento, todas las filas de empleados que lo referencian se actualizarán automáticamente."
+    "explanation": "ON UPDATE CASCADE propaga automáticamente los cambios de valor en la PK de la tabla padre a todas las filas hijas. Por ejemplo, si cambias el id de un departamento, todas las filas de empleados que lo referencian se actualizarán automáticamente.",
+    "active": true
   },
   {
     "id": 47,
@@ -702,7 +748,8 @@
       "Conjunto de instrucciones SQL precompiladas en el servidor; ventajas: reutilización, rendimiento, encapsulación de lógica y reducción de tráfico de red"
     ],
     "correct": 3,
-    "explanation": "Un stored procedure es un conjunto de instrucciones SQL guardadas y precompiladas en el servidor. Sus ventajas: reutilización (se llama por nombre), mejor rendimiento (precompilado), encapsulación de lógica de negocio, reducción del tráfico de red, y control de acceso granular."
+    "explanation": "Un stored procedure es un conjunto de instrucciones SQL guardadas y precompiladas en el servidor. Sus ventajas: reutilización (se llama por nombre), mejor rendimiento (precompilado), encapsulación de lógica de negocio, reducción del tráfico de red, y control de acceso granular.",
+    "active": true
   },
   {
     "id": 48,
@@ -717,7 +764,8 @@
       "Procedimiento que se ejecuta automáticamente ante INSERT/UPDATE/DELETE; apropiado para auditoría, validaciones complejas y mantener datos derivados"
     ],
     "correct": 3,
-    "explanation": "Un trigger se ejecuta automáticamente en respuesta a eventos DML sobre una tabla. Casos de uso: auditoría (registrar quién cambió qué), validaciones complejas que no pueden expresarse como constraints, y mantenimiento de datos derivados. Deben usarse con cuidado ya que añaden lógica oculta que dificulta el debugging."
+    "explanation": "Un trigger se ejecuta automáticamente en respuesta a eventos DML sobre una tabla. Casos de uso: auditoría (registrar quién cambió qué), validaciones complejas que no pueden expresarse como constraints, y mantenimiento de datos derivados. Deben usarse con cuidado ya que añaden lógica oculta que dificulta el debugging.",
+    "active": true
   },
   {
     "id": 49,
@@ -732,7 +780,8 @@
       "Una materialized view almacena físicamente el resultado de la query y requiere REFRESH para actualizarse; más rápida en lectura que una VIEW regular"
     ],
     "correct": 3,
-    "explanation": "Una VIEW regular ejecuta la query subyacente en cada acceso, reflejando siempre datos actuales. Una materialized view guarda físicamente el resultado en disco, permitiendo lecturas muy rápidas. La desventaja es que los datos pueden quedar desactualizados y requiere un REFRESH para reflejar cambios."
+    "explanation": "Una VIEW regular ejecuta la query subyacente en cada acceso, reflejando siempre datos actuales. Una materialized view guarda físicamente el resultado en disco, permitiendo lecturas muy rápidas. La desventaja es que los datos pueden quedar desactualizados y requiere un REFRESH para reflejar cambios.",
+    "active": true
   },
   {
     "id": 50,
@@ -747,7 +796,8 @@
       "1NF: valores atómicos sin grupos repetidos; 2NF: sin dependencias parciales de la PK; 3NF: sin dependencias transitivas entre columnas no clave"
     ],
     "correct": 3,
-    "explanation": "1NF: cada celda contiene un valor atómico, sin grupos repetidos. 2NF: cumple 1NF y todos los atributos no clave dependen de la PK completa. 3NF: cumple 2NF y ningún atributo no clave depende transitivamente de otro atributo no clave."
+    "explanation": "1NF: cada celda contiene un valor atómico, sin grupos repetidos. 2NF: cumple 1NF y todos los atributos no clave dependen de la PK completa. 3NF: cumple 2NF y ningún atributo no clave depende transitivamente de otro atributo no clave.",
+    "active": true
   },
   {
     "id": 51,
@@ -762,7 +812,8 @@
       "Cuando el rendimiento de lectura es crítico y los JOINs son costosos; se acepta redundancia a cambio de velocidad en data warehouses y reportes"
     ],
     "correct": 3,
-    "explanation": "La desnormalización almacena datos redundantes para evitar JOINs costosos. Se justifica en data warehouses y OLAP donde las lecturas son masivas y las escrituras infrecuentes, o cuando se han agotado otras optimizaciones y los JOINs siguen siendo el cuello de botella."
+    "explanation": "La desnormalización almacena datos redundantes para evitar JOINs costosos. Se justifica en data warehouses y OLAP donde las lecturas son masivas y las escrituras infrecuentes, o cuando se han agotado otras optimizaciones y los JOINs siguen siendo el cuello de botella.",
+    "active": true
   },
   {
     "id": 52,
@@ -777,7 +828,8 @@
       "Retorna NULL si a es igual a b, o retorna a si son diferentes; el caso más común es evitar la división por cero"
     ],
     "correct": 3,
-    "explanation": "NULLIF(a, b) retorna NULL si a == b, de lo contrario retorna a. El caso más frecuente es evitar la división por cero: NULLIF(denominador, 0) convierte el 0 en NULL, y cualquier operación aritmética con NULL retorna NULL en lugar de causar un error."
+    "explanation": "NULLIF(a, b) retorna NULL si a == b, de lo contrario retorna a. El caso más frecuente es evitar la división por cero: NULLIF(denominador, 0) convierte el 0 en NULL, y cualquier operación aritmética con NULL retorna NULL en lugar de causar un error.",
+    "active": true
   },
   {
     "id": 53,
@@ -792,7 +844,8 @@
       "Concatena valores de múltiples filas en una sola cadena dentro de cada grupo; muy útil para mostrar listas en reportes"
     ],
     "correct": 3,
-    "explanation": "GROUP_CONCAT() (MySQL) y STRING_AGG() (PostgreSQL) son funciones de agregación que concatenan los valores de una columna de todas las filas de un grupo en una sola cadena separada por el delimitador especificado. Son muy útiles para reportes donde se necesita mostrar una lista de valores relacionados en una sola celda."
+    "explanation": "GROUP_CONCAT() (MySQL) y STRING_AGG() (PostgreSQL) son funciones de agregación que concatenan los valores de una columna de todas las filas de un grupo en una sola cadena separada por el delimitador especificado. Son muy útiles para reportes donde se necesita mostrar una lista de valores relacionados en una sola celda.",
+    "active": true
   },
   {
     "id": 54,
@@ -807,7 +860,8 @@
       "INTERSECT retorna filas que existen en ambas queries; EXCEPT retorna filas de la primera query que no aparecen en la segunda"
     ],
     "correct": 3,
-    "explanation": "INTERSECT retorna solo las filas presentes en los resultados de ambas queries. EXCEPT (MINUS en Oracle) retorna las filas del primer SELECT que no aparecen en el segundo. Ambos eliminan duplicados por defecto. Son útiles para comparar dos resultados sin necesidad de JOINs complejos."
+    "explanation": "INTERSECT retorna solo las filas presentes en los resultados de ambas queries. EXCEPT (MINUS en Oracle) retorna las filas del primer SELECT que no aparecen en el segundo. Ambos eliminan duplicados por defecto. Son útiles para comparar dos resultados sin necesidad de JOINs complejos.",
+    "active": true
   },
   {
     "id": 55,
@@ -822,7 +876,8 @@
       "CHAR: longitud fija; VARCHAR: longitud variable con límite definido e indexable eficientemente; TEXT: longitud variable sin límite práctico, no siempre completamente indexable"
     ],
     "correct": 3,
-    "explanation": "CHAR(n) almacena longitud fija rellenando con espacios. VARCHAR(n) almacena longitud variable hasta n caracteres; puede indexarse completamente. TEXT almacena cadenas muy largas sin límite práctico, pero los índices sobre TEXT generalmente requieren especificar un prefijo de longitud."
+    "explanation": "CHAR(n) almacena longitud fija rellenando con espacios. VARCHAR(n) almacena longitud variable hasta n caracteres; puede indexarse completamente. TEXT almacena cadenas muy largas sin límite práctico, pero los índices sobre TEXT generalmente requieren especificar un prefijo de longitud.",
+    "active": true
   },
   {
     "id": 56,
@@ -837,7 +892,8 @@
       "Ataque que inyecta SQL malicioso en inputs del usuario; se previene con prepared statements y parámetros vinculados, nunca concatenando input directamente"
     ],
     "correct": 3,
-    "explanation": "SQL Injection ocurre cuando input del usuario se concatena directamente en una query, permitiendo modificar la lógica SQL. La prevención fundamental son los Prepared Statements: el SQL y los datos viajan separados. En Java: PreparedStatement; en Spring: JPA/JPQL con parámetros o @Query con :param."
+    "explanation": "SQL Injection ocurre cuando input del usuario se concatena directamente en una query, permitiendo modificar la lógica SQL. La prevención fundamental son los Prepared Statements: el SQL y los datos viajan separados. En Java: PreparedStatement; en Spring: JPA/JPQL con parámetros o @Query con :param.",
+    "active": true
   },
   {
     "id": 57,
@@ -852,7 +908,8 @@
       "Son equivalentes en función; FETCH FIRST es SQL estándar (SQL:2008); LIMIT es la sintaxis de MySQL y PostgreSQL"
     ],
     "correct": 3,
-    "explanation": "Ambas sintaxis limitan el número de filas retornadas. FETCH FIRST n ROWS ONLY es la sintaxis del estándar SQL:2008, soportada por DB2, Oracle 12c+, PostgreSQL y SQL Server 2012+. LIMIT n es la sintaxis de MySQL, PostgreSQL y SQLite."
+    "explanation": "Ambas sintaxis limitan el número de filas retornadas. FETCH FIRST n ROWS ONLY es la sintaxis del estándar SQL:2008, soportada por DB2, Oracle 12c+, PostgreSQL y SQL Server 2012+. LIMIT n es la sintaxis de MySQL, PostgreSQL y SQLite.",
+    "active": true
   },
   {
     "id": 58,
@@ -867,7 +924,8 @@
       "Puede indicar un JOIN mal construido que genera filas duplicadas; en lugar de DISTINCT se debe corregir el JOIN"
     ],
     "correct": 3,
-    "explanation": "Aunque DISTINCT tiene usos legítimos, su uso frecuente en queries complejas puede indicar que un JOIN está generando duplicados innecesarios. La solución correcta es revisar las condiciones del JOIN en lugar de ocultar el problema con DISTINCT."
+    "explanation": "Aunque DISTINCT tiene usos legítimos, su uso frecuente en queries complejas puede indicar que un JOIN está generando duplicados innecesarios. La solución correcta es revisar las condiciones del JOIN en lugar de ocultar el problema con DISTINCT.",
+    "active": true
   },
   {
     "id": 59,
@@ -882,7 +940,8 @@
       "HASH es eficiente solo para comparaciones de igualdad (=); BTREE soporta igualdad, rangos y ORDER BY siendo más versátil"
     ],
     "correct": 3,
-    "explanation": "Los índices HASH son muy rápidos para búsquedas de igualdad en O(1), pero no funcionan para rangos ni ORDER BY. Los índices BTREE mantienen los datos ordenados, soportando igualdad, rangos (>, <, BETWEEN), LIKE 'prefijo%' y ordenamientos. BTREE es el índice por defecto y más versátil."
+    "explanation": "Los índices HASH son muy rápidos para búsquedas de igualdad en O(1), pero no funcionan para rangos ni ORDER BY. Los índices BTREE mantienen los datos ordenados, soportando igualdad, rangos (>, <, BETWEEN), LIKE 'prefijo%' y ordenamientos. BTREE es el índice por defecto y más versátil.",
+    "active": true
   },
   {
     "id": 60,
@@ -897,7 +956,8 @@
       "Un índice que contiene todas las columnas necesarias para resolver la query, evitando acceder a la tabla principal (index-only scan)"
     ],
     "correct": 3,
-    "explanation": "Un covering index incluye todas las columnas que la query necesita. Cuando el motor puede resolver la query completamente desde el índice sin acceder a la tabla física, se llama index-only scan. Esto elimina el costoso heap fetch, reduciendo dramáticamente el tiempo de query en tablas grandes."
+    "explanation": "Un covering index incluye todas las columnas que la query necesita. Cuando el motor puede resolver la query completamente desde el índice sin acceder a la tabla física, se llama index-only scan. Esto elimina el costoso heap fetch, reduciendo dramáticamente el tiempo de query en tablas grandes.",
+    "active": true
   },
   {
     "id": 61,
@@ -912,7 +972,8 @@
       "El número de valores únicos en una columna; alta cardinalidad (como email) hace índices muy selectivos y efectivos; baja cardinalidad (como boolean) los hace poco útiles"
     ],
     "correct": 3,
-    "explanation": "La cardinalidad mide cuántos valores únicos existen en una columna. Alta cardinalidad (email, UUID) hace el índice muy selectivo. Baja cardinalidad (activo BOOLEAN) lo hace poco selectivo: filtrar por activo=1 puede retornar el 80% de la tabla, siendo un full scan más eficiente. El optimizador usa la cardinalidad para decidir si usar un índice."
+    "explanation": "La cardinalidad mide cuántos valores únicos existen en una columna. Alta cardinalidad (email, UUID) hace el índice muy selectivo. Baja cardinalidad (activo BOOLEAN) lo hace poco selectivo: filtrar por activo=1 puede retornar el 80% de la tabla, siendo un full scan más eficiente. El optimizador usa la cardinalidad para decidir si usar un índice.",
+    "active": true
   },
   {
     "id": 62,
@@ -927,7 +988,8 @@
       "Ejecutar EXPLAIN y buscar 'Full Table Scan', 'Seq Scan' o tipo 'ALL' en MySQL; el plan mostrará si el índice es ignorado por el optimizador"
     ],
     "correct": 3,
-    "explanation": "EXPLAIN muestra el plan de ejecución. En MySQL, el tipo 'ALL' indica full table scan; 'ref' o 'range' indica uso de índice. En PostgreSQL, 'Seq Scan' es full scan; 'Index Scan' o 'Index Only Scan' indica uso de índice. Si el índice existe pero el optimizador lo ignora puede ser por baja cardinalidad o estadísticas desactualizadas."
+    "explanation": "EXPLAIN muestra el plan de ejecución. En MySQL, el tipo 'ALL' indica full table scan; 'ref' o 'range' indica uso de índice. En PostgreSQL, 'Seq Scan' es full scan; 'Index Scan' o 'Index Only Scan' indica uso de índice. Si el índice existe pero el optimizador lo ignora puede ser por baja cardinalidad o estadísticas desactualizadas.",
+    "active": true
   },
   {
     "id": 63,
@@ -942,7 +1004,8 @@
       "Al aplicar una función sobre la columna indexada, el optimizador no puede usar el índice directamente y realiza un full scan calculando la función para cada fila"
     ],
     "correct": 3,
-    "explanation": "Cuando se aplica una función sobre una columna indexada en el WHERE, el optimizador no puede usar el índice porque necesita evaluar la función para cada fila. La solución es reescribir dejando la columna indexada limpia: en lugar de YEAR(fecha) = 2024, usar fecha >= '2024-01-01' AND fecha < '2025-01-01'."
+    "explanation": "Cuando se aplica una función sobre una columna indexada en el WHERE, el optimizador no puede usar el índice porque necesita evaluar la función para cada fila. La solución es reescribir dejando la columna indexada limpia: en lugar de YEAR(fecha) = 2024, usar fecha >= '2024-01-01' AND fecha < '2025-01-01'.",
+    "active": true
   },
   {
     "id": 64,
@@ -957,7 +1020,8 @@
       "Un índice con condición WHERE que indexa solo las filas que cumplen el filtro; más pequeño y eficiente para queries con ese filtro frecuente"
     ],
     "correct": 3,
-    "explanation": "Un índice parcial incluye solo las filas que cumplen una condición WHERE. Es útil cuando una columna tiene distribución sesgada: si el 95% de los pedidos están completados y solo el 5% activos, el índice parcial para activos es mucho más pequeño y eficiente para las queries que filtran por estado = 'activo'."
+    "explanation": "Un índice parcial incluye solo las filas que cumplen una condición WHERE. Es útil cuando una columna tiene distribución sesgada: si el 95% de los pedidos están completados y solo el 5% activos, el índice parcial para activos es mucho más pequeño y eficiente para las queries que filtran por estado = 'activo'.",
+    "active": true
   },
   {
     "id": 65,
@@ -972,7 +1036,8 @@
       "Leer un conjunto de filas que cambia entre dos lecturas porque otra transacción insertó o eliminó filas; solo SERIALIZABLE lo previene completamente"
     ],
     "correct": 3,
-    "explanation": "Un phantom read ocurre cuando una transacción ejecuta la misma query dos veces y obtiene resultados diferentes porque otra transacción insertó o eliminó filas entre las dos ejecuciones. REPEATABLE READ previene que cambien los valores de filas ya leídas, pero no previene nuevas filas. Solo SERIALIZABLE lo previene completamente."
+    "explanation": "Un phantom read ocurre cuando una transacción ejecuta la misma query dos veces y obtiene resultados diferentes porque otra transacción insertó o eliminó filas entre las dos ejecuciones. REPEATABLE READ previene que cambien los valores de filas ya leídas, pero no previene nuevas filas. Solo SERIALIZABLE lo previene completamente.",
+    "active": true
   },
   {
     "id": 66,
@@ -987,7 +1052,8 @@
       "Divide las filas en n grupos iguales (cuartiles, deciles, percentiles) según el orden especificado; útil para análisis de distribución"
     ],
     "correct": 3,
-    "explanation": "NTILE(n) divide el conjunto de filas en n grupos de tamaño aproximadamente igual basándose en el ORDER BY, y asigna a cada fila el número de grupo al que pertenece. NTILE(4) crea cuartiles, NTILE(10) deciles, NTILE(100) percentiles."
+    "explanation": "NTILE(n) divide el conjunto de filas en n grupos de tamaño aproximadamente igual basándose en el ORDER BY, y asigna a cada fila el número de grupo al que pertenece. NTILE(4) crea cuartiles, NTILE(10) deciles, NTILE(100) percentiles.",
+    "active": true
   },
   {
     "id": 67,
@@ -1002,7 +1068,8 @@
       "Permite definir una ventana nombrada y reutilizable para múltiples funciones en la misma query, evitando repetir el OVER(...)"
     ],
     "correct": 3,
-    "explanation": "La cláusula WINDOW permite nombrar y reutilizar una definición de ventana cuando múltiples funciones de ventana usan el mismo OVER(...). Se define una vez con WINDOW w AS (...) y se referencia con OVER w. Mejora la legibilidad y evita inconsistencias."
+    "explanation": "La cláusula WINDOW permite nombrar y reutilizar una definición de ventana cuando múltiples funciones de ventana usan el mismo OVER(...). Se define una vez con WINDOW w AS (...) y se referencia con OVER w. Mejora la legibilidad y evita inconsistencias.",
+    "active": true
   },
   {
     "id": 68,
@@ -1017,7 +1084,8 @@
       "Usar GROUP BY en la columna candidata y HAVING COUNT(*) > 1 para detectar grupos con más de un registro"
     ],
     "correct": 3,
-    "explanation": "La técnica estándar para encontrar duplicados es agrupar por la columna que debería ser única y filtrar con HAVING COUNT(*) > 1 para mostrar solo los grupos con más de una fila. Para obtener las filas completas se hace un JOIN del resultado con la tabla original."
+    "explanation": "La técnica estándar para encontrar duplicados es agrupar por la columna que debería ser única y filtrar con HAVING COUNT(*) > 1 para mostrar solo los grupos con más de una fila. Para obtener las filas completas se hace un JOIN del resultado con la tabla original.",
+    "active": true
   },
   {
     "id": 69,
@@ -1032,7 +1100,8 @@
       "Tabla temporal persiste en la sesión y puede tener índices; CTE existe solo durante la query donde se define y no se puede indexar directamente"
     ],
     "correct": 3,
-    "explanation": "Una tabla temporal (CREATE TEMP TABLE o # en SQL Server) persiste durante la sesión, puede tener índices propios, y puede usarse en múltiples queries distintas. Una CTE (WITH) existe solo durante la ejecución de la query donde se define, no persiste y no puede indexarse."
+    "explanation": "Una tabla temporal (CREATE TEMP TABLE o # en SQL Server) persiste durante la sesión, puede tener índices propios, y puede usarse en múltiples queries distintas. Una CTE (WITH) existe solo durante la ejecución de la query donde se define, no persiste y no puede indexarse.",
+    "active": true
   },
   {
     "id": 70,
@@ -1047,7 +1116,8 @@
       "Full table scan en la tabla sin índice por cada fila de la otra tabla, resultando en O(n x m) operaciones y queries extremadamente lentas"
     ],
     "correct": 3,
-    "explanation": "Sin índice en la columna de JOIN, el motor debe hacer un nested loop: por cada fila de la tabla A, escanea completamente la tabla B. Con 10,000 filas en A y 100,000 en B son 1,000,000,000 operaciones. Con un índice la búsqueda es O(log n), reduciendo dramáticamente el tiempo."
+    "explanation": "Sin índice en la columna de JOIN, el motor debe hacer un nested loop: por cada fila de la tabla A, escanea completamente la tabla B. Con 10,000 filas en A y 100,000 en B son 1,000,000,000 operaciones. Con un índice la búsqueda es O(log n), reduciendo dramáticamente el tiempo.",
+    "active": true
   },
   {
     "id": 71,
@@ -1062,7 +1132,8 @@
       "OVER() sin PARTITION BY ni ORDER BY aplica la función sobre todas las filas sin colapsar, permitiendo calcular totales globales por fila"
     ],
     "correct": 3,
-    "explanation": "OVER() vacío define una ventana que incluye todas las filas del resultado. A diferencia de GROUP BY, no colapsa las filas: cada fila mantiene sus datos y además tiene el resultado de la función calculado sobre todo el conjunto. Cada empleado ve su salario Y el total de nómina, permitiendo calcular porcentajes sobre el total."
+    "explanation": "OVER() vacío define una ventana que incluye todas las filas del resultado. A diferencia de GROUP BY, no colapsa las filas: cada fila mantiene sus datos y además tiene el resultado de la función calculado sobre todo el conjunto. Cada empleado ve su salario Y el total de nómina, permitiendo calcular porcentajes sobre el total.",
+    "active": true
   },
   {
     "id": 72,
@@ -1077,7 +1148,8 @@
       "Usar optimistic locking con control de versión para baja contención, o pessimistic locking (FOR UPDATE) cuando los conflictos son frecuentes"
     ],
     "correct": 3,
-    "explanation": "Optimistic locking es preferible cuando los conflictos son raros: no bloquea y permite mayor concurrencia. Si el UPDATE afecta 0 filas (alguien modificó primero), se reintenta. Pessimistic locking (SELECT FOR UPDATE) es preferible cuando los conflictos son frecuentes, asegurando exclusividad pero reduciendo la concurrencia."
+    "explanation": "Optimistic locking es preferible cuando los conflictos son raros: no bloquea y permite mayor concurrencia. Si el UPDATE afecta 0 filas (alguien modificó primero), se reintenta. Pessimistic locking (SELECT FOR UPDATE) es preferible cuando los conflictos son frecuentes, asegurando exclusividad pero reduciendo la concurrencia.",
+    "active": true
   },
   {
     "id": 73,
@@ -1092,7 +1164,8 @@
       "EXPLAIN muestra el plan estimado con costos teóricos; EXPLAIN ANALYZE ejecuta la query y muestra tiempos reales, filas reales vs estimadas y loops"
     ],
     "correct": 3,
-    "explanation": "EXPLAIN muestra el plan con costos y filas estimadas basadas en estadísticas. EXPLAIN ANALYZE realmente ejecuta la query y además muestra: tiempo de ejecución real en cada nodo, número de filas reales vs estimadas (detecta estadísticas desactualizadas), y número de loops. La diferencia entre estimado y real es clave para detectar problemas de planificación."
+    "explanation": "EXPLAIN muestra el plan con costos y filas estimadas basadas en estadísticas. EXPLAIN ANALYZE realmente ejecuta la query y además muestra: tiempo de ejecución real en cada nodo, número de filas reales vs estimadas (detecta estadísticas desactualizadas), y número de loops. La diferencia entre estimado y real es clave para detectar problemas de planificación.",
+    "active": true
   },
   {
     "id": 74,
@@ -1107,7 +1180,8 @@
       "INT/BIGINT es eficiente para auto-increment; UUID ofrece unicidad global pero es más grande (16 bytes) y puede fragmentar índices BTREE"
     ],
     "correct": 3,
-    "explanation": "INT o BIGINT con auto-increment son eficientes, secuenciales (no fragmentan el índice clustered) y ocupan poco espacio. UUID (16 bytes) es útil para sistemas distribuidos que necesitan IDs únicos globalmente, pero al ser aleatorios fragmentan los índices BTREE causando más page splits. UUIDv7 combina unicidad global con inserción secuencial."
+    "explanation": "INT o BIGINT con auto-increment son eficientes, secuenciales (no fragmentan el índice clustered) y ocupan poco espacio. UUID (16 bytes) es útil para sistemas distribuidos que necesitan IDs únicos globalmente, pero al ser aleatorios fragmentan los índices BTREE causando más page splits. UUIDv7 combina unicidad global con inserción secuencial.",
+    "active": true
   },
   {
     "id": 75,
@@ -1122,6 +1196,7 @@
       "Metadatos que el optimizador usa para estimar costos: distribución de valores, cardinalidad y tamaño; estadísticas desactualizadas generan planes subóptimos"
     ],
     "correct": 3,
-    "explanation": "Las estadísticas son metadatos que el optimizador consulta para estimar el costo de diferentes planes: número de filas, distribución de valores (histogramas), número de valores únicos. Con estadísticas precisas el optimizador elige el plan correcto. Con estadísticas desactualizadas (tras cargas masivas) puede elegir planes terribles. ANALYZE actualiza estas estadísticas."
+    "explanation": "Las estadísticas son metadatos que el optimizador consulta para estimar el costo de diferentes planes: número de filas, distribución de valores (histogramas), número de valores únicos. Con estadísticas precisas el optimizador elige el plan correcto. Con estadísticas desactualizadas (tras cargas masivas) puede elegir planes terribles. ANALYZE actualiza estas estadísticas.",
+    "active": true
   }
 ]

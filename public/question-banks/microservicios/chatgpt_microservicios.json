@@ -12,7 +12,8 @@
       "Una base de datos centralizada para múltiples servicios"
     ],
     "correct": 1,
-    "explanation": "Un microservicio se enfoca en un único dominio o función de negocio, es débilmente acoplado y autónomo, como un servicio de productos, órdenes o pagos en un dominio de e-commerce."
+    "explanation": "Un microservicio se enfoca en un único dominio o función de negocio, es débilmente acoplado y autónomo, como un servicio de productos, órdenes o pagos en un dominio de e-commerce.",
+    "active": true
   },
   {
     "id": 2,
@@ -27,7 +28,8 @@
       "No hay diferencia, ambos usan HTTP"
     ],
     "correct": 1,
-    "explanation": "La comunicación síncrona (API calls) espera respuesta; la asíncrona usa Message Brokers o event streaming, reduciendo el acoplamiento."
+    "explanation": "La comunicación síncrona (API calls) espera respuesta; la asíncrona usa Message Brokers o event streaming, reduciendo el acoplamiento.",
+    "active": true
   },
   {
     "id": 3,
@@ -42,7 +44,8 @@
       "204 No Content"
     ],
     "correct": 1,
-    "explanation": "201 Created es el código estándar para respuestas exitosas de POST que crean un nuevo recurso."
+    "explanation": "201 Created es el código estándar para respuestas exitosas de POST que crean un nuevo recurso.",
+    "active": true
   },
   {
     "id": 4,
@@ -57,7 +60,8 @@
       "@Component"
     ],
     "correct": 2,
-    "explanation": "@RestController combina @Controller y @ResponseBody, ideal para APIs REST donde cada método retorna directamente el objeto de respuesta serializado (JSON/XML)."
+    "explanation": "@RestController combina @Controller y @ResponseBody, ideal para APIs REST donde cada método retorna directamente el objeto de respuesta serializado (JSON/XML).",
+    "active": true
   },
   {
     "id": 5,
@@ -72,7 +76,8 @@
       "Generar documentación Swagger automáticamente"
     ],
     "correct": 1,
-    "explanation": "Actuator proporciona endpoints como /health, /info, /metrics, /beans para monitorear la aplicación en producción."
+    "explanation": "Actuator proporciona endpoints como /health, /info, /metrics, /beans para monitorear la aplicación en producción.",
+    "active": true
   },
   {
     "id": 6,
@@ -87,7 +92,8 @@
       "Paginación basada en fecha"
     ],
     "correct": 1,
-    "explanation": "Cursor pagination (basada en identificadores o claves) es siempre rápida y constante, ideal para infinite scroll y grandes volúmenes; offset se degrada en tablas grandes."
+    "explanation": "Cursor pagination (basada en identificadores o claves) es siempre rápida y constante, ideal para infinite scroll y grandes volúmenes; offset se degrada en tablas grandes.",
+    "active": true
   },
   {
     "id": 7,
@@ -102,7 +108,8 @@
       "Circuit Breaker Pattern"
     ],
     "correct": 1,
-    "explanation": "Strangler Fig Pattern permite migrar sistemas heredados construyendo nuevos servicios alrededor y eventualmente reemplazando el sistema original, como una higuera estranguladora."
+    "explanation": "Strangler Fig Pattern permite migrar sistemas heredados construyendo nuevos servicios alrededor y eventualmente reemplazando el sistema original, como una higuera estranguladora.",
+    "active": true
   },
   {
     "id": 8,
@@ -117,7 +124,8 @@
       "Mantener la idempotencia"
     ],
     "correct": 1,
-    "explanation": "Circuit Breaker monitorea fallos; si supera un umbral, abre el circuito y rechaza llamadas (fail fast), evitando timeouts y fallos en cascada. Estados: closed, open, half-open."
+    "explanation": "Circuit Breaker monitorea fallos; si supera un umbral, abre el circuito y rechaza llamadas (fail fast), evitando timeouts y fallos en cascada. Estados: closed, open, half-open.",
+    "active": true
   },
   {
     "id": 9,
@@ -132,7 +140,8 @@
       "API Key"
     ],
     "correct": 2,
-    "explanation": "JWT es un token autónomo firmado (ej. con HMAC o RSA) que incluye claims; el servidor valida la firma y extrae información sin estado."
+    "explanation": "JWT es un token autónomo firmado (ej. con HMAC o RSA) que incluye claims; el servidor valida la firma y extrae información sin estado.",
+    "active": true
   },
   {
     "id": 10,
@@ -147,7 +156,8 @@
       "API Gateway sin registro"
     ],
     "correct": 1,
-    "explanation": "En client-side discovery, el cliente consulta un service registry (como Eureka, Consul) para obtener la ubicación del servicio proveedor."
+    "explanation": "En client-side discovery, el cliente consulta un service registry (como Eureka, Consul) para obtener la ubicación del servicio proveedor.",
+    "active": true
   },
   {
     "id": 11,
@@ -162,7 +172,8 @@
       "No se puede cambiar, Tomcat es obligatorio"
     ],
     "correct": 1,
-    "explanation": "Spring Boot permite usar Jetty o Undertow removiendo la dependencia de Tomcat starter y agregando el starter correspondiente (spring-boot-starter-jetty o undertow)."
+    "explanation": "Spring Boot permite usar Jetty o Undertow removiendo la dependencia de Tomcat starter y agregando el starter correspondiente (spring-boot-starter-jetty o undertow).",
+    "active": true
   },
   {
     "id": 12,
@@ -177,7 +188,8 @@
       "Event Sourcing"
     ],
     "correct": 1,
-    "explanation": "Saga Pattern gestiona transacciones de larga duración mediante una secuencia de transacciones locales y eventos de compensación, manteniendo consistencia eventual."
+    "explanation": "Saga Pattern gestiona transacciones de larga duración mediante una secuencia de transacciones locales y eventos de compensación, manteniendo consistencia eventual.",
+    "active": true
   },
   {
     "id": 13,
@@ -192,7 +204,8 @@
       "Encriptar datos en tránsito"
     ],
     "correct": 1,
-    "explanation": "Outbox Pattern almacena eventos en una tabla 'outbox' dentro de la misma transacción de la base de datos; un proceso separado publica los eventos, garantizando entrega at-least-once."
+    "explanation": "Outbox Pattern almacena eventos en una tabla 'outbox' dentro de la misma transacción de la base de datos; un proceso separado publica los eventos, garantizando entrega at-least-once.",
+    "active": true
   },
   {
     "id": 14,
@@ -207,7 +220,8 @@
       "Sidecar Pattern"
     ],
     "correct": 2,
-    "explanation": "CQRS separa el modelo de comandos (escritura) del modelo de consultas (lectura), permitiendo optimizaciones independientes y escalabilidad."
+    "explanation": "CQRS separa el modelo de comandos (escritura) del modelo de consultas (lectura), permitiendo optimizaciones independientes y escalabilidad.",
+    "active": true
   },
   {
     "id": 15,
@@ -222,7 +236,8 @@
       "Ninguno"
     ],
     "correct": 1,
-    "explanation": "PUT es idempotente: múltiples solicitudes idénticas tienen el mismo efecto que una sola. POST no es idempotente; PATCH puede serlo según implementación."
+    "explanation": "PUT es idempotente: múltiples solicitudes idénticas tienen el mismo efecto que una sola. POST no es idempotente; PATCH puede serlo según implementación.",
+    "active": true
   },
   {
     "id": 16,
@@ -237,7 +252,8 @@
       "Direct Testing Object"
     ],
     "correct": 0,
-    "explanation": "DTO (Data Transfer Object) es un objeto plano que define la estructura de datos de la API (request/response), separando el modelo de persistencia del contrato externo."
+    "explanation": "DTO (Data Transfer Object) es un objeto plano que define la estructura de datos de la API (request/response), separando el modelo de persistencia del contrato externo.",
+    "active": true
   },
   {
     "id": 17,
@@ -252,7 +268,8 @@
       "Security Testing (DAST)"
     ],
     "correct": 2,
-    "explanation": "Resilience Testing (o Chaos Engineering) evalúa la capacidad del sistema para recuperarse de fallos (crash de servicios, latencia, timeouts)."
+    "explanation": "Resilience Testing (o Chaos Engineering) evalúa la capacidad del sistema para recuperarse de fallos (crash de servicios, latencia, timeouts).",
+    "active": true
   },
   {
     "id": 18,
@@ -267,7 +284,8 @@
       "Bulkhead + Cache"
     ],
     "correct": 1,
-    "explanation": "Retry con backoff evita sobrecarga inmediata; Circuit Breaker evita llamadas cuando el servicio falla repetidamente; Fallback proporciona respuesta alternativa (graceful degradation)."
+    "explanation": "Retry con backoff evita sobrecarga inmediata; Circuit Breaker evita llamadas cuando el servicio falla repetidamente; Fallback proporciona respuesta alternativa (graceful degradation).",
+    "active": true
   },
   {
     "id": 19,
@@ -282,7 +300,8 @@
       "Configura la seguridad por defecto"
     ],
     "correct": 1,
-    "explanation": "@SpringBootApplication es una anotación compuesta que incluye las tres anotaciones clave para arrancar una aplicación Spring Boot."
+    "explanation": "@SpringBootApplication es una anotación compuesta que incluye las tres anotaciones clave para arrancar una aplicación Spring Boot.",
+    "active": true
   },
   {
     "id": 20,
@@ -297,7 +316,8 @@
       "@Controller es para microservicios, @RestController para monolitos"
     ],
     "correct": 0,
-    "explanation": "@Controller se usa con vistas (ModelAndView); @RestController agrega @ResponseBody implícito, serializando el objeto de retorno en la respuesta HTTP."
+    "explanation": "@Controller se usa con vistas (ModelAndView); @RestController agrega @ResponseBody implícito, serializando el objeto de retorno en la respuesta HTTP.",
+    "active": true
   },
   {
     "id": 21,
@@ -312,7 +332,8 @@
       "CQRS"
     ],
     "correct": 1,
-    "explanation": "Database per Service es un patrón fundamental en microservicios para lograr desacoplamiento y autonomía, cada servicio gestiona su propio esquema o base de datos."
+    "explanation": "Database per Service es un patrón fundamental en microservicios para lograr desacoplamiento y autonomía, cada servicio gestiona su propio esquema o base de datos.",
+    "active": true
   },
   {
     "id": 22,
@@ -327,7 +348,8 @@
       "Usar solo parámetros query"
     ],
     "correct": 1,
-    "explanation": "Versionar mediante URL (path) o custom header es común; permite mantener versiones anteriores hasta migrar clientes, siguiendo compatibilidad hacia atrás."
+    "explanation": "Versionar mediante URL (path) o custom header es común; permite mantener versiones anteriores hasta migrar clientes, siguiendo compatibilidad hacia atrás.",
+    "active": true
   },
   {
     "id": 23,
@@ -342,7 +364,8 @@
       "spring-config.xml"
     ],
     "correct": 1,
-    "explanation": "Spring Boot utiliza application.properties o application.yml para externalizar la configuración (puerto, datasource, niveles de log, etc.)."
+    "explanation": "Spring Boot utiliza application.properties o application.yml para externalizar la configuración (puerto, datasource, niveles de log, etc.).",
+    "active": true
   },
   {
     "id": 24,
@@ -357,7 +380,8 @@
       "SOAP"
     ],
     "correct": 2,
-    "explanation": "Kafka es un sistema de streaming distribuido que persiste eventos, permite replay y es ideal para comunicación asíncrona desacoplada entre microservicios."
+    "explanation": "Kafka es un sistema de streaming distribuido que persiste eventos, permite replay y es ideal para comunicación asíncrona desacoplada entre microservicios.",
+    "active": true
   },
   {
     "id": 25,
@@ -372,7 +396,8 @@
       "Retry with jitter"
     ],
     "correct": 0,
-    "explanation": "Idempotencia asegura que procesar el mismo mensaje múltiples veces no cause efectos secundarios no deseados; se implementa mediante claves de idempotencia o deduplicación."
+    "explanation": "Idempotencia asegura que procesar el mismo mensaje múltiples veces no cause efectos secundarios no deseados; se implementa mediante claves de idempotencia o deduplicación.",
+    "active": true
   },
   {
     "id": 26,
@@ -387,7 +412,8 @@
       "Provee descubrimiento de servicios integrado"
     ],
     "correct": 1,
-    "explanation": "Docker permite contenerizar cada microservicio con su entorno y dependencias, garantizando el mismo comportamiento en desarrollo, pruebas y producción."
+    "explanation": "Docker permite contenerizar cada microservicio con su entorno y dependencias, garantizando el mismo comportamiento en desarrollo, pruebas y producción.",
+    "active": true
   },
   {
     "id": 27,
@@ -402,7 +428,8 @@
       "Coreografía es siempre superior"
     ],
     "correct": 0,
-    "explanation": "En coreografía, los servicios intercambian eventos sin un controlador central; en orquestación, un orquestador (saga coordinator) dirige los pasos y compensaciones."
+    "explanation": "En coreografía, los servicios intercambian eventos sin un controlador central; en orquestación, un orquestador (saga coordinator) dirige los pasos y compensaciones.",
+    "active": true
   },
   {
     "id": 28,
@@ -417,7 +444,8 @@
       "UPDATE"
     ],
     "correct": 2,
-    "explanation": "PATCH se usa para actualizaciones parciales (enviar solo los campos a modificar). PUT reemplaza todo el recurso."
+    "explanation": "PATCH se usa para actualizaciones parciales (enviar solo los campos a modificar). PUT reemplaza todo el recurso.",
+    "active": true
   },
   {
     "id": 29,
@@ -432,7 +460,8 @@
       "@MockBean"
     ],
     "correct": 0,
-    "explanation": "@SpringBootTest arranca el contexto completo de Spring Boot para pruebas de integración de extremo a extremo."
+    "explanation": "@SpringBootTest arranca el contexto completo de Spring Boot para pruebas de integración de extremo a extremo.",
+    "active": true
   },
   {
     "id": 30,
@@ -447,7 +476,8 @@
       "Reemplazar la base de datos"
     ],
     "correct": 0,
-    "explanation": "El API Gateway actúa como punto de entrada único, gestionando autenticación, límites de tasa, enrutamiento a servicios, y a veces transformación de respuestas."
+    "explanation": "El API Gateway actúa como punto de entrada único, gestionando autenticación, límites de tasa, enrutamiento a servicios, y a veces transformación de respuestas.",
+    "active": true
   },
   {
     "id": 31,
@@ -462,7 +492,8 @@
       "Datadog"
     ],
     "correct": 1,
-    "explanation": "Grafana es una herramienta de visualización de datos y métricas, muy utilizada junto con Prometheus para monitoreo de infraestructura y aplicaciones."
+    "explanation": "Grafana es una herramienta de visualización de datos y métricas, muy utilizada junto con Prometheus para monitoreo de infraestructura y aplicaciones.",
+    "active": true
   },
   {
     "id": 32,
@@ -477,7 +508,8 @@
       "Es ideal para sistemas de alta disponibilidad"
     ],
     "correct": 1,
-    "explanation": "2PC es un protocolo de consenso bloqueante que reduce disponibilidad y escala mal; en microservicios se prefiere consistencia eventual con Saga."
+    "explanation": "2PC es un protocolo de consenso bloqueante que reduce disponibilidad y escala mal; en microservicios se prefiere consistencia eventual con Saga.",
+    "active": true
   },
   {
     "id": 33,
@@ -492,7 +524,8 @@
       "El controller convierte entidades a DTOs, pero el service solo usa entidades"
     ],
     "correct": 1,
-    "explanation": "Separación de capas: controller usa DTOs (contrato API), service trabaja con DTOs/domain, repository con entidades. No exponer entidades JPA directamente."
+    "explanation": "Separación de capas: controller usa DTOs (contrato API), service trabaja con DTOs/domain, repository con entidades. No exponer entidades JPA directamente.",
+    "active": true
   },
   {
     "id": 34,
@@ -507,7 +540,8 @@
       "Elimina la necesidad de API Gateway"
     ],
     "correct": 2,
-    "explanation": "Entre las desventajas están: complejidad operacional, trazabilidad de requests a través de servicios, pruebas end-to-end más difíciles, y gestión de transacciones distribuidas."
+    "explanation": "Entre las desventajas están: complejidad operacional, trazabilidad de requests a través de servicios, pruebas end-to-end más difíciles, y gestión de transacciones distribuidas.",
+    "active": true
   },
   {
     "id": 35,
@@ -522,6 +556,7 @@
       "Timeout"
     ],
     "correct": 1,
-    "explanation": "Bulkhead (compartimento estanco) aísla recursos limitando el número de conexiones/hilos a un servicio, evitando que una falla agote todos los recursos."
+    "explanation": "Bulkhead (compartimento estanco) aísla recursos limitando el número de conexiones/hilos a un servicio, evitando que una falla agote todos los recursos.",
+    "active": true
   }
 ]

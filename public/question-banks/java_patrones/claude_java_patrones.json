@@ -12,7 +12,8 @@
       "int temp_val"
     ],
     "correct": 1,
-    "explanation": "Los nombres deben revelar intención. `daysSinceLastLogin` comunica exactamente qué representa la variable sin necesidad de comentario."
+    "explanation": "Los nombres deben revelar intención. `daysSinceLastLogin` comunica exactamente qué representa la variable sin necesidad de comentario.",
+    "active": true
   },
   {
     "id": 2,
@@ -27,7 +28,8 @@
       "Máximo 4"
     ],
     "correct": 2,
-    "explanation": "Robert Martin recomienda niládico (0) como ideal, monádico (1) o diádico (2) como aceptables. Triádico (3) se tolera con justificación. Más de 3 es un smell."
+    "explanation": "Robert Martin recomienda niládico (0) como ideal, monádico (1) o diádico (2) como aceptables. Triádico (3) se tolera con justificación. Más de 3 es un smell.",
+    "active": true
   },
   {
     "id": 3,
@@ -42,7 +44,8 @@
       "Open/Closed"
     ],
     "correct": 0,
-    "explanation": "DRY (Don't Repeat Yourself) aplica también a la documentación. Un comentario que repite lo que el código ya dice claramente es ruido y duplicación de información."
+    "explanation": "DRY (Don't Repeat Yourself) aplica también a la documentación. Un comentario que repite lo que el código ya dice claramente es ruido y duplicación de información.",
+    "active": true
   },
   {
     "id": 4,
@@ -57,7 +60,8 @@
       "Necesita más variables locales"
     ],
     "correct": 1,
-    "explanation": "Un método largo con múltiples niveles de indentación es señal de que está haciendo más de una cosa. Clean Code recomienda métodos cortos con un único nivel de abstracción."
+    "explanation": "Un método largo con múltiples niveles de indentación es señal de que está haciendo más de una cosa. Clean Code recomienda métodos cortos con un único nivel de abstracción.",
+    "active": true
   },
   {
     "id": 5,
@@ -72,7 +76,8 @@
       "Los comentarios mejoran siempre la legibilidad"
     ],
     "correct": 1,
-    "explanation": "Un buen nombre de método o variable elimina la necesidad del comentario. Los comentarios mienten con el tiempo porque el código cambia y los comentarios no. Prefiere código expresivo."
+    "explanation": "Un buen nombre de método o variable elimina la necesidad del comentario. Los comentarios mienten con el tiempo porque el código cambia y los comentarios no. Prefiere código expresivo.",
+    "active": true
   },
   {
     "id": 6,
@@ -87,7 +92,8 @@
       "Importar la misma librería dos veces"
     ],
     "correct": 1,
-    "explanation": "La lógica de negocio duplicada significa que un cambio en la regla de negocio debe aplicarse en múltiples lugares. Si se actualiza uno y se olvida el otro, hay comportamiento inconsistente en producción."
+    "explanation": "La lógica de negocio duplicada significa que un cambio en la regla de negocio debe aplicarse en múltiples lugares. Si se actualiza uno y se olvida el otro, hay comportamiento inconsistente en producción.",
+    "active": true
   },
   {
     "id": 7,
@@ -102,7 +108,8 @@
       "Usar anotaciones"
     ],
     "correct": 1,
-    "explanation": "Extract Method es la técnica fundamental. En lugar de comentar `// calcula el descuento por volumen`, extraes esa lógica en `calculateVolumeDiscount()`. El nombre del método es el comentario."
+    "explanation": "Extract Method es la técnica fundamental. En lugar de comentar `// calcula el descuento por volumen`, extraes esa lógica en `calculateVolumeDiscount()`. El nombre del método es el comentario.",
+    "active": true
   },
   {
     "id": 8,
@@ -117,7 +124,8 @@
       "Law of Demeter"
     ],
     "correct": 2,
-    "explanation": "Se violan dos prácticas a la vez: DRY porque el valor está repetido, y Magic Numbers porque `0.15` no comunica su intención. La solución es `private static final double TAX_RATE = 0.15`."
+    "explanation": "Se violan dos prácticas a la vez: DRY porque el valor está repetido, y Magic Numbers porque `0.15` no comunica su intención. La solución es `private static final double TAX_RATE = 0.15`.",
+    "active": true
   },
   {
     "id": 9,
@@ -132,7 +140,8 @@
       "doWork()"
     ],
     "correct": 2,
-    "explanation": "`calculateMonthlyInterest()` es específico, usa verbo de acción claro y comunica exactamente qué hace. Los demás son genéricos y no revelan intención."
+    "explanation": "`calculateMonthlyInterest()` es específico, usa verbo de acción claro y comunica exactamente qué hace. Los demás son genéricos y no revelan intención.",
+    "active": true
   },
   {
     "id": 10,
@@ -147,7 +156,8 @@
       "Falta un comentario explicativo"
     ],
     "correct": 1,
-    "explanation": "Las operaciones de validación de negocio y las de persistencia pertenecen a distintos niveles de abstracción. Mezclarlos hace el método difícil de probar y de reutilizar."
+    "explanation": "Las operaciones de validación de negocio y las de persistencia pertenecen a distintos niveles de abstracción. Mezclarlos hace el método difícil de probar y de reutilizar.",
+    "active": true
   },
   {
     "id": 11,
@@ -162,7 +172,8 @@
       "Long Parameter List"
     ],
     "correct": 2,
-    "explanation": "God Class (o Blob) es una clase que lo sabe todo y lo hace todo. Viola SRP y es la fuente más común de acoplamiento y deuda técnica."
+    "explanation": "God Class (o Blob) es una clase que lo sabe todo y lo hace todo. Viola SRP y es la fuente más común de acoplamiento y deuda técnica.",
+    "active": true
   },
   {
     "id": 12,
@@ -177,7 +188,8 @@
       "Shotgun Surgery"
     ],
     "correct": 1,
-    "explanation": "Dos smells combinados: Long Parameter List (demasiados parámetros) y Primitive Obsession (usar primitivos en lugar de objetos de valor como `Address` o `ContactInfo`)."
+    "explanation": "Dos smells combinados: Long Parameter List (demasiados parámetros) y Primitive Obsession (usar primitivos en lugar de objetos de valor como `Address` o `ContactInfo`).",
+    "active": true
   },
   {
     "id": 13,
@@ -192,7 +204,8 @@
       "Middle Man"
     ],
     "correct": 0,
-    "explanation": "Feature Envy ocurre cuando un método está más interesado en los datos de otra clase que en los de la propia. La solución es mover la lógica donde están los datos."
+    "explanation": "Feature Envy ocurre cuando un método está más interesado en los datos de otra clase que en los de la propia. La solución es mover la lógica donde están los datos.",
+    "active": true
   },
   {
     "id": 14,
@@ -207,7 +220,8 @@
       "Speculative Generality"
     ],
     "correct": 1,
-    "explanation": "Switch Statements repetidos sobre un tipo enum son el smell clásico que indica que falta polimorfismo. Cada vez que el enum crece hay que actualizar todos los switches. El patrón Strategy o Enum con comportamiento lo resuelve."
+    "explanation": "Switch Statements repetidos sobre un tipo enum son el smell clásico que indica que falta polimorfismo. Cada vez que el enum crece hay que actualizar todos los switches. El patrón Strategy o Enum con comportamiento lo resuelve.",
+    "active": true
   },
   {
     "id": 15,
@@ -222,7 +236,8 @@
       "Refused Bequest"
     ],
     "correct": 2,
-    "explanation": "Las clases `Utils` o `Helper` que acumulan métodos sin cohesión son un God Class disfrazado. Cada grupo de métodos relacionados debería estar en su propia clase con responsabilidad clara."
+    "explanation": "Las clases `Utils` o `Helper` que acumulan métodos sin cohesión son un God Class disfrazado. Cada grupo de métodos relacionados debería estar en su propia clase con responsabilidad clara.",
+    "active": true
   },
   {
     "id": 16,
@@ -237,7 +252,8 @@
       "Parallel Inheritance"
     ],
     "correct": 1,
-    "explanation": "Temporary Field: un campo que solo tiene valor en ciertos escenarios. Señal de que falta un objeto de valor o una subclase que encapsule ese comportamiento opcional."
+    "explanation": "Temporary Field: un campo que solo tiene valor en ciertos escenarios. Señal de que falta un objeto de valor o una subclase que encapsule ese comportamiento opcional.",
+    "active": true
   },
   {
     "id": 17,
@@ -252,7 +268,8 @@
       "Middle Man"
     ],
     "correct": 2,
-    "explanation": "Shotgun Surgery: un cambio lógico requiere tocar muchas clases distintas. Es el inverso de Divergent Change. Indica que la responsabilidad está mal distribuida entre las clases."
+    "explanation": "Shotgun Surgery: un cambio lógico requiere tocar muchas clases distintas. Es el inverso de Divergent Change. Indica que la responsabilidad está mal distribuida entre las clases.",
+    "active": true
   },
   {
     "id": 18,
@@ -267,7 +284,8 @@
       "Convertirlos a String"
     ],
     "correct": 1,
-    "explanation": "Los Value Objects encapsulan datos relacionados y las reglas de validación. `Coordinates` puede validar rangos, calcular distancias y tener su propia lógica. Mucho más rico que dos doubles sueltos."
+    "explanation": "Los Value Objects encapsulan datos relacionados y las reglas de validación. `Coordinates` puede validar rangos, calcular distancias y tener su propia lógica. Mucho más rico que dos doubles sueltos.",
+    "active": true
   },
   {
     "id": 19,
@@ -282,7 +300,8 @@
       "Es Feature Envy; moverlo a otra clase"
     ],
     "correct": 1,
-    "explanation": "El código comentado es Dead Code. Git guarda el historial — no necesitas el código comentado como respaldo. Dejarlo genera confusión sobre si está activo, desactualizado o si falta algo."
+    "explanation": "El código comentado es Dead Code. Git guarda el historial — no necesitas el código comentado como respaldo. Dejarlo genera confusión sobre si está activo, desactualizado o si falta algo.",
+    "active": true
   },
   {
     "id": 20,
@@ -297,7 +316,8 @@
       "Speculative Generality"
     ],
     "correct": 1,
-    "explanation": "Refused Bequest: la subclase hereda métodos de la clase padre que no tiene sentido que tenga. Señal de que la jerarquía de herencia está mal diseñada. Prefiere composición sobre herencia."
+    "explanation": "Refused Bequest: la subclase hereda métodos de la clase padre que no tiene sentido que tenga. Señal de que la jerarquía de herencia está mal diseñada. Prefiere composición sobre herencia.",
+    "active": true
   },
   {
     "id": 21,
@@ -312,7 +332,8 @@
       "ISP — Interface Segregation"
     ],
     "correct": 2,
-    "explanation": "SRP: una clase debe tener una sola razón para cambiar. Generar reportes y enviarlos son responsabilidades distintas — cambios en el formato del email no deberían afectar la lógica de generación."
+    "explanation": "SRP: una clase debe tener una sola razón para cambiar. Generar reportes y enviarlos son responsabilidades distintas — cambios en el formato del email no deberían afectar la lógica de generación.",
+    "active": true
   },
   {
     "id": 22,
@@ -327,7 +348,8 @@
       "OCP"
     ],
     "correct": 3,
-    "explanation": "OCP (Open/Closed): las entidades deben estar abiertas a extensión pero cerradas a modificación. Deberías poder agregar nuevos tipos de impuesto con una nueva implementación, sin tocar el código existente."
+    "explanation": "OCP (Open/Closed): las entidades deben estar abiertas a extensión pero cerradas a modificación. Deberías poder agregar nuevos tipos de impuesto con una nueva implementación, sin tocar el código existente.",
+    "active": true
   },
   {
     "id": 23,
@@ -342,7 +364,8 @@
       "DIP"
     ],
     "correct": 1,
-    "explanation": "LSP (Liskov): cualquier subclase debe poder sustituir a su clase padre sin alterar el comportamiento esperado del programa. Un `Penguin` que lanza excepción al llamar `fly()` rompe el contrato de `Bird`."
+    "explanation": "LSP (Liskov): cualquier subclase debe poder sustituir a su clase padre sin alterar el comportamiento esperado del programa. Un `Penguin` que lanza excepción al llamar `fly()` rompe el contrato de `Bird`.",
+    "active": true
   },
   {
     "id": 24,
@@ -357,7 +380,8 @@
       "DIP"
     ],
     "correct": 2,
-    "explanation": "ISP (Interface Segregation): los clientes no deberían verse forzados a depender de métodos que no usan. La solución es segregar en `IWorker`, `IEater`, `ISleeper`."
+    "explanation": "ISP (Interface Segregation): los clientes no deberían verse forzados a depender de métodos que no usan. La solución es segregar en `IWorker`, `IEater`, `ISleeper`.",
+    "active": true
   },
   {
     "id": 25,
@@ -372,7 +396,8 @@
       "DIP"
     ],
     "correct": 3,
-    "explanation": "DIP (Dependency Inversion): los módulos de alto nivel no deben depender de los de bajo nivel; ambos deben depender de abstracciones. `OrderService` debería depender de `OrderRepository` (interfaz), no de la implementación MySQL."
+    "explanation": "DIP (Dependency Inversion): los módulos de alto nivel no deben depender de los de bajo nivel; ambos deben depender de abstracciones. `OrderService` debería depender de `OrderRepository` (interfaz), no de la implementación MySQL.",
+    "active": true
   },
   {
     "id": 26,
@@ -387,7 +412,8 @@
       "Usar un switch dentro del servicio de descuentos"
     ],
     "correct": 1,
-    "explanation": "Con `DiscountStrategy` extiendes el sistema agregando una nueva clase que implementa la interfaz. El código existente no cambia — solo se agrega una nueva implementación."
+    "explanation": "Con `DiscountStrategy` extiendes el sistema agregando una nueva clase que implementa la interfaz. El código existente no cambia — solo se agrega una nueva implementación.",
+    "active": true
   },
   {
     "id": 27,
@@ -402,7 +428,8 @@
       "Las capas reemplazan completamente a SRP"
     ],
     "correct": 1,
-    "explanation": "La separación en capas es una aplicación macro de SRP: cada capa tiene una responsabilidad arquitectónica. SRP aplica a cada clase individualmente dentro de esas capas."
+    "explanation": "La separación en capas es una aplicación macro de SRP: cada capa tiene una responsabilidad arquitectónica. SRP aplica a cada clase individualmente dentro de esas capas.",
+    "active": true
   },
   {
     "id": 28,
@@ -417,7 +444,8 @@
       "Aplica LSP incorrectamente"
     ],
     "correct": 1,
-    "explanation": "ISP bien aplicado: en lugar de una interfaz `Animal` con todos los métodos, se segregan capacidades específicas. `Duck` implementa solo las que le corresponden."
+    "explanation": "ISP bien aplicado: en lugar de una interfaz `Animal` con todos los métodos, se segregan capacidades específicas. `Duck` implementa solo las que le corresponden.",
+    "active": true
   },
   {
     "id": 29,
@@ -432,7 +460,8 @@
       "Solo es útil con frameworks de IoC"
     ],
     "correct": 1,
-    "explanation": "Con inyección por constructor: 1) puedes pasar un mock en tests, 2) la clase declara explícitamente sus dependencias, 3) cumple DIP al recibir la abstracción (interfaz), no la implementación concreta."
+    "explanation": "Con inyección por constructor: 1) puedes pasar un mock en tests, 2) la clase declara explícitamente sus dependencias, 3) cumple DIP al recibir la abstracción (interfaz), no la implementación concreta.",
+    "active": true
   },
   {
     "id": 30,
@@ -447,7 +476,8 @@
       "Solo es violación si supera 100 líneas"
     ],
     "correct": 2,
-    "explanation": "Tres responsabilidades = dos violaciones de SRP. Cálculo de sueldo (regla de negocio), generación de PDF (presentación) y persistencia (datos) son razones distintas para cambiar."
+    "explanation": "Tres responsabilidades = dos violaciones de SRP. Cálculo de sueldo (regla de negocio), generación de PDF (presentación) y persistencia (datos) son razones distintas para cambiar.",
+    "active": true
   },
   {
     "id": 31,
@@ -462,7 +492,8 @@
       "Ignorarlo porque no es tu responsabilidad"
     ],
     "correct": 1,
-    "explanation": "Un code review cubre correctitud, legibilidad y mantenibilidad. Código que funciona pero es difícil de mantener es deuda técnica. Se señala con sugerencia constructiva, no como bloqueo."
+    "explanation": "Un code review cubre correctitud, legibilidad y mantenibilidad. Código que funciona pero es difícil de mantener es deuda técnica. Se señala con sugerencia constructiva, no como bloqueo.",
+    "active": true
   },
   {
     "id": 32,
@@ -477,7 +508,8 @@
       "Los sugeridos son opcionales siempre"
     ],
     "correct": 1,
-    "explanation": "Distinguir entre must-fix y nice-to-have es clave para code reviews efectivos. Bloquear por todo crea fricción innecesaria. Solo bloquear cuando hay impacto real en correctitud, seguridad o mantenibilidad crítica."
+    "explanation": "Distinguir entre must-fix y nice-to-have es clave para code reviews efectivos. Bloquear por todo crea fricción innecesaria. Solo bloquear cuando hay impacto real en correctitud, seguridad o mantenibilidad crítica.",
+    "active": true
   },
   {
     "id": 33,
@@ -492,7 +524,8 @@
       "No hay problema si cada cambio tiene su justificación"
     ],
     "correct": 0,
-    "explanation": "PRs grandes degradan la calidad del review exponencialmente. La investigación muestra que después de 400 líneas la tasa de detección de defectos cae. PRs pequeños y enfocados son una best practice."
+    "explanation": "PRs grandes degradan la calidad del review exponencialmente. La investigación muestra que después de 400 líneas la tasa de detección de defectos cae. PRs pequeños y enfocados son una best practice.",
+    "active": true
   },
   {
     "id": 34,
@@ -507,7 +540,8 @@
       "Ignorar comentarios de revisores junior"
     ],
     "correct": 2,
-    "explanation": "El code review es una conversación técnica, no un juicio personal. Separar el ego del código permite discusiones productivas. Puedes no estar de acuerdo — exprésalo con argumento técnico."
+    "explanation": "El code review es una conversación técnica, no un juicio personal. Separar el ego del código permite discusiones productivas. Puedes no estar de acuerdo — exprésalo con argumento técnico.",
+    "active": true
   },
   {
     "id": 35,
@@ -522,7 +556,8 @@
       "Que tenga suficientes comentarios"
     ],
     "correct": 1,
-    "explanation": "La correctitud funcional y la lógica de negocio tienen mayor impacto. El formato se puede automatizar con linters. Primero validar que hace lo que debe hacer, luego cómo está escrito."
+    "explanation": "La correctitud funcional y la lógica de negocio tienen mayor impacto. El formato se puede automatizar con linters. Primero validar que hace lo que debe hacer, luego cómo está escrito.",
+    "active": true
   },
   {
     "id": 36,
@@ -537,7 +572,8 @@
       "Reviews rápidos para no bloquear el progreso"
     ],
     "correct": 1,
-    "explanation": "La rotación de revisores distribuye el conocimiento, reduce dependencias de personas clave (bus factor) y crea entendimiento compartido del sistema. Es una práctica de equipos maduros."
+    "explanation": "La rotación de revisores distribuye el conocimiento, reduce dependencias de personas clave (bus factor) y crea entendimiento compartido del sistema. Es una práctica de equipos maduros.",
+    "active": true
   },
   {
     "id": 37,
@@ -552,7 +588,8 @@
       "Bloqueante solo si no hay logging"
     ],
     "correct": 1,
-    "explanation": "Un catch vacío es uno de los anti-patrones más peligrosos. Errores que deberían ser visibles se silencian. Como mínimo debe loggearse. En la mayoría de los casos es un bug en potencia."
+    "explanation": "Un catch vacío es uno de los anti-patrones más peligrosos. Errores que deberían ser visibles se silencian. Como mínimo debe loggearse. En la mayoría de los casos es un bug en potencia.",
+    "active": true
   },
   {
     "id": 38,
@@ -567,7 +604,8 @@
       "Explicar cómo ejecutar los tests"
     ],
     "correct": 1,
-    "explanation": "El diff muestra qué cambió. El description explica por qué: contexto de negocio, decisiones de diseño, alternativas descartadas. Eso permite un review más inteligente y documenta la historia del sistema."
+    "explanation": "El diff muestra qué cambió. El description explica por qué: contexto de negocio, decisiones de diseño, alternativas descartadas. Eso permite un review más inteligente y documenta la historia del sistema.",
+    "active": true
   },
   {
     "id": 39,
@@ -582,7 +620,8 @@
       "Nada relevante, es normal"
     ],
     "correct": 1,
-    "explanation": "Muchos comentarios suelen indicar que el autor no revisó su propio código antes del PR, falta de criterio sobre qué merece review, o un PR demasiado grande. Los mejores PRs llegan casi sin comentarios."
+    "explanation": "Muchos comentarios suelen indicar que el autor no revisó su propio código antes del PR, falta de criterio sobre qué merece review, o un PR demasiado grande. Los mejores PRs llegan casi sin comentarios.",
+    "active": true
   },
   {
     "id": 40,
@@ -597,7 +636,8 @@
       "Solo es útil para developers junior"
     ],
     "correct": 1,
-    "explanation": "El self-review antes del PR es una señal de profesionalismo. Los reviewers tienen tiempo limitado — filtra los errores de descuido y permite que el review se enfoque en la lógica y el diseño."
+    "explanation": "El self-review antes del PR es una señal de profesionalismo. Los reviewers tienen tiempo limitado — filtra los errores de descuido y permite que el review se enfoque en la lógica y el diseño.",
+    "active": true
   },
   {
     "id": 41,
@@ -612,7 +652,8 @@
       "maxretrycount"
     ],
     "correct": 2,
-    "explanation": "Las constantes en Java (`static final`) usan SCREAMING_SNAKE_CASE. Esta convención permite identificar visualmente una constante en cualquier parte del código."
+    "explanation": "Las constantes en Java (`static final`) usan SCREAMING_SNAKE_CASE. Esta convención permite identificar visualmente una constante en cualquier parte del código.",
+    "active": true
   },
   {
     "id": 42,
@@ -627,7 +668,8 @@
       "Es solo una convención estética"
     ],
     "correct": 1,
-    "explanation": "Programar contra interfaces es un principio fundamental. Si retornas `List`, mañana puedes cambiar internamente a `LinkedList` o `Collections.unmodifiableList()` sin romper ningún consumidor."
+    "explanation": "Programar contra interfaces es un principio fundamental. Si retornas `List`, mañana puedes cambiar internamente a `LinkedList` o `Collections.unmodifiableList()` sin romper ningún consumidor.",
+    "active": true
   },
   {
     "id": 43,
@@ -642,7 +684,8 @@
       "Como parámetro de métodos para permitir null"
     ],
     "correct": 1,
-    "explanation": "`Optional` como tipo de retorno comunica explícitamente 'esto puede no tener valor'. No se recomienda como parámetro (usa sobrecarga) ni en campos (usa null con validación)."
+    "explanation": "`Optional` como tipo de retorno comunica explícitamente 'esto puede no tener valor'. No se recomienda como parámetro (usa sobrecarga) ni en campos (usa null con validación).",
+    "active": true
   },
   {
     "id": 44,
@@ -657,7 +700,8 @@
       "SNAKE_CASE: com.mi_empresa.mi_app"
     ],
     "correct": 2,
-    "explanation": "Los paquetes en Java usan siempre minúsculas sin guiones ni underscores. La convención es dominio invertido: `com.empresa.proyecto.modulo`."
+    "explanation": "Los paquetes en Java usan siempre minúsculas sin guiones ni underscores. La convención es dominio invertido: `com.empresa.proyecto.modulo`.",
+    "active": true
   },
   {
     "id": 45,
@@ -672,7 +716,8 @@
       "Es válido si se documenta con Javadoc"
     ],
     "correct": 1,
-    "explanation": "Retornar una colección vacía (`Collections.emptyList()`) es siempre mejor que null. El consumidor puede iterar directamente sin verificación de null. Efectivo y seguro."
+    "explanation": "Retornar una colección vacía (`Collections.emptyList()`) es siempre mejor que null. El consumidor puede iterar directamente sin verificación de null. Efectivo y seguro.",
+    "active": true
   },
   {
     "id": 46,
@@ -687,7 +732,8 @@
       "Con `str1.hashCode() == str2.hashCode()`"
     ],
     "correct": 1,
-    "explanation": "`==` compara referencias, no contenido. `equals()` compara el contenido. `Objects.equals()` es además null-safe. El `==` con Strings es un bug clásico que pasa desapercibido en algunos casos por el String pool."
+    "explanation": "`==` compara referencias, no contenido. `equals()` compara el contenido. `Objects.equals()` es además null-safe. El `==` con Strings es un bug clásico que pasa desapercibido en algunos casos por el String pool.",
+    "active": true
   },
   {
     "id": 47,
@@ -702,7 +748,8 @@
       "Que siempre es exitoso"
     ],
     "correct": 1,
-    "explanation": "La idempotencia es crítica en sistemas distribuidos y APIs REST. Si una llamada falla y se reintenta, un método idempotente garantiza que no habrá efectos duplicados (ej: doble cobro, doble creación)."
+    "explanation": "La idempotencia es crítica en sistemas distribuidos y APIs REST. Si una llamada falla y se reintenta, un método idempotente garantiza que no habrá efectos duplicados (ej: doble cobro, doble creación).",
+    "active": true
   },
   {
     "id": 48,
@@ -717,7 +764,8 @@
       "Solo importa con Strings mayores a 1000 caracteres"
     ],
     "correct": 1,
-    "explanation": "Cada `+` con Strings crea un nuevo objeto String inmutable en el heap. En un loop de 1000 iteraciones creas 1000 objetos innecesarios. StringBuilder acumula en un buffer y construye el String al final."
+    "explanation": "Cada `+` con Strings crea un nuevo objeto String inmutable en el heap. En un loop de 1000 iteraciones creas 1000 objetos innecesarios. StringBuilder acumula en un buffer y construye el String al final.",
+    "active": true
   },
   {
     "id": 49,
@@ -732,7 +780,8 @@
       "Solo aplica para archivos, no para conexiones"
     ],
     "correct": 1,
-    "explanation": "`try-with-resources` llama automáticamente a `close()` en cualquier `AutoCloseable`. Con `try-finally` es fácil olvidar el cierre o que la excepción en `finally` enmascare la original."
+    "explanation": "`try-with-resources` llama automáticamente a `close()` en cualquier `AutoCloseable`. Con `try-finally` es fácil olvidar el cierre o que la excepción en `finally` enmascare la original.",
+    "active": true
   },
   {
     "id": 50,
@@ -747,7 +796,8 @@
       "Debería ser static"
     ],
     "correct": 1,
-    "explanation": "Los raw types eliminan la seguridad de tipos del compilador. Deberías declarar `List<TipoCorrecto>` para que el compilador detecte errores en tiempo de compilación, no en runtime."
+    "explanation": "Los raw types eliminan la seguridad de tipos del compilador. Deberías declarar `List<TipoCorrecto>` para que el compilador detecte errores en tiempo de compilación, no en runtime.",
+    "active": true
   },
   {
     "id": 51,
@@ -762,7 +812,8 @@
       "Es demasiado verboso"
     ],
     "correct": 1,
-    "explanation": "Dos problemas: 1) printStackTrace va a stdout, ignorado en producción con logging centralizado. 2) El catch vacío permite que el código continúe después de un error, potencialmente en estado corrupto."
+    "explanation": "Dos problemas: 1) printStackTrace va a stdout, ignorado en producción con logging centralizado. 2) El catch vacío permite que el código continúe después de un error, potencialmente en estado corrupto.",
+    "active": true
   },
   {
     "id": 52,
@@ -777,7 +828,8 @@
       "Siempre que haya un error de negocio"
     ],
     "correct": 1,
-    "explanation": "Las excepciones personalizadas comunican errores de dominio de forma expresiva. `InsufficientFundsException` es más informativo que `IllegalStateException`. Además permite capturarlas específicamente en la capa correcta."
+    "explanation": "Las excepciones personalizadas comunican errores de dominio de forma expresiva. `InsufficientFundsException` es más informativo que `IllegalStateException`. Además permite capturarlas específicamente en la capa correcta.",
+    "active": true
   },
   {
     "id": 53,
@@ -792,7 +844,8 @@
       "Checked son obsoletas en Java moderno"
     ],
     "correct": 1,
-    "explanation": "Checked exceptions expresan condiciones recuperables que el llamador debe considerar (ej: `FileNotFoundException`). Unchecked son para bugs o condiciones irrecuperables (ej: `NullPointerException`, `IllegalArgumentException`)."
+    "explanation": "Checked exceptions expresan condiciones recuperables que el llamador debe considerar (ej: `FileNotFoundException`). Unchecked son para bugs o condiciones irrecuperables (ej: `NullPointerException`, `IllegalArgumentException`).",
+    "active": true
   },
   {
     "id": 54,
@@ -807,7 +860,8 @@
       "En la base de datos misma"
     ],
     "correct": 0,
-    "explanation": "El Repository es el punto de contacto con la persistencia. Captura `DataAccessException` ahí y relanza como `UserNotFoundException` o similar. Así las capas superiores no conocen detalles de implementación de persistencia."
+    "explanation": "El Repository es el punto de contacto con la persistencia. Captura `DataAccessException` ahí y relanza como `UserNotFoundException` o similar. Así las capas superiores no conocen detalles de implementación de persistencia.",
+    "active": true
   },
   {
     "id": 55,
@@ -822,7 +876,8 @@
       "Debería usar checked exception"
     ],
     "correct": 1,
-    "explanation": "Al crear `new RuntimeException(e.getMessage())` solo copias el mensaje como String, perdiendo el stack trace y el tipo original. Correcto: `throw new RuntimeException(\"contexto adicional\", e)` — preserva la causa original."
+    "explanation": "Al crear `new RuntimeException(e.getMessage())` solo copias el mensaje como String, perdiendo el stack trace y el tipo original. Correcto: `throw new RuntimeException(\"contexto adicional\", e)` — preserva la causa original.",
+    "active": true
   },
   {
     "id": 56,
@@ -837,7 +892,8 @@
       "Usar assert en lugar de excepciones"
     ],
     "correct": 1,
-    "explanation": "Fail Fast: detectar el error lo más temprano posible. Un `IllegalArgumentException(\"userId no puede ser null\")` al inicio es infinitamente más útil que un `NullPointerException` 10 llamadas después en un lugar inesperado."
+    "explanation": "Fail Fast: detectar el error lo más temprano posible. Un `IllegalArgumentException(\"userId no puede ser null\")` al inicio es infinitamente más útil que un `NullPointerException` 10 llamadas después en un lugar inesperado.",
+    "active": true
   },
   {
     "id": 57,
@@ -852,7 +908,8 @@
       "Reintentar el registro fallido infinitamente"
     ],
     "correct": 1,
-    "explanation": "La respuesta depende del contexto de negocio. Para registros independientes (ej: envío de emails), continuar y loggear. Para transacciones relacionadas (ej: transferencias), fallar todo. El diseño debe reflejar la semántica de negocio."
+    "explanation": "La respuesta depende del contexto de negocio. Para registros independientes (ej: envío de emails), continuar y loggear. Para transacciones relacionadas (ej: transferencias), fallar todo. El diseño debe reflejar la semántica de negocio.",
+    "active": true
   },
   {
     "id": 58,
@@ -867,7 +924,8 @@
       "Java lo permite, así que está bien"
     ],
     "correct": 1,
-    "explanation": "El stack trace de una excepción es costoso de construir. Además, usar try/catch para flujo normal confunde al lector — `try { user = findUser(id); } catch { ... }` cuando `findUser` puede retornar `Optional`."
+    "explanation": "El stack trace de una excepción es costoso de construir. Además, usar try/catch para flujo normal confunde al lector — `try { user = findUser(id); } catch { ... }` cuando `findUser` puede retornar `Optional`.",
+    "active": true
   },
   {
     "id": 59,
@@ -882,7 +940,8 @@
       "Solo un código de error numérico"
     ],
     "correct": 1,
-    "explanation": "Un buen mensaje: `\"Usuario no encontrado con id: 12345\"`. Un mal mensaje: `\"Error\"` o `\"null\"`. El mensaje debe permitir al desarrollador o al sistema de alertas entender el problema sin investigación adicional."
+    "explanation": "Un buen mensaje: `\"Usuario no encontrado con id: 12345\"`. Un mal mensaje: `\"Error\"` o `\"null\"`. El mensaje debe permitir al desarrollador o al sistema de alertas entender el problema sin investigación adicional.",
+    "active": true
   },
   {
     "id": 60,
@@ -897,7 +956,8 @@
       "log.error solo acepta un parámetro"
     ],
     "correct": 1,
-    "explanation": "Pasar la excepción como segundo parámetro a SLF4J hace que el logger incluya el stack trace completo. Solo el mensaje texto es prácticamente inútil para debugging — no sabes dónde ocurrió el error."
+    "explanation": "Pasar la excepción como segundo parámetro a SLF4J hace que el logger incluya el stack trace completo. Solo el mensaje texto es prácticamente inútil para debugging — no sabes dónde ocurrió el error.",
+    "active": true
   },
   {
     "id": 61,
@@ -912,7 +972,8 @@
       "Refactorizar sin tests para ir más rápido"
     ],
     "correct": 1,
-    "explanation": "Refactoring sin tests es reescritura con esperanza. Los tests son la red de seguridad que garantiza que cada pequeño paso preservó el comportamiento externo. Sin ellos, no es refactoring — es ruleta."
+    "explanation": "Refactoring sin tests es reescritura con esperanza. Los tests son la red de seguridad que garantiza que cada pequeño paso preservó el comportamiento externo. Sin ellos, no es refactoring — es ruleta.",
+    "active": true
   },
   {
     "id": 62,
@@ -927,7 +988,8 @@
       "El método tiene más de 3 parámetros"
     ],
     "correct": 1,
-    "explanation": "El comentario es la señal. `// calcula descuento por volumen` seguido de 5 líneas de código grita 'extráeme a un método'. El nombre del método reemplaza el comentario y la lógica queda encapsulada."
+    "explanation": "El comentario es la señal. `// calcula descuento por volumen` seguido de 5 líneas de código grita 'extráeme a un método'. El nombre del método reemplaza el comentario y la lógica queda encapsulada.",
+    "active": true
   },
   {
     "id": 63,
@@ -942,7 +1004,8 @@
       "Inline Method"
     ],
     "correct": 1,
-    "explanation": "Introduce Parameter Object: si tienes `createOrder(String name, String street, String city, String country)`, los últimos tres parámetros son candidatos para un objeto `Address`. Reduce el acoplamiento y añade semántica."
+    "explanation": "Introduce Parameter Object: si tienes `createOrder(String name, String street, String city, String country)`, los últimos tres parámetros son candidatos para un objeto `Address`. Reduce el acoplamiento y añade semántica.",
+    "active": true
   },
   {
     "id": 64,
@@ -957,7 +1020,8 @@
       "Crear un método estático en Utils"
     ],
     "correct": 1,
-    "explanation": "Template Method define el esqueleto del algoritmo en la clase base y deja que las subclases implementen los pasos variables. Elimina la duplicación preservando las variaciones específicas."
+    "explanation": "Template Method define el esqueleto del algoritmo en la clase base y deja que las subclases implementen los pasos variables. Elimina la duplicación preservando las variaciones específicas.",
+    "active": true
   },
   {
     "id": 65,
@@ -972,7 +1036,8 @@
       "Solo en sprint de deuda técnica"
     ],
     "correct": 1,
-    "explanation": "La frase de Kent Beck lo resume: 'For each desired change, make the change easy (warning: this may be hard), then make the easy change.' El refactoring previo reduce el riesgo y el costo del cambio funcional."
+    "explanation": "La frase de Kent Beck lo resume: 'For each desired change, make the change easy (warning: this may be hard), then make the easy change.' El refactoring previo reduce el riesgo y el costo del cambio funcional.",
+    "active": true
   },
   {
     "id": 66,
@@ -987,7 +1052,8 @@
       "Solo aplica a Java Generics"
     ],
     "correct": 1,
-    "explanation": "Cuando el mismo switch sobre un tipo aparece en múltiples métodos, cada `case` es en realidad un objeto diferente. Crear una clase por caso y usar polimorfismo elimina todos los switches a la vez."
+    "explanation": "Cuando el mismo switch sobre un tipo aparece en múltiples métodos, cada `case` es en realidad un objeto diferente. Crear una clase por caso y usar polimorfismo elimina todos los switches a la vez.",
+    "active": true
   },
   {
     "id": 67,
@@ -1002,7 +1068,8 @@
       "Hace el código más lento"
     ],
     "correct": 1,
-    "explanation": "YAGNI (You Aren't Gonna Need It): no abstraigas para casos hipotéticos. Una abstracción mal elegida es peor que el código simple original. El refactoring debe responder a un problema real, no a uno imaginado."
+    "explanation": "YAGNI (You Aren't Gonna Need It): no abstraigas para casos hipotéticos. Una abstracción mal elegida es peor que el código simple original. El refactoring debe responder a un problema real, no a uno imaginado.",
+    "active": true
   },
   {
     "id": 68,
@@ -1017,7 +1084,8 @@
       "Siempre usar Optional en el retorno"
     ],
     "correct": 1,
-    "explanation": "Guard Clauses invierten la condición: en lugar de `if (valido) { ...50 líneas... }`, usas `if (!valido) return;`. Elimina la pirámide de if anidados (arrow anti-pattern) y hace el happy path evidente."
+    "explanation": "Guard Clauses invierten la condición: en lugar de `if (valido) { ...50 líneas... }`, usas `if (!valido) return;`. Elimina la pirámide de if anidados (arrow anti-pattern) y hace el happy path evidente.",
+    "active": true
   },
   {
     "id": 69,
@@ -1032,7 +1100,8 @@
       "Solo aplica a código legacy"
     ],
     "correct": 1,
-    "explanation": "De Robert Martin: 'Leave the campground cleaner than you found it.' Cada vez que tocas código, mejora algo pequeño: renombra una variable confusa, extrae un método largo, elimina un comentario obsoleto. El código mejora incrementalmente."
+    "explanation": "De Robert Martin: 'Leave the campground cleaner than you found it.' Cada vez que tocas código, mejora algo pequeño: renombra una variable confusa, extrae un método largo, elimina un comentario obsoleto. El código mejora incrementalmente.",
+    "active": true
   },
   {
     "id": 70,
@@ -1047,7 +1116,8 @@
       "Refactoring solo aplica a métodos, reescritura a clases"
     ],
     "correct": 1,
-    "explanation": "Refactoring es disciplinado y verificable — cada paso es pequeño y los tests confirman equivalencia. Reescritura es de alto riesgo — pierdes los casos edge que el código original cubría, a veces sin saberlo."
+    "explanation": "Refactoring es disciplinado y verificable — cada paso es pequeño y los tests confirman equivalencia. Reescritura es de alto riesgo — pierdes los casos edge que el código original cubría, a veces sin saberlo.",
+    "active": true
   },
   {
     "id": 71,
@@ -1062,7 +1132,8 @@
       "Observer Pattern"
     ],
     "correct": 1,
-    "explanation": "State Pattern: el objeto cambia su comportamiento según su estado interno, y el estado mismo controla las transiciones válidas. `SHIPPED.cancel()` puede lanzar excepción; `PENDING.cancel()` puede proceder."
+    "explanation": "State Pattern: el objeto cambia su comportamiento según su estado interno, y el estado mismo controla las transiciones válidas. `SHIPPED.cancel()` puede lanzar excepción; `PENDING.cancel()` puede proceder.",
+    "active": true
   },
   {
     "id": 72,
@@ -1077,7 +1148,8 @@
       "Composite"
     ],
     "correct": 2,
-    "explanation": "Specification Pattern: cada criterio es un objeto con método `isSatisfiedBy(customer)`. Se combinan con `and()`, `or()`, `not()`. Agregar una nueva regla es crear una nueva `Specification` sin tocar el código existente."
+    "explanation": "Specification Pattern: cada criterio es un objeto con método `isSatisfiedBy(customer)`. Se combinan con `and()`, `or()`, `not()`. Agregar una nueva regla es crear una nueva `Specification` sin tocar el código existente.",
+    "active": true
   },
   {
     "id": 73,
@@ -1092,7 +1164,8 @@
       "Switch es siempre mejor que enum con comportamiento"
     ],
     "correct": 1,
-    "explanation": "Con enum + comportamiento, cada constante sobreescribe el método abstracto. Al agregar `GOLD` al enum, el compilador fuerza implementar el método. Con switch distribuidos en el código, olvidar uno es un bug silencioso."
+    "explanation": "Con enum + comportamiento, cada constante sobreescribe el método abstracto. Al agregar `GOLD` al enum, el compilador fuerza implementar el método. Con switch distribuidos en el código, olvidar uno es un bug silencioso.",
+    "active": true
   },
   {
     "id": 74,
@@ -1107,7 +1180,8 @@
       "Observer"
     ],
     "correct": 2,
-    "explanation": "Chain of Responsibility: los handlers se encadenan. Cada uno procesa lo que puede o delega al siguiente. Agregar una nueva validación es crear un nuevo handler y agregarlo a la cadena sin modificar los existentes."
+    "explanation": "Chain of Responsibility: los handlers se encadenan. Cada uno procesa lo que puede o delega al siguiente. Agregar una nueva validación es crear un nuevo handler y agregarlo a la cadena sin modificar los existentes.",
+    "active": true
   },
   {
     "id": 75,
@@ -1122,7 +1196,8 @@
       "Consumen demasiada memoria"
     ],
     "correct": 1,
-    "explanation": "En inicialización lazy sin `synchronized` o `volatile`, dos threads pueden pasar el check `== null` simultáneamente y crear dos instancias. La solución: eager initialization, `synchronized`, o el patrón Bill Pugh (holder estático)."
+    "explanation": "En inicialización lazy sin `synchronized` o `volatile`, dos threads pueden pasar el check `== null` simultáneamente y crear dos instancias. La solución: eager initialization, `synchronized`, o el patrón Bill Pugh (holder estático).",
+    "active": true
   },
   {
     "id": 76,
@@ -1137,7 +1212,8 @@
       "State es para UI, Strategy para lógica de negocio"
     ],
     "correct": 1,
-    "explanation": "En Strategy, el cliente elige qué algoritmo usar y lo inyecta. En State, el objeto mismo transiciona entre estados y cambia su comportamiento. La diferencia es quién controla el cambio: externo (Strategy) vs interno (State)."
+    "explanation": "En Strategy, el cliente elige qué algoritmo usar y lo inyecta. En State, el objeto mismo transiciona entre estados y cambia su comportamiento. La diferencia es quién controla el cambio: externo (Strategy) vs interno (State).",
+    "active": true
   },
   {
     "id": 77,
@@ -1152,7 +1228,8 @@
       "Para desacoplar observadores"
     ],
     "correct": 1,
-    "explanation": "Composite modela jerarquías parte-todo. Archivo y Carpeta implementan el mismo `Component`. Puedes llamar `calcularTamaño()` en un archivo o en toda una carpeta — el comportamiento recursivo está encapsulado en el Composite."
+    "explanation": "Composite modela jerarquías parte-todo. Archivo y Carpeta implementan el mismo `Component`. Puedes llamar `calcularTamaño()` en un archivo o en toda una carpeta — el comportamiento recursivo está encapsulado en el Composite.",
+    "active": true
   },
   {
     "id": 78,
@@ -1167,7 +1244,8 @@
       "Se necesita crear copias del objeto"
     ],
     "correct": 1,
-    "explanation": "Builder soluciona el problema del 'telescoping constructor'. Con 8 parámetros opcionales tendrías 256 combinaciones de constructores. Builder permite construir el objeto paso a paso, solo con los campos necesarios, y el objeto final es inmutable."
+    "explanation": "Builder soluciona el problema del 'telescoping constructor'. Con 8 parámetros opcionales tendrías 256 combinaciones de constructores. Builder permite construir el objeto paso a paso, solo con los campos necesarios, y el objeto final es inmutable.",
+    "active": true
   },
   {
     "id": 79,
@@ -1182,7 +1260,8 @@
       "Composite"
     ],
     "correct": 1,
-    "explanation": "Strategy define la interfaz del plugin. Un Registry/Factory mapea nombres o tipos a implementaciones. El código base solo conoce la interfaz. Agregar un plugin es registrar una nueva implementación sin tocar el core."
+    "explanation": "Strategy define la interfaz del plugin. Un Registry/Factory mapea nombres o tipos a implementaciones. El código base solo conoce la interfaz. Agregar un plugin es registrar una nueva implementación sin tocar el core.",
+    "active": true
   },
   {
     "id": 80,
@@ -1197,7 +1276,8 @@
       "Event-Driven requiere mensajería externa"
     ],
     "correct": 1,
-    "explanation": "Observer clásico mantiene referencias a sus observers — hay acoplamiento. En Event-Driven el publisher emite al bus y no sabe quién escucha. Mayor desacoplamiento pero más complejidad. En microservicios, Event-Driven es el estándar."
+    "explanation": "Observer clásico mantiene referencias a sus observers — hay acoplamiento. En Event-Driven el publisher emite al bus y no sabe quién escucha. Mayor desacoplamiento pero más complejidad. En microservicios, Event-Driven es el estándar.",
+    "active": true
   },
   {
     "id": 81,
@@ -1212,7 +1292,8 @@
       "Replace Conditional with Polymorphism"
     ],
     "correct": 2,
-    "explanation": "El 'arrow anti-pattern' o pirámide de doom se resuelve con Guard Clauses: `if (!a) return; if (!b) return; if (!c) return; doWork();`. El happy path queda al final sin anidamiento."
+    "explanation": "El 'arrow anti-pattern' o pirámide de doom se resuelve con Guard Clauses: `if (!a) return; if (!b) return; if (!c) return; doWork();`. El happy path queda al final sin anidamiento.",
+    "active": true
   },
   {
     "id": 82,
@@ -1227,7 +1308,8 @@
       "LSP — viola la sustitución"
     ],
     "correct": 1,
-    "explanation": "DIP: `OrderService` instancia directamente `MySQLDb` (módulo de bajo nivel). Debe depender de una abstracción como `DbRepository`. Si mañana cambias a PostgreSQL, debes modificar `OrderService` — eso es acoplamiento innecesario."
+    "explanation": "DIP: `OrderService` instancia directamente `MySQLDb` (módulo de bajo nivel). Debe depender de una abstracción como `DbRepository`. Si mañana cambias a PostgreSQL, debes modificar `OrderService` — eso es acoplamiento innecesario.",
+    "active": true
   },
   {
     "id": 83,
@@ -1242,7 +1324,8 @@
       "No tiene problema, es conciso"
     ],
     "correct": 1,
-    "explanation": "Clean Code: los nombres deben revelar intención. `check(user)` no dice nada. `isAdult(user)` o `hasLegalAge(user)` comunican exactamente qué se valida sin necesidad de leer el cuerpo del método."
+    "explanation": "Clean Code: los nombres deben revelar intención. `check(user)` no dice nada. `isAdult(user)` o `hasLegalAge(user)` comunican exactamente qué se valida sin necesidad de leer el cuerpo del método.",
+    "active": true
   },
   {
     "id": 84,
@@ -1257,7 +1340,8 @@
       "Convertir a RuntimeException sin contexto"
     ],
     "correct": 1,
-    "explanation": "La capa de servicio debe traducir excepciones de infraestructura a excepciones de dominio significativas, preservando la causa original (passing `e` al constructor). Esto mantiene las capas desacopladas y facilita el debugging."
+    "explanation": "La capa de servicio debe traducir excepciones de infraestructura a excepciones de dominio significativas, preservando la causa original (passing `e` al constructor). Esto mantiene las capas desacopladas y facilita el debugging.",
+    "active": true
   },
   {
     "id": 85,
@@ -1272,7 +1356,8 @@
       "Template Method"
     ],
     "correct": 1,
-    "explanation": "Enum con comportamiento: cada constante implementa el método abstracto con su propia lógica. Es una forma compacta de Strategy Pattern donde las variantes están tipadas por el compilador. Elimina los switch sobre tipo de descuento."
+    "explanation": "Enum con comportamiento: cada constante implementa el método abstracto con su propia lógica. Es una forma compacta de Strategy Pattern donde las variantes están tipadas por el compilador. Elimina los switch sobre tipo de descuento.",
+    "active": true
   },
   {
     "id": 86,
@@ -1287,7 +1372,8 @@
       "No tiene smell, es código fluido válido"
     ],
     "correct": 1,
-    "explanation": "Law of Demeter / Train Wreck: encadenas `.get().get().get()` atravesando múltiples objetos. El código conoce la estructura interna de `Category` y de `Discount`. Un método `product.getDiscountMultiplier()` encapsularía esa navegación."
+    "explanation": "Law of Demeter / Train Wreck: encadenas `.get().get().get()` atravesando múltiples objetos. El código conoce la estructura interna de `Category` y de `Discount`. Un método `product.getDiscountMultiplier()` encapsularía esa navegación.",
+    "active": true
   },
   {
     "id": 87,
@@ -1302,7 +1388,8 @@
       "No hay problema, es perfectamente válido"
     ],
     "correct": 1,
-    "explanation": "Comparar un boolean con `true` o `false` explícitamente es ruido. `if (user.isActive())` y `if (!user.isActive())` son más limpios y directos. Es uno de los estándares básicos de Java."
+    "explanation": "Comparar un boolean con `true` o `false` explícitamente es ruido. `if (user.isActive())` y `if (!user.isActive())` son más limpios y directos. Es uno de los estándares básicos de Java.",
+    "active": true
   },
   {
     "id": 88,
@@ -1317,7 +1404,8 @@
       "Replace Conditional with Polymorphism"
     ],
     "correct": 1,
-    "explanation": "Inline Method: si un método no agrega claridad y solo se usa en un lugar, la abstracción puede ser contraproducente. Inline elimina el indirection innecesario. El refactoring no es siempre extraer — a veces es simplificar."
+    "explanation": "Inline Method: si un método no agrega claridad y solo se usa en un lugar, la abstracción puede ser contraproducente. Inline elimina el indirection innecesario. El refactoring no es siempre extraer — a veces es simplificar.",
+    "active": true
   },
   {
     "id": 89,
@@ -1332,7 +1420,8 @@
       "OCP — agregar nuevos métodos sin modificar"
     ],
     "correct": 1,
-    "explanation": "ISP: ninguna clase debería depender de métodos que no usa. Segregar en interfaces específicas permite que las clases implementen solo las capacidades que necesitan, sin implementaciones vacías o excepciones."
+    "explanation": "ISP: ninguna clase debería depender de métodos que no usa. Segregar en interfaces específicas permite que las clases implementen solo las capacidades que necesitan, sin implementaciones vacías o excepciones.",
+    "active": true
   },
   {
     "id": 90,
@@ -1347,6 +1436,7 @@
       "Template Method"
     ],
     "correct": 1,
-    "explanation": "Specification Pattern: `HasGoodHistory.and(HasMinIncome(50000)).and(HasMinAge(25)).or(IsPreferred.and(HasGoodHistory))`. Cada regla es testeable individualmente, combinable, y agregar una nueva condición no toca el código existente."
+    "explanation": "Specification Pattern: `HasGoodHistory.and(HasMinIncome(50000)).and(HasMinAge(25)).or(IsPreferred.and(HasGoodHistory))`. Cada regla es testeable individualmente, combinable, y agregar una nueva condición no toca el código existente.",
+    "active": true
   }
 ]

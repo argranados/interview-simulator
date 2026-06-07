@@ -12,7 +12,8 @@
       "Una interfaz puede extender clases, una clase abstracta no"
     ],
     "correct": 1,
-    "explanation": "Desde Java 8, las interfaces pueden tener métodos default y static con implementación. La diferencia clave es que las clases abstractas pueden tener atributos de instancia, constructores y estado; las interfaces solo tienen constantes (public static final) implícitamente."
+    "explanation": "Desde Java 8, las interfaces pueden tener métodos default y static con implementación. La diferencia clave es que las clases abstractas pueden tener atributos de instancia, constructores y estado; las interfaces solo tienen constantes (public static final) implícitamente.",
+    "active": true
   },
   {
     "id": 2,
@@ -27,7 +28,8 @@
       "Character"
     ],
     "correct": 2,
-    "explanation": "En Java los primitivos son: byte, short, int, long, float, double, boolean, char. String, Integer y Character son clases (objetos). char es el primitivo correspondiente a Character."
+    "explanation": "En Java los primitivos son: byte, short, int, long, float, double, boolean, char. String, Integer y Character son clases (objetos). char es el primitivo correspondiente a Character.",
+    "active": true
   },
   {
     "id": 3,
@@ -42,7 +44,8 @@
       "Se puede modificar la referencia original desde el método"
     ],
     "correct": 1,
-    "explanation": "Java es siempre pass-by-value. Para primitivos se copia el valor. Para objetos se copia la referencia (el puntero), por lo que se puede mutar el objeto referenciado pero no cambiar la variable original para que apunte a otro objeto."
+    "explanation": "Java es siempre pass-by-value. Para primitivos se copia el valor. Para objetos se copia la referencia (el puntero), por lo que se puede mutar el objeto referenciado pero no cambiar la variable original para que apunte a otro objeto.",
+    "active": true
   },
   {
     "id": 4,
@@ -57,7 +60,8 @@
       "Lanza NullPointerException"
     ],
     "correct": 1,
-    "explanation": "Los literales String se internan en el String Pool. Como 'a' y 'b' apuntan al mismo literal del pool, '==' compara referencias y el resultado es true. Si usáramos 'new String(\"hola\")' sería false."
+    "explanation": "Los literales String se internan en el String Pool. Como 'a' y 'b' apuntan al mismo literal del pool, '==' compara referencias y el resultado es true. Si usáramos 'new String(\"hola\")' sería false.",
+    "active": true
   },
   {
     "id": 5,
@@ -72,7 +76,8 @@
       "LinkedList no implementa List"
     ],
     "correct": 1,
-    "explanation": "ArrayList internamente usa un array redimensionable: acceso por índice O(1), inserción/eliminación en medio O(n). LinkedList usa nodos doblemente enlazados: acceso por índice O(n), pero inserción/eliminación en extremos O(1). También implementa Deque."
+    "explanation": "ArrayList internamente usa un array redimensionable: acceso por índice O(1), inserción/eliminación en medio O(n). LinkedList usa nodos doblemente enlazados: acceso por índice O(n), pero inserción/eliminación en extremos O(1). También implementa Deque.",
+    "active": true
   },
   {
     "id": 6,
@@ -87,7 +92,8 @@
       "RuntimeException debe declararse en el método con throws"
     ],
     "correct": 1,
-    "explanation": "Checked exceptions (extienden Exception pero no RuntimeException) deben declararse con throws o capturarse. Unchecked exceptions (RuntimeException y sus subclases como NullPointerException, IndexOutOfBoundsException) no lo requieren."
+    "explanation": "Checked exceptions (extienden Exception pero no RuntimeException) deben declararse con throws o capturarse. Unchecked exceptions (RuntimeException y sus subclases como NullPointerException, IndexOutOfBoundsException) no lo requieren.",
+    "active": true
   },
   {
     "id": 7,
@@ -102,7 +108,8 @@
       "Permite que una clase herede de múltiples clases"
     ],
     "correct": 1,
-    "explanation": "El polimorfismo (dinámico) permite que una variable de tipo padre apunte a instancias de subtipos. El método que se ejecuta se determina en runtime según el tipo real del objeto (dynamic dispatch). La sobrecarga es polimorfismo estático (compile-time)."
+    "explanation": "El polimorfismo (dinámico) permite que una variable de tipo padre apunte a instancias de subtipos. El método que se ejecuta se determina en runtime según el tipo real del objeto (dynamic dispatch). La sobrecarga es polimorfismo estático (compile-time).",
+    "active": true
   },
   {
     "id": 8,
@@ -117,7 +124,8 @@
       "protected → public → default → private"
     ],
     "correct": 1,
-    "explanation": "public (cualquier clase), protected (mismo paquete o subclases), default/package-private (mismo paquete), private (solo la clase). Es importante memorizarlo para diseñar encapsulamiento correcto."
+    "explanation": "public (cualquier clase), protected (mismo paquete o subclases), default/package-private (mismo paquete), private (solo la clase). Es importante memorizarlo para diseñar encapsulamiento correcto.",
+    "active": true
   },
   {
     "id": 9,
@@ -132,7 +140,8 @@
       "StringBuilder solo funciona en entornos multihilo"
     ],
     "correct": 1,
-    "explanation": "String es inmutable: cada concatenación crea un nuevo objeto. StringBuilder es mutable y acumula cambios sin crear objetos intermedios. Para concatenaciones en bucles, siempre usar StringBuilder. StringBuffer es la versión thread-safe (más lenta)."
+    "explanation": "String es inmutable: cada concatenación crea un nuevo objeto. StringBuilder es mutable y acumula cambios sin crear objetos intermedios. Para concatenaciones en bucles, siempre usar StringBuilder. StringBuffer es la versión thread-safe (más lenta).",
+    "active": true
   },
   {
     "id": 10,
@@ -147,7 +156,8 @@
       "Convertir tipos primitivos en objetos"
     ],
     "correct": 0,
-    "explanation": "Encapsulación = ocultar el estado interno de un objeto y exponer solo lo necesario a través de métodos públicos (getters/setters). Se implementa con private en atributos y acceso controlado mediante métodos. Protege la integridad del estado."
+    "explanation": "Encapsulación = ocultar el estado interno de un objeto y exponer solo lo necesario a través de métodos públicos (getters/setters). Se implementa con private en atributos y acceso controlado mediante métodos. Protege la integridad del estado.",
+    "active": true
   },
   {
     "id": 11,
@@ -162,7 +172,8 @@
       "Un tipo de variable inmutable"
     ],
     "correct": 1,
-    "explanation": "Una lambda es una función anónima que implementa de forma concisa una interfaz funcional (con un solo método abstracto). Sintaxis: (params) -> expresión. Ejemplo: Comparator<String> c = (a, b) -> a.compareTo(b);"
+    "explanation": "Una lambda es una función anónima que implementa de forma concisa una interfaz funcional (con un solo método abstracto). Sintaxis: (params) -> expresión. Ejemplo: Comparator<String> c = (a, b) -> a.compareTo(b);",
+    "active": true
   },
   {
     "id": 12,
@@ -177,7 +188,8 @@
       "HashMap no permite null"
     ],
     "correct": 1,
-    "explanation": "HashMap: pares clave-valor, claves únicas, O(1) promedio para get/put. HashSet: solo valores únicos, internamente implementado con un HashMap. Ambos permiten una clave/valor null y no garantizan orden."
+    "explanation": "HashMap: pares clave-valor, claves únicas, O(1) promedio para get/put. HashSet: solo valores únicos, internamente implementado con un HashMap. Ambos permiten una clave/valor null y no garantizan orden.",
+    "active": true
   },
   {
     "id": 13,
@@ -192,7 +204,8 @@
       "Solo aplica para String y char"
     ],
     "correct": 1,
-    "explanation": "Autoboxing: Java convierte automáticamente int→Integer, double→Double, etc. Unboxing es la inversa. Cuidado: puede causar NullPointerException si el wrapper es null al hacer unboxing, y overhead de rendimiento en loops."
+    "explanation": "Autoboxing: Java convierte automáticamente int→Integer, double→Double, etc. Unboxing es la inversa. Cuidado: puede causar NullPointerException si el wrapper es null al hacer unboxing, y overhead de rendimiento en loops.",
+    "active": true
   },
   {
     "id": 14,
@@ -207,7 +220,8 @@
       "La hace thread-safe"
     ],
     "correct": 1,
-    "explanation": "final en variable: no puede reasignarse después de la primera asignación. Ojo: si es un objeto, la referencia es final pero el estado del objeto puede cambiar. final en método: no puede sobreescribirse. final en clase: no puede heredarse."
+    "explanation": "final en variable: no puede reasignarse después de la primera asignación. Ojo: si es un objeto, la referencia es final pero el estado del objeto puede cambiar. final en método: no puede sobreescribirse. final en clase: no puede heredarse.",
+    "active": true
   },
   {
     "id": 15,
@@ -222,7 +236,8 @@
       "La herencia solo aplica a interfaces"
     ],
     "correct": 1,
-    "explanation": "Java soporta herencia simple: una clase extiende exactamente una clase padre (o Object implícitamente). Para simular herencia múltiple de comportamiento se usan interfaces (especialmente con default methods desde Java 8)."
+    "explanation": "Java soporta herencia simple: una clase extiende exactamente una clase padre (o Object implícitamente). Para simular herencia múltiple de comportamiento se usan interfaces (especialmente con default methods desde Java 8).",
+    "active": true
   },
   {
     "id": 16,
@@ -237,7 +252,8 @@
       "'==' compara el contenido de los objetos"
     ],
     "correct": 1,
-    "explanation": "== compara referencias de memoria. .equals() compara contenido lógico. Para String, Integer, etc., .equals() está sobreescrito para comparar valor. Siempre usar .equals() para comparar objetos. Recordar implementar hashCode() al sobreescribir equals()."
+    "explanation": "== compara referencias de memoria. .equals() compara contenido lógico. Para String, Integer, etc., .equals() está sobreescrito para comparar valor. Siempre usar .equals() para comparar objetos. Recordar implementar hashCode() al sobreescribir equals().",
+    "active": true
   },
   {
     "id": 17,
@@ -252,7 +268,8 @@
       "Una forma de declarar variables opcionales en métodos"
     ],
     "correct": 1,
-    "explanation": "Optional<T> es un contenedor que puede estar vacío (Optional.empty()) o tener un valor (Optional.of(v)). Métodos clave: isPresent(), get(), orElse(), orElseGet(), map(), filter(). Mejora la legibilidad y reduce NPE, especialmente en retornos de métodos."
+    "explanation": "Optional<T> es un contenedor que puede estar vacío (Optional.empty()) o tener un valor (Optional.of(v)). Métodos clave: isPresent(), get(), orElse(), orElseGet(), map(), filter(). Mejora la legibilidad y reduce NPE, especialmente en retornos de métodos.",
+    "active": true
   },
   {
     "id": 18,
@@ -267,7 +284,8 @@
       "Map extiende List"
     ],
     "correct": 1,
-    "explanation": "List (ArrayList, LinkedList): ordenada, permite duplicados, acceso por índice. Set (HashSet, TreeSet): sin duplicados, HashSet sin orden garantizado, TreeSet ordenado. Map (HashMap, TreeMap): pares clave→valor, claves únicas. Son las tres interfaces principales de Collections."
+    "explanation": "List (ArrayList, LinkedList): ordenada, permite duplicados, acceso por índice. Set (HashSet, TreeSet): sin duplicados, HashSet sin orden garantizado, TreeSet ordenado. Map (HashMap, TreeMap): pares clave→valor, claves únicas. Son las tres interfaces principales de Collections.",
+    "active": true
   },
   {
     "id": 19,
@@ -282,7 +300,8 @@
       "Sincroniza bloques de código"
     ],
     "correct": 1,
-    "explanation": "volatile garantiza visibilidad: los cambios en la variable son inmediatamente visibles a otros hilos. Sin embargo, NO garantiza atomicidad. Para i++ (read-modify-write) se necesita AtomicInteger o synchronized. volatile es útil para flags de control de hilos."
+    "explanation": "volatile garantiza visibilidad: los cambios en la variable son inmediatamente visibles a otros hilos. Sin embargo, NO garantiza atomicidad. Para i++ (read-modify-write) se necesita AtomicInteger o synchronized. volatile es útil para flags de control de hilos.",
+    "active": true
   },
   {
     "id": 20,
@@ -297,7 +316,8 @@
       "map() aplana los resultados"
     ],
     "correct": 1,
-    "explanation": "map(): 1 elemento → 1 elemento. flatMap(): 1 elemento → N elementos (un Stream), y los junta en un solo Stream plano. Ejemplo: lista de listas → flatMap(Collection::stream) → Stream de todos los elementos. Esencial para trabajar con estructuras anidadas."
+    "explanation": "map(): 1 elemento → 1 elemento. flatMap(): 1 elemento → N elementos (un Stream), y los junta en un solo Stream plano. Ejemplo: lista de listas → flatMap(Collection::stream) → Stream de todos los elementos. Esencial para trabajar con estructuras anidadas.",
+    "active": true
   },
   {
     "id": 21,
@@ -312,7 +332,8 @@
       "Solo funciona en la región Stack"
     ],
     "correct": 1,
-    "explanation": "El GC libera automáticamente objetos sin referencias vivas. La JVM divide el heap en Young Generation (Eden + Survivor) y Old/Tenured. Los objetos jóvenes se recolectan frecuentemente (Minor GC); los que sobreviven pasan al Old (Major/Full GC). System.gc() es solo una sugerencia."
+    "explanation": "El GC libera automáticamente objetos sin referencias vivas. La JVM divide el heap en Young Generation (Eden + Survivor) y Old/Tenured. Los objetos jóvenes se recolectan frecuentemente (Minor GC); los que sobreviven pasan al Old (Major/Full GC). System.gc() es solo una sugerencia.",
+    "active": true
   },
   {
     "id": 22,
@@ -327,7 +348,8 @@
       "Una interfaz anotada con @Override"
     ],
     "correct": 0,
-    "explanation": "@FunctionalInterface indica una interfaz con exactamente un método abstracto (SAM). Function<T,R>: recibe T, retorna R. Predicate<T>: recibe T, retorna boolean. Consumer<T>: recibe T, no retorna. Supplier<T>: no recibe, retorna T. Usadas masivamente con lambdas y streams."
+    "explanation": "@FunctionalInterface indica una interfaz con exactamente un método abstracto (SAM). Function<T,R>: recibe T, retorna R. Predicate<T>: recibe T, retorna boolean. Consumer<T>: recibe T, no retorna. Supplier<T>: no recibe, retorna T. Usadas masivamente con lambdas y streams.",
+    "active": true
   },
   {
     "id": 23,
@@ -342,7 +364,8 @@
       "synchronized permite múltiples hilos en el bloque"
     ],
     "correct": 1,
-    "explanation": "synchronized: simple, automáticamente libera el lock al salir del bloque, no permite tryLock ni interrupción. ReentrantLock: más flexible, permite tryLock(timeout), lockInterruptibly(), fairness (FIFO), múltiples Condition variables. Desventaja: debe liberarse manualmente en finally."
+    "explanation": "synchronized: simple, automáticamente libera el lock al salir del bloque, no permite tryLock ni interrupción. ReentrantLock: más flexible, permite tryLock(timeout), lockInterruptibly(), fairness (FIFO), múltiples Condition variables. Desventaja: debe liberarse manualmente en finally.",
+    "active": true
   },
   {
     "id": 24,
@@ -357,7 +380,8 @@
       "Solo afecta al JDK, no al código de usuario"
     ],
     "correct": 1,
-    "explanation": "JPMS (Java Platform Module System) modulariza tanto la JVM como las aplicaciones. Cada módulo tiene un module-info.java que declara: requires (dependencias), exports (paquetes públicos), opens (para reflexión). Mejora encapsulación, seguridad y permite JRE personalizados con jlink."
+    "explanation": "JPMS (Java Platform Module System) modulariza tanto la JVM como las aplicaciones. Cada módulo tiene un module-info.java que declara: requires (dependencias), exports (paquetes públicos), opens (para reflexión). Mejora encapsulación, seguridad y permite JRE personalizados con jlink.",
+    "active": true
   },
   {
     "id": 25,
@@ -372,7 +396,8 @@
       "? extends T permite escritura en la colección"
     ],
     "correct": 1,
-    "explanation": "PECS: Producer Extends, Consumer Super. List<? extends Number>: puedes leer Number pero no agregar (excepto null). List<? super Integer>: puedes agregar Integer pero al leer obtienes Object. Ejemplo: Collections.copy usa '? super T' como destino (consume) y '? extends T' como fuente (produce)."
+    "explanation": "PECS: Producer Extends, Consumer Super. List<? extends Number>: puedes leer Number pero no agregar (excepto null). List<? super Integer>: puedes agregar Integer pero al leer obtienes Object. Ejemplo: Collections.copy usa '? super T' como destino (consume) y '? extends T' como fuente (produce).",
+    "active": true
   },
   {
     "id": 26,
@@ -387,7 +412,8 @@
       "Las intermedias son eager"
     ],
     "correct": 1,
-    "explanation": "Los Streams son lazy: las operaciones intermedias describen qué hacer pero no se ejecutan hasta que se llama a una operación terminal. Esto permite optimizaciones como short-circuit (findFirst, anyMatch). Un Stream solo puede ser consumido una vez; reutilizarlo lanza IllegalStateException."
+    "explanation": "Los Streams son lazy: las operaciones intermedias describen qué hacer pero no se ejecutan hasta que se llama a una operación terminal. Esto permite optimizaciones como short-circuit (findFirst, anyMatch). Un Stream solo puede ser consumido una vez; reutilizarlo lanza IllegalStateException.",
+    "active": true
   },
   {
     "id": 27,
@@ -402,7 +428,8 @@
       "Se ejecuta solo cuando hay una excepción"
     ],
     "correct": 1,
-    "explanation": "finally siempre se ejecuta: con o sin excepción, incluyendo si hay return en el try. No se ejecuta con: System.exit(), kill del proceso, fallo catastrófico del hardware o StackOverflowError en algunos casos. Desde Java 7, try-with-resources es preferible para cerrar recursos."
+    "explanation": "finally siempre se ejecuta: con o sin excepción, incluyendo si hay return en el try. No se ejecuta con: System.exit(), kill del proceso, fallo catastrófico del hardware o StackOverflowError en algunos casos. Desde Java 7, try-with-resources es preferible para cerrar recursos.",
+    "active": true
   },
   {
     "id": 28,
@@ -417,7 +444,8 @@
       "Solo funciona con IntStream"
     ],
     "correct": 1,
-    "explanation": "reduce(identity, BinaryOperator) acumula elementos: reduce(0, Integer::sum) suma todos los enteros. Sin identidad retorna Optional. Ejemplo: stream.reduce((a, b) -> a + b). Es la base de operaciones como sum(), max(), min() que son azúcar sintáctica sobre reduce."
+    "explanation": "reduce(identity, BinaryOperator) acumula elementos: reduce(0, Integer::sum) suma todos los enteros. Sin identidad retorna Optional. Ejemplo: stream.reduce((a, b) -> a + b). Es la base de operaciones como sum(), max(), min() que son azúcar sintáctica sobre reduce.",
+    "active": true
   },
   {
     "id": 29,
@@ -432,7 +460,8 @@
       "No existe implementación thread-safe"
     ],
     "correct": 1,
-    "explanation": "Singleton thread-safe: 1) Enum Singleton (mejor: serialización gratis, thread-safe por JVM). 2) Holder idiom: clase estática interna inicializa la instancia (lazy + thread-safe sin synchronized). 3) Double-checked locking con volatile. El enum es la forma recomendada por Effective Java (Joshua Bloch)."
+    "explanation": "Singleton thread-safe: 1) Enum Singleton (mejor: serialización gratis, thread-safe por JVM). 2) Holder idiom: clase estática interna inicializa la instancia (lazy + thread-safe sin synchronized). 3) Double-checked locking con volatile. El enum es la forma recomendada por Effective Java (Joshua Bloch).",
+    "active": true
   },
   {
     "id": 30,
@@ -447,7 +476,8 @@
       "Las primitivas van en el Heap"
     ],
     "correct": 1,
-    "explanation": "Stack: por hilo, almacena variables locales (primitivos y referencias), marcos de llamada (stack frames). Acceso muy rápido, memoria limitada. Heap: compartido, todos los objetos new viven aquí. Gestionado por GC. Stack overflow ocurre con recursión infinita. Las referencias están en stack, los objetos en heap."
+    "explanation": "Stack: por hilo, almacena variables locales (primitivos y referencias), marcos de llamada (stack frames). Acceso muy rápido, memoria limitada. Heap: compartido, todos los objetos new viven aquí. Gestionado por GC. Stack overflow ocurre con recursión infinita. Las referencias están en stack, los objetos en heap.",
+    "active": true
   },
   {
     "id": 31,
@@ -462,7 +492,8 @@
       "Solo afecta a ArrayList"
     ],
     "correct": 1,
-    "explanation": "Contrato: si a.equals(b) entonces a.hashCode() == b.hashCode(). Si no se cumple, HashMap/HashSet usa el hashCode para encontrar el bucket y luego equals para confirmar. Si el hash difiere, el objeto se coloca en otro bucket y nunca se encuentra aunque equals fuera true."
+    "explanation": "Contrato: si a.equals(b) entonces a.hashCode() == b.hashCode(). Si no se cumple, HashMap/HashSet usa el hashCode para encontrar el bucket y luego equals para confirmar. Si el hash difiere, el objeto se coloca en otro bucket y nunca se encuentra aunque equals fuera true.",
+    "active": true
   },
   {
     "id": 32,
@@ -477,7 +508,8 @@
       "Son mutables como JavaBeans"
     ],
     "correct": 1,
-    "explanation": "record Point(int x, int y) {} genera: constructor canónico, accessors x() e y(), equals, hashCode y toString. Son final e implícitamente inmutables. Perfectos para DTOs y value objects. Se pueden agregar métodos y constructores compactos. Java 16 los hizo estables."
+    "explanation": "record Point(int x, int y) {} genera: constructor canónico, accessors x() e y(), equals, hashCode y toString. Son final e implícitamente inmutables. Perfectos para DTOs y value objects. Se pueden agregar métodos y constructores compactos. Java 16 los hizo estables.",
+    "active": true
   },
   {
     "id": 33,
@@ -492,7 +524,8 @@
       "Solo aplica a interfaces"
     ],
     "correct": 1,
-    "explanation": "sealed class Shape permits Circle, Rectangle, Triangle {} restringe qué clases pueden extenderla. Las subclases deben ser final, sealed o non-sealed. Combinado con pattern matching en switch (Java 17+), el compilador puede verificar exhaustividad. Mejora el modelado de dominios cerrados."
+    "explanation": "sealed class Shape permits Circle, Rectangle, Triangle {} restringe qué clases pueden extenderla. Las subclases deben ser final, sealed o non-sealed. Combinado con pattern matching en switch (Java 17+), el compilador puede verificar exhaustividad. Mejora el modelado de dominios cerrados.",
+    "active": true
   },
   {
     "id": 34,
@@ -507,7 +540,8 @@
       "Para convertir a Set"
     ],
     "correct": 1,
-    "explanation": "Collectors.groupingBy(Person::getDepartment) agrupa personas por departamento en Map<String,List<Person>>. Se puede encadenar con un downstream collector: groupingBy(dept, counting()) para Map<String,Long>. Equivalente a GROUP BY de SQL. Muy útil para agregaciones sobre colecciones."
+    "explanation": "Collectors.groupingBy(Person::getDepartment) agrupa personas por departamento en Map<String,List<Person>>. Se puede encadenar con un downstream collector: groupingBy(dept, counting()) para Map<String,Long>. Equivalente a GROUP BY de SQL. Muy útil para agregaciones sobre colecciones.",
+    "active": true
   },
   {
     "id": 35,
@@ -522,7 +556,8 @@
       "Runnable puede retornar valores"
     ],
     "correct": 1,
-    "explanation": "Runnable: void run() — no retorna, no declara checked exceptions. Callable<V>: V call() throws Exception — retorna V y puede lanzar excepciones checked. ExecutorService.submit(Callable) retorna Future<V> para obtener el resultado asíncrono con future.get()."
+    "explanation": "Runnable: void run() — no retorna, no declara checked exceptions. Callable<V>: V call() throws Exception — retorna V y puede lanzar excepciones checked. ExecutorService.submit(Callable) retorna Future<V> para obtener el resultado asíncrono con future.get().",
+    "active": true
   },
   {
     "id": 36,
@@ -537,7 +572,8 @@
       "Switch expressions"
     ],
     "correct": 1,
-    "explanation": "Java 11 (LTS): String.isBlank(), strip() (unicode-aware vs trim()), lines(), repeat(n). HttpClient API estándar. var en parámetros lambda. Files.readString() y writeString(). Eliminación de Java EE y CORBA modules. Es la versión LTS más adoptada junto a Java 8 y 17."
+    "explanation": "Java 11 (LTS): String.isBlank(), strip() (unicode-aware vs trim()), lines(), repeat(n). HttpClient API estándar. var en parámetros lambda. Files.readString() y writeString(). Eliminación de Java EE y CORBA modules. Es la versión LTS más adoptada junto a Java 8 y 17.",
+    "active": true
   },
   {
     "id": 37,
@@ -552,7 +588,8 @@
       "Solo afecta a colecciones"
     ],
     "correct": 1,
-    "explanation": "Type erasure: el compilador usa el tipo genérico para verificación en compile-time, luego lo borra. List<String> y List<Integer> son la misma clase en runtime (List). Por eso: no se puede hacer new T[], instanceof List<String>, ni obtener el tipo T en runtime sin reflexión o tokens de tipo."
+    "explanation": "Type erasure: el compilador usa el tipo genérico para verificación en compile-time, luego lo borra. List<String> y List<Integer> son la misma clase en runtime (List). Por eso: no se puede hacer new T[], instanceof List<String>, ni obtener el tipo T en runtime sin reflexión o tokens de tipo.",
+    "active": true
   },
   {
     "id": 38,
@@ -567,7 +604,8 @@
       "Es equivalente al operador ternario"
     ],
     "correct": 1,
-    "explanation": "Method references son abreviaciones de lambdas. System.out::println = x -> System.out.println(x). String::toUpperCase = s -> s.toUpperCase(). Integer::parseInt = s -> Integer.parseInt(s). ArrayList::new = () -> new ArrayList<>(). Mejoran legibilidad cuando la lambda solo delega a un método existente."
+    "explanation": "Method references son abreviaciones de lambdas. System.out::println = x -> System.out.println(x). String::toUpperCase = s -> s.toUpperCase(). Integer::parseInt = s -> Integer.parseInt(s). ArrayList::new = () -> new ArrayList<>(). Mejoran legibilidad cuando la lambda solo delega a un método existente.",
+    "active": true
   },
   {
     "id": 39,
@@ -582,7 +620,8 @@
       "Se resuelve reiniciando la JVM"
     ],
     "correct": 1,
-    "explanation": "Deadlock: hilo A tiene lock1 y espera lock2; hilo B tiene lock2 y espera lock1 → bloqueo eterno. Prevención: 1) Adquirir locks siempre en el mismo orden. 2) Usar tryLock() con timeout. 3) Evitar locks anidados. 4) Usar estructuras concurrentes (ConcurrentHashMap). 5) Usar lock ordering."
+    "explanation": "Deadlock: hilo A tiene lock1 y espera lock2; hilo B tiene lock2 y espera lock1 → bloqueo eterno. Prevención: 1) Adquirir locks siempre en el mismo orden. 2) Usar tryLock() con timeout. 3) Evitar locks anidados. 4) Usar estructuras concurrentes (ConcurrentHashMap). 5) Usar lock ordering.",
+    "active": true
   },
   {
     "id": 40,
@@ -597,7 +636,8 @@
       "Equivalentes a métodos abstractos"
     ],
     "correct": 1,
-    "explanation": "Java 9 agregó métodos private en interfaces. Antes, si dos default methods compartían lógica, había que duplicarla o hacerla pública. Con private methods se puede refactorizar esa lógica interna sin exponerla. Mejora el diseño de interfaces con múltiples default methods."
+    "explanation": "Java 9 agregó métodos private en interfaces. Antes, si dos default methods compartían lógica, había que duplicarla o hacerla pública. Con private methods se puede refactorizar esa lógica interna sin exponerla. Mejora el diseño de interfaces con múltiples default methods.",
+    "active": true
   },
   {
     "id": 41,
@@ -612,7 +652,8 @@
       "Es una anotación"
     ],
     "correct": 1,
-    "explanation": "Antes: if (obj instanceof String) { String s = (String) obj; ... }. Con Pattern Matching: if (obj instanceof String s) { s.length(); } — el cast es automático y s solo está en scope si la condición es true. Reduce verbosidad y riesgo de ClassCastException. Estable en Java 16."
+    "explanation": "Antes: if (obj instanceof String) { String s = (String) obj; ... }. Con Pattern Matching: if (obj instanceof String s) { s.length(); } — el cast es automático y s solo está en scope si la condición es true. Reduce verbosidad y riesgo de ClassCastException. Estable en Java 16.",
+    "active": true
   },
   {
     "id": 42,
@@ -627,7 +668,8 @@
       "Solo funcionan con enums"
     ],
     "correct": 1,
-    "explanation": "Switch Expressions retornan valor, no tienen fall-through con '->',  usan 'yield' para retornar en bloques, pueden ser polimórficas con sealed classes. Estables en Java 14. El switch clásico sigue disponible."
+    "explanation": "Switch Expressions retornan valor, no tienen fall-through con '->',  usan 'yield' para retornar en bloques, pueden ser polimórficas con sealed classes. Estables en Java 14. El switch clásico sigue disponible.",
+    "active": true
   },
   {
     "id": 43,
@@ -642,7 +684,8 @@
       "Variables inmutables"
     ],
     "correct": 1,
-    "explanation": "Los Text Blocks eliminan \\n, \\\" y concatenaciones. El indentado se normaliza automáticamente según la posición de la comilla de cierre. Muy útil para JSON, HTML, SQL embebido. Estable en Java 15."
+    "explanation": "Los Text Blocks eliminan \\n, \\\" y concatenaciones. El indentado se normaliza automáticamente según la posición de la comilla de cierre. Muy útil para JSON, HTML, SQL embebido. Estable en Java 15.",
+    "active": true
   },
   {
     "id": 44,
@@ -657,7 +700,8 @@
       "Iterator solo funciona con List"
     ],
     "correct": 1,
-    "explanation": "Iterator: hasNext(), next(), remove() — forward only, válido para cualquier Iterable. ListIterator: hasPrevious(), previous(), nextIndex(), previousIndex(), add(), set() — bidireccional, solo para List. Ambos lanzan ConcurrentModificationException si se modifica la colección directamente durante la iteración."
+    "explanation": "Iterator: hasNext(), next(), remove() — forward only, válido para cualquier Iterable. ListIterator: hasPrevious(), previous(), nextIndex(), previousIndex(), add(), set() — bidireccional, solo para List. Ambos lanzan ConcurrentModificationException si se modifica la colección directamente durante la iteración.",
+    "active": true
   },
   {
     "id": 45,
@@ -672,7 +716,8 @@
       "ExecutorService solo permite un hilo"
     ],
     "correct": 1,
-    "explanation": "Crear Thread manualmente es costoso. ExecutorService (Executors.newFixedThreadPool(n)) reutiliza hilos del pool. Ventajas: control de concurrencia, submisión de Callable/Runnable, obtención de Future, manejo de ciclo de vida con shutdown()/awaitTermination(). Siempre preferir sobre new Thread()."
+    "explanation": "Crear Thread manualmente es costoso. ExecutorService (Executors.newFixedThreadPool(n)) reutiliza hilos del pool. Ventajas: control de concurrencia, submisión de Callable/Runnable, obtención de Future, manejo de ciclo de vida con shutdown()/awaitTermination(). Siempre preferir sobre new Thread().",
+    "active": true
   },
   {
     "id": 46,
@@ -687,7 +732,8 @@
       "La composición no reutiliza código"
     ],
     "correct": 1,
-    "explanation": "'Favor composition over inheritance' (Effective Java). Herencia crea acoplamiento fuerte entre padre e hijo; cambios en el padre pueden romper hijos. Composición: clase contiene instancias de otras clases y delega. Más flexible, testeable y mantenible. Herencia es correcta para relaciones 'es-un' verdaderas."
+    "explanation": "'Favor composition over inheritance' (Effective Java). Herencia crea acoplamiento fuerte entre padre e hijo; cambios en el padre pueden romper hijos. Composición: clase contiene instancias de otras clases y delega. Más flexible, testeable y mantenible. Herencia es correcta para relaciones 'es-un' verdaderas.",
+    "active": true
   },
   {
     "id": 47,
@@ -702,7 +748,8 @@
       "toUnmodifiableList() existe desde Java 8"
     ],
     "correct": 1,
-    "explanation": "Collections.unmodifiableList(list) es un wrapper: si 'list' es modificada externamente, la vista cambia. Collectors.toUnmodifiableList() (Java 10) y List.copyOf() (Java 10) crean listas verdaderamente inmutables e independientes. Para inmutabilidad garantizada usar List.of() (Java 9) o copyOf()."
+    "explanation": "Collections.unmodifiableList(list) es un wrapper: si 'list' es modificada externamente, la vista cambia. Collectors.toUnmodifiableList() (Java 10) y List.copyOf() (Java 10) crean listas verdaderamente inmutables e independientes. Para inmutabilidad garantizada usar List.of() (Java 9) o copyOf().",
+    "active": true
   },
   {
     "id": 48,
@@ -717,7 +764,8 @@
       "Solo sirven para primitivos"
     ],
     "correct": 1,
-    "explanation": "List.of(1,2,3), Set.of(\"a\",\"b\"), Map.of(\"k1\",1,\"k2\",2) crean colecciones inmutables de lectura rápida (implementaciones internas optimizadas). No permiten null (NullPointerException). Set.of y Map.of no permiten duplicados (IllegalArgumentException). Ideales para constantes y datos de inicialización."
+    "explanation": "List.of(1,2,3), Set.of(\"a\",\"b\"), Map.of(\"k1\",1,\"k2\",2) crean colecciones inmutables de lectura rápida (implementaciones internas optimizadas). No permiten null (NullPointerException). Set.of y Map.of no permiten duplicados (IllegalArgumentException). Ideales para constantes y datos de inicialización.",
+    "active": true
   },
   {
     "id": 49,
@@ -732,7 +780,8 @@
       "Solo funciona con interfaces"
     ],
     "correct": 1,
-    "explanation": "Reflection (java.lang.reflect): obtener Class<?> de cualquier tipo, invocar métodos, leer/escribir campos privados, crear instancias dinámicamente. Usada por Spring (inyección de dependencias), JUnit, ORM. Desventajas: mucho más lenta que acceso directo, puede romper encapsulación, JIT no optimiza bien."
+    "explanation": "Reflection (java.lang.reflect): obtener Class<?> de cualquier tipo, invocar métodos, leer/escribir campos privados, crear instancias dinámicamente. Usada por Spring (inyección de dependencias), JUnit, ORM. Desventajas: mucho más lenta que acceso directo, puede romper encapsulación, JIT no optimiza bien.",
+    "active": true
   },
   {
     "id": 50,
@@ -747,7 +796,8 @@
       "No existe en Java 8"
     ],
     "correct": 1,
-    "explanation": "stream.parallel() o Collection.parallelStream() dividen el trabajo entre threads del ForkJoinPool. Conveniente para: datos grandes (> miles de elementos), operaciones CPU-bound, sin estado compartido mutable. No conveniente para: pocos elementos (overhead de split/merge supera la ganancia), IO-bound, operaciones con estado."
+    "explanation": "stream.parallel() o Collection.parallelStream() dividen el trabajo entre threads del ForkJoinPool. Conveniente para: datos grandes (> miles de elementos), operaciones CPU-bound, sin estado compartido mutable. No conveniente para: pocos elementos (overhead de split/merge supera la ganancia), IO-bound, operaciones con estado.",
+    "active": true
   },
   {
     "id": 51,
@@ -762,7 +812,8 @@
       "Módulos JPMS"
     ],
     "correct": 1,
-    "explanation": "Java 17 (LTS 2021): Sealed Classes (17), Records (16 estable), Pattern Matching instanceof (16), Switch Expressions (14), Text Blocks (15), mejoras al G1 y ZGC, encapsulación fuerte de internals del JDK (–illegal-access eliminado). Es la versión LTS actual más adoptada para nuevos proyectos."
+    "explanation": "Java 17 (LTS 2021): Sealed Classes (17), Records (16 estable), Pattern Matching instanceof (16), Switch Expressions (14), Text Blocks (15), mejoras al G1 y ZGC, encapsulación fuerte de internals del JDK (–illegal-access eliminado). Es la versión LTS actual más adoptada para nuevos proyectos.",
+    "active": true
   },
   {
     "id": 52,
@@ -777,7 +828,8 @@
       "TreeMap no permite null keys"
     ],
     "correct": 1,
-    "explanation": "LinkedHashMap: orden de inserción preservado (o orden de último acceso con accessOrder=true). TreeMap: claves ordenadas (red-black tree), operaciones O(log n). HashMap: sin orden. TreeMap no permite null keys (NullPointerException al comparar). LinkedHashMap sí. Para iteración predecible usar LinkedHashMap; para orden natural usar TreeMap."
+    "explanation": "LinkedHashMap: orden de inserción preservado (o orden de último acceso con accessOrder=true). TreeMap: claves ordenadas (red-black tree), operaciones O(log n). HashMap: sin orden. TreeMap no permite null keys (NullPointerException al comparar). LinkedHashMap sí. Para iteración predecible usar LinkedHashMap; para orden natural usar TreeMap.",
+    "active": true
   },
   {
     "id": 53,
@@ -792,7 +844,8 @@
       "Solo con primitivos"
     ],
     "correct": 1,
-    "explanation": "Clase inmutable: 1) class final (no heredable). 2) Todos los campos private final. 3) Sin setters. 4) Copia defensiva: si el campo es Date o List mutable, copiarla en constructor y en getter. Ejemplos: String, Integer, LocalDate. Ventaja: thread-safe por naturaleza, simple de razonar."
+    "explanation": "Clase inmutable: 1) class final (no heredable). 2) Todos los campos private final. 3) Sin setters. 4) Copia defensiva: si el campo es Date o List mutable, copiarla en constructor y en getter. Ejemplos: String, Integer, LocalDate. Ventaja: thread-safe por naturaleza, simple de razonar.",
+    "active": true
   },
   {
     "id": 54,
@@ -807,7 +860,8 @@
       "Solo para ExecutorService"
     ],
     "correct": 1,
-    "explanation": "CompletableFuture permite async sin bloquear el hilo actual. supplyAsync(() -> fetch()).thenApply(data -> transform(data)).thenAccept(result -> save(result)).exceptionally(ex -> handleError(ex)). Se pueden combinar múltiples con allOf()/anyOf(). Reemplaza el callback hell y es la base de programación reactiva en Java."
+    "explanation": "CompletableFuture permite async sin bloquear el hilo actual. supplyAsync(() -> fetch()).thenApply(data -> transform(data)).thenAccept(result -> save(result)).exceptionally(ex -> handleError(ex)). Se pueden combinar múltiples con allOf()/anyOf(). Reemplaza el callback hell y es la base de programación reactiva en Java.",
+    "active": true
   },
   {
     "id": 55,
@@ -822,7 +876,8 @@
       "Solo ocurren en C++"
     ],
     "correct": 1,
-    "explanation": "Memory leak en Java: objetos lógicamente muertos pero con referencias activas. Casos comunes: 1) Colecciones static que crecen sin límite. 2) Event listeners registrados y nunca removidos. 3) ThreadLocal en pools de hilos sin remove(). 4) Cache sin límite. 5) Inner classes no-static que retienen referencia al outer. Herramientas: VisualVM, JProfiler, MAT."
+    "explanation": "Memory leak en Java: objetos lógicamente muertos pero con referencias activas. Casos comunes: 1) Colecciones static que crecen sin límite. 2) Event listeners registrados y nunca removidos. 3) ThreadLocal en pools de hilos sin remove(). 4) Cache sin límite. 5) Inner classes no-static que retienen referencia al outer. Herramientas: VisualVM, JProfiler, MAT.",
+    "active": true
   },
   {
     "id": 56,
@@ -837,7 +892,8 @@
       "ConcurrentHashMap no permite null values"
     ],
     "correct": 1,
-    "explanation": "synchronizedMap: wraps el mapa, cada operación es synchronized en el objeto → bloqueo total. ConcurrentHashMap: implementación de alto rendimiento, lecturas sin bloqueo, escrituras con locks granulares (por segmento o CAS). Además, ConcurrentHashMap no permite null keys ni values. Para alta concurrencia, siempre ConcurrentHashMap."
+    "explanation": "synchronizedMap: wraps el mapa, cada operación es synchronized en el objeto → bloqueo total. ConcurrentHashMap: implementación de alto rendimiento, lecturas sin bloqueo, escrituras con locks granulares (por segmento o CAS). Además, ConcurrentHashMap no permite null keys ni values. Para alta concurrencia, siempre ConcurrentHashMap.",
+    "active": true
   },
   {
     "id": 57,
@@ -852,7 +908,8 @@
       "Es una operación intermedia"
     ],
     "correct": 1,
-    "explanation": "collect() es una reducción mutable: acumula elementos en una colección u otro resultado. Collectors: toList()/toSet()/toUnmodifiableList() → colecciones. joining(\", \") → String. groupingBy(fn) → Map. counting() → Long. toMap(keyFn, valueFn) → Map. partitioningBy(predicate) → Map<Boolean,List>. averaging/summing para estadísticas."
+    "explanation": "collect() es una reducción mutable: acumula elementos en una colección u otro resultado. Collectors: toList()/toSet()/toUnmodifiableList() → colecciones. joining(\", \") → String. groupingBy(fn) → Map. counting() → Long. toMap(keyFn, valueFn) → Map. partitioningBy(predicate) → Map<Boolean,List>. averaging/summing para estadísticas.",
+    "active": true
   },
   {
     "id": 58,
@@ -867,7 +924,8 @@
       "Solo aplica a interfaces"
     ],
     "correct": 1,
-    "explanation": "LSP (Barbara Liskov): si S extends P, entonces donde se usa P se puede usar S sin sorpresas. Violación clásica: Rectangle con setWidth/setHeight, Square extiende Rectangle pero override de setWidth también cambia height → rompe invariantes de Rectangle. Si viola LSP, usar composición en vez de herencia."
+    "explanation": "LSP (Barbara Liskov): si S extends P, entonces donde se usa P se puede usar S sin sorpresas. Violación clásica: Rectangle con setWidth/setHeight, Square extiende Rectangle pero override de setWidth también cambia height → rompe invariantes de Rectangle. Si viola LSP, usar composición en vez de herencia.",
+    "active": true
   },
   {
     "id": 59,
@@ -882,7 +940,8 @@
       "throw es para errores"
     ],
     "correct": 1,
-    "explanation": "throw new IllegalArgumentException(\"msg\") lanza la excepción en ese punto. public void method() throws IOException declara que el método puede propagar IOException (el llamador debe manejarla o propagarla). throws puede declarar múltiples excepciones separadas por coma. Para unchecked no es necesario declarar throws."
+    "explanation": "throw new IllegalArgumentException(\"msg\") lanza la excepción en ese punto. public void method() throws IOException declara que el método puede propagar IOException (el llamador debe manejarla o propagarla). throws puede declarar múltiples excepciones separadas por coma. Para unchecked no es necesario declarar throws.",
+    "active": true
   },
   {
     "id": 60,
@@ -897,7 +956,8 @@
       "Puede cambiar de tipo en runtime"
     ],
     "correct": 1,
-    "explanation": "var list = new ArrayList<String>() — el compilador infiere ArrayList<String>. Es syntactic sugar: el tipo es fijo en compile-time. Limitaciones: solo variables locales, el inicializador no puede ser null ni lambda/method ref sin contexto. Mejora legibilidad cuando el tipo es obvio; evitar cuando oscurece el tipo real."
+    "explanation": "var list = new ArrayList<String>() — el compilador infiere ArrayList<String>. Es syntactic sugar: el tipo es fijo en compile-time. Limitaciones: solo variables locales, el inicializador no puede ser null ni lambda/method ref sin contexto. Mejora legibilidad cuando el tipo es obvio; evitar cuando oscurece el tipo real.",
+    "active": true
   },
   {
     "id": 61,
@@ -912,7 +972,8 @@
       "Requiere synchronized adicional"
     ],
     "correct": 1,
-    "explanation": "AtomicInteger usa Compare-And-Swap (CAS) a nivel hardware: sin bloqueos, sin deadlock, mejor rendimiento que synchronized para operaciones simples. atomicInt.incrementAndGet() es equivalente al synchronized { ++i; } pero mucho más eficiente. También: AtomicLong, AtomicBoolean, AtomicReference para otros tipos."
+    "explanation": "AtomicInteger usa Compare-And-Swap (CAS) a nivel hardware: sin bloqueos, sin deadlock, mejor rendimiento que synchronized para operaciones simples. atomicInt.incrementAndGet() es equivalente al synchronized { ++i; } pero mucho más eficiente. También: AtomicLong, AtomicBoolean, AtomicReference para otros tipos.",
+    "active": true
   },
   {
     "id": 62,
@@ -927,7 +988,8 @@
       "Son equivalentes a métodos estáticos"
     ],
     "correct": 1,
-    "explanation": "default void metodo() { ... } en interfaz provee implementación por defecto. Permite evolucionar APIs sin romper compatibilidad (sin obligar a implementadores a agregar el método). Ejemplo: Iterable.forEach(), Collection.removeIf(), List.sort(). Si dos interfaces tienen el mismo default method, la clase debe sobreescribir para resolver la ambigüedad."
+    "explanation": "default void metodo() { ... } en interfaz provee implementación por defecto. Permite evolucionar APIs sin romper compatibilidad (sin obligar a implementadores a agregar el método). Ejemplo: Iterable.forEach(), Collection.removeIf(), List.sort(). Si dos interfaces tienen el mismo default method, la clase debe sobreescribir para resolver la ambigüedad.",
+    "active": true
   },
   {
     "id": 63,
@@ -942,7 +1004,8 @@
       "while es más rápido"
     ],
     "correct": 1,
-    "explanation": "while(cond) { ... } — si cond es false desde el inicio, nunca se ejecuta. do { ... } while(cond) — siempre ejecuta el cuerpo al menos una vez y luego evalúa la condición. do-while es útil para menús, lectura de entrada donde al menos un procesamiento es necesario."
+    "explanation": "while(cond) { ... } — si cond es false desde el inicio, nunca se ejecuta. do { ... } while(cond) — siempre ejecuta el cuerpo al menos una vez y luego evalúa la condición. do-while es útil para menús, lectura de entrada donde al menos un procesamiento es necesario.",
+    "active": true
   },
   {
     "id": 64,
@@ -957,7 +1020,8 @@
       "Arrays pueden cambiar de tamaño"
     ],
     "correct": 1,
-    "explanation": "Array int[]: tamaño fijo en creación, puede tener primitivos, acceso muy rápido, sintaxis especial. ArrayList<Integer>: redimensionable, solo objetos, rica API de Collection. Para tamaño conocido y primitivos → array. Para tamaño variable y API rica → ArrayList. Arrays.asList() convierte array a List de tamaño fijo."
+    "explanation": "Array int[]: tamaño fijo en creación, puede tener primitivos, acceso muy rápido, sintaxis especial. ArrayList<Integer>: redimensionable, solo objetos, rica API de Collection. Para tamaño conocido y primitivos → array. Para tamaño variable y API rica → ArrayList. Arrays.asList() convierte array a List de tamaño fijo.",
+    "active": true
   },
   {
     "id": 65,
@@ -972,7 +1036,8 @@
       "Solo tiene métodos abstractos"
     ],
     "correct": 1,
-    "explanation": "abstract class Animal { String nombre; abstract void sonido(); void respirar() { ... } } No se puede hacer new Animal(). Las subclases deben implementar los métodos abstractos. Úsala cuando: tienes estado compartido, un template de comportamiento parcial, o la relación es 'es-un' con código común. Para solo contratos, usar interfaz."
+    "explanation": "abstract class Animal { String nombre; abstract void sonido(); void respirar() { ... } } No se puede hacer new Animal(). Las subclases deben implementar los métodos abstractos. Úsala cuando: tienes estado compartido, un template de comportamiento parcial, o la relación es 'es-un' con código común. Para solo contratos, usar interfaz.",
+    "active": true
   },
   {
     "id": 66,
@@ -987,7 +1052,8 @@
       "Stream.forEach es más rápido siempre"
     ],
     "correct": 1,
-    "explanation": "List.forEach() (Iterable) siempre respeta el orden de la lista. Stream.forEach() en streams paralelos puede procesar en cualquier orden. Para garantizar orden en streams usar forEachOrdered(). Ambos reciben Consumer<T>. Stream.forEach no puede usarse como operación intermedia (es terminal)."
+    "explanation": "List.forEach() (Iterable) siempre respeta el orden de la lista. Stream.forEach() en streams paralelos puede procesar en cualquier orden. Para garantizar orden en streams usar forEachOrdered(). Ambos reciben Consumer<T>. Stream.forEach no puede usarse como operación intermedia (es terminal).",
+    "active": true
   },
   {
     "id": 67,
@@ -1002,7 +1068,8 @@
       "Un error de compilación"
     ],
     "correct": 1,
-    "explanation": "Race condition: si dos hilos hacen i++ simultáneamente (read-modify-write), pueden leer el mismo valor, ambos incrementar, y escribir el mismo resultado → se pierde un incremento. Soluciones: synchronized, AtomicInteger, ReentrantLock. La sincronización garantiza que las operaciones sean atómicas desde la perspectiva de otros hilos."
+    "explanation": "Race condition: si dos hilos hacen i++ simultáneamente (read-modify-write), pueden leer el mismo valor, ambos incrementar, y escribir el mismo resultado → se pierde un incremento. Soluciones: synchronized, AtomicInteger, ReentrantLock. La sincronización garantiza que las operaciones sean atómicas desde la perspectiva de otros hilos.",
+    "active": true
   },
   {
     "id": 68,
@@ -1017,7 +1084,8 @@
       "Solo si no tiene campos"
     ],
     "correct": 2,
-    "explanation": "Una clase puede tener múltiples constructores (sobrecarga) que difieran en tipo, número u orden de parámetros. Si no se define ningún constructor, el compilador provee un constructor por defecto sin parámetros. Si se define un constructor con parámetros, el compilador no provee el default automáticamente."
+    "explanation": "Una clase puede tener múltiples constructores (sobrecarga) que difieran en tipo, número u orden de parámetros. Si no se define ningún constructor, el compilador provee un constructor por defecto sin parámetros. Si se define un constructor con parámetros, el compilador no provee el default automáticamente.",
+    "active": true
   },
   {
     "id": 69,
@@ -1032,7 +1100,8 @@
       "Para ordenar el Stream"
     ],
     "correct": 1,
-    "explanation": "peek(Consumer) es una operación intermedia que 'espía' cada elemento sin modificarlos. stream.filter(x -> x > 0).peek(x -> log.debug(x)).map(transform).collect(). CUIDADO: en streams paralelos el orden no está garantizado. No usar para lógica de negocio, solo para debug/logging."
+    "explanation": "peek(Consumer) es una operación intermedia que 'espía' cada elemento sin modificarlos. stream.filter(x -> x > 0).peek(x -> log.debug(x)).map(transform).collect(). CUIDADO: en streams paralelos el orden no está garantizado. No usar para lógica de negocio, solo para debug/logging.",
+    "active": true
   },
   {
     "id": 70,
@@ -1047,7 +1116,8 @@
       "Solo aplica a String"
     ],
     "correct": 1,
-    "explanation": "Widening (implícito): byte→short→int→long→float→double, automático sin pérdida. Narrowing (explícito): (int) 3.7 = 3, puede perder datos. Para objetos: upcasting (hijo a padre) implícito; downcasting (padre a hijo) explícito con riesgo de ClassCastException → usar instanceof antes de hacer downcast."
+    "explanation": "Widening (implícito): byte→short→int→long→float→double, automático sin pérdida. Narrowing (explícito): (int) 3.7 = 3, puede perder datos. Para objetos: upcasting (hijo a padre) implícito; downcasting (padre a hijo) explícito con riesgo de ClassCastException → usar instanceof antes de hacer downcast.",
+    "active": true
   },
   {
     "id": 71,
@@ -1062,7 +1132,8 @@
       "Solo para objetos inmutables"
     ],
     "correct": 1,
-    "explanation": "Builder resuelve el problema de clases con muchos parámetros. En vez de new Pizza(\"grande\", true, false, \"extra cheese\", ...) se usa: Pizza.builder().size(\"grande\").cheese(true).build(). Lombok @Builder genera el patrón automáticamente. Ideal para objetos con parámetros opcionales y construcción compleja."
+    "explanation": "Builder resuelve el problema de clases con muchos parámetros. En vez de new Pizza(\"grande\", true, false, \"extra cheese\", ...) se usa: Pizza.builder().size(\"grande\").cheese(true).build(). Lombok @Builder genera el patrón automáticamente. Ideal para objetos con parámetros opcionales y construcción compleja.",
+    "active": true
   },
   {
     "id": 72,
@@ -1077,7 +1148,8 @@
       "Crea particiones por tamaño"
     ],
     "correct": 1,
-    "explanation": "Map<Boolean,List<Integer>> partition = numbers.stream().collect(Collectors.partitioningBy(n -> n % 2 == 0)); partition.get(true) = números pares; partition.get(false) = impares. Siempre produce exactamente dos claves (true y false). Más eficiente que groupingBy cuando el clasificador es booleano."
+    "explanation": "Map<Boolean,List<Integer>> partition = numbers.stream().collect(Collectors.partitioningBy(n -> n % 2 == 0)); partition.get(true) = números pares; partition.get(false) = impares. Siempre produce exactamente dos claves (true y false). Más eficiente que groupingBy cuando el clasificador es booleano.",
+    "active": true
   },
   {
     "id": 73,
@@ -1092,7 +1164,8 @@
       "Solo mejoró el rendimiento"
     ],
     "correct": 1,
-    "explanation": "Java 9 Optional: ifPresentOrElse(consumer, runnable) → acción si presente o si vacío. or(supplier) → retorna este Optional o uno alternativo si vacío. stream() → Stream.empty() o Stream.of(value). Permiten trabajar con Optional de forma más funcional sin if/else explícitos."
+    "explanation": "Java 9 Optional: ifPresentOrElse(consumer, runnable) → acción si presente o si vacío. or(supplier) → retorna este Optional o uno alternativo si vacío. stream() → Stream.empty() o Stream.of(value). Permiten trabajar con Optional de forma más funcional sin if/else explícitos.",
+    "active": true
   },
   {
     "id": 74,
@@ -1107,7 +1180,8 @@
       "No existe en Java"
     ],
     "correct": 1,
-    "explanation": "Overloading: mismo nombre, diferente firma (parámetros). void print(int x), void print(String s), void print(int x, int y) en la misma clase. El compilador selecciona el método en tiempo de compilación según los argumentos (polimorfismo estático). No cuenta como sobrecarga diferir solo en tipo de retorno."
+    "explanation": "Overloading: mismo nombre, diferente firma (parámetros). void print(int x), void print(String s), void print(int x, int y) en la misma clase. El compilador selecciona el método en tiempo de compilación según los argumentos (polimorfismo estático). No cuenta como sobrecarga diferir solo en tipo de retorno.",
+    "active": true
   },
   {
     "id": 75,
@@ -1122,6 +1196,7 @@
       "Solo ocurre con volatile"
     ],
     "correct": 1,
-    "explanation": "Las CPUs operan en cache lines (~64 bytes). Si dos hilos en núcleos distintos modifican dos variables que comparten cache line, cada modificación invalida la línea del otro núcleo → falsa contención. Solución: @Contended (Java 8, sun.misc), padding manual entre variables, o LongAdder vs AtomicLong para contadores compartidos."
+    "explanation": "Las CPUs operan en cache lines (~64 bytes). Si dos hilos en núcleos distintos modifican dos variables que comparten cache line, cada modificación invalida la línea del otro núcleo → falsa contención. Solución: @Contended (Java 8, sun.misc), padding manual entre variables, o LongAdder vs AtomicLong para contadores compartidos.",
+    "active": true
   }
 ]

@@ -12,7 +12,8 @@
       "Un bug que causa un mal olor en el equipo"
     ],
     "correct": 2,
-    "explanation": "Un code smell es una señal en el código fuente que puede indicar un problema más profundo; no es un bug en sí mismo, pero puede dificultar el mantenimiento."
+    "explanation": "Un code smell es una señal en el código fuente que puede indicar un problema más profundo; no es un bug en sí mismo, pero puede dificultar el mantenimiento.",
+    "active": true
   },
   {
     "id": 2,
@@ -27,7 +28,8 @@
       "Uso de interfaces para desacoplar"
     ],
     "correct": 2,
-    "explanation": "Un método demasiado largo es uno de los code smells clásicos catalogados por Martin Fowler."
+    "explanation": "Un método demasiado largo es uno de los code smells clásicos catalogados por Martin Fowler.",
+    "active": true
   },
   {
     "id": 3,
@@ -42,7 +44,8 @@
       "Convertir el método en varios métodos estáticos"
     ],
     "correct": 1,
-    "explanation": "Agrupar parámetros relacionados en un objeto reduce la longitud de la lista y mejora la claridad."
+    "explanation": "Agrupar parámetros relacionados en un objeto reduce la longitud de la lista y mejora la claridad.",
+    "active": true
   },
   {
     "id": 4,
@@ -57,7 +60,8 @@
       "Dynamic Resource Yielding"
     ],
     "correct": 0,
-    "explanation": "DRY es un principio que promueve evitar la duplicación de conocimiento o lógica en el código."
+    "explanation": "DRY es un principio que promueve evitar la duplicación de conocimiento o lógica en el código.",
+    "active": true
   },
   {
     "id": 5,
@@ -72,7 +76,8 @@
       "Centralizar la lógica de formateo en una clase utilitaria"
     ],
     "correct": 1,
-    "explanation": "La duplicación mediante copy-paste es la violación más obvia de DRY."
+    "explanation": "La duplicación mediante copy-paste es la violación más obvia de DRY.",
+    "active": true
   },
   {
     "id": 6,
@@ -87,7 +92,8 @@
       "Aumento de la cohesión"
     ],
     "correct": 1,
-    "explanation": "Forzar la eliminación de duplicación entre módulos que no son conceptualmente iguales puede acoplarlos de forma artificial."
+    "explanation": "Forzar la eliminación de duplicación entre módulos que no son conceptualmente iguales puede acoplarlos de forma artificial.",
+    "active": true
   },
   {
     "id": 7,
@@ -102,7 +108,8 @@
       "Single Responsibility Principle"
     ],
     "correct": 3,
-    "explanation": "El Principio de Responsabilidad Única (SRP) establece que cada clase debe tener una única responsabilidad."
+    "explanation": "El Principio de Responsabilidad Única (SRP) establece que cada clase debe tener una única responsabilidad.",
+    "active": true
   },
   {
     "id": 8,
@@ -117,7 +124,8 @@
       "Los métodos deben ser públicos para herencia"
     ],
     "correct": 1,
-    "explanation": "OCP indica que una entidad de software debe permitir añadir nuevas funcionalidades sin modificar el código existente."
+    "explanation": "OCP indica que una entidad de software debe permitir añadir nuevas funcionalidades sin modificar el código existente.",
+    "active": true
   },
   {
     "id": 9,
@@ -132,7 +140,8 @@
       "Una clase abstracta con implementación parcial"
     ],
     "correct": 1,
-    "explanation": "LSP exige que los objetos de una subclase puedan sustituir a los de la superclase sin alterar el comportamiento esperado."
+    "explanation": "LSP exige que los objetos de una subclase puedan sustituir a los de la superclase sin alterar el comportamiento esperado.",
+    "active": true
   },
   {
     "id": 10,
@@ -147,7 +156,8 @@
       "El uso de interfaces en lugar de clases abstractas"
     ],
     "correct": 2,
-    "explanation": "ISP propone no forzar a los clientes a depender de interfaces que no usan; es mejor tener varias interfaces específicas."
+    "explanation": "ISP propone no forzar a los clientes a depender de interfaces que no usan; es mejor tener varias interfaces específicas.",
+    "active": true
   },
   {
     "id": 11,
@@ -162,7 +172,8 @@
       "Todas las dependencias deben ser inyectadas por constructor"
     ],
     "correct": 1,
-    "explanation": "DIP promueve que los módulos de alto nivel no dependan de los de bajo nivel; ambos deben depender de abstracciones."
+    "explanation": "DIP promueve que los módulos de alto nivel no dependan de los de bajo nivel; ambos deben depender de abstracciones.",
+    "active": true
   },
   {
     "id": 12,
@@ -177,7 +188,8 @@
       "Aumenta la complejidad ciclomática"
     ],
     "correct": 1,
-    "explanation": "Una clase con una sola responsabilidad es más fácil de probar, entender y modificar sin efectos secundarios."
+    "explanation": "Una clase con una sola responsabilidad es más fácil de probar, entender y modificar sin efectos secundarios.",
+    "active": true
   },
   {
     "id": 13,
@@ -192,7 +204,8 @@
       "En snake_case"
     ],
     "correct": 1,
-    "explanation": "La convención estándar en Java es camelCase con primera letra minúscula."
+    "explanation": "La convención estándar en Java es camelCase con primera letra minúscula.",
+    "active": true
   },
   {
     "id": 14,
@@ -207,7 +220,8 @@
       "Incluir el tipo de retorno en el nombre"
     ],
     "correct": 1,
-    "explanation": "Los métodos deben expresar acciones; verbos como 'calculateTotal' o 'findUser' son descriptivos."
+    "explanation": "Los métodos deben expresar acciones; verbos como 'calculateTotal' o 'findUser' son descriptivos.",
+    "active": true
   },
   {
     "id": 15,
@@ -222,7 +236,8 @@
       "No se documenta el propósito del método"
     ],
     "correct": 0,
-    "explanation": "En Java, los métodos deben empezar con minúscula según la convención. El resto del código es aceptable en este contexto."
+    "explanation": "En Java, los métodos deben empezar con minúscula según la convención. El resto del código es aceptable en este contexto.",
+    "active": true
   },
   {
     "id": 16,
@@ -237,7 +252,8 @@
       "RuntimeException (unchecked)"
     ],
     "correct": 2,
-    "explanation": "Las excepciones checked están pensadas para situaciones donde el cliente puede tomar acciones correctivas."
+    "explanation": "Las excepciones checked están pensadas para situaciones donde el cliente puede tomar acciones correctivas.",
+    "active": true
   },
   {
     "id": 17,
@@ -252,7 +268,8 @@
       "Propagar la excepción con throw"
     ],
     "correct": 2,
-    "explanation": "Silenciar excepciones oculta errores y dificulta la depuración."
+    "explanation": "Silenciar excepciones oculta errores y dificulta la depuración.",
+    "active": true
   },
   {
     "id": 18,
@@ -267,7 +284,8 @@
       "Para cumplir con la especificación de Java"
     ],
     "correct": 2,
-    "explanation": "Excepciones específicas como IllegalArgumentException o IOException permiten reaccionar de manera adecuada a cada tipo de error."
+    "explanation": "Excepciones específicas como IllegalArgumentException o IOException permiten reaccionar de manera adecuada a cada tipo de error.",
+    "active": true
   },
   {
     "id": 19,
@@ -282,7 +300,8 @@
       "Evita tener que manejar IOException"
     ],
     "correct": 2,
-    "explanation": "try-with-resources garantiza el cierre de recursos sin necesidad de un bloque finally explícito."
+    "explanation": "try-with-resources garantiza el cierre de recursos sin necesidad de un bloque finally explícito.",
+    "active": true
   },
   {
     "id": 20,
@@ -297,7 +316,8 @@
       "Añadir nuevas funcionalidades"
     ],
     "correct": 1,
-    "explanation": "Refactorizar consiste en mejorar la estructura interna del código manteniendo su funcionalidad intacta."
+    "explanation": "Refactorizar consiste en mejorar la estructura interna del código manteniendo su funcionalidad intacta.",
+    "active": true
   },
   {
     "id": 21,
@@ -312,7 +332,8 @@
       "Inline Temp"
     ],
     "correct": 1,
-    "explanation": "Reemplazar la lógica condicional basada en tipo con polimorfismo (subclases o strategy) mejora la extensibilidad."
+    "explanation": "Reemplazar la lógica condicional basada en tipo con polimorfismo (subclases o strategy) mejora la extensibilidad.",
+    "active": true
   },
   {
     "id": 22,
@@ -327,7 +348,8 @@
       "El método usa genéricos"
     ],
     "correct": 1,
-    "explanation": "Métodos largos, con varias responsabilidades o mezcla de detalles de bajo y alto nivel son candidatos a refactorización."
+    "explanation": "Métodos largos, con varias responsabilidades o mezcla de detalles de bajo y alto nivel son candidatos a refactorización.",
+    "active": true
   },
   {
     "id": 23,
@@ -342,7 +364,8 @@
       "Código escrito en el menor número de líneas posible"
     ],
     "correct": 2,
-    "explanation": "El código limpio se enfoca en la legibilidad y mantenibilidad, no solo en la corrección funcional."
+    "explanation": "El código limpio se enfoca en la legibilidad y mantenibilidad, no solo en la corrección funcional.",
+    "active": true
   },
   {
     "id": 24,
@@ -357,7 +380,8 @@
       "int days;"
     ],
     "correct": 1,
-    "explanation": "Un nombre completo y descriptivo como 'durationInDays' comunica la intención sin necesidad de comentarios."
+    "explanation": "Un nombre completo y descriptivo como 'durationInDays' comunica la intención sin necesidad de comentarios.",
+    "active": true
   },
   {
     "id": 25,
@@ -372,7 +396,8 @@
       "Shotgun Surgery"
     ],
     "correct": 2,
-    "explanation": "Large Class es el smell que indica que una clase concentra demasiada lógica, violando el SRP."
+    "explanation": "Large Class es el smell que indica que una clase concentra demasiada lógica, violando el SRP.",
+    "active": true
   },
   {
     "id": 26,
@@ -387,7 +412,8 @@
       "Eliminar la necesidad de interfaces"
     ],
     "correct": 1,
-    "explanation": "La gran ventaja es que un cambio en la lógica solo debe hacerse en un lugar, reduciendo bugs."
+    "explanation": "La gran ventaja es que un cambio en la lógica solo debe hacerse en un lugar, reduciendo bugs.",
+    "active": true
   },
   {
     "id": 27,
@@ -402,7 +428,8 @@
       "Ambos deben ser clases concretas"
     ],
     "correct": 1,
-    "explanation": "DIP establece que las dependencias deben ser abstracciones; usando una interfaz de repositorio desacoplamos el servicio de la implementación concreta."
+    "explanation": "DIP establece que las dependencias deben ser abstracciones; usando una interfaz de repositorio desacoplamos el servicio de la implementación concreta.",
+    "active": true
   },
   {
     "id": 28,
@@ -417,7 +444,8 @@
       "Mejora la cohesión de las interfaces grandes"
     ],
     "correct": 0,
-    "explanation": "ISP evita que las clases tengan dependencias innecesarias y tengan que implementar métodos que no usan."
+    "explanation": "ISP evita que las clases tengan dependencias innecesarias y tengan que implementar métodos que no usan.",
+    "active": true
   },
   {
     "id": 29,
@@ -432,7 +460,8 @@
       "Ninguna, se debe usar un switch"
     ],
     "correct": 1,
-    "explanation": "La Opción B usa polimorfismo para extender funcionalidad sin modificar la clase Calculadora, cumpliendo OCP."
+    "explanation": "La Opción B usa polimorfismo para extender funcionalidad sin modificar la clase Calculadora, cumpliendo OCP.",
+    "active": true
   },
   {
     "id": 30,
@@ -447,7 +476,8 @@
       "Ignorar la sugerencia si el método funciona"
     ],
     "correct": 1,
-    "explanation": "El patrón Parameter Object agrupa parámetros relacionados, simplificando la firma del método."
+    "explanation": "El patrón Parameter Object agrupa parámetros relacionados, simplificando la firma del método.",
+    "active": true
   },
   {
     "id": 31,
@@ -462,7 +492,8 @@
       "Garantizar que todo el código use los mismos patrones de diseño"
     ],
     "correct": 2,
-    "explanation": "Las code reviews buscan mejorar la calidad colectiva y fomentar el aprendizaje del equipo."
+    "explanation": "Las code reviews buscan mejorar la calidad colectiva y fomentar el aprendizaje del equipo.",
+    "active": true
   },
   {
     "id": 32,
@@ -477,7 +508,8 @@
       "La adherencia a los principios SOLID"
     ],
     "correct": 1,
-    "explanation": "Mientras el estilo se ajuste a la guía del equipo, no se debe perder tiempo en preferencias personales intrascendentes."
+    "explanation": "Mientras el estilo se ajuste a la guía del equipo, no se debe perder tiempo en preferencias personales intrascendentes.",
+    "active": true
   },
   {
     "id": 33,
@@ -492,7 +524,8 @@
       "Guardarlas en un archivo properties"
     ],
     "correct": 2,
-    "explanation": "Las constantes deben estar en una clase adecuada, con nombre en mayúsculas y snake_case, evitando interfaces de constantes."
+    "explanation": "Las constantes deben estar en una clase adecuada, con nombre en mayúsculas y snake_case, evitando interfaces de constantes.",
+    "active": true
   },
   {
     "id": 34,
@@ -507,7 +540,8 @@
       "Porque no se pueden usar en sentencias switch"
     ],
     "correct": 2,
-    "explanation": "Reemplazar valores literales sin contexto por constantes con nombre mejora la legibilidad y la mantenibilidad."
+    "explanation": "Reemplazar valores literales sin contexto por constantes con nombre mejora la legibilidad y la mantenibilidad.",
+    "active": true
   },
   {
     "id": 35,
@@ -522,7 +556,8 @@
       "Es una mala práctica; no debe usarse"
     ],
     "correct": 1,
-    "explanation": "Los early returns reducen la indentación y hacen que el flujo principal sea más claro."
+    "explanation": "Los early returns reducen la indentación y hacen que el flujo principal sea más claro.",
+    "active": true
   },
   {
     "id": 36,
@@ -537,7 +572,8 @@
       "Es una buena práctica para manejar todo"
     ],
     "correct": 1,
-    "explanation": "Capturar Throwable incluye subclases de Error que representan condiciones serias de la JVM que normalmente no deben ser manejadas por la aplicación."
+    "explanation": "Capturar Throwable incluye subclases de Error que representan condiciones serias de la JVM que normalmente no deben ser manejadas por la aplicación.",
+    "active": true
   },
   {
     "id": 37,
@@ -552,7 +588,8 @@
       "Escribirla en la consola con e.printStackTrace()"
     ],
     "correct": 2,
-    "explanation": "Se debe registrar la excepción y manejarla o propagarla. Usar printStackTrace no es suficiente para un entorno productivo."
+    "explanation": "Se debe registrar la excepción y manejarla o propagarla. Usar printStackTrace no es suficiente para un entorno productivo.",
+    "active": true
   },
   {
     "id": 38,
@@ -567,7 +604,8 @@
       "Nunca, si el código funciona"
     ],
     "correct": 1,
-    "explanation": "El refactoring continuo durante el desarrollo ('camping rule': dejar el código mejor de como se encontró) es una práctica recomendada."
+    "explanation": "El refactoring continuo durante el desarrollo ('camping rule': dejar el código mejor de como se encontró) es una práctica recomendada.",
+    "active": true
   },
   {
     "id": 39,
@@ -582,7 +620,8 @@
       "Cambia el nombre de un método"
     ],
     "correct": 1,
-    "explanation": "'Extract Method' toma un bloque de código, lo convierte en un método con un nombre descriptivo y reemplaza el código original por una llamada."
+    "explanation": "'Extract Method' toma un bloque de código, lo convierte en un método con un nombre descriptivo y reemplaza el código original por una llamada.",
+    "active": true
   },
   {
     "id": 40,
@@ -597,7 +636,8 @@
       "Encapsulate Field"
     ],
     "correct": 1,
-    "explanation": "Si varias subclases o clases hermanas comparten código, se mueven esos miembros a una superclase común."
+    "explanation": "Si varias subclases o clases hermanas comparten código, se mueven esos miembros a una superclase común.",
+    "active": true
   },
   {
     "id": 41,
@@ -612,7 +652,8 @@
       "Ninguno debería usarse"
     ],
     "correct": 0,
-    "explanation": "Los comentarios deben explicar el 'por qué', no el 'qué'. Si el código ya es claro, el comentario sobra."
+    "explanation": "Los comentarios deben explicar el 'por qué', no el 'qué'. Si el código ya es claro, el comentario sobra.",
+    "active": true
   },
   {
     "id": 42,
@@ -627,7 +668,8 @@
       "Inappropriate Intimacy"
     ],
     "correct": 1,
-    "explanation": "Una Data Class es aquella que solo almacena datos sin lógica de negocio, lo que a menudo dispersa el comportamiento en otras clases."
+    "explanation": "Una Data Class es aquella que solo almacena datos sin lógica de negocio, lo que a menudo dispersa el comportamiento en otras clases.",
+    "active": true
   },
   {
     "id": 43,
@@ -642,7 +684,8 @@
       "Solo es necesario en APIs públicas"
     ],
     "correct": 1,
-    "explanation": "Validar los parámetros al principio permite detectar condiciones incorrectas rápidamente, evitando corrupción de estado o errores lejanos."
+    "explanation": "Validar los parámetros al principio permite detectar condiciones incorrectas rápidamente, evitando corrupción de estado o errores lejanos.",
+    "active": true
   },
   {
     "id": 44,
@@ -657,7 +700,8 @@
       "Utilizando solo switch"
     ],
     "correct": 0,
-    "explanation": "Un mapa que asocia una categoría a una función u objeto de comportamiento permite eliminar el encadenamiento y sigue el principio Open/Closed."
+    "explanation": "Un mapa que asocia una categoría a una función u objeto de comportamiento permite eliminar el encadenamiento y sigue el principio Open/Closed.",
+    "active": true
   },
   {
     "id": 45,
@@ -672,7 +716,8 @@
       "No se recomienda; el if/else es más legible"
     ],
     "correct": 1,
-    "explanation": "Los enums con métodos abstractos permiten polimorfismo, evitando código cliente que pregunte por el tipo."
+    "explanation": "Los enums con métodos abstractos permiten polimorfismo, evitando código cliente que pregunte por el tipo.",
+    "active": true
   },
   {
     "id": 46,
@@ -687,7 +732,8 @@
       "Strategy"
     ],
     "correct": 1,
-    "explanation": "Factory Method es un patrón creacional que define una interfaz para crear objetos, delegando a las subclases la decisión."
+    "explanation": "Factory Method es un patrón creacional que define una interfaz para crear objetos, delegando a las subclases la decisión.",
+    "active": true
   },
   {
     "id": 47,
@@ -702,7 +748,8 @@
       "Permitir que los objetos cambien de estado sin afectar a sus clientes"
     ],
     "correct": 1,
-    "explanation": "Singleton restringe la instanciación de una clase a un solo objeto."
+    "explanation": "Singleton restringe la instanciación de una clase a un solo objeto.",
+    "active": true
   },
   {
     "id": 48,
@@ -717,7 +764,8 @@
       "Decorator"
     ],
     "correct": 1,
-    "explanation": "Strategy define una familia de algoritmos encapsulándolos, permitiendo que varíen independientemente del cliente que los usa."
+    "explanation": "Strategy define una familia de algoritmos encapsulándolos, permitiendo que varíen independientemente del cliente que los usa.",
+    "active": true
   },
   {
     "id": 49,
@@ -732,7 +780,8 @@
       "Command"
     ],
     "correct": 2,
-    "explanation": "Chain of Responsibility permite pasar una solicitud a través de una cadena de manejadores; cada uno decide si la procesa o la pasa al siguiente."
+    "explanation": "Chain of Responsibility permite pasar una solicitud a través de una cadena de manejadores; cada uno decide si la procesa o la pasa al siguiente.",
+    "active": true
   },
   {
     "id": 50,
@@ -747,7 +796,8 @@
       "Builder"
     ],
     "correct": 1,
-    "explanation": "El patrón State permite que un objeto altere su comportamiento cuando su estado interno cambia."
+    "explanation": "El patrón State permite que un objeto altere su comportamiento cuando su estado interno cambia.",
+    "active": true
   },
   {
     "id": 51,
@@ -762,7 +812,8 @@
       "Para implementar un sistema de logging"
     ],
     "correct": 1,
-    "explanation": "Composite compone objetos en estructuras de árbol para representar jerarquías parte-todo."
+    "explanation": "Composite compone objetos en estructuras de árbol para representar jerarquías parte-todo.",
+    "active": true
   },
   {
     "id": 52,
@@ -777,7 +828,8 @@
       "Command"
     ],
     "correct": 3,
-    "explanation": "El patrón Command convierte una petición en un objeto independiente que contiene toda la información sobre la solicitud."
+    "explanation": "El patrón Command convierte una petición en un objeto independiente que contiene toda la información sobre la solicitud.",
+    "active": true
   },
   {
     "id": 53,
@@ -792,7 +844,8 @@
       "Mediante consultas SQL nativas"
     ],
     "correct": 1,
-    "explanation": "El patrón Specification define reglas de negocio reutilizables que pueden combinarse mediante lógica booleana."
+    "explanation": "El patrón Specification define reglas de negocio reutilizables que pueden combinarse mediante lógica booleana.",
+    "active": true
   },
   {
     "id": 54,
@@ -807,7 +860,8 @@
       "Evita la necesidad de comentarios"
     ],
     "correct": 1,
-    "explanation": "Los métodos pequeños son más fáciles de entender, probar de forma aislada y combinarlos para formar lógicas más complejas."
+    "explanation": "Los métodos pequeños son más fáciles de entender, probar de forma aislada y combinarlos para formar lógicas más complejas.",
+    "active": true
   },
   {
     "id": 55,
@@ -822,6 +876,7 @@
       "Esperar a que el código esté en producción para dar feedback"
     ],
     "correct": 2,
-    "explanation": "Las revisiones efectivas son frecuentes, de pequeñas porciones y con una cultura de mejora colaborativa."
+    "explanation": "Las revisiones efectivas son frecuentes, de pequeñas porciones y con una cultura de mejora colaborativa.",
+    "active": true
   }
 ]

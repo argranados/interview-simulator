@@ -12,7 +12,8 @@
       "Solo pruebas de integración"
     ],
     "correct": 1,
-    "explanation": "La pirámide propone la base más grande en unitarias (rápidas y baratas), un nivel medio de integración y una punta pequeña de E2E. Esto optimiza velocidad de feedback y costo de mantenimiento."
+    "explanation": "La pirámide propone la base más grande en unitarias (rápidas y baratas), un nivel medio de integración y una punta pequeña de E2E. Esto optimiza velocidad de feedback y costo de mantenimiento.",
+    "active": true
   },
   {
     "id": 2,
@@ -27,7 +28,8 @@
       "Detectar regresiones en código legacy"
     ],
     "correct": 1,
-    "explanation": "El smoke test valida rápidamente que las funciones críticas del sistema están operativas. Si falla, no vale la pena continuar con las suites completas, ahorrando tiempo en el pipeline de CI/CD."
+    "explanation": "El smoke test valida rápidamente que las funciones críticas del sistema están operativas. Si falla, no vale la pena continuar con las suites completas, ahorrando tiempo en el pipeline de CI/CD.",
+    "active": true
   },
   {
     "id": 3,
@@ -42,7 +44,8 @@
       "La calidad del diseño de clases"
     ],
     "correct": 1,
-    "explanation": "La cobertura indica qué porcentaje del código fuente fue ejercido durante las pruebas. Es una métrica útil pero 100% de cobertura no garantiza ausencia de bugs; solo indica que las líneas fueron ejecutadas, no que todos los escenarios fueron validados."
+    "explanation": "La cobertura indica qué porcentaje del código fuente fue ejercido durante las pruebas. Es una métrica útil pero 100% de cobertura no garantiza ausencia de bugs; solo indica que las líneas fueron ejecutadas, no que todos los escenarios fueron validados.",
+    "active": true
   },
   {
     "id": 4,
@@ -57,7 +60,8 @@
       "La funcional solo usa mocks"
     ],
     "correct": 1,
-    "explanation": "Las pruebas funcionales validan comportamiento según requisitos de negocio. Las de regresión se re-ejecutan tras cada cambio para garantizar que nuevas funcionalidades no introdujeron defectos en código previamente estable."
+    "explanation": "Las pruebas funcionales validan comportamiento según requisitos de negocio. Las de regresión se re-ejecutan tras cada cambio para garantizar que nuevas funcionalidades no introdujeron defectos en código previamente estable.",
+    "active": true
   },
   {
     "id": 5,
@@ -72,7 +76,8 @@
       "Técnica para probar migraciones de base de datos"
     ],
     "correct": 1,
-    "explanation": "Herramientas como PIT Mutation insertan mutaciones (cambiar > por >=, remover return, etc.) y verifican que al menos un test falle. Esto mide la calidad real de los tests, no solo si el código fue ejecutado."
+    "explanation": "Herramientas como PIT Mutation insertan mutaciones (cambiar > por >=, remover return, etc.) y verifican que al menos un test falle. Esto mide la calidad real de los tests, no solo si el código fue ejecutado.",
+    "active": true
   },
   {
     "id": 6,
@@ -87,7 +92,8 @@
       "@Check"
     ],
     "correct": 0,
-    "explanation": "@Test es la anotación estándar. En JUnit 5 se importa de org.junit.jupiter.api.Test, a diferencia de JUnit 4 que la importa de org.junit.Test. Es importante no mezclar los imports entre versiones."
+    "explanation": "@Test es la anotación estándar. En JUnit 5 se importa de org.junit.jupiter.api.Test, a diferencia de JUnit 4 que la importa de org.junit.Test. Es importante no mezclar los imports entre versiones.",
+    "active": true
   },
   {
     "id": 7,
@@ -102,7 +108,8 @@
       "Authentication, Authorization, Audit"
     ],
     "correct": 0,
-    "explanation": "Arrange = preparar datos y dependencias; Act = ejecutar el método bajo prueba; Assert = verificar el resultado esperado. Es el estándar de legibilidad para tests y facilita entender qué está probando cada test con solo leerlo."
+    "explanation": "Arrange = preparar datos y dependencias; Act = ejecutar el método bajo prueba; Assert = verificar el resultado esperado. Es el estándar de legibilidad para tests y facilita entender qué está probando cada test con solo leerlo.",
+    "active": true
   },
   {
     "id": 8,
@@ -117,7 +124,8 @@
       "@SetupOnce"
     ],
     "correct": 1,
-    "explanation": "@BeforeAll corre el método una sola vez antes de cualquier test de la clase. Debe ser static por defecto, o la clase debe anotarse con @TestInstance(Lifecycle.PER_CLASS) para permitir métodos de instancia."
+    "explanation": "@BeforeAll corre el método una sola vez antes de cualquier test de la clase. Debe ser static por defecto, o la clase debe anotarse con @TestInstance(Lifecycle.PER_CLASS) para permitir métodos de instancia.",
+    "active": true
   },
   {
     "id": 9,
@@ -132,7 +140,8 @@
       "Inyecta dependencias Spring"
     ],
     "correct": 1,
-    "explanation": "Combinado con fuentes como @ValueSource, @CsvSource o @MethodSource permite correr la misma lógica de test con distintos inputs sin duplicar código, mejorando mantenibilidad y cobertura de casos de borde."
+    "explanation": "Combinado con fuentes como @ValueSource, @CsvSource o @MethodSource permite correr la misma lógica de test con distintos inputs sin duplicar código, mejorando mantenibilidad y cobertura de casos de borde.",
+    "active": true
   },
   {
     "id": 10,
@@ -147,7 +156,8 @@
       "Para cargar un contexto Spring reducido"
     ],
     "correct": 1,
-    "explanation": "@Nested permite clases internas que comparten su propio setup (BeforeEach), agrupando escenarios relacionados. Por ejemplo: clase interna 'WhenUserExists' vs 'WhenUserNotFound', cada una con su propio contexto."
+    "explanation": "@Nested permite clases internas que comparten su propio setup (BeforeEach), agrupando escenarios relacionados. Por ejemplo: clase interna 'WhenUserExists' vs 'WhenUserNotFound', cada una con su propio contexto.",
+    "active": true
   },
   {
     "id": 11,
@@ -162,7 +172,8 @@
       "Permiten assertions asíncronas"
     ],
     "correct": 1,
-    "explanation": "AssertJ permite encadenar assertions como assertThat(list).hasSize(3).contains('x').doesNotContain('y') y genera mensajes de error muy claros al fallar, mejorando significativamente la mantenibilidad del código de prueba."
+    "explanation": "AssertJ permite encadenar assertions como assertThat(list).hasSize(3).contains('x').doesNotContain('y') y genera mensajes de error muy claros al fallar, mejorando significativamente la mantenibilidad del código de prueba.",
+    "active": true
   },
   {
     "id": 12,
@@ -177,7 +188,8 @@
       "Mock es para clases; stub para interfaces"
     ],
     "correct": 1,
-    "explanation": "Un stub solo provee respuestas prefabricadas (when/thenReturn) para aislar la dependencia. Un mock además permite verificar que ciertos métodos fueron llamados con ciertos argumentos usando verify(), comprobando el comportamiento de interacción."
+    "explanation": "Un stub solo provee respuestas prefabricadas (when/thenReturn) para aislar la dependencia. Un mock además permite verificar que ciertos métodos fueron llamados con ciertos argumentos usando verify(), comprobando el comportamiento de interacción.",
+    "active": true
   },
   {
     "id": 13,
@@ -192,7 +204,8 @@
       "Lanza una excepción si findById no existe"
     ],
     "correct": 1,
-    "explanation": "Es un stub: intercepta la llamada al método del mock y retorna el valor configurado, aislando el test de la implementación real de findById. Esto permite probar la lógica del servicio superior sin depender de la base de datos."
+    "explanation": "Es un stub: intercepta la llamada al método del mock y retorna el valor configurado, aislando el test de la implementación real de findById. Esto permite probar la lógica del servicio superior sin depender de la base de datos.",
+    "active": true
   },
   {
     "id": 14,
@@ -207,7 +220,8 @@
       "@Autowired"
     ],
     "correct": 1,
-    "explanation": "@InjectMocks crea la instancia de la clase bajo prueba e inyecta todos los campos @Mock o @Spy de la misma clase de test, simulando la inyección de dependencias sin necesidad de contexto Spring."
+    "explanation": "@InjectMocks crea la instancia de la clase bajo prueba e inyecta todos los campos @Mock o @Spy de la misma clase de test, simulando la inyección de dependencias sin necesidad de contexto Spring.",
+    "active": true
   },
   {
     "id": 15,
@@ -222,7 +236,8 @@
       "@Mock es para beans de Spring; @Spy para POJOs"
     ],
     "correct": 1,
-    "explanation": "Con @Spy el objeto real es instanciado; puedes stubear métodos específicos mientras el resto ejecuta la implementación real. @Mock reemplaza todos los métodos retornando null/0/false por defecto, sin ejecutar ninguna lógica real."
+    "explanation": "Con @Spy el objeto real es instanciado; puedes stubear métodos específicos mientras el resto ejecuta la implementación real. @Mock reemplaza todos los métodos retornando null/0/false por defecto, sin ejecutar ninguna lógica real.",
+    "active": true
   },
   {
     "id": 16,
@@ -237,7 +252,8 @@
       "Para lanzar excepciones al invocar un mock"
     ],
     "correct": 1,
-    "explanation": "ArgumentCaptor permite extraer el objeto real que fue pasado al método mockeado durante la ejecución del test. Es útil cuando quieres validar el contenido del argumento, no solo que el método fue invocado."
+    "explanation": "ArgumentCaptor permite extraer el objeto real que fue pasado al método mockeado durante la ejecución del test. Es útil cuando quieres validar el contenido del argumento, no solo que el método fue invocado.",
+    "active": true
   },
   {
     "id": 17,
@@ -252,7 +268,8 @@
       "Que el test es de integración y no unitario"
     ],
     "correct": 1,
-    "explanation": "Necesitar mock.getA().getB().getC() (train wreck) es señal de que la clase accede a objetos a través de cadenas largas, violando la Ley de Demeter. Indica un test smell y posible necesidad de refactorizar el diseño."
+    "explanation": "Necesitar mock.getA().getB().getC() (train wreck) es señal de que la clase accede a objetos a través de cadenas largas, violando la Ley de Demeter. Indica un test smell y posible necesidad de refactorizar el diseño.",
+    "active": true
   },
   {
     "id": 18,
@@ -267,7 +284,8 @@
       "Es equivalente a @WebMvcTest"
     ],
     "correct": 1,
-    "explanation": "@SpringBootTest carga el ApplicationContext completo. Es costoso en tiempo de arranque pero necesario cuando quieres probar la integración real entre múltiples beans, filtros, configuración de seguridad, etc."
+    "explanation": "@SpringBootTest carga el ApplicationContext completo. Es costoso en tiempo de arranque pero necesario cuando quieres probar la integración real entre múltiples beans, filtros, configuración de seguridad, etc.",
+    "active": true
   },
   {
     "id": 19,
@@ -282,7 +300,8 @@
       "Un plugin de Maven para ejecutar tests en paralelo"
     ],
     "correct": 1,
-    "explanation": "Testcontainers levanta instancias reales de infraestructura (DB, broker, cache) en Docker para tests de integración, eliminando la necesidad de mocks de base de datos y garantizando que los tests se ejecutan contra el mismo motor que producción."
+    "explanation": "Testcontainers levanta instancias reales de infraestructura (DB, broker, cache) en Docker para tests de integración, eliminando la necesidad de mocks de base de datos y garantizando que los tests se ejecutan contra el mismo motor que producción.",
+    "active": true
   },
   {
     "id": 20,
@@ -297,7 +316,8 @@
       "Incluye configuración de seguridad automáticamente"
     ],
     "correct": 1,
-    "explanation": "@DataJpaTest es un 'test slice': carga solo la capa JPA, configura una DB en memoria (H2 por defecto) y excluye beans no relacionados como servicios o controladores, acelerando significativamente el tiempo de arranque."
+    "explanation": "@DataJpaTest es un 'test slice': carga solo la capa JPA, configura una DB en memoria (H2 por defecto) y excluye beans no relacionados como servicios o controladores, acelerando significativamente el tiempo de arranque.",
+    "active": true
   },
   {
     "id": 21,
@@ -312,7 +332,8 @@
       "Mockeando el EntityManager"
     ],
     "correct": 1,
-    "explanation": "@Transactional en el test hace rollback automático al final de cada método, devolviendo la DB a estado limpio. Alternativamente @Sql puede insertar fixtures antes y limpiar después de cada test con scripts SQL dedicados."
+    "explanation": "@Transactional en el test hace rollback automático al final de cada método, devolviendo la DB a estado limpio. Alternativamente @Sql puede insertar fixtures antes y limpiar después de cada test con scripts SQL dedicados.",
+    "active": true
   },
   {
     "id": 22,
@@ -327,7 +348,8 @@
       "Cuando necesitas alta velocidad de ejecución"
     ],
     "correct": 1,
-    "explanation": "WireMock levanta un servidor HTTP real que simula respuestas de APIs externas, probando también la serialización/deserialización HTTP, manejo de timeouts y códigos de error. Mockito no puede probar la capa HTTP del cliente REST."
+    "explanation": "WireMock levanta un servidor HTTP real que simula respuestas de APIs externas, probando también la serialización/deserialización HTTP, manejo de timeouts y códigos de error. Mockito no puede probar la capa HTTP del cliente REST.",
+    "active": true
   },
   {
     "id": 23,
@@ -342,7 +364,8 @@
       "Es un mock de la capa de servicios"
     ],
     "correct": 0,
-    "explanation": "MockMvc permite ejecutar requests HTTP simulados sobre el DispatcherServlet, probando controllers, serialización JSON, validaciones de Bean Validation, status codes y headers sin necesidad de un servidor embebido real."
+    "explanation": "MockMvc permite ejecutar requests HTTP simulados sobre el DispatcherServlet, probando controllers, serialización JSON, validaciones de Bean Validation, status codes y headers sin necesidad de un servidor embebido real.",
+    "active": true
   },
   {
     "id": 24,
@@ -357,7 +380,8 @@
       "@RestClientTest"
     ],
     "correct": 2,
-    "explanation": "@WebMvcTest carga solo los beans del tier web: controllers, filtros, interceptors, @ControllerAdvice, etc. Ideal para tests de controladores donde los servicios se mockean con @MockBean, haciendo el test rápido y enfocado."
+    "explanation": "@WebMvcTest carga solo los beans del tier web: controllers, filtros, interceptors, @ControllerAdvice, etc. Ideal para tests de controladores donde los servicios se mockean con @MockBean, haciendo el test rápido y enfocado.",
+    "active": true
   },
   {
     "id": 25,
@@ -372,7 +396,8 @@
       "MockMvc es más moderno que WebTestClient"
     ],
     "correct": 1,
-    "explanation": "MockMvc trabaja con la API Servlet bloqueante (Spring MVC). WebTestClient es el cliente de pruebas para Spring WebFlux (reactivo) pero también puede usarse con MockMvc si la app no es reactiva, ofreciendo una API fluida similar."
+    "explanation": "MockMvc trabaja con la API Servlet bloqueante (Spring MVC). WebTestClient es el cliente de pruebas para Spring WebFlux (reactivo) pero también puede usarse con MockMvc si la app no es reactiva, ofreciendo una API fluida similar.",
+    "active": true
   },
   {
     "id": 26,
@@ -387,7 +412,8 @@
       "then ejecuta el request HTTP"
     ],
     "correct": 1,
-    "explanation": "given() configura la petición (headers, body, auth, params), when() ejecuta la acción HTTP (get/post/put/delete con el path), then() declara las aserciones sobre status, body y headers usando Hamcrest matchers."
+    "explanation": "given() configura la petición (headers, body, auth, params), when() ejecuta la acción HTTP (get/post/put/delete con el path), then() declara las aserciones sobre status, body y headers usando Hamcrest matchers.",
+    "active": true
   },
   {
     "id": 27,
@@ -402,7 +428,8 @@
       "Para deshabilitar un bean de seguridad en tests"
     ],
     "correct": 1,
-    "explanation": "@MockBean reemplaza el bean real en el ApplicationContext por un mock de Mockito. Esto permite aislar el controlador de la lógica de negocio real en tests de @WebMvcTest, y también invalida el caché del contexto Spring."
+    "explanation": "@MockBean reemplaza el bean real en el ApplicationContext por un mock de Mockito. Esto permite aislar el controlador de la lógica de negocio real en tests de @WebMvcTest, y también invalida el caché del contexto Spring.",
+    "active": true
   },
   {
     "id": 28,
@@ -417,7 +444,8 @@
       "Una vez por semana en horario nocturno"
     ],
     "correct": 1,
-    "explanation": "Los smoke tests son la primera validación post-deploy: si fallan, se aborta el pipeline inmediatamente sin perder tiempo en suites más largas. Validan que el servicio arranca, responde y tiene conectividad básica con sus dependencias."
+    "explanation": "Los smoke tests son la primera validación post-deploy: si fallan, se aborta el pipeline inmediatamente sin perder tiempo en suites más largas. Validan que el servicio arranca, responde y tiene conectividad básica con sus dependencias.",
+    "active": true
   },
   {
     "id": 29,
@@ -432,7 +460,8 @@
       "JUnit 5 con @SpringBootTest es suficiente sin cliente HTTP"
     ],
     "correct": 2,
-    "explanation": "Para E2E de APIs se levanta el servidor completo con @SpringBootTest(webEnvironment=RANDOM_PORT) y se usan clientes HTTP reales como RestAssured o Karate DSL para simular flujos completos de negocio extremo a extremo."
+    "explanation": "Para E2E de APIs se levanta el servidor completo con @SpringBootTest(webEnvironment=RANDOM_PORT) y se usan clientes HTTP reales como RestAssured o Karate DSL para simular flujos completos de negocio extremo a extremo.",
+    "active": true
   },
   {
     "id": 30,
@@ -447,7 +476,8 @@
       "No se pueden automatizar fácilmente con Maven"
     ],
     "correct": 1,
-    "explanation": "Las pruebas E2E son necesarias pero costosas: tardan minutos por test, son sensibles a cambios de contrato entre servicios y requieren infraestructura completa. En microservicios, el número de combinaciones crece exponencialmente. Por eso la pirámide recomienda muy pocas."
+    "explanation": "Las pruebas E2E son necesarias pero costosas: tardan minutos por test, son sensibles a cambios de contrato entre servicios y requieren infraestructura completa. En microservicios, el número de combinaciones crece exponencialmente. Por eso la pirámide recomienda muy pocas.",
+    "active": true
   },
   {
     "id": 31,
@@ -462,7 +492,8 @@
       "Una herramienta de análisis estático como SonarQube"
     ],
     "correct": 1,
-    "explanation": "JaCoCo (Java Code Coverage) instrumenta el bytecode en tiempo de ejecución y genera reportes HTML/XML con cobertura por línea, branch e instrucción. Se integra con Maven/Gradle y SonarQube para definir quality gates."
+    "explanation": "JaCoCo (Java Code Coverage) instrumenta el bytecode en tiempo de ejecución y genera reportes HTML/XML con cobertura por línea, branch e instrucción. Se integra con Maven/Gradle y SonarQube para definir quality gates.",
+    "active": true
   },
   {
     "id": 32,
@@ -477,7 +508,8 @@
       "maven-jar-plugin"
     ],
     "correct": 1,
-    "explanation": "maven-surefire-plugin ejecuta los tests unitarios en la fase 'test'. maven-failsafe-plugin ejecuta los tests de integración en las fases 'integration-test' y 'verify'. Son dos plugins distintos con propósitos y fases del ciclo de vida diferentes."
+    "explanation": "maven-surefire-plugin ejecuta los tests unitarios en la fase 'test'. maven-failsafe-plugin ejecuta los tests de integración en las fases 'integration-test' y 'verify'. Son dos plugins distintos con propósitos y fases del ciclo de vida diferentes.",
+    "active": true
   },
   {
     "id": 33,
@@ -492,7 +524,8 @@
       "Surefire solo funciona con JUnit 4, Failsafe con JUnit 5"
     ],
     "correct": 1,
-    "explanation": "Failsafe está diseñado para tests de integración que requieren levantar/bajar servidores o contenedores. Ejecuta los tests en 'integration-test', realiza teardown y solo reporta el fallo en 'verify', garantizando que el cleanup siempre ocurra."
+    "explanation": "Failsafe está diseñado para tests de integración que requieren levantar/bajar servidores o contenedores. Ejecuta los tests en 'integration-test', realiza teardown y solo reporta el fallo en 'verify', garantizando que el cleanup siempre ocurra.",
+    "active": true
   },
   {
     "id": 34,
@@ -507,7 +540,8 @@
       "SonarQube siempre falla automáticamente si la cobertura baja"
     ],
     "correct": 1,
-    "explanation": "Los Quality Gates de SonarQube permiten definir condiciones (cobertura mínima, deuda técnica, bugs críticos, code smells). El step 'sonar:sonar' sube las métricas y el step de 'quality-gate check' falla el pipeline si alguna condición del gate no se cumple."
+    "explanation": "Los Quality Gates de SonarQube permiten definir condiciones (cobertura mínima, deuda técnica, bugs críticos, code smells). El step 'sonar:sonar' sube las métricas y el step de 'quality-gate check' falla el pipeline si alguna condición del gate no se cumple.",
+    "active": true
   },
   {
     "id": 35,
@@ -522,7 +556,8 @@
       "Usar únicamente mocks en todos los tests de la aplicación"
     ],
     "correct": 1,
-    "explanation": "TDD sigue el ciclo Red (escribir test que falla) → Green (código mínimo que lo hace pasar) → Refactor (mejorar el código sin romper tests). Guía el diseño desde la perspectiva del consumidor de la API y produce código más testeable por naturaleza."
+    "explanation": "TDD sigue el ciclo Red (escribir test que falla) → Green (código mínimo que lo hace pasar) → Refactor (mejorar el código sin romper tests). Guía el diseño desde la perspectiva del consumidor de la API y produce código más testeable por naturaleza.",
+    "active": true
   },
   {
     "id": 36,
@@ -537,7 +572,8 @@
       "Tests que solo pasan en el ambiente de desarrollo local"
     ],
     "correct": 1,
-    "explanation": "Test smells son señales de diseño pobre en el código de prueba: Assertion Roulette (muchos asserts sin mensaje descriptivo), Magic Numbers, tests acoplados entre sí, nombres como testMethod1, Giant Setup o Erratic Tests (tests que pasan a veces y otras no)."
+    "explanation": "Test smells son señales de diseño pobre en el código de prueba: Assertion Roulette (muchos asserts sin mensaje descriptivo), Magic Numbers, tests acoplados entre sí, nombres como testMethod1, Giant Setup o Erratic Tests (tests que pasan a veces y otras no).",
+    "active": true
   },
   {
     "id": 37,
@@ -552,6 +588,7 @@
       "Son exactamente lo mismo con diferente nombre"
     ],
     "correct": 1,
-    "explanation": "BDD extiende TDD enfocándose en el comportamiento desde la perspectiva del negocio. Herramientas como Cucumber o JBehave usan Gherkin (Given/When/Then) para crear especificaciones ejecutables legibles por stakeholders no técnicos, cerrando la brecha entre negocio y desarrollo."
+    "explanation": "BDD extiende TDD enfocándose en el comportamiento desde la perspectiva del negocio. Herramientas como Cucumber o JBehave usan Gherkin (Given/When/Then) para crear especificaciones ejecutables legibles por stakeholders no técnicos, cerrando la brecha entre negocio y desarrollo.",
+    "active": true
   }
 ]

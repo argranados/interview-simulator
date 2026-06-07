@@ -11,7 +11,8 @@
       "Cobertura de pruebas unitarias"
     ],
     "correct": 1,
-    "explanation": "DORA mide: Frecuencia de despliegue, Tiempo de entrega de cambios, Tiempo de recuperación del servicio, Tasa de fallo de cambios."
+    "explanation": "DORA mide: Frecuencia de despliegue, Tiempo de entrega de cambios, Tiempo de recuperación del servicio, Tasa de fallo de cambios.",
+    "active": true
   },
   {
     "id": 2,
@@ -25,7 +26,8 @@
       "Containers, Artifacts, Microservices, Scheduling"
     ],
     "correct": 1,
-    "explanation": "CAMS: Cultura, Automatización, Medición, Compartir (Culture, Automation, Measurement, Sharing)."
+    "explanation": "CAMS: Cultura, Automatización, Medición, Compartir (Culture, Automation, Measurement, Sharing).",
+    "active": true
   },
   {
     "id": 3,
@@ -39,7 +41,8 @@
       "Aumentar el tamaño de los equipos."
     ],
     "correct": 2,
-    "explanation": "DevOps busca integración entre desarrollo y operaciones, entregas más rápidas y confiables, no eliminar roles ni aislar equipos."
+    "explanation": "DevOps busca integración entre desarrollo y operaciones, entregas más rápidas y confiables, no eliminar roles ni aislar equipos.",
+    "active": true
   },
   {
     "id": 4,
@@ -53,7 +56,8 @@
       "Git, Jenkins, Docker"
     ],
     "correct": 1,
-    "explanation": "Las tres vías: flujo rápido (izquierda a derecha), retroalimentación constante (derecha a izquierda), aprendizaje y experimentación continua."
+    "explanation": "Las tres vías: flujo rápido (izquierda a derecha), retroalimentación constante (derecha a izquierda), aprendizaje y experimentación continua.",
+    "active": true
   },
   {
     "id": 5,
@@ -67,7 +71,8 @@
       "Rama exclusiva para pruebas de estrés."
     ],
     "correct": 1,
-    "explanation": "Main/master debe reflejar un estado estable y desplegable. Desarrollo en ramas de características, no en main."
+    "explanation": "Main/master debe reflejar un estado estable y desplegable. Desarrollo en ramas de características, no en main.",
+    "active": true
   },
   {
     "id": 6,
@@ -81,7 +86,8 @@
       "git squash"
     ],
     "correct": 1,
-    "explanation": "Rebase aplica commits de la rama origen sobre la actual, reescribiendo el historial. Produce historial lineal."
+    "explanation": "Rebase aplica commits de la rama origen sobre la actual, reescribiendo el historial. Produce historial lineal.",
+    "active": true
   },
   {
     "id": 7,
@@ -95,7 +101,8 @@
       "git apply"
     ],
     "correct": 2,
-    "explanation": "cherry-pick toma un commit identificado por su hash y lo aplica en la rama actual."
+    "explanation": "cherry-pick toma un commit identificado por su hash y lo aplica en la rama actual.",
+    "active": true
   },
   {
     "id": 8,
@@ -109,7 +116,8 @@
       "La rama destino está protegida."
     ],
     "correct": 0,
-    "explanation": "Conflicto ocurre cuando dos cambios modifican la misma parte de un archivo y Git no sabe cuál elegir."
+    "explanation": "Conflicto ocurre cuando dos cambios modifican la misma parte de un archivo y Git no sabe cuál elegir.",
+    "active": true
   },
   {
     "id": 9,
@@ -123,7 +131,8 @@
       "Un comando para eliminar ramas remotas."
     ],
     "correct": 0,
-    "explanation": "Git hooks permiten ejecutar scripts personalizados en acciones como commit, push, permitiendo validaciones automáticas (ejecutar pruebas, linters)."
+    "explanation": "Git hooks permiten ejecutar scripts personalizados en acciones como commit, push, permitiendo validaciones automáticas (ejecutar pruebas, linters).",
+    "active": true
   },
   {
     "id": 10,
@@ -137,7 +146,8 @@
       "Hacer un squash de varios commits."
     ],
     "correct": 1,
-    "explanation": "Los tags marcan versiones estables (releases) para poder desplegar o referenciar fácilmente."
+    "explanation": "Los tags marcan versiones estables (releases) para poder desplegar o referenciar fácilmente.",
+    "active": true
   },
   {
     "id": 11,
@@ -151,7 +161,8 @@
       "git merge --continue"
     ],
     "correct": 0,
-    "explanation": "Después de editar el archivo conflictivo, se ejecuta git add para marcarlo como resuelto, luego git commit (o git merge --continue)."
+    "explanation": "Después de editar el archivo conflictivo, se ejecuta git add para marcarlo como resuelto, luego git commit (o git merge --continue).",
+    "active": true
   },
   {
     "id": 12,
@@ -165,7 +176,8 @@
       "git tree --visual"
     ],
     "correct": 0,
-    "explanation": "git log --graph es la forma estándar de ver el historial con representación gráfica de ramificaciones."
+    "explanation": "git log --graph es la forma estándar de ver el historial con representación gráfica de ramificaciones.",
+    "active": true
   },
   {
     "id": 13,
@@ -179,7 +191,8 @@
       "Un comando de Git."
     ],
     "correct": 0,
-    "explanation": "Pipeline CI/CD define etapas (build, test, deploy) ejecutadas automáticamente tras cada cambio."
+    "explanation": "Pipeline CI/CD define etapas (build, test, deploy) ejecutadas automáticamente tras cada cambio.",
+    "active": true
   },
   {
     "id": 14,
@@ -193,7 +206,8 @@
       "Un commit de Git."
     ],
     "correct": 1,
-    "explanation": "Artefacto: resultado compilado o empaquetado (JAR, informe de pruebas, etc.) que se pasa entre etapas del pipeline."
+    "explanation": "Artefacto: resultado compilado o empaquetado (JAR, informe de pruebas, etc.) que se pasa entre etapas del pipeline.",
+    "active": true
   },
   {
     "id": 15,
@@ -207,7 +221,8 @@
       "Escaneo de vulnerabilidades"
     ],
     "correct": 1,
-    "explanation": "Por lo general: build -> pruebas -> análisis estático -> empaquetado -> despliegue. Las pruebas son inmediatamente después del build."
+    "explanation": "Por lo general: build -> pruebas -> análisis estático -> empaquetado -> despliegue. Las pruebas son inmediatamente después del build.",
+    "active": true
   },
   {
     "id": 16,
@@ -221,7 +236,8 @@
       "Que requiere aprobación manual en cada paso."
     ],
     "correct": 1,
-    "explanation": "Pipeline declarativo especifica 'qué' hacer, no 'cómo'; ejemplos: GitLab CI, declarative Jenkins pipeline, GitHub Actions."
+    "explanation": "Pipeline declarativo especifica 'qué' hacer, no 'cómo'; ejemplos: GitLab CI, declarative Jenkins pipeline, GitHub Actions.",
+    "active": true
   },
   {
     "id": 17,
@@ -235,7 +251,8 @@
       "Configurar alertas de monitoreo."
     ],
     "correct": 0,
-    "explanation": "Triggers determinan cuándo ejecutar el pipeline: push, schedule, manual, etc."
+    "explanation": "Triggers determinan cuándo ejecutar el pipeline: push, schedule, manual, etc.",
+    "active": true
   },
   {
     "id": 18,
@@ -249,7 +266,8 @@
       "El sistema de archivos local del agente"
     ],
     "correct": 1,
-    "explanation": "Repositorios como Nexus o Artifactory centralizan artefactos. Docker Hub es para imágenes, no JARs en general."
+    "explanation": "Repositorios como Nexus o Artifactory centralizan artefactos. Docker Hub es para imágenes, no JARs en general.",
+    "active": true
   },
   {
     "id": 19,
@@ -263,7 +281,8 @@
       "mvn package -pl"
     ],
     "correct": 2,
-    "explanation": "mvn clean install compila, prueba y empaqueta todos los módulos respetando dependencias entre módulos."
+    "explanation": "mvn clean install compila, prueba y empaqueta todos los módulos respetando dependencias entre módulos.",
+    "active": true
   },
   {
     "id": 20,
@@ -277,7 +296,8 @@
       "JAVA_HOME"
     ],
     "correct": 1,
-    "explanation": "M2_REPO (o la propiedad maven.repo.local) define el path del repositorio local. MAVEN_HOME apunta a instalación."
+    "explanation": "M2_REPO (o la propiedad maven.repo.local) define el path del repositorio local. MAVEN_HOME apunta a instalación.",
+    "active": true
   },
   {
     "id": 21,
@@ -291,7 +311,8 @@
       "Es un requisito de seguridad."
     ],
     "correct": 1,
-    "explanation": "Docker cachea capas. Si se copia pom y se ejecuta mvn dependency:go-offline, esa capa se reutiliza mientras pom no cambie, acelerando builds."
+    "explanation": "Docker cachea capas. Si se copia pom y se ejecuta mvn dependency:go-offline, esa capa se reutiliza mientras pom no cambie, acelerando builds.",
+    "active": true
   },
   {
     "id": 22,
@@ -305,7 +326,8 @@
       "--stacktrace"
     ],
     "correct": 1,
-    "explanation": "--offline indica a Gradle que no intente descargar dependencias de internet. Útil en pipelines sin acceso externo."
+    "explanation": "--offline indica a Gradle que no intente descargar dependencias de internet. Útil en pipelines sin acceso externo.",
+    "active": true
   },
   {
     "id": 23,
@@ -319,7 +341,8 @@
       "Solo números pares para versiones estables."
     ],
     "correct": 0,
-    "explanation": "SemVer: vMAJOR.MINOR.PATCH, reglas claras para compatibilidad."
+    "explanation": "SemVer: vMAJOR.MINOR.PATCH, reglas claras para compatibilidad.",
+    "active": true
   },
   {
     "id": 24,
@@ -333,7 +356,8 @@
       "windows/servercore"
     ],
     "correct": 1,
-    "explanation": "Alpine Linux es distribución mínima (~5MB). La imagen openjdk:8-jre-alpine es mucho más pequeña que las basadas en Ubuntu o CentOS."
+    "explanation": "Alpine Linux es distribución mínima (~5MB). La imagen openjdk:8-jre-alpine es mucho más pequeña que las basadas en Ubuntu o CentOS.",
+    "active": true
   },
   {
     "id": 25,
@@ -347,7 +371,8 @@
       "Incluye herramientas de depuración."
     ],
     "correct": 1,
-    "explanation": "Imágenes distroless (ej. gcr.io/distroless/java) contienen solo la app y sus runtime, sin shell ni utilidades, mejorando seguridad."
+    "explanation": "Imágenes distroless (ej. gcr.io/distroless/java) contienen solo la app y sus runtime, sin shell ni utilidades, mejorando seguridad.",
+    "active": true
   },
   {
     "id": 26,
@@ -361,7 +386,8 @@
       "START"
     ],
     "correct": 2,
-    "explanation": "CMD proporciona argumentos por defecto o comando; puede ser sobrescrito al ejecutar docker run. ENTRYPOINT define ejecutable principal."
+    "explanation": "CMD proporciona argumentos por defecto o comando; puede ser sobrescrito al ejecutar docker run. ENTRYPOINT define ejecutable principal.",
+    "active": true
   },
   {
     "id": 27,
@@ -376,7 +402,8 @@
       "Se usa un volumen para compartir el jar."
     ],
     "correct": 0,
-    "explanation": "Multi-stage: builder produce el JAR, la segunda imagen (slim) solo contiene JRE y el JAR, resultado más pequeño y seguro."
+    "explanation": "Multi-stage: builder produce el JAR, la segunda imagen (slim) solo contiene JRE y el JAR, resultado más pequeño y seguro.",
+    "active": true
   },
   {
     "id": 28,
@@ -390,7 +417,8 @@
       "--link"
     ],
     "correct": 2,
-    "explanation": "-p (publicar) mapea puerto host:contenedor. -e variables entorno, -v volúmenes."
+    "explanation": "-p (publicar) mapea puerto host:contenedor. -e variables entorno, -v volúmenes.",
+    "active": true
   },
   {
     "id": 29,
@@ -404,7 +432,8 @@
       "No hay diferencia relevante."
     ],
     "correct": 1,
-    "explanation": "Java 10+ introdujo soporte para contenedores (conociendo límites de cgroups). Java 8 requiere flags como -XX:+UseContainerSupport (añadido en update 191)."
+    "explanation": "Java 10+ introdujo soporte para contenedores (conociendo límites de cgroups). Java 8 requiere flags como -XX:+UseContainerSupport (añadido en update 191).",
+    "active": true
   },
   {
     "id": 30,
@@ -418,7 +447,8 @@
       "No se puede, se debe usar docker run -e directamente."
     ],
     "correct": 2,
-    "explanation": "Se define ENV con valor por defecto, y en CMD se referencia. Luego docker run -e puede sobreescribir la variable."
+    "explanation": "Se define ENV con valor por defecto, y en CMD se referencia. Luego docker run -e puede sobreescribir la variable.",
+    "active": true
   },
   {
     "id": 31,
@@ -432,7 +462,8 @@
       "docker ps -a"
     ],
     "correct": 0,
-    "explanation": "docker ps (o docker container ls) muestra contenedores en ejecución. -a muestra también detenidos."
+    "explanation": "docker ps (o docker container ls) muestra contenedores en ejecución. -a muestra también detenidos.",
+    "active": true
   },
   {
     "id": 32,
@@ -446,7 +477,8 @@
       "Configurar variables de entorno ignoradas."
     ],
     "correct": 0,
-    "explanation": ".dockerignore mejora velocidad y seguridad al excluir archivos innecesarios del contexto de construcción."
+    "explanation": ".dockerignore mejora velocidad y seguridad al excluir archivos innecesarios del contexto de construcción.",
+    "active": true
   },
   {
     "id": 33,
@@ -460,7 +492,8 @@
       "Node"
     ],
     "correct": 1,
-    "explanation": "Un Pod contiene uno o más contenedores y comparte red/almacenamiento. Es la unidad básica."
+    "explanation": "Un Pod contiene uno o más contenedores y comparte red/almacenamiento. Es la unidad básica.",
+    "active": true
   },
   {
     "id": 34,
@@ -474,7 +507,8 @@
       "DaemonSet"
     ],
     "correct": 1,
-    "explanation": "Deployment gestiona ReplicaSets y permite actualizaciones declarativas, rollbacks, etc."
+    "explanation": "Deployment gestiona ReplicaSets y permite actualizaciones declarativas, rollbacks, etc.",
+    "active": true
   },
   {
     "id": 35,
@@ -488,7 +522,8 @@
       "ExternalName"
     ],
     "correct": 0,
-    "explanation": "ClusterIP asigna una IP virtual interna solo accesible desde el clúster. NodePort y LoadBalancer exponen externamente."
+    "explanation": "ClusterIP asigna una IP virtual interna solo accesible desde el clúster. NodePort y LoadBalancer exponen externamente.",
+    "active": true
   },
   {
     "id": 36,
@@ -502,7 +537,8 @@
       "Mediante un archivo .env montado."
     ],
     "correct": 1,
-    "explanation": "Kubernetes tiene el recurso Secret, que almacena datos sensibles codificados en base64 (no cifrado por defecto, pero es mejor que texto plano)."
+    "explanation": "Kubernetes tiene el recurso Secret, que almacena datos sensibles codificados en base64 (no cifrado por defecto, pero es mejor que texto plano).",
+    "active": true
   },
   {
     "id": 37,
@@ -516,7 +552,8 @@
       "Configuran el límite de CPU."
     ],
     "correct": 0,
-    "explanation": "Readiness probe determina si un Pod puede recibir tráfico. Liveness probe determina si debe reiniciarse."
+    "explanation": "Readiness probe determina si un Pod puede recibir tráfico. Liveness probe determina si debe reiniciarse.",
+    "active": true
   },
   {
     "id": 38,
@@ -530,7 +567,8 @@
       "kubectl add -f"
     ],
     "correct": 1,
-    "explanation": "kubectl apply -f es declarativo; crea o actualiza recursos. create es imperativo y falla si ya existe."
+    "explanation": "kubectl apply -f es declarativo; crea o actualiza recursos. create es imperativo y falla si ya existe.",
+    "active": true
   },
   {
     "id": 39,
@@ -544,7 +582,8 @@
       "Jaeger"
     ],
     "correct": 0,
-    "explanation": "Micrometer es una librería de métricas que expone endpoint /actuator/prometheus para que Prometheus scrapee. Las otras son para logs o tracing."
+    "explanation": "Micrometer es una librería de métricas que expone endpoint /actuator/prometheus para que Prometheus scrapee. Las otras son para logs o tracing.",
+    "active": true
   },
   {
     "id": 40,
@@ -558,7 +597,8 @@
       "Beats"
     ],
     "correct": 0,
-    "explanation": "Elasticsearch es el motor de búsqueda y almacenamiento. Logstash procesa, Kibana visualiza."
+    "explanation": "Elasticsearch es el motor de búsqueda y almacenamiento. Logstash procesa, Kibana visualiza.",
+    "active": true
   },
   {
     "id": 41,
@@ -572,7 +612,8 @@
       "JMX query"
     ],
     "correct": 1,
-    "explanation": "Prometheus usa PromQL para consultar series temporales."
+    "explanation": "Prometheus usa PromQL para consultar series temporales.",
+    "active": true
   },
   {
     "id": 42,
@@ -586,7 +627,8 @@
       "Grafana es un sistema de logging."
     ],
     "correct": 1,
-    "explanation": "Grafana es herramienta de visualización que usa Prometheus como fuente de datos."
+    "explanation": "Grafana es herramienta de visualización que usa Prometheus como fuente de datos.",
+    "active": true
   },
   {
     "id": 43,
@@ -600,7 +642,8 @@
       "Alertas en tiempo real."
     ],
     "correct": 0,
-    "explanation": "Tracing distribuido (Jaeger, Zipkin) permite seguir una petición a través de servicios para identificar cuellos de botella."
+    "explanation": "Tracing distribuido (Jaeger, Zipkin) permite seguir una petición a través de servicios para identificar cuellos de botella.",
+    "active": true
   },
   {
     "id": 44,
@@ -614,7 +657,8 @@
       "Ambos entornos ejecutan versiones diferentes al mismo tiempo sin intercambio."
     ],
     "correct": 0,
-    "explanation": "Blue-Green: dos entornos idénticos. Uno activo (blue), el otro (green) con nueva versión; después se cambia el tráfico al green."
+    "explanation": "Blue-Green: dos entornos idénticos. Uno activo (blue), el otro (green) con nueva versión; después se cambia el tráfico al green.",
+    "active": true
   },
   {
     "id": 45,
@@ -628,7 +672,8 @@
       "Se usan dos clusters completamente separados."
     ],
     "correct": 1,
-    "explanation": "Canary: lanzamiento gradual, inicialmente pequeño grupo, monitoreo, luego incremento."
+    "explanation": "Canary: lanzamiento gradual, inicialmente pequeño grupo, monitoreo, luego incremento.",
+    "active": true
   },
   {
     "id": 46,
@@ -642,7 +687,8 @@
       "Actualización que requiere downtime."
     ],
     "correct": 1,
-    "explanation": "Rolling update cambia Pods gradualmente, manteniendo algunos en ejecución para evitar downtime."
+    "explanation": "Rolling update cambia Pods gradualmente, manteniendo algunos en ejecución para evitar downtime.",
+    "active": true
   },
   {
     "id": 47,
@@ -656,7 +702,8 @@
       "Versión de Java."
     ],
     "correct": 0,
-    "explanation": "Se monitorean errores o rendimiento; si empeoran, se revierte el canary."
+    "explanation": "Se monitorean errores o rendimiento; si empeoran, se revierte el canary.",
+    "active": true
   },
   {
     "id": 48,
@@ -670,7 +717,8 @@
       "Es más fácil de implementar en entornos serverless."
     ],
     "correct": 1,
-    "explanation": "Blue-Green necesita doble infraestructura pero el rollback es inmediato cambiando el enrutamiento."
+    "explanation": "Blue-Green necesita doble infraestructura pero el rollback es inmediato cambiando el enrutamiento.",
+    "active": true
   },
   {
     "id": 49,
@@ -684,7 +732,8 @@
       "Reemplazar a Kubernetes."
     ],
     "correct": 0,
-    "explanation": "API Gateway actúa como punto de entrada único, gestionando seguridad, enrutamiento, límites, etc."
+    "explanation": "API Gateway actúa como punto de entrada único, gestionando seguridad, enrutamiento, límites, etc.",
+    "active": true
   },
   {
     "id": 50,
@@ -698,7 +747,8 @@
       "Desplegar bases de datos."
     ],
     "correct": 0,
-    "explanation": "Service Mesh añade una capa de proxy sidecar para manejar la comunicación red, seguridad y telemetría de manera transparente."
+    "explanation": "Service Mesh añade una capa de proxy sidecar para manejar la comunicación red, seguridad y telemetría de manera transparente.",
+    "active": true
   },
   {
     "id": 51,
@@ -712,7 +762,8 @@
       "Una imagen de Java específica."
     ],
     "correct": 0,
-    "explanation": "El proxy sidecar (Envoy) se despliega junto al contenedor de aplicación en el mismo Pod, interceptando tráfico."
+    "explanation": "El proxy sidecar (Envoy) se despliega junto al contenedor de aplicación en el mismo Pod, interceptando tráfico.",
+    "active": true
   },
   {
     "id": 52,
@@ -726,7 +777,8 @@
       "Antivirus para contenedores."
     ],
     "correct": 0,
-    "explanation": "Istio puede habilitar mTLS (cifrado y autenticación mutua) entre servicios de forma transparente."
+    "explanation": "Istio puede habilitar mTLS (cifrado y autenticación mutua) entre servicios de forma transparente.",
+    "active": true
   },
   {
     "id": 53,
@@ -740,7 +792,8 @@
       "Una estrategia de despliegue."
     ],
     "correct": 0,
-    "explanation": "Circuit breaker previene sobrecarga al servicio caído; Service Mesh puede configurarlo a nivel de proxy."
+    "explanation": "Circuit breaker previene sobrecarga al servicio caído; Service Mesh puede configurarlo a nivel de proxy.",
+    "active": true
   },
   {
     "id": 54,
@@ -754,7 +807,8 @@
       "PaaS no es parte de la nube."
     ],
     "correct": 0,
-    "explanation": "IaaS: infraestructura (VM, redes). PaaS: plataforma de ejecución (App Engine, Elastic Beanstalk)."
+    "explanation": "IaaS: infraestructura (VM, redes). PaaS: plataforma de ejecución (App Engine, Elastic Beanstalk).",
+    "active": true
   },
   {
     "id": 55,
@@ -768,7 +822,8 @@
       "Optimizar el código para usar menos recursos."
     ],
     "correct": 1,
-    "explanation": "Horizontal: añadir más nodos. Vertical: aumentar recursos de un nodo."
+    "explanation": "Horizontal: añadir más nodos. Vertical: aumentar recursos de un nodo.",
+    "active": true
   },
   {
     "id": 56,
@@ -782,7 +837,8 @@
       "Un tipo de servicio de base de datos."
     ],
     "correct": 0,
-    "explanation": "AZ son ubicaciones físicas aisladas dentro de una región, con conectividad redundante para alta disponibilidad."
+    "explanation": "AZ son ubicaciones físicas aisladas dentro de una región, con conectividad redundante para alta disponibilidad.",
+    "active": true
   },
   {
     "id": 57,
@@ -796,7 +852,8 @@
       "No requiere empaquetar el código."
     ],
     "correct": 1,
-    "explanation": "Serverless abstrae servidores, escala automáticamente y factura por uso. Java puede tener cold starts, pero es manejable."
+    "explanation": "Serverless abstrae servidores, escala automáticamente y factura por uso. Java puede tener cold starts, pero es manejable.",
+    "active": true
   },
   {
     "id": 58,
@@ -810,7 +867,8 @@
       "df -h"
     ],
     "correct": 0,
-    "explanation": "ps aux muestra todos los procesos con detalles de CPU, memoria, etc. top o htop también, pero ps es común en scripts."
+    "explanation": "ps aux muestra todos los procesos con detalles de CPU, memoria, etc. top o htop también, pero ps es común en scripts.",
+    "active": true
   },
   {
     "id": 59,
@@ -824,7 +882,8 @@
       "set VAR=value comando"
     ],
     "correct": 1,
-    "explanation": "Prefijando la asignación al comando: VAR=valor comando. La variable solo existe para ese proceso hijo."
+    "explanation": "Prefijando la asignación al comando: VAR=valor comando. La variable solo existe para ese proceso hijo.",
+    "active": true
   },
   {
     "id": 60,
@@ -838,7 +897,8 @@
       "which"
     ],
     "correct": 1,
-    "explanation": "find . -name '*.java' busca recursivamente. locate usa base de datos, grep busca contenido."
+    "explanation": "find . -name '*.java' busca recursivamente. locate usa base de datos, grep busca contenido.",
+    "active": true
   },
   {
     "id": 61,
@@ -852,7 +912,8 @@
       "Cifra el script."
     ],
     "correct": 1,
-    "explanation": "chmod +x añade permiso de ejecución (eXecute)."
+    "explanation": "chmod +x añade permiso de ejecución (eXecute).",
+    "active": true
   },
   {
     "id": 62,
@@ -866,7 +927,8 @@
       "Nmap"
     ],
     "correct": 0,
-    "explanation": "OWASP Dependency-Check analiza dependencias (JAR, pom.xml) y reporta vulnerabilidades conocidas."
+    "explanation": "OWASP Dependency-Check analiza dependencias (JAR, pom.xml) y reporta vulnerabilidades conocidas.",
+    "active": true
   },
   {
     "id": 63,
@@ -880,7 +942,8 @@
       "Enviarlos por correo electrónico al equipo."
     ],
     "correct": 1,
-    "explanation": "Los secretos deben inyectarse desde un almacén seguro y no aparecer en logs ni código fuente."
+    "explanation": "Los secretos deben inyectarse desde un almacén seguro y no aparecer en logs ni código fuente.",
+    "active": true
   },
   {
     "id": 64,
@@ -894,7 +957,8 @@
       "Revisar logs del contenedor."
     ],
     "correct": 0,
-    "explanation": "Herramientas como Trivy, Clair escanean imágenes base y capas adicionales por CVEs. Mejor ejecutarlo en pipeline para evitar imágenes inseguras."
+    "explanation": "Herramientas como Trivy, Clair escanean imágenes base y capas adicionales por CVEs. Mejor ejecutarlo en pipeline para evitar imágenes inseguras.",
+    "active": true
   },
   {
     "id": 65,
@@ -908,6 +972,7 @@
       "Usar siempre imágenes oficiales."
     ],
     "correct": 1,
-    "explanation": "Mínimo privilegio: ejecutar aplicaciones con los permisos estrictamente necesarios. En Docker: USER no root, --cap-drop=ALL, etc."
+    "explanation": "Mínimo privilegio: ejecutar aplicaciones con los permisos estrictamente necesarios. En Docker: USER no root, --cap-drop=ALL, etc.",
+    "active": true
   }
 ]

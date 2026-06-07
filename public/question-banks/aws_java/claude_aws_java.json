@@ -12,7 +12,8 @@
       "Es un acuerdo de niveles de servicio (SLA) entre AWS y el cliente"
     ],
     "correct": 0,
-    "explanation": "AWS protege hardware, red y software base. El cliente es responsable de sus datos, apps, configuración IAM y cifrado. Por ejemplo: AWS parchea el hipervisor de EC2, pero tú parcheas el SO de tu instancia."
+    "explanation": "AWS protege hardware, red y software base. El cliente es responsable de sus datos, apps, configuración IAM y cifrado. Por ejemplo: AWS parchea el hipervisor de EC2, pero tú parcheas el SO de tu instancia.",
+    "active": true
   },
   {
     "id": 2,
@@ -27,7 +28,8 @@
       "Un datacenter aislado dentro de una región AWS, con red y energía independientes"
     ],
     "correct": 3,
-    "explanation": "Cada región tiene 2 o más AZs físicamente separadas. Si una AZ falla, las otras siguen operando. Distribuir recursos entre AZs es la base de la alta disponibilidad."
+    "explanation": "Cada región tiene 2 o más AZs físicamente separadas. Si una AZ falla, las otras siguen operando. Distribuir recursos entre AZs es la base de la alta disponibilidad.",
+    "active": true
   },
   {
     "id": 3,
@@ -42,7 +44,8 @@
       "Como orquestador de contenedores Docker"
     ],
     "correct": 2,
-    "explanation": "S3 es almacenamiento de objetos accesible vía HTTP. Muy usado para guardar uploads de usuarios, artefactos de build, logs y backups. No es una base de datos ni sirve para ejecutar código."
+    "explanation": "S3 es almacenamiento de objetos accesible vía HTTP. Muy usado para guardar uploads de usuarios, artefactos de build, logs y backups. No es una base de datos ni sirve para ejecutar código.",
+    "active": true
   },
   {
     "id": 4,
@@ -57,7 +60,8 @@
       "Los Roles son para personas físicas; los Users para servicios AWS"
     ],
     "correct": 1,
-    "explanation": "Users: claves de acceso estáticas para personas. Roles: identidades temporales asumidas por servicios (EC2 instance profile, Lambda execution role). Las buenas prácticas prefieren Roles sobre credenciales estáticas hardcodeadas."
+    "explanation": "Users: claves de acceso estáticas para personas. Roles: identidades temporales asumidas por servicios (EC2 instance profile, Lambda execution role). Las buenas prácticas prefieren Roles sobre credenciales estáticas hardcodeadas.",
+    "active": true
   },
   {
     "id": 5,
@@ -72,7 +76,8 @@
       "La pública tiene ruta al Internet Gateway; la privada no tiene acceso directo a internet"
     ],
     "correct": 3,
-    "explanation": "La subnet pública tiene una ruta al Internet Gateway en su tabla de rutas. La privada no; sus recursos solo se comunican internamente o salen a internet via NAT Gateway, sin ser accesibles desde fuera."
+    "explanation": "La subnet pública tiene una ruta al Internet Gateway en su tabla de rutas. La privada no; sus recursos solo se comunican internamente o salen a internet via NAT Gateway, sin ser accesibles desde fuera.",
+    "active": true
   },
   {
     "id": 6,
@@ -87,7 +92,8 @@
       "Una base de datos en memoria tipo Redis"
     ],
     "correct": 2,
-    "explanation": "RDS gestiona motores SQL: MySQL, PostgreSQL, MariaDB, Oracle y Aurora. Automatiza backups, parches, failover Multi-AZ y escalado de réplicas de lectura."
+    "explanation": "RDS gestiona motores SQL: MySQL, PostgreSQL, MariaDB, Oracle y Aurora. Automatiza backups, parches, failover Multi-AZ y escalado de réplicas de lectura.",
+    "active": true
   },
   {
     "id": 7,
@@ -102,7 +108,8 @@
       "Una base de datos serverless de documentos"
     ],
     "correct": 1,
-    "explanation": "Lambda ejecuta funciones disparadas por eventos (API Gateway, S3, SQS, etc.). Escala automáticamente de 0 a miles de instancias. Pagas solo por el tiempo de ejecución y el número de invocaciones."
+    "explanation": "Lambda ejecuta funciones disparadas por eventos (API Gateway, S3, SQS, etc.). Escala automáticamente de 0 a miles de instancias. Pagas solo por el tiempo de ejecución y el número de invocaciones.",
+    "active": true
   },
   {
     "id": 8,
@@ -117,7 +124,8 @@
       "Es código de SDK v1, en v2 ya no existe StaticCredentialsProvider"
     ],
     "correct": 2,
-    "explanation": "Nunca hardcodees credenciales en código o properties. Si el repo es público o los logs se filtran, las claves quedan expuestas. En EC2/ECS/Lambda usa IAM Roles. El SDK v2 las descubre automáticamente con DefaultCredentialsProvider."
+    "explanation": "Nunca hardcodees credenciales en código o properties. Si el repo es público o los logs se filtran, las claves quedan expuestas. En EC2/ECS/Lambda usa IAM Roles. El SDK v2 las descubre automáticamente con DefaultCredentialsProvider.",
+    "active": true
   },
   {
     "id": 9,
@@ -132,7 +140,8 @@
       "Para distribuir tráfico HTTP entre múltiples instancias o contenedores automáticamente"
     ],
     "correct": 3,
-    "explanation": "El ALB (Application Load Balancer) opera en capa 7 HTTP/HTTPS. Distribuye requests entre targets (EC2, ECS, Lambda) usando path-based o host-based routing. Permite rolling deployments sin downtime."
+    "explanation": "El ALB (Application Load Balancer) opera en capa 7 HTTP/HTTPS. Distribuye requests entre targets (EC2, ECS, Lambda) usando path-based o host-based routing. Permite rolling deployments sin downtime.",
+    "active": true
   },
   {
     "id": 10,
@@ -147,7 +156,8 @@
       "Un gestor de secretos y credenciales de aplicación"
     ],
     "correct": 2,
-    "explanation": "CloudWatch recolecta logs y métricas de EC2, Lambda, RDS, ECS, etc. En Spring Boot configuras el CloudWatch Logs agent o usas el SDK para métricas personalizadas. Creas alarmas (ej: errores HTTP 5xx > 10/min) y dashboards."
+    "explanation": "CloudWatch recolecta logs y métricas de EC2, Lambda, RDS, ECS, etc. En Spring Boot configuras el CloudWatch Logs agent o usas el SDK para métricas personalizadas. Creas alarmas (ej: errores HTTP 5xx > 10/min) y dashboards.",
+    "active": true
   },
   {
     "id": 11,
@@ -162,7 +172,8 @@
       "Un servicio gestionado de colas de mensajes para desacoplar servicios y procesar tareas de forma asíncrona"
     ],
     "correct": 3,
-    "explanation": "SQS permite que un servicio Java produzca mensajes y otro los consuma de forma independiente. Ideal para tareas asíncronas: enviar emails, procesar pagos, redimensionar imágenes. Si el consumidor falla, el mensaje vuelve a estar disponible."
+    "explanation": "SQS permite que un servicio Java produzca mensajes y otro los consuma de forma independiente. Ideal para tareas asíncronas: enviar emails, procesar pagos, redimensionar imágenes. Si el consumidor falla, el mensaje vuelve a estar disponible.",
+    "active": true
   },
   {
     "id": 12,
@@ -177,7 +188,8 @@
       "Un orquestador de contenedores equivalente a Kubernetes"
     ],
     "correct": 2,
-    "explanation": "ECR almacena imágenes Docker privadas. En el pipeline: CodeBuild compila el JAR, construye la imagen Docker y hace push a ECR. Luego ECS/EKS descarga la imagen desde ECR para desplegarla."
+    "explanation": "ECR almacena imágenes Docker privadas. En el pipeline: CodeBuild compila el JAR, construye la imagen Docker y hace push a ECR. Luego ECS/EKS descarga la imagen desde ECR para desplegarla.",
+    "active": true
   },
   {
     "id": 13,
@@ -192,7 +204,8 @@
       "Un orquestador de contenedores simplificado"
     ],
     "correct": 2,
-    "explanation": "Beanstalk provisiona EC2, Load Balancer, Auto Scaling y CloudWatch automáticamente. Solo subes el artefacto Java. Pierde algo de control vs ECS/EC2 directos, pero reduce drásticamente la carga operativa inicial."
+    "explanation": "Beanstalk provisiona EC2, Load Balancer, Auto Scaling y CloudWatch automáticamente. Solo subes el artefacto Java. Pierde algo de control vs ECS/EC2 directos, pero reduce drásticamente la carga operativa inicial.",
+    "active": true
   },
   {
     "id": 14,
@@ -207,7 +220,8 @@
       "Un servicio de auditoría de cambios en la cuenta"
     ],
     "correct": 1,
-    "explanation": "Los Security Groups son firewalls stateful: defines reglas por protocolo, puerto y origen/destino. Al ser stateful, si permites la entrada de tráfico, la respuesta sale automáticamente."
+    "explanation": "Los Security Groups son firewalls stateful: defines reglas por protocolo, puerto y origen/destino. Al ser stateful, si permites la entrada de tráfico, la respuesta sale automáticamente.",
+    "active": true
   },
   {
     "id": 15,
@@ -222,7 +236,8 @@
       "AWS CloudTrail"
     ],
     "correct": 1,
-    "explanation": "SNS es un servicio de pub/sub y notificaciones. Envía mensajes a múltiples suscriptores via email, SMS, HTTP o SQS. Es ideal para alertas o desacoplar productores de múltiples consumidores."
+    "explanation": "SNS es un servicio de pub/sub y notificaciones. Envía mensajes a múltiples suscriptores via email, SMS, HTTP o SQS. Es ideal para alertas o desacoplar productores de múltiples consumidores.",
+    "active": true
   },
   {
     "id": 16,
@@ -237,7 +252,8 @@
       "Para gestionar acceso y permisos de usuarios"
     ],
     "correct": 1,
-    "explanation": "Auto Scaling lanza o termina instancias EC2 basándose en métricas (CPU, tráfico) o schedules. Garantiza capacidad suficiente en picos y ahorro en horas de baja demanda."
+    "explanation": "Auto Scaling lanza o termina instancias EC2 basándose en métricas (CPU, tráfico) o schedules. Garantiza capacidad suficiente en picos y ahorro en horas de baja demanda.",
+    "active": true
   },
   {
     "id": 17,
@@ -252,7 +268,8 @@
       "Una red de distribución de contenido (CDN)"
     ],
     "correct": 1,
-    "explanation": "CloudFormation define infraestructura como código. Crea stacks reproducibles y versionables: VPCs, EC2, RDS, etc. Facilita múltiples entornos (dev, staging, prod) idénticos con una sola plantilla."
+    "explanation": "CloudFormation define infraestructura como código. Crea stacks reproducibles y versionables: VPCs, EC2, RDS, etc. Facilita múltiples entornos (dev, staging, prod) idénticos con una sola plantilla.",
+    "active": true
   },
   {
     "id": 18,
@@ -267,7 +284,8 @@
       "Un protocolo de cifrado de AWS"
     ],
     "correct": 1,
-    "explanation": "VPC (Virtual Private Cloud) es tu red aislada en AWS. Defines rangos IP, subredes públicas/privadas, tablas de rutas, internet gateways y security groups. Todos los recursos se lanzan dentro de una VPC."
+    "explanation": "VPC (Virtual Private Cloud) es tu red aislada en AWS. Defines rangos IP, subredes públicas/privadas, tablas de rutas, internet gateways y security groups. Todos los recursos se lanzan dentro de una VPC.",
+    "active": true
   },
   {
     "id": 19,
@@ -282,7 +300,8 @@
       "Un servicio de caché como Redis"
     ],
     "correct": 1,
-    "explanation": "DynamoDB es la BD NoSQL flagship de AWS: serverless, latencia de milisegundos, escalado automático. Ideal para sesiones, catálogos o cualquier acceso por clave primaria sin joins complejos."
+    "explanation": "DynamoDB es la BD NoSQL flagship de AWS: serverless, latencia de milisegundos, escalado automático. Ideal para sesiones, catálogos o cualquier acceso por clave primaria sin joins complejos.",
+    "active": true
   },
   {
     "id": 20,
@@ -297,7 +316,8 @@
       "Cuando necesitas replicación automática global"
     ],
     "correct": 1,
-    "explanation": "EBS (Elastic Block Store) es almacenamiento en bloque que se monta como disco duro en EC2. Necesario cuando la app escribe en el filesystem local (logs, archivos temporales, bases de datos locales). S3 es para objetos vía API HTTP."
+    "explanation": "EBS (Elastic Block Store) es almacenamiento en bloque que se monta como disco duro en EC2. Necesario cuando la app escribe en el filesystem local (logs, archivos temporales, bases de datos locales). S3 es para objetos vía API HTTP.",
+    "active": true
   },
   {
     "id": 21,
@@ -312,7 +332,8 @@
       "Un servicio de distribución de contenido CDN"
     ],
     "correct": 1,
-    "explanation": "Route 53 gestiona DNS con capacidades avanzadas: routing por latencia, geolocalización, pesos, failover automático con health checks. Esencial para arquitecturas multi-región."
+    "explanation": "Route 53 gestiona DNS con capacidades avanzadas: routing por latencia, geolocalización, pesos, failover automático con health checks. Esencial para arquitecturas multi-región.",
+    "active": true
   },
   {
     "id": 22,
@@ -327,7 +348,8 @@
       "SNS solo funciona con AWS Lambda como suscriptor"
     ],
     "correct": 1,
-    "explanation": "SQS: un productor pone mensajes y los consumidores hacen pull. SNS: un publisher envía a un topic y todos los suscriptores reciben instantáneamente. Se combinan (SNS→SQS fan-out) para arquitecturas robustas."
+    "explanation": "SQS: un productor pone mensajes y los consumidores hacen pull. SNS: un publisher envía a un topic y todos los suscriptores reciben instantáneamente. Se combinan (SNS→SQS fan-out) para arquitecturas robustas.",
+    "active": true
   },
   {
     "id": 23,
@@ -342,7 +364,8 @@
       "Un servicio de VPN para conectar equipos remotos"
     ],
     "correct": 1,
-    "explanation": "CodePipeline orquesta el flujo completo de entrega: source (CodeCommit/GitHub) → build (CodeBuild) → test → deploy (CodeDeploy/ECS/Beanstalk). Se integra con GitHub Actions también."
+    "explanation": "CodePipeline orquesta el flujo completo de entrega: source (CodeCommit/GitHub) → build (CodeBuild) → test → deploy (CodeDeploy/ECS/Beanstalk). Se integra con GitHub Actions también.",
+    "active": true
   },
   {
     "id": 24,
@@ -357,7 +380,8 @@
       "Un servicio de chat entre microservicios"
     ],
     "correct": 1,
-    "explanation": "SES envía emails a bajo costo desde aplicaciones. En Spring Boot se integra via JavaMail con SMTP de SES, o directamente con el SDK AWS. Úsalo para emails transaccionales: bienvenida, reset de contraseña, alertas de sistema."
+    "explanation": "SES envía emails a bajo costo desde aplicaciones. En Spring Boot se integra via JavaMail con SMTP de SES, o directamente con el SDK AWS. Úsalo para emails transaccionales: bienvenida, reset de contraseña, alertas de sistema.",
+    "active": true
   },
   {
     "id": 25,
@@ -372,7 +396,8 @@
       "Un tipo de instancia EC2 optimizada para seguridad"
     ],
     "correct": 1,
-    "explanation": "IAM (Identity and Access Management) controla quién puede hacer qué en AWS mediante usuarios, grupos, roles y políticas. Es el pilar de seguridad de toda arquitectura AWS."
+    "explanation": "IAM (Identity and Access Management) controla quién puede hacer qué en AWS mediante usuarios, grupos, roles y políticas. Es el pilar de seguridad de toda arquitectura AWS.",
+    "active": true
   },
   {
     "id": 26,
@@ -387,7 +412,8 @@
       "Solo sirve para almacenar configuración de funciones Lambda"
     ],
     "correct": 1,
-    "explanation": "Parameter Store guarda configuración jerárquica (/app/prod/db-url) con tier gratuito. Para secretos con rotación automática se prefiere Secrets Manager. Ambos se integran con Spring Cloud AWS para inyectar valores como properties."
+    "explanation": "Parameter Store guarda configuración jerárquica (/app/prod/db-url) con tier gratuito. Para secretos con rotación automática se prefiere Secrets Manager. Ambos se integran con Spring Cloud AWS para inyectar valores como properties.",
+    "active": true
   },
   {
     "id": 27,
@@ -402,7 +428,8 @@
       "Solo lo necesitas si tienes instancias con IPv6"
     ],
     "correct": 1,
-    "explanation": "Las instancias privadas no tienen IP pública ni ruta a internet. El NAT Gateway (en subnet pública) permite salida a internet (actualizaciones, llamadas a APIs externas) sin exponer las instancias privadas a tráfico entrante."
+    "explanation": "Las instancias privadas no tienen IP pública ni ruta a internet. El NAT Gateway (en subnet pública) permite salida a internet (actualizaciones, llamadas a APIs externas) sin exponer las instancias privadas a tráfico entrante.",
+    "active": true
   },
   {
     "id": 28,
@@ -417,7 +444,8 @@
       "Un servicio de mensajería asíncrona como SQS"
     ],
     "correct": 1,
-    "explanation": "ElastiCache ofrece Redis o Memcached gestionados. En Spring Boot lo usas para cachear resultados de queries costosas (@Cacheable con Redis), sesiones de usuario, rate limiting o datos de referencia frecuentemente leídos."
+    "explanation": "ElastiCache ofrece Redis o Memcached gestionados. En Spring Boot lo usas para cachear resultados de queries costosas (@Cacheable con Redis), sesiones de usuario, rate limiting o datos de referencia frecuentemente leídos.",
+    "active": true
   },
   {
     "id": 29,
@@ -432,7 +460,8 @@
       "La estándar es para Java; la FIFO para Python y Node.js"
     ],
     "correct": 1,
-    "explanation": "Estándar: throughput casi ilimitado pero puede duplicar o reordenar. FIFO: orden garantizado y exactly-once, hasta 3,000 TPS con batching. Usa FIFO cuando el orden importa: eventos de pago, cambios de estado de un pedido."
+    "explanation": "Estándar: throughput casi ilimitado pero puede duplicar o reordenar. FIFO: orden garantizado y exactly-once, hasta 3,000 TPS con batching. Usa FIFO cuando el orden importa: eventos de pago, cambios de estado de un pedido.",
+    "active": true
   },
   {
     "id": 30,
@@ -447,7 +476,8 @@
       "Permite acceder a servicios AWS desde la VPC sin pasar por internet, mejorando seguridad y reduciendo costos de NAT Gateway"
     ],
     "correct": 3,
-    "explanation": "Sin VPC Endpoint, el tráfico a S3 sale por NAT Gateway (costo + latencia). Con un Gateway Endpoint para S3, el tráfico permanece en la red de AWS, es gratuito y más rápido. Elimina la necesidad de NAT para acceder a S3 o DynamoDB."
+    "explanation": "Sin VPC Endpoint, el tráfico a S3 sale por NAT Gateway (costo + latencia). Con un Gateway Endpoint para S3, el tráfico permanece en la red de AWS, es gratuito y más rápido. Elimina la necesidad de NAT para acceder a S3 o DynamoDB.",
+    "active": true
   },
   {
     "id": 31,
@@ -462,7 +492,8 @@
       "Un firewall de aplicaciones web (WAF)"
     ],
     "correct": 1,
-    "explanation": "X-Ray genera el service map y muestra latencias y errores por segmento. Con ADOT (OpenTelemetry de AWS) en Spring Boot, el agente instrumenta automáticamente llamadas HTTP, SQS y JDBC. El trace ID se propaga en headers entre servicios."
+    "explanation": "X-Ray genera el service map y muestra latencias y errores por segmento. Con ADOT (OpenTelemetry de AWS) en Spring Boot, el agente instrumenta automáticamente llamadas HTTP, SQS y JDBC. El trace ID se propaga en headers entre servicios.",
+    "active": true
   },
   {
     "id": 32,
@@ -477,7 +508,8 @@
       "Es el tiempo que tarda el trigger de S3 en activarse"
     ],
     "correct": 2,
-    "explanation": "La JVM tarda en arrancar cuando no hay instancia caliente. Mitigaciones: Provisioned Concurrency (instancias precalentadas), Lambda SnapStart (restaura snapshot de JVM), GraalVM native image (binario sin JVM), o reducir tamaño del deployment."
+    "explanation": "La JVM tarda en arrancar cuando no hay instancia caliente. Mitigaciones: Provisioned Concurrency (instancias precalentadas), Lambda SnapStart (restaura snapshot de JVM), GraalVM native image (binario sin JVM), o reducir tamaño del deployment.",
+    "active": true
   },
   {
     "id": 33,
@@ -492,7 +524,8 @@
       "Es idéntico a Parameter Store; da igual cuál uses para contraseñas de BD"
     ],
     "correct": 2,
-    "explanation": "Secrets Manager almacena y rota credenciales automáticamente con cifrado KMS. En Spring Boot con Spring Cloud AWS: configura el prefix y las propiedades se inyectan como @Value. El Task Role de ECS autoriza el acceso."
+    "explanation": "Secrets Manager almacena y rota credenciales automáticamente con cifrado KMS. En Spring Boot con Spring Cloud AWS: configura el prefix y las propiedades se inyectan como @Value. El Task Role de ECS autoriza el acceso.",
+    "active": true
   },
   {
     "id": 34,
@@ -507,7 +540,8 @@
       "Fargate es serverless: no gestionas instancias EC2, pagas exactamente por CPU/memoria del contenedor, sin over-provisioning ni parches de SO"
     ],
     "correct": 3,
-    "explanation": "Con EC2 launch type: provisiones un cluster de instancias, las parcheas y las escalas. Con Fargate: defines cpu/memory por task y AWS gestiona todo el servidor. Ideal para equipos pequeños o cargas intermitentes."
+    "explanation": "Con EC2 launch type: provisiones un cluster de instancias, las parcheas y las escalas. Con Fargate: defines cpu/memory por task y AWS gestiona todo el servidor. Ideal para equipos pequeños o cargas intermitentes.",
+    "active": true
   },
   {
     "id": 35,
@@ -522,7 +556,8 @@
       "Publicación de mensajes a un SNS topic desde un consumidor"
     ],
     "correct": 1,
-    "explanation": "waitTimeSeconds(20) activa long polling: espera hasta 20s por mensajes en lugar de responder vacío inmediatamente. Reduce llamadas API en un 95% en colas con poco tráfico. deleteMessage después del procesamiento confirma que el mensaje fue procesado."
+    "explanation": "waitTimeSeconds(20) activa long polling: espera hasta 20s por mensajes en lugar de responder vacío inmediatamente. Reduce llamadas API en un 95% en colas con poco tráfico. deleteMessage después del procesamiento confirma que el mensaje fue procesado.",
+    "active": true
   },
   {
     "id": 36,
@@ -537,7 +572,8 @@
       "Una cola que expira automáticamente a las 24 horas"
     ],
     "correct": 2,
-    "explanation": "Sin DLQ, los mensajes que fallan repetidamente pueden bloquear la cola o perderse. Con DLQ: configuras maxReceiveCount=3; después de 3 fallos el mensaje va a la DLQ. Allí puedes inspeccionarlo, corregir el bug y reintroducirlo."
+    "explanation": "Sin DLQ, los mensajes que fallan repetidamente pueden bloquear la cola o perderse. Con DLQ: configuras maxReceiveCount=3; después de 3 fallos el mensaje va a la DLQ. Allí puedes inspeccionarlo, corregir el bug y reintroducirlo.",
+    "active": true
   },
   {
     "id": 37,
@@ -552,7 +588,8 @@
       "Usando múltiples SQS queues como buffer de cada llamada"
     ],
     "correct": 2,
-    "explanation": "@CircuitBreaker de Resilience4j monitorea fallos consecutivos. Cuando supera el umbral el circuito se 'abre' y las llamadas van directo al fallbackMethod. Tras un tiempo pasa a half-open para probar si el servicio se recuperó. Evita que un servicio lento derribe toda la aplicación."
+    "explanation": "@CircuitBreaker de Resilience4j monitorea fallos consecutivos. Cuando supera el umbral el circuito se 'abre' y las llamadas van directo al fallbackMethod. Tras un tiempo pasa a half-open para probar si el servicio se recuperó. Evita que un servicio lento derribe toda la aplicación.",
+    "active": true
   },
   {
     "id": 38,
@@ -567,7 +604,8 @@
       "Equivalente a IAM pero para bases de datos RDS"
     ],
     "correct": 1,
-    "explanation": "Cognito User Pools emiten access/id tokens JWT. Spring Security configura spring.security.oauth2.resourceserver.jwt.jwk-set-uri apuntando al endpoint JWKS de Cognito. La validación es local: verifica la firma con la clave pública. No hay llamada remota por request."
+    "explanation": "Cognito User Pools emiten access/id tokens JWT. Spring Security configura spring.security.oauth2.resourceserver.jwt.jwk-set-uri apuntando al endpoint JWKS de Cognito. La validación es local: verifica la firma con la clave pública. No hay llamada remota por request.",
+    "active": true
   },
   {
     "id": 39,
@@ -582,7 +620,8 @@
       "Actualizar el código directamente vía SSH en producción"
     ],
     "correct": 1,
-    "explanation": "Blue/Green mantiene el entorno actual (blue) corriendo mientras levantas el nuevo (green). Cuando green pasa los health checks, cambias el tráfico en el LB o Route 53. Rollback instantáneo apuntando de vuelta a blue."
+    "explanation": "Blue/Green mantiene el entorno actual (blue) corriendo mientras levantas el nuevo (green). Cuando green pasa los health checks, cambias el tráfico en el LB o Route 53. Rollback instantáneo apuntando de vuelta a blue.",
+    "active": true
   },
   {
     "id": 40,
@@ -597,7 +636,8 @@
       "Un patrón de autenticación para publicar a SQS con permisos IAM"
     ],
     "correct": 1,
-    "explanation": "El Outbox escribe el evento en la misma transacción de BD. Un proceso separado lee la tabla outbox y publica a SQS con garantía de al-menos-una-vez. Resuelve el problema de consistencia entre BD y broker de mensajes."
+    "explanation": "El Outbox escribe el evento en la misma transacción de BD. Un proceso separado lee la tabla outbox y publica a SQS con garantía de al-menos-una-vez. Resuelve el problema de consistencia entre BD y broker de mensajes.",
+    "active": true
   },
   {
     "id": 41,
@@ -612,7 +652,8 @@
       "Un sistema de autenticación multifactor para la consola AWS"
     ],
     "correct": 1,
-    "explanation": "KMS gestiona claves de cifrado simétricas y asimétricas. Se integra con la mayoría de servicios AWS para cifrar datos en reposo. Define quién puede usar cada clave mediante políticas de clave e IAM."
+    "explanation": "KMS gestiona claves de cifrado simétricas y asimétricas. Se integra con la mayoría de servicios AWS para cifrar datos en reposo. Define quién puede usar cada clave mediante políticas de clave e IAM.",
+    "active": true
   },
   {
     "id": 42,
@@ -627,7 +668,8 @@
       "Una base de datos de series de tiempo para logs de aplicación"
     ],
     "correct": 1,
-    "explanation": "CloudTrail registra cada acción en tu cuenta AWS: quién hizo qué, desde dónde y cuándo. Esencial para auditoría, compliance (PCI-DSS, HIPAA), detección de actividad sospechosa e investigación de incidentes."
+    "explanation": "CloudTrail registra cada acción en tu cuenta AWS: quién hizo qué, desde dónde y cuándo. Esencial para auditoría, compliance (PCI-DSS, HIPAA), detección de actividad sospechosa e investigación de incidentes.",
+    "active": true
   },
   {
     "id": 43,
@@ -642,7 +684,8 @@
       "Un servicio para compilar imágenes Docker en la nube"
     ],
     "correct": 1,
-    "explanation": "ECS orquesta contenedores Docker. Define Tasks (qué contenedores correr y con qué config) y Services (cuántas réplicas mantener). Usa EC2 (tú gestionas los servidores) o Fargate (serverless)."
+    "explanation": "ECS orquesta contenedores Docker. Define Tasks (qué contenedores correr y con qué config) y Services (cuántas réplicas mantener). Usa EC2 (tú gestionas los servidores) o Fargate (serverless).",
+    "active": true
   },
   {
     "id": 44,
@@ -657,7 +700,8 @@
       "Es un balanceador de carga de capa 4 (TCP)"
     ],
     "correct": 1,
-    "explanation": "API Gateway actúa como puerta de entrada para APIs. Para Java: proxy a ALB donde corre Spring Boot, o invocación directa de Lambdas. Gestiona autenticación, throttling, caché, versionado y logging."
+    "explanation": "API Gateway actúa como puerta de entrada para APIs. Para Java: proxy a ALB donde corre Spring Boot, o invocación directa de Lambdas. Gestiona autenticación, throttling, caché, versionado y logging.",
+    "active": true
   },
   {
     "id": 45,
@@ -672,7 +716,8 @@
       "URLs que apuntan a versiones antiguas de objetos en S3"
     ],
     "correct": 1,
-    "explanation": "El backend Java genera la URL firmada (válida 15 min en el ejemplo) y la envía al cliente. El cliente sube el archivo directamente a S3 sin pasar por tu backend. Reduce carga en tu servidor y evita exponer credenciales AWS al cliente."
+    "explanation": "El backend Java genera la URL firmada (válida 15 min en el ejemplo) y la envía al cliente. El cliente sube el archivo directamente a S3 sin pasar por tu backend. Reduce carga en tu servidor y evita exponer credenciales AWS al cliente.",
+    "active": true
   },
   {
     "id": 46,
@@ -687,7 +732,8 @@
       "Un servicio de análisis de vulnerabilidades de dependencias"
     ],
     "correct": 1,
-    "explanation": "CodeBuild ejecuta builds en contenedores gestionados. Usas un buildspec.yml para definir fases: install (JDK), pre_build (mvn test), build (mvn package), post_build (docker build + push a ECR). Se integra en CodePipeline o GitHub Actions."
+    "explanation": "CodeBuild ejecuta builds en contenedores gestionados. Usas un buildspec.yml para definir fases: install (JDK), pre_build (mvn test), build (mvn package), post_build (docker build + push a ECR). Se integra en CodePipeline o GitHub Actions.",
+    "active": true
   },
   {
     "id": 47,
@@ -702,7 +748,8 @@
       "Un servicio de análisis estático de código"
     ],
     "correct": 1,
-    "explanation": "CodeDeploy gestiona el ciclo de deployment: copia artefactos, ejecuta scripts de pre/post deployment y gestiona rollback ante fallos. Con ECS hace Blue/Green nativamente, cambiando tráfico en el ALB de forma gradual."
+    "explanation": "CodeDeploy gestiona el ciclo de deployment: copia artefactos, ejecuta scripts de pre/post deployment y gestiona rollback ante fallos. Con ECS hace Blue/Green nativamente, cambiando tráfico en el ALB de forma gradual.",
+    "active": true
   },
   {
     "id": 48,
@@ -717,7 +764,8 @@
       "Un servicio de gestión de secretos de configuración"
     ],
     "correct": 2,
-    "explanation": "CloudTrail registra quién hizo la acción. AWS Config registra el estado de configuración de cada recurso a lo largo del tiempo y evalúa reglas de compliance. Si un Security Group se modifica para abrir el puerto 22, Config lo detecta y puede disparar una Lambda para revertirlo."
+    "explanation": "CloudTrail registra quién hizo la acción. AWS Config registra el estado de configuración de cada recurso a lo largo del tiempo y evalúa reglas de compliance. Si un Security Group se modifica para abrir el puerto 22, Config lo detecta y puede disparar una Lambda para revertirlo.",
+    "active": true
   },
   {
     "id": 49,
@@ -732,7 +780,8 @@
       "Un sistema de replicación de objetos entre regiones"
     ],
     "correct": 1,
-    "explanation": "Con versioning activo, cada PUT crea una nueva versión sin eliminar la anterior. Protege contra eliminaciones accidentales (se crea un delete marker) y cambios no deseados. Necesario para buckets usados como fuente de backups o artefactos."
+    "explanation": "Con versioning activo, cada PUT crea una nueva versión sin eliminar la anterior. Protege contra eliminaciones accidentales (se crea un delete marker) y cambios no deseados. Necesario para buckets usados como fuente de backups o artefactos.",
+    "active": true
   },
   {
     "id": 50,
@@ -747,7 +796,8 @@
       "Un balanceador de carga inteligente que aprende del tráfico"
     ],
     "correct": 1,
-    "explanation": "Trusted Advisor inspecciona tu configuración y da recomendaciones concretas: Security Groups con acceso abierto, instancias subutilizadas, cobertura de Reserved Instances y límites de servicio próximos a superarse."
+    "explanation": "Trusted Advisor inspecciona tu configuración y da recomendaciones concretas: Security Groups con acceso abierto, instancias subutilizadas, cobertura de Reserved Instances y límites de servicio próximos a superarse.",
+    "active": true
   },
   {
     "id": 51,
@@ -762,7 +812,8 @@
       "EFS es un sistema de archivos NFS que múltiples instancias EC2 o tasks ECS pueden montar simultáneamente; EBS solo se puede montar en una instancia a la vez"
     ],
     "correct": 3,
-    "explanation": "EBS: un volumen, una instancia. EFS: NFS elástico, múltiples instancias o tasks ECS lo montan en paralelo. Útil para contenido compartido entre instancias: configuración, modelos de ML, archivos subidos por usuarios en arquitecturas horizontalmente escaladas."
+    "explanation": "EBS: un volumen, una instancia. EFS: NFS elástico, múltiples instancias o tasks ECS lo montan en paralelo. Útil para contenido compartido entre instancias: configuración, modelos de ML, archivos subidos por usuarios en arquitecturas horizontalmente escaladas.",
+    "active": true
   },
   {
     "id": 52,
@@ -777,7 +828,8 @@
       "Una herramienta para organizar recursos dentro de una sola cuenta"
     ],
     "correct": 1,
-    "explanation": "Organizations permite gestionar muchas cuentas AWS como una unidad. SCPs (Service Control Policies) limitan qué puede hacer cada cuenta. Consolidated billing agrupa facturas. Esencial para empresas con múltiples equipos."
+    "explanation": "Organizations permite gestionar muchas cuentas AWS como una unidad. SCPs (Service Control Policies) limitan qué puede hacer cada cuenta. Consolidated billing agrupa facturas. Esencial para empresas con múltiples equipos.",
+    "active": true
   },
   {
     "id": 53,
@@ -792,7 +844,8 @@
       "Una VPN entre la aplicación y el cliente móvil"
     ],
     "correct": 1,
-    "explanation": "WAF inspecciona HTTP/HTTPS y bloquea SQL injection, XSS, floods y IPs maliciosas. AWS ofrece Managed Rule Groups listos para usar. Se adjunta a ALB, API Gateway o CloudFront sin cambios en el código de la app."
+    "explanation": "WAF inspecciona HTTP/HTTPS y bloquea SQL injection, XSS, floods y IPs maliciosas. AWS ofrece Managed Rule Groups listos para usar. Se adjunta a ALB, API Gateway o CloudFront sin cambios en el código de la app.",
+    "active": true
   },
   {
     "id": 54,
@@ -807,7 +860,8 @@
       "Es la función para ordenar mensajes por prioridad"
     ],
     "correct": 1,
-    "explanation": "El batching reduce llamadas API y costo. Con el AWS SDK Java: SendMessageBatchRequest agrupa hasta 10 mensajes en un request. ReceiveMessage con MaxNumberOfMessages=10 obtiene hasta 10 mensajes por poll, mejorando el throughput del consumidor."
+    "explanation": "El batching reduce llamadas API y costo. Con el AWS SDK Java: SendMessageBatchRequest agrupa hasta 10 mensajes en un request. ReceiveMessage con MaxNumberOfMessages=10 obtiene hasta 10 mensajes por poll, mejorando el throughput del consumidor.",
+    "active": true
   },
   {
     "id": 55,
@@ -822,7 +876,8 @@
       "Un servicio de machine learning para detectar anomalías en logs"
     ],
     "correct": 1,
-    "explanation": "Logs Insights permite queries interactivas sobre grupos de logs de CloudWatch. Puedes filtrar por nivel de log, buscar stack traces, calcular percentiles de latencia o contar errores por tipo. Mucho más potente que buscar manualmente."
+    "explanation": "Logs Insights permite queries interactivas sobre grupos de logs de CloudWatch. Puedes filtrar por nivel de log, buscar stack traces, calcular percentiles de latencia o contar errores por tipo. Mucho más potente que buscar manualmente.",
+    "active": true
   },
   {
     "id": 56,
@@ -837,7 +892,8 @@
       "Kinesis y SQS son intercambiables; solo difieren en el precio"
     ],
     "correct": 2,
-    "explanation": "SQS: un mensaje lo procesa un consumidor, luego se borra. Kinesis: todos los consumer groups leen el mismo stream de forma independiente, con retención hasta 365 días. Ideal para múltiples sistemas procesando el mismo flujo: analytics, ML, alertas y archivado en paralelo."
+    "explanation": "SQS: un mensaje lo procesa un consumidor, luego se borra. Kinesis: todos los consumer groups leen el mismo stream de forma independiente, con retención hasta 365 días. Ideal para múltiples sistemas procesando el mismo flujo: analytics, ML, alertas y archivado en paralelo.",
+    "active": true
   },
   {
     "id": 57,
@@ -852,7 +908,8 @@
       "Es igual a Trusted Advisor pero solo para costos de S3"
     ],
     "correct": 1,
-    "explanation": "Cost Explorer muestra el desglose de costos por servicio, tag, región y cuenta. Para tu app: identifica si EC2 es sobredimensionado, si hay transferencia de datos inesperada, o si conviene Reserved Instances vs On-Demand."
+    "explanation": "Cost Explorer muestra el desglose de costos por servicio, tag, región y cuenta. Para tu app: identifica si EC2 es sobredimensionado, si hay transferencia de datos inesperada, o si conviene Reserved Instances vs On-Demand.",
+    "active": true
   },
   {
     "id": 58,
@@ -867,7 +924,8 @@
       "EKS es siempre más barato y simple que ECS"
     ],
     "correct": 1,
-    "explanation": "ECS es el orquestador nativo AWS: más simple y profundamente integrado con IAM, ALB, CloudWatch. EKS es Kubernetes gestionado: portabilidad, ecosistema Helm/operators, pero mayor complejidad y costo operativo."
+    "explanation": "ECS es el orquestador nativo AWS: más simple y profundamente integrado con IAM, ALB, CloudWatch. EKS es Kubernetes gestionado: portabilidad, ecosistema Helm/operators, pero mayor complejidad y costo operativo.",
+    "active": true
   },
   {
     "id": 59,
@@ -882,7 +940,8 @@
       "Es un servicio de streaming de video exclusivamente"
     ],
     "correct": 1,
-    "explanation": "CloudFront sirve contenido desde el edge más cercano. Para APIs Java: cachea GETs idempotentes, termina SSL cerca del usuario, integra WAF y Shield anti-DDoS. Reduce latencia global aunque el origen esté en una sola región."
+    "explanation": "CloudFront sirve contenido desde el edge más cercano. Para APIs Java: cachea GETs idempotentes, termina SSL cerca del usuario, integra WAF y Shield anti-DDoS. Reduce latencia global aunque el origen esté en una sola región.",
+    "active": true
   },
   {
     "id": 60,
@@ -897,7 +956,8 @@
       "Un servicio de CI/CD que orquesta Source → Build (CodeBuild) → Deploy (CodeDeploy a ECS Blue/Green) de forma automática"
     ],
     "correct": 3,
-    "explanation": "Pipeline típico para Java/ECS: Source (GitHub push) → Build (CodeBuild: mvn package, docker build, push a ECR) → Deploy (CodeDeploy con ECS Blue/Green: levanta nuevas tasks, valida health checks en ALB, cambia el tráfico, termina tasks antiguas)."
+    "explanation": "Pipeline típico para Java/ECS: Source (GitHub push) → Build (CodeBuild: mvn package, docker build, push a ECR) → Deploy (CodeDeploy con ECS Blue/Green: levanta nuevas tasks, valida health checks en ALB, cambia el tráfico, termina tasks antiguas).",
+    "active": true
   },
   {
     "id": 61,
@@ -912,7 +972,8 @@
       "RDS Proxy cifra las queries SQL en tránsito automáticamente"
     ],
     "correct": 2,
-    "explanation": "Lambda puede escalar a miles de instancias simultáneas. Sin proxy, cada una abre una conexión a PostgreSQL saturando max_connections. RDS Proxy mantiene un pool de conexiones y las reutiliza entre invocaciones. También hace failover transparente ante reinicio de RDS."
+    "explanation": "Lambda puede escalar a miles de instancias simultáneas. Sin proxy, cada una abre una conexión a PostgreSQL saturando max_connections. RDS Proxy mantiene un pool de conexiones y las reutiliza entre invocaciones. También hace failover transparente ante reinicio de RDS.",
+    "active": true
   },
   {
     "id": 62,
@@ -927,7 +988,8 @@
       "Es solo para Java 8; no funciona con Java 17 o 21"
     ],
     "correct": 2,
-    "explanation": "SnapStart restaura el snapshot de la JVM en lugar de inicializarla desde cero. La restricción crítica: si generas un UUID o clave aleatoria en el constructor o bloque static, todas las instancias restauradas tendrán el mismo valor. Genera valores únicos en el handler, no en init."
+    "explanation": "SnapStart restaura el snapshot de la JVM en lugar de inicializarla desde cero. La restricción crítica: si generas un UUID o clave aleatoria en el constructor o bloque static, todas las instancias restauradas tendrán el mismo valor. Genera valores únicos en el handler, no en init.",
+    "active": true
   },
   {
     "id": 63,
@@ -942,7 +1004,8 @@
       "EventBridge solo conecta servicios AWS; SNS también envía a endpoints externos"
     ],
     "correct": 1,
-    "explanation": "EventBridge filtra eventos por su contenido JSON. Tiene schema registry para descubrir y validar estructuras de eventos, y permite replay de eventos históricos. SNS es más simple y tiene menor latencia para fan-out directo a múltiples suscriptores."
+    "explanation": "EventBridge filtra eventos por su contenido JSON. Tiene schema registry para descubrir y validar estructuras de eventos, y permite replay de eventos históricos. SNS es más simple y tiene menor latencia para fan-out directo a múltiples suscriptores.",
+    "active": true
   },
   {
     "id": 64,
@@ -957,7 +1020,8 @@
       "No hay forma de detectar drift; por eso se prefiere Terraform"
     ],
     "correct": 1,
-    "explanation": "Cuando alguien modifica un Security Group o variable de entorno desde la consola, el stack entra en estado 'drifted'. Detect Drift compara el estado real vs la plantilla y lista recursos MODIFIED o DELETED. Para corregir: actualiza la plantilla con el estado deseado y haz deploy."
+    "explanation": "Cuando alguien modifica un Security Group o variable de entorno desde la consola, el stack entra en estado 'drifted'. Detect Drift compara el estado real vs la plantilla y lista recursos MODIFIED o DELETED. Para corregir: actualiza la plantilla con el estado deseado y haz deploy.",
+    "active": true
   },
   {
     "id": 65,
@@ -972,7 +1036,8 @@
       "Aurora que escala automáticamente la capacidad de cómputo en fracciones de ACU según la carga real, ideal para workloads impredecibles o con picos muy variables"
     ],
     "correct": 3,
-    "explanation": "Aurora Serverless v2 escala en milisegundos de 0.5 ACU a 128 ACU sin downtime. Ideal para: SaaS con tenants de tamaños muy distintos, APIs con picos impredecibles, o entornos de staging donde no quieres pagar por capacidad ociosa."
+    "explanation": "Aurora Serverless v2 escala en milisegundos de 0.5 ACU a 128 ACU sin downtime. Ideal para: SaaS con tenants de tamaños muy distintos, APIs con picos impredecibles, o entornos de staging donde no quieres pagar por capacidad ociosa.",
+    "active": true
   },
   {
     "id": 66,
@@ -987,7 +1052,8 @@
       "Incluir el tenant_id como prefijo en la Partition Key (ej: TENANT_A#ORDER#123), aislando datos por partición y usando condiciones IAM por tenant si se requiere aislamiento fuerte"
     ],
     "correct": 3,
-    "explanation": "El prefijo en la PK (tenant_id#tipo#id) agrupa los datos de cada tenant en particiones diferentes. Para aislamiento fuerte en entornos SaaS: IAM Fine-Grained Access Control puede restringir el acceso a solo los ítems donde la PK empieza con el tenant_id del token JWT."
+    "explanation": "El prefijo en la PK (tenant_id#tipo#id) agrupa los datos de cada tenant en particiones diferentes. Para aislamiento fuerte en entornos SaaS: IAM Fine-Grained Access Control puede restringir el acceso a solo los ítems donde la PK empieza con el tenant_id del token JWT.",
+    "active": true
   },
   {
     "id": 67,
@@ -1002,7 +1068,8 @@
       "Es el límite de ancho de banda de red de una instancia EC2"
     ],
     "correct": 1,
-    "explanation": "Sin boundaries: si delegas creación de roles a un developer, podría crear un rol con AdministratorAccess y escalar privilegios. Con una Permission Boundary: aunque asignes AdministratorAccess, si la boundary solo permite S3 y SQS, el rol solo puede hacer esas acciones."
+    "explanation": "Sin boundaries: si delegas creación de roles a un developer, podría crear un rol con AdministratorAccess y escalar privilegios. Con una Permission Boundary: aunque asignes AdministratorAccess, si la boundary solo permite S3 y SQS, el rol solo puede hacer esas acciones.",
+    "active": true
   },
   {
     "id": 68,
@@ -1017,7 +1084,8 @@
       "Desplegar todo en prod y usar feature flags para simular dev y staging"
     ],
     "correct": 2,
-    "explanation": "Best practice (AWS Well-Architected): cuentas separadas por entorno en Organizations. Aísla el blast radius, separa la facturación y simplifica los permisos. IaC garantiza que dev, staging y prod sean infrastructuralmente idénticos."
+    "explanation": "Best practice (AWS Well-Architected): cuentas separadas por entorno en Organizations. Aísla el blast radius, separa la facturación y simplifica los permisos. IaC garantiza que dev, staging y prod sean infrastructuralmente idénticos.",
+    "active": true
   },
   {
     "id": 69,
@@ -1032,7 +1100,8 @@
       "Un motor de queries SQL serverless sobre datos en S3; útil para analizar logs de la app, eventos o datos exportados sin mantener un data warehouse"
     ],
     "correct": 3,
-    "explanation": "Athena consulta directamente archivos en S3 (JSON, CSV, Parquet) sin cargarlos en una BD. Tu app Java puede exportar logs de errores o eventos a S3, y el equipo de datos los analiza con SQL en Athena. Pagas solo por los datos escaneados."
+    "explanation": "Athena consulta directamente archivos en S3 (JSON, CSV, Parquet) sin cargarlos en una BD. Tu app Java puede exportar logs de errores o eventos a S3, y el equipo de datos los analiza con SQL en Athena. Pagas solo por los datos escaneados.",
+    "active": true
   },
   {
     "id": 70,
@@ -1047,7 +1116,8 @@
       "Solo es posible con Kubernetes (EKS), no con ECS ni EC2"
     ],
     "correct": 1,
-    "explanation": "HA requiere eliminar single points of failure: ALB distribuye entre AZs, Auto Scaling reemplaza instancias unhealthy, RDS Multi-AZ hace failover automático al standby en otra AZ, ElastiCache con réplica en otra AZ."
+    "explanation": "HA requiere eliminar single points of failure: ALB distribuye entre AZs, Auto Scaling reemplaza instancias unhealthy, RDS Multi-AZ hace failover automático al standby en otra AZ, ElastiCache con réplica en otra AZ.",
+    "active": true
   },
   {
     "id": 71,
@@ -1062,7 +1132,8 @@
       "Solo aplica con bases de datos relacionales y JTA"
     ],
     "correct": 1,
-    "explanation": "Sin transacciones distribuidas ACID, Saga encadena transacciones locales. Si un paso falla, ejecuta compensaciones hacia atrás. Coreografía: microservicios emiten/escuchan eventos via SQS/SNS. Orquestación: Step Functions dirige el flujo completo."
+    "explanation": "Sin transacciones distribuidas ACID, Saga encadena transacciones locales. Si un paso falla, ejecuta compensaciones hacia atrás. Coreografía: microservicios emiten/escuchan eventos via SQS/SNS. Orquestación: Step Functions dirige el flujo completo.",
+    "active": true
   },
   {
     "id": 72,
@@ -1077,7 +1148,8 @@
       "Es código de AWS SDK v1; en Spring Boot moderno ya no funciona"
     ],
     "correct": 2,
-    "explanation": "ON_SUCCESS: el mensaje se borra solo si el método termina sin excepción. El visibility timeout define cuánto tiempo el mensaje está oculto para otros consumidores. Si tu procesamiento tarda más, el mensaje vuelve a ser visible y puede duplicarse. Ajusta el timeout o extiéndelo programáticamente."
+    "explanation": "ON_SUCCESS: el mensaje se borra solo si el método termina sin excepción. El visibility timeout define cuánto tiempo el mensaje está oculto para otros consumidores. Si tu procesamiento tarda más, el mensaje vuelve a ser visible y puede duplicarse. Ajusta el timeout o extiéndelo programáticamente.",
+    "active": true
   },
   {
     "id": 73,
@@ -1092,7 +1164,8 @@
       "Hace DynamoDB inapropiado para aplicaciones en producción"
     ],
     "correct": 1,
-    "explanation": "DynamoDB replica en múltiples nodos. La lectura eventualmente consistente (default) puede leer réplicas no actualizadas aún. Con ConsistentRead=true va al líder y garantiza últimos datos, pero cuesta el doble en Read Capacity Units."
+    "explanation": "DynamoDB replica en múltiples nodos. La lectura eventualmente consistente (default) puede leer réplicas no actualizadas aún. Con ConsistentRead=true va al líder y garantiza últimos datos, pero cuesta el doble en Read Capacity Units.",
+    "active": true
   },
   {
     "id": 74,
@@ -1107,7 +1180,8 @@
       "MSK provisiona clusters Kafka gestionados; lo preferirías cuando ya usas Kafka (Kafka Streams, Connect, ecosistema existente) y necesitas portabilidad entre AWS y on-premise"
     ],
     "correct": 3,
-    "explanation": "Kinesis es más simple y profundamente integrado en AWS. MSK da el ecosistema Kafka completo: Kafka Streams para procesamiento stateful, Kafka Connect para integraciones, Schema Registry, y la posibilidad de migrar a/desde un cluster Kafka on-premise sin cambiar el código Java."
+    "explanation": "Kinesis es más simple y profundamente integrado en AWS. MSK da el ecosistema Kafka completo: Kafka Streams para procesamiento stateful, Kafka Connect para integraciones, Schema Registry, y la posibilidad de migrar a/desde un cluster Kafka on-premise sin cambiar el código Java.",
+    "active": true
   },
   {
     "id": 75,
@@ -1122,7 +1196,8 @@
       "Un servicio para gestionar migraciones de base de datos paso a paso"
     ],
     "correct": 1,
-    "explanation": "Step Functions define flujos de trabajo como state machines JSON/YAML. Cada estado puede invocar Lambda, ECS, SQS, SNS, etc. Gestiona reintentos, timeouts y bifurcaciones. Ideal para procesos multi-paso: pagos, onboarding, pipelines de datos."
+    "explanation": "Step Functions define flujos de trabajo como state machines JSON/YAML. Cada estado puede invocar Lambda, ECS, SQS, SNS, etc. Gestiona reintentos, timeouts y bifurcaciones. Ideal para procesos multi-paso: pagos, onboarding, pipelines de datos.",
+    "active": true
   },
   {
     "id": 76,
@@ -1137,7 +1212,8 @@
       "Solo es posible con EKS usando Jaeger, no con ECS o Lambda"
     ],
     "correct": 1,
-    "explanation": "ADOT (AWS Distro for OpenTelemetry) instrumenta automáticamente Spring Boot. Exporta a X-Ray para el service map y a CloudWatch for traces. Los trace IDs se propagan en headers (X-Amzn-Trace-Id) automáticamente entre servicios."
+    "explanation": "ADOT (AWS Distro for OpenTelemetry) instrumenta automáticamente Spring Boot. Exporta a X-Ray para el service map y a CloudWatch for traces. Los trace IDs se propagan en headers (X-Amzn-Trace-Id) automáticamente entre servicios.",
+    "active": true
   },
   {
     "id": 77,
@@ -1152,7 +1228,8 @@
       "ALB + AWS WAF (reglas managed para SQLi/XSS) + AWS Shield Standard (DDoS automático) + validación de inputs en la app Java con Bean Validation"
     ],
     "correct": 3,
-    "explanation": "Defensa en capas: (1) AWS Shield Standard protege automáticamente contra DDoS volumétricos. (2) WAF con Managed Rules bloquea SQL injection y XSS antes de llegar a tu app. (3) Bean Validation (@Valid, @Pattern) en los DTOs de Spring. (4) Prepared statements en JPA/JDBC previenen SQLi."
+    "explanation": "Defensa en capas: (1) AWS Shield Standard protege automáticamente contra DDoS volumétricos. (2) WAF con Managed Rules bloquea SQL injection y XSS antes de llegar a tu app. (3) Bean Validation (@Valid, @Pattern) en los DTOs de Spring. (4) Prepared statements en JPA/JDBC previenen SQLi.",
+    "active": true
   },
   {
     "id": 78,
@@ -1167,7 +1244,8 @@
       "Una función WORM (Write Once Read Many) que impide modificar o eliminar objetos durante un período definido; requerido en sectores financieros, legales o de salud para compliance"
     ],
     "correct": 3,
-    "explanation": "Object Lock implementa retención inmutable. Modo Governance: admins pueden sobreescribir. Modo Compliance: nadie puede eliminar el objeto (ni root) hasta que expire el retention period. Útil para contratos firmados, registros médicos, logs de auditoría."
+    "explanation": "Object Lock implementa retención inmutable. Modo Governance: admins pueden sobreescribir. Modo Compliance: nadie puede eliminar el objeto (ni root) hasta que expire el retention period. Útil para contratos firmados, registros médicos, logs de auditoría.",
+    "active": true
   },
   {
     "id": 79,
@@ -1182,7 +1260,8 @@
       "IAM Authentication genera tokens temporales de 15 min via el IAM Role del Task ECS; no hay contraseñas estáticas que rotar ni que puedan filtrarse"
     ],
     "correct": 3,
-    "explanation": "Con IAM Auth: el Task Role de ECS tiene permiso rds-db:connect. El SDK genera un token temporal (15 min) que se usa como contraseña. Si el token se filtra en un log, expira en minutos. Con usuario/contraseña estático: si se filtra, es válido indefinidamente hasta rotación manual."
+    "explanation": "Con IAM Auth: el Task Role de ECS tiene permiso rds-db:connect. El SDK genera un token temporal (15 min) que se usa como contraseña. Si el token se filtra en un log, expira en minutos. Con usuario/contraseña estático: si se filtra, es válido indefinidamente hasta rotación manual.",
+    "active": true
   },
   {
     "id": 80,
@@ -1197,7 +1276,8 @@
       "Son las cuotas de servicio aplicadas automáticamente a cuentas nuevas"
     ],
     "correct": 2,
-    "explanation": "Las SCPs operan como un filtro sobre IAM: si una SCP prohíbe DeleteBucket en S3, ningún usuario ni rol de esa cuenta puede hacerlo, aunque tenga AdministratorAccess. Úsalas para prohibir crear recursos fuera de ciertas regiones o prevenir cambios en roles de seguridad críticos."
+    "explanation": "Las SCPs operan como un filtro sobre IAM: si una SCP prohíbe DeleteBucket en S3, ningún usuario ni rol de esa cuenta puede hacerlo, aunque tenga AdministratorAccess. Úsalas para prohibir crear recursos fuera de ciertas regiones o prevenir cambios en roles de seguridad críticos.",
+    "active": true
   },
   {
     "id": 81,
@@ -1212,7 +1292,8 @@
       "Es un sustituto de API Gateway para tráfico interno"
     ],
     "correct": 1,
-    "explanation": "App Mesh despliega un proxy Envoy como sidecar junto a cada servicio. Gestiona mTLS automático entre servicios, retries, timeouts y circuit breaking, y emite métricas y trazas a CloudWatch/X-Ray. El código Java no necesita librerías adicionales."
+    "explanation": "App Mesh despliega un proxy Envoy como sidecar junto a cada servicio. Gestiona mTLS automático entre servicios, retries, timeouts y circuit breaking, y emite métricas y trazas a CloudWatch/X-Ray. El código Java no necesita librerías adicionales.",
+    "active": true
   },
   {
     "id": 82,
@@ -1227,7 +1308,8 @@
       "Usar solo SSL/TLS en tránsito, no es necesario cifrar en reposo"
     ],
     "correct": 1,
-    "explanation": "DynamoDB cifra en reposo con KMS por defecto, pero eso no protege contra accesos de AWS o errores de permisos. El DynamoDB Encryption Client cifra atributos específicos en el cliente Java antes de enviarlos, garantizando que solo tu app pueda descifrarlos."
+    "explanation": "DynamoDB cifra en reposo con KMS por defecto, pero eso no protege contra accesos de AWS o errores de permisos. El DynamoDB Encryption Client cifra atributos específicos en el cliente Java antes de enviarlos, garantizando que solo tu app pueda descifrarlos.",
+    "active": true
   },
   {
     "id": 83,
@@ -1242,7 +1324,8 @@
       "Compromisos de uso mínimo ($/hora) por 1 o 3 años que dan hasta 72% de descuento sobre On-Demand, ideales cuando tienes un baseline de carga predecible en EC2, Fargate o Lambda"
     ],
     "correct": 3,
-    "explanation": "Savings Plans son más flexibles que Reserved Instances: aplican automáticamente a cualquier tipo de instancia EC2, región (Compute Savings Plans), Fargate y Lambda. Para un backend Java con tráfico predecible: compromete el baseline con Savings Plans y usa On-Demand para los picos."
+    "explanation": "Savings Plans son más flexibles que Reserved Instances: aplican automáticamente a cualquier tipo de instancia EC2, región (Compute Savings Plans), Fargate y Lambda. Para un backend Java con tráfico predecible: compromete el baseline con Savings Plans y usa On-Demand para los picos.",
+    "active": true
   },
   {
     "id": 84,
@@ -1257,7 +1340,8 @@
       "Es una herramienta de CI/CD para ECS"
     ],
     "correct": 1,
-    "explanation": "Service Connect (sucesor de Cloud Map para ECS) provee service discovery DNS, balanceo de carga client-side y métricas de tráfico entre servicios ECS. Es más simple que App Mesh para casos de uso básicos de comunicación entre servicios."
+    "explanation": "Service Connect (sucesor de Cloud Map para ECS) provee service discovery DNS, balanceo de carga client-side y métricas de tráfico entre servicios ECS. Es más simple que App Mesh para casos de uso básicos de comunicación entre servicios.",
+    "active": true
   },
   {
     "id": 85,
@@ -1272,7 +1356,8 @@
       "Es el servicio de autenticación para clústeres Kafka"
     ],
     "correct": 1,
-    "explanation": "MSK Connect gestiona conectores Kafka Connect sin servidores: conectores source (de sistemas externos a Kafka) y sink (de Kafka a S3, Elasticsearch, RDS, etc). AWS maneja el escalado y la disponibilidad de los workers de Kafka Connect."
+    "explanation": "MSK Connect gestiona conectores Kafka Connect sin servidores: conectores source (de sistemas externos a Kafka) y sink (de Kafka a S3, Elasticsearch, RDS, etc). AWS maneja el escalado y la disponibilidad de los workers de Kafka Connect.",
+    "active": true
   },
   {
     "id": 86,
@@ -1287,7 +1372,8 @@
       "Es solo para funciones con timeout mayor a 15 minutos"
     ],
     "correct": 1,
-    "explanation": "Lambda@Edge ejecuta código en los edge locations de CloudFront con latencias muy bajas. Casos de uso: reescribir URLs, agregar headers de seguridad, autenticación en el edge, A/B testing, personalización de contenido por país."
+    "explanation": "Lambda@Edge ejecuta código en los edge locations de CloudFront con latencias muy bajas. Casos de uso: reescribir URLs, agregar headers de seguridad, autenticación en el edge, A/B testing, personalización de contenido por país.",
+    "active": true
   },
   {
     "id": 87,
@@ -1302,7 +1388,8 @@
       "Gateway Endpoint es más lento que Interface Endpoint siempre"
     ],
     "correct": 1,
-    "explanation": "Gateway Endpoint: gratuito, solo para S3 y DynamoDB, modifica la route table. Interface Endpoint (AWS PrivateLink): crea una ENI con IP privada en tu subnet, funciona con casi todos los servicios AWS, tiene costo por hora y por datos procesados."
+    "explanation": "Gateway Endpoint: gratuito, solo para S3 y DynamoDB, modifica la route table. Interface Endpoint (AWS PrivateLink): crea una ENI con IP privada en tu subnet, funciona con casi todos los servicios AWS, tiene costo por hora y por datos procesados.",
+    "active": true
   },
   {
     "id": 88,
@@ -1317,7 +1404,8 @@
       "Es el mismo que CloudWatch Logs Insights pero con diferente interfaz"
     ],
     "correct": 1,
-    "explanation": "Container Insights despliega el CloudWatch agent como sidecar en ECS/EKS y recolecta métricas granulares por container, task y service. Permite crear alarmas de OOM (Out Of Memory), CPU throttling o network saturation a nivel de contenedor."
+    "explanation": "Container Insights despliega el CloudWatch agent como sidecar en ECS/EKS y recolecta métricas granulares por container, task y service. Permite crear alarmas de OOM (Out Of Memory), CPU throttling o network saturation a nivel de contenedor.",
+    "active": true
   },
   {
     "id": 89,
@@ -1332,7 +1420,8 @@
       "Un servicio de autenticación federada"
     ],
     "correct": 1,
-    "explanation": "Glue es ETL serverless: descubre esquemas, transforma y carga datos entre fuentes (S3, RDS, DynamoDB). El backend Java puede disparar Glue Jobs vía SDK para pipelines de datos sin gestionar Spark clusters."
+    "explanation": "Glue es ETL serverless: descubre esquemas, transforma y carga datos entre fuentes (S3, RDS, DynamoDB). El backend Java puede disparar Glue Jobs vía SDK para pipelines de datos sin gestionar Spark clusters.",
+    "active": true
   },
   {
     "id": 90,
@@ -1347,7 +1436,8 @@
       "Es un servicio de balanceo de carga inteligente"
     ],
     "correct": 1,
-    "explanation": "AWS impone límites por servicio/región (ej: 5 VPCs por región, X instancias EC2). Alcanzarlos en producción causa errores. Service Quotas permite ver límites actuales, uso actual y solicitar aumentos proactivamente antes de que afecten la app."
+    "explanation": "AWS impone límites por servicio/región (ej: 5 VPCs por región, X instancias EC2). Alcanzarlos en producción causa errores. Service Quotas permite ver límites actuales, uso actual y solicitar aumentos proactivamente antes de que afecten la app.",
+    "active": true
   },
   {
     "id": 91,
@@ -1362,7 +1452,8 @@
       "Un servicio de sincronización de archivos entre S3 y EFS"
     ],
     "correct": 1,
-    "explanation": "Transfer Acceleration enruta los uploads a través del edge de CloudFront más cercano al cliente, luego viaja por la red backbone de AWS hasta el bucket. Mejora hasta 60x las velocidades de upload para usuarios con alta latencia al bucket."
+    "explanation": "Transfer Acceleration enruta los uploads a través del edge de CloudFront más cercano al cliente, luego viaja por la red backbone de AWS hasta el bucket. Mejora hasta 60x las velocidades de upload para usuarios con alta latencia al bucket.",
+    "active": true
   },
   {
     "id": 92,
@@ -1377,7 +1468,8 @@
       "Usar solo instancias RDS en la misma subnet y confiar en la red"
     ],
     "correct": 1,
-    "explanation": "RDS IAM Authentication genera tokens temporales via AWS SDK. El Task IAM Role de ECS permite rds-db:connect. Spring Boot obtiene el token con GenerateAuthToken y lo usa como contraseña. No hay credenciales estáticas, todo se rota automáticamente."
+    "explanation": "RDS IAM Authentication genera tokens temporales via AWS SDK. El Task IAM Role de ECS permite rds-db:connect. Spring Boot obtiene el token con GenerateAuthToken y lo usa como contraseña. No hay credenciales estáticas, todo se rota automáticamente.",
+    "active": true
   },
   {
     "id": 93,
@@ -1392,7 +1484,8 @@
       "Una política de cifrado de imágenes Docker"
     ],
     "correct": 1,
-    "explanation": "En CI/CD se hace push de imágenes constantemente. Sin lifecycle policies, ECR acumula cientos de imágenes antiguas generando costos innecesarios. Define: mantener últimas N versiones, eliminar imágenes sin tag, etc."
+    "explanation": "En CI/CD se hace push de imágenes constantemente. Sin lifecycle policies, ECR acumula cientos de imágenes antiguas generando costos innecesarios. Define: mantener últimas N versiones, eliminar imágenes sin tag, etc.",
+    "active": true
   },
   {
     "id": 94,
@@ -1407,7 +1500,8 @@
       "Solo es posible con Kubernetes, no con ECS"
     ],
     "correct": 1,
-    "explanation": "ECS deployment circuit breaker: configuras rollbackOnFailure=true en el Service. Si las nuevas tasks no pasan el health check del target group dentro del timeout configurado, ECS para el rollout y restaura la revisión anterior automáticamente."
+    "explanation": "ECS deployment circuit breaker: configuras rollbackOnFailure=true en el Service. Si las nuevas tasks no pasan el health check del target group dentro del timeout configurado, ECS para el rollout y restaura la revisión anterior automáticamente.",
+    "active": true
   },
   {
     "id": 95,
@@ -1422,7 +1516,8 @@
       "El intervalo entre intentos de reintento automático de SQS"
     ],
     "correct": 1,
-    "explanation": "Al recibir un mensaje, se hace invisible por el visibility timeout. Tu handler Java debe completar el procesamiento y eliminar el mensaje antes de que expire. Si no, SQS lo re-entrega (posible duplicado). Ajusta el timeout según tu tiempo de procesamiento."
+    "explanation": "Al recibir un mensaje, se hace invisible por el visibility timeout. Tu handler Java debe completar el procesamiento y eliminar el mensaje antes de que expire. Si no, SQS lo re-entrega (posible duplicado). Ajusta el timeout según tu tiempo de procesamiento.",
+    "active": true
   },
   {
     "id": 96,
@@ -1437,7 +1532,8 @@
       "Solo puedes usar uno de los dos tipos, no ambos a la vez"
     ],
     "correct": 1,
-    "explanation": "IAM policies: 'este rol puede hacer PUT en cualquier S3'. Bucket policy: 'solo este rol puede acceder a este bucket'. Para acceso cross-account o público, solo bucket policies funcionan. Para controlar acceso de servicios internos, IAM policies son más limpias."
+    "explanation": "IAM policies: 'este rol puede hacer PUT en cualquier S3'. Bucket policy: 'solo este rol puede acceder a este bucket'. Para acceso cross-account o público, solo bucket policies funcionan. Para controlar acceso de servicios internos, IAM policies son más limpias.",
+    "active": true
   },
   {
     "id": 97,
@@ -1452,7 +1548,8 @@
       "Aurora y RDS MySQL son idénticos en rendimiento"
     ],
     "correct": 1,
-    "explanation": "Aurora es compatible con MySQL/PostgreSQL pero diseñado para la nube: hasta 5x más rápido que MySQL estándar, hasta 15 read replicas, failover en segundos, almacenamiento que crece automáticamente y Aurora Serverless para cargas variables."
+    "explanation": "Aurora es compatible con MySQL/PostgreSQL pero diseñado para la nube: hasta 5x más rápido que MySQL estándar, hasta 15 read replicas, failover en segundos, almacenamiento que crece automáticamente y Aurora Serverless para cargas variables.",
+    "active": true
   },
   {
     "id": 98,
@@ -1467,7 +1564,8 @@
       "Reserved Instances aplican a EC2; Savings Plans solo a Lambda"
     ],
     "correct": 1,
-    "explanation": "Reserved Instances: compromiso de instancia específica (tipo, región, OS), mayor descuento. Savings Plans: compromiso de gasto mínimo ($/hora) más flexible, aplica a cualquier instancia EC2, Fargate y Lambda. Para workloads estables ambos dan ~60-72% de ahorro vs On-Demand."
+    "explanation": "Reserved Instances: compromiso de instancia específica (tipo, región, OS), mayor descuento. Savings Plans: compromiso de gasto mínimo ($/hora) más flexible, aplica a cualquier instancia EC2, Fargate y Lambda. Para workloads estables ambos dan ~60-72% de ahorro vs On-Demand.",
+    "active": true
   },
   {
     "id": 99,
@@ -1482,7 +1580,8 @@
       "Solo es posible con bases de datos NoSQL"
     ],
     "correct": 1,
-    "explanation": "Active-Active multi-región: Route 53 con latency/geolocation routing dirige usuarios a la región más cercana. El mayor reto es la base de datos: Aurora Global Database o DynamoDB Global Tables replican con ~1s latencia. Hay que manejar conflictos de escritura y el costo es 2x+."
+    "explanation": "Active-Active multi-región: Route 53 con latency/geolocation routing dirige usuarios a la región más cercana. El mayor reto es la base de datos: Aurora Global Database o DynamoDB Global Tables replican con ~1s latencia. Hay que manejar conflictos de escritura y el costo es 2x+.",
+    "active": true
   },
   {
     "id": 100,
@@ -1497,6 +1596,7 @@
       "Sus pilares son: Backups, Seguridad y Costos"
     ],
     "correct": 1,
-    "explanation": "CloudWatch cubre los tres pilares: (1) Logs: centraliza logs de EC2, Lambda, ECS via agent o SDK; Logs Insights para queries. (2) Metrics: métricas de infraestructura y custom desde código Java via PutMetricData. (3) Alarms: disparan SNS, Auto Scaling o Lambda ante umbrales definidos."
+    "explanation": "CloudWatch cubre los tres pilares: (1) Logs: centraliza logs de EC2, Lambda, ECS via agent o SDK; Logs Insights para queries. (2) Metrics: métricas de infraestructura y custom desde código Java via PutMetricData. (3) Alarms: disparan SNS, Auto Scaling o Lambda ante umbrales definidos.",
+    "active": true
   }
 ]
