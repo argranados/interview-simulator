@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useState } from 'react'
 import LandingPage from './LandingPage'
 import TopicPage from './TopicPage'
+import FlashcardTopicPage from './FlashcardTopicPage'
+import FlashcardMode from './FlashcardMode'
 
 const styles = {
     footerArea: {
@@ -227,6 +229,10 @@ const TOPIC_LABELS = {
     microservicios: 'Microservicios y APIs',
     java_patrones: 'Java Patrones',
     java_arquitectura: 'Java Arquitectura',
+    sql_java: 'SQL Java',
+    unit_testing: 'Unit Testing',
+    devops_java: 'DevOps Java',
+    aws_java: 'AWS Java Backend',
 }
 
 function getAIName(bank) {
@@ -250,8 +256,14 @@ export default function App() {
     const [quizKey, setQuizKey] = useState(0)
     const [selectedBank, setSelectedBank] = useState(null)
     const [selectedTopic, setSelectedTopic] = useState(null)
-    const [showTopic, setShowTopic] = useState(true)
-    const [showLanding, setShowLanding] = useState(false)
+
+    // ── Navegación ──
+    // 'topic'            → TopicPage
+    // 'landing'          → LandingPage (selección de AI)
+    // 'quiz'             → Quiz múltiple opción
+    // 'flashcard_topic'  → FlashcardTopicPage (selección de banco de repaso)
+    // 'flashcard'        → FlashcardMode
+    const [screen, setScreen] = useState('topic')
 
     useEffect(() => {
         if (!selectedBank) return
@@ -268,9 +280,8 @@ export default function App() {
             })
     }, [selectedBank])
 
-    // DESPUÉS
     const shuffledQuestions = useMemo(() => {
-        const a = [...questions].filter(q => q.active !== false)  // ← solo este cambio
+        const a = [...questions].filter(q => q.active !== false)
         for (let i = a.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [a[i], a[j]] = [a[j], a[i]]
@@ -282,10 +293,8 @@ export default function App() {
 
     const handleAnswer = (index) => {
         if (showResult) return
-
         setSelectedAnswer(index)
         setShowResult(true)
-
         if (index === currentQuestion.correct) {
             setScore((prev) => prev + 1)
         }
@@ -296,7 +305,6 @@ export default function App() {
             setFinished(true)
             return
         }
-
         setCurrentQuestionIndex((prev) => prev + 1)
         setSelectedAnswer(null)
         setShowResult(false)
@@ -304,8 +312,7 @@ export default function App() {
 
     const restartQuiz = () => {
         setQuizKey(k => k + 1)
-        setShowTopic(true)
-        setShowLanding(false)
+        setScreen('topic')
         setSelectedTopic(null)
         setSelectedBank(null)
         setCurrentQuestionIndex(0)
@@ -316,34 +323,61 @@ export default function App() {
         setQuestions([])
     }
 
-    if (showTopic) {
+    // ── Pantallas ──
+
+    if (screen === 'topic') {
         return (
             <TopicPage
                 onSelect={(topic) => {
                     setSelectedTopic(topic)
-                    setShowTopic(false)
-                    setShowLanding(true)
+                    setScreen('landing')
                 }}
+                onRepaso={() => setScreen('flashcard_topic')}
             />
         )
     }
 
-    if (showLanding) {
+    if (screen === 'landing') {
         return (
             <LandingPage
                 topic={selectedTopic}
                 onSelect={(bank) => {
                     setSelectedBank(bank)
-                    setShowLanding(false)
+                    setScreen('quiz')
                 }}
                 onBack={() => {
-                    setShowLanding(false)
-                    setShowTopic(true)
+                    setScreen('topic')
                     setSelectedTopic(null)
                 }}
             />
         )
     }
+
+    if (screen === 'flashcard_topic') {
+        return (
+            <FlashcardTopicPage
+                onSelect={(bank) => {
+                    setSelectedBank(bank)
+                    setScreen('flashcard')
+                }}
+                onBack={() => setScreen('topic')}
+            />
+        )
+    }
+
+    if (screen === 'flashcard') {
+        return (
+            <FlashcardMode
+                bank={selectedBank}
+                onBack={() => {
+                    setSelectedBank(null)
+                    setScreen('topic')
+                }}
+            />
+        )
+    }
+
+    // ── Quiz mode ──
 
     if (loading) {
         return (
@@ -362,27 +396,14 @@ export default function App() {
     }
 
     if (finished) {
-        const percentage = Math.round(
-            (score / shuffledQuestions.length) * 100
-        )
-
+        const percentage = Math.round((score / shuffledQuestions.length) * 100)
         return (
             <div style={styles.center}>
                 <div style={styles.resultCard}>
                     <div style={styles.trophy}>🏆</div>
-
-                    <h1 style={styles.resultTitle}>
-                        Entrevista Finalizada
-                    </h1>
-
-                    <div style={styles.resultScore}>
-                        {score}/{shuffledQuestions.length}
-                    </div>
-
-                    <div style={styles.resultPercentage}>
-                        {percentage}%
-                    </div>
-
+                    <h1 style={styles.resultTitle}>Entrevista Finalizada</h1>
+                    <div style={styles.resultScore}>{score}/{shuffledQuestions.length}</div>
+                    <div style={styles.resultPercentage}>{percentage}%</div>
                     <button style={styles.button} onClick={restartQuiz}>
                         Nueva entrevista
                     </button>
@@ -396,97 +417,61 @@ export default function App() {
             <div style={styles.card}>
                 <div style={styles.header}>
                     <div>
-                        <h1 style={{ fontSize: 'clamp(22px, 3vw, 28px)', fontWeight: 700, margin: 0 }}>{TOPIC_LABELS[selectedTopic] || 'Interview'}</h1>
-
+                        <h1 style={{ fontSize: 'clamp(22px, 3vw, 28px)', fontWeight: 700, margin: 0 }}>
+                            {TOPIC_LABELS[selectedTopic] || 'Interview'}
+                        </h1>
                         <p style={{ fontSize: 'clamp(13px, 2.5vw, 15px)', margin: '4px 0 0 0', color: '#374151', fontWeight: 500, whiteSpace: 'nowrap' }}>
                             Pregunta {currentQuestionIndex + 1} de {shuffledQuestions.length} &nbsp;·&nbsp; <strong>{score} correctas</strong>
                         </p>
                     </div>
-
                     <div style={{ textAlign: 'right' }}>
-                        <button
-                            style={styles.restartButton}
-                            onClick={restartQuiz}
-                        >
+                        <button style={styles.restartButton} onClick={restartQuiz}>
                             Nueva entrevista
                         </button>
                     </div>
                 </div>
 
                 <div style={styles.progressBar}>
-                    <div
-                        style={{
-                            ...styles.progress,
-                            width: `${((currentQuestionIndex + 1) /
-                                shuffledQuestions.length) *
-                                100
-                                }%`
-                        }}
-                    />
+                    <div style={{
+                        ...styles.progress,
+                        width: `${((currentQuestionIndex + 1) / shuffledQuestions.length) * 100}%`
+                    }} />
                 </div>
 
                 <div style={styles.questionCard}>
                     <div style={styles.tags}>
                         <div style={styles.tagsLeft}>
-                            <span
-                                style={
-                                    currentQuestion.level === 'Mid'
-                                        ? styles.midTag
-                                        : styles.juniorTag
-                                }
-                            >
+                            <span style={currentQuestion.level === 'Mid' ? styles.midTag : styles.juniorTag}>
                                 {currentQuestion.level}
                             </span>
-
                             {currentQuestion.category && (
-                                <span style={styles.tag}>
-                                    {currentQuestion.category}
-                                </span>
+                                <span style={styles.tag}>{currentQuestion.category}</span>
                             )}
                         </div>
-
-                        <span style={styles.aiTag}>
-                            {getAIName(selectedBank)}
-                        </span>
+                        <span style={styles.aiTag}>{getAIName(selectedBank)}</span>
                     </div>
 
                     <h2>{currentQuestion.question}</h2>
 
-                    {
-                        currentQuestion.code && (
-                            <pre style={styles.codeBlock}>
-                                <code>
-                                    {currentQuestion.code}
-                                </code>
-                            </pre>
-                        )
-                    }
+                    {currentQuestion.code && (
+                        <pre style={styles.codeBlock}>
+                            <code>{currentQuestion.code}</code>
+                        </pre>
+                    )}
 
                     <div style={styles.options}>
                         {currentQuestion.options.map((option, index) => {
-                            const isCorrect =
-                                index === currentQuestion.correct
-
-                            const isSelected =
-                                index === selectedAnswer
-
+                            const isCorrect = index === currentQuestion.correct
+                            const isSelected = index === selectedAnswer
                             let background = 'white'
-
                             if (showResult) {
-                                if (isCorrect) {
-                                    background = '#d1fae5'
-                                } else if (isSelected) {
-                                    background = '#fee2e2'
-                                }
+                                if (isCorrect) background = '#d1fae5'
+                                else if (isSelected) background = '#fee2e2'
                             }
-
                             return (
                                 <button
                                     key={index}
-                                    style={{
-                                        ...styles.optionButton,
-                                        background
-                                    }}
+                                    style={{ ...styles.optionButton, background }}
                                     onClick={() => handleAnswer(index)}
                                 >
                                     {option}
@@ -497,17 +482,11 @@ export default function App() {
 
                     <div style={styles.footerArea}>
                         <button
-                            style={{
-                                ...styles.button,
-                                opacity: showResult ? 1 : 0.5,
-                            }}
+                            style={{ ...styles.button, opacity: showResult ? 1 : 0.5 }}
                             disabled={!showResult}
                             onClick={handleNext}
                         >
-                            {currentQuestionIndex + 1 ===
-                                shuffledQuestions.length
-                                ? 'Finalizar'
-                                : 'Siguiente'}
+                            {currentQuestionIndex + 1 === shuffledQuestions.length ? 'Finalizar' : 'Siguiente'}
                         </button>
 
                         {showResult && (

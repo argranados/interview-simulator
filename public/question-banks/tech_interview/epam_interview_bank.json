@@ -1,0 +1,281 @@
+[
+  {
+    "id": 1,
+    "level": "Junior",
+    "category": "Functional Programming",
+    "question": "¿Qué es una Functional Interface en Java?",
+    "code": null,
+    "answer": "Una interfaz que tiene exactamente un método abstracto. Puede ser usada como target de una expresión lambda o method reference. Se puede anotar con @FunctionalInterface para que el compilador lo verifique.",
+    "example": "@FunctionalInterface\npublic interface MyFunction {\n    void execute();\n}"
+  },
+  {
+    "id": 2,
+    "level": "Junior",
+    "category": "Functional Programming",
+    "question": "¿Cuáles son los 4 tipos principales de Functional Interface en Java?",
+    "code": null,
+    "answer": "1. Function<T,R> — recibe un argumento T y retorna R. Método: apply()\n2. Predicate<T> — recibe T y retorna boolean. Método: test()\n3. Consumer<T> — recibe T y no retorna nada. Método: accept()\n4. Supplier<T> — no recibe argumentos y retorna T. Método: get()",
+    "example": "Function<String, Integer> len = String::length;\nPredicate<String> isEmpty = String::isEmpty;\nConsumer<String> print = System.out::println;\nSupplier<String> hello = () -> \"Hello\";"
+  },
+  {
+    "id": 3,
+    "level": "Junior",
+    "category": "Optional",
+    "question": "¿Qué es Optional en Java?",
+    "code": null,
+    "answer": "Un contenedor que puede contener o no un valor no-nulo. Introduce una forma explícita de representar la ausencia de valor, evitando NullPointerException. Se usa principalmente en valores de retorno de métodos.",
+    "example": "Optional<String> name = Optional.ofNullable(getName());\nname.ifPresent(n -> System.out.println(n));\nString result = name.orElse(\"default\");"
+  },
+  {
+    "id": 4,
+    "level": "Junior",
+    "category": "Optional",
+    "question": "¿Cuál es la diferencia entre usar Optional y usar un if para chequear null?",
+    "code": null,
+    "answer": "Optional: maneja explícitamente la presencia o ausencia del valor con una API expresiva (ifPresent, orElse, map). Tiene algo de overhead al crear el objeto wrapper.\nif: forma simple y directa de chequear null, sin overhead. Optional no reemplaza el if, sino que hace el contrato del método más claro.",
+    "example": "// Con if\nif (name != null) { process(name); }\n\n// Con Optional\nOptional.ofNullable(name).ifPresent(this::process);"
+  },
+  {
+    "id": 5,
+    "level": "Junior",
+    "category": "Collections",
+    "question": "¿Qué colección usarías si necesitas búsquedas rápidas?",
+    "code": null,
+    "answer": "Depende del tipo de acceso: si necesitas acceso rápido por índice usa ArrayList (O(1) por posición). Si necesitas acceso rápido por clave usa HashMap (O(1) promedio por key). Si necesitas orden de inserción + clave usa LinkedHashMap.",
+    "example": null
+  },
+  {
+    "id": 6,
+    "level": "Mid",
+    "category": "Concurrency",
+    "question": "¿Qué es una operación atómica (Atomic Operation)?",
+    "code": null,
+    "answer": "Una operación que se ejecuta de forma indivisible — o se completa completamente o no se ejecuta. No puede ser interrumpida a la mitad por otro thread. Java provee clases en java.util.concurrent.atomic como AtomicInteger, AtomicLong, AtomicReference para operaciones atómicas sin usar synchronized.",
+    "example": "AtomicInteger counter = new AtomicInteger(0);\ncounter.incrementAndGet(); // thread-safe sin synchronized"
+  },
+  {
+    "id": 7,
+    "level": "Mid",
+    "category": "Concurrency",
+    "question": "¿Cuál es la diferencia entre Class Lock y Object Lock?",
+    "code": null,
+    "answer": "Object Lock: el lock se adquiere sobre una instancia específica del objeto. Solo bloquea los threads que accedan a esa misma instancia.\nClass Lock: el lock se adquiere sobre la clase (Class object). Bloquea todas las instancias — hay un único lock por clase, compartido entre todos los objetos.",
+    "example": "// Object Lock\nsynchronized(this) { ... }\n\n// Class Lock\nsynchronized(MyClass.class) { ... }\n// o en método estático:\npublic static synchronized void method() { ... }"
+  },
+  {
+    "id": 8,
+    "level": "Junior",
+    "category": "Spring Core",
+    "question": "¿Qué es Dependency Injection en Spring?",
+    "code": null,
+    "answer": "Un patrón donde Spring es responsable de crear y proveer las dependencias de un objeto, en lugar de que el objeto las cree él mismo. Reduce el acoplamiento. Spring lo implementa mediante constructor injection, setter injection o field injection.",
+    "example": "@Service\npublic class OrderService {\n    private final PaymentService paymentService;\n\n    @Autowired // constructor injection (recomendado)\n    public OrderService(PaymentService paymentService) {\n        this.paymentService = paymentService;\n    }\n}"
+  },
+  {
+    "id": 9,
+    "level": "Mid",
+    "category": "Spring Core",
+    "question": "Explica el Lifecycle de un Bean en Spring.",
+    "code": null,
+    "answer": "1. Instantiation — Spring crea la instancia del bean\n2. Populate Properties — inyecta las dependencias\n3. BeanNameAware, BeanFactoryAware — Spring pasa el nombre/factory al bean si los implementa\n4. BeanPostProcessor (before) — procesamiento previo a la inicialización\n5. @PostConstruct / InitializingBean.afterPropertiesSet() — inicialización custom\n6. BeanPostProcessor (after) — procesamiento posterior\n7. Bean listo para usar\n8. @PreDestroy / DisposableBean.destroy() — limpieza al cerrar el contexto",
+    "example": "@Component\npublic class MyBean {\n    @PostConstruct\n    public void init() { /* inicialización */ }\n\n    @PreDestroy\n    public void cleanup() { /* limpieza */ }\n}"
+  },
+  {
+    "id": 10,
+    "level": "Junior",
+    "category": "Spring Core",
+    "question": "¿Cuáles son los Scopes de un Bean en Spring?",
+    "code": null,
+    "answer": "1. singleton (default) — una sola instancia por ApplicationContext\n2. prototype — nueva instancia cada vez que se solicita\n3. request — una instancia por HTTP request (web)\n4. session — una instancia por HTTP session (web)\n5. application — una instancia por ServletContext (web)\n6. websocket — una instancia por WebSocket session",
+    "example": "@Component\n@Scope(\"prototype\")\npublic class MyBean { ... }"
+  },
+  {
+    "id": 11,
+    "level": "Junior",
+    "category": "Spring Core",
+    "question": "¿Cuál es el scope por defecto de un Bean en Spring?",
+    "code": null,
+    "answer": "singleton — Spring crea una sola instancia del bean y la reutiliza en todo el ApplicationContext.",
+    "example": null
+  },
+  {
+    "id": 12,
+    "level": "Junior",
+    "category": "Spring Core",
+    "question": "Si tienes dos beans del mismo tipo y quieres usar uno específico, ¿qué haces?",
+    "code": null,
+    "answer": "Usas @Qualifier junto con @Autowired para especificar cuál bean inyectar por nombre. También puedes usar @Primary en el bean que deseas como preferido por defecto.",
+    "example": "@Autowired\n@Qualifier(\"paypalPaymentService\")\nprivate PaymentService paymentService;"
+  },
+  {
+    "id": 13,
+    "level": "Junior",
+    "category": "REST API",
+    "question": "¿Cuáles son los métodos HTTP de una REST API?",
+    "code": null,
+    "answer": "GET — obtener recurso (lectura)\nPOST — crear recurso\nPUT — actualizar recurso completo (reemplaza)\nPATCH — actualizar recurso parcialmente\nDELETE — eliminar recurso\nHEAD — como GET pero sin body en la respuesta\nOPTIONS — describe opciones de comunicación disponibles",
+    "example": null
+  },
+  {
+    "id": 14,
+    "level": "Junior",
+    "category": "REST API",
+    "question": "¿Qué es Idempotente (Idempotent) en REST?",
+    "code": null,
+    "answer": "Una operación es idempotente si ejecutarla múltiples veces produce el mismo resultado que ejecutarla una sola vez. GET, PUT, DELETE y HEAD son idempotentes. POST no lo es, ya que crear el mismo recurso varias veces genera múltiples registros.",
+    "example": "DELETE /orders/1 → primera vez elimina, segunda vez retorna 404, pero el estado final del servidor es el mismo: el recurso no existe."
+  },
+  {
+    "id": 15,
+    "level": "Junior",
+    "category": "REST API",
+    "question": "¿Cuáles son los principales HTTP Status Codes?",
+    "code": null,
+    "answer": "2xx — Éxito: 200 OK, 201 Created, 204 No Content\n3xx — Redirección: 301 Moved Permanently, 304 Not Modified\n4xx — Error del cliente: 400 Bad Request, 401 Unauthorized, 403 Forbidden, 404 Not Found, 409 Conflict, 422 Unprocessable Entity\n5xx — Error del servidor: 500 Internal Server Error, 503 Service Unavailable",
+    "example": null
+  },
+  {
+    "id": 16,
+    "level": "Junior",
+    "category": "Spring Boot",
+    "question": "¿Qué es @RestController?",
+    "code": null,
+    "answer": "Una anotación que combina @Controller + @ResponseBody. Indica que la clase maneja requests HTTP y que todos los métodos retornan datos directamente en el body de la respuesta (en formato JSON por defecto), sin necesidad de anotar cada método con @ResponseBody.",
+    "example": "@RestController\n@RequestMapping(\"/api/users\")\npublic class UserController {\n    @GetMapping(\"/{id}\")\n    public UserDto getUser(@PathVariable Long id) {\n        return userService.findById(id);\n    }\n}"
+  },
+  {
+    "id": 17,
+    "level": "Junior",
+    "category": "Spring Boot",
+    "question": "Explica cómo harías un Controller en Spring Boot y qué anotaciones usarías.",
+    "code": null,
+    "answer": "@RestController — marca la clase como controller REST\n@RequestMapping — define la ruta base\n@GetMapping / @PostMapping / @PutMapping / @DeleteMapping — mapean métodos a verbos HTTP\n@PathVariable — extrae variables de la URL\n@RequestParam — extrae query params\n@RequestBody — deserializa el body JSON a un objeto\n@ResponseStatus — define el status code de respuesta",
+    "example": "@RestController\n@RequestMapping(\"/api/orders\")\npublic class OrderController {\n\n    @PostMapping\n    @ResponseStatus(HttpStatus.CREATED)\n    public OrderDto create(@RequestBody @Valid CreateOrderRequest req) {\n        return orderService.create(req);\n    }\n\n    @GetMapping(\"/{id}\")\n    public OrderDto getById(@PathVariable Long id) {\n        return orderService.findById(id);\n    }\n}"
+  },
+  {
+    "id": 18,
+    "level": "Mid",
+    "category": "Spring Boot",
+    "question": "¿Cómo manejarías excepciones en un Controller de Spring Boot?",
+    "code": null,
+    "answer": "Usando @ControllerAdvice (o @RestControllerAdvice) con métodos @ExceptionHandler. Esto centraliza el manejo de excepciones para todos los controllers, retornando respuestas consistentes con el status code apropiado.",
+    "example": "@RestControllerAdvice\npublic class GlobalExceptionHandler {\n\n    @ExceptionHandler(ResourceNotFoundException.class)\n    @ResponseStatus(HttpStatus.NOT_FOUND)\n    public ErrorResponse handleNotFound(ResourceNotFoundException ex) {\n        return new ErrorResponse(ex.getMessage());\n    }\n\n    @ExceptionHandler(MethodArgumentNotValidException.class)\n    @ResponseStatus(HttpStatus.BAD_REQUEST)\n    public ErrorResponse handleValidation(MethodArgumentNotValidException ex) {\n        return new ErrorResponse(\"Validation failed\");\n    }\n}"
+  },
+  {
+    "id": 19,
+    "level": "Senior",
+    "category": "Microservices",
+    "question": "¿Qué desafíos enfrentarías al construir una arquitectura de microservicios?",
+    "code": null,
+    "answer": "1. Modeling the Domain — definir correctamente los bounded contexts y responsabilidades de cada servicio (DDD)\n2. Communication — elegir entre comunicación síncrona (REST, gRPC) o asíncrona (Kafka, RabbitMQ) y manejar fallos de red\n3. Testing — unit, integration y contract testing son más complejos. Necesitas herramientas como Testcontainers o WireMock\n4. Security — manejar autenticación/autorización distribuida (JWT, OAuth2, API Gateway)\n5. Otros: distributed tracing, consistency eventual, service discovery, gestión de configuración centralizada",
+    "example": null
+  },
+  {
+    "id": 20,
+    "level": "Junior",
+    "category": "SQL",
+    "question": "¿Qué es un Index en base de datos?",
+    "code": null,
+    "answer": "Una estructura de datos (generalmente B-Tree) que mejora la velocidad de búsqueda en una tabla a costa de espacio adicional y algo de overhead en writes (INSERT/UPDATE/DELETE). Sin índice, una búsqueda hace full table scan. Con índice, la búsqueda es O(log n).",
+    "example": "CREATE INDEX idx_users_email ON users(email);\n-- Mejora queries como: SELECT * FROM users WHERE email = 'x@x.com';"
+  },
+  {
+    "id": 21,
+    "level": "Junior",
+    "category": "SQL",
+    "question": "¿Qué es una Composite Key (clave compuesta)?",
+    "code": null,
+    "answer": "Una clave primaria formada por dos o más columnas. La combinación de esas columnas identifica de forma única cada fila. Se usa cuando ninguna columna individual es suficiente para identificar un registro.",
+    "example": "CREATE TABLE order_items (\n    order_id   BIGINT,\n    product_id BIGINT,\n    quantity   INT,\n    PRIMARY KEY (order_id, product_id)\n);"
+  },
+  {
+    "id": 22,
+    "level": "Junior",
+    "category": "SQL",
+    "question": "¿Cuál es la diferencia entre WHERE y HAVING?",
+    "code": null,
+    "answer": "WHERE filtra filas ANTES de agrupar (antes del GROUP BY) — opera sobre filas individuales.\nHAVING filtra grupos DESPUÉS de agrupar (después del GROUP BY) — opera sobre el resultado de funciones de agregación como COUNT, SUM, AVG.",
+    "example": "SELECT department, COUNT(*) as total\nFROM employees\nWHERE salary > 50000        -- filtra filas antes de agrupar\nGROUP BY department\nHAVING COUNT(*) > 5;        -- filtra grupos después de agrupar"
+  },
+  {
+    "id": 23,
+    "level": "Junior",
+    "category": "JPA",
+    "question": "¿Qué es JPA?",
+    "code": null,
+    "answer": "Java Persistence API — una especificación estándar de Java (ahora Jakarta Persistence) que define cómo mapear objetos Java a tablas relacionales (ORM). JPA es solo la interfaz/contrato; necesita una implementación. La más usada es Hibernate.",
+    "example": "@Entity\n@Table(name = \"users\")\npublic class User {\n    @Id @GeneratedValue\n    private Long id;\n    private String name;\n}"
+  },
+  {
+    "id": 24,
+    "level": "Junior",
+    "category": "JPA",
+    "question": "¿Qué es Hibernate?",
+    "code": null,
+    "answer": "El framework ORM más popular de Java y la implementación de referencia de JPA. Traduce automáticamente operaciones sobre objetos Java a SQL, maneja el ciclo de vida de las entidades, lazy/eager loading, caché de primer y segundo nivel, y generación de esquemas.",
+    "example": null
+  },
+  {
+    "id": 25,
+    "level": "Junior",
+    "category": "SQL",
+    "question": "¿Cómo haces un JOIN en SQL?",
+    "code": null,
+    "answer": "INNER JOIN — retorna filas que tienen match en ambas tablas\nLEFT JOIN — retorna todas las filas de la izquierda + match de la derecha (null si no hay)\nRIGHT JOIN — retorna todas las filas de la derecha + match de la izquierda\nFULL OUTER JOIN — retorna todas las filas de ambas tablas",
+    "example": "SELECT u.name, o.total\nFROM users u\nINNER JOIN orders o ON u.id = o.user_id\nWHERE o.total > 100;"
+  },
+  {
+    "id": 26,
+    "level": "Junior",
+    "category": "SQL",
+    "question": "¿Cómo haces un SELECT en SQL?",
+    "code": null,
+    "answer": "Estructura básica: SELECT columnas FROM tabla WHERE condición ORDER BY columna LIMIT n. Puedes usar *, alias, funciones de agregación (COUNT, SUM, AVG), GROUP BY, HAVING, subqueries y JOINs.",
+    "example": "SELECT u.name, COUNT(o.id) as order_count\nFROM users u\nLEFT JOIN orders o ON u.id = o.user_id\nWHERE u.active = true\nGROUP BY u.id, u.name\nHAVING COUNT(o.id) > 0\nORDER BY order_count DESC\nLIMIT 10;"
+  },
+  {
+    "id": 27,
+    "level": "Junior",
+    "category": "NoSQL",
+    "question": "¿Qué es NoSQL?",
+    "code": null,
+    "answer": "Bases de datos que no usan el modelo relacional tabular. Diseñadas para escalar horizontalmente, manejar grandes volúmenes de datos no estructurados o semi-estructurados y alta disponibilidad. El término significa 'Not Only SQL'.",
+    "example": null
+  },
+  {
+    "id": 28,
+    "level": "Junior",
+    "category": "NoSQL",
+    "question": "¿Qué estructuras/tipos de bases NoSQL conoces?",
+    "code": null,
+    "answer": "1. Document — almacena documentos JSON/BSON. Ej: MongoDB, CouchDB\n2. Key-Value — acceso ultra rápido por clave. Ej: Redis, DynamoDB\n3. Column-Family — datos en columnas agrupadas. Ej: Cassandra, HBase\n4. Graph — nodos y relaciones. Ej: Neo4j\n5. Time-Series — optimizadas para datos temporales. Ej: InfluxDB",
+    "example": null
+  },
+  {
+    "id": 29,
+    "level": "Mid",
+    "category": "Architecture",
+    "question": "¿Cuándo usarías SQL vs NoSQL?",
+    "code": null,
+    "answer": "SQL: cuando los datos son estructurados y relacionales, el esquema es estable, se requieren transacciones ACID, y la consistencia es crítica. Ej: finanzas, e-commerce.\nNoSQL: cuando se necesita escala horizontal masiva, los datos son semi-estructurados o cambian de esquema frecuentemente, se prioriza disponibilidad sobre consistencia, o se necesita baja latencia a escala. Ej: catálogos, logs, caché, redes sociales.",
+    "example": null
+  },
+  {
+    "id": 30,
+    "level": "Junior",
+    "category": "Testing",
+    "question": "¿Cuál es la diferencia entre Unit Test e Integration Test?",
+    "code": null,
+    "answer": "Unit Test: prueba una unidad de código de forma aislada (una clase o método), sin dependencias reales — se mockean. Es rápido y predecible.\nIntegration Test: prueba la interacción entre múltiples componentes reales (base de datos, APIs, Kafka). Es más lento pero valida que el sistema funcione end-to-end correctamente.",
+    "example": "// Unit Test\n@Test void shouldCalculateTotal() { ... } // sin DB\n\n// Integration Test con Testcontainers\n@SpringBootTest\n@Testcontainers\nvoid shouldSaveAndRetrieveOrder() { ... } // con DB real"
+  },
+  {
+    "id": 31,
+    "level": "Mid",
+    "category": "Testing",
+    "question": "¿Cuál es la diferencia entre Spy y Mock en testing?",
+    "code": null,
+    "answer": "Mock: objeto completamente simulado que reemplaza al real. Todos sus métodos retornan valores por defecto o los que configures. Se usa para verificar que cierto código fue llamado o para aislar la clase bajo prueba.\nSpy: mock parcial que envuelve un objeto real. Ejecuta los métodos reales por defecto, pero permite sobreescribir métodos específicos o verificar llamadas. Útil cuando quieres probar algo real pero controlar parte del comportamiento.",
+    "example": "// Mock — todo simulado\nPaymentService mock = Mockito.mock(PaymentService.class);\nwhen(mock.charge(any())).thenReturn(true);\n\n// Spy — objeto real + control parcial\nPaymentService spy = Mockito.spy(new PaymentService());\ndoReturn(true).when(spy).charge(any());"
+  }
+]

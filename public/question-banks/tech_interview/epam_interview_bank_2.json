@@ -1,0 +1,353 @@
+[
+  {
+    "id": 1,
+    "level": "Junior",
+    "category": "OOP",
+    "question": "¿Cuál es la diferencia entre abstract class e interface en Java?",
+    "code": null,
+    "answer": "Abstract class: puede tener estado (campos), constructores, métodos concretos y abstractos. Se usa cuando hay una relación 'es-un' con lógica compartida. Solo permite herencia simple.\nInterface: define un contrato de comportamiento. Desde Java 8 permite default/static methods. Una clase puede implementar múltiples interfaces. Se usa para definir capacidades ortogonales.",
+    "example": "// Abstract class\nabstract class Animal {\n    String name;\n    abstract void speak();\n    void breathe() { System.out.println(\"breathing\"); }\n}\n\n// Interface\ninterface Flyable {\n    void fly();\n    default void land() { System.out.println(\"landing\"); }\n}"
+  },
+  {
+    "id": 2,
+    "level": "Junior",
+    "category": "OOP",
+    "question": "¿Puede una clase heredar de otra Y al mismo tiempo implementar una interface?",
+    "code": null,
+    "answer": "Sí. En Java una clase puede extender exactamente una clase (abstracta o concreta) e implementar múltiples interfaces al mismo tiempo.",
+    "example": "public class Duck extends Animal implements Flyable, Swimmable {\n    @Override public void speak() { System.out.println(\"Quack\"); }\n    @Override public void fly()   { System.out.println(\"Flying\"); }\n}"
+  },
+  {
+    "id": 3,
+    "level": "Junior",
+    "category": "OOP",
+    "question": "¿Puede un método tener implementación en una clase abstracta?",
+    "code": null,
+    "answer": "Sí. Una clase abstracta puede tener métodos concretos (con implementación) además de métodos abstractos (sin implementación). Los métodos concretos son heredados por las subclases y pueden ser sobreescritos o usados directamente.",
+    "example": "abstract class Shape {\n    abstract double area();          // abstracto — sin implementación\n    void describe() {               // concreto — con implementación\n        System.out.println(\"Area: \" + area());\n    }\n}"
+  },
+  {
+    "id": 4,
+    "level": "Junior",
+    "category": "Java Core",
+    "question": "¿Cuál es la diferencia entre == y equals() en Java?",
+    "code": null,
+    "answer": "== compara referencias (si apuntan al mismo objeto en memoria). equals() compara el contenido/valor del objeto. Para String, equals() compara los caracteres. Si no se sobreescribe equals(), se usa el de Object que hace lo mismo que ==.",
+    "example": "String a = new String(\"hello\");\nString b = new String(\"hello\");\n\na == b       // false — objetos distintos en heap\na.equals(b)  // true  — mismo contenido"
+  },
+  {
+    "id": 5,
+    "level": "Junior",
+    "category": "Java Core",
+    "question": "String strA = \"same\"; String strB = \"same\"; ¿Qué devuelve strA == strB y strA.equals(strB)?",
+    "code": "String strA = \"same\";\nString strB = \"same\";\nSystem.out.println(strA == strB);      // ?\nSystem.out.println(strA.equals(strB)); // ?",
+    "answer": "strA == strB → true. Los literales String se internan en el String Pool — ambas variables apuntan al mismo objeto.\nstrA.equals(strB) → true. El contenido es idéntico.\nOjo: si usaras new String(\"same\"), == devolvería false porque crea un objeto nuevo fuera del pool.",
+    "example": "String strA = \"same\";\nString strB = \"same\";\nstrA == strB        // true  (mismo objeto del pool)\nstrA.equals(strB)   // true  (mismo contenido)\n\nString strC = new String(\"same\");\nstrA == strC        // false (objeto nuevo en heap)\nstrA.equals(strC)   // true"
+  },
+  {
+    "id": 6,
+    "level": "Junior",
+    "category": "Functional Programming",
+    "question": "¿Qué se necesita para crear una Functional Interface?",
+    "code": null,
+    "answer": "Solo necesita tener exactamente un método abstracto. Puede tener métodos default y static adicionales. Se recomienda anotarla con @FunctionalInterface para que el compilador lo verifique, pero no es obligatorio.",
+    "example": "@FunctionalInterface\ninterface Transformer<T, R> {\n    R transform(T input);   // único método abstracto\n\n    default void log() { System.out.println(\"transforming\"); }\n}"
+  },
+  {
+    "id": 7,
+    "level": "Mid",
+    "category": "Concurrency",
+    "question": "¿Qué es un Thread Pool (multithread pooling)?",
+    "code": null,
+    "answer": "Un Thread Pool es un conjunto de threads pre-creados y reutilizables. En lugar de crear un nuevo thread por cada tarea (costoso), las tareas se envían a una cola y los threads del pool las ejecutan. Java lo implementa con ExecutorService. Beneficios: menor overhead, control de concurrencia máxima, reutilización de threads.",
+    "example": "ExecutorService pool = Executors.newFixedThreadPool(4); // 4 threads\n\npool.submit(() -> processOrder(order1));\npool.submit(() -> processOrder(order2));\npool.submit(() -> processOrder(order3));\n\npool.shutdown();"
+  },
+  {
+    "id": 8,
+    "level": "Mid",
+    "category": "Concurrency",
+    "question": "¿Qué es una Race Condition y cómo se previene?",
+    "code": null,
+    "answer": "Race Condition ocurre cuando dos o más threads acceden y modifican datos compartidos simultáneamente, produciendo resultados incorrectos e impredecibles según el orden de ejecución.\nCómo prevenir: synchronized (bloqueo de método/bloque), ReentrantLock, clases atómicas (AtomicInteger, AtomicLong), variables volatile para visibilidad, o estructuras thread-safe (ConcurrentHashMap).",
+    "example": "// Problema — race condition\nprivate int count = 0;\nvoid increment() { count++; } // no es atómico\n\n// Solución 1 — synchronized\nsynchronized void increment() { count++; }\n\n// Solución 2 — AtomicInteger\nprivate AtomicInteger count = new AtomicInteger(0);\nvoid increment() { count.incrementAndGet(); }"
+  },
+  {
+    "id": 9,
+    "level": "Junior",
+    "category": "Spring Core",
+    "question": "¿Qué es Spring IoC (Inversion of Control)?",
+    "code": null,
+    "answer": "IoC es un principio donde el control de crear y gestionar objetos (dependencias) se invierte: en lugar de que el código cree sus propias dependencias, es el contenedor de Spring (ApplicationContext) quien las crea, configura e inyecta. Esto reduce el acoplamiento y facilita el testing.",
+    "example": "// Sin IoC — la clase crea su dependencia\npublic class OrderService {\n    private PaymentService ps = new PaymentService(); // acoplado\n}\n\n// Con IoC — Spring inyecta la dependencia\n@Service\npublic class OrderService {\n    private final PaymentService ps;\n    public OrderService(PaymentService ps) { this.ps = ps; } // inyectado\n}"
+  },
+  {
+    "id": 10,
+    "level": "Junior",
+    "category": "Spring Core",
+    "question": "¿Cuáles son los métodos para inyectar un bean en Spring?",
+    "code": null,
+    "answer": "1. Constructor Injection (recomendado) — dependencias en el constructor, permite campos final, mejor para testing.\n2. Setter Injection — mediante método setter con @Autowired, dependencias opcionales.\n3. Field Injection — @Autowired directo en el campo, menos recomendado porque dificulta el testing y oculta dependencias.",
+    "example": "// 1. Constructor (recomendado)\n@Service\npublic class OrderService {\n    private final PaymentService ps;\n    public OrderService(PaymentService ps) { this.ps = ps; }\n}\n\n// 2. Setter\n@Autowired\npublic void setPaymentService(PaymentService ps) { this.ps = ps; }\n\n// 3. Field\n@Autowired\nprivate PaymentService ps;"
+  },
+  {
+    "id": 11,
+    "level": "Mid",
+    "category": "Spring Core",
+    "question": "¿Qué es un BeanPostProcessor en Spring?",
+    "code": null,
+    "answer": "Es una interfaz que permite ejecutar lógica personalizada antes y después de que Spring inicialice cada bean. Sus métodos postProcessBeforeInitialization y postProcessAfterInitialization son llamados por el contenedor durante el lifecycle del bean. Se usa para proxies, logging, validación, o modificar beans automáticamente.",
+    "example": "@Component\npublic class MyPostProcessor implements BeanPostProcessor {\n    @Override\n    public Object postProcessBeforeInitialization(Object bean, String name) {\n        System.out.println(\"Before init: \" + name);\n        return bean;\n    }\n    @Override\n    public Object postProcessAfterInitialization(Object bean, String name) {\n        System.out.println(\"After init: \" + name);\n        return bean;\n    }\n}"
+  },
+  {
+    "id": 12,
+    "level": "Mid",
+    "category": "Spring Core",
+    "question": "¿Cuál es la diferencia entre BeanFactory y ApplicationContext en Spring?",
+    "code": null,
+    "answer": "BeanFactory: contenedor básico, crea beans de forma lazy (solo cuando se solicitan). Consume menos memoria, útil para entornos con recursos limitados.\nApplicationContext: extiende BeanFactory, inicializa beans eager (al arrancar), soporta eventos, internacionalización (i18n), AOP, y maneja el ciclo completo de la aplicación. Es el estándar en aplicaciones Spring Boot.",
+    "example": "// BeanFactory — básico, lazy\nBeanFactory factory = new XmlBeanFactory(new ClassPathResource(\"beans.xml\"));\n\n// ApplicationContext — completo, eager\nApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);"
+  },
+  {
+    "id": 13,
+    "level": "Junior",
+    "category": "Spring Boot",
+    "question": "¿Cuál es la diferencia entre Spring Framework y Spring Boot?",
+    "code": null,
+    "answer": "Spring Framework: framework base que requiere configuración explícita — XML o Java config, dependencias manuales, servidor de aplicaciones externo.\nSpring Boot: capa sobre Spring que elimina la configuración boilerplate mediante auto-configuration, starter dependencies, servidor embebido (Tomcat por defecto) y production-ready features (Actuator). Reduce el setup de semanas a minutos.",
+    "example": null
+  },
+  {
+    "id": 14,
+    "level": "Junior",
+    "category": "Spring Boot",
+    "question": "¿Qué anotaciones se usan para crear una aplicación Spring Boot?",
+    "code": null,
+    "answer": "@SpringBootApplication (la principal) — combina: @Configuration, @EnableAutoConfiguration y @ComponentScan. Junto con el método main y SpringApplication.run() es todo lo necesario para arrancar la aplicación.",
+    "example": "@SpringBootApplication\npublic class MyApp {\n    public static void main(String[] args) {\n        SpringApplication.run(MyApp.class, args);\n    }\n}"
+  },
+  {
+    "id": 15,
+    "level": "Junior",
+    "category": "Spring Boot",
+    "question": "¿Qué hace la anotación @SpringBootApplication?",
+    "code": null,
+    "answer": "Es una meta-anotación que equivale a tres anotaciones juntas: @Configuration (la clase define beans), @EnableAutoConfiguration (activa la configuración automática de Spring Boot según las dependencias del classpath) y @ComponentScan (escanea el paquete actual y subpaquetes en busca de componentes).",
+    "example": "// Equivalente explícito a @SpringBootApplication:\n@Configuration\n@EnableAutoConfiguration\n@ComponentScan(basePackages = \"com.myapp\")\npublic class MyApp { ... }"
+  },
+  {
+    "id": 16,
+    "level": "Mid",
+    "category": "JPA",
+    "question": "¿Por qué y cómo se usa Hibernate?",
+    "code": null,
+    "answer": "Se usa porque elimina el SQL boilerplate para operaciones CRUD, mapea objetos Java a tablas automáticamente (ORM), gestiona el lifecycle de las entidades, y abstrae las diferencias entre bases de datos. Se usa anotando entidades con @Entity y operando a través de EntityManager o JpaRepository en Spring.",
+    "example": "@Entity\n@Table(name = \"orders\")\npublic class Order {\n    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)\n    private Long id;\n    private BigDecimal total;\n    @ManyToOne\n    private Customer customer;\n}"
+  },
+  {
+    "id": 17,
+    "level": "Mid",
+    "category": "JPA",
+    "question": "¿Cuáles son las ventajas y desventajas de usar Hibernate?",
+    "code": null,
+    "answer": "Ventajas: elimina SQL repetitivo, portabilidad entre DBs, caché de primer y segundo nivel, lazy/eager loading, gestión automática de transacciones, integración natural con Spring.\nDesventajas: curva de aprendizaje alta (N+1 problem, lazy loading, fetch strategies), queries complejas son difíciles de optimizar, puede generar SQL ineficiente si no se configura bien, overhead en aplicaciones simples.",
+    "example": null
+  },
+  {
+    "id": 18,
+    "level": "Mid",
+    "category": "JPA",
+    "question": "¿Cómo llamas a un stored procedure en Hibernate/JPA?",
+    "code": null,
+    "answer": "Con @NamedStoredProcedureQuery a nivel de entidad, o con StoredProcedureQuery via EntityManager, o con @Procedure en Spring Data JPA en el repository.",
+    "example": "// Opción 1 — @Procedure en Spring Data JPA (más simple)\n@Repository\npublic interface OrderRepository extends JpaRepository<Order, Long> {\n    @Procedure(name = \"calculate_total\")\n    BigDecimal calculateTotal(@Param(\"order_id\") Long orderId);\n}\n\n// Opción 2 — EntityManager\nStoredProcedureQuery query = em.createStoredProcedureQuery(\"calculate_total\");\nquery.registerStoredProcedureParameter(\"order_id\", Long.class, ParameterMode.IN);\nquery.setParameter(\"order_id\", 1L);\nquery.execute();"
+  },
+  {
+    "id": 19,
+    "level": "Mid",
+    "category": "AWS",
+    "question": "¿Qué servicios de AWS has utilizado?",
+    "code": null,
+    "answer": "Respuesta modelo para entrevista: ECS Fargate (contenedores sin gestionar servidores), ECR (registro de imágenes Docker), S3 (almacenamiento de objetos), RDS (base de datos relacional administrada), CloudWatch (monitoreo y logs), IAM (gestión de permisos), SQS/SNS (mensajería), API Gateway (exposición de APIs), Lambda (funciones serverless), Secrets Manager (gestión de credenciales).",
+    "example": null
+  },
+  {
+    "id": 20,
+    "level": "Junior",
+    "category": "AWS",
+    "question": "¿Qué es CloudWatch?",
+    "code": null,
+    "answer": "Servicio de monitoreo y observabilidad de AWS. Permite: recolectar y visualizar logs de aplicaciones e infraestructura, crear métricas y dashboards, configurar alarmas (ej. CPU > 80%), y ejecutar acciones automáticas. En Spring Boot se integra enviando logs via el agente CloudWatch o con el SDK.",
+    "example": null
+  },
+  {
+    "id": 21,
+    "level": "Junior",
+    "category": "Architecture",
+    "question": "¿Qué es Horizontal Scaling vs Vertical Scaling?",
+    "code": null,
+    "answer": "Vertical Scaling (scale up): agregar más recursos a una misma máquina — más CPU, RAM, disco. Tiene límite físico y genera downtime.\nHorizontal Scaling (scale out): agregar más instancias/nodos del mismo servicio. Sin límite teórico, alta disponibilidad, más complejo. Es el modelo de microservicios y cloud-native. AWS ECS Fargate escala horizontalmente.",
+    "example": null
+  },
+  {
+    "id": 22,
+    "level": "Junior",
+    "category": "API",
+    "question": "¿Qué es Swagger?",
+    "code": null,
+    "answer": "Swagger (ahora OpenAPI Specification) es un estándar para describir, documentar y visualizar APIs REST. En Spring Boot se integra con springdoc-openapi o springfox, generando automáticamente una UI interactiva donde se pueden ver y probar todos los endpoints.",
+    "example": null
+  },
+  {
+    "id": 23,
+    "level": "Junior",
+    "category": "API",
+    "question": "¿Cuál es otro beneficio de usar Swagger además de la documentación?",
+    "code": null,
+    "answer": "Permite probar los endpoints directamente desde la UI sin necesidad de Postman. También sirve como contrato entre equipos frontend y backend (contract-first development), puede generar código cliente automáticamente en múltiples lenguajes, y facilita el onboarding de nuevos desarrolladores al proyecto.",
+    "example": null
+  },
+  {
+    "id": 24,
+    "level": "Junior",
+    "category": "REST API",
+    "question": "¿Cuál es la diferencia entre POST, PUT y PATCH?",
+    "code": null,
+    "answer": "POST: crea un nuevo recurso. No es idempotente — llamarlo varias veces crea múltiples recursos.\nPUT: reemplaza completamente un recurso existente. Es idempotente — el resultado es el mismo si se llama N veces. Requiere enviar el objeto completo.\nPATCH: actualiza parcialmente un recurso. Solo envías los campos que cambian. También idempotente en la práctica.",
+    "example": "POST   /orders          → crea nueva orden\nPUT    /orders/1        → reemplaza orden 1 completa\nPATCH  /orders/1        → actualiza solo el status de orden 1"
+  },
+  {
+    "id": 25,
+    "level": "Junior",
+    "category": "Architecture",
+    "question": "Explica Monolítico vs Microservicios.",
+    "code": null,
+    "answer": "Monolítico: toda la aplicación en un único deployable. Simple de desarrollar y deployar inicialmente, pero escala como unidad completa, el fallo de un componente puede derribar todo, y el equipo crece acoplado.\nMicroservicios: aplicación dividida en servicios pequeños, independientes, con su propia base de datos y deployment. Escala individualmente, equipos autónomos, resiliencia aislada. Pero introduce complejidad: comunicación distribuida, consistencia eventual, observabilidad.",
+    "example": null
+  },
+  {
+    "id": 26,
+    "level": "Mid",
+    "category": "Architecture",
+    "question": "¿Cuáles son las ventajas y desventajas de los microservicios?",
+    "code": null,
+    "answer": "Ventajas: escalado independiente por servicio, deployment independiente, equipos autónomos, tecnologías distintas por servicio, fallos aislados.\nDesventajas: complejidad operacional (service discovery, load balancing, tracing), consistencia eventual entre servicios, latencia de red en comunicaciones, testing end-to-end más complejo, overhead de infraestructura.",
+    "example": null
+  },
+  {
+    "id": 27,
+    "level": "Mid",
+    "category": "Architecture",
+    "question": "¿Cómo se comunican los microservicios entre sí?",
+    "code": null,
+    "answer": "Síncrono: HTTP/REST (más común), gRPC (alta performance, contrato protobuf), GraphQL.\nAsíncrono: mensajería con Kafka (event streaming), RabbitMQ/SQS (message queuing). La comunicación asíncrona desacopla servicios y mejora resiliencia — si un servicio está caído, el mensaje espera en la cola.",
+    "example": null
+  },
+  {
+    "id": 28,
+    "level": "Mid",
+    "category": "Clean Code",
+    "question": "¿Qué es SOLID?",
+    "code": null,
+    "answer": "S — Single Responsibility: una clase, una razón para cambiar.\nO — Open/Closed: abierto para extensión, cerrado para modificación.\nL — Liskov Substitution: las subclases deben poder sustituir a su clase base sin romper el programa.\nI — Interface Segregation: interfaces específicas, no una interfaz gigante que obligue a implementar métodos innecesarios.\nD — Dependency Inversion: depende de abstracciones, no de implementaciones concretas.",
+    "example": "// D — Dependency Inversion\n// MAL: depende de implementación concreta\nclass OrderService {\n    private MySQLRepo repo = new MySQLRepo();\n}\n\n// BIEN: depende de abstracción\nclass OrderService {\n    private final OrderRepository repo; // interfaz\n    OrderService(OrderRepository repo) { this.repo = repo; }\n}"
+  },
+  {
+    "id": 29,
+    "level": "Mid",
+    "category": "Design Patterns",
+    "question": "¿Qué Design Patterns has usado en proyectos reales?",
+    "code": null,
+    "answer": "Respuesta modelo: Builder (construir objetos complejos como requests/DTOs), Strategy (diferentes algoritmos de pago o validación), Factory (crear instancias según tipo), Singleton (beans de Spring por defecto), Observer/Event (eventos de dominio con ApplicationEventPublisher), Decorator (agregar comportamiento sin modificar la clase), Repository (acceso a datos).",
+    "example": null
+  },
+  {
+    "id": 30,
+    "level": "Mid",
+    "category": "Design Patterns",
+    "question": "¿Qué es el patrón Decorator?",
+    "code": null,
+    "answer": "Patrón estructural que permite agregar comportamiento a un objeto dinámicamente, sin modificar su clase original y sin herencia. Se logra envolviendo el objeto en otro objeto que implementa la misma interfaz. Spring lo usa internamente para AOP (TransactionInterceptor envuelve los beans).",
+    "example": "interface Notifier { void send(String msg); }\n\nclass EmailNotifier implements Notifier {\n    public void send(String msg) { /* envía email */ }\n}\n\n// Decorator agrega logging\nclass LoggingNotifier implements Notifier {\n    private final Notifier wrapped;\n    LoggingNotifier(Notifier n) { this.wrapped = n; }\n    public void send(String msg) {\n        System.out.println(\"Sending: \" + msg);\n        wrapped.send(msg);\n    }\n}"
+  },
+  {
+    "id": 31,
+    "level": "Junior",
+    "category": "Agile",
+    "question": "¿Qué es Definition of Ready y Definition of Done?",
+    "code": null,
+    "answer": "Definition of Ready (DoR): criterios que debe cumplir una historia de usuario ANTES de poder ser tomada en un sprint. Ej: criterios de aceptación claros, estimada, sin dependencias bloqueantes.\nDefinition of Done (DoD): criterios que debe cumplir una historia para considerarse COMPLETADA. Ej: código revisado, tests escritos y pasando, documentación actualizada, deployado en ambiente de pruebas.",
+    "example": null
+  },
+  {
+    "id": 32,
+    "level": "Mid",
+    "category": "Kafka",
+    "question": "¿Qué es Apache Kafka?",
+    "code": null,
+    "answer": "Plataforma de event streaming distribuido. Permite publicar, almacenar, procesar y suscribirse a streams de eventos en tiempo real con alta throughput y baja latencia. Se usa para comunicación asíncrona entre microservicios, procesamiento de eventos, pipelines de datos y logs distribuidos.",
+    "example": null
+  },
+  {
+    "id": 33,
+    "level": "Mid",
+    "category": "Kafka",
+    "question": "¿Qué es un Topic, Offset y Partition en Kafka?",
+    "code": null,
+    "answer": "Topic: canal lógico al que se publican y del que se consumen mensajes. Ej: 'orders-created'.\nPartition: división física de un topic. Permite paralelismo — múltiples consumers pueden leer en paralelo de distintas partitions. Los mensajes dentro de una partition están ordenados.\nOffset: posición secuencial de un mensaje dentro de una partition. El consumer guarda su offset para saber hasta dónde ha leído y poder retomar desde ahí.",
+    "example": "Topic: orders-created\n├── Partition 0: [offset 0, offset 1, offset 2, ...]\n├── Partition 1: [offset 0, offset 1, ...]\n└── Partition 2: [offset 0, ...]"
+  },
+  {
+    "id": 34,
+    "level": "Mid",
+    "category": "Kafka",
+    "question": "¿Qué estrategias de envío de mensajes existen en Kafka?",
+    "code": null,
+    "answer": "1. Fire and forget (acks=0): envía y no espera confirmación. Máxima velocidad, puede perder mensajes.\n2. Synchronous send (acks=1): espera confirmación del líder. Balance entre velocidad y seguridad.\n3. Fully acknowledged (acks=all/-1): espera confirmación de todos los replicas. Máxima durabilidad, más lento.\n4. Async with callback: envío asíncrono con callback para manejar éxito/error sin bloquear.",
+    "example": "// Spring Kafka — sync\nkafkaTemplate.send(\"orders\", event).get(); // bloquea\n\n// Spring Kafka — async con callback\nkafkaTemplate.send(\"orders\", event)\n    .addCallback(\n        result  -> log.info(\"Sent: {}\", result),\n        failure -> log.error(\"Failed\", failure)\n    );"
+  },
+  {
+    "id": 35,
+    "level": "Junior",
+    "category": "SQL",
+    "question": "¿Qué son los índices en base de datos?",
+    "code": null,
+    "answer": "Estructura de datos (generalmente B-Tree) que acelera las búsquedas en una tabla. Sin índice: full table scan O(n). Con índice: O(log n). El costo es espacio adicional en disco y overhead en writes (INSERT/UPDATE/DELETE deben actualizar el índice). Se crean en columnas usadas frecuentemente en WHERE, JOIN y ORDER BY.",
+    "example": "-- Crear índice\nCREATE INDEX idx_orders_customer ON orders(customer_id);\n\n-- Ahora esta query es O(log n) en vez de O(n)\nSELECT * FROM orders WHERE customer_id = 42;"
+  },
+  {
+    "id": 36,
+    "level": "Junior",
+    "category": "SQL",
+    "question": "¿Qué son las Views en SQL?",
+    "code": null,
+    "answer": "Una View es una consulta SQL almacenada como un objeto virtual en la base de datos. No almacena datos por sí misma (salvo Materialized Views), sino que ejecuta la query subyacente cada vez que se consulta. Sirve para simplificar queries complejas, encapsular lógica reutilizable, y restringir acceso a columnas sensibles.",
+    "example": "CREATE VIEW active_customers AS\nSELECT id, name, email\nFROM customers\nWHERE status = 'ACTIVE';\n\n-- Usar la view como si fuera una tabla\nSELECT * FROM active_customers WHERE email LIKE '%@gmail.com';"
+  },
+  {
+    "id": 37,
+    "level": "Junior",
+    "category": "Architecture",
+    "question": "¿Cuál es la diferencia entre bases de datos relacionales y no relacionales?",
+    "code": null,
+    "answer": "Relacional (SQL): datos estructurados en tablas con esquema fijo, relaciones entre tablas, transacciones ACID, consultas con JOIN. Ej: PostgreSQL, MySQL, Oracle. Ideal cuando la consistencia y las relaciones son críticas.\nNo relacional (NoSQL): esquema flexible, escala horizontalmente, optimizada para alta disponibilidad y grandes volúmenes. Tipos: documento (MongoDB), clave-valor (Redis), columnar (Cassandra), grafos (Neo4j). Ideal para datos semi-estructurados, alta carga y variabilidad de esquema.",
+    "example": null
+  },
+  {
+    "id": 38,
+    "level": "Senior",
+    "category": "Soft Skills",
+    "question": "¿Has tenido experiencia haciendo mentoring?",
+    "code": null,
+    "answer": "Respuesta modelo: Sí, he guiado a desarrolladores junior en code reviews explicando el razonamiento detrás de cada sugerencia, en pair programming en features complejas, y compartiendo mejores prácticas de arquitectura y clean code. El objetivo es que desarrollen criterio propio, no solo que sigan instrucciones.",
+    "example": null
+  },
+  {
+    "id": 39,
+    "level": "Senior",
+    "category": "Soft Skills",
+    "question": "¿Qué harías si recibes un request de un stakeholder y luego otro request conflictivo de un stakeholder diferente?",
+    "code": null,
+    "answer": "Primero documentar ambos requests claramente. Luego reunir a ambos stakeholders para visibilizar el conflicto — evitar resolver unilateralmente. Analizar el impacto técnico de cada opción. Escalar al Product Owner o quien tenga la autoridad de priorización. Comunicar la decisión final con transparencia a todas las partes y actualizar el backlog.",
+    "example": null
+  }
+]

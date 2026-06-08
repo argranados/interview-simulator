@@ -1,6 +1,5 @@
-export default function TopicPage({ onSelect }) {
+export default function TopicPage({ onSelect, onRepaso }) {
     const topics = [
-        // Fila 1 - disponibles
         { id: 'java_core', title: 'Java Core', emoji: '☕', description: 'Fundamentos del lenguaje', available: true },
         { id: 'microservicios', title: 'Microservicios y APIs', emoji: '🔗', description: 'REST, gRPC, mensajería', available: true },
         { id: 'java_patrones', title: 'Java Patrones', emoji: '🧩', description: 'Design patterns', available: true },
@@ -30,11 +29,18 @@ export default function TopicPage({ onSelect }) {
                     </div>
                 ))}
             </div>
+
+            {/* ── Botón Repaso ── */}
+            <div style={styles.repasoWrapper}>
+                <div style={styles.repasoHint}>¿Ya practicaste? Refuerza con flashcards</div>
+                <button style={styles.repasoBtn} onClick={onRepaso}>
+                    🃏 Modo Repaso
+                </button>
+            </div>
         </div>
     )
 }
 
-// ⬇️ IMPORTANTE: Este objeto debe estar definido
 const styles = {
     container: {
         minHeight: '100vh', background: '#f8fafc', display: 'flex',
@@ -72,5 +78,30 @@ const styles = {
         background: '#fef3c7', color: '#92400e',
         fontSize: 12, fontWeight: 600,
         padding: '4px 10px', borderRadius: 999
-    }
+    },
+    // ── Repaso ──
+    repasoWrapper: {
+        marginTop: 40,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: 12,
+    },
+    repasoHint: {
+        fontSize: 'clamp(13px, 2vw, 14px)',
+        color: '#9ca3af',
+        fontWeight: 500,
+    },
+    repasoBtn: {
+        padding: 'clamp(12px, 2.5vw, 14px) clamp(28px, 5vw, 48px)',
+        background: 'white',
+        color: '#6366f1',
+        border: '2px solid #e0e7ff',
+        borderRadius: 14,
+        fontSize: 'clamp(14px, 2.5vw, 16px)',
+        fontWeight: 700,
+        cursor: 'pointer',
+        letterSpacing: '0.2px',
+        boxShadow: '0 2px 8px rgba(99,102,241,0.08)',
+    },
 }
