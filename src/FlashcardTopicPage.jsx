@@ -14,7 +14,21 @@ const REPASO_BANKS = [
         emoji: '🏢',
         description: 'OOP, Hibernate, Kafka, AWS, SOLID — Nov 2024',
         tag: 'OOP · Kafka · AWS · SOLID',
-    },    
+    },
+    {
+        id: 'tech_interview/spring_cloud_flashcard.json',
+        title: 'Spring Cloud',
+        emoji: '☁️',
+        description: 'Config, Gateway, Resilience, Service Discovery',
+        tag: 'Config · Gateway · Resilience · Observability',
+    },
+    {
+        id: 'tech_interview/taulia_interview_bank.json',
+        title: 'Taulia',
+        emoji: '💼',
+        description: 'OOP, Java Core, Spring, Microservicios, Testing',
+        tag: 'OOP · Spring · Microservices · Testing',
+    },
     // Ejemplo de cómo agregar más en el futuro:
     // {
     //   id: 'tech_interview/google_interview_bank.json',

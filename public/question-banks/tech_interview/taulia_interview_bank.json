@@ -1,0 +1,380 @@
+[
+  {
+    "id": 1,
+    "level": "Junior",
+    "category": "OOP",
+    "question": "¿Qué es Polimorfismo?",
+    "code": null,
+    "answer": "La capacidad de un objeto de tomar múltiples formas. En Java hay dos tipos: compile-time (method overloading — mismo nombre, distintos parámetros) y runtime (method overriding — subclase redefine un método de la superclase). Permite tratar objetos de distintas subclases de forma uniforme a través de una referencia del tipo padre.",
+    "example": "Animal animal = new Dog(); // referencia Animal, objeto Dog\nanimal.speak(); // llama al speak() de Dog en runtime → polimorfismo"
+  },
+  {
+    "id": 2,
+    "level": "Junior",
+    "category": "OOP",
+    "question": "¿Qué es Abstracción en OOP?",
+    "code": null,
+    "answer": "Ocultar los detalles de implementación y exponer solo lo esencial. En Java se logra con clases abstractas e interfaces. El usuario de una clase solo necesita saber QUÉ hace, no CÓMO lo hace internamente.",
+    "example": "// El usuario llama a pay() sin saber si usa Stripe o PayPal internamente\ninterface PaymentGateway {\n    void pay(BigDecimal amount);\n}\n\nclass StripeGateway implements PaymentGateway {\n    public void pay(BigDecimal amount) { /* implementación Stripe */ }\n}"
+  },
+  {
+    "id": 3,
+    "level": "Junior",
+    "category": "OOP",
+    "question": "¿Qué es Encapsulamiento?",
+    "code": null,
+    "answer": "Agrupar datos (campos) y comportamiento (métodos) en una clase, y controlar el acceso desde el exterior mediante modificadores de acceso. Los campos se declaran private y se exponen solo a través de getters/setters públicos cuando es necesario. Protege el estado interno del objeto.",
+    "example": "public class BankAccount {\n    private double balance; // no accesible directamente\n\n    public double getBalance() { return balance; }\n\n    public void deposit(double amount) {\n        if (amount > 0) balance += amount; // validación interna\n    }\n}"
+  },
+  {
+    "id": 4,
+    "level": "Junior",
+    "category": "OOP",
+    "question": "¿Qué es Herencia (Inheritance)?",
+    "code": null,
+    "answer": "Mecanismo por el cual una clase (subclase) adquiere los campos y métodos de otra clase (superclase) usando extends. Promueve reutilización de código. Java soporta herencia simple (solo una superclase). Se puede usar super para acceder a constructores o métodos de la clase padre.",
+    "example": "class Animal {\n    String name;\n    void breathe() { System.out.println(\"breathing\"); }\n}\n\nclass Dog extends Animal {       // hereda name y breathe()\n    void bark() { System.out.println(\"woof\"); }\n}"
+  },
+  {
+    "id": 5,
+    "level": "Junior",
+    "category": "Java Core",
+    "question": "¿Cuáles son los access level modifiers en Java?",
+    "code": null,
+    "answer": "private: solo accesible dentro de la misma clase.\n(default/package-private): sin modificador — accesible dentro del mismo paquete.\nprotected: accesible en el mismo paquete y en subclases.\npublic: accesible desde cualquier clase.",
+    "example": "public class Person {\n    private String ssn;        // solo esta clase\n    String nickname;           // mismo paquete\n    protected String name;     // paquete + subclases\n    public String email;       // todos\n}"
+  },
+  {
+    "id": 6,
+    "level": "Junior",
+    "category": "OOP",
+    "question": "¿Qué es una clase en Java?",
+    "code": null,
+    "answer": "Un blueprint (plantilla) que define el estado (campos/atributos) y el comportamiento (métodos) de los objetos que se crearán a partir de ella. Una clase es el tipo; los objetos son las instancias concretas de ese tipo en memoria.",
+    "example": "// Clase — plantilla\nclass Car {\n    String brand;\n    int year;\n    void start() { System.out.println(\"Starting...\"); }\n}\n\n// Objeto — instancia concreta\nCar car1 = new Car();\ncar1.brand = \"Toyota\";"
+  },
+  {
+    "id": 7,
+    "level": "Junior",
+    "category": "Java Core",
+    "question": "¿Cómo funciona la keyword final en variables, clases y métodos?",
+    "code": null,
+    "answer": "Variable final: no puede ser reasignada después de su inicialización. Si es un objeto, la referencia no cambia pero el estado interno sí puede cambiar.\nMétodo final: no puede ser sobreescrito (overridden) por una subclase.\nClase final: no puede ser extendida (heredada). Ej: String, Integer son clases final.",
+    "example": "final int MAX = 100;          // no puede reasignarse\nMAX = 200;                    // Error de compilación\n\nfinal class MathUtils { }     // no puede extenderse\n\nclass Animal {\n    final void breathe() { }  // no puede sobreescribirse\n}"
+  },
+  {
+    "id": 8,
+    "level": "Junior",
+    "category": "OOP",
+    "question": "¿Qué es method overriding?",
+    "code": null,
+    "answer": "Cuando una subclase redefine un método de la superclase con la misma firma (nombre, parámetros y tipo de retorno). Se usa @Override para que el compilador verifique que realmente estás sobreescribiendo. Es la base del polimorfismo en runtime.",
+    "example": "class Animal {\n    void speak() { System.out.println(\"...\"); }\n}\n\nclass Dog extends Animal {\n    @Override\n    void speak() { System.out.println(\"Woof!\"); } // redefine el método\n}\n\nAnimal a = new Dog();\na.speak(); // imprime \"Woof!\" — runtime polymorphism"
+  },
+  {
+    "id": 9,
+    "level": "Junior",
+    "category": "OOP",
+    "question": "¿Qué es una interface en Java?",
+    "code": null,
+    "answer": "Un contrato que define qué métodos debe implementar una clase, sin especificar cómo. Desde Java 8 puede tener métodos default (con implementación) y static. Una clase puede implementar múltiples interfaces. Se usa para definir capacidades (Flyable, Serializable) y lograr polimorfismo sin herencia.",
+    "example": "interface Printable {\n    void print();                          // abstracto\n    default void preview() {               // default Java 8+\n        System.out.println(\"Previewing...\");\n    }\n}\n\nclass Document implements Printable {\n    public void print() { System.out.println(\"Printing doc\"); }\n}"
+  },
+  {
+    "id": 10,
+    "level": "Junior",
+    "category": "Functional Programming",
+    "question": "¿Qué es una Functional Interface?",
+    "code": null,
+    "answer": "Una interfaz con exactamente un método abstracto. Es el target de lambdas y method references. Se recomienda anotarla con @FunctionalInterface para que el compilador verifique la restricción. Puede tener métodos default y static adicionales.",
+    "example": "@FunctionalInterface\ninterface Validator<T> {\n    boolean validate(T value);  // único método abstracto\n}\n\n// Usada con lambda:\nValidator<String> notEmpty = s -> !s.isEmpty();\nnotEmpty.validate(\"hello\"); // true"
+  },
+  {
+    "id": 11,
+    "level": "Junior",
+    "category": "Java Core",
+    "question": "¿Cuál es la diferencia entre == y equals() en un if?",
+    "code": null,
+    "answer": "== compara referencias — si dos variables apuntan al mismo objeto en memoria.\nequals() compara el contenido/valor del objeto (si se sobreescribió correctamente). Para Strings siempre usa equals(). Usar == con objetos es un bug común porque dos objetos con el mismo valor son objetos distintos en el heap.",
+    "example": "String a = new String(\"hello\");\nString b = new String(\"hello\");\n\nif (a == b)       // false — distintas referencias\nif (a.equals(b))  // true  — mismo contenido\n\n// Trap del String Pool:\nString c = \"hello\";\nString d = \"hello\";\nif (c == d) // true — mismo objeto del pool (pero no confíes en esto)"
+  },
+  {
+    "id": 12,
+    "level": "Junior",
+    "category": "Collections",
+    "question": "¿Qué colecciones de Java conoces?",
+    "code": null,
+    "answer": "List: ordenada, permite duplicados. ArrayList (acceso rápido por índice), LinkedList (inserción/borrado rápido).\nSet: no permite duplicados. HashSet (O(1), sin orden), LinkedHashSet (orden de inserción), TreeSet (ordenado).\nMap: pares clave-valor. HashMap (O(1), sin orden), LinkedHashMap (orden inserción), TreeMap (ordenado por clave).\nQueue/Deque: PriorityQueue, ArrayDeque.\nThread-safe: ConcurrentHashMap, CopyOnWriteArrayList.",
+    "example": null
+  },
+  {
+    "id": 13,
+    "level": "Mid",
+    "category": "Collections",
+    "question": "¿Cuál es la diferencia entre HashMap y Hashtable?",
+    "code": null,
+    "answer": "HashMap: no es thread-safe, permite una clave null y múltiples valores null, más rápido (sin sincronización), introducido en Java 1.2.\nHashtable: thread-safe (todos los métodos son synchronized), no permite null en clave ni valor, más lento, legacy desde Java 1.0.\nEn código moderno usa ConcurrentHashMap en lugar de Hashtable para thread-safety con mejor performance.",
+    "example": "// Moderno y thread-safe:\nMap<String, Integer> map = new ConcurrentHashMap<>();\n\n// HashMap — rápido, no thread-safe:\nMap<String, Integer> map = new HashMap<>();\nmap.put(null, 1);   // OK en HashMap\n// Hashtable:\nnew Hashtable<>().put(null, 1); // NullPointerException"
+  },
+  {
+    "id": 14,
+    "level": "Mid",
+    "category": "Functional Programming",
+    "question": "¿Qué es un Stream en Java?",
+    "code": null,
+    "answer": "Una secuencia de elementos que soporta operaciones funcionales encadenadas (pipeline). No almacena datos — opera sobre una fuente (Collection, array). Tiene operaciones intermedias (lazy: filter, map, sorted) y terminales (eager: collect, forEach, count, reduce). Puede ser secuencial o paralelo.",
+    "example": "List<String> names = List.of(\"Ana\", \"Bob\", \"Carlos\", \"Al\");\n\nList<String> result = names.stream()\n    .filter(n -> n.startsWith(\"A\"))    // intermedia\n    .map(String::toUpperCase)           // intermedia\n    .sorted()                           // intermedia\n    .collect(Collectors.toList());      // terminal\n// resultado: [\"AL\", \"ANA\"]"
+  },
+  {
+    "id": 15,
+    "level": "Junior",
+    "category": "Functional Programming",
+    "question": "¿Qué es una Lambda Expression en Java?",
+    "code": null,
+    "answer": "Una función anónima — implementación inline de una Functional Interface sin necesidad de crear una clase anónima. Sintaxis: (parámetros) -> cuerpo. Hace el código más conciso y expresivo, especialmente con Streams y la API funcional de Java.",
+    "example": "// Antes de lambdas — clase anónima\nComparator<String> comp = new Comparator<String>() {\n    public int compare(String a, String b) { return a.compareTo(b); }\n};\n\n// Con lambda — conciso\nComparator<String> comp = (a, b) -> a.compareTo(b);\n\n// Aún más corto con method reference:\nComparator<String> comp = String::compareTo;"
+  },
+  {
+    "id": 16,
+    "level": "Junior",
+    "category": "Functional Programming",
+    "question": "¿Cuáles son las Functional Interfaces principales de Java?",
+    "code": null,
+    "answer": "Function<T,R>: recibe T, retorna R. Método: apply().\nPredicate<T>: recibe T, retorna boolean. Método: test().\nConsumer<T>: recibe T, no retorna nada. Método: accept().\nSupplier<T>: no recibe nada, retorna T. Método: get().\nBiFunction<T,U,R>: recibe dos argumentos.\nUnaryOperator<T>: Function donde T y R son del mismo tipo.",
+    "example": "Function<String, Integer> len   = String::length;\nPredicate<String> notEmpty      = s -> !s.isEmpty();\nConsumer<String> print          = System.out::println;\nSupplier<List<String>> newList  = ArrayList::new;"
+  },
+  {
+    "id": 17,
+    "level": "Mid",
+    "category": "Design Patterns",
+    "question": "¿Qué Design Patterns conoces y has usado en proyectos reales?",
+    "code": null,
+    "answer": "Creacionales: Singleton (una sola instancia), Builder (construir objetos complejos), Factory (crear objetos sin exponer la clase concreta).\nEstructurales: Decorator (agregar comportamiento dinámicamente), Adapter (interfaz compatible), Proxy.\nComportamiento: Strategy (algoritmos intercambiables), Observer (eventos), Command, Chain of Responsibility.\nEn Spring: casi todo usa Factory (ApplicationContext), Proxy (AOP), Singleton (beans), Template Method (JdbcTemplate).",
+    "example": null
+  },
+  {
+    "id": 18,
+    "level": "Junior",
+    "category": "Design Patterns",
+    "question": "¿Cómo funciona el patrón Singleton?",
+    "code": null,
+    "answer": "Garantiza que una clase tenga una única instancia en toda la JVM y provee un punto de acceso global a ella. Se implementa con constructor privado y un método estático getInstance(). En entornos multithreaded se necesita sincronización o inicialización con holder estático. En Spring, todos los beans son Singleton por defecto.",
+    "example": "// Thread-safe con initialization-on-demand holder:\npublic class ConfigManager {\n    private ConfigManager() {}\n\n    private static class Holder {\n        static final ConfigManager INSTANCE = new ConfigManager();\n    }\n\n    public static ConfigManager getInstance() {\n        return Holder.INSTANCE;\n    }\n}"
+  },
+  {
+    "id": 19,
+    "level": "Mid",
+    "category": "Design Patterns",
+    "question": "¿Cómo funciona el patrón Builder?",
+    "code": null,
+    "answer": "Separa la construcción de un objeto complejo de su representación. Permite crear objetos paso a paso con una API fluida, evitando constructores con muchos parámetros (telescoping constructor antipattern). Útil cuando un objeto tiene muchos campos opcionales. Lombok @Builder lo genera automáticamente.",
+    "example": "// Sin Builder — confuso con muchos parámetros\nnew User(\"John\", null, 30, true, null, \"admin\");\n\n// Con Builder — legible\nUser user = User.builder()\n    .name(\"John\")\n    .age(30)\n    .active(true)\n    .role(\"admin\")\n    .build();\n\n// Con Lombok @Builder en la clase User — generado automáticamente"
+  },
+  {
+    "id": 20,
+    "level": "Junior",
+    "category": "Spring Core",
+    "question": "¿Qué es Spring Framework?",
+    "code": null,
+    "answer": "Un framework de aplicaciones Java que provee infraestructura para construir aplicaciones empresariales. Sus pilares son: IoC/Dependency Injection (gestión de objetos), AOP (comportamiento transversal), y soporte para persistencia, web, seguridad, testing y más. Elimina código boilerplate y promueve bajo acoplamiento.",
+    "example": null
+  },
+  {
+    "id": 21,
+    "level": "Junior",
+    "category": "Spring Boot",
+    "question": "¿Cuál es la diferencia entre Spring Framework y Spring Boot?",
+    "code": null,
+    "answer": "Spring Framework: requiere configuración manual — XML o Java config, dependencias individuales, servidor externo.\nSpring Boot: capa sobre Spring que provee auto-configuration (detecta dependencias y configura automáticamente), starter dependencies (grupos de dependencias), servidor embebido (Tomcat), y production-ready features (Actuator). Arranca en minutos en lugar de días.",
+    "example": null
+  },
+  {
+    "id": 22,
+    "level": "Junior",
+    "category": "Spring Core",
+    "question": "¿Qué es un Bean en Spring y qué se necesita para crearlo?",
+    "code": null,
+    "answer": "Un Bean es un objeto gestionado por el contenedor IoC de Spring (ApplicationContext). Spring se encarga de crearlo, configurarlo, inyectar sus dependencias y destruirlo. Para crear un bean: anotar la clase con @Component, @Service, @Repository o @Controller, o declararlo con @Bean en una clase @Configuration.",
+    "example": "// Opción 1 — anotación de estereotipo\n@Service\npublic class OrderService { ... }\n\n// Opción 2 — @Bean en @Configuration\n@Configuration\npublic class AppConfig {\n    @Bean\n    public PaymentGateway paymentGateway() {\n        return new StripeGateway(apiKey);\n    }\n}"
+  },
+  {
+    "id": 23,
+    "level": "Junior",
+    "category": "Spring Core",
+    "question": "¿Cuáles son los Scopes de un Bean en Spring?",
+    "code": null,
+    "answer": "singleton (default): una sola instancia por ApplicationContext.\nprototype: nueva instancia cada vez que se solicita.\nrequest: una instancia por HTTP request (apps web).\nsession: una instancia por HTTP session (apps web).\napplication: una instancia por ServletContext.\nwebsocket: una instancia por sesión WebSocket.",
+    "example": "@Component\n@Scope(\"prototype\") // nueva instancia cada vez\npublic class ReportGenerator { ... }\n\n// Con ConfigurableBeanFactory constants (preferido):\n@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)"
+  },
+  {
+    "id": 24,
+    "level": "Junior",
+    "category": "Spring Core",
+    "question": "¿Qué hace @Component y cómo se relaciona con @Autowired?",
+    "code": null,
+    "answer": "@Component marca una clase para que Spring la detecte en el component scan y la registre como bean en el ApplicationContext. @Autowired le indica a Spring que inyecte automáticamente una dependencia (por tipo) en ese punto — puede ser en constructor, setter o campo. Son complementarios: @Component crea el bean, @Autowired lo consume.",
+    "example": "@Component              // Spring registra este bean\npublic class EmailService {\n    public void send(String to) { ... }\n}\n\n@Service\npublic class OrderService {\n    private final EmailService emailService;\n\n    @Autowired              // Spring inyecta el EmailService\n    public OrderService(EmailService emailService) {\n        this.emailService = emailService;\n    }\n}"
+  },
+  {
+    "id": 25,
+    "level": "Mid",
+    "category": "Spring Core",
+    "question": "¿Qué es AOP (Aspect-Oriented Programming) en Spring?",
+    "code": null,
+    "answer": "Paradigma que permite separar concerns transversales (logging, transacciones, seguridad, métricas) del código de negocio. En lugar de repetir ese código en cada método, se define en un Aspect que se aplica automáticamente. Conceptos clave: Aspect (la clase con la lógica transversal), Advice (cuándo ejecutar: @Before, @After, @Around), Pointcut (a qué métodos aplica). Spring lo implementa con proxies dinámicos.",
+    "example": "@Aspect\n@Component\npublic class LoggingAspect {\n\n    @Around(\"execution(* com.app.service.*.*(..))\") // Pointcut\n    public Object log(ProceedingJoinPoint pjp) throws Throwable {\n        log.info(\"Calling: {}\", pjp.getSignature());\n        Object result = pjp.proceed();              // ejecuta el método real\n        log.info(\"Completed: {}\", pjp.getSignature());\n        return result;\n    }\n}"
+  },
+  {
+    "id": 26,
+    "level": "Junior",
+    "category": "JPA",
+    "question": "¿Qué es JPA?",
+    "code": null,
+    "answer": "Java Persistence API — especificación estándar de Java para mapear objetos Java a tablas relacionales (ORM). Define las anotaciones (@Entity, @Table, @Id, @Column, @OneToMany, etc.) y el EntityManager API. JPA es solo el contrato — necesita una implementación. La más usada es Hibernate, que es la implementación por defecto en Spring Boot.",
+    "example": "@Entity\n@Table(name = \"products\")\npublic class Product {\n    @Id\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\n    private Long id;\n\n    @Column(nullable = false)\n    private String name;\n\n    @ManyToOne\n    @JoinColumn(name = \"category_id\")\n    private Category category;\n}"
+  },
+  {
+    "id": 27,
+    "level": "Mid",
+    "category": "JPA",
+    "question": "¿Qué hace @Transient en JPA y cuándo se usa?",
+    "code": null,
+    "answer": "@Transient marca un campo de una entidad para que JPA lo ignore completamente — no lo mapea a ninguna columna de la base de datos. Se usa para campos calculados en memoria, campos temporales, o datos que no deben persistirse. También existe java.io.transient para excluir campos de la serialización Java.",
+    "example": "@Entity\npublic class Order {\n    @Id private Long id;\n    private BigDecimal subtotal;\n    private BigDecimal tax;\n\n    @Transient  // calculado, no se guarda en DB\n    private BigDecimal total;\n\n    public BigDecimal getTotal() {\n        return subtotal.add(tax); // calculado en runtime\n    }\n}"
+  },
+  {
+    "id": 28,
+    "level": "Junior",
+    "category": "Spring Boot",
+    "question": "¿Qué hace @RequestBody en Spring?",
+    "code": null,
+    "answer": "Le indica a Spring que deserialice el body del HTTP request (JSON por defecto) y lo mapee a un objeto Java. Jackson se encarga de la conversión automáticamente. Se usa en métodos de controllers que reciben datos del cliente (POST, PUT, PATCH). Se combina con @Valid para validar el objeto recibido.",
+    "example": "@RestController\n@RequestMapping(\"/api/orders\")\npublic class OrderController {\n\n    @PostMapping\n    public ResponseEntity<OrderDto> create(\n            @RequestBody @Valid CreateOrderRequest request) {\n        // 'request' ya está deserializado del JSON del body\n        OrderDto order = orderService.create(request);\n        return ResponseEntity.status(201).body(order);\n    }\n}"
+  },
+  {
+    "id": 29,
+    "level": "Junior",
+    "category": "Microservices",
+    "question": "¿Qué son los Microservicios?",
+    "code": null,
+    "answer": "Estilo arquitectónico donde una aplicación se divide en servicios pequeños, independientes, cada uno con una responsabilidad específica, su propia base de datos y ciclo de deployment independiente. Se comunican via APIs (REST, gRPC) o mensajería asíncrona (Kafka). Ventajas: escalado independiente, equipos autónomos, resiliencia. Desventaja: complejidad operacional.",
+    "example": null
+  },
+  {
+    "id": 30,
+    "level": "Junior",
+    "category": "Microservices",
+    "question": "¿Qué es Loose Coupling (bajo acoplamiento)?",
+    "code": null,
+    "answer": "Principio donde los componentes tienen el mínimo conocimiento posible entre sí. Un cambio en un componente no debe forzar cambios en otros. En microservicios se logra comunicándose a través de contratos (APIs), usando eventos asíncronos (Kafka) en lugar de llamadas directas, y evitando compartir bases de datos entre servicios.",
+    "example": "// Alto acoplamiento — OrderService conoce la impl de PaymentService\nOrderService llama directamente a PaymentService.processPayment()\n\n// Bajo acoplamiento — comunica vía evento\nOrderService publica evento 'OrderCreated' en Kafka\nPaymentService escucha el evento y reacciona independientemente\n// Ninguno conoce la implementación del otro"
+  },
+  {
+    "id": 31,
+    "level": "Junior",
+    "category": "Microservices",
+    "question": "¿Qué es un API Gateway?",
+    "code": null,
+    "answer": "Punto de entrada único para todos los clientes externos hacia los microservicios internos. Responsabilidades: enrutamiento de requests al servicio correcto, autenticación/autorización centralizada, rate limiting, SSL termination, logging, CORS. Evita que los clientes conozcan las URLs internas y centraliza concerns transversales.",
+    "example": "Cliente → API Gateway (puerto 8080)\n           ├── /api/orders/**   → order-service:8081\n           ├── /api/payments/** → payment-service:8082\n           └── /api/users/**   → user-service:8083\n\n// El cliente solo conoce la URL del Gateway"
+  },
+  {
+    "id": 32,
+    "level": "Junior",
+    "category": "Microservices",
+    "question": "¿Qué es Service Discovery?",
+    "code": null,
+    "answer": "Mecanismo para que los microservicios se encuentren entre sí dinámicamente sin IPs hardcodeadas. Los servicios se registran en un registry (Eureka, Consul) al arrancar con su nombre y dirección. Cuando un servicio necesita llamar a otro, consulta el registry por nombre y obtiene la IP/puerto actual. Esencial en entornos cloud donde las IPs cambian con el auto-scaling.",
+    "example": "// Sin Service Discovery — frágil\nrestTemplate.getForObject(\"http://192.168.1.45:8081/orders\", ...)\n// Si la IP cambia → falla\n\n// Con Eureka + @LoadBalanced\nrestTemplate.getForObject(\"http://order-service/orders\", ...)\n// Eureka resuelve 'order-service' a la IP actual automáticamente"
+  },
+  {
+    "id": 33,
+    "level": "Mid",
+    "category": "Microservices",
+    "question": "¿Qué es el patrón Circuit Breaker?",
+    "code": null,
+    "answer": "Patrón de resiliencia que previene el fallo en cascada en microservicios. Monitorea las llamadas a un servicio externo — si la tasa de fallos supera un umbral, 'abre el circuito' y retorna inmediatamente con un fallback sin intentar llamar al servicio caído. Tiene tres estados: CLOSED (normal), OPEN (falla rápido), HALF_OPEN (prueba si el servicio se recuperó). Implementado con Resilience4j en Spring.",
+    "example": "@Service\npublic class OrderService {\n    @CircuitBreaker(name = \"inventory\", fallbackMethod = \"fallback\")\n    public Stock checkStock(Long productId) {\n        return inventoryClient.getStock(productId);\n    }\n\n    public Stock fallback(Long productId, Exception e) {\n        return Stock.unavailable(); // respuesta degradada\n    }\n}"
+  },
+  {
+    "id": 34,
+    "level": "Junior",
+    "category": "Architecture",
+    "question": "¿Cuál es la diferencia entre SOAP y REST?",
+    "code": null,
+    "answer": "SOAP: protocolo estricto, siempre XML, contrato definido en WSDL, soporta WS-Security y transacciones, más verboso y complejo. Común en sistemas empresariales legacy y servicios financieros.\nREST: estilo arquitectónico, usa HTTP nativo, soporta JSON/XML/otros, más simple y liviano, stateless, mejor para APIs públicas y microservicios modernos. REST es el estándar dominante hoy.",
+    "example": "// SOAP — siempre XML con envelope\n<soap:Envelope>\n  <soap:Body>\n    <GetOrder><orderId>123</orderId></GetOrder>\n  </soap:Body>\n</soap:Envelope>\n\n// REST — simple HTTP\nGET /api/orders/123\nAccept: application/json"
+  },
+  {
+    "id": 35,
+    "level": "Junior",
+    "category": "Security",
+    "question": "¿Cómo se encriptan los datos enviados en una API?",
+    "code": null,
+    "answer": "Principalmente con HTTPS/TLS — encripta el canal de comunicación entre cliente y servidor (transport-level security). El servidor tiene un certificado SSL/TLS. Para datos sensibles en el body se puede agregar encripción a nivel de aplicación. En APIs entre microservicios internos se puede usar mTLS (mutual TLS) para autenticación bidireccional.",
+    "example": "// Configurar HTTPS en Spring Boot\nserver:\n  port: 8443\n  ssl:\n    key-store: classpath:keystore.p12\n    key-store-password: secret\n    key-store-type: PKCS12\n\n// Redirigir HTTP → HTTPS automáticamente con\n// EmbeddedServletContainerCustomizer o SecurityConfig"
+  },
+  {
+    "id": 36,
+    "level": "Junior",
+    "category": "REST API",
+    "question": "¿Cuáles son los verbos HTTP y para qué se usa cada uno?",
+    "code": null,
+    "answer": "GET: obtener recurso (solo lectura, idempotente).\nPOST: crear recurso (no idempotente).\nPUT: reemplazar recurso completo (idempotente).\nPATCH: actualizar recurso parcialmente (idempotente).\nDELETE: eliminar recurso (idempotente).\nHEAD: igual que GET pero sin body — útil para verificar existencia.\nOPTIONS: obtener métodos permitidos — usado en CORS preflight.",
+    "example": "GET    /api/orders/1      → obtener orden 1\nPOST   /api/orders        → crear nueva orden\nPUT    /api/orders/1      → reemplazar orden 1 completa\nPATCH  /api/orders/1      → actualizar solo el status\nDELETE /api/orders/1      → eliminar orden 1"
+  },
+  {
+    "id": 37,
+    "level": "Junior",
+    "category": "REST API",
+    "question": "¿Qué es Idempotencia en REST?",
+    "code": null,
+    "answer": "Una operación es idempotente si ejecutarla múltiples veces produce el mismo resultado que ejecutarla una sola vez. GET, PUT, DELETE y PATCH son idempotentes. POST no lo es — crear el mismo recurso dos veces genera dos registros distintos. La idempotencia es importante para el retry automático ante fallos de red.",
+    "example": "DELETE /orders/1\n// Primera vez → 200 OK, orden eliminada\n// Segunda vez → 404 Not Found\n// El estado final del servidor es el mismo: la orden no existe\n// → idempotente ✅\n\nPOST /orders (body: {product: 'laptop'})\n// Primera vez  → 201 Created, orderId: 100\n// Segunda vez  → 201 Created, orderId: 101 (¡duplicado!)\n// → NO idempotente ❌"
+  },
+  {
+    "id": 38,
+    "level": "Junior",
+    "category": "Testing",
+    "question": "¿Cuál es la diferencia entre Unit Test, Integration Test y Functional Test?",
+    "code": null,
+    "answer": "Unit Test: prueba una sola clase/método en aislamiento. Las dependencias se mockean. Muy rápido.\nIntegration Test: prueba la interacción entre múltiples componentes reales (DB, Kafka, APIs). Más lento. Usa @SpringBootTest, Testcontainers.\nFunctional Test (E2E): prueba flujos completos desde el punto de vista del usuario/cliente. Valida el comportamiento del sistema entero, incluyendo UI o API pública.",
+    "example": "// Unit Test — aislado, mock de dependencias\n@Test\nvoid shouldCalculateTotal() {\n    when(taxService.calculate(any())).thenReturn(10.0);\n    assertEquals(110.0, orderService.total(order));\n}\n\n// Integration Test — DB real con Testcontainers\n@SpringBootTest\n@Testcontainers\nvoid shouldSaveOrder() {\n    orderRepository.save(order);\n    assertThat(orderRepository.findById(order.getId())).isPresent();\n}"
+  },
+  {
+    "id": 39,
+    "level": "Junior",
+    "category": "Testing",
+    "question": "¿Qué es un Mock en testing?",
+    "code": null,
+    "answer": "Un objeto simulado que reemplaza una dependencia real en un unit test. Permite controlar su comportamiento (qué retorna cuando se llama) y verificar interacciones (si fue llamado, cuántas veces, con qué argumentos). En Java se usa Mockito. La diferencia con Spy: el mock es completamente simulado; el spy envuelve un objeto real.",
+    "example": "// Mockito\n@Mock\nprivate PaymentService paymentService;\n\n@Test\nvoid shouldProcessOrder() {\n    // Controlar comportamiento\n    when(paymentService.charge(any())).thenReturn(true);\n\n    orderService.process(order);\n\n    // Verificar interacción\n    verify(paymentService, times(1)).charge(any());\n}"
+  },
+  {
+    "id": 40,
+    "level": "Junior",
+    "category": "Testing",
+    "question": "¿Qué dependencia necesitas para hacer unit tests en un proyecto Spring Boot?",
+    "code": null,
+    "answer": "spring-boot-starter-test — incluye todo lo necesario: JUnit 5 (framework de testing), Mockito (mocks), AssertJ (assertions fluidas), Hamcrest (matchers), MockMvc (testing de controllers sin levantar servidor), y JsonPath. Es la única dependencia de testing que necesitas en la mayoría de casos.",
+    "example": "<!-- pom.xml -->\n<dependency>\n    <groupId>org.springframework.boot</groupId>\n    <artifactId>spring-boot-starter-test</artifactId>\n    <scope>test</scope>\n</dependency>\n\n// Incluye automáticamente:\n// - JUnit 5\n// - Mockito\n// - AssertJ\n// - MockMvc\n// - JsonPath"
+  },
+  {
+    "id": 41,
+    "level": "Junior",
+    "category": "Testing",
+    "question": "¿Qué pruebas en un Mock? ¿Qué verificas con Mockito?",
+    "code": null,
+    "answer": "Con un mock pruebas el comportamiento de la clase bajo test (no de la dependencia mockeada). Verificas: que el método correcto fue llamado, con los argumentos correctos, el número correcto de veces, y que el flujo cambia según la respuesta del mock. No pruebas la lógica interna del mock — eso es responsabilidad de otro unit test.",
+    "example": "// Verificar que se llamó una vez con el argumento correcto\nverify(emailService, times(1)).send(eq(\"user@email.com\"));\n\n// Verificar que NUNCA se llamó (ej. si la validación falló antes)\nverify(paymentService, never()).charge(any());\n\n// Verificar el orden de llamadas\nInOrder inOrder = inOrder(validator, paymentService);\ninOrder.verify(validator).validate(order);\ninOrder.verify(paymentService).charge(order);"
+  },
+  {
+    "id": 42,
+    "level": "Mid",
+    "category": "Testing",
+    "question": "¿Qué es WireMock y cuándo lo usas?",
+    "code": null,
+    "answer": "Un servidor HTTP de stubs para pruebas de integración. Simula APIs externas (REST) sin necesidad de que estén disponibles. Lo usas cuando tu microservicio hace llamadas HTTP a servicios externos (otros microservicios, APIs de terceros) y quieres probar esa integración de forma controlada y reproducible sin depender de entornos externos.",
+    "example": "// WireMock en un integration test\n@SpringBootTest\npublic class PaymentClientTest {\n\n    @Autowired private WireMockServer wireMock;\n\n    @Test\n    void shouldProcessPayment() {\n        // Simular respuesta del servicio externo\n        wireMock.stubFor(post(\"/payments\")\n            .willReturn(okJson(\"{\\\"status\\\":\\\"approved\\\"}\")));\n\n        PaymentResponse response = paymentClient.charge(request);\n\n        assertEquals(\"approved\", response.getStatus());\n    }\n}"
+  }
+]

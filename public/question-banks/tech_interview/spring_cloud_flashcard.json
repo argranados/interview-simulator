@@ -1,0 +1,317 @@
+[
+  {
+    "id": 1,
+    "level": "Junior",
+    "category": "Spring Cloud Config",
+    "question": "¿Qué problema resuelve Spring Cloud Config Server?",
+    "code": null,
+    "answer": "Centraliza la configuración de todos los microservicios en un solo lugar (generalmente un repositorio Git). Sin él, cada microservicio tendría su propio application.properties con valores duplicados y difíciles de sincronizar entre ambientes (dev, staging, prod). Con Config Server, cambias la config en un lugar y todos los servicios la obtienen.",
+    "example": "# bootstrap.yml en cada microservicio\nspring:\n  application:\n    name: order-service\n  cloud:\n    config:\n      uri: http://config-server:8888"
+  },
+  {
+    "id": 2,
+    "level": "Junior",
+    "category": "Spring Cloud Config",
+    "question": "¿Cómo se actualiza la configuración en un microservicio sin reiniciarlo con Spring Cloud Config?",
+    "code": null,
+    "answer": "Usando @RefreshScope en los beans que usan propiedades del Config Server, y luego llamando al endpoint POST /actuator/refresh del microservicio. Esto recarga las propiedades sin reiniciar la JVM. Para propagar el refresh a todos los servicios automáticamente se usa Spring Cloud Bus con Kafka o RabbitMQ.",
+    "example": "@RestController\n@RefreshScope\npublic class GreetingController {\n    @Value(\"${greeting.message}\")\n    private String message;\n\n    @GetMapping(\"/greet\")\n    public String greet() { return message; }\n}\n\n// Actualizar sin reiniciar:\n// POST http://order-service:8080/actuator/refresh"
+  },
+  {
+    "id": 3,
+    "level": "Mid",
+    "category": "Spring Cloud Config",
+    "question": "¿Cómo manejas credenciales sensibles (passwords, API keys) en Spring Cloud Config?",
+    "code": null,
+    "answer": "Opciones principales: 1) Encriptar valores en el repositorio Git con la funcionalidad de encrypt/decrypt del Config Server (clave simétrica o asimétrica). 2) Usar un Vault backend (HashiCorp Vault) en lugar de Git para secrets. 3) En AWS, integrar con AWS Secrets Manager o Parameter Store. Los valores encriptados se almacenan como {cipher}valor_encriptado.",
+    "example": "# En el repositorio Git — valor encriptado\ndatasource:\n  password: '{cipher}AQA7x9kL3mP2...'\n\n# Config Server desencripta automáticamente al servir la config\n# Configurar la clave en Config Server:\nencrypt:\n  key: my-secret-key"
+  },
+  {
+    "id": 4,
+    "level": "Junior",
+    "category": "Service Discovery",
+    "question": "¿Qué es Eureka y para qué se usa en una arquitectura de microservicios?",
+    "code": null,
+    "answer": "Eureka es el Service Discovery Server de Netflix/Spring Cloud. Los microservicios se registran en Eureka al arrancar (Eureka Client) y pueden descubrir otros servicios por nombre lógico en lugar de IP:puerto hardcodeado. Resuelve el problema de que las IPs cambian dinámicamente en entornos cloud con auto-scaling.",
+    "example": "# Eureka Server\n@SpringBootApplication\n@EnableEurekaServer\npublic class DiscoveryServer { ... }\n\n# Cada microservicio (Eureka Client)\n# application.yml\neureka:\n  client:\n    service-url:\n      defaultZone: http://eureka-server:8761/eureka/"
+  },
+  {
+    "id": 5,
+    "level": "Mid",
+    "category": "Service Discovery",
+    "question": "¿Qué pasa si el Eureka Server se cae? ¿Los microservicios dejan de funcionar?",
+    "code": null,
+    "answer": "No inmediatamente. Cada Eureka Client mantiene una caché local del registro de servicios. Si Eureka cae, los clientes siguen usando esa caché para resolver nombres durante un tiempo. Sin embargo, si un servicio escala o cambia de IP mientras Eureka está caído, esos cambios no se propagarán. En producción se despliegan múltiples instancias de Eureka en modo peer-to-peer para alta disponibilidad.",
+    "example": "# Eureka en modo HA — dos instancias que se conocen entre sí\n# application-peer1.yml\neureka:\n  instance:\n    hostname: peer1\n  client:\n    service-url:\n      defaultZone: http://peer2:8761/eureka/\n\n# application-peer2.yml\neureka:\n  instance:\n    hostname: peer2\n  client:\n    service-url:\n      defaultZone: http://peer1:8761/eureka/"
+  },
+  {
+    "id": 6,
+    "level": "Mid",
+    "category": "Service Discovery",
+    "question": "¿Cuál es la diferencia entre client-side load balancing y server-side load balancing?",
+    "code": null,
+    "answer": "Server-side: un componente externo (ej. AWS ALB, Nginx) recibe el request y decide a qué instancia enviarlo. El cliente no sabe cuántas instancias existen.\nClient-side: el cliente obtiene la lista de instancias disponibles (de Eureka) y decide él mismo a cuál llamar usando un algoritmo (round-robin por defecto). Spring Cloud LoadBalancer implementa esto. Elimina un hop de red pero añade lógica al cliente.",
+    "example": "// Spring Cloud LoadBalancer — client-side\n@Bean\n@LoadBalanced  // activa client-side load balancing\npublic RestTemplate restTemplate() {\n    return new RestTemplate();\n}\n\n// Llama a 'order-service' — LoadBalancer elige la instancia\nrestTemplate.getForObject(\"http://order-service/api/orders\", List.class);"
+  },
+  {
+    "id": 7,
+    "level": "Junior",
+    "category": "API Gateway",
+    "question": "¿Qué es Spring Cloud Gateway y qué problemas resuelve?",
+    "code": null,
+    "answer": "Es el punto de entrada único (edge service) para todos los microservicios. Resuelve: enrutamiento de requests al servicio correcto, autenticación/autorización centralizada, rate limiting, SSL termination, logging centralizado, CORS, y transformación de requests/responses. Evita que los clientes conozcan las URLs internas de cada microservicio.",
+    "example": "# application.yml — Spring Cloud Gateway\nspring:\n  cloud:\n    gateway:\n      routes:\n        - id: order-service\n          uri: lb://order-service\n          predicates:\n            - Path=/api/orders/**\n          filters:\n            - StripPrefix=1\n            - name: RequestRateLimiter"
+  },
+  {
+    "id": 8,
+    "level": "Mid",
+    "category": "API Gateway",
+    "question": "¿Cómo implementas autenticación JWT en Spring Cloud Gateway para todos los microservicios?",
+    "code": null,
+    "answer": "Creando un GlobalFilter o GatewayFilter en el Gateway que intercepta todos los requests, extrae el JWT del header Authorization, lo valida (firma y expiración), y si es válido propaga el request al microservicio downstream. Los microservicios internos confían en el Gateway y no necesitan re-validar el token, simplificando su lógica.",
+    "example": "@Component\npublic class JwtAuthFilter implements GlobalFilter {\n    @Override\n    public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {\n        String token = exchange.getRequest()\n            .getHeaders().getFirst(\"Authorization\");\n        if (token == null || !jwtUtil.isValid(token)) {\n            exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);\n            return exchange.getResponse().setComplete();\n        }\n        return chain.filter(exchange);\n    }\n}"
+  },
+  {
+    "id": 9,
+    "level": "Mid",
+    "category": "API Gateway",
+    "question": "¿Qué es un Predicate y un Filter en Spring Cloud Gateway?",
+    "code": null,
+    "answer": "Predicate: condición que debe cumplir un request para que se aplique una ruta. Ej: Path, Method, Header, Host. Si el predicate es true, el request se enruta a ese destino.\nFilter: lógica que se ejecuta antes (pre) o después (post) de que el request sea enviado al microservicio. Ej: agregar headers, rate limiting, logging, modificar el body.",
+    "example": "routes:\n  - id: payments\n    uri: lb://payment-service\n    predicates:\n      - Path=/api/payments/**     # Predicate: solo rutas que empiecen así\n      - Method=POST,PUT           # Predicate: solo POST y PUT\n    filters:\n      - AddRequestHeader=X-Source, gateway   # Filter: agrega header\n      - name: CircuitBreaker\n        args:\n          name: paymentsCircuitBreaker"
+  },
+  {
+    "id": 10,
+    "level": "Mid",
+    "category": "Resilience",
+    "question": "¿Qué es el patrón Circuit Breaker y por qué es crítico en microservicios?",
+    "code": null,
+    "answer": "Circuit Breaker previene que un fallo en cascada destruya todo el sistema. Monitorea las llamadas a un servicio externo — si la tasa de fallos supera un umbral, 'abre el circuito' y deja de enviar requests al servicio caído, retornando inmediatamente con un fallback. Después de un tiempo intenta de nuevo (estado half-open). Sin él, un servicio lento puede agotar todos los threads del caller.",
+    "example": "// Resilience4j con Spring Cloud\n@Service\npublic class OrderService {\n    @CircuitBreaker(name = \"paymentService\", fallbackMethod = \"fallbackPayment\")\n    public PaymentResponse processPayment(PaymentRequest req) {\n        return paymentClient.charge(req);\n    }\n\n    public PaymentResponse fallbackPayment(PaymentRequest req, Exception e) {\n        return PaymentResponse.pending(\"Payment queued for retry\");\n    }\n}"
+  },
+  {
+    "id": 11,
+    "level": "Mid",
+    "category": "Resilience",
+    "question": "¿Cuáles son los estados de un Circuit Breaker?",
+    "code": null,
+    "answer": "CLOSED (normal): las llamadas pasan normalmente. Se monitorea la tasa de fallos.\nOPEN (abierto): las llamadas fallan inmediatamente sin intentar llegar al servicio. Se retorna el fallback. Después de waitDurationInOpenState se pasa a HALF_OPEN.\nHALF_OPEN: se permiten un número limitado de llamadas de prueba. Si tienen éxito, vuelve a CLOSED. Si fallan, vuelve a OPEN.",
+    "example": "# application.yml — Resilience4j config\nresilience4j:\n  circuitbreaker:\n    instances:\n      paymentService:\n        slidingWindowSize: 10\n        failureRateThreshold: 50       # abre si 50% de calls fallan\n        waitDurationInOpenState: 10s   # espera 10s antes de HALF_OPEN\n        permittedNumberOfCallsInHalfOpenState: 3"
+  },
+  {
+    "id": 12,
+    "level": "Mid",
+    "category": "Resilience",
+    "question": "¿Qué es el patrón Retry y cuándo NO deberías usarlo?",
+    "code": null,
+    "answer": "Retry reintenta automáticamente una operación fallida un número configurable de veces con un delay entre intentos. NO deberías usarlo en: operaciones no idempotentes (POST que crea recursos — podrías crear duplicados), cuando el servicio destino está sobrecargado (el retry empeora la situación), o sin exponential backoff (los retries inmediatos generan más carga).",
+    "example": "@Service\npublic class NotificationService {\n    @Retry(name = \"emailService\", fallbackMethod = \"fallbackEmail\")\n    public void sendEmail(String to, String body) {\n        emailClient.send(to, body);\n    }\n}\n\n# Config con exponential backoff\nresilience4j:\n  retry:\n    instances:\n      emailService:\n        maxAttempts: 3\n        waitDuration: 500ms\n        enableExponentialBackoff: true\n        exponentialBackoffMultiplier: 2"
+  },
+  {
+    "id": 13,
+    "level": "Mid",
+    "category": "Resilience",
+    "question": "¿Qué es Rate Limiter en Spring Cloud y cuándo lo usarías en el Gateway?",
+    "code": null,
+    "answer": "Limita el número de requests que un cliente puede hacer en un período de tiempo. Se usa en el Gateway para: proteger los microservicios de picos de tráfico inesperados, prevenir abuso de la API (DDoS suave), aplicar SLAs distintos por cliente/plan (freemium vs premium), y proteger servicios costosos como llamadas a LLMs o procesamiento de pagos.",
+    "example": "# Redis-based Rate Limiter en Gateway\nspring:\n  cloud:\n    gateway:\n      routes:\n        - id: api\n          uri: lb://api-service\n          filters:\n            - name: RequestRateLimiter\n              args:\n                redis-rate-limiter.replenishRate: 10   # 10 req/seg\n                redis-rate-limiter.burstCapacity: 20   # máximo en burst\n                redis-rate-limiter.requestedTokens: 1"
+  },
+  {
+    "id": 14,
+    "level": "Mid",
+    "category": "Observability",
+    "question": "¿Qué es Distributed Tracing y por qué es esencial en microservicios?",
+    "code": null,
+    "answer": "En microservicios un request puede pasar por 5-10 servicios. Distributed Tracing asigna un Trace ID único al request desde el origen y lo propaga a través de todos los servicios. Cada operación genera un Span con su propio ID, timestamps y metadata. Permite ver el flujo completo, identificar dónde hay latencia y diagnosticar errores en sistemas distribuidos. Spring Cloud Sleuth (ahora Micrometer Tracing) lo implementa automáticamente.",
+    "example": "# Con Micrometer Tracing + Zipkin\n# Cada log incluye automáticamente:\n# [order-service, traceId=abc123, spanId=def456]\n\n# application.yml\nmanagement:\n  tracing:\n    sampling:\n      probability: 1.0  # 100% en dev, 0.1 en prod\nspring:\n  zipkin:\n    base-url: http://zipkin:9411"
+  },
+  {
+    "id": 15,
+    "level": "Mid",
+    "category": "Observability",
+    "question": "¿Cómo correlacionas logs entre múltiples microservicios en producción?",
+    "code": null,
+    "answer": "Usando el Trace ID de Distributed Tracing incluido en cada log line. Con Micrometer Tracing/Sleuth el Trace ID se agrega automáticamente al MDC (Mapped Diagnostic Context) de SLF4J. En producción centralizas los logs en un stack como ELK (Elasticsearch + Logstash + Kibana) o CloudWatch Logs, filtras por Trace ID y ves toda la cadena de llamadas de un request.",
+    "example": "# Patrón de log con Trace ID incluido\n# order-service\n2024-01-15 10:23:01 INFO  [order-service,abc123def,111] Order received\n# payment-service (mismo traceId)\n2024-01-15 10:23:01 INFO  [payment-service,abc123def,222] Processing payment\n# notification-service (mismo traceId)\n2024-01-15 10:23:02 INFO  [notification-service,abc123def,333] Email sent"
+  },
+  {
+    "id": 16,
+    "level": "Junior",
+    "category": "Spring Cloud Bus",
+    "question": "¿Qué es Spring Cloud Bus y cuál es su caso de uso más común?",
+    "code": null,
+    "answer": "Spring Cloud Bus conecta todos los microservicios a un message broker (Kafka o RabbitMQ) para propagar eventos del sistema. El caso de uso más común es propagar un config refresh a todas las instancias simultáneamente: en lugar de llamar a /actuator/refresh en cada instancia manualmente, se publica un evento al bus y todas las instancias se actualizan automáticamente.",
+    "example": "# Con Spring Cloud Bus + Kafka, un solo POST refresca TODOS los servicios:\n# POST http://config-server:8888/actuator/busrefresh\n\n# application.yml en cada microservicio\nspring:\n  cloud:\n    bus:\n      enabled: true\n  kafka:\n    bootstrap-servers: kafka:9092"
+  },
+  {
+    "id": 17,
+    "level": "Mid",
+    "category": "Service Discovery",
+    "question": "¿Cuál es la diferencia entre Eureka y Consul como Service Discovery?",
+    "code": null,
+    "answer": "Eureka: solución de Netflix, AP en el teorema CAP (prioriza disponibilidad sobre consistencia), consistencia eventual entre nodos, más simple de configurar con Spring Cloud, pero Netflix lo puso en modo mantenimiento.\nConsul: solución de HashiCorp, CP (prioriza consistencia), incluye health checks más robustos, KV store para configuración, service mesh, y está activamente mantenido. Más features pero más complejo. En proyectos nuevos Consul o Kubernetes Service Discovery son preferidos sobre Eureka.",
+    "example": null
+  },
+  {
+    "id": 18,
+    "level": "Mid",
+    "category": "API Gateway",
+    "question": "¿Cómo manejas el versionado de APIs en Spring Cloud Gateway?",
+    "code": null,
+    "answer": "Configurando rutas distintas por versión en el Gateway. Las estrategias más comunes son por path (/api/v1/, /api/v2/) o por header (API-Version: 2). El Gateway enruta cada versión al servicio correspondiente, permitiendo mantener versiones antiguas activas mientras se migra a la nueva.",
+    "example": "spring:\n  cloud:\n    gateway:\n      routes:\n        - id: orders-v1\n          uri: lb://order-service-v1\n          predicates:\n            - Path=/api/v1/orders/**\n        - id: orders-v2\n          uri: lb://order-service-v2\n          predicates:\n            - Path=/api/v2/orders/**"
+  },
+  {
+    "id": 19,
+    "level": "Mid",
+    "category": "Resilience",
+    "question": "¿Qué es el patrón Bulkhead y cómo lo implementas con Resilience4j?",
+    "code": null,
+    "answer": "Bulkhead aisla los recursos (threads o semáforos) por servicio externo para que el fallo de uno no consuma todos los recursos del caller. Si el servicio de pagos se vuelve lento, el Bulkhead limita cuántos threads pueden estar esperando respuesta de pagos, dejando threads disponibles para otros servicios.",
+    "example": "@Service\npublic class OrderService {\n    @Bulkhead(name = \"paymentService\", type = Bulkhead.Type.SEMAPHORE)\n    public PaymentResponse charge(PaymentRequest req) {\n        return paymentClient.charge(req);\n    }\n}\n\n# application.yml\nresilience4j:\n  bulkhead:\n    instances:\n      paymentService:\n        maxConcurrentCalls: 10    # máximo 10 llamadas simultáneas\n        maxWaitDuration: 100ms"
+  },
+  {
+    "id": 20,
+    "level": "Mid",
+    "category": "Spring Cloud Config",
+    "question": "¿Cómo estructura el repositorio Git para manejar configuraciones de múltiples servicios y ambientes en Config Server?",
+    "code": null,
+    "answer": "La convención es usar archivos nombrados como {service-name}.yml para config base y {service-name}-{profile}.yml para sobreescrituras por ambiente. También existe application.yml para configuración compartida por todos los servicios. El Config Server resuelve las propiedades en este orden: application.yml < service.yml < service-profile.yml.",
+    "example": "# Estructura del repositorio Git:\nconfig-repo/\n├── application.yml              # config compartida (todos los servicios)\n├── application-prod.yml         # config compartida solo en prod\n├── order-service.yml            # config de order-service (todos los ambientes)\n├── order-service-dev.yml        # config de order-service solo en dev\n├── order-service-prod.yml       # config de order-service solo en prod\n└── payment-service.yml"
+  },
+  {
+    "id": 21,
+    "level": "Junior",
+    "category": "Observability",
+    "question": "¿Qué es Spring Boot Actuator y qué endpoints son más útiles en producción?",
+    "code": null,
+    "answer": "Actuator expone endpoints HTTP para monitorear y gestionar la aplicación en runtime. Los más útiles en producción: /health (estado del servicio para load balancers y K8s probes), /metrics (métricas de CPU, memoria, HTTP), /info (versión del servicio), /loggers (cambiar nivel de log en caliente), /refresh (recargar config sin restart).",
+    "example": "# application.yml\nmanagement:\n  endpoints:\n    web:\n      exposure:\n        include: health,metrics,info,loggers\n  endpoint:\n    health:\n      show-details: when-authorized\n\n# /health response\n{\n  \"status\": \"UP\",\n  \"components\": {\n    \"db\": { \"status\": \"UP\" },\n    \"kafka\": { \"status\": \"UP\" }\n  }\n}"
+  },
+  {
+    "id": 22,
+    "level": "Mid",
+    "category": "Observability",
+    "question": "¿Cómo expones métricas de Spring Boot a Prometheus y las visualizas en Grafana?",
+    "code": null,
+    "answer": "Agregando la dependencia micrometer-registry-prometheus. Esto expone /actuator/prometheus con métricas en formato Prometheus. Prometheus hace scraping periódico de ese endpoint. Grafana se conecta a Prometheus como datasource y permite crear dashboards con las métricas. Spring Boot expone métricas de JVM, HTTP requests, connection pool, y métricas custom con @Timed.",
+    "example": "# pom.xml\n<dependency>\n    <groupId>io.micrometer</groupId>\n    <artifactId>micrometer-registry-prometheus</artifactId>\n</dependency>\n\n# prometheus.yml — config de scraping\nscrape_configs:\n  - job_name: 'order-service'\n    metrics_path: '/actuator/prometheus'\n    static_configs:\n      - targets: ['order-service:8080']"
+  },
+  {
+    "id": 23,
+    "level": "Mid",
+    "category": "API Gateway",
+    "question": "¿Cómo manejas CORS en Spring Cloud Gateway para un frontend en otro dominio?",
+    "code": null,
+    "answer": "Configurando CORS globalmente en el Gateway en lugar de en cada microservicio. Esto centraliza la política de CORS en un solo lugar. Se configura qué orígenes, métodos y headers están permitidos.",
+    "example": "spring:\n  cloud:\n    gateway:\n      globalcors:\n        cors-configurations:\n          '[/**]':\n            allowedOrigins:\n              - \"https://myapp.com\"\n              - \"http://localhost:3000\"\n            allowedMethods:\n              - GET\n              - POST\n              - PUT\n              - DELETE\n            allowedHeaders: \"*\"\n            allowCredentials: true"
+  },
+  {
+    "id": 24,
+    "level": "Mid",
+    "category": "Service Discovery",
+    "question": "¿Cómo reemplazarías Eureka con Kubernetes Service Discovery en Spring Cloud?",
+    "code": null,
+    "answer": "En Kubernetes, el Service Discovery lo hace K8s nativamente mediante Services y DNS. Usando Spring Cloud Kubernetes, los microservicios se registran automáticamente como K8s Services y pueden descubrirse por nombre de Service. Se elimina Eureka del stack completamente. Spring Cloud LoadBalancer se integra con K8s para balancear entre pods.",
+    "example": "# pom.xml — reemplaza eureka por spring-cloud-kubernetes\n<dependency>\n    <groupId>org.springframework.cloud</groupId>\n    <artifactId>spring-cloud-starter-kubernetes-client-loadbalancer</artifactId>\n</dependency>\n\n# application.yml — ya no necesitas URL de Eureka\n# Spring Cloud Kubernetes usa el API de K8s automáticamente\nspring:\n  cloud:\n    kubernetes:\n      discovery:\n        enabled: true"
+  },
+  {
+    "id": 25,
+    "level": "Mid",
+    "category": "Spring Cloud Config",
+    "question": "¿Qué es bootstrap.yml y por qué era necesario en versiones anteriores de Spring Cloud?",
+    "code": null,
+    "answer": "bootstrap.yml se cargaba en un ApplicationContext padre antes que application.yml, siendo necesario para conectarse al Config Server antes de que se cargara el resto de la configuración. Desde Spring Cloud 2020.0 (Ilford), el bootstrap context está deshabilitado por defecto y se reemplaza por spring.config.import en application.yml, que es más explícito y predecible.",
+    "example": "# Antes (bootstrap.yml):\nspring:\n  application:\n    name: order-service\n  cloud:\n    config:\n      uri: http://config-server:8888\n\n# Ahora (application.yml con spring.config.import):\nspring:\n  application:\n    name: order-service\n  config:\n    import: \"configserver:http://config-server:8888\""
+  },
+  {
+    "id": 26,
+    "level": "Mid",
+    "category": "Resilience",
+    "question": "¿Cómo decides qué patrón de resiliencia usar: Circuit Breaker, Retry o Timeout?",
+    "code": null,
+    "answer": "Timeout: siempre — todo call externo debe tener timeout para no bloquear threads indefinidamente.\nRetry: para fallos transitorios (red inestable, servicio momentáneamente no disponible). Solo en operaciones idempotentes.\nCircuit Breaker: cuando un servicio externo falla de forma sostenida. Previene el fallo en cascada y da tiempo al servicio caído para recuperarse.\nEn la práctica se combinan: Timeout + Retry + Circuit Breaker son el stack mínimo para cualquier llamada externa en producción.",
+    "example": "// Stack completo de resiliencia\n@CircuitBreaker(name = \"inventory\")\n@Retry(name = \"inventory\")\n@TimeLimiter(name = \"inventory\")\npublic CompletableFuture<Stock> getStock(Long productId) {\n    return CompletableFuture.supplyAsync(\n        () -> inventoryClient.getStock(productId)\n    );\n}"
+  },
+  {
+    "id": 27,
+    "level": "Mid",
+    "category": "API Gateway",
+    "question": "¿Cuál es la diferencia entre Zuul y Spring Cloud Gateway?",
+    "code": null,
+    "answer": "Zuul (Netflix): basado en Servlet API, bloqueante (1 thread por request), más fácil de debuggear. Zuul 2 intentó ser reactivo pero su integración con Spring fue limitada.\nSpring Cloud Gateway: basado en Spring WebFlux y Reactor, no bloqueante, mejor performance bajo alta carga con menos threads. Es el estándar actual. Si tu app no usa arquitectura reactiva, Gateway igual puede usarse como edge service reactivo aunque los microservicios detrás sean MVC.",
+    "example": null
+  },
+  {
+    "id": 28,
+    "level": "Senior",
+    "category": "Architecture",
+    "question": "¿Cómo manejas la consistencia de configuración cuando tienes 20+ microservicios en producción desplegados en múltiples instancias?",
+    "code": null,
+    "answer": "Stack completo: Config Server con repositorio Git como source of truth, Spring Cloud Bus para propagar refreshes automáticamente a todas las instancias via Kafka, @RefreshScope en beans que usan propiedades dinámicas, Actuator /health para verificar que las instancias aplicaron la config, y alertas en CloudWatch/Prometheus si alguna instancia no se actualizó. En Kubernetes se complementa con ConfigMaps y Secrets gestionados por ArgoCD o Flux.",
+    "example": null
+  },
+  {
+    "id": 29,
+    "level": "Senior",
+    "category": "Architecture",
+    "question": "¿Qué es un Service Mesh y en qué se diferencia del API Gateway?",
+    "code": null,
+    "answer": "API Gateway: maneja el tráfico Norte-Sur (externo → interno). Es el entry point para clientes externos.\nService Mesh (ej. Istio, Linkerd): maneja el tráfico Este-Oeste (servicio → servicio dentro del cluster). Implementa mTLS automático entre servicios, circuit breaking, retry, observabilidad y load balancing a nivel de infraestructura sin cambios en el código. El sidecar proxy (Envoy) se inyecta en cada pod y gestiona la comunicación.",
+    "example": null
+  },
+  {
+    "id": 30,
+    "level": "Senior",
+    "category": "Architecture",
+    "question": "¿Cómo harías el health check de un microservicio Spring Boot para que Kubernetes pueda determinar si está listo para recibir tráfico?",
+    "code": null,
+    "answer": "Configurando Liveness Probe y Readiness Probe apuntando a los endpoints de Actuator. Liveness: /actuator/health/liveness — si falla, K8s reinicia el pod. Readiness: /actuator/health/readiness — si falla, K8s saca el pod del load balancer pero no lo reinicia. Spring Boot 2.3+ expone estos endpoints automáticamente cuando corre en Kubernetes.",
+    "example": "# application.yml\nmanagement:\n  health:\n    livenessstate:\n      enabled: true\n    readinessstate:\n      enabled: true\n\n# kubernetes deployment.yml\nlivenessProbe:\n  httpGet:\n    path: /actuator/health/liveness\n    port: 8080\n  initialDelaySeconds: 30\nreadinessProbe:\n  httpGet:\n    path: /actuator/health/readiness\n    port: 8080\n  initialDelaySeconds: 15"
+  },
+  {
+    "id": 31,
+    "level": "Mid",
+    "category": "Spring Cloud Config",
+    "question": "¿Cómo validas que una propiedad requerida esté presente al arrancar el microservicio con Spring Cloud Config?",
+    "code": null,
+    "answer": "Usando @ConfigurationProperties con @Validated y @NotNull/@NotBlank en los campos requeridos. Si la propiedad no existe o está vacía, la aplicación falla al arrancar con un mensaje claro en lugar de lanzar NullPointerException en runtime. Es preferible a @Value individual porque agrupa la config y la valida al inicio.",
+    "example": "@ConfigurationProperties(prefix = \"payment\")\n@Validated\npublic class PaymentProperties {\n    @NotBlank\n    private String apiKey;\n\n    @NotNull\n    @Min(1)\n    private Integer timeout;\n\n    // getters y setters\n}\n\n// Si 'payment.api-key' no existe → falla al arrancar con mensaje claro"
+  },
+  {
+    "id": 32,
+    "level": "Mid",
+    "category": "Observability",
+    "question": "¿Cómo creas una métrica personalizada con Micrometer para medir el tiempo de procesamiento de un pedido?",
+    "code": null,
+    "answer": "Usando MeterRegistry de Micrometer. Las métricas más útiles: Timer (mide duración y throughput), Counter (cuenta eventos), Gauge (valor actual). Con @Timed en un método Spring lo hace automáticamente. Las métricas aparecen en /actuator/prometheus y se visualizan en Grafana.",
+    "example": "@Service\npublic class OrderService {\n    private final Timer orderTimer;\n\n    public OrderService(MeterRegistry registry) {\n        this.orderTimer = Timer.builder(\"order.processing.time\")\n            .description(\"Time to process an order\")\n            .tag(\"region\", \"us-east\")\n            .register(registry);\n    }\n\n    public Order processOrder(OrderRequest req) {\n        return orderTimer.record(() -> {\n            // lógica de procesamiento\n            return doProcess(req);\n        });\n    }\n}"
+  },
+  {
+    "id": 33,
+    "level": "Junior",
+    "category": "Spring Cloud",
+    "question": "¿Qué es OpenFeign y qué ventaja tiene sobre RestTemplate para llamadas entre microservicios?",
+    "code": null,
+    "answer": "OpenFeign es un cliente HTTP declarativo — defines la llamada como una interfaz Java con anotaciones y Feign genera la implementación automáticamente. Ventajas sobre RestTemplate: menos código boilerplate, integración automática con Eureka (usa el nombre del servicio), integración nativa con Circuit Breaker y LoadBalancer, y hace las llamadas más legibles y testeables.",
+    "example": "// Con RestTemplate — verbose\nString url = \"http://inventory-service/api/stock/\" + productId;\nResponseEntity<Stock> response = restTemplate.getForEntity(url, Stock.class);\n\n// Con Feign — declarativo\n@FeignClient(name = \"inventory-service\")\npublic interface InventoryClient {\n    @GetMapping(\"/api/stock/{productId}\")\n    Stock getStock(@PathVariable Long productId);\n}\n\n// Uso:\nStock stock = inventoryClient.getStock(productId);"
+  },
+  {
+    "id": 34,
+    "level": "Mid",
+    "category": "Spring Cloud",
+    "question": "¿Cómo manejas errores y fallbacks en OpenFeign con Circuit Breaker?",
+    "code": null,
+    "answer": "Implementando una clase FallbackFactory o Fallback que implementa la interfaz Feign. Cuando el Circuit Breaker abre o el servicio falla, Feign invoca automáticamente el fallback en lugar de lanzar una excepción. FallbackFactory es preferido porque recibe la excepción original y permite logearla.",
+    "example": "@FeignClient(\n    name = \"inventory-service\",\n    fallbackFactory = InventoryFallbackFactory.class\n)\npublic interface InventoryClient {\n    @GetMapping(\"/api/stock/{id}\")\n    Stock getStock(@PathVariable Long id);\n}\n\n@Component\npublic class InventoryFallbackFactory implements FallbackFactory<InventoryClient> {\n    @Override\n    public InventoryClient create(Throwable cause) {\n        log.error(\"Inventory service failed\", cause);\n        return id -> Stock.unavailable();\n    }\n}"
+  },
+  {
+    "id": 35,
+    "level": "Senior",
+    "category": "Architecture",
+    "question": "En tu experiencia, ¿cuáles son los errores más comunes al implementar Spring Cloud en un proyecto real?",
+    "code": null,
+    "answer": "1. No configurar timeouts — un servicio lento agota todos los threads sin timeout.\n2. Usar Feign sin Circuit Breaker — un servicio caído derrumba al caller.\n3. Config Server sin alta disponibilidad — si cae al arrancar, ningún servicio puede iniciar.\n4. @RefreshScope en beans con estado — puede causar comportamientos inesperados.\n5. No propagar el Trace ID en llamadas asíncronas (Kafka, threads manuales) — se pierde la trazabilidad.\n6. Eureka self-preservation mode mal entendido — en dev parece que los servicios no se dan de baja.\n7. No versionar la API desde el inicio — muy costoso de refactorizar con clientes en producción.",
+    "example": null
+  }
+]
