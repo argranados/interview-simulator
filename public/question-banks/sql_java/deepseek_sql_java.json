@@ -293,31 +293,33 @@
   {
     "id": 20,
     "level": "Junior",
-    "category": "Normalization",
-    "question": "Una tabla está en 1FN si:",
+    "category": "JDBC",
+    "question": "En una aplicación Java que usa JDBC, ¿cuál es la forma correcta de evitar SQL Injection al construir una consulta con un parámetro proporcionado por el usuario?",
+    "code": "String sql = \"SELECT * FROM usuarios WHERE email = ?\";\nPreparedStatement ps = conn.prepareStatement(sql);\nps.setString(1, userInput);\nResultSet rs = ps.executeQuery();",
     "options": [
-      "No tiene dependencias transitivas.",
-      "Todos los atributos son atómicos y no hay grupos repetitivos.",
-      "Tiene una clave primaria compuesta.",
-      "Cada atributo no clave depende completamente de la clave primaria."
+      "Concatenar el parámetro directamente en la cadena SQL.",
+      "Usar Statement y escapar las comillas manualmente.",
+      "Usar PreparedStatement con ? y setString().",
+      "Usar CREATE PROCEDURE en la base de datos."
     ],
-    "correct": 1,
-    "explanation": "Primera Forma Normal: valores atómicos y sin repetición de grupos. La segunda opción describe 2FN, tercera no es definición, cuarta es 2FN.",
+    "correct": 2,
+    "explanation": "PreparedStatement separa la SQL de los datos, evitando que el input del usuario sea interpretado como código SQL malicioso. Es la práctica estándar y obligatoria en backend.",
     "active": true
   },
   {
     "id": 21,
     "level": "Mid",
     "category": "Transactions",
-    "question": "En SQL Server, ¿qué nivel de aislamiento evita lecturas fantasma pero permite lecturas no repetibles?",
+    "question": "En producción, una aplicación Java lanza LockTimeoutException (o ORA-00054 en Oracle). ¿Cuál es la causa más probable y qué acción tomaría un equipo de soporte?",
+    "code": "// Error típico:\norg.postgresql.util.PSQLException: ERROR: lock timeout",
     "options": [
-      "READ UNCOMMITTED",
-      "READ COMMITTED",
-      "REPEATABLE READ",
-      "SERIALIZABLE"
+      "Un deadlock entre dos transacciones.",
+      "Una transacción larga mantiene locks y otra espera más del tiempo configurado.",
+      "La tabla está corrupta.",
+      "Falta un índice en la columna usada en WHERE."
     ],
-    "correct": 2,
-    "explanation": "REPEATABLE READ evita lecturas sucias y lecturas no repetibles, pero permite fantasmas (nuevas filas insertadas por otra transacción). SERIALIZABLE evita fantasmas.",
+    "correct": 1,
+    "explanation": "El lock timeout ocurre cuando una transacción no puede adquirir un lock porque otra lo retiene, y se supera el tiempo de espera (ej. lock_timeout en PostgreSQL). No es deadlock (eso da error específico). La solución suele identificar la transacción bloqueante y optimizarla o ajustar el timeout.",
     "active": true
   },
   {
@@ -369,16 +371,17 @@
   {
     "id": 25,
     "level": "Mid",
-    "category": "Views",
-    "question": "¿Qué característica tienen las vistas materializadas que no tienen las vistas normales?",
+    "category": "JPA",
+    "question": "En una aplicación Java con JPA/Hibernate, tienes una entidad Pedido con una relación @OneToMany a LineaPedido. Si iteras sobre pedido.getLineas() dentro de un bucle de pedidos, obtienes N+1 consultas. ¿Qué solución es la más eficiente?",
+    "code": "SELECT p FROM Pedido p JOIN FETCH p.lineas",
     "options": [
-      "Se pueden actualizar automáticamente.",
-      "Almacenan físicamente los datos del resultado.",
-      "No requieren permisos especiales.",
-      "Solo se crean con WITH CHECK OPTION."
+      "Usar FetchType.EAGER en la relación.",
+      "Hacer un JOIN FETCH en la consulta JPQL / Criteria.",
+      "Ejecutar una consulta SQL nativa.",
+      "Usar @Transactional con propagación REQUIRES_NEW."
     ],
     "correct": 1,
-    "explanation": "Las vistas materializadas guardan los datos físicamente, mejorando rendimiento en consultas pesadas pero requieren refresco. Las vistas normales son solo definiciones.",
+    "explanation": "JOIN FETCH carga los hijos en una sola consulta con un JOIN, evitando el problema N+1. EAGER también puede generar N+1 si no se usa con fetch. Es un tema común en entrevistas backend.",
     "active": true
   },
   {
@@ -551,15 +554,16 @@
     "id": 37,
     "level": "Mid",
     "category": "Indexes",
-    "question": "¿Un índice cubriente (covering index) es aquel que...",
+    "question": "Una tabla pedidos tiene un índice compuesto en las columnas (fecha, cliente_id). ¿Cuál de las siguientes consultas aprovechará completamente el índice?",
+    "code": "CREATE INDEX idx_fecha_cliente ON pedidos (fecha, cliente_id);",
     "options": [
-      "Cubre todas las columnas de la tabla.",
-      "Es un índice clustered.",
-      "Incluye todas las columnas referenciadas en la consulta (SELECT, WHERE, JOIN, etc.).",
-      "Tiene solo una columna."
+      "WHERE cliente_id = 123",
+      "WHERE fecha BETWEEN '2025-01-01' AND '2025-01-31' AND cliente_id = 123",
+      "WHERE fecha >= '2025-01-01'",
+      "WHERE cliente_id = 123 AND fecha = '2025-01-15'"
     ],
-    "correct": 2,
-    "explanation": "Un índice cubriente contiene todas las columnas que necesita la consulta, evitando acceder a la tabla base. No necesariamente todas las columnas de la tabla.",
+    "correct": 1,
+    "explanation": "El índice compuesto se usa cuando se filtra por el prefijo izquierdo. Aquí la primera columna es fecha, por lo que se necesita filtrar por fecha (o rango) para que el índice sea eficiente. La opción B filtra por rango de fecha y además por cliente_id (segunda columna), es óptima.",
     "active": true
   },
   {
@@ -594,32 +598,34 @@
   },
   {
     "id": 40,
-    "level": "Junior",
-    "category": "Normalization",
-    "question": "¿Una tabla que cumple 2FN pero no 3FN tiene:",
+    "level": "Mid",
+    "category": "Performance",
+    "question": "En producción, una consulta SQL tarda varios segundos. ¿Qué herramienta o comando usarías para entender por qué es lenta y ver su plan de ejecución?",
+    "code": "EXPLAIN SELECT * FROM pedidos WHERE fecha > '2025-01-01';",
     "options": [
-      "Dependencias parciales",
-      "Dependencias transitivas",
-      "Atributos multivaluados",
-      "Clave primaria compuesta"
+      "SHOW INDEX FROM tabla",
+      "EXPLAIN SELECT ... (o EXPLAIN ANALYZE)",
+      "TRACE ON",
+      "DEBUG QUERY"
     ],
     "correct": 1,
-    "explanation": "2FN elimina dependencias parciales (atributos que dependen de parte de clave compuesta). 3FN elimina dependencias transitivas (atributo no clave depende de otro no clave).",
+    "explanation": "EXPLAIN (y EXPLAIN ANALYZE en PostgreSQL/MySQL) muestra cómo el motor ejecuta la consulta: si usa índices, hace scans, etc. Es la primera herramienta para diagnosticar lentitud en producción.",
     "active": true
   },
   {
     "id": 41,
-    "level": "Mid",
-    "category": "Joins",
-    "question": "Dadas tablas A (3 filas) y B (2 filas). ¿Cuántas filas devuelve un FULL OUTER JOIN si hay 1 coincidencia?",
+    "level": "Junior",
+    "category": "JOINs",
+    "question": "Tienes un LEFT JOIN entre clientes y pedidos. Si pones una condición WHERE pedidos.total > 100 (filtro sobre la tabla derecha), ¿qué efecto tiene sobre el resultado?",
+    "code": "SELECT c.*, p.*\nFROM clientes c\nLEFT JOIN pedidos p ON c.id = p.cliente_id\nWHERE p.total > 100;",
     "options": [
-      "2",
-      "3",
-      "4",
-      "5"
+      "Sigue siendo un LEFT JOIN, todos los clientes aparecen aunque no tengan pedidos.",
+      "Se convierte implícitamente en un INNER JOIN, porque los clientes sin pedidos tienen NULL en pedidos.total y no cumplen la condición.",
+      "La consulta falla por error de sintaxis.",
+      "Los clientes sin pedidos aparecen con total = NULL y se incluyen igualmente."
     ],
-    "correct": 3,
-    "explanation": "FULL OUTER JOIN devuelve todas las filas de ambas tablas. Coincidencia: 1 fila combinada. Luego las no coincidentes: 2 de A que no coinciden + 1 de B que no coinciden = 4 filas totales.",
+    "correct": 1,
+    "explanation": "En SQL, un LEFT JOIN se convierte en INNER JOIN si filtras por una columna de la tabla derecha con una condición que excluye los NULL (como > 100). Para mantener el LEFT JOIN, la condición debe ir en la cláusula ON, no en WHERE. Esto es una trampa clásica en entrevistas.",
     "active": true
   },
   {
@@ -791,16 +797,17 @@
   {
     "id": 53,
     "level": "Mid",
-    "category": "Indexes",
-    "question": "¿Qué sucede si creas un índice en una columna con muchos valores NULL?",
+    "category": "Transactions",
+    "question": "Necesitas leer una fila de la tabla cuentas y luego actualizarla en la misma transacción, evitando que otra transacción modifique esa fila entre la lectura y la actualización. ¿Qué cláusula agregarías al SELECT?",
+    "code": "SELECT saldo FROM cuentas WHERE id = 1 FOR UPDATE;",
     "options": [
-      "El índice no incluye filas NULL.",
-      "El índice incluye los NULL, pero ocupa espacio y puede afectar a consultas que busquen IS NULL.",
-      "La creación del índice falla.",
-      "Los NULL se ignoran automáticamente."
+      "FOR UPDATE",
+      "LOCK IN SHARE MODE",
+      "WITH (NOLOCK)",
+      "FOR SHARE"
     ],
-    "correct": 1,
-    "explanation": "La mayoría de motores incluyen NULL en índices (depende del motor) y pueden usarse para búsquedas IS NULL, aunque no siempre eficiente. No falla ni los ignora completamente.",
+    "correct": 0,
+    "explanation": "SELECT ... FOR UPDATE bloquea las filas seleccionadas para actualización hasta que la transacción termine. Es esencial para evitar condiciones de carrera en operaciones como 'leer saldo, restar, actualizar'. Muy usado en backend transaccional.",
     "active": true
   },
   {
@@ -821,16 +828,17 @@
   {
     "id": 55,
     "level": "Mid",
-    "category": "Normalization",
-    "question": "Una tabla con los campos (PedidoID, ProductoID, NombreProducto, Cantidad, PrecioUnitario). ¿Qué forma normal viola si NombreProducto depende solo de ProductoID?",
+    "category": "Transactions",
+    "question": "En un sistema de soporte, ves en los logs de la base de datos: 'Deadlock found when trying to get lock'. La aplicación Java lanza una excepción SQLTransientException. ¿Cuál es la acción recomendada en el código?",
+    "code": "try {\n    // realizar operaciones\n} catch (SQLException e) {\n    if (e.getSQLState().equals(\"40001\")) {\n        // reintentar la transacción\n    }\n}",
     "options": [
-      "1FN",
-      "2FN",
-      "3FN",
-      "BCNF"
+      "Ignorar la excepción y continuar.",
+      "Reintentar la transacción automáticamente hasta 3 veces con un backoff.",
+      "Hacer ROLLBACK y nunca reintentar.",
+      "Cambiar el nivel de aislamiento a READ UNCOMMITTED."
     ],
     "correct": 1,
-    "explanation": "Si la clave es compuesta (PedidoID, ProductoID), y NombreProducto depende solo de ProductoID (dependencia parcial), viola 2FN. 2FN requiere eliminación de dependencias parciales.",
+    "explanation": "Los deadlocks son transitorios. La mejor práctica es capturar la excepción específica (SQLState 40001) y reintentar la transacción un par de veces, porque el sistema suele resolverse solo. Es muy útil en producción.",
     "active": true
   }
 ]
