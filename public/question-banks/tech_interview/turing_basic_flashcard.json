@@ -1,0 +1,332 @@
+[
+  {
+    "id": 1,
+    "level": "Junior",
+    "category": "Backend General",
+    "question": "¿Cuál es el propósito del back-end en una aplicación web?",
+    "code": null,
+    "answer": "El back-end (server-side) es responsable de almacenar y organizar datos, manejar las solicitudes del usuario y entregar el contenido al front-end. Servidores web como NGINX y Apache son ejemplos comunes de back-end. También puede alojar otros recursos como videos e imágenes.",
+    "example": null,
+    "active": true
+  },
+  {
+    "id": 2,
+    "level": "Junior",
+    "category": "Backend General",
+    "question": "¿Cuál es el flujo típico para implementar una nueva feature en el back-end?",
+    "code": null,
+    "answer": "Un flujo típico incluye: discutir la feature con stakeholders → prototipar y diseñar → escribir el código → QA (quality assurance) → coordinar con el front-end para asegurar la correcta transmisión de datos entre cliente y servidor. También es importante asegurar compatibilidad con versiones anteriores.",
+    "example": null,
+    "active": true
+  },
+  {
+    "id": 3,
+    "level": "Junior",
+    "category": "Backend General",
+    "question": "¿Qué es un web server?",
+    "code": null,
+    "answer": "Un web server es una computadora que almacena páginas web y las distribuye. Cuando ingresas una URL en el navegador, este contacta al web server para solicitar la página, y el web server la devuelve para mostrarla en pantalla. NGINX y Apache son dos de los más utilizados. También pueden alojar recursos como videos e imágenes.",
+    "example": null,
+    "active": true
+  },
+  {
+    "id": 4,
+    "level": "Junior",
+    "category": "Principios de Desarrollo",
+    "question": "¿Qué significan los principios DRY y DIE en desarrollo de software?",
+    "code": null,
+    "answer": "DRY (Don't Repeat Yourself): los desarrolladores no deben duplicar código. El código duplicado genera problemas de mantenimiento porque hay que hacer múltiples cambios. DIE (Duplication Is Evil) va más lejos: incluso pequeñas cantidades de duplicación deben evitarse. Ambos principios buscan mantener el código limpio y fácil de mantener.",
+    "example": null,
+    "active": true
+  },
+  {
+    "id": 5,
+    "level": "Junior",
+    "category": "HTTP",
+    "question": "¿Cuál es la diferencia entre GET y POST?",
+    "code": null,
+    "answer": "GET recupera datos de un web server y pasa sus parámetros en la URL. POST envía datos al servidor con los parámetros incluidos en el body del request, no en la URL. GET se usa para consultas; POST para enviar datos como formularios o crear recursos.",
+    "example": "// GET - parámetros en la URL\nGET /users?id=123&name=John HTTP/1.1\n\n// POST - parámetros en el body\nPOST /users HTTP/1.1\nContent-Type: application/json\n{ \"id\": 123, \"name\": \"John\" }",
+    "active": true
+  },
+  {
+    "id": 6,
+    "level": "Junior",
+    "category": "Arquitectura",
+    "question": "¿Cuál es la diferencia entre arquitectura de software y diseño de software?",
+    "code": null,
+    "answer": "La arquitectura de software es el esqueleto del programa: define su estructura general. El diseño de software se ocupa de los detalles de implementación del código para los requerimientos específicos. La arquitectura es el blueprint del programa; el diseño es el proceso de cómo construirlo. Ambos trabajan juntos como un proceso integrado de desarrollo.",
+    "example": null,
+    "active": true
+  },
+  {
+    "id": 7,
+    "level": "Junior",
+    "category": "DevOps",
+    "question": "¿Qué es CI/CD (Integración Continua y Entrega Continua)?",
+    "code": null,
+    "answer": "CI (Continuous Integration) asegura que el programa se construya y pruebe continuamente. CD (Continuous Delivery) es el proceso automatizado en la fase final del desarrollo antes de producción. Juntos forman un proceso automatizado cohesivo que elimina inconsistencias entre equipos de desarrollo y operaciones, aumentando la velocidad de producción.",
+    "example": null,
+    "active": true
+  },
+  {
+    "id": 8,
+    "level": "Junior",
+    "category": "Escalabilidad",
+    "question": "¿Cómo se puede agregar escalabilidad a un programa de software?",
+    "code": null,
+    "answer": "La escalabilidad se mejora con características como: caché, manejo de estados, APIs, ordenamiento y programación asíncrona. También eligiendo herramientas como bases de datos y frameworks con mayor escalabilidad. La falta de escalabilidad puede obligar a reescribir la app con un nuevo tech stack cuando crece la audiencia.",
+    "example": null,
+    "active": true
+  },
+  {
+    "id": 9,
+    "level": "Junior",
+    "category": "Microservicios",
+    "question": "¿Por qué se usa la arquitectura de Microservicios?",
+    "code": null,
+    "answer": "Microservicios integra servicios pequeños pero independientemente deployables. Ventajas: se pueden usar diferentes lenguajes de programación para distintos servicios, el mantenimiento es más fácil porque los servicios están loosely coupled, funciona mejor con equipos grandes, y un fallo en un servicio no afecta todo el sistema.",
+    "example": null,
+    "active": true
+  },
+  {
+    "id": 10,
+    "level": "Junior",
+    "category": "Bases de Datos",
+    "question": "¿Qué son las bases de datos NoSQL y cuáles son sus tipos?",
+    "code": null,
+    "answer": "NoSQL (Not Only SQL) son bases de datos no relacionales que manejan datos no estructurados o semi-estructurados. Cerca del 85% de los datos en internet son no estructurados. No usan el modelo tabular relacional (RDBMS). Tipos: Graph (grafos), Key-value (clave-valor), Document-oriented (documentos JSON), Column-oriented (columnas).",
+    "example": "// Ejemplos por tipo:\n// Key-value: Redis → SET user:1 '{\"name\":\"John\"}'\n// Document: MongoDB → db.users.find({name: 'John'})\n// Graph: Neo4j → MATCH (u:User)-[:FOLLOWS]->(f) RETURN f\n// Column: Cassandra → SELECT * FROM users WHERE id = 1",
+    "active": true
+  },
+  {
+    "id": 11,
+    "level": "Junior",
+    "category": "Seguridad",
+    "question": "¿Qué es SQL Injection y cómo se previene?",
+    "code": null,
+    "answer": "SQL Injection destruye o hackea la base de datos inyectando código malicioso. Ocurre porque hay poca separación entre el código del programa y el input del usuario. Prevención: 1) Prepared statements con parámetros definidos, 2) Stored procedures, 3) Validación de inputs (blacklist/whitelist), 4) Principio de mínimo privilegio (no dar acceso admin al servidor público).",
+    "example": "// VULNERABLE:\nString query = \"SELECT * FROM users WHERE name = '\" + input + \"'\";\n// Si input = \"' OR '1'='1\", retorna todos los usuarios\n\n// SEGURO con Prepared Statement:\nPreparedStatement ps = conn.prepareStatement(\n    \"SELECT * FROM users WHERE name = ?\");\nps.setString(1, input);",
+    "active": true
+  },
+  {
+    "id": 12,
+    "level": "Junior",
+    "category": "Testing",
+    "question": "¿Cuál es la diferencia entre Acceptance Testing y Functional Testing?",
+    "code": null,
+    "answer": "Functional testing verifica que el software cumple los requerimientos del negocio (¿construimos el producto correctamente?). Acceptance testing valida que el producto resuelve el problema del cliente (¿construimos el producto correcto?). El acceptance testing se hace mejor con el usuario real realizando las tareas para las que el software fue diseñado.",
+    "example": null,
+    "active": true
+  },
+  {
+    "id": 13,
+    "level": "Junior",
+    "category": "Testing",
+    "question": "¿Cuáles son los pasos del performance testing?",
+    "code": null,
+    "answer": "1) Determinar el ambiente de prueba, 2) Definir métricas de performance, 3) Crear plan y diseño del test, 4) Configurar el ambiente, 5) Implementar el diseño del test, 6) Ejecutar los tests, 7) Analizar resultados, crear reporte y recomendar retest para aplicaciones con bajo rendimiento.",
+    "example": null,
+    "active": true
+  },
+  {
+    "id": 14,
+    "level": "Junior",
+    "category": "Web Services",
+    "question": "¿Cuáles son las ventajas de los web services?",
+    "code": null,
+    "answer": "1) Interoperabilidad: accesibles vía red usando HTTP/SOAP con XML/JSON, pueden usarse desde cualquier lenguaje. 2) Reusabilidad: múltiples clientes simultáneos. 3) Loose Coupling: el código cliente no depende del servidor. 4) Fácil deploy e integración como aplicaciones web. 5) Soporte para múltiples versiones simultáneas.",
+    "example": null,
+    "active": true
+  },
+  {
+    "id": 15,
+    "level": "Mid",
+    "category": "Bases de Datos",
+    "question": "¿Cuál es la diferencia entre índices Clustered y Non-Clustered?",
+    "code": null,
+    "answer": "El índice Clustered es la Llave Primaria de la tabla (@Id en Java). Define cómo se ordenan físicamente los datos en el disco duro y solo puede haber uno. El índice Non-Clustered es cualquier índice secundario que creamos para acelerar búsquedas (como buscar por Email o DNI); es una estructura separada, como el índice de un libro, y apunta a los datos reales.",
+    "example": "-- Crear clustered index (generalmente la PK)\nCREATE CLUSTERED INDEX idx_users_id ON users(id);\n\n-- Crear non-clustered index\nCREATE NONCLUSTERED INDEX idx_users_email ON users(email);",
+    "active": true
+  },
+  {
+    "id": 16,
+    "level": "Mid",
+    "category": "Bases de Datos",
+    "question": "¿Cuáles son los problemas comunes con los ORMs?",
+    "code": null,
+    "answer": "Los problemas más comunes son: 1) Issues de performance como el N+1 queries problem (ejecutar N queries adicionales por cada resultado). 2) Mapeo incorrecto de datos entre objetos y tablas. 3) Dificultades con queries complejas que se expresan mejor en SQL puro. Para queries críticas muchas veces se mezcla ORM con SQL nativo.",
+    "example": "// N+1 Problem con JPA:\n// 1 query para obtener orders + N queries para cada customer\nList<Order> orders = orderRepo.findAll(); // 1 query\norders.forEach(o -> o.getCustomer().getName()); // N queries\n\n// Solución: JOIN FETCH\n@Query(\"SELECT o FROM Order o JOIN FETCH o.customer\")\nList<Order> findAllWithCustomer();",
+    "active": true
+  },
+  {
+    "id": 17,
+    "level": "Mid",
+    "category": "Bases de Datos",
+    "question": "¿Qué es el teorema CAP?",
+    "code": null,
+    "answer": "El teorema CAP (Brewer's theorem) establece que un sistema de base de datos distribuida solo puede garantizar 2 de estas 3 características: Consistency (consistencia — todos ven los mismos datos), Availability (disponibilidad — siempre responde), y Partition tolerance (tolerancia a particiones — funciona aunque haya fallos de red). Es la base de la arquitectura de Amazon, Google y Facebook.",
+    "example": "// Ejemplos de combinaciones CAP:\n// CP (Consistent + Partition tolerant): MongoDB, HBase\n//   → Sacrifica disponibilidad ante partición de red\n// AP (Available + Partition tolerant): Cassandra, CouchDB\n//   → Sacrifica consistencia ante partición de red\n// CA (Consistent + Available): MySQL, PostgreSQL\n//   → No toleran partición de red (sistemas centralizados)",
+    "active": true
+  },
+  {
+    "id": 18,
+    "level": "Junior",
+    "category": "APIs",
+    "question": "¿Qué significa REST?",
+    "code": null,
+    "answer": "REST (Representational State Transfer) es una arquitectura de software que especifica cómo debe operar una API. Fue creada para proporcionar un framework para gestionar la comunicación en redes complejas como internet. Una API que sigue los principios REST se llama RESTful. Usa métodos HTTP estándar: GET, POST, PUT, DELETE, PATCH.",
+    "example": "// Endpoints RESTful típicos:\n// GET    /users          → listar usuarios\n// GET    /users/1        → obtener usuario por ID\n// POST   /users          → crear usuario\n// PUT    /users/1        → actualizar usuario completo\n// PATCH  /users/1        → actualizar campos específicos\n// DELETE /users/1        → eliminar usuario",
+    "active": true
+  },
+  {
+    "id": 19,
+    "level": "Junior",
+    "category": "OOP",
+    "question": "¿Qué es la Programación Orientada a Objetos (OOP)?",
+    "code": null,
+    "answer": "OOP (Object-Oriented Programming) es un paradigma de programación que organiza el diseño de software alrededor de objetos o datos, en lugar de funciones y lógica. Un objeto encapsula datos (atributos) y comportamiento (métodos). Los 4 pilares son: Encapsulamiento, Abstracción, Herencia y Polimorfismo.",
+    "example": "public class Car {\n    // Atributos (datos)\n    private String brand;\n    private int speed;\n\n    // Constructor\n    public Car(String brand) { this.brand = brand; }\n\n    // Métodos (comportamiento)\n    public void accelerate(int amount) { speed += amount; }\n    public int getSpeed() { return speed; }\n}",
+    "active": true
+  },
+  {
+    "id": 20,
+    "level": "Junior",
+    "category": "OOP",
+    "question": "¿Cuáles son los tipos de constructores en Java?",
+    "code": null,
+    "answer": "Existen tres tipos principales: 1) Default Constructor: sin argumentos, inicializa con valores por defecto. 2) Parameterized Constructor: con uno o más argumentos, permite pasar valores al crear el objeto. 3) Copy Constructor: inicializa un nuevo objeto usando otro objeto de la misma clase como fuente.",
+    "example": "public class Person {\n    String name; int age;\n\n    // Default Constructor\n    public Person() { name = \"Unknown\"; age = 0; }\n\n    // Parameterized Constructor\n    public Person(String name, int age) {\n        this.name = name; this.age = age;\n    }\n\n    // Copy Constructor\n    public Person(Person other) {\n        this.name = other.name; this.age = other.age;\n    }\n}",
+    "active": true
+  },
+  {
+    "id": 21,
+    "level": "Junior",
+    "category": "Java Core",
+    "question": "¿Qué es la serialización en Java?",
+    "code": null,
+    "answer": "La serialización convierte el estado de un objeto en un byte stream, permitiendo almacenarlo o transmitirlo por red. La deserialización hace el proceso inverso: convierte el byte stream de vuelta al objeto original. Para serializar una clase debe implementar la interfaz Serializable.",
+    "example": "// Serializar\npublic class User implements Serializable {\n    private static final long serialVersionUID = 1L;\n    String name; int age;\n}\n\n// Escribir a archivo\nObjectOutputStream oos = new ObjectOutputStream(\n    new FileOutputStream(\"user.ser\"));\noos.writeObject(user);\n\n// Leer desde archivo (deserializar)\nObjectInputStream ois = new ObjectInputStream(\n    new FileInputStream(\"user.ser\"));\nUser user = (User) ois.readObject();",
+    "active": true
+  },
+  {
+    "id": 22,
+    "level": "Junior",
+    "category": "Java Core",
+    "question": "¿Cuál es la diferencia entre final, finally y finalize() en Java?",
+    "code": null,
+    "answer": "Son tres conceptos distintos con nombres similares: final es un modificador de acceso (variable no reasignable, método no sobreescribible, clase no heredable). finally es un bloque que siempre se ejecuta después del try-catch, sin importar si hubo excepción. finalize() es un método de Object que el Garbage Collector llama antes de destruir el objeto (deprecated en Java 9+).",
+    "example": "// final\nfinal int MAX = 100; // no se puede reasignar\n\n// finally\ntry {\n    int result = 10 / 0;\n} catch (ArithmeticException e) {\n    System.out.println(\"Error\");\n} finally {\n    System.out.println(\"Siempre se ejecuta\"); // esto siempre corre\n}\n\n// finalize() - deprecated\n@Override\nprotected void finalize() throws Throwable {\n    // llamado por GC antes de destruir el objeto\n}",
+    "active": true
+  },
+  {
+    "id": 23,
+    "level": "Junior",
+    "category": "Java Core",
+    "question": "¿Cuál es la diferencia entre Primitive Data Types y Wrapper Classes?",
+    "code": null,
+    "answer": "Los tipos primitivos (int, boolean, double, char, etc.) son tipos predefinidos por Java, almacenados directamente en el stack. Las Wrapper Classes (Integer, Boolean, Double, Character, etc.) envuelven esos primitivos como objetos, permitiendo usarlos en contextos que requieren objetos como Collections (ArrayList, HashMap). Java hace autoboxing/unboxing automáticamente.",
+    "example": "// Primitivo - no se puede usar en Collections\nint num = 5;\n\n// Wrapper Class - se puede usar en Collections\nInteger numObj = 5; // autoboxing\nList<Integer> list = new ArrayList<>();\nlist.add(10); // autoboxing automático\n\n// Unboxing\nint val = list.get(0); // Integer → int automático",
+    "active": true
+  },
+  {
+    "id": 24,
+    "level": "Mid",
+    "category": "Java Core",
+    "question": "¿Por qué Java no soporta herencia múltiple de clases?",
+    "code": null,
+    "answer": "Java evita la herencia múltiple de clases para simplificar el lenguaje y evitar el diamond problem: si clase C hereda de A y B, y ambas tienen el mismo método, Java no sabría cuál implementación usar. La solución es usar interfaces, que sí permiten implementación múltiple. Desde Java 8, las interfaces pueden tener default methods.",
+    "example": "// Diamond Problem - NO permitido en Java:\n// class C extends A, B {} ← error de compilación\n\n// Solución con interfaces:\ninterface A { default void hello() { System.out.println(\"A\"); } }\ninterface B { default void hello() { System.out.println(\"B\"); } }\n\nclass C implements A, B {\n    @Override\n    public void hello() { A.super.hello(); } // debe resolver explícitamente\n}",
+    "active": true
+  },
+  {
+    "id": 25,
+    "level": "Mid",
+    "category": "Java Core",
+    "question": "¿Cómo funciona HashMap internamente en Java?",
+    "code": null,
+    "answer": "HashMap usa hashing para almacenar pares clave-valor en buckets. El hashCode() de la clave determina el bucket. Cada bucket usa una LinkedList para manejar colisiones. En Java 8+, cuando un bucket supera 8 elementos (threshold), la LinkedList se convierte en un Binary Tree (Red-Black Tree) mejorando la búsqueda de O(n) a O(log n). Permite un null key y múltiples null values. No es thread-safe.",
+    "example": "Map<String, Integer> map = new HashMap<>();\nmap.put(\"Alice\", 30);\nmap.put(\"Bob\", 25);\nmap.put(null, 0);    // permite null key\n\n// Internamente:\n// 1. hashCode(\"Alice\") → determina bucket\n// 2. equals() → verifica si la clave ya existe\n// 3. Almacena en LinkedList del bucket\n// 4. Si bucket > 8 elementos → convierte a TreeNode",
+    "active": true
+  },
+  {
+    "id": 26,
+    "level": "Junior",
+    "category": "Concurrencia",
+    "question": "¿Qué es un Thread en Java?",
+    "code": null,
+    "answer": "Un Thread es una unidad de ejecución dentro de un programa. Los Threads permiten que las aplicaciones Java realicen múltiples tareas simultáneamente (multithreading), haciéndolas más rápidas y responsivas. Hay dos formas de crear un Thread: extendiendo la clase Thread o implementando la interfaz Runnable (preferida).",
+    "example": "// Forma 1: implementar Runnable (recomendada)\npublic class MyTask implements Runnable {\n    @Override\n    public void run() {\n        System.out.println(\"Ejecutando en: \" + Thread.currentThread().getName());\n    }\n}\nThread t = new Thread(new MyTask());\nt.start();\n\n// Forma 2: lambda\nThread t2 = new Thread(() -> System.out.println(\"Lambda thread\"));\nt2.start();",
+    "active": true
+  },
+  {
+    "id": 27,
+    "level": "Junior",
+    "category": "Concurrencia",
+    "question": "¿Cuáles son los tipos de Threads en Java?",
+    "code": null,
+    "answer": "Existen dos tipos: User Threads (alta prioridad, ejecutan la lógica principal de la aplicación, la JVM espera a que terminen antes de cerrar) y Daemon Threads (baja prioridad, proveen servicios de soporte a los User Threads como el Garbage Collector, la JVM los termina automáticamente cuando no quedan User Threads).",
+    "example": "// Crear un Daemon Thread\nThread daemonThread = new Thread(() -> {\n    while (true) {\n        System.out.println(\"Daemon running...\");\n        Thread.sleep(1000);\n    }\n});\ndaemonThread.setDaemon(true); // debe llamarse ANTES de start()\ndaemonThread.start();\n\n// Verificar\nSystem.out.println(daemonThread.isDaemon()); // true",
+    "active": true
+  },
+  {
+    "id": 28,
+    "level": "Junior",
+    "category": "Concurrencia",
+    "question": "¿Cuál es la diferencia entre un Thread y un Process?",
+    "code": null,
+    "answer": "Un Process es la ejecución de un programa completo con su propio espacio de memoria aislado. Un Thread es una unidad de ejecución dentro de ese proceso; múltiples threads comparten el mismo espacio de memoria del proceso. Un proceso puede tener varios threads ejecutándose simultáneamente. Los threads son más ligeros que los procesos porque no necesitan su propio espacio de memoria.",
+    "example": null,
+    "active": true
+  },
+  {
+    "id": 29,
+    "level": "Junior",
+    "category": "Java Core",
+    "question": "¿Qué es el manejo de excepciones en Java?",
+    "code": null,
+    "answer": "El manejo de excepciones es un mecanismo para controlar errores en tiempo de ejecución (runtime) como ClassNotFoundException, SQLException, IOException, RemoteException, etc. Permite que el programa continúe ejecutándose de forma controlada ante situaciones inesperadas. Se implementa con bloques try-catch-finally y la palabra clave throws.",
+    "example": "public void readFile(String path) throws IOException {\n    try {\n        FileReader file = new FileReader(path);\n        // leer archivo...\n    } catch (FileNotFoundException e) {\n        System.out.println(\"Archivo no encontrado: \" + e.getMessage());\n    } catch (IOException e) {\n        System.out.println(\"Error de I/O: \" + e.getMessage());\n    } finally {\n        System.out.println(\"Bloque finally siempre ejecuta\");\n    }\n}",
+    "active": true
+  },
+  {
+    "id": 30,
+    "level": "Junior",
+    "category": "Java Core",
+    "question": "¿Cuáles son los tipos de excepciones en Java?",
+    "code": null,
+    "answer": "Checked Exceptions: el compilador las verifica y obliga a manejarlas con try-catch o declarar throws. Ejemplo: IOException, SQLException. Unchecked Exceptions (RuntimeException): no es obligatorio manejarlas, ocurren por errores de programación. Ejemplo: NullPointerException, ArrayIndexOutOfBoundsException. Errors: problemas graves de la JVM que generalmente no se pueden manejar. Ejemplo: OutOfMemoryError.",
+    "example": "// Checked Exception - DEBE manejarse\ntry {\n    FileReader fr = new FileReader(\"file.txt\"); // IOException\n} catch (IOException e) { ... }\n\n// Unchecked Exception - opcional manejar\nString s = null;\ns.length(); // NullPointerException en runtime\n\n// Custom Exception\npublic class UserNotFoundException extends RuntimeException {\n    public UserNotFoundException(String msg) { super(msg); }\n}",
+    "active": true
+  },
+  {
+    "id": 31,
+    "level": "Junior",
+    "category": "Patrones de Diseño",
+    "question": "¿Qué es un Design Pattern (patrón de diseño)?",
+    "code": null,
+    "answer": "Un design pattern es una solución reutilizable para problemas comunes en diseño de software. Son como blueprints o plantillas adaptables (no código concreto) que muestran cómo resolver un problema de diseño. Se dividen en tres categorías: Creacionales (cómo crear objetos), Estructurales (cómo componer objetos) y de Comportamiento (cómo interactúan los objetos).",
+    "example": "// Ejemplo: Singleton (Creacional)\n// Garantiza una sola instancia de una clase\npublic class DatabaseConnection {\n    private static DatabaseConnection instance;\n\n    private DatabaseConnection() {}\n\n    public static DatabaseConnection getInstance() {\n        if (instance == null) {\n            instance = new DatabaseConnection();\n        }\n        return instance;\n    }\n}",
+    "active": true
+  },
+  {
+    "id": 32,
+    "level": "Junior",
+    "category": "Bases de Datos",
+    "question": "¿Cuál es la diferencia entre MySQL y SQL?",
+    "code": null,
+    "answer": "SQL (Structured Query Language) es un lenguaje de programación estándar para comunicarse con bases de datos relacionales: crear, modificar, eliminar y consultar datos. MySQL es un RDBMS (Sistema Gestor de Bases de Datos Relacionales) que usa SQL como su lenguaje principal. SQL es el lenguaje; MySQL es el sistema que lo implementa.",
+    "example": "-- SQL es el LENGUAJE (funciona en MySQL, PostgreSQL, Oracle, etc.)\nSELECT * FROM users WHERE active = true;\nINSERT INTO users (name, email) VALUES ('John', 'john@email.com');\nUPDATE users SET name = 'Jane' WHERE id = 1;\nDELETE FROM users WHERE id = 1;\n\n-- MySQL es el SISTEMA que ejecuta ese lenguaje\n-- También tienen sintaxis propias:\nSHOW TABLES; -- específico de MySQL",
+    "active": true
+  },
+  {
+    "id": 33,
+    "level": "Junior",
+    "category": "Bases de Datos",
+    "question": "¿Cuáles son los subconjuntos principales de SQL?",
+    "code": null,
+    "answer": "DDL (Data Definition Language): operaciones de estructura como CREATE, ALTER, DROP. DML (Data Manipulation Language): acceso y modificación de datos con INSERT, UPDATE, DELETE, SELECT. DCL (Data Control Language): control de acceso y privilegios con GRANT y REVOKE. TCL (Transaction Control Language): control de transacciones con COMMIT, ROLLBACK, SAVEPOINT.",
+    "example": "-- DDL\nCREATE TABLE users (id INT PRIMARY KEY, name VARCHAR(100));\nALTER TABLE users ADD COLUMN email VARCHAR(255);\n\n-- DML\nINSERT INTO users VALUES (1, 'John', 'john@email.com');\nSELECT * FROM users WHERE id = 1;\n\n-- DCL\nGRANT SELECT ON users TO 'readonly_user';\nREVOKE DELETE ON users FROM 'readonly_user';\n\n-- TCL\nBEGIN;\nUPDATE accounts SET balance = balance - 100 WHERE id = 1;\nCOMMIT;",
+    "active": true
+  }
+]

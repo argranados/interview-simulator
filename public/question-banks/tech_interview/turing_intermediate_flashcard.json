@@ -1,0 +1,452 @@
+[
+  {
+    "id": 1,
+    "level": "Mid",
+    "category": "OOP",
+    "question": "¿Cuáles son los tipos de constructores en programación orientada a objetos?",
+    "code": null,
+    "answer": "Tres tipos principales: 1) Default Constructor: sin argumentos, inicializa con valores por defecto. 2) Parameterized Constructor: con uno o más argumentos, permite pasar valores al crear el objeto. 3) Copy Constructor: inicializa un objeto usando otro objeto de la misma clase como fuente.",
+    "example": "public class Person {\n    String name; int age;\n\n    // Default\n    public Person() { name = \"Unknown\"; age = 0; }\n\n    // Parameterized\n    public Person(String name, int age) {\n        this.name = name; this.age = age;\n    }\n\n    // Copy\n    public Person(Person other) {\n        this.name = other.name;\n        this.age = other.age;\n    }\n}",
+    "active": true
+  },
+  {
+    "id": 2,
+    "level": "Mid",
+    "category": "Java Core",
+    "question": "¿Qué es la serialización y para qué sirve?",
+    "code": null,
+    "answer": "La serialización convierte el estado de un objeto en un byte stream, permitiendo almacenarlo en disco o transmitirlo por red. La deserialización hace el proceso inverso. Para serializar, la clase debe implementar la interfaz Serializable. Si un campo no debe serializarse, se marca con transient.",
+    "example": "public class User implements Serializable {\n    private static final long serialVersionUID = 1L;\n    private String name;\n    private transient String password; // NO se serializa\n}\n\n// Serializar\nObjectOutputStream oos = new ObjectOutputStream(\n    new FileOutputStream(\"user.ser\"));\noos.writeObject(user);\n\n// Deserializar\nObjectInputStream ois = new ObjectInputStream(\n    new FileInputStream(\"user.ser\"));\nUser user = (User) ois.readObject();",
+    "active": true
+  },
+  {
+    "id": 3,
+    "level": "Mid",
+    "category": "Java Core",
+    "question": "¿Cuál es la diferencia entre final, finally y finalize()?",
+    "code": null,
+    "answer": "final: modificador que hace una variable no reasignable, un método no sobreescribible, o una clase no heredable. finally: bloque que siempre se ejecuta después del try-catch, independientemente de si hubo excepción (ideal para cerrar recursos). finalize(): método de Object llamado por el GC antes de destruir el objeto — está deprecated desde Java 9.",
+    "example": "// final variable\nfinal int MAX = 100;\n\n// final método - no se puede @Override\npublic final void doSomething() { }\n\n// finally - siempre ejecuta\ntry {\n    riskyOperation();\n} catch (Exception e) {\n    handleError(e);\n} finally {\n    closeConnection(); // siempre cierra la conexión\n}\n\n// Try-with-resources (mejor alternativa a finally para recursos)\ntry (Connection conn = dataSource.getConnection()) {\n    // conn.close() se llama automáticamente\n}",
+    "active": true
+  },
+  {
+    "id": 4,
+    "level": "Mid",
+    "category": "Java Core",
+    "question": "¿Cuál es la diferencia entre Primitive Data Types y Wrapper Classes?",
+    "code": null,
+    "answer": "Los tipos primitivos (int, boolean, double, char, etc.) se almacenan en el stack, son más eficientes en memoria y no pueden ser null. Las Wrapper Classes (Integer, Boolean, Double, etc.) son objetos que envuelven esos primitivos, permiten null, pueden usarse en Collections, y tienen métodos útiles. Java hace autoboxing/unboxing automáticamente.",
+    "example": "// Primitivo: rápido, stack, no null\nint num = 5;\n\n// Wrapper: objeto, heap, puede ser null\nInteger numObj = null; // válido\n\n// Autoboxing (int → Integer)\nList<Integer> list = new ArrayList<>();\nlist.add(10); // Java convierte automáticamente\n\n// Unboxing (Integer → int)\nint val = list.get(0);\n\n// Métodos útiles de Wrapper\nInteger.parseInt(\"123\");    // String → int\nInteger.toBinaryString(10); // \"1010\"\nInteger.MAX_VALUE;          // 2147483647",
+    "active": true
+  },
+  {
+    "id": 5,
+    "level": "Mid",
+    "category": "Java Core",
+    "question": "¿Por qué Java no soporta herencia múltiple de clases?",
+    "code": null,
+    "answer": "Para evitar el diamond problem: si clase C hereda de A y B, y ambas tienen el mismo método, Java no sabría cuál implementación usar. Esto genera ambigüedad y complejidad. La solución es usar interfaces. Desde Java 8, las interfaces admiten default methods, logrando comportamiento similar a herencia múltiple pero resolviendo conflictos explícitamente.",
+    "example": "// Diamond Problem - NO compilaría:\n// class C extends A, B {} // ERROR\n\n// Solución con interfaces:\ninterface Flyable {\n    default String move() { return \"Flying\"; }\n}\ninterface Swimmable {\n    default String move() { return \"Swimming\"; }\n}\n\nclass Duck implements Flyable, Swimmable {\n    @Override\n    public String move() {\n        return Flyable.super.move(); // resuelve explícitamente\n    }\n}",
+    "active": true
+  },
+  {
+    "id": 6,
+    "level": "Mid",
+    "category": "Java Core",
+    "question": "¿Cómo funciona HashMap internamente en Java?",
+    "code": null,
+    "answer": "HashMap usa hashing: calcula hashCode() de la clave para determinar el bucket donde almacenar la entrada. Colisiones se manejan con LinkedList dentro del bucket. En Java 8+, cuando un bucket supera 8 elementos el threshold, la LinkedList se convierte en un Red-Black Tree (O(n) → O(log n)). Permite una null key y múltiples null values. No es thread-safe (usar ConcurrentHashMap para concurrencia).",
+    "example": "// Uso básico\nMap<String, Integer> map = new HashMap<>();\nmap.put(\"Alice\", 30);\nmap.put(\"Bob\", 25);\nmap.put(null, 0); // null key permitida\n\n// Flujo interno para put(\"Alice\", 30):\n// 1. hashCode(\"Alice\") = 63760579\n// 2. bucket = hash & (capacity-1)\n// 3. Si bucket vacío → almacena directamente\n// 4. Si colisión → recorre LinkedList con equals()\n// 5. Si >8 nodos en bucket → convierte a TreeNode\n\n// Thread-safe\nMap<String, Integer> safe = new ConcurrentHashMap<>();",
+    "active": true
+  },
+  {
+    "id": 7,
+    "level": "Mid",
+    "category": "Concurrencia",
+    "question": "¿Cuál es la diferencia entre Thread y Process?",
+    "code": null,
+    "answer": "Un Process es un programa en ejecución con su propio espacio de memoria aislado, archivos abiertos y recursos del sistema. Un Thread es una unidad de ejecución dentro de ese proceso; múltiples threads comparten el mismo espacio de memoria del proceso padre. Los threads son más ligeros (menos overhead al crear/cambiar) pero más propensos a condiciones de carrera por la memoria compartida.",
+    "example": "// Un proceso puede tener múltiples threads:\npublic class Main {\n    public static void main(String[] args) {\n        // Esto corre en el main thread del proceso JVM\n\n        Thread t1 = new Thread(() -> {\n            // t1 y t2 comparten el heap del proceso\n            System.out.println(\"Thread 1\");\n        });\n\n        Thread t2 = new Thread(() -> {\n            System.out.println(\"Thread 2\");\n        });\n\n        t1.start();\n        t2.start();\n    }\n}",
+    "active": true
+  },
+  {
+    "id": 8,
+    "level": "Mid",
+    "category": "Java Core",
+    "question": "¿Cuáles son los tipos de excepciones en Java?",
+    "code": null,
+    "answer": "Checked Exceptions: verificadas por el compilador, deben manejarse con try-catch o declarar throws. Ejemplo: IOException, SQLException. Unchecked Exceptions (RuntimeException y subclases): no obligatorio manejarlas, generalmente por errores de programación. Ejemplo: NullPointerException, IllegalArgumentException. Errors: problemas graves de JVM, generalmente irrecuperables. Ejemplo: OutOfMemoryError, StackOverflowError.",
+    "example": "// Checked - el compilador exige manejarla\npublic void readFile() throws IOException {\n    FileReader fr = new FileReader(\"file.txt\");\n}\n\n// Unchecked - error de programación\npublic void divide(int a, int b) {\n    if (b == 0) throw new IllegalArgumentException(\"b no puede ser 0\");\n    return a / b;\n}\n\n// Custom Checked Exception\npublic class InsufficientFundsException extends Exception {\n    public InsufficientFundsException(double amount) {\n        super(\"Fondos insuficientes: \" + amount);\n    }\n}",
+    "active": true
+  },
+  {
+    "id": 9,
+    "level": "Mid",
+    "category": "Patrones de Diseño",
+    "question": "¿Qué es un Design Pattern y cuáles son sus categorías?",
+    "code": null,
+    "answer": "Un design pattern es una solución reutilizable para problemas comunes en diseño de software. No es código concreto sino una plantilla adaptable. Tres categorías: 1) Creacionales (cómo crear objetos): Singleton, Factory, Builder, Prototype. 2) Estructurales (cómo componer objetos): Adapter, Decorator, Facade, Proxy. 3) Comportamiento (cómo interactúan): Observer, Strategy, Command, Template Method.",
+    "example": "// Factory Pattern (Creacional)\npublic interface Shape { void draw(); }\npublic class Circle implements Shape { public void draw() { ... } }\npublic class Square implements Shape { public void draw() { ... } }\n\npublic class ShapeFactory {\n    public Shape getShape(String type) {\n        return switch (type) {\n            case \"CIRCLE\" -> new Circle();\n            case \"SQUARE\" -> new Square();\n            default -> throw new IllegalArgumentException(type);\n        };\n    }\n}",
+    "active": true
+  },
+  {
+    "id": 10,
+    "level": "Mid",
+    "category": "Bases de Datos",
+    "question": "¿Cuál es la diferencia entre MySQL y SQL?",
+    "code": null,
+    "answer": "SQL (Structured Query Language) es el lenguaje estándar para comunicarse con bases de datos relacionales. MySQL es un RDBMS (Sistema Gestor de Bases de Datos Relacionales) que implementa SQL. SQL es el idioma; MySQL es uno de los sistemas que habla ese idioma. Otros RDBMS que usan SQL: PostgreSQL, Oracle, SQL Server, SQLite.",
+    "example": "-- SQL estándar (funciona en todos los RDBMS)\nSELECT u.name, COUNT(o.id) as total\nFROM users u\nJOIN orders o ON u.id = o.user_id\nGROUP BY u.id;\n\n-- Sintaxis específica de MySQL\nSELECT * FROM users LIMIT 10 OFFSET 20;\nSHOW TABLES;\nDESCRIBE users;\n\n-- PostgreSQL tiene su propio dialecto\nSELECT * FROM users LIMIT 10 OFFSET 20; -- igual\nSELECT NOW(); -- función de fecha específica",
+    "active": true
+  },
+  {
+    "id": 11,
+    "level": "Mid",
+    "category": "Bases de Datos",
+    "question": "¿Cuáles son los subconjuntos de SQL y para qué sirven?",
+    "code": null,
+    "answer": "DDL (Data Definition Language): define la estructura de la base de datos con CREATE, ALTER, DROP. DML (Data Manipulation Language): accede y modifica datos con SELECT, INSERT, UPDATE, DELETE. DCL (Data Control Language): controla permisos y acceso con GRANT y REVOKE. TCL (Transaction Control Language): gestiona transacciones con COMMIT, ROLLBACK y SAVEPOINT.",
+    "example": "-- DDL: estructura\nCREATE TABLE products (id INT PRIMARY KEY, name VARCHAR(100), price DECIMAL(10,2));\nALTER TABLE products ADD COLUMN stock INT DEFAULT 0;\n\n-- DML: datos\nINSERT INTO products VALUES (1, 'Laptop', 999.99, 50);\nUPDATE products SET price = 899.99 WHERE id = 1;\nSELECT * FROM products WHERE price < 1000;\n\n-- DCL: permisos\nGRANT SELECT, INSERT ON products TO 'app_user';\n\n-- TCL: transacciones\nBEGIN;\nUPDATE stock SET qty = qty - 1 WHERE product_id = 1;\nINSERT INTO orders (product_id) VALUES (1);\nCOMMIT;",
+    "active": true
+  },
+  {
+    "id": 12,
+    "level": "Mid",
+    "category": "Bases de Datos",
+    "question": "¿Qué es un RDBMS y cuáles son los más populares?",
+    "code": null,
+    "answer": "RDBMS (Relational Database Management System) es un programa para gestionar bases de datos relacionales. Almacena datos en tablas con filas y columnas, soporta relaciones entre tablas mediante claves foráneas, y garantiza integridad de datos con restricciones. Es la base de sistemas modernos como MySQL, PostgreSQL, Oracle y SQL Server. Todos usan SQL para consultar datos.",
+    "example": "-- Ejemplo de relación entre tablas (core del modelo relacional)\nCREATE TABLE customers (\n    id INT PRIMARY KEY,\n    name VARCHAR(100) NOT NULL\n);\n\nCREATE TABLE orders (\n    id INT PRIMARY KEY,\n    customer_id INT,\n    total DECIMAL(10,2),\n    FOREIGN KEY (customer_id) REFERENCES customers(id)\n    ON DELETE CASCADE  -- si se borra el customer, se borran sus orders\n);",
+    "active": true
+  },
+  {
+    "id": 13,
+    "level": "Mid",
+    "category": "Bases de Datos SQL",
+    "question": "¿Para qué sirve SELECT y cuáles son sus cláusulas más comunes?",
+    "code": null,
+    "answer": "SELECT recupera datos de bases de datos SQL, almacenando los resultados en un result-set. Cláusulas comunes: FROM (tabla origen), WHERE (filtrar registros), GROUP BY (agrupar), HAVING (filtrar grupos), ORDER BY (ordenar), LIMIT (limitar resultados), OFFSET (paginación), AS (aliases), JOIN (combinar tablas), UNION (combinar resultados de múltiples SELECT).",
+    "example": "-- Query compleja usando múltiples cláusulas\nSELECT\n    u.name AS customer_name,\n    COUNT(o.id) AS order_count,\n    SUM(o.total) AS total_spent\nFROM users u\nLEFT JOIN orders o ON u.id = o.user_id\nWHERE u.active = true\nGROUP BY u.id, u.name\nHAVING COUNT(o.id) > 2\nORDER BY total_spent DESC\nLIMIT 10 OFFSET 0;",
+    "active": true
+  },
+  {
+    "id": 14,
+    "level": "Mid",
+    "category": "Bases de Datos SQL",
+    "question": "¿Qué es OLTP y cuál es la diferencia con OLAP?",
+    "code": null,
+    "answer": "OLTP (Online Transactional Processing): permite transacciones masivas en tiempo real (INSERT, UPDATE, DELETE, SELECT). Optimizado para operaciones rápidas sobre pocos registros. Ejemplo: sistema de pagos, e-commerce. OLAP (Online Analytical Processing): optimizado para consultas analíticas complejas sobre grandes volúmenes de datos históricos. Ejemplo: reportes de business intelligence, data warehouses.",
+    "example": "-- OLTP: operación rápida sobre pocos registros\nBEGIN;\nUPDATE accounts SET balance = balance - 500 WHERE id = 101;\nUPDATE accounts SET balance = balance + 500 WHERE id = 202;\nINSERT INTO transactions (from_id, to_id, amount) VALUES (101, 202, 500);\nCOMMIT;\n\n-- OLAP: consulta analítica sobre millones de registros\nSELECT\n    EXTRACT(YEAR FROM created_at) AS year,\n    product_category,\n    SUM(revenue) AS total_revenue,\n    AVG(revenue) AS avg_revenue\nFROM sales_fact\nGROUP BY year, product_category\nORDER BY year DESC, total_revenue DESC;",
+    "active": true
+  },
+  {
+    "id": 15,
+    "level": "Mid",
+    "category": "Bases de Datos SQL",
+    "question": "¿Qué son los comentarios en SQL?",
+    "code": null,
+    "answer": "Los comentarios en SQL clarifican statements y evitan que código se ejecute. Single-line: comienza con -- (dos guiones). Multi-line: comienza con /* y termina con */. Son esenciales para documentar queries complejas, stored procedures y scripts de migración.",
+    "example": "-- Este es un comentario de una línea\nSELECT id, name FROM users; -- también al final de una línea\n\n/*\n  Este es un comentario\n  de múltiples líneas.\n  Útil para documentar stored procedures o deshabilitar bloques.\n*/\n\n/* Temporalmente deshabilitado:\nDROP TABLE users;\n*/\n\nSELECT\n    id,        -- identificador único\n    name,      -- nombre completo\n    email      -- correo de contacto\nFROM users\nWHERE active = true; -- solo usuarios activos",
+    "active": true
+  },
+  {
+    "id": 16,
+    "level": "Mid",
+    "category": "Bases de Datos SQL",
+    "question": "¿Qué es High Availability (HA)?",
+    "code": null,
+    "answer": "High Availability garantiza que una aplicación siempre esté disponible sin interrupciones. Si el usuario no puede acceder, la aplicación se considera no disponible. Se logra con clustering de nodos de servidor redundantes, load balancers, y failover automático. Se expresa como porcentaje de uptime: 99.9% = ~8.7 horas de downtime/año, 99.99% = ~52 minutos/año.",
+    "example": "// Estrategias comunes de HA:\n\n// 1. Active-Passive: un servidor activo, otro en standby\n//    Si el activo falla, el pasivo toma el control\n\n// 2. Active-Active: ambos servidores activos con load balancer\n//    El tráfico se distribuye entre ambos\n\n// 3. Database Replication:\n//    Primary: maneja escrituras\n//    Replica(s): manejan lecturas → escala reads y provee failover\n\n// Cálculo de uptime:\n// 99.9%   → 8.7 horas downtime/año\n// 99.99%  → 52 minutos downtime/año\n// 99.999% → 5.2 minutos downtime/año (\"five nines\")",
+    "active": true
+  },
+  {
+    "id": 17,
+    "level": "Mid",
+    "category": "Microservicios",
+    "question": "¿Por qué elegirías una arquitectura de Microservicios?",
+    "code": null,
+    "answer": "Ventajas: 1) Fácil adaptación a diferentes frameworks/tecnologías por servicio. 2) Fault isolation: un fallo en un servicio no derriba todo el sistema. 3) Escala independiente de cada servicio según su carga. 4) Deployments independientes sin afectar otros servicios. 5) Equipos pequeños y autónomos por servicio. Desventajas: mayor complejidad operacional, debugging distribuido, comunicación entre servicios.",
+    "example": "// Ejemplo de comunicación entre microservicios:\n\n// Síncrona: REST o gRPC\n@FeignClient(name = \"inventory-service\")\npublic interface InventoryClient {\n    @GetMapping(\"/inventory/{productId}\")\n    InventoryResponse checkStock(@PathVariable String productId);\n}\n\n// Asíncrona: Kafka (preferido para desacoplamiento)\n@KafkaListener(topics = \"order-created\")\npublic void handleOrderCreated(OrderCreatedEvent event) {\n    inventoryService.reserveStock(event.getProductId(), event.getQuantity());\n}",
+    "active": true
+  },
+  {
+    "id": 18,
+    "level": "Mid",
+    "category": "DevOps",
+    "question": "¿Qué es la containerización?",
+    "code": null,
+    "answer": "La containerización es una forma de virtualización donde el sistema operativo se comparte entre contenedores en lugar de clonarse para cada máquina virtual. Los contenedores empaquetan la aplicación con todas sus dependencias en una unidad aislada y portátil. Más ligeros que las VMs (arrancan en segundos). Docker es la plataforma más popular. Kubernetes orquesta múltiples contenedores.",
+    "example": "# Dockerfile típico para Spring Boot\nFROM eclipse-temurin:21-jre-alpine\nWORKDIR /app\n\n# Copiar el JAR\nCOPY target/app.jar app.jar\n\n# Exponer puerto\nEXPOSE 8080\n\n# Comando de inicio\nENTRYPOINT [\"java\", \"-jar\", \"app.jar\"]\n\n# Comandos Docker básicos:\n# docker build -t my-app .\n# docker run -p 8080:8080 my-app\n# docker-compose up -d",
+    "active": true
+  },
+  {
+    "id": 19,
+    "level": "Mid",
+    "category": "Testing",
+    "question": "¿Cuál es la diferencia entre Acceptance Test y Functional Test?",
+    "code": null,
+    "answer": "Functional testing es verificación: prueba que el software funciona según los requerimientos del negocio desde la perspectiva del desarrollador (¿construimos el producto correctamente?). Acceptance testing es validación: prueba que el producto resuelve el problema real del usuario (¿construimos el producto correcto?). Acceptance testing es mejor cuando lo ejecuta el usuario final realizando sus tareas reales.",
+    "example": "// Functional Test (perspectiva del desarrollador)\n@Test\nvoid shouldCalculateTotalWithDiscount() {\n    Order order = new Order();\n    order.addItem(new Item(\"Laptop\", 1000.0));\n    order.applyDiscount(10); // 10%\n    assertEquals(900.0, order.getTotal());\n}\n\n// Acceptance Test (perspectiva del usuario con Cucumber)\n// Feature: Shopping cart\n// Scenario: Apply discount coupon\n//   Given I have a laptop in my cart worth $1000\n//   When I apply coupon \"SAVE10\"\n//   Then the total should be $900",
+    "active": true
+  },
+  {
+    "id": 20,
+    "level": "Mid",
+    "category": "Bases de Datos",
+    "question": "¿Qué es la Denormalización en bases de datos?",
+    "code": null,
+    "answer": "La denormalización introduce datos redundantes en tablas para mejorar la performance de lectura. Reduce la necesidad de costosos JOINs al tener datos precalculados o copiados. Es lo opuesto a la normalización. Se usa cuando las lecturas superan ampliamente las escrituras y la latencia de JOIN es inaceptable. Tradeoff: mayor velocidad de lectura vs mayor complejidad de escritura.",
+    "example": "-- Diseño NORMALIZADO: requiere JOIN\n-- orders (id, user_id, total)\n-- users (id, name, email)\nSELECT o.id, u.name, o.total\nFROM orders o JOIN users u ON o.user_id = u.id;\n\n-- Diseño DENORMALIZADO: más rápido, datos redundantes\n-- orders (id, user_id, user_name, user_email, total)\n-- user_name y user_email están duplicados en orders\nSELECT id, user_name, total FROM orders;\n-- Sin JOIN, pero si cambia el nombre del usuario\n-- hay que actualizar TODOS sus orders también",
+    "active": true
+  },
+  {
+    "id": 21,
+    "level": "Mid",
+    "category": "Bases de Datos",
+    "question": "¿Qué es un Index en base de datos y cómo mejora la performance?",
+    "code": null,
+    "answer": "Un índice es una estructura de datos (generalmente B-Tree) que mejora la velocidad de búsqueda en una tabla a costa de espacio adicional y overhead en escrituras (INSERT/UPDATE/DELETE). Sin índice: full table scan O(n). Con índice: búsqueda O(log n). Se debe indexar columnas usadas en WHERE, JOIN, ORDER BY y columnas con alta cardinalidad.",
+    "example": "-- Sin índice: full scan de 1 millón de registros\nSELECT * FROM users WHERE email = 'john@email.com'; -- lento\n\n-- Crear índice\nCREATE INDEX idx_users_email ON users(email);\n\n-- Con índice: O(log n)\nSELECT * FROM users WHERE email = 'john@email.com'; -- rápido\n\n-- Índice compuesto (útil para queries con múltiples condiciones)\nCREATE INDEX idx_orders_user_status ON orders(user_id, status);\nSELECT * FROM orders WHERE user_id = 1 AND status = 'PENDING';\n\n-- Cuidado: demasiados índices ralentizan INSERT/UPDATE",
+    "active": true
+  },
+  {
+    "id": 22,
+    "level": "Mid",
+    "category": "Bases de Datos SQL",
+    "question": "¿Para qué sirve DISTINCT en SQL?",
+    "code": null,
+    "answer": "DISTINCT se usa con SELECT para eliminar duplicados y retornar solo registros únicos en el result set. Es útil cuando una tabla tiene filas duplicadas o cuando un JOIN produce duplicados. Tiene un costo de performance porque requiere ordenar o hashear los resultados para eliminar duplicados. Para mejor performance en grandes volúmenes, considerar GROUP BY.",
+    "example": "-- Sin DISTINCT: puede retornar duplicados\nSELECT city FROM customers;\n-- Madrid, Madrid, Barcelona, Madrid, Barcelona\n\n-- Con DISTINCT: solo valores únicos\nSELECT DISTINCT city FROM customers;\n-- Madrid, Barcelona\n\n-- DISTINCT con múltiples columnas\nSELECT DISTINCT country, city FROM customers;\n-- Combina country+city únicas\n\n-- Contar valores únicos\nSELECT COUNT(DISTINCT city) FROM customers;\n-- Retorna: 2",
+    "active": true
+  },
+  {
+    "id": 23,
+    "level": "Mid",
+    "category": "Bases de Datos SQL",
+    "question": "¿Qué es un Trigger en SQL?",
+    "code": null,
+    "answer": "Un Trigger es un stored procedure especial que se ejecuta automáticamente cuando se realizan modificaciones de datos (INSERT, UPDATE o DELETE) en una tabla específica. Se usa para: auditoría de cambios, validaciones complejas, mantener tablas de historial, y sincronizar datos entre tablas. Puede ser BEFORE o AFTER el evento.",
+    "example": "-- Trigger de auditoría: registra cambios en una tabla\nCREATE TABLE users_audit (\n    id INT, action VARCHAR(10),\n    changed_at TIMESTAMP, old_email VARCHAR(255)\n);\n\nCREATE TRIGGER after_user_update\nAFTER UPDATE ON users\nFOR EACH ROW\nBEGIN\n    IF OLD.email != NEW.email THEN\n        INSERT INTO users_audit\n        VALUES (OLD.id, 'EMAIL_CHANGED', NOW(), OLD.email);\n    END IF;\nEND;",
+    "active": true
+  },
+  {
+    "id": 24,
+    "level": "Mid",
+    "category": "Bases de Datos SQL",
+    "question": "¿Cuál es la diferencia entre Natural Join y Cross Join?",
+    "code": null,
+    "answer": "Cross Join produce el producto cartesiano de dos tablas: cada fila de la primera se combina con cada fila de la segunda (m × n filas). No tiene condición de JOIN. Natural Join se une automáticamente en todas las columnas que tienen el mismo nombre y tipo de datos en ambas tablas, sin necesidad de especificar ON. Natural Join es implícito e impredecible si los nombres cambian; se prefiere JOIN explícito.",
+    "example": "-- Cross Join: producto cartesiano\n-- 3 colores × 3 tallas = 9 combinaciones\nSELECT c.name, s.size\nFROM colors c CROSS JOIN sizes s;\n-- Útil para: generar combinaciones, calendar tables\n\n-- Natural Join: une en columnas con mismo nombre\nSELECT * FROM orders NATURAL JOIN customers;\n-- Une automáticamente donde orders.customer_id = customers.customer_id\n-- PELIGROSO: si añades una columna 'created_at' a ambas tablas,\n-- también se unirá por esa columna inesperadamente\n\n-- Preferir INNER JOIN explícito:\nSELECT * FROM orders o\nINNER JOIN customers c ON o.customer_id = c.id;",
+    "active": true
+  },
+  {
+    "id": 25,
+    "level": "Mid",
+    "category": "Bases de Datos SQL",
+    "question": "¿Qué es una FOREIGN KEY en SQL?",
+    "code": null,
+    "answer": "Una FOREIGN KEY es un campo en una tabla hijo que referencia la PRIMARY KEY de una tabla padre, estableciendo una relación y garantizando integridad referencial. Previene insertar un valor en la FK que no exista en la PK del padre, y controla qué pasa al eliminar un padre (RESTRICT, CASCADE, SET NULL). Es el pilar del modelo relacional.",
+    "example": "CREATE TABLE departments (\n    id INT PRIMARY KEY,\n    name VARCHAR(100) NOT NULL\n);\n\nCREATE TABLE employees (\n    id INT PRIMARY KEY,\n    name VARCHAR(100) NOT NULL,\n    department_id INT,\n    FOREIGN KEY (department_id)\n        REFERENCES departments(id)\n        ON DELETE RESTRICT  -- no permite borrar dept con empleados\n        ON UPDATE CASCADE   -- si cambia dept.id, actualiza employee.department_id\n);\n\n-- Error: integridad referencial\nINSERT INTO employees VALUES (1, 'Alice', 999);\n-- ERROR: department 999 no existe",
+    "active": true
+  },
+  {
+    "id": 26,
+    "level": "Mid",
+    "category": "Bases de Datos SQL",
+    "question": "¿Qué es una UNIQUE constraint en SQL?",
+    "code": null,
+    "answer": "La constraint UNIQUE previene que valores idénticos aparezcan en más de un registro de una columna. A diferencia de PRIMARY KEY: puede haber múltiples UNIQUE constraints por tabla, permite exactamente un valor NULL (en la mayoría de motores), y la columna no necesariamente tiene que ser la clave de la tabla. Automáticamente crea un índice para optimizar las verificaciones de unicidad.",
+    "example": "CREATE TABLE users (\n    id INT PRIMARY KEY,\n    email VARCHAR(255) UNIQUE,      -- un índice único\n    username VARCHAR(50) UNIQUE,    -- otro índice único\n    name VARCHAR(100)\n);\n\n-- Error al insertar email duplicado\nINSERT INTO users VALUES (1, 'john@email.com', 'john', 'John');\nINSERT INTO users VALUES (2, 'john@email.com', 'jane', 'Jane');\n-- ERROR: Duplicate entry 'john@email.com' for key 'email'\n\n-- UNIQUE compuesto: la combinación debe ser única\nALTER TABLE enrollments\nADD CONSTRAINT uq_student_course UNIQUE (student_id, course_id);",
+    "active": true
+  },
+  {
+    "id": 27,
+    "level": "Mid",
+    "category": "Bases de Datos SQL",
+    "question": "¿Qué es Database Black Box Testing?",
+    "code": null,
+    "answer": "Black Box Testing es un método que verifica funciones del software sin conocer su código interno, implementación ni rutas internas. Se enfoca solo en inputs y outputs. Se guía por especificaciones y requerimientos del software. También llamado behavioral testing. En bases de datos, se prueba el comportamiento de queries, stored procedures y triggers sin conocer la implementación interna.",
+    "example": "// Black Box: prueba el comportamiento visible, no el código interno\n@Test\nvoid blackBoxTest_findUserByEmail() {\n    // Arrange: input conocido\n    String email = \"john@email.com\";\n\n    // Act: llama la función como caja negra\n    User result = userRepository.findByEmail(email);\n\n    // Assert: verifica el output esperado\n    // No importa CÓMO se implementó la query internamente\n    assertNotNull(result);\n    assertEquals(email, result.getEmail());\n    assertEquals(\"John\", result.getName());\n}",
+    "active": true
+  },
+  {
+    "id": 28,
+    "level": "Mid",
+    "category": "Python",
+    "question": "¿Qué son los decorators en Python y cómo funcionan?",
+    "code": null,
+    "answer": "Los decorators son funciones de orden superior que modifican el comportamiento de otras funciones sin cambiar su definición original. Toman una función como argumento, añaden funcionalidad (antes o después), y retornan la función modificada. La sintaxis @decorator es azúcar sintáctica para function = decorator(function). Muy usados en frameworks como Flask y Django.",
+    "example": "import time\n\n# Definir un decorator\ndef timer(func):\n    def wrapper(*args, **kwargs):\n        start = time.time()\n        result = func(*args, **kwargs)  # llama la función original\n        end = time.time()\n        print(f\"{func.__name__} tardó {end-start:.2f}s\")\n        return result\n    return wrapper\n\n# Aplicar el decorator\n@timer\ndef process_data(n):\n    return sum(range(n))\n\n# Equivalente a: process_data = timer(process_data)\nprocess_data(1_000_000)  # imprime: process_data tardó 0.05s",
+    "active": true
+  },
+  {
+    "id": 29,
+    "level": "Mid",
+    "category": "Python",
+    "question": "¿Cuál es la diferencia entre .py y .pyc en Python?",
+    "code": null,
+    "answer": ".py contiene el código fuente de Python legible por humanos. .pyc contiene el bytecode compilado de Python, generado automáticamente cuando el módulo es importado. El bytecode es independiente de la plataforma pero específico de la versión de Python. Python crea .pyc en la carpeta __pycache__/ para acelerar importaciones posteriores (no necesita recompilar si el .py no cambió).",
+    "example": "# Al ejecutar: python main.py\n# Python compila implícitamente:\n# main.py → __pycache__/main.cpython-311.pyc\n\n# Estructura de directorios resultante:\n# project/\n# ├── main.py          ← código fuente\n# ├── utils.py         ← código fuente\n# └── __pycache__/\n#     ├── main.cpython-311.pyc    ← bytecode Python 3.11\n#     └── utils.cpython-311.pyc\n\n# Forzar compilación manualmente:\nimport py_compile\npy_compile.compile('main.py')\n\n# Compilar todo un directorio:\nimport compileall\ncompileall.compile_dir('.')",
+    "active": true
+  },
+  {
+    "id": 30,
+    "level": "Mid",
+    "category": "Python",
+    "question": "¿Cómo gestiona Python la memoria?",
+    "code": null,
+    "answer": "Python gestiona la memoria mediante un heap privado que contiene todas las estructuras de datos y objetos. El Python memory manager gestiona internamente este heap. La recolección de basura usa principalmente Reference Counting (cada objeto tiene un contador de referencias; llega a 0 → liberado) y un Garbage Collector cíclico para detectar referencias circulares.",
+    "example": "import sys\nimport gc\n\n# Verificar referencias de un objeto\nx = [1, 2, 3]\nprint(sys.getrefcount(x))  # al menos 2 (x + parámetro getrefcount)\n\ny = x  # incrementa contador a 3\ndel x  # decrementa a 2 (y aún referencia la lista)\ndel y  # decrementa a 0 → lista liberada\n\n# Referencia circular (GC cíclico la maneja)\na = {}\nb = {}\na['b'] = b\nb['a'] = a  # a → b → a: ciclo!\ndel a, del b  # ref count no llega a 0 sin GC cíclico\n\ngc.collect()  # forzar recolección",
+    "active": true
+  },
+  {
+    "id": 31,
+    "level": "Mid",
+    "category": "Python",
+    "question": "¿Qué son namespaces y packages en Python?",
+    "code": null,
+    "answer": "Namespace: colección de objetos asociados a un nombre único, cuya duración está determinada por el scope. Tipos: built-in (siempre disponible), global (módulo), local (función). Package: directorio que contiene múltiples módulos Python, identificado por un archivo __init__.py (opcional en Python 3). Permite organizar y distribuir código relacionado.",
+    "example": "# Namespace local vs global\nx = 10  # namespace global\n\ndef my_func():\n    x = 20          # namespace local (no afecta el global)\n    print(x)        # 20\n\nmy_func()\nprint(x)            # 10\n\n# Package structure:\n# mypackage/\n# ├── __init__.py       ← hace que sea un package\n# ├── utils.py\n# ├── models.py\n# └── api/\n#     ├── __init__.py\n#     └── routes.py\n\n# Importar desde package\nfrom mypackage.api.routes import get_users\nfrom mypackage import utils",
+    "active": true
+  },
+  {
+    "id": 32,
+    "level": "Mid",
+    "category": "Python",
+    "question": "¿Qué son unpickling y pickling en Python?",
+    "code": null,
+    "answer": "Pickling es el proceso de serialización en Python: convierte un objeto Python en un byte stream para almacenarlo o transmitirlo. Unpickling es el proceso inverso: convierte el byte stream de vuelta al objeto original. Similar a la serialización Java. El módulo pickle soporta casi cualquier objeto Python. No usar con datos de fuentes no confiables (riesgo de seguridad).",
+    "example": "import pickle\n\n# Pickling: objeto → byte stream\ndata = {'name': 'Alice', 'scores': [95, 87, 92], 'active': True}\n\n# Guardar en archivo\nwith open('data.pkl', 'wb') as f:\n    pickle.dump(data, f)\n\n# También a bytes en memoria\nbytes_data = pickle.dumps(data)\n\n# Unpickling: byte stream → objeto\nwith open('data.pkl', 'rb') as f:\n    loaded_data = pickle.load(f)  # idéntico al original\n\nfrom_bytes = pickle.loads(bytes_data)\nprint(from_bytes['name'])  # Alice\n\n# ⚠️ NUNCA unpickle datos de fuentes desconocidas",
+    "active": true
+  },
+  {
+    "id": 33,
+    "level": "Mid",
+    "category": "Python",
+    "question": "¿Cuál es la diferencia entre arrays y listas en Python?",
+    "code": null,
+    "answer": "Las listas son estructuras dinámicas que pueden contener elementos de diferentes tipos, con tamaño variable. Los arrays (módulo array o numpy) almacenan un solo tipo de dato y son más eficientes en memoria para grandes volúmenes de datos numéricos. Para ciencia de datos se prefiere numpy arrays. Para uso general en Python, las listas son más flexibles y comunes.",
+    "example": "# Lista: flexible, múltiples tipos\nmy_list = [1, \"hello\", 3.14, True]\nmy_list.append(\"anything\")\n\n# Array del módulo array: solo un tipo\nimport array\nmy_array = array.array('i', [1, 2, 3, 4])  # solo enteros\n# my_array.append(\"hello\")  # ERROR\n\n# NumPy array: para cómputo científico\nimport numpy as np\nnp_arr = np.array([1, 2, 3, 4])\nprint(np_arr * 2)   # [2, 4, 6, 8] - operación vectorizada\nprint(np_arr.mean()) # 2.5\n\n# Memoria: array mucho más eficiente que lista para millones de números",
+    "active": true
+  },
+  {
+    "id": 34,
+    "level": "Mid",
+    "category": "Python",
+    "question": "¿Qué son las funciones en Python y cómo se definen?",
+    "code": null,
+    "answer": "Una función es un bloque de código reutilizable que se ejecuta solo cuando es llamado. En Python se define con la keyword def. Soporta: parámetros por defecto, *args (argumentos variables), **kwargs (keyword arguments variables), type hints (Python 3.5+), docstrings para documentación, y puede retornar múltiples valores como tupla.",
+    "example": "# Función básica con type hints y docstring\ndef calculate_discount(price: float, discount: float = 10.0) -> float:\n    \"\"\"\n    Calcula el precio con descuento.\n    Args:\n        price: precio original\n        discount: porcentaje de descuento (default 10%)\n    Returns:\n        precio final con descuento aplicado\n    \"\"\"\n    return price * (1 - discount / 100)\n\n# Uso\nprint(calculate_discount(100))       # 90.0 (usa default)\nprint(calculate_discount(100, 20))   # 80.0\n\n# Múltiples retornos\ndef min_max(numbers: list) -> tuple:\n    return min(numbers), max(numbers)\n\nlow, high = min_max([3, 1, 4, 1, 5]) # unpacking",
+    "active": true
+  },
+  {
+    "id": 35,
+    "level": "Mid",
+    "category": "Python",
+    "question": "¿Qué es __init__ en Python?",
+    "code": null,
+    "answer": "El método __init__ es el constructor de Python. Se ejecuta automáticamente cuando se crea una nueva instancia de una clase. Se usa para inicializar los atributos del objeto. Recibe self como primer parámetro (referencia al objeto recién creado) y puede recibir parámetros adicionales. Python tiene otros métodos especiales (dunder methods): __str__, __repr__, __eq__, __len__, etc.",
+    "example": "class BankAccount:\n    # Variable de clase (compartida por todas las instancias)\n    bank_name = \"MyBank\"\n\n    def __init__(self, owner: str, initial_balance: float = 0.0):\n        # Variables de instancia (únicas por objeto)\n        self.owner = owner\n        self.balance = initial_balance\n        self._transactions = []  # privado por convención\n\n    def deposit(self, amount: float) -> None:\n        self.balance += amount\n        self._transactions.append(f\"+{amount}\")\n\n    def __str__(self) -> str:\n        return f\"Account({self.owner}, ${self.balance})\"\n\n# Uso\nacc = BankAccount(\"Alice\", 1000.0)\nacc.deposit(500)\nprint(acc)  # Account(Alice, $1500.0)",
+    "active": true
+  },
+  {
+    "id": 36,
+    "level": "Mid",
+    "category": "Python",
+    "question": "¿Qué es NULL en PHP y cómo se asigna?",
+    "code": null,
+    "answer": "NULL en PHP es un tipo especial con un único valor: null/NULL. Una variable de tipo NULL no tiene valor asignado. Puede asignarse explícitamente con $var = NULL o $var = null (PHP no es case-sensitive para null). Una variable también es NULL si fue declarada pero no asignada, o si fue destruida con unset(). Para verificar: is_null($var) o $var === null.",
+    "example": "<?php\n// Asignación de NULL\n$var = NULL;\n$var = null;  // equivalente\n\n$undeclared; // también es NULL si no está definida\n\n$x = 5;\nunset($x); // $x ahora es NULL\n\n// Verificación\nvar_dump(is_null($var));      // bool(true)\nvar_dump($var === null);       // bool(true)\nvar_dump($var == false);       // bool(true) - cuidado!\nvar_dump($var === false);      // bool(false) - correcto\n\n// En comparaciones loosely typed:\n// null == false == 0 == \"\" == \"0\" == []",
+    "active": true
+  },
+  {
+    "id": 37,
+    "level": "Mid",
+    "category": "Bases de Datos SQL",
+    "question": "¿Cómo obtener la fecha y hora actual en SQL?",
+    "code": null,
+    "answer": "Cada motor SQL tiene sus funciones para obtener la fecha/hora actual. En SQL Server: GETDATE() retorna 'YYYY-MM-DD hh:mm:ss.mmm'. En MySQL/MariaDB: NOW() para fecha+hora, CURDATE() para solo fecha, CURTIME() para solo hora. En PostgreSQL: NOW(), CURRENT_TIMESTAMP, CURRENT_DATE. En SQLite: datetime('now').",
+    "example": "-- SQL Server\nSELECT GETDATE();                    -- 2024-01-15 14:30:25.123\nSELECT CONVERT(DATE, GETDATE());     -- 2024-01-15\n\n-- MySQL\nSELECT NOW();                        -- 2024-01-15 14:30:25\nSELECT CURDATE();                    -- 2024-01-15\nSELECT DATE_FORMAT(NOW(), '%d/%m/%Y'); -- 15/01/2024\n\n-- PostgreSQL\nSELECT NOW();                        -- 2024-01-15 14:30:25+00\nSELECT CURRENT_DATE;                 -- 2024-01-15\nSELECT EXTRACT(YEAR FROM NOW());     -- 2024\n\n-- Uso en INSERT\nINSERT INTO logs (message, created_at)\nVALUES ('User logged in', NOW());",
+    "active": true
+  },
+  {
+    "id": 38,
+    "level": "Mid",
+    "category": "Python",
+    "question": "¿Qué es self en Python y cómo se diferencia de Java?",
+    "code": null,
+    "answer": "self es una referencia a la instancia actual del objeto, similar a this en Java. La diferencia clave: en Python self debe declararse explícitamente como primer parámetro en cada método de instancia. En Java, this existe implícitamente sin necesidad de declararlo. En __init__, self es el objeto recién creado. En otros métodos, es el objeto que llamó el método.",
+    "example": "# Python: self EXPLÍCITO en cada método\nclass Counter:\n    def __init__(self):  # self obligatorio\n        self.count = 0   # self para atributos\n\n    def increment(self): # self obligatorio\n        self.count += 1  # sin self sería variable local\n\n    def get_count(self): # self obligatorio\n        return self.count\n\n// Java: this IMPLÍCITO\nclass Counter {\n    private int count = 0;\n\n    public void increment() {\n        count++;      // this.count++ implícito\n    }\n\n    public int getCount() {\n        return count; // this.count implícito\n    }\n}",
+    "active": true
+  },
+  {
+    "id": 39,
+    "level": "Mid",
+    "category": "Python",
+    "question": "¿Qué son los módulos de Python más usados?",
+    "code": null,
+    "answer": "Un módulo Python es un archivo .py con código reutilizable (funciones, clases, variables). Los módulos built-in más importantes: os (interactuar con el sistema operativo), sys (información del intérprete), json (serializar/deserializar JSON), math (operaciones matemáticas), random (números aleatorios), datetime (fechas y tiempos). Se importan con import o from...import.",
+    "example": "import os\nimport sys\nimport json\nimport math\nimport random\nfrom datetime import datetime, timedelta\n\n# os: sistema de archivos\nos.getcwd()                    # directorio actual\nos.path.join('dir', 'file.txt') # ruta compatible\nos.listdir('.')                 # listar archivos\n\n# json: serialización\ndata = {'name': 'Alice', 'age': 30}\njson_str = json.dumps(data)         # dict → string JSON\nback = json.loads(json_str)         # string JSON → dict\n\n# datetime: fechas\nnow = datetime.now()\ntomorrow = now + timedelta(days=1)\nprint(now.strftime('%Y-%m-%d'))  # 2024-01-15\n\n# random\nrandom.randint(1, 100)  # entero aleatorio 1-100\nrandom.choice(['a', 'b', 'c']) # elemento aleatorio",
+    "active": true
+  },
+  {
+    "id": 40,
+    "level": "Mid",
+    "category": "Python",
+    "question": "¿Cómo genera números aleatorios Python?",
+    "code": null,
+    "answer": "Python usa el módulo random de la librería estándar para generar números pseudoaleatorios (basados en el algoritmo Mersenne Twister). Para usos criptográficos o de seguridad, se debe usar el módulo secrets en lugar de random, ya que random no es criptográficamente seguro. Para datos científicos con distribuciones estadísticas, se usa numpy.random.",
+    "example": "import random\nimport secrets\n\n# random: para simulaciones, games, tests (NO criptografía)\nrandom.random()           # float entre 0.0 y 1.0\nrandom.randint(1, 10)     # entero entre 1 y 10 inclusive\nrandom.uniform(1.5, 5.5)  # float entre 1.5 y 5.5\nrandom.choice([1, 2, 3])  # elemento aleatorio de lista\nrandom.shuffle([1,2,3,4]) # mezcla lista in-place\nrandom.sample(range(100), 10) # 10 elementos únicos\n\n# Semilla para reproducibilidad (útil en tests)\nrandom.seed(42)\nprint(random.randint(1, 100))  # siempre el mismo número\n\n# secrets: para tokens, contraseñas, criptografía\nsecrets.token_hex(32)     # token seguro de 32 bytes",
+    "active": true
+  },
+  {
+    "id": 41,
+    "level": "Mid",
+    "category": "Python",
+    "question": "¿Qué es data abstraction en Python y cómo se implementa?",
+    "code": null,
+    "answer": "La abstracción oculta los detalles de implementación y expone solo la interfaz necesaria. En Python se implementa con clases abstractas usando el módulo abc (Abstract Base Classes). Una clase abstracta no puede instanciarse directamente y obliga a las subclases a implementar los métodos abstractos. También se puede usar el concepto de interfaces implícitas (duck typing).",
+    "example": "from abc import ABC, abstractmethod\n\n# Clase abstracta: define la interfaz\nclass Shape(ABC):\n    @abstractmethod\n    def area(self) -> float:\n        pass  # Cada subclase DEBE implementarlo\n\n    @abstractmethod\n    def perimeter(self) -> float:\n        pass\n\n    def describe(self) -> str:  # método concreto\n        return f\"Area: {self.area():.2f}\"\n\n# Implementaciones concretas\nclass Circle(Shape):\n    def __init__(self, radius: float):\n        self.radius = radius\n\n    def area(self) -> float:\n        return 3.14159 * self.radius ** 2\n\n    def perimeter(self) -> float:\n        return 2 * 3.14159 * self.radius\n\n# Shape()  # TypeError: no se puede instanciar clase abstracta\ncircle = Circle(5)\nprint(circle.describe())  # Area: 78.54",
+    "active": true
+  },
+  {
+    "id": 42,
+    "level": "Mid",
+    "category": "Python",
+    "question": "¿Cuáles son las herramientas de análisis estático en Python?",
+    "code": null,
+    "answer": "PyChecker: analiza el código fuente Python para identificar flaws y advierte sobre estilo y severidad de problemas. Pylint: examina si el módulo cumple con los estándares de codificación (PEP 8), detecta errores, malas prácticas y code smells, asignando una puntuación al código. Flake8 combina PyFlakes + pycodestyle. mypy verifica tipos estáticos.",
+    "example": "# Instalar herramientas\n# pip install pylint flake8 mypy\n\n# Ejemplo de código con problemas:\ndef calcular(x,y):  # falta espacios, falta type hints\n    resultado=x+y   # falta espacios\n    return resultado\n\n# Pylint detecta:\n# C0301: Line too long\n# C0116: Missing function docstring\n# C0103: Variable name doesn't conform to naming convention\n# W0611: Unused import\n\n# Corregido para Pylint:\ndef calcular(x: int, y: int) -> int:\n    \"\"\"Suma dos números enteros.\"\"\"\n    resultado = x + y\n    return resultado\n\n# Ejecutar análisis:\n# pylint mymodule.py\n# flake8 mymodule.py\n# mypy mymodule.py",
+    "active": true
+  },
+  {
+    "id": 43,
+    "level": "Mid",
+    "category": "Python",
+    "question": "¿Qué hacen help() y dir() en Python?",
+    "code": null,
+    "answer": "help() muestra la documentación completa (docstring) de un módulo, función, clase, método o keyword. Es útil para explorar APIs sin salir del intérprete. dir() retorna una lista de todos los atributos y métodos de un objeto o del scope actual si no recibe argumentos. Juntos son herramientas esenciales de introspección en Python.",
+    "example": "# help(): documentación detallada\nhelp(str)          # documenta la clase str completa\nhelp(str.split)    # documenta el método split\nhelp('keywords')   # lista palabras clave de Python\n\n# Output de help(str.split):\n# split(sep=None, maxsplit=-1)\n#   Return a list of the substrings...\n\n# dir(): lista de atributos y métodos\nprint(dir(str))    # ['__add__', '__class__', ..., 'split', 'upper']\nprint(dir([]))     # métodos de lista: append, extend, etc.\nprint(dir())       # variables en el scope actual\n\n# Filtrar métodos públicos (sin __dunder__)\npublic_methods = [m for m in dir(str) if not m.startswith('_')]\nprint(public_methods)  # ['capitalize', 'center', 'count', ...]",
+    "active": true
+  },
+  {
+    "id": 44,
+    "level": "Mid",
+    "category": "Python",
+    "question": "¿Qué es len() y cuáles son otras funciones built-in importantes de Python?",
+    "code": null,
+    "answer": "len() calcula la longitud de strings, listas, tuplas, diccionarios, sets, etc. Python tiene muchas funciones built-in importantes: type() (tipo del objeto), isinstance() (verificar tipo), range() (secuencia numérica), enumerate() (índice + valor), zip() (combinar iterables), map() (aplicar función), filter() (filtrar elementos), sorted() (ordenar), sum()/min()/max() (agregaciones).",
+    "example": "# len()\nprint(len(\"hello\"))         # 5\nprint(len([1, 2, 3]))       # 3\nprint(len({'a': 1, 'b': 2})) # 2\n\n# enumerate: índice + valor\nfor i, val in enumerate(['a', 'b', 'c']):\n    print(i, val)  # 0 a, 1 b, 2 c\n\n# zip: combinar iterables\nnames = ['Alice', 'Bob']\nscores = [95, 87]\nfor name, score in zip(names, scores):\n    print(f\"{name}: {score}\")\n\n# map + filter\nnumbers = [1, 2, 3, 4, 5, 6]\nevens = list(filter(lambda x: x % 2 == 0, numbers))  # [2, 4, 6]\ndoubled = list(map(lambda x: x * 2, evens))           # [4, 8, 12]\n\n# sorted con key\nusers = [{'name': 'Bob', 'age': 30}, {'name': 'Alice', 'age': 25}]\nsorted_users = sorted(users, key=lambda u: u['age'])",
+    "active": true
+  },
+  {
+    "id": 45,
+    "level": "Mid",
+    "category": "Python",
+    "question": "¿Qué es PEP 8 y por qué es importante?",
+    "code": null,
+    "answer": "PEP 8 (Python Enhancement Proposal 8) es la guía de estilo oficial para código Python. Define convenciones de formato para maximizar la legibilidad: indentación con 4 espacios, máximo 79 caracteres por línea, nombres de variables en snake_case, clases en PascalCase, constantes en UPPER_CASE, espacios alrededor de operadores, docstrings en funciones y clases. Herramientas como Pylint y Flake8 verifican cumplimiento automáticamente.",
+    "example": "# INCORRECTO (viola PEP 8)\ndef calcularDescuento(Precio,descuento):\n    resultado=Precio*(1-descuento/100)\n    return resultado\n\nclass producto:\n    MAX_price=9999\n    def __init__(self,n,p): self.nombre=n;self.precio=p\n\n# CORRECTO (sigue PEP 8)\ndef calcular_descuento(precio: float, descuento: float) -> float:\n    \"\"\"Calcula el precio final aplicando un descuento porcentual.\"\"\"\n    resultado = precio * (1 - descuento / 100)\n    return resultado\n\nclass Producto:\n    MAX_PRICE = 9999  # constante en UPPER_CASE\n\n    def __init__(self, nombre: str, precio: float) -> None:\n        self.nombre = nombre\n        self.precio = precio",
+    "active": true
+  }
+]

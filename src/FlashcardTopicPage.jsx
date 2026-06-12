@@ -29,6 +29,20 @@ const REPASO_BANKS = [
         description: 'OOP, Java Core, Spring, Microservicios, Testing',
         tag: 'OOP · Spring · Microservices · Testing',
     },
+    {
+        id: 'tech_interview/turing_basic_flashcard.json',
+        title: 'Turing',
+        emoji: '🤖',
+        description: 'Backend fundamentals — HTTP, OOP, SQL, Microservicios',
+        tag: 'HTTP · OOP · SQL · REST',
+    },
+    {
+        id: 'tech_interview/turing_intermediate_flashcard.json',
+        title: 'Turing 2',
+        emoji: '🤖',
+        description: 'Backend intermedio — Java, Python, SQL avanzado, DevOps',
+        tag: 'Java · Python · SQL · DevOps',
+    },
     // Ejemplo de cómo agregar más en el futuro:
     // {
     //   id: 'tech_interview/google_interview_bank.json',
