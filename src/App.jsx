@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState, useRef, useCallback } from 'react'
 import LandingPage from './LandingPage'
 import TopicPage from './TopicPage'
 import FlashcardTopicPage from './FlashcardTopicPage'
@@ -87,6 +87,17 @@ const styles = {
         fontWeight: 600,
         fontSize: 'clamp(12px, 2vw, 14px)',
         whiteSpace: 'nowrap'
+    },
+
+    timerTag: {
+        background: '#f0fdf4',
+        color: '#166534',
+        padding: '6px 12px',
+        borderRadius: 999,
+        fontWeight: 600,
+        fontSize: 'clamp(12px, 2vw, 14px)',
+        fontFamily: 'Consolas, Monaco, monospace',
+        whiteSpace: 'nowrap',
     },
 
     tag: {
@@ -181,6 +192,41 @@ const styles = {
         lineHeight: 1.6
     },
 
+    timerStatsBox: {
+        background: '#f9fafb',
+        border: '1px solid #e5e7eb',
+        borderRadius: 14,
+        padding: '16px 20px',
+        marginTop: 24,
+        marginBottom: 24,
+        textAlign: 'left',
+    },
+
+    timerStatRow: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        padding: '6px 0',
+    },
+
+    timerStatDivider: {
+        height: 1,
+        background: '#e5e7eb',
+    },
+
+    timerStatLabel: {
+        fontSize: 'clamp(13px, 2vw, 14px)',
+        color: '#6b7280',
+        fontWeight: 500,
+    },
+
+    timerStatValue: {
+        fontSize: 'clamp(13px, 2vw, 15px)',
+        fontWeight: 700,
+        fontFamily: 'Consolas, Monaco, monospace',
+        color: '#111827',
+    },
+
     restartButton: {
         padding: '10px 18px',
         background: '#f3f4f6',
@@ -235,6 +281,20 @@ const TOPIC_LABELS = {
     aws_java: 'AWS Java Backend',
 }
 
+// Baraja las opciones de una pregunta y recalcula el índice correct
+function shuffleOptions(question) {
+    const indices = question.options.map((_, i) => i)
+    for (let i = indices.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [indices[i], indices[j]] = [indices[j], indices[i]]
+    }
+    return {
+        ...question,
+        options: indices.map(i => question.options[i]),
+        correct: indices.indexOf(question.correct),
+    }
+}
+
 function getAIName(bank) {
     if (!bank) return ''
     const filename = bank.split('/').pop()
@@ -253,6 +313,25 @@ export default function App() {
     const [showResult, setShowResult] = useState(false)
     const [score, setScore] = useState(0)
     const [finished, setFinished] = useState(false)
+    const [elapsedTime, setElapsedTime] = useState(0)
+    const timerRef = useRef(null)
+    const elapsedTimeRef = useRef(0)
+    const [questionTimes, setQuestionTimes] = useState([])
+
+    const startTimer = useCallback(() => {
+        clearInterval(timerRef.current)
+        setElapsedTime(0)
+        elapsedTimeRef.current = 0
+        timerRef.current = setInterval(() => {
+            elapsedTimeRef.current += 1
+            setElapsedTime(prev => prev + 1)
+        }, 1000)
+    }, [])
+
+    const stopTimer = useCallback(() => {
+        clearInterval(timerRef.current)
+        return elapsedTimeRef.current
+    }, [])
     const [quizKey, setQuizKey] = useState(0)
     const [selectedBank, setSelectedBank] = useState(null)
     const [selectedTopic, setSelectedTopic] = useState(null)
@@ -273,6 +352,7 @@ export default function App() {
             .then((data) => {
                 setQuestions(data)
                 setLoading(false)
+                startTimer()
             })
             .catch((error) => {
                 console.error(error)
@@ -286,13 +366,15 @@ export default function App() {
             const j = Math.floor(Math.random() * (i + 1));
             [a[i], a[j]] = [a[j], a[i]]
         }
-        return a.slice(0, TOTAL_QUESTIONS)
+        return a.slice(0, TOTAL_QUESTIONS).map(shuffleOptions)
     }, [questions, quizKey])
 
     const currentQuestion = shuffledQuestions[currentQuestionIndex]
 
     const handleAnswer = (index) => {
         if (showResult) return
+        const t = stopTimer()
+        setQuestionTimes(prev => [...prev, t])
         setSelectedAnswer(index)
         setShowResult(true)
         if (index === currentQuestion.correct) {
@@ -308,6 +390,7 @@ export default function App() {
         setCurrentQuestionIndex((prev) => prev + 1)
         setSelectedAnswer(null)
         setShowResult(false)
+        startTimer()
     }
 
     const restartQuiz = () => {
@@ -321,7 +404,11 @@ export default function App() {
         setScore(0)
         setFinished(false)
         setQuestions([])
+        setQuestionTimes([])
+        stopTimer()
     }
+
+    useEffect(() => () => clearInterval(timerRef.current), [])
 
     // ── Pantallas ──
 
@@ -397,6 +484,11 @@ export default function App() {
 
     if (finished) {
         const percentage = Math.round((score / shuffledQuestions.length) * 100)
+        const minTime = questionTimes.length ? Math.min(...questionTimes) : 0
+        const maxTime = questionTimes.length ? Math.max(...questionTimes) : 0
+        const avgTime = questionTimes.length ? Math.round(questionTimes.reduce((a, b) => a + b, 0) / questionTimes.length) : 0
+        const totalTime = questionTimes.reduce((a, b) => a + b, 0)
+        const fmt = (s) => `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`
         return (
             <div style={styles.center}>
                 <div style={styles.resultCard}>
@@ -404,6 +496,29 @@ export default function App() {
                     <h1 style={styles.resultTitle}>Entrevista Finalizada</h1>
                     <div style={styles.resultScore}>{score}/{shuffledQuestions.length}</div>
                     <div style={styles.resultPercentage}>{percentage}%</div>
+
+                    <div style={styles.timerStatsBox}>
+                        <div style={styles.timerStatRow}>
+                            <span style={styles.timerStatLabel}>⏱ Tiempo total</span>
+                            <span style={styles.timerStatValue}>{fmt(totalTime)}</span>
+                        </div>
+                        <div style={styles.timerStatDivider} />
+                        <div style={styles.timerStatRow}>
+                            <span style={styles.timerStatLabel}>🐢 Mayor tiempo</span>
+                            <span style={{ ...styles.timerStatValue, color: '#dc2626' }}>{fmt(maxTime)}</span>
+                        </div>
+                        <div style={styles.timerStatDivider} />
+                        <div style={styles.timerStatRow}>
+                            <span style={styles.timerStatLabel}>⚡ Menor tiempo</span>
+                            <span style={{ ...styles.timerStatValue, color: '#16a34a' }}>{fmt(minTime)}</span>
+                        </div>
+                        <div style={styles.timerStatDivider} />
+                        <div style={styles.timerStatRow}>
+                            <span style={styles.timerStatLabel}>📊 Promedio</span>
+                            <span style={{ ...styles.timerStatValue, color: '#2563eb' }}>{fmt(avgTime)}</span>
+                        </div>
+                    </div>
+
                     <button style={styles.button} onClick={restartQuiz}>
                         Nueva entrevista
                     </button>
@@ -448,6 +563,10 @@ export default function App() {
                                 <span style={styles.tag}>{currentQuestion.category}</span>
                             )}
                         </div>
+                        <span style={styles.aiTag}>{getAIName(selectedBank)}</span>
+                        <span style={styles.timerTag}>
+                            ⏱ {String(Math.floor(elapsedTime / 60)).padStart(2, '0')}:{String(elapsedTime % 60).padStart(2, '0')}
+                        </span>
                         <span style={styles.aiTag}>{getAIName(selectedBank)}</span>
                     </div>
 
