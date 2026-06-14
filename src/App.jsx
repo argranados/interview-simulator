@@ -227,6 +227,16 @@ const styles = {
         color: '#111827',
     },
 
+    fastIdBadge: {
+        background: '#dcfce7',
+        color: '#16a34a',
+        fontSize: 'clamp(11px, 1.8vw, 12px)',
+        fontWeight: 700,
+        padding: '2px 8px',
+        borderRadius: 999,
+        fontFamily: 'Consolas, Monaco, monospace',
+    },
+
     restartButton: {
         padding: '10px 18px',
         background: '#f3f4f6',
@@ -374,7 +384,7 @@ export default function App() {
     const handleAnswer = (index) => {
         if (showResult) return
         const t = stopTimer()
-        setQuestionTimes(prev => [...prev, t])
+        setQuestionTimes(prev => [...prev, { id: currentQuestion.id, time: t }])
         setSelectedAnswer(index)
         setShowResult(true)
         if (index === currentQuestion.correct) {
@@ -484,10 +494,12 @@ export default function App() {
 
     if (finished) {
         const percentage = Math.round((score / shuffledQuestions.length) * 100)
-        const minTime = questionTimes.length ? Math.min(...questionTimes) : 0
-        const maxTime = questionTimes.length ? Math.max(...questionTimes) : 0
-        const avgTime = questionTimes.length ? Math.round(questionTimes.reduce((a, b) => a + b, 0) / questionTimes.length) : 0
-        const totalTime = questionTimes.reduce((a, b) => a + b, 0)
+        const times = questionTimes.map(qt => qt.time)
+        const minTime = times.length ? Math.min(...times) : 0
+        const maxTime = times.length ? Math.max(...times) : 0
+        const avgTime = times.length ? Math.round(times.reduce((a, b) => a + b, 0) / times.length) : 0
+        const totalTime = times.reduce((a, b) => a + b, 0)
+        const fastIds = questionTimes.filter(qt => qt.time <= 4).map(qt => qt.id).slice(0, 2)
         const fmt = (s) => `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`
         return (
             <div style={styles.center}>
@@ -510,7 +522,12 @@ export default function App() {
                         <div style={styles.timerStatDivider} />
                         <div style={styles.timerStatRow}>
                             <span style={styles.timerStatLabel}>⚡ Menor tiempo</span>
-                            <span style={{ ...styles.timerStatValue, color: '#16a34a' }}>{fmt(minTime)}</span>
+                            <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                                {fastIds.map(id => (
+                                    <span key={id} style={styles.fastIdBadge}>ID {id}</span>
+                                ))}
+                                <span style={{ ...styles.timerStatValue, color: '#16a34a' }}>{fmt(minTime)}</span>
+                            </span>
                         </div>
                         <div style={styles.timerStatDivider} />
                         <div style={styles.timerStatRow}>
@@ -563,7 +580,6 @@ export default function App() {
                                 <span style={styles.tag}>{currentQuestion.category}</span>
                             )}
                         </div>
-                        <span style={styles.aiTag}>{getAIName(selectedBank)}</span>
                         <span style={styles.timerTag}>
                             ⏱ {String(Math.floor(elapsedTime / 60)).padStart(2, '0')}:{String(elapsedTime % 60).padStart(2, '0')}
                         </span>
