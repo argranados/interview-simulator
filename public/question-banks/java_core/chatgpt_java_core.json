@@ -253,7 +253,7 @@
     ],
     "correct": 1,
     "explanation": "La concatenación comienza desde String y convierte los números a texto.",
-    "active": true
+    "active": false
   },
   {
     "id": 17,
@@ -477,7 +477,7 @@
     ],
     "correct": 1,
     "explanation": "x++ imprime 5 y luego x se incrementa a 6; ++x incrementa de 6 a 7 e imprime 7.",
-    "active": true
+    "active": false
   },
   {
     "id": 31,

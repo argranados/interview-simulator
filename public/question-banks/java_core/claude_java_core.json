@@ -103,7 +103,7 @@
     "code": null,
     "options": [
       "Solo hace referencia a la sobrecarga de métodos",
-      "Capacidad de que una referencia de tipo padre pueda referir a objetos de subtipos, ejecutando el método del tipo real en tiempo de ejecución",
+      "Capacidad de que una referencia de tipo padre pueda referir a objetos de subtipos, ejecutando el método del tipo real en tiempo de ejecución (enlace dinámico)",
       "Capacidad de un objeto de tener múltiples constructores",
       "Permite que una clase herede de múltiples clases"
     ],

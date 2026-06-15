@@ -310,7 +310,7 @@
     "question": "¿Qué es try-with-resources y qué requisito cumplen los recursos?",
     "code": "try (FileReader fr = new FileReader(\"file.txt\")) {\n    // lectura\n} catch (IOException e) { }",
     "options": [
-      "Un bloque try que cierra automáticamente recursos que implementan AutoCloseable",
+      "Un bloque try que cierra automáticamente recursos que implementan AutoCloseable, evitando leaks y código boilerplate",
       "Un try que maneja múltiples excepciones simultáneamente",
       "Un try que solo funciona con archivos y streams",
       "Un try que requiere un catch obligatorio"
@@ -829,7 +829,7 @@
     ],
     "correct": 0,
     "explanation": "Antes: finally con br.close() anidado. Ahora: el recurso se cierra automáticamente. Mejora seguridad y legibilidad. Pregunta sobre buenas prácticas en entrevistas.",
-    "active": true
+    "active": false
   },
   {
     "id": 53,
