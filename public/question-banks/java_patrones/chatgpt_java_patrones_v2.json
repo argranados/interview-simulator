@@ -663,11 +663,11 @@
     "code": "class Order { LocalDateTime createdAt; LocalDateTime updatedAt; String createdBy; ... }\nclass Product { LocalDateTime createdAt; LocalDateTime updatedAt; String createdBy; ... }\nclass User { LocalDateTime createdAt; LocalDateTime updatedAt; String createdBy; ... }",
     "options": [
       "Duplicar los campos es aceptable porque cada entidad es independiente",
-      "Extract Superclass o Extract Interface: crear clase base AuditableEntity con los campos de auditoría, o usar @MappedSuperclass en JPA",
-      "Usar composición: cada clase tiene un campo Audit audit",
-      "Tanto B como C son válidos; B con herencia (@MappedSuperclass), C con composición (@Embedded)"
+      "Extract Superclass con @MappedSuperclass (herencia JPA) o composición con @Embedded — ambas son técnicas válidas según si los campos de auditoría se modelan como identidad heredada o como un objeto de valor embebido",
+      "Usar Reflection para inyectar los campos dinámicamente en tiempo de ejecución",
+      "Crear una interfaz Auditable con métodos default que no pueden tener campos en Java"
     ],
-    "correct": 3,
+    "correct": 1,
     "explanation": "Ambas son técnicas válidas de refactoring para eliminar duplicación de campos de auditoría: @MappedSuperclass herencia para entidades JPA con campos idénticos; @Embedded/@Embeddable para composición si los campos son un concepto cohesivo (AuditInfo). En Spring Data JPA, @EntityListeners(AuditingEntityListener.class) + @CreatedDate/@LastModifiedDate automatiza el llenado.",
     "active": true
   },
