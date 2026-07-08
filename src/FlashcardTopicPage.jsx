@@ -37,13 +37,6 @@ const REPASO_BANKS = [
         tag: 'HTTP · OOP · SQL · REST',
     },
     {
-        id: 'tech_interview/turing_intermediate_flashcard.json',
-        title: 'Turing 2',
-        emoji: '🤖',
-        description: 'Backend intermedio — Java, Python, SQL avanzado, DevOps',
-        tag: 'Java · Python · SQL · DevOps',
-    },
-    {
         id: 'tech_interview/confiz_interview_bank.json',
         title: 'Confiz',
         emoji: '🗂️',
