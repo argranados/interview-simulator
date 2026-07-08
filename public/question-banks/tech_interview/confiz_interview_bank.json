@@ -1,0 +1,272 @@
+[
+  {
+    "id": 1,
+    "level": "Junior",
+    "category": "OOP",
+    "question": "¿Cuáles son los 4 pilares de OOP?",
+    "code": null,
+    "answer": "Encapsulamiento: ocultar el estado interno y exponer solo lo necesario mediante modificadores de acceso.\nHerencia: una subclase adquiere los campos y métodos de la superclase con extends.\nPolimorfismo: un objeto puede tomar múltiples formas — compile-time (overloading) y runtime (overriding).\nAbstracción: exponer QUÉ hace una clase sin revelar CÓMO — se logra con abstract class e interfaces.",
+    "example": "// Polimorfismo runtime\nAnimal animal = new Dog();\nanimal.speak(); // llama a Dog.speak() aunque la referencia sea Animal"
+  },
+  {
+    "id": 2,
+    "level": "Junior",
+    "category": "OOP",
+    "question": "¿Qué diferencia hay entre una clase abstracta y una interface?",
+    "code": null,
+    "answer": "Clase abstracta: puede tener estado (campos), constructores, métodos concretos y abstractos. Una clase solo puede extender una.\nInterface: contrato puro — sin estado de instancia, sin constructores. Desde Java 8 admite default y static methods. Una clase puede implementar múltiples interfaces.\nRegla práctica: usa abstract class para compartir código entre clases relacionadas; usa interface para definir capacidades (Flyable, Comparable).",
+    "example": "abstract class Shape {\n    String color; // estado compartido\n    abstract double area();\n}\n\ninterface Drawable {\n    void draw(); // contrato\n    default void print() { System.out.println(\"Drawing...\"); }\n}"
+  },
+  {
+    "id": 3,
+    "level": "Junior",
+    "category": "OOP",
+    "question": "¿Qué es method overloading vs method overriding?",
+    "code": null,
+    "answer": "Overloading (compile-time polymorphism): mismo nombre de método, diferentes parámetros dentro de la misma clase. El compilador decide qué método llamar.\nOverriding (runtime polymorphism): una subclase redefine un método de la superclase con la misma firma. Se usa @Override. La JVM decide en ejecución según el tipo real del objeto.",
+    "example": "// Overloading\nint add(int a, int b) { return a + b; }\ndouble add(double a, double b) { return a + b; }\n\n// Overriding\nclass Animal { void speak() { System.out.println(\"...\"); } }\nclass Dog extends Animal {\n    @Override\n    void speak() { System.out.println(\"Woof!\"); }\n}"
+  },
+  {
+    "id": 4,
+    "level": "Junior",
+    "category": "OOP",
+    "question": "¿Para qué sirve la keyword 'super' en Java?",
+    "code": null,
+    "answer": "super tiene dos usos principales:\n1. Llamar al constructor de la superclase: super() debe ser la primera línea del constructor de la subclase.\n2. Acceder a métodos o campos de la superclase cuando han sido sobreescritos en la subclase.",
+    "example": "class Animal {\n    String name;\n    Animal(String name) { this.name = name; }\n    void speak() { System.out.println(\"...\"); }\n}\n\nclass Dog extends Animal {\n    Dog(String name) {\n        super(name); // llama al constructor de Animal\n    }\n    @Override\n    void speak() {\n        super.speak(); // llama al speak() de Animal\n        System.out.println(\"Woof!\");\n    }\n}"
+  },
+  {
+    "id": 5,
+    "level": "Junior",
+    "category": "OOP",
+    "question": "¿Qué es encapsulamiento y por qué es importante?",
+    "code": null,
+    "answer": "Es agrupar datos y comportamiento en una clase, controlando el acceso externo con modificadores (private, protected, public). Los campos se declaran private y se exponen con getters/setters cuando es necesario.\n\nImportancia:\n- Protege el estado interno de modificaciones inválidas\n- Permite cambiar la implementación sin afectar al código cliente\n- Facilita la validación en setters",
+    "example": "public class BankAccount {\n    private double balance; // inaccesible directamente\n\n    public double getBalance() { return balance; }\n\n    public void deposit(double amount) {\n        if (amount > 0) balance += amount; // validación interna\n        else throw new IllegalArgumentException(\"Amount must be positive\");\n    }\n}"
+  },
+  {
+    "id": 6,
+    "level": "Junior",
+    "category": "OOP",
+    "question": "¿Qué es el principio SOLID — explica la 'S' y la 'O'?",
+    "code": null,
+    "answer": "S — Single Responsibility Principle: una clase debe tener una sola razón para cambiar. Cada clase se encarga de una responsabilidad específica.\n\nO — Open/Closed Principle: una clase debe estar abierta para extensión pero cerrada para modificación. Se extiende con herencia o composición sin alterar el código original.",
+    "example": "// SRP: clase separada para persistencia\nclass UserService { void register(User u) { /*lógica*/ } }\nclass UserRepository { void save(User u) { /*DB*/ } }\n\n// OCP: nueva forma de descuento sin modificar la clase base\ninterface Discount { double apply(double price); }\nclass SeasonalDiscount implements Discount {\n    public double apply(double price) { return price * 0.9; }\n}"
+  },
+  {
+    "id": 7,
+    "level": "Junior",
+    "category": "OOP",
+    "question": "¿Qué es composición vs herencia y cuándo preferir cada una?",
+    "code": null,
+    "answer": "Herencia (is-a): la subclase ES un tipo de la superclase. Reutiliza código pero crea acoplamiento fuerte. Úsala cuando la relación semántica es real (Dog is-a Animal).\n\nComposición (has-a): una clase CONTIENE instancias de otras clases como campos. Más flexible, menos acoplada. Permite cambiar el comportamiento en runtime.\n\nRegla: 'Prefer composition over inheritance' (GoF). Si dudas, usa composición.",
+    "example": "// Herencia — Dog IS-A Animal\nclass Dog extends Animal { }\n\n// Composición — Car HAS-A Engine\nclass Car {\n    private Engine engine; // composición\n    Car(Engine engine) { this.engine = engine; }\n    void start() { engine.start(); }\n}"
+  },
+  {
+    "id": 8,
+    "level": "Junior",
+    "category": "OOP",
+    "question": "¿Qué es una clase inmutable y cómo se crea en Java?",
+    "code": null,
+    "answer": "Una clase cuyos objetos no pueden cambiar de estado una vez creados. String, Integer, LocalDate son inmutables.\n\nReglas para crear una clase inmutable:\n1. Declarar la clase como final (no heredable)\n2. Todos los campos private final\n3. Sin setters\n4. Inicializar todo en el constructor\n5. Si tiene campos mutables (colecciones), devolver copias defensivas",
+    "example": "public final class Money {\n    private final double amount;\n    private final String currency;\n\n    public Money(double amount, String currency) {\n        this.amount = amount;\n        this.currency = currency;\n    }\n\n    public double getAmount() { return amount; }\n    public String getCurrency() { return currency; }\n\n    // No hay setters — inmutable\n}"
+  },
+  {
+    "id": 9,
+    "level": "Junior",
+    "category": "Collections",
+    "question": "¿Qué es el Java Collections Framework y cuáles son sus interfaces principales?",
+    "code": null,
+    "answer": "Es un conjunto de clases e interfaces que representan grupos de objetos. Está bajo java.util.\n\nJerarquía principal:\n- Iterable → Collection → List, Set, Queue\n- Map (no extiende Collection)\n\nInterfaces clave:\n- List: secuencia ordenada, permite duplicados (ArrayList, LinkedList)\n- Set: sin duplicados (HashSet, TreeSet, LinkedHashSet)\n- Queue: FIFO (LinkedList, PriorityQueue)\n- Map: pares clave-valor (HashMap, TreeMap, LinkedHashMap)",
+    "example": "List<String> list = new ArrayList<>();\nSet<String> set = new HashSet<>();\nMap<String, Integer> map = new HashMap<>();\nQueue<String> queue = new LinkedList<>();"
+  },
+  {
+    "id": 10,
+    "level": "Junior",
+    "category": "Collections",
+    "question": "¿Cuál es la diferencia entre ArrayList y LinkedList?",
+    "code": null,
+    "answer": "ArrayList:\n- Backed por array dinámico\n- Acceso aleatorio O(1) por índice\n- Inserción/eliminación al medio: O(n) por desplazamiento\n- Mejor para lectura frecuente\n\nLinkedList:\n- Lista doblemente enlazada\n- Acceso por índice: O(n)\n- Inserción/eliminación al inicio o medio: O(1) si ya tienes el nodo\n- Mejor para inserciones/eliminaciones frecuentes\n- También implementa Deque (puede usarse como stack/queue)",
+    "example": "// ArrayList — acceso rápido\nList<Integer> arrayList = new ArrayList<>();\narrayList.get(0); // O(1)\n\n// LinkedList — inserción frecuente al inicio\nLinkedList<Integer> linkedList = new LinkedList<>();\nlinkedList.addFirst(1); // O(1)"
+  },
+  {
+    "id": 11,
+    "level": "Junior",
+    "category": "Collections",
+    "question": "¿Cómo funciona HashMap internamente en Java?",
+    "code": null,
+    "answer": "HashMap usa un array de 'buckets'. Al hacer put(key, value):\n1. Calcula hashCode() de la key\n2. Aplica una función para mapear el hash a un índice del array\n3. Guarda la entrada en ese bucket\n\nColisiones: cuando dos keys caen en el mismo bucket, se encadenan como lista enlazada. Desde Java 8, si hay más de 8 entradas en un bucket, se convierte en árbol rojo-negro (O(log n) en lugar de O(n)).\n\nCapacidad default: 16 buckets, factor de carga 0.75 — al llegar al 75% de capacidad, hace resize (duplica).",
+    "example": "Map<String, Integer> map = new HashMap<>();\nmap.put(\"Alice\", 30);  // hash(\"Alice\") → bucket index\nmap.put(\"Bob\", 25);\nmap.get(\"Alice\"); // O(1) promedio"
+  },
+  {
+    "id": 12,
+    "level": "Junior",
+    "category": "Collections",
+    "question": "¿Cuál es la diferencia entre HashMap, LinkedHashMap y TreeMap?",
+    "code": null,
+    "answer": "HashMap: no garantiza orden de iteración. O(1) promedio en get/put. Permite una key null.\n\nLinkedHashMap: mantiene el orden de inserción mediante una lista doblemente enlazada sobre el array de buckets. Útil para caches (LRU). Ligeramente más lento que HashMap.\n\nTreeMap: ordena las keys por orden natural (Comparable) o por un Comparator. O(log n) en get/put porque usa árbol rojo-negro. No permite keys null.",
+    "example": "// HashMap — sin orden garantizado\nMap<String, Integer> hm = new HashMap<>();\n\n// LinkedHashMap — orden de inserción\nMap<String, Integer> lhm = new LinkedHashMap<>();\n\n// TreeMap — orden natural alfabético\nMap<String, Integer> tm = new TreeMap<>();\ntm.put(\"banana\", 2); tm.put(\"apple\", 1);\n// iteración: apple, banana"
+  },
+  {
+    "id": 13,
+    "level": "Junior",
+    "category": "Collections",
+    "question": "¿Qué diferencia hay entre HashSet, LinkedHashSet y TreeSet?",
+    "code": null,
+    "answer": "HashSet: sin orden garantizado. Backed por HashMap. O(1) en add/contains/remove. Permite un null.\n\nLinkedHashSet: mantiene orden de inserción. Backed por LinkedHashMap. Ligeramente más lento que HashSet.\n\nTreeSet: ordena elementos por orden natural o Comparator. Backed por TreeMap. O(log n). No permite null.",
+    "example": "Set<String> hs = new HashSet<>();       // sin orden\nSet<String> lhs = new LinkedHashSet<>(); // orden inserción\nSet<String> ts = new TreeSet<>();        // orden natural\n\nts.add(\"banana\"); ts.add(\"apple\");\n// iteración: apple, banana"
+  },
+  {
+    "id": 14,
+    "level": "Junior",
+    "category": "Collections",
+    "question": "¿Para qué sirven hashCode() y equals() y cuál es su contrato?",
+    "code": null,
+    "answer": "equals(): define igualdad lógica entre objetos. Por default (Object) compara referencias.\nhashCode(): devuelve un entero que representa al objeto, usado por HashMap/HashSet para ubicar el bucket.\n\nContrato (obligatorio):\n1. Si a.equals(b) → a.hashCode() == b.hashCode()\n2. Si a.hashCode() != b.hashCode() → a.equals(b) es false\n3. (recomendado) Si a.equals(b) → b.equals(a)\n\nViolar el contrato rompe el comportamiento de HashMap y HashSet.",
+    "example": "public class Person {\n    String name; int age;\n\n    @Override\n    public boolean equals(Object o) {\n        if (!(o instanceof Person p)) return false;\n        return age == p.age && name.equals(p.name);\n    }\n\n    @Override\n    public int hashCode() {\n        return Objects.hash(name, age); // mismo hash si equals es true\n    }\n}"
+  },
+  {
+    "id": 15,
+    "level": "Junior",
+    "category": "Collections",
+    "question": "¿Cuál es la diferencia entre Iterator y ListIterator?",
+    "code": null,
+    "answer": "Iterator: permite recorrer cualquier Collection hacia adelante. Métodos: hasNext(), next(), remove().\n\nListIterator: exclusivo de List. Extiende Iterator con capacidades adicionales:\n- Recorrido bidireccional: hasPrevious(), previous()\n- Modificación durante iteración: add(), set()\n- Obtener índice: nextIndex(), previousIndex()",
+    "example": "List<String> list = new ArrayList<>(List.of(\"a\", \"b\", \"c\"));\n\n// Iterator básico\nIterator<String> it = list.iterator();\nwhile (it.hasNext()) System.out.println(it.next());\n\n// ListIterator — hacia atrás\nListIterator<String> lit = list.listIterator(list.size());\nwhile (lit.hasPrevious()) System.out.println(lit.previous());"
+  },
+  {
+    "id": 16,
+    "level": "Mid",
+    "category": "Collections",
+    "question": "¿Qué es ConcurrentModificationException y cómo se evita?",
+    "code": null,
+    "answer": "Se lanza cuando modificas una colección (add/remove) mientras la estás iterando con un Iterator o for-each. El Iterator guarda un 'modCount' — si cambia durante la iteración, lanza la excepción.\n\nFormas de evitarlo:\n1. Usar Iterator.remove() para eliminar durante iteración\n2. Usar CopyOnWriteArrayList (thread-safe, itera sobre copia)\n3. Coleccionar elementos a eliminar y hacerlo después\n4. Usar removeIf() desde Java 8",
+    "example": "List<String> list = new ArrayList<>(List.of(\"a\", \"b\", \"c\"));\n\n// ❌ ConcurrentModificationException\nfor (String s : list) if (s.equals(\"b\")) list.remove(s);\n\n// ✅ Opción 1: Iterator.remove()\nIterator<String> it = list.iterator();\nwhile (it.hasNext()) if (it.next().equals(\"b\")) it.remove();\n\n// ✅ Opción 2: removeIf (Java 8)\nlist.removeIf(s -> s.equals(\"b\"));"
+  },
+  {
+    "id": 17,
+    "level": "Mid",
+    "category": "Collections",
+    "question": "¿Qué es Comparable vs Comparator en Java?",
+    "code": null,
+    "answer": "Comparable (java.lang): la clase define su propio orden natural implementando compareTo(). Se usa con Collections.sort() y TreeSet/TreeMap por default.\n\nComparator (java.util): clase externa que define un orden específico implementando compare(). Permite múltiples criterios de ordenación sin modificar la clase original. Desde Java 8 tiene métodos como comparing(), thenComparing(), reversed().",
+    "example": "// Comparable — orden natural por nombre\nclass Person implements Comparable<Person> {\n    String name; int age;\n    public int compareTo(Person o) { return name.compareTo(o.name); }\n}\n\n// Comparator — orden por edad externamente\nComparator<Person> byAge = Comparator.comparingInt(p -> p.age);\nlist.sort(byAge);\n\n// Encadenado\nlist.sort(Comparator.comparing(Person::getName).thenComparingInt(Person::getAge));"
+  },
+  {
+    "id": 18,
+    "level": "Mid",
+    "category": "Collections",
+    "question": "¿Cuál es la diferencia entre fail-fast y fail-safe iterators?",
+    "code": null,
+    "answer": "Fail-fast: detecta modificaciones estructurales durante la iteración y lanza ConcurrentModificationException inmediatamente. Usa un modCount interno. Ejemplos: ArrayList, HashMap, HashSet.\n\nFail-safe: itera sobre una copia de la colección original. No lanza excepción pero puede no reflejar cambios recientes. Más lento por la copia. Ejemplos: CopyOnWriteArrayList, ConcurrentHashMap.",
+    "example": "// Fail-fast — ArrayList\nList<String> list = new ArrayList<>(List.of(\"a\", \"b\"));\nIterator<String> it = list.iterator();\nlist.add(\"c\"); // ← modifica la colección\nit.next(); // ❌ ConcurrentModificationException\n\n// Fail-safe — CopyOnWriteArrayList\nList<String> cowList = new CopyOnWriteArrayList<>(List.of(\"a\", \"b\"));\nIterator<String> it2 = cowList.iterator();\ncowList.add(\"c\"); // OK\nit2.next(); // ✅ sin excepción (itera sobre copia)"
+  },
+  {
+    "id": 19,
+    "level": "Mid",
+    "category": "Collections",
+    "question": "¿Qué es PriorityQueue y cómo funciona?",
+    "code": null,
+    "answer": "PriorityQueue implementa Queue con orden de prioridad. Internamente es un min-heap: el elemento con menor valor (según orden natural o Comparator) siempre está en la cabeza.\n\nOperaciones clave:\n- offer(e) / add(e): inserta — O(log n)\n- poll(): extrae el elemento de menor prioridad — O(log n)\n- peek(): consulta sin extraer — O(1)\n\nNo permite null. No garantiza orden de iteración — solo peek()/poll() respetan la prioridad.",
+    "example": "PriorityQueue<Integer> pq = new PriorityQueue<>(); // min-heap\npq.offer(5); pq.offer(1); pq.offer(3);\nSystem.out.println(pq.poll()); // 1 (el menor)\nSystem.out.println(pq.poll()); // 3\n\n// Max-heap con Comparator\nPriorityQueue<Integer> maxPq = new PriorityQueue<>(Comparator.reverseOrder());\nmaxPq.offer(5); maxPq.offer(1);\nSystem.out.println(maxPq.poll()); // 5"
+  },
+  {
+    "id": 20,
+    "level": "Mid",
+    "category": "Collections",
+    "question": "¿Cuándo usar Stack vs Deque en Java?",
+    "code": null,
+    "answer": "Stack (java.util.Stack): clase legacy, extiende Vector (sincronizado). No se recomienda en código nuevo por su overhead de sincronización y diseño heredado.\n\nDeque (Double-Ended Queue): interfaz que permite insertar y extraer de ambos extremos. ArrayDeque es la implementación recomendada como stack o queue. Más rápida que Stack y LinkedList.\n\nRegla: usa ArrayDeque en lugar de Stack y en lugar de LinkedList como queue.",
+    "example": "// ❌ Legacy Stack\nStack<Integer> stack = new Stack<>();\n\n// ✅ Deque como stack (LIFO)\nDeque<Integer> stack2 = new ArrayDeque<>();\nstack2.push(1); stack2.push(2);\nstack2.pop(); // 2\n\n// ✅ Deque como queue (FIFO)\nDeque<Integer> queue = new ArrayDeque<>();\nqueue.offer(1); queue.offer(2);\nqueue.poll(); // 1"
+  },
+  {
+    "id": 21,
+    "level": "Mid",
+    "category": "Collections",
+    "question": "¿Qué son las colecciones sincronizadas vs concurrentes en Java?",
+    "code": null,
+    "answer": "Colecciones sincronizadas (Collections.synchronizedList/Map/Set): envuelven una colección con synchronized en cada método. Simple pero ineficiente — un lock global bloquea toda la colección.\n\nColecciones concurrentes (java.util.concurrent): diseñadas para concurrencia real:\n- ConcurrentHashMap: segmenta en buckets, permite lecturas concurrentes sin lock\n- CopyOnWriteArrayList: copia el array en cada escritura — ideal para lectura-intensiva\n- BlockingQueue: operaciones bloqueantes — útil en productor/consumidor\n\nPreferencia: usar siempre las concurrentes en entornos multi-hilo.",
+    "example": "// Sincronizada — lock global\nList<String> synList = Collections.synchronizedList(new ArrayList<>());\n\n// Concurrente — mejor rendimiento\nMap<String, Integer> concMap = new ConcurrentHashMap<>();\nList<String> cowList = new CopyOnWriteArrayList<>();\nBlockingQueue<String> bq = new LinkedBlockingQueue<>();"
+  },
+  {
+    "id": 22,
+    "level": "Mid",
+    "category": "Collections",
+    "question": "¿Cómo funciona Collections.sort() y cuál es su complejidad?",
+    "code": null,
+    "answer": "Collections.sort() usa TimSort, un algoritmo híbrido que combina Merge Sort e Insertion Sort.\n\nComplejidad:\n- Tiempo: O(n log n) en promedio y worst case\n- Espacio: O(n) — necesita array auxiliar\n\nTimSort es estable (mantiene el orden relativo de elementos iguales).\n\nDesde Java 8, List.sort() y Arrays.sort() para objetos también usan TimSort. Arrays.sort() para primitivos usa Dual-Pivot Quicksort (O(n log n), inestable pero más rápido en práctica).",
+    "example": "List<Integer> list = new ArrayList<>(List.of(3, 1, 4, 1, 5, 9));\nCollections.sort(list); // [1, 1, 3, 4, 5, 9]\n\n// Con Comparator\nCollections.sort(list, Comparator.reverseOrder()); // [9, 5, 4, 3, 1, 1]\n\n// Java 8+ equivalente\nlist.sort(Comparator.naturalOrder());"
+  },
+  {
+    "id": 23,
+    "level": "Mid",
+    "category": "OOP",
+    "question": "¿Qué son los Design Patterns creacionales? Nombra 3 con ejemplo.",
+    "code": null,
+    "answer": "Patrones que controlan la creación de objetos.\n\nSingleton: una sola instancia global. Ej: configuración, conexión a DB.\nFactory Method: subclases deciden qué objeto crear. Desacopla creación de uso.\nBuilder: construye objetos complejos paso a paso. Evita constructores con demasiados parámetros.",
+    "example": "// Singleton (thread-safe con enum)\npublic enum AppConfig {\n    INSTANCE;\n    private String dbUrl = \"jdbc:..\";\n    public String getDbUrl() { return dbUrl; }\n}\n\n// Builder\nPerson person = new Person.Builder()\n    .name(\"Alice\")\n    .age(30)\n    .email(\"alice@example.com\")\n    .build();"
+  },
+  {
+    "id": 24,
+    "level": "Mid",
+    "category": "OOP",
+    "question": "¿Qué son los Design Patterns estructurales? Nombra 2 con ejemplo.",
+    "code": null,
+    "answer": "Patrones que componen clases u objetos en estructuras más grandes.\n\nAdapter: convierte la interfaz de una clase en otra que el cliente espera. Útil para integrar librerías de terceros.\nDecorator: añade responsabilidades a un objeto dinámicamente sin modificar su clase. Alternativa flexible a la herencia.",
+    "example": "// Adapter — adaptamos LegacyPrinter a la interfaz Printer\ninterface Printer { void print(String text); }\nclass LegacyPrinter { void oldPrint(String t) { System.out.println(t); } }\nclass PrinterAdapter implements Printer {\n    LegacyPrinter lp = new LegacyPrinter();\n    public void print(String t) { lp.oldPrint(t); }\n}\n\n// Decorator — Java I/O lo usa extensivamente\nBufferedReader br = new BufferedReader(new FileReader(\"file.txt\"));"
+  },
+  {
+    "id": 25,
+    "level": "Mid",
+    "category": "OOP",
+    "question": "¿Qué son los Design Patterns de comportamiento? Nombra 2 con ejemplo.",
+    "code": null,
+    "answer": "Patrones que definen cómo los objetos se comunican entre sí.\n\nStrategy: define una familia de algoritmos intercambiables. Permite cambiar el comportamiento en runtime sin modificar la clase cliente.\nObserver: cuando un objeto (subject) cambia de estado, notifica a todos sus dependientes (observers). Usado en eventos y listeners.",
+    "example": "// Strategy — algoritmo de ordenamiento intercambiable\ninterface SortStrategy { void sort(int[] data); }\nclass BubbleSort implements SortStrategy { public void sort(int[] d) { /*...*/ } }\nclass QuickSort implements SortStrategy { public void sort(int[] d) { /*...*/ } }\n\nclass Sorter {\n    private SortStrategy strategy;\n    Sorter(SortStrategy s) { this.strategy = s; }\n    void sort(int[] data) { strategy.sort(data); }\n}\n// Sorter s = new Sorter(new QuickSort());"
+  },
+  {
+    "id": 26,
+    "level": "Mid",
+    "category": "Collections",
+    "question": "¿Cuál es la diferencia entre Map.get(), getOrDefault() y computeIfAbsent()?",
+    "code": null,
+    "answer": "get(key): devuelve el valor o null si no existe.\ngetOrDefault(key, default): devuelve el valor o el default si la key no existe — sin insertar nada.\ncomputeIfAbsent(key, mappingFunction): si la key no existe (o su valor es null), calcula y GUARDA el valor usando la función. Útil para inicializar colecciones anidadas o cachés.",
+    "example": "Map<String, List<String>> map = new HashMap<>();\n\n// getOrDefault — no inserta\nList<String> val = map.getOrDefault(\"key\", new ArrayList<>()); // no guarda en el map\n\n// computeIfAbsent — inserta si no existe\nmap.computeIfAbsent(\"alice\", k -> new ArrayList<>()).add(\"Java\");\nmap.computeIfAbsent(\"alice\", k -> new ArrayList<>()).add(\"Spring\");\n// map: {alice=[Java, Spring]}"
+  },
+  {
+    "id": 27,
+    "level": "Mid",
+    "category": "OOP",
+    "question": "¿Qué es el principio de Liskov Substitution (LSP)?",
+    "code": null,
+    "answer": "L en SOLID: los objetos de una subclase deben poder sustituir a los de la superclase sin alterar el comportamiento correcto del programa. Es decir, si S extiende T, debería ser posible usar un S donde se espera un T.\n\nViolar LSP: una subclase que sobreescribe un método y lanza excepciones inesperadas, ignora parámetros, o rompe postcondiciones de la superclase.",
+    "example": "// ❌ Violación de LSP — Square extiende Rectangle pero rompe su contrato\nclass Rectangle {\n    int width, height;\n    void setWidth(int w) { width = w; }\n    void setHeight(int h) { height = h; }\n    int area() { return width * height; }\n}\nclass Square extends Rectangle {\n    @Override void setWidth(int w) { width = height = w; } // rompe postcondición\n    @Override void setHeight(int h) { width = height = h; }\n}\n\n// Solución: usar composición o interfaces separadas"
+  },
+  {
+    "id": 28,
+    "level": "Mid",
+    "category": "Collections",
+    "question": "¿Cómo usarías Stream API con colecciones? Muestra un ejemplo práctico.",
+    "code": null,
+    "answer": "Stream API (Java 8+) permite procesar colecciones de forma declarativa y funcional. Las operaciones son lazy — solo se ejecutan cuando se llama a una operación terminal.\n\nOperaciones intermedias (lazy): filter, map, flatMap, sorted, distinct, limit\nOperaciones terminales: collect, forEach, reduce, count, findFirst, anyMatch",
+    "example": "List<Person> people = List.of(\n    new Person(\"Alice\", 30),\n    new Person(\"Bob\", 17),\n    new Person(\"Charlie\", 25)\n);\n\n// Filtrar mayores de edad, ordenar por nombre, obtener lista\nList<String> names = people.stream()\n    .filter(p -> p.getAge() >= 18)\n    .sorted(Comparator.comparing(Person::getName))\n    .map(Person::getName)\n    .collect(Collectors.toList());\n// [Alice, Charlie]\n\n// Agrupar por edad >= 18\nMap<Boolean, List<Person>> grouped = people.stream()\n    .collect(Collectors.partitioningBy(p -> p.getAge() >= 18));"
+  },
+  {
+    "id": 29,
+    "level": "Junior",
+    "category": "OOP",
+    "question": "¿Cuál es la diferencia entre == e equals() en Java?",
+    "code": null,
+    "answer": "== compara referencias: verifica si dos variables apuntan al mismo objeto en memoria. Para primitivos, compara valores.\n\nequals(): compara el contenido lógico de los objetos. Por default (Object) hace lo mismo que ==, pero clases como String, Integer, List lo sobreescriben para comparar contenido.\n\nRegla: para objetos siempre usa equals(). Usa == solo cuando explícitamente quieras comparar si son el mismo objeto.",
+    "example": "String s1 = new String(\"hello\");\nString s2 = new String(\"hello\");\n\nSystem.out.println(s1 == s2);       // false — distintas referencias\nSystem.out.println(s1.equals(s2));  // true  — mismo contenido\n\n// String pool\nString s3 = \"hello\";\nString s4 = \"hello\";\nSystem.out.println(s3 == s4); // true — misma referencia del pool"
+  },
+  {
+    "id": 30,
+    "level": "Junior",
+    "category": "Collections",
+    "question": "¿Qué es un Map.Entry y cómo se itera un Map correctamente?",
+    "code": null,
+    "answer": "Map.Entry<K,V> representa un par clave-valor dentro de un Map. Se obtiene via entrySet().\n\nFormas de iterar un Map:\n1. entrySet(): itera pares clave-valor — más eficiente, accede a ambos en una sola operación\n2. keySet(): solo keys, luego get() para el valor — llama get() extra\n3. values(): solo valores, sin acceso a keys\n4. forEach (Java 8): más limpio",
+    "example": "Map<String, Integer> map = Map.of(\"Alice\", 30, \"Bob\", 25);\n\n// ✅ Opción 1: entrySet — más eficiente\nfor (Map.Entry<String, Integer> entry : map.entrySet()) {\n    System.out.println(entry.getKey() + \" → \" + entry.getValue());\n}\n\n// ✅ Opción 2: forEach Java 8\nmap.forEach((k, v) -> System.out.println(k + \" → \" + v));\n\n// ❌ Menos eficiente\nfor (String key : map.keySet()) {\n    System.out.println(map.get(key)); // doble lookup\n}"
+  }
+]

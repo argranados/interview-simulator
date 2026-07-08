@@ -43,6 +43,13 @@ const REPASO_BANKS = [
         description: 'Backend intermedio — Java, Python, SQL avanzado, DevOps',
         tag: 'Java · Python · SQL · DevOps',
     },
+    {
+        id: 'tech_interview/confiz_interview_bank.json',
+        title: 'Confiz',
+        emoji: '🗂️',
+        description: 'Java Collections y OOP Concepts',
+        tag: 'Collections · OOP · Java',
+    },
     // Ejemplo de cómo agregar más en el futuro:
     // {
     //   id: 'tech_interview/google_interview_bank.json',
