@@ -351,7 +351,7 @@
     ],
     "correct": 1,
     "explanation": "RANK() asigna el mismo rango a empates y luego salta el siguiente número (huecos). DENSE_RANK() no deja huecos.",
-    "active": true
+    "active": false
   },
   {
     "id": 24,
@@ -594,7 +594,7 @@
     ],
     "correct": 1,
     "explanation": "LAG() accede a la fila anterior. LEAD() a la siguiente. ROW_NUMBER() numera, FIRST_VALUE() da el primer valor.",
-    "active": true
+    "active": false
   },
   {
     "id": 40,

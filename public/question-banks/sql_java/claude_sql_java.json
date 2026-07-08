@@ -445,7 +445,7 @@
     ],
     "correct": 3,
     "explanation": "La subquery correlacionada se ejecuta una vez por cada fila de la query externa, calculando el AVG del departamento de esa fila. El JOIN a subquery agrupada es más eficiente: calcula el promedio por departamento una sola vez y luego hace el JOIN. Ambas son alternativas clásicas válidas a funciones de ventana.",
-    "active": true
+    "active": false
   },
   {
     "id": 29,
@@ -509,7 +509,7 @@
     ],
     "correct": 3,
     "explanation": "La técnica clásica para top N por grupo sin window functions: una subquery correlacionada cuenta cuántos registros del mismo grupo tienen un valor mayor. Si hay 0 productos con más ventas, ese es el #1; si hay 1, es el #2; si hay 2, es el #3. Filtrar donde ese conteo < 3 da el top 3. Con empates se comporta como RANK(), no como ROW_NUMBER().",
-    "active": true
+    "active": false
   },
   {
     "id": 33,
@@ -861,7 +861,7 @@
     ],
     "correct": 3,
     "explanation": "INTERSECT retorna solo las filas presentes en los resultados de ambas queries. EXCEPT (MINUS en Oracle) retorna las filas del primer SELECT que no aparecen en el segundo. Ambos eliminan duplicados por defecto. Son útiles para comparar dos resultados sin necesidad de JOINs complejos.",
-    "active": true
+    "active": false
   },
   {
     "id": 55,
@@ -941,7 +941,7 @@
     ],
     "correct": 3,
     "explanation": "Los índices HASH son muy rápidos para búsquedas de igualdad en O(1), pero no funcionan para rangos ni ORDER BY. Los índices BTREE mantienen los datos ordenados, soportando igualdad, rangos (>, <, BETWEEN), LIKE 'prefijo%' y ordenamientos. BTREE es el índice por defecto y más versátil.",
-    "active": true
+    "active": false
   },
   {
     "id": 60,
