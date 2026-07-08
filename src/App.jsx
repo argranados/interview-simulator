@@ -293,6 +293,7 @@ const TOPIC_LABELS = {
 
 // Baraja las opciones de una pregunta y recalcula el índice correct
 function shuffleOptions(question) {
+    if (!question.options) return question
     const indices = question.options.map((_, i) => i)
     for (let i = indices.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -419,6 +420,18 @@ export default function App() {
     }
 
     useEffect(() => () => clearInterval(timerRef.current), [])
+
+    // Permite avanzar a la siguiente pregunta con la barra espaciadora
+    useEffect(() => {
+        const handleKeyPress = (e) => {
+            if (e.code === 'Space' && showResult) {
+                e.preventDefault()
+                handleNext()
+            }
+        }
+        window.addEventListener('keydown', handleKeyPress)
+        return () => window.removeEventListener('keydown', handleKeyPress)
+    }, [showResult, currentQuestionIndex, shuffledQuestions])
 
     // ── Pantallas ──
 
@@ -607,7 +620,10 @@ export default function App() {
                                 <button
                                     key={index}
                                     style={{ ...styles.optionButton, background }}
-                                    onClick={() => handleAnswer(index)}
+                                    onClick={(e) => {
+                                        e.currentTarget.blur()
+                                        handleAnswer(index)
+                                    }}
                                 >
                                     {option}
                                 </button>
@@ -619,7 +635,10 @@ export default function App() {
                         <button
                             style={{ ...styles.button, opacity: showResult ? 1 : 0.5 }}
                             disabled={!showResult}
-                            onClick={handleNext}
+                            onClick={(e) => {
+                                e.currentTarget.blur()
+                                handleNext()
+                            }}
                         >
                             {currentQuestionIndex + 1 === shuffledQuestions.length ? 'Finalizar' : 'Siguiente'}
                         </button>
@@ -629,6 +648,12 @@ export default function App() {
                                 <strong>Explicación:</strong>
                                 <p>{currentQuestion.explanation}</p>
                             </div>
+                        )}
+
+                        {showResult && (
+                            <p style={{ textAlign: 'center', fontSize: 13, color: '#9ca3af', marginTop: -4 }}>
+                                Presiona <kbd style={{ padding: '2px 6px', background: '#f3f4f6', borderRadius: 4, border: '1px solid #d1d5db' }}>Espacio</kbd> para continuar
+                            </p>
                         )}
                     </div>
                 </div>
