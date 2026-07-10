@@ -289,6 +289,10 @@ const TOPIC_LABELS = {
     unit_testing: 'Unit Testing',
     devops_java: 'DevOps Java',
     aws_java: 'AWS Java Backend',
+    spring_security_1: 'Spring Security 1',
+    spring_security_2: 'Spring Security 2',
+    spring_data: 'Spring Data',
+    event_driven: 'Event-Driven',
 }
 
 // Baraja las opciones de una pregunta y recalcula el índice correct

@@ -40,6 +40,18 @@ const BANKS_CONFIG = {
     { ai: 'claude', title: 'Claude', emoji: '🧠', description: 'Más analítico' },
     { ai: 'deepseek', title: 'DeepSeek', emoji: '⚡', description: 'Más técnico y directo' },
   ],
+  spring_security_1: [
+    { ai: 'claude', title: 'Claude', emoji: '🧠', description: 'Más analítico' },
+  ],
+  spring_security_2: [
+    { ai: 'claude', title: 'Claude', emoji: '🧠', description: 'Más analítico' },
+  ],
+  spring_data: [
+    { ai: 'claude', title: 'Claude', emoji: '🧠', description: 'Más analítico' },
+  ],
+  event_driven: [
+    { ai: 'claude', title: 'Claude', emoji: '🧠', description: 'Más analítico' },
+  ],
 }
 
 const TOPIC_LABELS = {
@@ -51,6 +63,10 @@ const TOPIC_LABELS = {
   unit_testing: 'Unit Testing',
   devops_java: 'DevOps Java',
   aws_java: 'AWS Java Backend',
+  spring_security_1: 'Spring Security 1',
+  spring_security_2: 'Spring Security 2',
+  spring_data: 'Spring Data',
+  event_driven: 'Event-Driven',
 }
 
 export default function LandingPage({ onSelect, onBack, topic }) {

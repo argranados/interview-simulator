@@ -1,0 +1,677 @@
+[
+  {
+    "id": 1,
+    "level": "Junior",
+    "category": "Spring Security Core",
+    "question": "¿Qué es Spring Security y cuál es su función principal en una aplicación Spring Boot?",
+    "code": null,
+    "options": [
+      "Un servidor OAuth2 independiente para gestionar identidades",
+      "Un módulo que provee autenticación y autorización para aplicaciones Spring",
+      "Una librería para encriptar la base de datos",
+      "Un reverse proxy para microservicios"
+    ],
+    "correct": 1,
+    "explanation": "Spring Security es el estándar de facto para seguridad en el ecosistema Spring. Provee autenticación (¿quién eres?) y autorización (¿qué puedes hacer?). En Spring Boot 3.x se autoconfigura automáticamente al agregar spring-boot-starter-security al classpath."
+  },
+  {
+    "id": 2,
+    "level": "Junior",
+    "category": "Spring Security Core",
+    "question": "¿Qué ocurre por defecto al añadir Spring Security a un proyecto Spring Boot sin ninguna configuración adicional?",
+    "code": null,
+    "options": [
+      "Todas las rutas quedan protegidas y se genera una contraseña UUID aleatoria en consola",
+      "La app funciona igual que antes, sin ningún cambio",
+      "Solo los endpoints /api/** quedan protegidos",
+      "La aplicación lanza una excepción al arrancar"
+    ],
+    "correct": 0,
+    "explanation": "Spring Boot autoconfigura un UserDetailsService con usuario 'user' y una contraseña UUID impresa en consola. Además bloquea todos los endpoints hasta que el usuario se autentique vía formulario de login generado automáticamente."
+  },
+  {
+    "id": 3,
+    "level": "Junior",
+    "category": "Spring Security Core",
+    "question": "¿Cuál es la diferencia fundamental entre autenticación y autorización?",
+    "code": null,
+    "options": [
+      "Son sinónimos en el contexto de seguridad de aplicaciones",
+      "Autenticación verifica identidad; autorización determina qué puede hacer el usuario autenticado",
+      "Autorización verifica identidad; autenticación determina permisos",
+      "Autenticación aplica a APIs REST; autorización solo a apps web"
+    ],
+    "correct": 1,
+    "explanation": "Autenticación: confirma que eres quien dices ser (login con usuario/contraseña). Autorización: una vez autenticado, determina a qué recursos o acciones tienes acceso (roles, permisos). Spring Security maneja ambos en capas separadas del SecurityFilterChain."
+  },
+  {
+    "id": 4,
+    "level": "Junior",
+    "category": "Spring Security Core",
+    "question": "¿Qué interfaz debes implementar para personalizar cómo Spring Security carga usuarios desde tu base de datos?",
+    "code": null,
+    "options": [
+      "UserService",
+      "UserDetailsService",
+      "AuthenticationProvider",
+      "SecurityUserRepository"
+    ],
+    "correct": 1,
+    "explanation": "UserDetailsService declara un único método: loadUserByUsername(String username) que retorna UserDetails. Es el punto de extensión principal para conectar tu fuente de datos (JPA, LDAP, etc.) con el mecanismo de autenticación de Spring Security."
+  },
+  {
+    "id": 5,
+    "level": "Junior",
+    "category": "Spring Security Core",
+    "question": "¿Cuál fue el cambio más importante al pasar de Spring Boot 2.x a 3.x en cuanto a la configuración de seguridad?",
+    "code": null,
+    "options": [
+      "Se añadió soporte nativo para JWT por primera vez",
+      "Se eliminó el soporte para HTTPS en producción",
+      "Se eliminó WebSecurityConfigurerAdapter; la configuración ahora usa beans @Bean con SecurityFilterChain",
+      "Se cambió el paquete raíz de org.springframework a io.spring"
+    ],
+    "correct": 2,
+    "explanation": "WebSecurityConfigurerAdapter fue eliminado completamente en Spring Security 6.x. Ahora se expone un bean SecurityFilterChain con @Bean, lo que es más modular y testeable. También cambiaron antMatchers por requestMatchers y authorizeRequests por authorizeHttpRequests."
+  },
+  {
+    "id": 6,
+    "level": "Junior",
+    "category": "Spring Security Core",
+    "question": "¿Qué anotación habilita la seguridad basada en métodos como @PreAuthorize en Spring Boot 3.x?",
+    "code": null,
+    "options": [
+      "@EnableSecurity",
+      "@EnableWebSecurity",
+      "@EnableMethodSecurity",
+      "@EnableGlobalMethodSecurity"
+    ],
+    "correct": 2,
+    "explanation": "@EnableMethodSecurity es la anotación correcta en Spring Boot 3.x. @EnableGlobalMethodSecurity fue deprecada en Spring Security 5.6 y eliminada en 6.x. Con @EnableMethodSecurity quedan disponibles @PreAuthorize, @PostAuthorize y @Secured."
+  },
+  {
+    "id": 7,
+    "level": "Junior",
+    "category": "Spring Security Core",
+    "question": "¿Qué es el SecurityFilterChain y cuál es su rol en Spring Security?",
+    "code": null,
+    "options": [
+      "Es la cadena de repositorios de seguridad para la base de datos",
+      "Es una cadena de filtros de servlet que intercepta requests HTTP antes de llegar al DispatcherServlet",
+      "Es el componente responsable de encriptar las contraseñas en la base de datos",
+      "Es el objeto que contiene el usuario autenticado durante el request"
+    ],
+    "correct": 1,
+    "explanation": "SecurityFilterChain es la cadena de filtros de seguridad de Spring. Intercepta los requests HTTP antes de que lleguen al DispatcherServlet. Se configura exponiendo un bean: @Bean public SecurityFilterChain filterChain(HttpSecurity http) throws Exception."
+  },
+  {
+    "id": 8,
+    "level": "Junior",
+    "category": "Spring Security Core",
+    "question": "¿Por qué BCryptPasswordEncoder es el PasswordEncoder recomendado para almacenar contraseñas?",
+    "code": null,
+    "options": [
+      "Porque MD5 es el estándar pero BCrypt es su versión mejorada",
+      "Porque SHA-256 es más rápido y BCrypt es su alternativa segura",
+      "Porque BCrypt incluye salt automático y está diseñado deliberadamente para ser computacionalmente lento",
+      "Porque AES es bidireccional y BCrypt agrega reversibilidad opcional"
+    ],
+    "correct": 2,
+    "explanation": "BCryptPasswordEncoder usa el algoritmo BCrypt que: (1) incluye un salt aleatorio automático por cada hash generado, (2) está diseñado para ser computacionalmente costoso, dificultando ataques de fuerza bruta. Nunca uses MD5 o SHA para passwords — son demasiado rápidos para este propósito."
+  },
+  {
+    "id": 9,
+    "level": "Junior",
+    "category": "Spring Security Core",
+    "question": "¿Qué contiene el SecurityContext y cómo se accede a él durante un request?",
+    "code": "SecurityContextHolder.getContext().getAuthentication()",
+    "options": [
+      "Un archivo de configuración XML de seguridad cargado en memoria",
+      "Un objeto que almacena la Authentication del usuario durante el request actual, asociado al thread",
+      "La lista de todos los usuarios registrados en el sistema",
+      "El token de sesión encriptado que viaja en la cookie"
+    ],
+    "correct": 1,
+    "explanation": "SecurityContextHolder almacena el SecurityContext, que contiene el objeto Authentication del usuario autenticado. Se asocia al thread actual del request (ThreadLocal). En JwtAuthFilter se usa: SecurityContextHolder.getContext().setAuthentication(authToken) para registrar al usuario autenticado."
+  },
+  {
+    "id": 10,
+    "level": "Junior",
+    "category": "Spring Security Core",
+    "question": "¿Cuál es la diferencia entre un error HTTP 401 y un 403 en el contexto de Spring Security?",
+    "code": null,
+    "options": [
+      "Son equivalentes, Spring Security los usa indistintamente",
+      "401 = usuario no autenticado (falta token o sesión); 403 = autenticado pero sin permisos suficientes",
+      "403 = usuario no autenticado; 401 = autenticado sin los permisos correctos",
+      "401 es error del servidor; 403 es error del cliente"
+    ],
+    "correct": 1,
+    "explanation": "401 Unauthorized: el usuario no está autenticado — falta el token o la sesión. Spring lo lanza vía AuthenticationEntryPoint. 403 Forbidden: el usuario está autenticado pero no tiene el rol o permiso necesario para el recurso solicitado. Spring lo lanza vía AccessDeniedHandler."
+  },
+  {
+    "id": 11,
+    "level": "Junior",
+    "category": "Spring Security Core",
+    "question": "¿Qué hace la anotación @PreAuthorize y cómo se usa para restringir acceso por rol?",
+    "code": "@PreAuthorize(\"hasRole('ADMIN')\")\npublic ResponseEntity<?> adminEndpoint() { ... }",
+    "options": [
+      "@PreAuthorize('ROLE_ADMIN') se coloca directamente en el método del controller",
+      "@PreAuthorize(\"hasRole('ADMIN')\") evalúa la expresión SpEL antes de ejecutar el método",
+      "@PreAuthorize se configura en el application.properties por endpoint",
+      "@PreAuthorize(roles='ADMIN') se define globalmente en el SecurityConfig"
+    ],
+    "correct": 1,
+    "explanation": "@PreAuthorize(\"hasRole('ADMIN')\") evalúa la expresión SpEL antes de ejecutar el método. Spring Security antepone 'ROLE_' automáticamente al comparar, así que el GrantedAuthority debe ser 'ROLE_ADMIN'. También puedes usar hasAuthority('ROLE_ADMIN') para control explícito sin el prefijo automático."
+  },
+  {
+    "id": 12,
+    "level": "Mid",
+    "category": "Spring Security Core",
+    "question": "¿Qué hace DaoAuthenticationProvider y cómo se configura correctamente en Spring Boot 3.x para evitar conflictos?",
+    "code": "DaoAuthenticationProvider provider = new DaoAuthenticationProvider();\nprovider.setUserDetailsService(userDetailsService);\nprovider.setPasswordEncoder(passwordEncoder());\nhttp.authenticationProvider(provider);",
+    "options": [
+      "Maneja la autenticación OAuth2 delegando a proveedores externos como Google",
+      "Genera tokens JWT automáticamente a partir de las credenciales del usuario",
+      "Configura las reglas de autorización por roles en el SecurityFilterChain",
+      "Conecta UserDetailsService y PasswordEncoder para validar credenciales usuario/contraseña"
+    ],
+    "correct": 3,
+    "explanation": "DaoAuthenticationProvider es el AuthenticationProvider estándar para autenticación usuario/contraseña. Internamente: (1) llama a UserDetailsService.loadUserByUsername(), (2) compara el password con el PasswordEncoder. Se debe instanciar como objeto local dentro del método filterChain() y registrar con http.authenticationProvider(provider), NO como @Bean global."
+  },
+  {
+    "id": 13,
+    "level": "Mid",
+    "category": "Spring Security Core",
+    "question": "¿Por qué declarar DaoAuthenticationProvider como @Bean global puede causar problemas en Spring Security 6.x?",
+    "code": null,
+    "options": [
+      "Porque Spring no permite más de un @Bean del mismo tipo en el contexto",
+      "Porque se registra globalmente y puede entrar en conflicto con el AuthenticationManager, generando warnings 'UserDetailsService beans will not be used' y 403 inexplicables",
+      "Porque Spring lo instancia dos veces causando duplicación de usuarios en memoria",
+      "Porque @Bean está deprecado para providers de autenticación en Spring 6.x"
+    ],
+    "correct": 1,
+    "explanation": "Si declaras DaoAuthenticationProvider como @Bean global, Spring lo registra en el contexto y puede crear un AuthenticationManager paralelo que ignora tu UserDetailsService personalizado. Esto genera el warning 'UserDetailsService beans will not be used' y puede terminar en 403 inexplicables. La solución: instanciarlo como objeto local dentro del método filterChain() y registrarlo con http.authenticationProvider(provider)."
+  },
+  {
+    "id": 14,
+    "level": "Mid",
+    "category": "Spring Security Core",
+    "question": "¿Cuál es la diferencia entre authenticationEntryPoint y accessDeniedHandler en el manejo de excepciones?",
+    "code": "http.exceptionHandling(ex -> ex\n  .authenticationEntryPoint((req, res, e) -> res.sendError(401))\n  .accessDeniedHandler((req, res, e) -> res.sendError(403)));",
+    "options": [
+      "Son lo mismo internamente, solo tienen nombres distintos por convención",
+      "authenticationEntryPoint maneja 401 (no autenticado); accessDeniedHandler maneja 403 (autenticado sin permisos)",
+      "authenticationEntryPoint es exclusivo para OAuth2; accessDeniedHandler es para JWT",
+      "accessDeniedHandler bloquea IPs; authenticationEntryPoint gestiona cookies de sesión"
+    ],
+    "correct": 1,
+    "explanation": "AuthenticationEntryPoint: se invoca cuando el usuario no está autenticado (401 Unauthorized). AccessDeniedHandler: se invoca cuando el usuario está autenticado pero le falta el rol requerido (403 Forbidden). Configurar ambos permite retornar respuestas JSON consistentes en lugar de páginas de error HTML por defecto."
+  },
+  {
+    "id": 15,
+    "level": "Mid",
+    "category": "Spring Security Core",
+    "question": "¿Qué es CSRF y en qué escenarios tiene sentido deshabilitarlo en Spring Security?",
+    "code": "http.csrf(csrf -> csrf.disable()); // OK para APIs REST con Bearer token",
+    "options": [
+      "Cross-Site Request Forgery — siempre debe habilitarse sin excepción alguna",
+      "Cross-Site Request Forgery — se puede deshabilitar en APIs REST stateless que usan tokens Bearer en header Authorization",
+      "Cross-Server Resource Fetch — es un ataque de red, no relacionado con sesiones",
+      "Es un tipo de inyección SQL que Spring Security mitiga automáticamente"
+    ],
+    "correct": 1,
+    "explanation": "CSRF es un ataque donde un sitio malicioso engaña al browser del usuario para hacer requests autenticados a tu app. Es relevante SOLO cuando usas cookies de sesión (el browser las adjunta automáticamente). En APIs REST stateless con Authorization: Bearer token, el browser no adjunta el token automáticamente, por lo que CSRF no aplica y se puede deshabilitar."
+  },
+  {
+    "id": 16,
+    "level": "Junior",
+    "category": "JWT",
+    "question": "¿Qué estructura tiene un JWT y qué contiene cada una de sus tres partes?",
+    "code": "// eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJ1c2VyIn0.SIGNATURE\n// Header . Payload . Signature",
+    "options": [
+      "Header.Payload.Signature — separadas por puntos y codificadas en Base64",
+      "Username.Password.Signature — para autenticación básica",
+      "Header.Body.Footer — estándar REST aplicado a tokens",
+      "Token.RefreshToken.ExpirationDate — las tres partes del flujo OAuth2"
+    ],
+    "correct": 0,
+    "explanation": "Un JWT tiene 3 partes codificadas en Base64 separadas por puntos: Header (algoritmo y tipo: {alg:'HS384', typ:'JWT'}), Payload (claims: sub, iat, exp, roles) y Signature (HMAC o RSA del Header+Payload firmado con la clave secreta). El Payload es legible por cualquiera — nunca guardes información sensible en él."
+  },
+  {
+    "id": 17,
+    "level": "Junior",
+    "category": "JWT",
+    "question": "¿Qué son los claims en un JWT y cuáles son los claims estándar más importantes?",
+    "code": "// Claims estándar en el Payload:\n// sub, iat, exp, iss, jti",
+    "options": [
+      "Son los campos del formulario HTML de login enviados al servidor",
+      "Son pares clave-valor dentro del Payload: sub (subject), iat (issued at), exp (expiration) y claims personalizados",
+      "Son las cabeceras HTTP asociadas al token Bearer en cada request",
+      "Son los permisos externos definidos por el servidor de autorización"
+    ],
+    "correct": 1,
+    "explanation": "Los claims son pares clave-valor dentro del Payload del JWT. Claims estándar: sub (subject/username), iat (issued at — cuándo se emitió), exp (expiration — cuándo expira), iss (issuer — quién lo emitió), jti (JWT ID — identificador único del token). En JJWT: Jwts.builder().subject(username).issuedAt(new Date()).expiration(expDate)."
+  },
+  {
+    "id": 18,
+    "level": "Junior",
+    "category": "JWT",
+    "question": "¿Cuál es la diferencia entre Access Token y Refresh Token en una arquitectura JWT?",
+    "code": null,
+    "options": [
+      "Son exactamente lo mismo, solo cambia el nombre por convención de nomenclatura",
+      "Access Token: vida corta (~24h) para autenticar requests. Refresh Token: vida larga (~7 días) solo para obtener un nuevo Access Token",
+      "Refresh Token tiene vida corta. Access Token tiene vida larga para mayor comodidad",
+      "Access Token es para usuarios administrador; Refresh Token para usuarios normales"
+    ],
+    "correct": 1,
+    "explanation": "Access Token: vida corta (~15min a 24h), se envía en cada request en el header Authorization: Bearer. Refresh Token: vida larga (~7 días), solo se envía al endpoint /auth/refresh para renovar el Access Token sin volver a pedir credenciales. Esto minimiza la exposición del token de larga vida."
+  },
+  {
+    "id": 19,
+    "level": "Junior",
+    "category": "JWT",
+    "question": "¿Por qué un JWT firmado con HMAC-SHA no puede ser alterado sin que el servidor lo detecte?",
+    "code": "// Signature = HMAC(Base64(header) + '.' + Base64(payload), secretKey)\n// Alterar el payload invalida la firma",
+    "options": [
+      "Porque el token está completamente encriptado y nadie puede leer su contenido",
+      "Porque el servidor guarda una copia de cada token emitido y los compara en cada request",
+      "Porque el token expira en milisegundos haciendo la alteración inútil",
+      "Porque la Signature es el HMAC del Header+Payload con la clave secreta — alterar cualquier byte invalida la firma"
+    ],
+    "correct": 3,
+    "explanation": "La Signature = HMAC(Base64(header) + '.' + Base64(payload), secretKey). Si un atacante modifica cualquier parte del Payload (por ejemplo cambia el rol de USER a ADMIN), la firma recalculada con la misma clave no coincidirá con la firma original. JJWT lanza SignatureException automáticamente al detectar esta discrepancia."
+  },
+  {
+    "id": 20,
+    "level": "Junior",
+    "category": "JWT",
+    "question": "¿Cómo se parsea y verifica un JWT con JJWT 0.12.x en Spring Boot?",
+    "code": "Jwts.parser()\n  .verifyWith(getSigningKey())\n  .build()\n  .parseSignedClaims(token)\n  .getPayload();",
+    "options": [
+      "JwtParser — instanciado directamente con new JwtParser(secret)",
+      "Jwts.parser() con builder pattern usando verifyWith(secretKey)",
+      "JwtVerifier.decode(token) del paquete io.jsonwebtoken.verify",
+      "TokenValidator.parse(token) del starter spring-boot-starter-security"
+    ],
+    "correct": 1,
+    "explanation": "En JJWT 0.12.x: Jwts.parser().verifyWith(getSigningKey()).build().parseSignedClaims(token). El método verifyWith() reemplazó al antiguo setSigningKey() de versiones anteriores. Si la firma es inválida JJWT lanza SignatureException; si el token expiró lanza ExpiredJwtException."
+  },
+  {
+    "id": 21,
+    "level": "Junior",
+    "category": "JWT",
+    "question": "¿Cómo invalidas un JWT en una arquitectura stateless cuando el usuario hace logout?",
+    "code": null,
+    "options": [
+      "Llamando a token.invalidate() del API de JJWT",
+      "No puedes invalidarlo directamente — sigue válido hasta que expire. Necesitas una blacklist externa (Redis/DB) o tokens de vida muy corta",
+      "Borrando el token del SecurityContextHolder en el servidor",
+      "Llamando a /auth/logout que invalida el token automáticamente en el servidor stateless"
+    ],
+    "correct": 1,
+    "explanation": "Esta es la limitación fundamental del JWT stateless: el servidor no guarda estado, así que no puede 'olvidar' un token. Estrategias de mitigación: (1) Vida corta del access token (15-60 min). (2) Blacklist en Redis con el JTI del token invalidado. (3) Refresh Token Rotation — el refresh token se invalida en cada uso. Ninguna es perfecta; elegir según el nivel de seguridad requerido."
+  },
+  {
+    "id": 22,
+    "level": "Mid",
+    "category": "JWT",
+    "question": "¿Qué hace el método shouldNotFilter() en OncePerRequestFilter y por qué se usa en JwtAuthFilter?",
+    "code": "@Override\nprotected boolean shouldNotFilter(HttpServletRequest request) {\n  return request.getServletPath().startsWith(\"/auth/\");\n}",
+    "options": [
+      "Optimiza el rendimiento desactivando completamente el filtro en producción",
+      "Deshabilita el filtro para usuarios con rol ADMIN que no necesitan validación",
+      "Define el orden de ejecución del filtro dentro del SecurityFilterChain",
+      "Excluye paths específicos del filtro — en JwtAuthFilter evita buscar JWT en /auth/** donde aún no existe token"
+    ],
+    "correct": 3,
+    "explanation": "shouldNotFilter() retorna true cuando el filtro NO debe ejecutarse para ese request. En JwtAuthFilter: return request.getServletPath().startsWith('/auth/'). Sin esto, el filtro intentaría buscar un Bearer token en el request de login — encontraría null — y aunque no rompería el flujo, es procesamiento innecesario en cada intento de autenticación."
+  },
+  {
+    "id": 23,
+    "level": "Mid",
+    "category": "JWT",
+    "question": "¿Qué garantiza OncePerRequestFilter y por qué es la clase base correcta para JwtAuthFilter?",
+    "code": "public class JwtAuthFilter extends OncePerRequestFilter {\n  @Override\n  protected void doFilterInternal(...) { ... }\n}",
+    "options": [
+      "Es un filtro que se ejecuta solo en entornos de producción, no en desarrollo",
+      "Garantiza que doFilterInternal() se ejecute exactamente una vez por request HTTP, incluso en forwards y dispatches internos de Servlet",
+      "Es el filtro principal de Spring Security que no puede ser sobreescrito por filtros propios",
+      "Es un filtro que se ejecuta solo para requests de tipo GET, no para POST"
+    ],
+    "correct": 1,
+    "explanation": "OncePerRequestFilter garantiza que doFilterInternal() se ejecute exactamente una vez por request, incluso cuando hay forwards o includes internos de Servlet. Para validación de JWT esto es crítico — no quieres validar el token dos veces en un mismo request, ni que un dispatch interno eluda la validación."
+  },
+  {
+    "id": 24,
+    "level": "Mid",
+    "category": "JWT",
+    "question": "¿Por qué en JwtAuthFilter se verifica que getAuthentication() sea null antes de setear el SecurityContext?",
+    "code": "if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {\n  // solo entonces seteamos la autenticación\n}",
+    "options": [
+      "Es un bug del ejemplo original, esa verificación no debería existir",
+      "Para evitar sobreescribir una autenticación ya existente en el contexto y prevenir posibles ataques de token injection",
+      "Para mejorar el rendimiento del filtro evitando llamadas redundantes al SecurityContext",
+      "Porque Spring Security requiere esa verificación de forma obligatoria en todos los filtros"
+    ],
+    "correct": 1,
+    "explanation": "Si ya existe una autenticación en el contexto (puesta por otro filtro anterior en la cadena), no debes sobreescribirla. Además previene escenarios donde se intenta reemplazar la identidad del usuario ya autenticado con otro token. Es una medida defensiva que sigue el principio de menor intervención posible."
+  },
+  {
+    "id": 25,
+    "level": "Mid",
+    "category": "JWT",
+    "question": "¿Cómo se genera una clave criptográficamente segura para firmar JWT con HMAC-SHA384 en JJWT 0.12.x?",
+    "code": "// Opción 1: generar en runtime\nKeys.secretKeyFor(SignatureAlgorithm.HS384)\n\n// Opción 2: desde application.properties (recomendado)\nKeys.hmacShaKeyFor(Decoders.BASE64.decode(secret))",
+    "options": [
+      "new SecretKey('mi_password_secreto') convierte cualquier String en clave segura",
+      "Keys.secretKeyFor(SignatureAlgorithm.HS384) o Keys.hmacShaKeyFor() con un secret en Base64 del tamaño correcto",
+      "Bytes.toBytes('secret') convertido a string de 16 caracteres es suficiente para HMAC",
+      "Cualquier String de 8 caracteres es suficiente como clave secreta para producción"
+    ],
+    "correct": 1,
+    "explanation": "Keys.secretKeyFor(SignatureAlgorithm.HS384) genera una clave aleatoria segura del tamaño correcto para HS384 (mínimo 384 bits). En producción se recomienda guardar la clave como Base64 en application.properties y reconstruirla con Keys.hmacShaKeyFor(Decoders.BASE64.decode(secret)). Nunca uses un String simple como clave — el tamaño mínimo para HS384 es 384 bits."
+  },
+  {
+    "id": 26,
+    "level": "Mid",
+    "category": "JWT",
+    "question": "¿Qué es Refresh Token Rotation y cuál es su ventaja sobre el flujo básico de refresh?",
+    "code": null,
+    "options": [
+      "Siempre se retorna un nuevo Refresh Token junto con el Access Token para evitar re-login",
+      "Cada vez que se usa el Refresh Token se emite uno nuevo e invalida el anterior — permite detectar si el token fue robado y usado",
+      "El Refresh Token rota automáticamente su algoritmo de firma en cada renovación",
+      "El Refresh Token se elimina del cliente después del primer uso para máxima seguridad"
+    ],
+    "correct": 1,
+    "explanation": "En el flujo básico el Refresh Token se reutiliza indefinidamente. Con Refresh Token Rotation: cada uso emite un nuevo refresh token e invalida el anterior. Si un atacante roba el refresh token y lo usa, el servidor detecta que se usó dos veces (token ya invalidado) y puede revocar toda la sesión del usuario, mitigando el riesgo de tokens robados."
+  },
+  {
+    "id": 27,
+    "level": "Junior",
+    "category": "HTTP Sessions",
+    "question": "¿Cuál es la diferencia entre SessionCreationPolicy.STATELESS y SessionCreationPolicy.IF_REQUIRED?",
+    "code": "// module-jwt:\nsession.sessionCreationPolicy(SessionCreationPolicy.STATELESS)\n\n// module-sessions:\nsession.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)",
+    "options": [
+      "Son idénticos en comportamiento, solo cambia el nombre para mayor claridad",
+      "STATELESS = Spring nunca crea ni usa HttpSession. IF_REQUIRED = crea sesión cuando sea necesario, modo por defecto para apps con sesiones",
+      "IF_REQUIRED = nunca crea sesión. STATELESS = solo crea sesión en requests específicos autorizados",
+      "STATELESS es solo para conexiones a bases de datos; IF_REQUIRED es para APIs REST"
+    ],
+    "correct": 1,
+    "explanation": "STATELESS: Spring nunca crea HttpSession — el contexto de seguridad se recrea en cada request desde el token. Es lo que usa module-jwt. IF_REQUIRED: Spring crea sesión cuando lo necesite y la reutiliza en requests posteriores. Es lo que usa module-sessions. Mezclarlos en el mismo módulo causaría comportamiento impredecible."
+  },
+  {
+    "id": 28,
+    "level": "Junior",
+    "category": "HTTP Sessions",
+    "question": "¿Qué ventaja fundamental tienen las HTTP Sessions sobre JWT para invalidar la sesión de un usuario?",
+    "code": null,
+    "options": [
+      "Las sessions HTTP son significativamente más rápidas de procesar que los tokens JWT",
+      "Son equivalentes en capacidad de invalidación, ambas requieren esperar a la expiración",
+      "JWT permite invalidación más granular por recurso que las sessions",
+      "Con sessions puedes invalidar al usuario inmediatamente — el servidor borra la sesión y el ID de cookie queda inútil al instante"
+    ],
+    "correct": 3,
+    "explanation": "Con sessions: session.invalidate() y el usuario queda desconectado al instante en el próximo request. Con JWT stateless: el token sigue siendo válido hasta que expire aunque el usuario haga logout. Para invalidación inmediata con JWT se necesita mantener estado externo (blacklist en Redis), lo que reduce la ventaja stateless del enfoque."
+  },
+  {
+    "id": 29,
+    "level": "Junior",
+    "category": "HTTP Sessions",
+    "question": "¿Qué es Spring Session Data Redis y cuál es su propósito principal?",
+    "code": "// pom.xml\n<dependency>\n  <groupId>org.springframework.session</groupId>\n  <artifactId>spring-session-data-redis</artifactId>\n</dependency>",
+    "options": [
+      "Es un caché de Redis específicamente diseñado para las queries JPA de Spring",
+      "Es una librería que externaliza el almacenamiento de HttpSession a Redis, permitiendo escalar horizontalmente sin sticky sessions",
+      "Es una implementación alternativa de Jedis para reemplazar el cliente Redis de Spring",
+      "Es una librería para almacenar tokens JWT en Redis como alternativa al SecurityContext"
+    ],
+    "correct": 1,
+    "explanation": "spring-session-data-redis reemplaza el almacenamiento de HttpSession (que normalmente vive en memoria del servidor Tomcat) por Redis. Esto permite que múltiples instancias de la app compartan las mismas sesiones — cualquier instancia puede atender cualquier request sin importar cuál realizó el login original."
+  },
+  {
+    "id": 30,
+    "level": "Junior",
+    "category": "HTTP Sessions",
+    "question": "¿Qué son las sticky sessions y por qué son problemáticas en arquitecturas de microservicios?",
+    "code": null,
+    "options": [
+      "Son sesiones que nunca expiran automáticamente, lo que representa una vulnerabilidad de seguridad",
+      "Son configuraciones del load balancer que enrutan siempre al mismo usuario a la misma instancia. Problema: si esa instancia cae, el usuario pierde la sesión",
+      "Son sesiones compartidas automáticamente entre todos los microservicios del sistema",
+      "Son sesiones que persisten entre reinicios del servidor, guardadas en disco"
+    ],
+    "correct": 1,
+    "explanation": "Las sticky sessions configuran el load balancer para enrutar siempre el mismo usuario a la misma instancia. Problemas en microservicios: (1) si la instancia cae, el usuario pierde su sesión, (2) el load balancer distribuye carga de forma desigual, (3) no permite auto-scaling horizontal. La solución es externalizar las sesiones a Redis — cualquier instancia puede servir cualquier request."
+  },
+  {
+    "id": 31,
+    "level": "Mid",
+    "category": "HTTP Sessions",
+    "question": "¿Qué hace maximumSessions(1) y cuál es la diferencia entre maxSessionsPreventsLogin(true) y false?",
+    "code": "http.sessionManagement(s -> s\n  .maximumSessions(1)\n  .maxSessionsPreventsLogin(false)); // false = invalida sesión anterior",
+    "options": [
+      "maximumSessions(1) permite solo 1 sesión activa por usuario. maxSessionsPreventsLogin(false) invalida la sesión más antigua; true rechaza el nuevo login",
+      "maximumSessions(1) limita a un usuario registrado por sesión, no al revés",
+      "maximumSessions(1) define el timeout de la sesión en segundos de inactividad",
+      "maxSessionsPreventsLogin solo aplica a usuarios con rol ADMIN en el sistema"
+    ],
+    "correct": 0,
+    "explanation": "maximumSessions(1) limita a una sesión activa por usuario. maxSessionsPreventsLogin(false) (default): si el usuario hace login desde otro dispositivo, la sesión anterior se invalida — nuevo dispositivo gana. maxSessionsPreventsLogin(true): el nuevo login es rechazado — sesión existente gana. Requiere HttpSessionEventPublisher como bean para detectar expiración."
+  },
+  {
+    "id": 32,
+    "level": "Mid",
+    "category": "HTTP Sessions",
+    "question": "¿Qué riesgo de CSRF existe cuando usas HTTP Sessions en una API REST consumida por un SPA?",
+    "code": null,
+    "options": [
+      "CSRF no aplica nunca en APIs REST, independientemente del mecanismo de autenticación",
+      "Con sessions y cookies el browser adjunta automáticamente la cookie SESSION en cada request, haciendo CSRF un riesgo real que debe mitigarse",
+      "CSRF solo aplica a aplicaciones móviles nativas, no a Single Page Applications",
+      "Spring Security maneja CSRF automáticamente sin necesidad de configuración adicional"
+    ],
+    "correct": 1,
+    "explanation": "Con sessions el browser adjunta automáticamente la cookie SESSION en cada request al dominio, incluyendo requests iniciados desde sitios maliciosos (CSRF). Mitigaciones para SPAs: (1) habilitar CSRF y usar el header X-XSRF-TOKEN que el SPA debe enviar explícitamente, o (2) patrón Double Submit Cookie. Con JWT Bearer header CSRF no aplica porque el browser no adjunta el token automáticamente."
+  },
+  {
+    "id": 33,
+    "level": "Mid",
+    "category": "HTTP Sessions",
+    "question": "¿Por qué no se debe guardar información sensible como el hash del password en la sesión de Redis?",
+    "code": null,
+    "options": [
+      "Porque Redis no soporta el almacenamiento de strings encriptados en sus estructuras de datos",
+      "Porque la sesión en Redis puede ser accedida por otros procesos con acceso al Redis. Solo guarda username y authorities mínimas necesarias",
+      "Porque el hash del password ocupa demasiado espacio y degrada el rendimiento de Redis",
+      "Porque Spring Session lo borra automáticamente del objeto UserDetails antes de serializarlo"
+    ],
+    "correct": 1,
+    "explanation": "Las sesiones en Redis son accesibles para cualquier proceso con acceso al cluster. Principio de mínimo privilegio: la sesión solo debe contener lo necesario para autenticar el request — username y authorities. El objeto UserDetails completo (incluyendo el password hasheado) no debe serializarse. Aunque el hash no es reversible fácilmente, es información innecesariamente expuesta."
+  },
+  {
+    "id": 34,
+    "level": "Mid",
+    "category": "HTTP Sessions",
+    "question": "¿Cuándo elegirías HTTP Sessions sobre JWT en un sistema real y viceversa?",
+    "code": null,
+    "options": [
+      "Siempre Sessions — son más seguras que JWT en cualquier escenario posible",
+      "Sessions: invalidación inmediata, apps con browsers, monolito o pocos servicios con Redis compartido. JWT: microservicios distribuidos, APIs móviles/SPAs, escala horizontal crítica",
+      "JWT siempre — las sessions son tecnología obsoleta que no debe usarse en sistemas modernos",
+      "Sessions solo cuando el cliente no soporta headers HTTP personalizados como Authorization"
+    ],
+    "correct": 1,
+    "explanation": "No hay respuesta absoluta — depende del contexto. Sessions: apps web tradicionales con browsers, necesidad de logout instantáneo, control centralizado, cuando Redis ya está disponible. JWT: microservicios independientes sin estado compartido, APIs para mobile/SPAs, cuando la vida corta del access token hace aceptable no poder invalidar inmediatamente. Ambos enfoques son válidos en el mundo real."
+  },
+  {
+    "id": 35,
+    "level": "Junior",
+    "category": "Spring Security Core",
+    "question": "¿Qué es un GrantedAuthority en Spring Security y cómo se relaciona con los roles?",
+    "code": "new SimpleGrantedAuthority(\"ROLE_ADMIN\")",
+    "options": [
+      "Es una interfaz que representa un permiso o rol otorgado al usuario autenticado",
+      "Es el objeto principal que representa al usuario autenticado en el SecurityContext",
+      "Es el token JWT que contiene los permisos del usuario",
+      "Es la clase que gestiona el acceso a la base de datos de autorización"
+    ],
+    "correct": 0,
+    "explanation": "GrantedAuthority es una interfaz que representa un permiso o rol. La implementación más común es SimpleGrantedAuthority. Por convención los roles llevan el prefijo 'ROLE_': new SimpleGrantedAuthority('ROLE_ADMIN'). El método hasRole('ADMIN') en SpEL agrega el prefijo automáticamente al comparar."
+  },
+  {
+    "id": 36,
+    "level": "Junior",
+    "category": "Spring Security Core",
+    "question": "¿Qué diferencia hay entre hasRole() y hasAuthority() en expresiones SpEL de Spring Security?",
+    "code": "// hasRole agrega ROLE_ automáticamente:\n@PreAuthorize(\"hasRole('ADMIN')\")\n// equivale a hasAuthority('ROLE_ADMIN')\n@PreAuthorize(\"hasAuthority('ROLE_ADMIN')\")",
+    "options": [
+      "Son completamente equivalentes, Spring los trata de forma idéntica internamente",
+      "hasRole() agrega el prefijo ROLE_ automáticamente; hasAuthority() usa la cadena exacta sin modificarla",
+      "hasAuthority() agrega el prefijo ROLE_; hasRole() usa la cadena exacta",
+      "hasRole() es para métodos; hasAuthority() es para configuración de rutas en SecurityFilterChain"
+    ],
+    "correct": 1,
+    "explanation": "hasRole('ADMIN') agrega automáticamente el prefijo 'ROLE_' al comparar, buscando 'ROLE_ADMIN' en los GrantedAuthority del usuario. hasAuthority('ROLE_ADMIN') usa la cadena exacta sin modificación. Ambos hacen lo mismo cuando usas el prefijo correcto, pero es importante ser consistente para evitar confusiones."
+  },
+  {
+    "id": 37,
+    "level": "Mid",
+    "category": "Spring Security Core",
+    "question": "¿Qué es el AuthenticationManager y cuál es la diferencia con AuthenticationProvider?",
+    "code": "@Bean\npublic AuthenticationManager authenticationManager(\n    AuthenticationConfiguration config) throws Exception {\n  return config.getAuthenticationManager();\n}",
+    "options": [
+      "Son exactamente lo mismo, AuthenticationManager es el nombre antiguo de AuthenticationProvider",
+      "AuthenticationManager es la fachada que delega a uno o más AuthenticationProviders; cada Provider maneja un tipo de autenticación específico",
+      "AuthenticationProvider gestiona múltiples AuthenticationManagers en un sistema distribuido",
+      "AuthenticationManager solo maneja autenticación JWT; AuthenticationProvider maneja OAuth2"
+    ],
+    "correct": 1,
+    "explanation": "AuthenticationManager es la interfaz principal con el método authenticate(). ProviderManager (implementación por defecto) delega a una lista de AuthenticationProviders. Cada Provider maneja un tipo específico: DaoAuthenticationProvider para usuario/contraseña, JwtAuthenticationProvider para JWT externo, etc. Es el patrón Chain of Responsibility aplicado a autenticación."
+  },
+  {
+    "id": 38,
+    "level": "Junior",
+    "category": "JWT",
+    "question": "¿El Payload de un JWT está encriptado? ¿Qué implicación tiene esto para los datos que guardas en él?",
+    "code": "// Payload es solo Base64 — cualquiera puede decodificarlo:\n// echo 'eyJzdWIiOiJ1c2VyIn0=' | base64 -d\n// {\"sub\":\"user\"}",
+    "options": [
+      "Sí, el Payload está encriptado con AES-256 y nadie puede leerlo sin la clave",
+      "Está encriptado parcialmente — solo los claims personalizados están protegidos",
+      "No, el Payload solo está codificado en Base64 — cualquiera puede leerlo. Nunca guardes passwords ni datos sensibles en él",
+      "Está encriptado con la misma clave que la Signature, por eso ambas son necesarias"
+    ],
+    "correct": 2,
+    "explanation": "El Payload de un JWT estándar (JWS) solo está codificado en Base64, NO encriptado. Cualquier persona con el token puede decodificar y leer el contenido. Solo la Signature garantiza que nadie lo alteró. Nunca guardes passwords, PII sensible ni secretos en el Payload. Si necesitas confidencialidad usa JWE (JWT encriptado), que es diferente."
+  },
+  {
+    "id": 39,
+    "level": "Mid",
+    "category": "JWT",
+    "question": "¿Qué es HMAC-SHA vs RSA para firma de JWT y cuándo usarías cada uno?",
+    "code": "// HMAC (simétrico): misma clave firma y verifica\n// RSA (asimétrico): clave privada firma, pública verifica",
+    "options": [
+      "Son idénticos en seguridad y rendimiento, la elección es solo de preferencia personal",
+      "HMAC (simétrico): una clave compartida — ideal cuando un solo servicio firma y verifica. RSA (asimétrico): clave privada firma, pública verifica — ideal para microservicios donde múltiples servicios validan tokens sin compartir la clave privada",
+      "RSA es siempre preferible porque HMAC fue deprecado en JWT estándar RFC 7519",
+      "HMAC es para producción; RSA solo para desarrollo porque es más lento"
+    ],
+    "correct": 1,
+    "explanation": "HMAC (HS256/HS384/HS512): simétrico — la misma clave secreta firma y verifica. Ideal cuando un solo servicio emite Y valida tokens. RSA (RS256/RS512): asimétrico — la clave privada firma, la clave pública verifica. Ideal en microservicios: el auth server firma con su privada y los resource servers verifican con la pública sin conocer la privada. Tu module-jwt usa HMAC porque es un sistema autocontenido."
+  },
+  {
+    "id": 40,
+    "level": "Mid",
+    "category": "HTTP Sessions",
+    "question": "¿Qué es el sliding expiration en Spring Session y cuándo es útil?",
+    "code": null,
+    "options": [
+      "Es un mecanismo que extiende el tiempo de expiración de la sesión con cada request activo del usuario",
+      "Es un algoritmo que reduce gradualmente los permisos del usuario conforme pasa el tiempo",
+      "Es la configuración que define la ventana de tiempo entre creación y primer uso de la sesión",
+      "Es una técnica de invalidación progresiva que expira partes de la sesión por separado"
+    ],
+    "correct": 0,
+    "explanation": "Sliding expiration (o inactivity timeout): cada vez que el usuario hace un request activo, el tiempo de expiración de la sesión se reinicia. Si configuras 30 minutos, el usuario tiene 30 minutos desde su ÚLTIMO request — no desde el inicio de sesión. Útil para apps donde el usuario trabaja continuamente pero quieres que sesiones inactivas expiren. Spring Session lo gestiona actualizando el TTL en Redis en cada request."
+  },
+  {
+    "id": 41,
+    "level": "Junior",
+    "category": "Spring Security Core",
+    "question": "¿Qué hace @EnableWebSecurity en Spring Boot 3.x y es obligatoria incluirla?",
+    "code": "@Configuration\n@EnableWebSecurity\npublic class SecurityConfig { ... }",
+    "options": [
+      "Es obligatoria — sin ella Spring Security no funciona en absoluto",
+      "Habilita la configuración de seguridad web personalizada. En Spring Boot 3.x ya se autoconfigura, pero se recomienda incluirla para documentar explícitamente la intención",
+      "Solo es necesaria en aplicaciones con formulario de login, no en APIs REST",
+      "Reemplaza completamente a @Configuration cuando se usa Spring Security"
+    ],
+    "correct": 1,
+    "explanation": "@EnableWebSecurity habilita la infraestructura de seguridad web de Spring. En Spring Boot 3.x se puede omitir porque la autoconfiguración la activa si detecta spring-boot-starter-security, pero incluirla explícitamente es una buena práctica: comunica claramente la intención de configuración personalizada y evita ambigüedades con el comportamiento por defecto."
+  },
+  {
+    "id": 42,
+    "level": "Mid",
+    "category": "Spring Security Core",
+    "question": "¿Cómo configuras múltiples SecurityFilterChain en Spring Security 6.x y cuándo es útil?",
+    "code": "@Bean @Order(1)\npublic SecurityFilterChain apiChain(HttpSecurity http) throws Exception {\n  http.securityMatcher(\"/api/**\").csrf(csrf -> csrf.disable());\n  return http.build();\n}\n\n@Bean @Order(2)\npublic SecurityFilterChain webChain(HttpSecurity http) throws Exception {\n  http.securityMatcher(\"/**\");\n  return http.build();\n}",
+    "options": [
+      "No es posible tener múltiples SecurityFilterChain en el mismo contexto de Spring",
+      "Se configuran en archivos XML separados que Spring Security combina en runtime",
+      "Se exponen múltiples beans SecurityFilterChain con @Order para prioridad. Útil cuando /api/** necesita JWT stateless y /** necesita sesiones con formulario de login",
+      "Solo es posible con spring-security-multiple-chains, una dependencia adicional"
+    ],
+    "correct": 2,
+    "explanation": "Spring Security 6.x permite múltiples SecurityFilterChain usando @Order para definir prioridad y securityMatcher() para definir qué paths aplica a cada cadena. Caso de uso clásico: una API REST (/api/**) con JWT stateless y una app web (/**) con formulario de login y sesiones HTTP. Cada chain tiene configuración completamente independiente."
+  },
+  {
+    "id": 43,
+    "level": "Junior",
+    "category": "JWT",
+    "question": "¿Dónde debe almacenar el cliente un JWT y cuáles son las implicaciones de seguridad de cada opción?",
+    "code": null,
+    "options": [
+      "Solo en el servidor — el cliente no debe guardar tokens bajo ninguna circunstancia",
+      "localStorage: vulnerable a XSS. Cookie httpOnly: resistente a XSS pero vulnerable a CSRF. Memory (variable JS): más seguro pero se pierde al recargar la página",
+      "Solo en cookies — es el único lugar seguro para tokens en aplicaciones web modernas",
+      "En el SessionStorage del browser — está aislado por pestaña y es el estándar recomendado"
+    ],
+    "correct": 1,
+    "explanation": "Opciones de almacenamiento: localStorage/sessionStorage — accesible por JS, vulnerable a ataques XSS. Cookie httpOnly + Secure — inaccesible por JS (mitiga XSS), pero vulnerable a CSRF si no se protege; requiere SameSite=Strict/Lax. Memory (variable JS) — más seguro, pero el token se pierde al recargar. No hay opción perfecta; la elección depende del threat model de tu aplicación."
+  },
+  {
+    "id": 44,
+    "level": "Mid",
+    "category": "HTTP Sessions",
+    "question": "¿Por qué no necesitas un método @RequestMapping para el endpoint /auth/logout cuando usas Spring Session?",
+    "code": "// En SecurityConfig — Spring Security lo maneja en el filter chain:\nhttp.logout(logout -> logout\n  .logoutUrl(\"/auth/logout\")\n  .invalidateHttpSession(true)\n  .deleteCookies(\"SESSION\"));",
+    "options": [
+      "Sí necesitas un método en el controller — es obligatorio para que Spring lo registre",
+      "Spring Security intercepta /auth/logout en la capa de filtros, antes del DispatcherServlet — nunca llega al controller",
+      "El endpoint de logout se configura automáticamente sin ninguna anotación adicional en ningún lugar",
+      "Se requiere un @RestController vacío con @RequestMapping('/auth/logout') para que funcione"
+    ],
+    "correct": 1,
+    "explanation": "Spring Security intercepta los requests ANTES de que lleguen al DispatcherServlet. El LogoutFilter en la cadena de filtros captura el request a /auth/logout, ejecuta la lógica de logout (invalidar sesión, borrar cookie) y retorna la respuesta directamente. Si defines un método en un controller con esa URL, nunca se ejecutará porque el filtro ya consumió el request."
+  },
+  {
+    "id": 45,
+    "level": "Mid",
+    "category": "Spring Security Core",
+    "question": "¿Qué es el SecurityContext y cómo funciona el ThreadLocal storage en aplicaciones multi-thread?",
+    "code": "// El SecurityContext se asocia al thread del request:\nSecurityContextHolder.getContext().getAuthentication()",
+    "options": [
+      "El SecurityContext es global y compartido entre todos los threads de la aplicación",
+      "El SecurityContext se almacena en Redis para ser compartido entre instancias",
+      "Por defecto usa ThreadLocal: cada thread tiene su propio SecurityContext. El contexto del usuario autenticado solo es accesible en el thread que maneja ese request",
+      "Spring crea un nuevo SecurityContext por cada usuario registrado en el sistema"
+    ],
+    "correct": 2,
+    "explanation": "Por defecto SecurityContextHolder usa MODE_THREADLOCAL: cada thread tiene su propio SecurityContext aislado. El thread que maneja el request tiene acceso al contexto del usuario autenticado; otros threads no. Importante en apps async: si usas @Async o CompletableFuture, el nuevo thread NO hereda automáticamente el SecurityContext — debes propagarlo manualmente o usar MODE_INHERITABLETHREADLOCAL."
+  }
+]

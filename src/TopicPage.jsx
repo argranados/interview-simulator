@@ -8,6 +8,10 @@ export default function TopicPage({ onSelect, onRepaso }) {
         { id: 'unit_testing', title: 'Unit Testing', emoji: '🧪', description: 'JUnit, Mockito, TDD', available: true },
         { id: 'devops_java', title: 'DevOps Java', emoji: '🚀', description: 'CI/CD, Docker, Kubernetes', available: true },
         { id: 'aws_java', title: 'AWS Java Backend', emoji: '☁️', description: 'Lambda, RDS, S3, EC2', available: true },
+        { id: 'spring_security_1', title: 'Spring Security 1', emoji: '🔐', description: 'Core, JWT, Sessions', available: true },
+        { id: 'spring_security_2', title: 'Spring Security 2', emoji: '🛡️', description: 'OAuth2/OIDC — Keycloak, Auth0, Cognito', available: true },
+        { id: 'spring_data', title: 'Spring Data', emoji: '💾', description: 'JPA, Repositories, Transacciones', available: true },
+        { id: 'event_driven', title: 'Event-Driven', emoji: '📡', description: 'Kafka, RabbitMQ, Mensajería', available: true },
     ]
 
     return (

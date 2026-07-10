@@ -1,0 +1,632 @@
+[
+  {
+    "id": 1,
+    "level": "Junior",
+    "category": "OAuth2 / OIDC Fundamentals",
+    "question": "¿Cuál es la diferencia fundamental entre OAuth2 y OpenID Connect (OIDC)?",
+    "code": null,
+    "options": [
+      "Son exactamente lo mismo — OIDC es solo el nombre moderno de OAuth2",
+      "OAuth2 es un protocolo de autorización (acceso a recursos). OIDC es una capa de identidad construida sobre OAuth2 que añade autenticación y el ID Token",
+      "OAuth2 maneja passwords, OIDC maneja tokens",
+      "OIDC reemplaza a OAuth2 — OAuth2 ya no se usa en producción"
+    ],
+    "correct": 1,
+    "explanation": "OAuth2 resuelve autorización: 'Esta app puede leer tus archivos de Drive'. No dice nada de quién eres. OIDC añade autenticación: introduce el id_token (con claims de identidad como email, name) y el endpoint /userinfo. Todos los providers modernos (Keycloak, Auth0, Cognito) implementan ambos. Cuando haces login con Google en una app, estás usando OIDC sobre OAuth2."
+  },
+  {
+    "id": 2,
+    "level": "Junior",
+    "category": "OAuth2 / OIDC Fundamentals",
+    "question": "¿Qué es el Authorization Code Flow y cuándo se usa?",
+    "code": null,
+    "options": [
+      "Es el flujo donde el cliente manda usuario y password directamente al Authorization Server — el más simple",
+      "Es el flujo exclusivo para microservicios — no requiere usuario humano",
+      "Es el flujo donde el token viaja en el fragment hash de la URL",
+      "Es el flujo recomendado para apps con backend. El usuario se autentica en el AS, este devuelve un code al redirect_uri, y el backend intercambia ese code por tokens usando su client_secret"
+    ],
+    "correct": 3,
+    "explanation": "Authorization Code Flow: (1) usuario va al AS con response_type=code, (2) AS autentica al usuario, (3) AS redirige con un code de un solo uso, (4) el backend intercambia el code por tokens usando client_id + client_secret. El client_secret nunca viaja al browser. Es el flujo estándar para web apps, móviles con PKCE, y cualquier app con redirect. Reemplaza al Resource Owner Password Credentials (ROPC) que se usa en los módulos del lab para pruebas con curl."
+  },
+  {
+    "id": 3,
+    "level": "Junior",
+    "category": "OAuth2 / OIDC Fundamentals",
+    "question": "¿Cuándo usarías Client Credentials Flow en lugar de Authorization Code Flow?",
+    "code": null,
+    "options": [
+      "Cuando el usuario no tiene contraseña",
+      "Client Credentials es más seguro para usuarios finales porque no hay redirect",
+      "Client Credentials es para comunicación máquina a máquina (M2M) sin usuario. El cliente usa su client_id y client_secret para obtener un token que lo identifica como aplicación",
+      "Solo cuando el Authorization Server no soporta Authorization Code"
+    ],
+    "correct": 2,
+    "explanation": "Client Credentials Flow es para service-to-service: un microservicio que llama a otro, un job nocturno que accede a una API, un lambda que consulta un servicio interno. No hay usuario humano en el flujo. El token representa la aplicación, no a una persona. En Keycloak/Auth0/Cognito configuras el client como confidencial con secret y solicitas el token con grant_type=client_credentials."
+  },
+  {
+    "id": 4,
+    "level": "Junior",
+    "category": "OAuth2 / OIDC Fundamentals",
+    "question": "¿Qué es un Authorization Server y qué es un Resource Server? ¿Son la misma app?",
+    "code": null,
+    "options": [
+      "Son la misma app — el Resource Server autentica y sirve recursos",
+      "El Authorization Server es tu app Spring Boot — genera sus propios tokens",
+      "El Authorization Server (Keycloak, Auth0, Cognito) autentica usuarios y emite tokens. El Resource Server es tu API Spring Boot — solo valida tokens y sirve recursos",
+      "Son conceptos de OAuth2 legacy — en OIDC se unificaron en un solo servidor"
+    ],
+    "correct": 2,
+    "explanation": "Son roles completamente separados. Authorization Server (AS): sabe las contraseñas, emite tokens firmados, gestiona sesiones. Resource Server (RS): tu API Spring Boot, nunca ve passwords, solo verifica que el token fue firmado por el AS de confianza usando la clave pública del JWKS endpoint. Esta separación permite que un AS sirva a múltiples Resource Servers."
+  },
+  {
+    "id": 5,
+    "level": "Junior",
+    "category": "OAuth2 / OIDC Fundamentals",
+    "question": "¿Cuáles son los tres tokens que devuelve un Authorization Server (Keycloak/Cognito/Auth0)?",
+    "code": null,
+    "options": [
+      "Solo hay un token — el JWT que sirve para todo",
+      "Access Token (autorizar APIs), ID Token (identidad del usuario, OIDC), y Refresh Token (obtener nuevos Access Tokens sin re-autenticar)",
+      "Bearer Token, JWT Token, y API Key — los tres son intercambiables",
+      "Access Token y Refresh Token — el ID Token es opcional y no se usa"
+    ],
+    "correct": 1,
+    "explanation": "Access Token: se manda en el header Authorization: Bearer ... para acceder a la API. Vida corta (5-60 min). Contiene permisos/grupos. ID Token: exclusivo de OIDC, contiene datos del usuario (email, name). No se manda a APIs — se usa por el cliente para saber quién es el usuario. Refresh Token: vida larga, se guarda de forma segura, se usa para obtener nuevos Access Tokens cuando expiran sin pedir al usuario que haga login de nuevo."
+  },
+  {
+    "id": 6,
+    "level": "Junior",
+    "category": "OAuth2 / OIDC Fundamentals",
+    "question": "¿Qué información contiene el header de un JWT y para qué sirve el campo 'kid'?",
+    "code": "// Header decodificado de un JWT\n{\n  \"alg\": \"RS256\",\n  \"kid\": \"abc123xyz\",\n  \"typ\": \"JWT\"\n}",
+    "options": [
+      "El header contiene el payload comprimido — kid es el hash del contenido",
+      "kid es el client ID de la aplicación que solicitó el token",
+      "El header del JWT contiene el algoritmo de firma (alg: RS256) y el key ID (kid). El kid identifica qué clave pública del JWKS debe usarse para verificar la firma — útil cuando el AS rota claves",
+      "El header contiene las claims del usuario — kid es el user ID"
+    ],
+    "correct": 2,
+    "explanation": "El JWT tiene 3 partes: header.payload.signature. Header: {\"alg\": \"RS256\", \"kid\": \"abc123\", \"typ\": \"JWT\"}. El kid (Key ID) le dice al Resource Server qué clave pública del JWKS usar. Cuando el AS rota sus claves (por seguridad), emite nuevos tokens con el kid de la nueva clave. El RS busca en el JWKS la clave con ese kid. Si no la tiene → recarga el JWKS del endpoint. Esto permite rotación de claves sin downtime."
+  },
+  {
+    "id": 7,
+    "level": "Junior",
+    "category": "OAuth2 / OIDC Fundamentals",
+    "question": "¿Qué es el claim 'sub' en un JWT de OAuth2 y cómo difiere entre providers?",
+    "code": null,
+    "options": [
+      "sub es el nombre del scope que autorizó el token",
+      "sub es el identificador de la aplicación cliente — no del usuario",
+      "sub es el subject — es el username del usuario y es igual en todos los providers",
+      "sub identifica al usuario dentro del Authorization Server. En Keycloak es un UUID. En Auth0 tiene formato auth0|{id}. En Cognito es un UUID diferente al username de login. Es el identificador estable — el username puede cambiar"
+    ],
+    "correct": 3,
+    "explanation": "sub = Subject Identifier. Es el identificador estable del usuario dentro del AS. Keycloak: UUID como a1b2c3d4-.... Auth0: auth0|6a14b7a114616cbf55e88267 — el prefijo identifica el connection. Cognito: UUID interno, diferente al username (que puede ser email). El sub es el campo a guardar en tu base de datos como referencia al usuario del AS — es inmutable. El email puede cambiar, el sub no."
+  },
+  {
+    "id": 8,
+    "level": "Junior",
+    "category": "Spring Boot Resource Server",
+    "question": "¿Qué dependencia necesitas en Spring Boot para actuar como Resource Server?",
+    "code": "<!-- pom.xml -->\n<dependency>\n    <groupId>org.springframework.boot</groupId>\n    <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>\n</dependency>",
+    "options": [
+      "spring-boot-starter-security únicamente",
+      "spring-boot-starter-oauth2-resource-server — incluye soporte para validar JWT externos via JWKS",
+      "spring-security-jwt — la librería de JJWT de Spring",
+      "spring-boot-starter-oauth2-client — para consumir APIs externas"
+    ],
+    "correct": 1,
+    "explanation": "La dependencia es spring-boot-starter-oauth2-resource-server. Incluye Spring Security, la integración con JOSE (JSON Object Signing and Encryption), y el soporte automático para descargar claves JWKS y validar JWT externos. Diferente de oauth2-client (para hacer login con Google en tu app) y de la librería JJWT del module-jwt (para generar tus propios tokens)."
+  },
+  {
+    "id": 9,
+    "level": "Junior",
+    "category": "Spring Boot Resource Server",
+    "question": "Con solo agregar la dependencia oauth2-resource-server, ¿qué configuración mínima necesitas en application.yml para que Spring valide tokens de Keycloak?",
+    "code": "# application.yml\nspring:\n  security:\n    oauth2:\n      resourceserver:\n        jwt:\n          issuer-uri: http://localhost:8080/realms/security-lab",
+    "options": [
+      "Solo necesitas spring.security.oauth2.resourceserver.jwt.issuer-uri apuntando al realm de Keycloak",
+      "Necesitas configurar todo: client-id, client-secret, realm, usuarios y roles",
+      "Necesitas importar el certificado RSA de Keycloak manualmente al keystore de Java",
+      "Necesitas configurar un JwtDecoder bean personalizado — Spring no lo hace automáticamente"
+    ],
+    "correct": 0,
+    "explanation": "Con spring.security.oauth2.resourceserver.jwt.issuer-uri=http://localhost:8080/realms/security-lab en tu application.yml, Spring hace todo automáticamente: descarga el JWKS endpoint (/.well-known/openid-configuration), cachea las claves públicas RSA, valida firma + expiración + issuer de cada token. Sin una sola línea de código Java adicional. Es exactamente lo que hace module-keycloak en el lab."
+  },
+  {
+    "id": 10,
+    "level": "Junior",
+    "category": "Spring Boot Resource Server",
+    "question": "¿Qué hace @AuthenticationPrincipal Jwt jwt en un controller de un Resource Server y en qué se diferencia del module-jwt?",
+    "code": "// module-keycloak / auth0 / cognito\n@GetMapping(\"/api/hello\")\npublic String hello(@AuthenticationPrincipal Jwt jwt) {\n    return jwt.getClaimAsString(\"preferred_username\");\n}\n\n// module-jwt (JWT propio)\n@GetMapping(\"/api/hello\")\npublic String hello(@AuthenticationPrincipal UserDetails user) {\n    return user.getUsername();\n}",
+    "options": [
+      "Es un shortcut para HttpServletRequest.getUserPrincipal() — es igual en todos los módulos",
+      "En module-keycloak/auth0/cognito, @AuthenticationPrincipal Jwt inyecta el JWT ya validado con todos sus claims. En module-jwt el principal era UserDetails cargado de la BD. Con JWT externo no hay UserDetailsService — el token mismo es la fuente de verdad",
+      "@AuthenticationPrincipal Jwt convierte automáticamente el JWT a UserDetails",
+      "Solo funciona con Keycloak — Auth0 y Cognito requieren @AuthenticationPrincipal OidcUser"
+    ],
+    "correct": 1,
+    "explanation": "En module-jwt: @AuthenticationPrincipal UserDetails user — el usuario viene de tu BD via UserDetailsService.loadUserByUsername(). En module-keycloak/auth0/cognito: @AuthenticationPrincipal Jwt jwt — el objeto es el token mismo. Accedes a claims con jwt.getClaimAsString(\"preferred_username\"), jwt.getClaimAsString(\"sub\"). No hay base de datos de usuarios en estos módulos — toda la información de identidad está en el token."
+  },
+  {
+    "id": 11,
+    "level": "Junior",
+    "category": "Spring Boot Resource Server",
+    "question": "¿Qué pasa en tu Resource Server cuando llega un request sin header Authorization?",
+    "code": null,
+    "options": [
+      "Spring lanza una NullPointerException — debes manejarla con @ExceptionHandler",
+      "Spring redirige al login de Keycloak — el Resource Server tiene el login embebido",
+      "Spring devuelve 401 Unauthorized automáticamente. El BearerTokenAuthenticationEntryPoint intercepta el request antes de llegar al controller y responde con el error apropiado",
+      "Spring devuelve 403 Forbidden — debes configurar explícitamente el 401"
+    ],
+    "correct": 2,
+    "explanation": "Con spring-boot-starter-oauth2-resource-server: si el endpoint requiere autenticación y no hay token → Spring devuelve 401 Unauthorized con header WWW-Authenticate: Bearer. Si hay token pero no tiene el permiso requerido → 403 Forbidden. En module-cognito/SecurityConfig.java se personaliza el authenticationEntryPoint para devolver JSON en lugar del response por defecto. El 401 nunca llega al controller — Spring Security lo intercepta en el filtro."
+  },
+  {
+    "id": 12,
+    "level": "Junior",
+    "category": "Spring Boot Resource Server",
+    "question": "¿Qué es el JwtAuthenticationConverter y cuál es su función en el flujo de validación?",
+    "code": "// Flujo simplificado\n// 1. Spring valida firma JWT via JWKS → token confiable\n// 2. JwtAuthenticationConverter recibe el Jwt validado\n// 3. Extrae claims de roles/permisos\n// 4. Crea JwtAuthenticationToken con GrantedAuthorities\n// 5. Spring lo pone en el SecurityContext",
+    "options": [
+      "Es el componente que genera el JWT — equivalente a JwtService en module-jwt",
+      "Es el filtro que intercepta el request antes de validar el token",
+      "Es equivalente al UserDetailsService — carga el usuario desde el token",
+      "JwtAuthenticationConverter traduce el JWT validado al Authentication de Spring Security. Extrae los claims del token y los convierte en GrantedAuthorities que Spring entiende para el @PreAuthorize. Sin él Spring no sabe dónde están los roles en el token"
+    ],
+    "correct": 3,
+    "explanation": "El flujo es: (1) Spring valida la firma JWT via JWKS → token confiable. (2) JwtAuthenticationConverter recibe el Jwt ya validado. (3) Extrae los claims de roles/permisos (el lugar donde están varía por provider). (4) Crea un JwtAuthenticationToken con las GrantedAuthorities. (5) Spring lo pone en el SecurityContext. Ahora @PreAuthorize(\"hasRole('ADMIN')\") puede funcionar. Sin el converter correcto → 403 aunque el token tenga el rol."
+  },
+  {
+    "id": 13,
+    "level": "Junior",
+    "category": "Keycloak",
+    "question": "¿Qué es un realm en Keycloak?",
+    "code": null,
+    "options": [
+      "Un realm es el nombre del servidor Keycloak — solo puedes tener uno",
+      "Un realm es un espacio de identidad aislado con sus propios usuarios, roles y clients. Nunca debes usar el realm master para tus aplicaciones",
+      "Un realm es equivalente a un microservicio en Keycloak",
+      "Un realm es la base de datos donde Keycloak guarda los usuarios"
+    ],
+    "correct": 1,
+    "explanation": "En el lab tienes el realm security-lab. Un realm tiene: sus propios usuarios, sus propios roles (ROLE_ADMIN, ROLE_USER), sus propios clients (la representación de tu app). El realm master es solo para administración de Keycloak — nunca crear usuarios de negocio ahí. Diferentes equipos o aplicaciones tienen diferentes realms, completamente aislados entre sí."
+  },
+  {
+    "id": 14,
+    "level": "Junior",
+    "category": "Keycloak",
+    "question": "¿Dónde vienen los roles en el JWT de Keycloak y por qué Spring necesita un converter personalizado?",
+    "code": "// JWT de Keycloak — estructura de roles anidada\n{\n  \"realm_access\": {\n    \"roles\": [\"ROLE_ADMIN\", \"ROLE_USER\"]\n  },\n  \"preferred_username\": \"admin-user\"\n}",
+    "options": [
+      "Los roles vienen en el claim scope — Spring los lee automáticamente",
+      "Los roles de Keycloak vienen anidados en realm_access.roles. Spring por defecto lee el claim scope, no realm_access, por eso se necesita un JwtAuthenticationConverter personalizado",
+      "Los roles vienen en el header del JWT, no en el payload",
+      "Keycloak usa authorities en lugar de roles — Spring los mapea automáticamente"
+    ],
+    "correct": 1,
+    "explanation": "El JWT de Keycloak tiene: realm_access: {roles: [\"ROLE_ADMIN\", \"ROLE_USER\"]}. El JwtGrantedAuthoritiesConverter por defecto de Spring lee el claim scope, no realm_access. En module-keycloak/SecurityConfig.java el converter navega manualmente: jwt.getClaimAsMap(\"realm_access\").get(\"roles\") y crea un SimpleGrantedAuthority por cada rol."
+  },
+  {
+    "id": 15,
+    "level": "Junior",
+    "category": "Keycloak",
+    "question": "¿Por qué RSA (asimétrico) es preferible a HMAC (simétrico) para tokens en arquitecturas con múltiples microservicios?",
+    "code": null,
+    "options": [
+      "Con HMAC todos los servicios que validan el token necesitan la misma clave secreta — si se la das a 10 microservicios, cualquiera de ellos podría emitir tokens falsos. Con RSA solo el AS tiene la clave privada — los microservicios solo tienen la clave pública que no sirve para emitir tokens",
+      "RSA es más rápido — por eso se usa en producción",
+      "RSA usa certificados SSL — HMAC no es compatible con HTTPS",
+      "HMAC no funciona con JWT — RSA es el único algoritmo válido según el estándar"
+    ],
+    "correct": 0,
+    "explanation": "HMAC (module-jwt): clave secreta simétrica — quien puede verificar también puede firmar. En microservicios distribuidos compartir esa clave es un riesgo enorme. RSA (Keycloak, Auth0, Cognito): clave privada solo en el AS, clave pública distribuida libremente via JWKS. 100 microservicios pueden validar tokens sin poder emitirlos. La separación de capacidades (signing vs verification) es la ventaja clave."
+  },
+  {
+    "id": 16,
+    "level": "Junior",
+    "category": "Auth0",
+    "question": "¿Qué es el audience en OAuth2 y por qué Auth0 lo requiere pero Keycloak no?",
+    "code": "// JWT de Auth0 — con audience explícito\n{\n  \"iss\": \"https://dev-xxx.us.auth0.com/\",\n  \"sub\": \"auth0|6a14b7a114616cbf55e88267\",\n  \"aud\": \"https://spring-lab-api\",\n  \"permissions\": [\"admin:data\", \"read:data\"]\n}",
+    "options": [
+      "El audience identifica para qué API fue emitido el token. Keycloak crea un realm por app — no hay ambigüedad. Auth0 tiene un tenant con múltiples APIs, así que sin audience un token de una API podría usarse en otra",
+      "El audience es el nombre del usuario que solicita el token — todos los providers lo requieren",
+      "El audience es el client_id — es lo mismo en todos los providers",
+      "Auth0 no requiere audience — es una configuración opcional igual que Keycloak"
+    ],
+    "correct": 0,
+    "explanation": "En module-auth0/SecurityConfig.java se crea un JwtDecoder personalizado que añade un audienceValidator: verifica que token.getAudience().contains(audience). Si el audience no coincide → 401 aunque la firma RSA sea válida. En Keycloak usas un realm dedicado por app — solo esa app puede tener tokens de ese realm, no hay ambigüedad posible."
+  },
+  {
+    "id": 17,
+    "level": "Junior",
+    "category": "Auth0",
+    "question": "¿Qué es RBAC y cómo se diferencia de asignar permisos directamente a usuarios?",
+    "code": null,
+    "options": [
+      "RBAC es un protocolo de seguridad — los permisos directos son la alternativa legacy",
+      "RBAC solo funciona con Keycloak — Auth0 y Cognito usan sistemas propietarios",
+      "RBAC es solo para apps enterprise — startups no lo necesitan",
+      "RBAC (Role-Based Access Control): los permisos se asignan a roles, los roles a usuarios. Un rol ADMIN tiene permisos admin:data + read:data. Cambias permisos en el rol y afectas a todos sus usuarios. Con permisos directos cada usuario tiene sus propios permisos — imposible de administrar a escala"
+    ],
+    "correct": 3,
+    "explanation": "En module-auth0 del lab: defines permissions en la API (admin:data, read:data), creas el rol admin con ambos permisos, asignas el rol a los usuarios admin. Si mañana quieres añadir un nuevo permiso export:data al rol admin: lo añades al rol y todos los admins lo tienen automáticamente. Sin RBAC: tendrías que ir usuario por usuario. En Keycloak también hay roles — es el mismo concepto con diferente implementación."
+  },
+  {
+    "id": 18,
+    "level": "Junior",
+    "category": "AWS Cognito",
+    "question": "¿Qué diferencia hay entre un User Pool y un Identity Pool en AWS Cognito?",
+    "code": null,
+    "options": [
+      "User Pool: directorio de usuarios con autenticación (login, tokens JWT). Identity Pool: intercambia tokens por credenciales temporales de AWS IAM para acceder a servicios AWS directamente",
+      "Son exactamente lo mismo — diferentes nombres para el mismo servicio",
+      "User Pool es para usuarios enterprise, Identity Pool para usuarios consumer",
+      "Identity Pool reemplaza al User Pool — es la versión moderna de Cognito"
+    ],
+    "correct": 0,
+    "explanation": "User Pool: lo que usas en module-cognito. Gestiona usuarios, passwords, grupos, emite JWT (Access Token + ID Token + Refresh Token). Identity Pool: recibe un token (de Cognito u otro provider) y lo intercambia por credenciales AWS temporales (AssumeRoleWithWebIdentity) para que el usuario pueda llamar directamente a S3, DynamoDB, etc. desde el cliente. En microservicios con Spring Boot casi siempre usas User Pools."
+  },
+  {
+    "id": 19,
+    "level": "Junior",
+    "category": "AWS Cognito",
+    "question": "¿Por qué el email no viene en el Access Token de Cognito pero sí en el ID Token?",
+    "code": "// Access Token de Cognito\n{\n  \"cognito:groups\": [\"ADMIN\"],\n  \"username\": \"a1b2c3d4-uuid\",\n  \"client_id\": \"5c95rig78...\"\n  // email NO está aquí\n}\n\n// ID Token de Cognito\n{\n  \"email\": \"admin@example.com\",\n  \"name\": \"Admin User\"\n  // datos de identidad\n}",
+    "options": [
+      "Por diseño: el Access Token es para autorizar llamadas a APIs (contiene grupos/permisos). El ID Token es para identificar al usuario (contiene email, name, phone). Spring Boot debe usar el Access Token, no el ID Token",
+      "Es un bug de AWS — el email se perdió por un error de configuración",
+      "El email viene en ambos tokens — debes buscarlo en el claim correcto",
+      "El email se desactiva por defecto por razones de privacidad de AWS"
+    ],
+    "correct": 0,
+    "explanation": "En el lab esto se descubrió cuando /api/me devolvía email: null. El Access Token tiene: cognito:groups, client_id, scope, username (UUID). El ID Token tiene: email, name, phone_number. Para la autorización de APIs siempre usa el Access Token. Si necesitas el email en tu API: (1) usa el ID Token como Bearer, o (2) llama a cognito-idp:getUser con el Access Token."
+  },
+  {
+    "id": 20,
+    "level": "Junior",
+    "category": "AWS Cognito",
+    "question": "¿Qué es el App Client de Cognito y por qué Spring Boot no necesita saber su ID?",
+    "code": null,
+    "options": [
+      "El App Client es parte de la configuración de Spring Boot — se configura en application.yml",
+      "El App Client es el registro de tu aplicación en Cognito que define qué flujos de auth puede usar. Spring Boot como Resource Server solo necesita verificar tokens — no necesita el App Client ID porque la confianza se establece via issuer-uri y JWKS",
+      "El App Client ID va en el header de cada request — Spring lo valida automáticamente",
+      "El App Client de Cognito equivale al UserDetails de Spring Security"
+    ],
+    "correct": 1,
+    "explanation": "El App Client (Cognito) / Client (Keycloak) / Application (Auth0) es quien pide tokens al AS. Tu API Spring Boot recibe tokens para validarlos — es el Resource Server, no el Client. El RS solo necesita saber que el token fue emitido por un issuer confiable (verificado via JWKS). La relación de confianza es: issuer-uri → descubrir JWKS → clave pública → verificar firma. El App Client es invisible para el RS."
+  },
+  {
+    "id": 21,
+    "level": "Junior",
+    "category": "AWS Cognito",
+    "question": "¿Cuál es el JWKS endpoint de AWS Cognito y qué contiene?",
+    "code": "# JWKS endpoint de Cognito\nhttps://cognito-idp.{region}.amazonaws.com/{userPoolId}/.well-known/jwks.json\n\n# Ejemplo real del lab\nhttps://cognito-idp.us-east-1.amazonaws.com/us-east-1_DhRbMOtES/.well-known/jwks.json",
+    "options": [
+      "https://cognito.amazonaws.com/.well-known/jwks.json — contiene los tokens activos",
+      "El JWKS endpoint de Cognito es privado — solo accesible desde dentro de AWS VPC",
+      "No existe un JWKS endpoint en Cognito — las claves se configuran manualmente",
+      "https://cognito-idp.{region}.amazonaws.com/{userPoolId}/.well-known/jwks.json — contiene las claves públicas RSA que Spring usa para verificar firmas de tokens del User Pool"
+    ],
+    "correct": 3,
+    "explanation": "El JWKS de Cognito tiene la forma: https://cognito-idp.us-east-1.amazonaws.com/us-east-1_DhRbMOtES/.well-known/jwks.json. Contiene las claves públicas RSA de AWS en formato JSON Web Key Set. Spring lo descubre automáticamente a partir del issuer-uri configurado en el application.yml del módulo. Spring añade /.well-known/openid-configuration al issuer para descubrir todos los endpoints del AS."
+  },
+  {
+    "id": 22,
+    "level": "Mid",
+    "category": "Spring Boot Resource Server",
+    "question": "¿Cómo funciona el JWKS endpoint y por qué Spring solo contacta al Authorization Server una vez?",
+    "code": null,
+    "options": [
+      "Spring descarga las claves públicas RSA del JWKS endpoint al arrancar y las cachea. Cada request valida la firma localmente sin contactar al AS. Si el AS rota claves, Spring recarga via kid",
+      "Spring verifica cada token consultando al Authorization Server en cada request — necesita confirmar que el token sigue siendo válido",
+      "Spring guarda los tokens en Redis para no tener que verificarlos en cada request",
+      "Spring usa el client_secret del AS para verificar los tokens — no necesita el JWKS"
+    ],
+    "correct": 0,
+    "explanation": "El flujo real: (1) al arrancar, Spring llama a /.well-known/openid-configuration para descubrir el JWKS URI, (2) descarga las claves públicas RSA (JSON Web Key Set), (3) cachea las claves en memoria. Cada request siguiente: verifica la firma RSA del JWT localmente, sin red. Si el AS rota claves, el JWT trae un kid en el header — Spring usa ese kid para saber qué clave usar y puede recargar el JWKS si no tiene esa key. En Cognito el JWKS está en: https://cognito-idp.{region}.amazonaws.com/{userPoolId}/.well-known/jwks.json."
+  },
+  {
+    "id": 23,
+    "level": "Mid",
+    "category": "Spring Boot Resource Server",
+    "question": "¿Cuál es la diferencia entre hasRole('ADMIN') y hasAuthority('admin:data') en Spring Security?",
+    "code": "// Keycloak — roles con prefijo ROLE_\n@PreAuthorize(\"hasRole('ROLE_ADMIN')\")\n\n// Auth0 — permisos resource:action sin prefijo\n@PreAuthorize(\"hasAuthority('admin:data')\")",
+    "options": [
+      "hasRole('X') busca internamente 'ROLE_X'. hasAuthority('X') busca el valor exacto 'X'. Con Keycloak usas hasRole porque los roles llevan el prefijo ROLE_. Con Auth0 usas hasAuthority porque los permisos son 'resource:action' sin prefijo",
+      "Son equivalentes — hasRole y hasAuthority hacen exactamente lo mismo",
+      "hasRole solo funciona con JWT propio, hasAuthority solo con JWT externo",
+      "hasAuthority es para JWT, hasRole es para sesiones HTTP"
+    ],
+    "correct": 0,
+    "explanation": "En el lab: module-keycloak usa @PreAuthorize(\"hasRole('ROLE_ADMIN')\") — Spring busca ROLE_ROLE_ADMIN internamente... ¡ojo! Por eso en el converter de Keycloak se dejan los roles tal como vienen (ROLE_ADMIN) y en el @PreAuthorize se pasa solo 'ROLE_ADMIN'. module-auth0 usa @PreAuthorize(\"hasAuthority('admin:data')\") porque los permisos de Auth0 son admin:data, read:data — sin prefijo ROLE_."
+  },
+  {
+    "id": 24,
+    "level": "Mid",
+    "category": "Spring Boot Resource Server",
+    "question": "En module-auth0 se usa DelegatingOAuth2TokenValidator. ¿Qué problema resuelve?",
+    "code": "// module-auth0/SecurityConfig.java\nOAuth2TokenValidator<Jwt> withIssuer =\n    JwtValidators.createDefaultWithIssuer(issuer);\n\nOAuth2TokenValidator<Jwt> audienceValidator =\n    token -> token.getAudience().contains(audience)\n        ? OAuth2TokenValidatorResult.success()\n        : OAuth2TokenValidatorResult.failure(...);\n\ndecoder.setJwtValidator(\n    new DelegatingOAuth2TokenValidator<>(withIssuer, audienceValidator));",
+    "options": [
+      "Permite que múltiples Resource Servers compartan el mismo token",
+      "DelegatingOAuth2TokenValidator reemplaza al JwtDecoder cuando hay múltiples audiences",
+      "Permite componer múltiples validadores de token — el issuer validator de Spring más el audience validator personalizado — ejecutados en cadena",
+      "Es obligatorio en Auth0 pero no en Keycloak porque Auth0 usa un algoritmo diferente"
+    ],
+    "correct": 2,
+    "explanation": "En module-auth0/SecurityConfig.java: new DelegatingOAuth2TokenValidator<>(withIssuer, audienceValidator). Spring ya incluye un validator de issuer y expiración (JwtValidators.createDefaultWithIssuer(issuer)). El audienceValidator personalizado verifica el claim aud. El Delegating combina ambos — si cualquiera falla, el token es rechazado. Este patrón permite añadir validaciones adicionales (custom claims, scope requerido) sin reemplazar las validaciones por defecto."
+  },
+  {
+    "id": 25,
+    "level": "Mid",
+    "category": "Spring Boot Resource Server",
+    "question": "¿Por qué en module-keycloak no necesitas un JwtDecoder bean personalizado pero en module-auth0 sí?",
+    "code": null,
+    "options": [
+      "Keycloak usa HMAC y Auth0 usa RSA — el decoder cambia según el algoritmo",
+      "El JwtDecoder personalizado de Auth0 es por una limitación de la versión de Spring",
+      "En Keycloak un realm es solo para tu app — no hay validación de audience necesaria. En Auth0 un tenant tiene múltiples APIs, así que necesitas el JwtDecoder personalizado para añadir la validación de audience que Spring no hace por defecto",
+      "En Keycloak el issuer-uri es suficiente para todo — Auth0 tiene un formato de issuer diferente que Spring no puede descubrir automáticamente"
+    ],
+    "correct": 2,
+    "explanation": "En module-keycloak: solo issuer-uri en el YAML — Spring crea el JwtDecoder automáticamente con validación de firma + issuer + expiración. En module-auth0: el @Bean JwtDecoder personalizado añade el audienceValidator porque sin él un token de otra API del mismo tenant sería aceptado. La regla: si solo necesitas validar firma + issuer → configuración automática. Si necesitas validaciones adicionales (audience, custom claims) → JwtDecoder personalizado."
+  },
+  {
+    "id": 26,
+    "level": "Mid",
+    "category": "Spring Boot Resource Server",
+    "question": "¿Qué pasa si Keycloak se cae mientras tu Resource Server está en producción recibiendo requests?",
+    "code": null,
+    "options": [
+      "Todos los requests fallan inmediatamente porque Spring consulta a Keycloak en cada request",
+      "Solo fallan los requests de usuarios nuevos — los usuarios con sesión activa siguen sin problema",
+      "Spring reinicia automáticamente cuando detecta que Keycloak no está disponible",
+      "Los tokens existentes siguen siendo válidos hasta que expiren — Spring ya tiene las claves públicas cacheadas y valida localmente sin necesitar a Keycloak"
+    ],
+    "correct": 3,
+    "explanation": "Stateless es la clave. Spring cachea las claves públicas RSA de Keycloak al arrancar. La validación de tokens es 100% local — no hay red involucrada en cada request. Si Keycloak cae: nuevos logins fallan (el usuario no puede autenticarse), pero requests con tokens válidos existentes siguen funcionando perfectamente hasta que esos tokens expiren. Esta es una de las ventajas del patrón Resource Server con JWT vs sesiones centralizadas."
+  },
+  {
+    "id": 27,
+    "level": "Mid",
+    "category": "Spring Boot Resource Server",
+    "question": "¿Por qué SessionCreationPolicy.STATELESS es obligatorio en un Resource Server con JWT externo?",
+    "code": "// module-keycloak / auth0 / cognito — siempre presente\n.sessionManagement(session -> session\n    .sessionCreationPolicy(SessionCreationPolicy.STATELESS))",
+    "options": [
+      "Con STATELESS Spring no crea HttpSession. Un Resource Server que valida JWT no necesita sesiones — el estado del usuario está en el token. Si se crean sesiones se rompe la naturaleza stateless del sistema: sticky sessions, coordinación de estado, escalado complejo",
+      "Es solo una optimización de performance — funciona igual sin ella",
+      "STATELESS es necesario porque JWT no soporta cookies",
+      "Solo es necesaria con HTTPS — con HTTP Spring puede manejar las sesiones de forma segura"
+    ],
+    "correct": 0,
+    "explanation": "Con SessionCreationPolicy.STATELESS: (1) Spring no crea HttpSession. (2) Cada request es autónomo — el token contiene todo. (3) Cualquier instancia puede atender cualquier request. Sin STATELESS: Spring podría crear sesiones en ciertos flujos de Spring Security, rompiendo el modelo. En los tres módulos del lab (module-keycloak, module-auth0, module-cognito) siempre ves .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS)). Es parte del contrato de un Resource Server."
+  },
+  {
+    "id": 28,
+    "level": "Mid",
+    "category": "Keycloak",
+    "question": "¿Cuál es la diferencia entre un client público y un client confidencial en Keycloak?",
+    "code": null,
+    "options": [
+      "Client público tiene más permisos — confidencial tiene menos. Es solo sobre autorización",
+      "Client público: sin client_secret (SPAs, mobile apps — el código es público). Client confidencial: con client_secret (backends — puede guardar secretos de forma segura). La diferencia impacta qué flows son seguros usar",
+      "Un client confidencial siempre tiene HTTPS — el público puede usar HTTP",
+      "Solo los clients confidenciales pueden usar JWT — los públicos solo opaque tokens"
+    ],
+    "correct": 1,
+    "explanation": "Client público: una SPA o app móvil no puede guardar un secret de forma segura (el código es inspeccionable). Usan PKCE con Authorization Code Flow. Client confidencial: un backend (tu microservicio Spring Boot) puede guardar el client_secret de forma segura en variables de entorno. En el lab, tu Spring Boot es el Resource Server — no el client. El client es quien pide el token al AS. Entender esta distinción es crítico para diseñar flujos OAuth2 correctamente."
+  },
+  {
+    "id": 29,
+    "level": "Mid",
+    "category": "Keycloak",
+    "question": "¿Cómo invalidas un token de Keycloak y por qué esto es diferente a invalidar un JWT puro?",
+    "code": "# Logout en Keycloak — invalida la sesión\nPOST /realms/{realm}/protocol/openid-connect/logout\nContent-Type: application/x-www-form-urlencoded\n\nclient_id=spring-lab-client&refresh_token={refreshToken}",
+    "options": [
+      "No se puede invalidar un token de Keycloak — todos los JWT son irrevocables por diseño",
+      "Solo puedes invalidar tokens de Keycloak borrando el usuario del realm",
+      "Keycloak mantiene sesiones en su base de datos — puedes hacer logout via el endpoint /logout que invalida la sesión. El Resource Server puede verificar el estado via introspection. Un JWT puro (module-jwt) no puede invalidarse — solo esperar que expire",
+      "Keycloak invalida tokens automáticamente cuando el usuario cierra el navegador"
+    ],
+    "correct": 2,
+    "explanation": "JWT puro (module-jwt): stateless total — no hay forma de invalidar antes de expirar. Si alguien roba el token, tiene acceso hasta que expire. Keycloak: mantiene sesiones activas en su BD. Al hacer logout: POST /realms/{realm}/protocol/openid-connect/logout con el refresh token → Keycloak invalida la sesión. Opción adicional: token introspection endpoint — el RS llama a Keycloak por cada request para verificar si el token sigue activo (añade latencia). Compromiso: stateless es más rápido, stateful permite revocación inmediata."
+  },
+  {
+    "id": 30,
+    "level": "Mid",
+    "category": "Auth0",
+    "question": "En Auth0, ¿cuál es la diferencia en cómo se configuran los permisos vs roles en comparación con Keycloak?",
+    "code": null,
+    "options": [
+      "En Auth0 y Keycloak los permisos se configuran de la misma manera — son estándares de OIDC",
+      "En Auth0 los roles se llaman scopes — son lo mismo que en Keycloak pero con diferente nombre",
+      "Auth0 no soporta RBAC — solo tiene scopes planos",
+      "En Auth0: los permissions se definen en la API (resource:action), los roles agrupan permissions, y debes habilitar RBAC + 'Add Permissions in Access Token' para que viajen en el JWT. En Keycloak: los roles se definen en el realm y vienen automáticamente en realm_access.roles"
+    ],
+    "correct": 3,
+    "explanation": "En Auth0 del lab: (1) defines permissions en la API (admin:data, read:data), (2) creas roles que agrupan permissions, (3) asignas roles a usuarios, (4) debes activar 'Enable RBAC' y 'Add Permissions in the Access Token' en la API — sin esto los permissions no vienen en el JWT. En Keycloak los roles son ciudadanos de primera clase del realm — vienen en el token sin configuración adicional."
+  },
+  {
+    "id": 31,
+    "level": "Mid",
+    "category": "Auth0",
+    "question": "¿Por qué Auth0 no incluye el username/email en el Access Token por defecto y cómo lo obtienes si lo necesitas?",
+    "code": "// JWT de Auth0 — solo sub, sin email\n{\n  \"iss\": \"https://dev-xxx.us.auth0.com/\",\n  \"sub\": \"auth0|6a14b7a114616cbf55e88267\",\n  \"aud\": \"https://spring-lab-api\",\n  \"permissions\": [\"admin:data\", \"read:data\"]\n  // email NO está por defecto\n}",
+    "options": [
+      "Por diseño: el Access Token es para autorizar, no para identificar. El email en el Access Token puede ser PII innecesaria para la API. Puedes añadirlo con una Action de Auth0, llamar al endpoint /userinfo, o usar el ID Token",
+      "Es un bug de Auth0 que se soluciona activando una opción en el dashboard",
+      "El email siempre viene en el claim 'email' — debes buscarlo correctamente",
+      "Auth0 necesita que actives el scope 'email' en el client — entonces viene automáticamente"
+    ],
+    "correct": 0,
+    "explanation": "Auth0 Access Token por defecto: sub, aud, iss, permissions. No incluye email ni name. Razones: (1) Principio de mínimo privilegio — la API no necesita el email para autorizar. (2) El email puede cambiar — sub es el identificador estable. Opciones: (1) Action de Auth0: añadir claims custom al token con una función serverless. (2) /userinfo: GET https://tenant.auth0.com/userinfo con el Access Token → devuelve los datos del usuario. (3) ID Token: si el cliente necesita el email (frontend), usa el ID Token — no lo mandes a tu API."
+  },
+  {
+    "id": 32,
+    "level": "Mid",
+    "category": "Auth0",
+    "question": "Un token de Auth0 llega a tu Resource Server con la firma RSA válida y el issuer correcto, pero tu app lo rechaza con 401. ¿Qué es lo más probable que esté mal?",
+    "code": null,
+    "options": [
+      "El algoritmo de firma es incompatible — Auth0 usa ES256 pero Spring solo soporta RS256",
+      "El token está expirado — Auth0 no envía el claim exp correctamente",
+      "El audience no coincide — el token fue emitido para otra API del mismo tenant de Auth0. El JwtDecoder personalizado de module-auth0 valida que el claim aud contenga el audience configurado",
+      "El issuer tiene un slash extra al final — Auth0 añade un / que Spring no acepta"
+    ],
+    "correct": 2,
+    "explanation": "Caso real del lab: en Auth0 un mismo tenant puede tener múltiples APIs, cada una con su audience. Si un cliente obtiene un token para la API https://spring-lab-api pero lo manda a una app que espera https://mi-otra-api, el audienceValidator lo rechaza aunque la firma sea perfectamente válida. Síntoma: 401 con mensaje invalid_token: Audience inválido. Fix: verificar que el cliente está pidiendo el token con el audience correcto al AS de Auth0."
+  },
+  {
+    "id": 33,
+    "level": "Mid",
+    "category": "AWS Cognito",
+    "question": "¿Cuál es la diferencia entre USER_PASSWORD_AUTH y USER_SRP_AUTH en Cognito?",
+    "code": "# USER_PASSWORD_AUTH — password viaja en texto claro (solo para pruebas)\naws cognito-idp initiate-auth \\\n  --auth-flow USER_PASSWORD_AUTH \\\n  --auth-parameters USERNAME=admin@example.com,PASSWORD=Password123!\n\n# USER_SRP_AUTH — producción: password nunca se transmite",
+    "options": [
+      "USER_SRP_AUTH es más lento y solo se usa en development — en producción siempre USER_PASSWORD_AUTH",
+      "Son idénticos en seguridad — la diferencia es solo sintáctica",
+      "USER_SRP_AUTH requiere HTTPS — USER_PASSWORD_AUTH puede usarse con HTTP",
+      "USER_PASSWORD_AUTH: el password viaja en texto claro en el request HTTP (útil para pruebas con curl). USER_SRP_AUTH: Secure Remote Password — el password se verifica criptográficamente sin transmitirlo. En producción siempre USER_SRP_AUTH"
+    ],
+    "correct": 3,
+    "explanation": "En el lab usas ALLOW_USER_PASSWORD_AUTH para poder hacer pruebas con curl: el password viaja en el body del request. En producción nunca hagas esto — usa USER_SRP_AUTH donde el cliente y Cognito hacen un protocolo matemático que verifica el password sin transmitirlo, ni siquiera encriptado. USER_SRP_AUTH es el default de los SDKs oficiales de AWS (Amplify, etc.)."
+  },
+  {
+    "id": 34,
+    "level": "Mid",
+    "category": "AWS Cognito",
+    "question": "¿Cómo mapea module-cognito los grupos de Cognito a roles de Spring Security?",
+    "code": "// module-cognito/SecurityConfig.java\nconverter.setJwtGrantedAuthoritiesConverter(jwt -> {\n    List<String> groups = jwt.getClaimAsStringList(\"cognito:groups\");\n    if (groups == null) return List.of();\n    return groups.stream()\n        .map(group -> new SimpleGrantedAuthority(\"ROLE_\" + group))\n        .collect(Collectors.toList());\n});",
+    "options": [
+      "Cognito envía los roles con el prefijo ROLE_ automáticamente — Spring los lee sin configuración",
+      "El JwtAuthenticationConverter lee el claim cognito:groups (lista plana) y crea SimpleGrantedAuthority añadiendo el prefijo ROLE_ manualmente. Keycloak los mandaba anidados en realm_access.roles",
+      "Spring lee automáticamente el claim cognito:groups sin necesidad de converter",
+      "Cognito no soporta roles — se implementan con custom claims en el ID Token"
+    ],
+    "correct": 1,
+    "explanation": "En module-cognito/SecurityConfig.java: jwt.getClaimAsStringList(\"cognito:groups\") → new SimpleGrantedAuthority(\"ROLE_\" + group). Diferencia vs Keycloak: Cognito manda grupos como lista plana [\"ADMIN\", \"USER\"], Keycloak los manda anidados realm_access: {roles: [\"ROLE_ADMIN\"]}. Cognito no añade el prefijo ROLE_ — tu converter lo añade. Por eso en el @PreAuthorize usas hasRole('ADMIN') (Spring internamente busca ROLE_ADMIN)."
+  },
+  {
+    "id": 35,
+    "level": "Mid",
+    "category": "Decisiones de Arquitectura",
+    "question": "Tienes un startup con 3 desarrolladores y necesitas auth rápido con social login. ¿Qué provider eliges?",
+    "code": null,
+    "options": [
+      "Implementar tu propio OAuth2 con Spring Authorization Server — das control total",
+      "Keycloak — es open source y no tiene costo de licencia",
+      "Auth0 o Cognito — son SaaS, no requieren operar infraestructura. Auth0 tiene social login configurable en minutos, tier gratuito generoso para MVPs. Cognito integra bien si ya usas AWS. Keycloak requiere que tú lo operes y es overhead para un equipo pequeño",
+      "Keycloak — es el más flexible y se puede configurar para social login"
+    ],
+    "correct": 2,
+    "explanation": "Para un startup pequeño: el costo operativo de Keycloak (configuración, actualizaciones, backups, HA) no vale la pena. Auth0: developer experience excelente, social login en 2 clics, hasta 7,500 MAU gratis. Cognito: si ya usas AWS es la opción natural, buen precio a escala, integración nativa con API Gateway, Lambda. La regla general: SaaS cuando no tienes equipo de infraestructura dedicado, self-hosted cuando tienes requisitos de compliance o costos que justifican la operación."
+  },
+  {
+    "id": 36,
+    "level": "Mid",
+    "category": "Decisiones de Arquitectura",
+    "question": "¿Cuándo tiene sentido usar Keycloak self-hosted sobre Auth0 o Cognito?",
+    "code": null,
+    "options": [
+      "Cuando tienes requisitos de compliance (datos no pueden salir de tu datacenter), control total sobre el proveedor de identidad, empresa con equipo de infraestructura capaz de operarlo, o costos de MAU que hacen inviable Auth0/Cognito a escala",
+      "Nunca — los servicios SaaS siempre son superiores en seguridad y costo",
+      "Solo cuando el equipo ya conoce Keycloak — no hay razón técnica",
+      "Cuando necesitas Federation con LDAP/Active Directory — es la única opción"
+    ],
+    "correct": 0,
+    "explanation": "Casos reales para Keycloak: (1) Compliance: banca, salud, gobierno — datos de identidad no pueden estar en servidores de terceros. (2) Costo a escala: Auth0 cobra por MAU — a 100k+ usuarios el costo puede superar el costo de operar Keycloak. (3) Customización profunda: flujos de autenticación complejos, federación con LDAP/AD internal. (4) On-premise: infraestructura sin internet. Keycloak es muy común en empresas grandes de México/LATAM por compliance y control de datos."
+  },
+  {
+    "id": 37,
+    "level": "Mid",
+    "category": "Decisiones de Arquitectura",
+    "question": "¿Qué ventaja tiene JWT + JWKS sobre el enfoque stateful de HTTP Sessions para microservicios distribuidos?",
+    "code": null,
+    "options": [
+      "JWT es siempre más seguro — las sessions nunca deben usarse con microservicios",
+      "JWT es mejor porque nunca expiran — las sessions sí tienen timeout",
+      "Con JWT + JWKS cada instancia valida el token localmente sin estado compartido. No hay un Redis central que sea punto de falla. Cualquier instancia puede validar cualquier token. Las sessions requieren que todas las instancias compartan el mismo store de sesiones",
+      "JWT es más rápido porque el token contiene toda la información — con sessions hay que ir a base de datos"
+    ],
+    "correct": 2,
+    "explanation": "En el contexto de microservicios: JWT + JWKS: el Resource Server cachea la clave pública, valida el token localmente, no hay I/O por request. Escala horizontalmente sin coordinación. HTTP Sessions: requieren Redis compartido (o sticky sessions que rompen el load balancing). El Redis es un punto de falla y un bottleneck. JWT tiene el costo de no poder invalidar tokens antes de expirar — compromiso clásico de disponibilidad vs control inmediato."
+  },
+  {
+    "id": 38,
+    "level": "Mid",
+    "category": "Decisiones de Arquitectura",
+    "question": "Tienes un monolito Spring Boot con 50k usuarios en AWS. El equipo quiere migrar a microservicios con auth centralizado. ¿Qué propones?",
+    "code": null,
+    "options": [
+      "Implementar JWT propio en cada microservicio — es más simple y no añade dependencias externas",
+      "Keycloak en Docker en el mismo ECS cluster — más control que Cognito",
+      "Auth0 — la única opción viable para AWS porque tiene integración nativa con todos los servicios",
+      "AWS Cognito como Authorization Server centralizado — cada microservicio es un Resource Server independiente que valida tokens localmente via JWKS. Cognito es serverless, escala automáticamente, se integra con API Gateway y otros servicios AWS"
+    ],
+    "correct": 3,
+    "explanation": "En contexto AWS: Cognito es la respuesta natural. (1) Serverless: no operas servidores de auth. (2) Escala automática. (3) Integración nativa: API Gateway puede validar tokens de Cognito directamente sin pasar por tu servicio. (4) IAM integration via Identity Pools. (5) Cada microservicio Spring Boot solo necesita issuer-uri apuntando al User Pool — valida tokens localmente. La migración es gradual: primero Cognito + monolito, luego extraer microservicios uno por uno."
+  },
+  {
+    "id": 39,
+    "level": "Mid",
+    "category": "Decisiones de Arquitectura",
+    "question": "¿Cómo evitarías que un microservicio A use el token de usuario para llamar al microservicio B en nombre propio (token confusion)?",
+    "code": null,
+    "options": [
+      "No es posible evitarlo — si tienes el token, puedes usarlo en cualquier servicio",
+      "El microservicio A debería usar Client Credentials Flow para obtener su propio token de servicio al llamar a B. O se valida el claim audience en B para que solo acepte tokens emitidos para B. El token de usuario solo debe usarse para llamadas iniciadas por el usuario",
+      "Usando Spring Security en el microservicio B para verificar que el caller es el servicio A",
+      "Desactivando el token forwarding en Spring Cloud Gateway"
+    ],
+    "correct": 1,
+    "explanation": "Token confusion attack: el microservicio A recibe el token del usuario y lo reenvía a B como si fuera él. Soluciones: (1) Audience validation: cada microservicio valida que el aud del token sea el suyo — si B recibe un token con aud=service-a, lo rechaza. (2) Client Credentials: A obtiene su propio token de servicio para llamar a B — el AS puede darle a A los permisos correctos para B. (3) Combinación: token de usuario propagado solo cuando la acción es en nombre del usuario, Client Credentials para operaciones del sistema."
+  },
+  {
+    "id": 40,
+    "level": "Mid",
+    "category": "Decisiones de Arquitectura",
+    "question": "¿Cómo manejarías la expiración del Access Token en una SPA con un Resource Server Spring Boot?",
+    "code": null,
+    "options": [
+      "El usuario hace login de nuevo cuando el token expira — es la única opción segura",
+      "El frontend guarda el Refresh Token de forma segura (httpOnly cookie o memoria). Cuando el Access Token expira (401), usa el Refresh Token para obtener uno nuevo del AS sin re-autenticar. El Resource Server no sabe nada de refresh — eso es responsabilidad del cliente y el AS",
+      "El Resource Server renueva el token automáticamente con el middleware de Spring",
+      "El Access Token nunca expira si configuramos max-age en el AS"
+    ],
+    "correct": 1,
+    "explanation": "El flujo real en producción: (1) SPA tiene Access Token (corta vida: 15-60 min) + Refresh Token (larga vida: días). (2) Request → 401 (token expirado). (3) SPA llama al AS con el Refresh Token → AS devuelve nuevo Access Token. (4) SPA reintenta el request original. El Resource Server Spring Boot es stateless — no sabe nada de refresh. El dónde guardar el Refresh Token es el debate real: httpOnly cookie (seguro vs CSRF) vs memoria (seguro vs pérdida). Nunca localStorage — XSS lo expone."
+  },
+  {
+    "id": 41,
+    "level": "Mid",
+    "category": "Spring Boot Resource Server",
+    "question": "¿Cómo cambiarías module-keycloak para que funcione con Cognito? ¿Qué archivos y líneas cambian?",
+    "code": "// Keycloak → Cognito: solo 3 cambios\n\n// 1. application.yml\nissuer-uri: https://cognito-idp.us-east-1.amazonaws.com/{userPoolId}\n\n// 2. JwtAuthenticationConverter — claim de grupos\njwt.getClaimAsStringList(\"cognito:groups\") // antes: realm_access.roles\n\n// 3. Claim de username en controller\njwt.getClaimAsString(\"username\") // antes: preferred_username",
+    "options": [
+      "Hay que reescribir todo el proyecto — la arquitectura es incompatible",
+      "Solo cambia el issuer-uri — los claims de roles son iguales en todos los providers",
+      "Necesitas añadir el SDK de AWS y reimplementar toda la validación de tokens manualmente",
+      "Solo cambia el issuer-uri en application.yml y el nombre del claim de roles en el JwtAuthenticationConverter (cognito:groups en lugar de realm_access.roles). El SecurityFilterChain, las dependencias y los endpoints son idénticos"
+    ],
+    "correct": 3,
+    "explanation": "Esta es la lección central del lab. Cambios reales: (1) issuer-uri: http://localhost:8080/realms/security-lab → https://cognito-idp.us-east-1.amazonaws.com/{userPoolId}. (2) En el converter: jwt.getClaimAsMap(\"realm_access\") → jwt.getClaimAsStringList(\"cognito:groups\") con prefijo ROLE_. (3) Username: preferred_username → username. El SecurityFilterChain, pom.xml, endpoints y el patrón general son idénticos. La dependencia es transferible entre los tres providers."
+  },
+  {
+    "id": 42,
+    "level": "Mid",
+    "category": "Keycloak",
+    "question": "¿Cuál es la diferencia entre Direct Access Grants y Authorization Code Flow en Keycloak y cuándo usas cada uno?",
+    "code": "# Direct Access Grants (ROPC) — solo para pruebas con curl\ncurl -X POST \"http://localhost:8080/realms/security-lab/protocol/openid-connect/token\" \\\n  -d \"grant_type=password&client_id=spring-lab-client&username=admin-user&password=password\"\n\n# Authorization Code Flow — producción con redirect\n# (navegador → AS → redirect_uri → intercambio de code)",
+    "options": [
+      "Direct Access Grants (Resource Owner Password Credentials): usuario/password van directo al AS — útil para pruebas con curl pero inseguro en producción (el cliente ve el password). Authorization Code Flow: el AS autentica al usuario directamente sin que el cliente vea la contraseña. Authorization Code es el estándar para producción",
+      "Son exactamente lo mismo — solo cambia el nombre del grant_type",
+      "Authorization Code Flow es solo para SPAs — microservicios siempre usan Direct Access Grants",
+      "Direct Access Grants es más seguro porque el token se obtiene en un solo paso"
+    ],
+    "correct": 0,
+    "explanation": "Direct Access Grants (grant_type=password): el cliente recibe las credenciales del usuario y las manda al AS. Útil para pruebas con curl/Postman como en el lab. En producción es un anti-patrón — el cliente ve el password y puede guardarlo. Authorization Code Flow: el usuario se autentica directamente con el AS en su propio UI — el cliente nunca ve las credenciales. La diferencia es: ¿quién ve el password del usuario? Nunca tu app en producción."
+  }
+]
