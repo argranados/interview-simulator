@@ -12,7 +12,8 @@
       "spring-boot-starter-orm"
     ],
     "correct": 2,
-    "explanation": "spring-boot-starter-data-jpa incluye Spring Data JPA, Hibernate como implementación JPA y la autoconfiguración necesaria. Es exactamente la dependencia que usa el proyecto e-commerce-lab en su pom.xml junto con el driver de PostgreSQL."
+    "explanation": "spring-boot-starter-data-jpa incluye Spring Data JPA, Hibernate como implementación JPA y la autoconfiguración necesaria. Es exactamente la dependencia que usa el proyecto e-commerce-lab en su pom.xml junto con el driver de PostgreSQL.",
+    "active": true
   },
   {
     "id": 2,
@@ -27,7 +28,8 @@
       "spring.hibernate.connection.url"
     ],
     "correct": 2,
-    "explanation": "spring.datasource.url define la URL JDBC de conexión. Para PostgreSQL el formato es: jdbc:postgresql://localhost:5432/mydb. Se complementa con spring.datasource.username y spring.datasource.password para completar la configuración de conexión."
+    "explanation": "spring.datasource.url define la URL JDBC de conexión. Para PostgreSQL el formato es: jdbc:postgresql://localhost:5432/mydb. Se complementa con spring.datasource.username y spring.datasource.password para completar la configuración de conexión.",
+    "active": true
   },
   {
     "id": 3,
@@ -42,7 +44,8 @@
       "spring.jpa.generate-ddl=true"
     ],
     "correct": 0,
-    "explanation": "spring.jpa.hibernate.ddl-auto controla el DDL: none (no modifica el esquema), validate (valida sin cambiar), update (agrega columnas nuevas sin borrar), create (recrea siempre al iniciar), create-drop (recrea y borra al cerrar). En producción usar siempre none o validate, nunca update."
+    "explanation": "spring.jpa.hibernate.ddl-auto controla el DDL: none (no modifica el esquema), validate (valida sin cambiar), update (agrega columnas nuevas sin borrar), create (recrea siempre al iniciar), create-drop (recrea y borra al cerrar). En producción usar siempre none o validate, nunca update.",
+    "active": true
   },
   {
     "id": 4,
@@ -57,7 +60,8 @@
       "hibernate.print.queries=true"
     ],
     "correct": 0,
-    "explanation": "spring.jpa.show-sql=true imprime las queries SQL generadas por Hibernate. Para ver también los parámetros y el SQL formateado se complementa con spring.jpa.properties.hibernate.format_sql=true. Es imprescindible para detectar el problema N+1 en desarrollo."
+    "explanation": "spring.jpa.show-sql=true imprime las queries SQL generadas por Hibernate. Para ver también los parámetros y el SQL formateado se complementa con spring.jpa.properties.hibernate.format_sql=true. Es imprescindible para detectar el problema N+1 en desarrollo.",
+    "active": true
   },
   {
     "id": 5,
@@ -72,7 +76,8 @@
       "@Entity"
     ],
     "correct": 3,
-    "explanation": "@Entity le indica a Hibernate que la clase debe mapearse a una tabla en la base de datos. Sin ella, JPA ignora completamente la clase. Se importa de jakarta.persistence.Entity en Spring Boot 3.x (antes era javax.persistence)."
+    "explanation": "@Entity le indica a Hibernate que la clase debe mapearse a una tabla en la base de datos. Sin ella, JPA ignora completamente la clase. Se importa de jakarta.persistence.Entity en Spring Boot 3.x (antes era javax.persistence).",
+    "active": true
   },
   {
     "id": 6,
@@ -87,7 +92,8 @@
       "Que el nombre de la tabla en la DB es products"
     ],
     "correct": 3,
-    "explanation": "@Table(name) personaliza el nombre de la tabla en la base de datos. Sin ella, Hibernate usa el nombre de la clase (Product). En el lab se usa 'products' en plural y minúsculas siguiendo la convención de nomenclatura de bases de datos relacionales."
+    "explanation": "@Table(name) personaliza el nombre de la tabla en la base de datos. Sin ella, Hibernate usa el nombre de la clase (Product). En el lab se usa 'products' en plural y minúsculas siguiendo la convención de nomenclatura de bases de datos relacionales.",
+    "active": true
   },
   {
     "id": 7,
@@ -102,7 +108,8 @@
       "Para marcar el campo como clave primaria (Primary Key)"
     ],
     "correct": 3,
-    "explanation": "@Id designa el campo como Primary Key de la tabla. Toda entidad JPA debe tener exactamente un campo @Id. Si se omite, Hibernate lanzará una excepción al iniciar la aplicación indicando que la entidad no tiene identificador definido."
+    "explanation": "@Id designa el campo como Primary Key de la tabla. Toda entidad JPA debe tener exactamente un campo @Id. Si se omite, Hibernate lanzará una excepción al iniciar la aplicación indicando que la entidad no tiene identificador definido.",
+    "active": true
   },
   {
     "id": 8,
@@ -117,7 +124,8 @@
       "TABLE — usa una tabla separada para gestionar los IDs"
     ],
     "correct": 0,
-    "explanation": "GenerationType.IDENTITY delega la generación del ID al motor de base de datos. PostgreSQL usa columnas SERIAL o BIGSERIAL (autoincrement). Es la estrategia más común con PostgreSQL y la que usa el proyecto e-commerce-lab en todas sus entidades."
+    "explanation": "GenerationType.IDENTITY delega la generación del ID al motor de base de datos. PostgreSQL usa columnas SERIAL o BIGSERIAL (autoincrement). Es la estrategia más común con PostgreSQL y la que usa el proyecto e-commerce-lab en todas sus entidades.",
+    "active": true
   },
   {
     "id": 9,
@@ -132,7 +140,8 @@
       "Define restricciones de la columna en la DB (DDL): NOT NULL y VARCHAR(150)"
     ],
     "correct": 3,
-    "explanation": "@Column personaliza la columna: nullable genera NOT NULL en el DDL, length define el tamaño del VARCHAR. Hibernate usa esto para generar el esquema y también para validar antes de hacer el INSERT. Es diferente de @NotNull de Bean Validation que opera en la capa de presentación."
+    "explanation": "@Column personaliza la columna: nullable genera NOT NULL en el DDL, length define el tamaño del VARCHAR. Hibernate usa esto para generar el esquema y también para validar antes de hacer el INSERT. Es diferente de @NotNull de Bean Validation que opera en la capa de presentación.",
+    "active": true
   },
   {
     "id": 10,
@@ -147,7 +156,8 @@
       "Guarda el nombre del enum como texto ('PENDING', 'SHIPPED'...) en la base de datos"
     ],
     "correct": 3,
-    "explanation": "EnumType.STRING guarda el nombre del enum como texto ('PENDING', 'SHIPPED', 'DELIVERED'). La alternativa EnumType.ORDINAL (0, 1, 2...) es peligrosa: si reordenas los valores del enum, los datos existentes quedan corruptos. Siempre usar STRING para mantener datos legibles y seguros ante refactorizaciones."
+    "explanation": "EnumType.STRING guarda el nombre del enum como texto ('PENDING', 'SHIPPED', 'DELIVERED'). La alternativa EnumType.ORDINAL (0, 1, 2...) es peligrosa: si reordenas los valores del enum, los datos existentes quedan corruptos. Siempre usar STRING para mantener datos legibles y seguros ante refactorizaciones.",
+    "active": true
   },
   {
     "id": 11,
@@ -162,7 +172,8 @@
       "Especifica que la FK en la tabla products se llama category_id"
     ],
     "correct": 3,
-    "explanation": "@JoinColumn(name) especifica el nombre de la columna FK en la tabla actual (products). La columna category_id en products referencia el id de la tabla categories. Sin @JoinColumn, Hibernate genera el nombre automáticamente usando la convención entidad_campo (category_id en este caso)."
+    "explanation": "@JoinColumn(name) especifica el nombre de la columna FK en la tabla actual (products). La columna category_id en products referencia el id de la tabla categories. Sin @JoinColumn, Hibernate genera el nombre automáticamente usando la convención entidad_campo (category_id en este caso).",
+    "active": true
   },
   {
     "id": 12,
@@ -177,7 +188,8 @@
       "Solo sirve para herencia de comportamiento, no de campos persistidos"
     ],
     "correct": 1,
-    "explanation": "@MappedSuperclass no crea su propia tabla. Sus campos (createdAt, updatedAt) se añaden físicamente a las tablas de cada subclase (products, orders, etc). En el lab, Product y Order extienden Auditable y sus tablas incluyen automáticamente esas columnas de auditoría."
+    "explanation": "@MappedSuperclass no crea su propia tabla. Sus campos (createdAt, updatedAt) se añaden físicamente a las tablas de cada subclase (products, orders, etc). En el lab, Product y Order extienden Auditable y sus tablas incluyen automáticamente esas columnas de auditoría.",
+    "active": true
   },
   {
     "id": 13,
@@ -192,7 +204,8 @@
       "Repository<T,ID>"
     ],
     "correct": 1,
-    "explanation": "JpaRepository es la interfaz más completa: hereda CRUD de CrudRepository, paginación de PagingAndSortingRepository y agrega métodos específicos de JPA como flush(), saveAndFlush() y findAllById(). En el lab todos los repositorios (ProductRepository, OrderRepository, etc.) extienden JpaRepository."
+    "explanation": "JpaRepository es la interfaz más completa: hereda CRUD de CrudRepository, paginación de PagingAndSortingRepository y agrega métodos específicos de JPA como flush(), saveAndFlush() y findAllById(). En el lab todos los repositorios (ProductRepository, OrderRepository, etc.) extienden JpaRepository.",
+    "active": true
   },
   {
     "id": 14,
@@ -207,7 +220,8 @@
       "Debes implementar todos los métodos manualmente en una clase @Repository"
     ],
     "correct": 2,
-    "explanation": "JpaRepository hereda métodos CRUD completos: save(), saveAll(), findById(), findAll(), findAll(Pageable), deleteById(), delete(), count(), existsById(), flush(), saveAndFlush() y más. Spring Data JPA genera la implementación en tiempo de ejecución sin necesidad de escribir código."
+    "explanation": "JpaRepository hereda métodos CRUD completos: save(), saveAll(), findById(), findAll(), findAll(Pageable), deleteById(), delete(), count(), existsById(), flush(), saveAndFlush() y más. Spring Data JPA genera la implementación en tiempo de ejecución sin necesidad de escribir código.",
+    "active": true
   },
   {
     "id": 15,
@@ -222,7 +236,8 @@
       "Un método cuyo nombre sigue convenciones y Spring genera el SQL automáticamente"
     ],
     "correct": 3,
-    "explanation": "Los Query Methods permiten que Spring Data JPA genere la consulta SQL automáticamente a partir del nombre del método. Por ejemplo: findByNameContainingIgnoreCase genera WHERE LOWER(name) LIKE LOWER('%x%'). Spring parsea el nombre, identifica las keywords y construye el JPQL correspondiente."
+    "explanation": "Los Query Methods permiten que Spring Data JPA genere la consulta SQL automáticamente a partir del nombre del método. Por ejemplo: findByNameContainingIgnoreCase genera WHERE LOWER(name) LIKE LOWER('%x%'). Spring parsea el nombre, identifica las keywords y construye el JPQL correspondiente.",
+    "active": true
   },
   {
     "id": 16,
@@ -237,7 +252,8 @@
       "SELECT name FROM products WHERE id = ?"
     ],
     "correct": 1,
-    "explanation": "findByName genera SELECT p FROM Product p WHERE p.name = ?1 en JPQL. El prefijo findBy indica búsqueda y Name mapea al campo name de la entidad Product. Retorna Optional<Product> para obligar al llamador a manejar el caso en que no exista el registro."
+    "explanation": "findByName genera SELECT p FROM Product p WHERE p.name = ?1 en JPQL. El prefijo findBy indica búsqueda y Name mapea al campo name de la entidad Product. Retorna Optional<Product> para obligar al llamador a manejar el caso en que no exista el registro.",
+    "active": true
   },
   {
     "id": 17,
@@ -252,7 +268,8 @@
       "findByNameIlike(String keyword)"
     ],
     "correct": 1,
-    "explanation": "ContainingIgnoreCase combina dos keywords: Containing genera LIKE '%x%' y IgnoreCase aplica LOWER() en ambos lados para búsqueda case-insensitive. Es exactamente el método que tiene ProductRepository en el lab. Sin IgnoreCase la búsqueda sería sensible a mayúsculas."
+    "explanation": "ContainingIgnoreCase combina dos keywords: Containing genera LIKE '%x%' y IgnoreCase aplica LOWER() en ambos lados para búsqueda case-insensitive. Es exactamente el método que tiene ProductRepository en el lab. Sin IgnoreCase la búsqueda sería sensible a mayúsculas.",
+    "active": true
   },
   {
     "id": 18,
@@ -267,13 +284,14 @@
       "Error de compilación — LessThan no es una keyword válida"
     ],
     "correct": 0,
-    "explanation": "LessThan es una keyword de Spring Data JPA que genera WHERE price < ?. Otras keywords relacionadas: GreaterThan (>), Between (BETWEEN), LessThanEqual (<=), GreaterThanEqual (>=). La combinación findByPriceLessThan es directamente legible: 'encontrar por precio menor que'."
+    "explanation": "LessThan es una keyword de Spring Data JPA que genera WHERE price < ?. Otras keywords relacionadas: GreaterThan (>), Between (BETWEEN), LessThanEqual (<=), GreaterThanEqual (>=). La combinación findByPriceLessThan es directamente legible: 'encontrar por precio menor que'.",
+    "active": true
   },
   {
     "id": 19,
     "level": "Junior",
     "category": "Query Methods",
-    "question": "¿Qué hace el keyword 'existsBy' en un query method de Spring Data JPA?",
+    "question": "FALSE ¿Qué hace el keyword 'existsBy' en un query method de Spring Data JPA?",
     "code": "boolean existsByName(String name);",
     "options": [
       "Retorna el objeto si existe, null si no existe",
@@ -282,13 +300,14 @@
       "Retorna true si existe un registro con ese nombre, false si no, sin cargar la entidad"
     ],
     "correct": 3,
-    "explanation": "existsBy genera SELECT COUNT(*) o una query EXISTS y retorna booleano sin cargar la entidad completa. Es mucho más eficiente que hacer findByName(name).isPresent() porque no hidrata el objeto. Útil para validaciones previas: '¿ya existe un producto con este nombre?'"
+    "explanation": "FALSE existsBy genera SELECT COUNT(*) o una query EXISTS y retorna booleano sin cargar la entidad completa. Es mucho más eficiente que hacer findByName(name).isPresent() porque no hidrata el objeto. Útil para validaciones previas: '¿ya existe un producto con este nombre?'",
+    "active": false
   },
   {
     "id": 20,
     "level": "Junior",
     "category": "Query Methods",
-    "question": "¿Qué hace el keyword 'countBy' en ProductRepository del proyecto e-commerce-lab?",
+    "question": "FALSE ¿Qué hace el keyword 'countBy' en ProductRepository del proyecto e-commerce-lab?",
     "code": "long countByCategory(Category category);",
     "options": [
       "Retorna una List con los productos de esa categoría",
@@ -297,7 +316,8 @@
       "Retorna el número de productos en esa categoría sin cargar las entidades"
     ],
     "correct": 3,
-    "explanation": "countBy genera SELECT COUNT(*) FROM products WHERE category_id = ? y retorna long. Eficiente cuando solo necesitas el número sin cargar los datos. Útil para validaciones ('¿puedo eliminar esta categoría? Solo si countByCategory == 0') o estadísticas de dashboard."
+    "explanation": "countBy genera SELECT COUNT(*) FROM products WHERE category_id = ? y retorna long. Eficiente cuando solo necesitas el número sin cargar los datos. Útil para validaciones ('¿puedo eliminar esta categoría? Solo si countByCategory == 0') o estadísticas de dashboard.",
+    "active": false
   },
   {
     "id": 21,
@@ -312,7 +332,8 @@
       "No tiene FetchType por defecto, siempre debes especificarlo"
     ],
     "correct": 0,
-    "explanation": "@ManyToOne default = EAGER. Esto es problemático en producción: si cargas 100 productos, cada uno trae su Category automáticamente aunque no la necesites, generando queries innecesarias. En el lab, Product define explícitamente FetchType.LAZY para evitar este comportamiento."
+    "explanation": "@ManyToOne default = EAGER. Esto es problemático en producción: si cargas 100 productos, cada uno trae su Category automáticamente aunque no la necesites, generando queries innecesarias. En el lab, Product define explícitamente FetchType.LAZY para evitar este comportamiento.",
+    "active": true
   },
   {
     "id": 22,
@@ -327,7 +348,8 @@
       "@OneToMany es LAZY, @ManyToMany es EAGER"
     ],
     "correct": 0,
-    "explanation": "@OneToMany → LAZY y @ManyToMany → LAZY. Solo @ManyToOne y @OneToOne son EAGER por defecto. La pregunta clásica de entrevista: '¿cuál es el único que es EAGER por defecto?' → @ManyToOne. La buena práctica es siempre definir explícitamente el FetchType para que el código sea autoexplicativo."
+    "explanation": "@OneToMany → LAZY y @ManyToMany → LAZY. Solo @ManyToOne y @OneToOne son EAGER por defecto. La pregunta clásica de entrevista: '¿cuál es el único que es EAGER por defecto?' → @ManyToOne. La buena práctica es siempre definir explícitamente el FetchType para que el código sea autoexplicativo.",
+    "active": true
   },
   {
     "id": 23,
@@ -342,7 +364,8 @@
       "Product es el dueño porque tiene @JoinColumn — controla la FK category_id en la tabla products"
     ],
     "correct": 3,
-    "explanation": "El dueño es quien tiene @JoinColumn — en este caso Product. La FK category_id vive en la tabla products. mappedBy = 'category' en Category le dice a Hibernate 'el dueño es el campo category en la clase Product'. El lado con mappedBy es de solo lectura en términos de la FK."
+    "explanation": "El dueño es quien tiene @JoinColumn — en este caso Product. La FK category_id vive en la tabla products. mappedBy = 'category' en Category le dice a Hibernate 'el dueño es el campo category en la clase Product'. El lado con mappedBy es de solo lectura en términos de la FK.",
+    "active": true
   },
   {
     "id": 24,
@@ -357,7 +380,8 @@
       "Dos FKs: una en products y otra en tags"
     ],
     "correct": 2,
-    "explanation": "En @ManyToMany no hay FK en ninguna de las dos tablas. Se crea una tabla intermedia product_tags con dos columnas: product_id y tag_id. @JoinTable define el nombre y las columnas de esa tabla. El lado con @JoinTable es el dueño. El otro lado (Tag) usaría mappedBy si la relación fuera bidireccional."
+    "explanation": "En @ManyToMany no hay FK en ninguna de las dos tablas. Se crea una tabla intermedia product_tags con dos columnas: product_id y tag_id. @JoinTable define el nombre y las columnas de esa tabla. El lado con @JoinTable es el dueño. El otro lado (Tag) usaría mappedBy si la relación fuera bidireccional.",
+    "active": true
   },
   {
     "id": 25,
@@ -372,7 +396,8 @@
       "Sin mappedBy la carga es EAGER por defecto"
     ],
     "correct": 0,
-    "explanation": "Sin mappedBy, Hibernate asume que la relación es unidireccional y crea una tabla intermedia (category_products) con columnas category_id y products_id, aunque ya existe la FK category_id en la tabla products. Es un error muy común. mappedBy le dice a Hibernate 'el dueño está en el otro lado, no crear tabla extra'."
+    "explanation": "Sin mappedBy, Hibernate asume que la relación es unidireccional y crea una tabla intermedia (category_products) con columnas category_id y products_id, aunque ya existe la FK category_id en la tabla products. Es un error muy común. mappedBy le dice a Hibernate 'el dueño está en el otro lado, no crear tabla extra'.",
+    "active": true
   },
   {
     "id": 26,
@@ -387,7 +412,8 @@
       "Lanza excepción porque @ManyToMany no soporta CASCADE en ningún caso"
     ],
     "correct": 0,
-    "explanation": "CascadeType.REMOVE en @ManyToMany borraría los Tags de la base de datos completos, aunque otros Products los estén referenciando. Perderías datos que no debían borrarse. En @ManyToMany solo se recomienda propagar PERSIST y MERGE. Para eliminar solo la relación, basta remover el Tag de la lista y guardar el Product."
+    "explanation": "CascadeType.REMOVE en @ManyToMany borraría los Tags de la base de datos completos, aunque otros Products los estén referenciando. Perderías datos que no debían borrarse. En @ManyToMany solo se recomienda propagar PERSIST y MERGE. Para eliminar solo la relación, basta remover el Tag de la lista y guardar el Product.",
+    "active": true
   },
   {
     "id": 27,
@@ -402,7 +428,8 @@
       "Genera los OrderItems automáticamente según los productos del catálogo"
     ],
     "correct": 2,
-    "explanation": "CascadeType.ALL propaga todas las operaciones del ciclo de vida: PERSIST (al guardar Order, guarda sus items), MERGE, REMOVE (al borrar Order, borra sus items automáticamente), REFRESH y DETACH. En el lab, orderRepository.save(order) persiste también los OrderItems sin necesidad de guardarlos individualmente."
+    "explanation": "CascadeType.ALL propaga todas las operaciones del ciclo de vida: PERSIST (al guardar Order, guarda sus items), MERGE, REMOVE (al borrar Order, borra sus items automáticamente), REFRESH y DETACH. En el lab, orderRepository.save(order) persiste también los OrderItems sin necesidad de guardarlos individualmente.",
+    "active": true
   },
   {
     "id": 28,
@@ -417,7 +444,8 @@
       "Es más lento que retornar List porque ejecuta más queries"
     ],
     "correct": 2,
-    "explanation": "Page<T> incluye el contenido de la página actual más metadata completa: totalElements (total de registros), totalPages, pageNumber, pageSize, hasNext(), hasPrevious(). Esta metadata es esencial para implementar paginación en APIs REST y mostrar navegación al usuario."
+    "explanation": "Page<T> incluye el contenido de la página actual más metadata completa: totalElements (total de registros), totalPages, pageNumber, pageSize, hasNext(), hasPrevious(). Esta metadata es esencial para implementar paginación en APIs REST y mostrar navegación al usuario.",
+    "active": true
   },
   {
     "id": 29,
@@ -432,7 +460,8 @@
       "PageRequest.of(0, 10, Sort.by(\"price\").ascending())"
     ],
     "correct": 3,
-    "explanation": "PageRequest.of(page, size, sort) es el factory method estándar. El primer argumento es el número de página (0-indexed), el segundo el tamaño de página, el tercero el sort. En el lab, ProductService usa PageRequest.of(page, size, Sort.by(\"price\").ascending()) exactamente con este patrón."
+    "explanation": "PageRequest.of(page, size, sort) es el factory method estándar. El primer argumento es el número de página (0-indexed), el segundo el tamaño de página, el tercero el sort. En el lab, ProductService usa PageRequest.of(page, size, Sort.by(\"price\").ascending()) exactamente con este patrón.",
+    "active": true
   },
   {
     "id": 30,
@@ -447,7 +476,8 @@
       "@EnableEntityListeners"
     ],
     "correct": 2,
-    "explanation": "@EnableJpaAuditing se coloca en la clase principal (la que tiene @SpringBootApplication) o en una clase @Configuration. Sin ella, las anotaciones @CreatedDate y @LastModifiedDate no funcionan — los campos quedan en null aunque estén correctamente anotados en la entidad."
+    "explanation": "@EnableJpaAuditing se coloca en la clase principal (la que tiene @SpringBootApplication) o en una clase @Configuration. Sin ella, las anotaciones @CreatedDate y @LastModifiedDate no funcionan — los campos quedan en null aunque estén correctamente anotados en la entidad.",
+    "active": true
   },
   {
     "id": 31,
@@ -462,7 +492,8 @@
       "updatable=false es redundante con @CreatedDate — son equivalentes"
     ],
     "correct": 1,
-    "explanation": "@CreatedDate rellena automáticamente el campo en el primer INSERT. updatable = false garantiza que Hibernate excluya este campo de los UPDATE — la fecha de creación nunca cambia. Sin updatable=false, un UPDATE accidental podría sobreescribir la fecha de creación original."
+    "explanation": "@CreatedDate rellena automáticamente el campo en el primer INSERT. updatable = false garantiza que Hibernate excluya este campo de los UPDATE — la fecha de creación nunca cambia. Sin updatable=false, un UPDATE accidental podría sobreescribir la fecha de creación original.",
+    "active": true
   },
   {
     "id": 32,
@@ -477,7 +508,8 @@
       "Que retorna el primer resultado si hay múltiples coincidencias"
     ],
     "correct": 0,
-    "explanation": "Optional<T> es la forma moderna de expresar que un resultado puede no existir. Obliga al llamador a manejar explícitamente el caso: findByName(name).orElseThrow(() -> new RuntimeException('Not found')). Elimina NullPointerExceptions accidentales y hace explícito el contrato del método."
+    "explanation": "Optional<T> es la forma moderna de expresar que un resultado puede no existir. Obliga al llamador a manejar explícitamente el caso: findByName(name).orElseThrow(() -> new RuntimeException('Not found')). Elimina NullPointerExceptions accidentales y hace explícito el contrato del método.",
+    "active": true
   },
   {
     "id": 33,
@@ -492,7 +524,8 @@
       "Jackson resuelve esto automáticamente con @JsonBackReference sin configuración"
     ],
     "correct": 1,
-    "explanation": "Sin manejo especial, Jackson entra en bucle infinito: serializa Product → va a Category → va a la lista de Products → regresa al Product → va a Category → StackOverflowError. Soluciones: 1) Usar DTOs (la recomendada). 2) @JsonIgnore en uno de los lados. 3) @JsonManagedReference/@JsonBackReference."
+    "explanation": "Sin manejo especial, Jackson entra en bucle infinito: serializa Product → va a Category → va a la lista de Products → regresa al Product → va a Category → StackOverflowError. Soluciones: 1) Usar DTOs (la recomendada). 2) @JsonIgnore en uno de los lados. 3) @JsonManagedReference/@JsonBackReference.",
+    "active": true
   },
   {
     "id": 34,
@@ -507,7 +540,8 @@
       "No es un problema real — Hibernate lo optimiza automáticamente con batch loading"
     ],
     "correct": 2,
-    "explanation": "El N+1 problem: 1 query para obtener todos los productos + N queries adicionales (una por cada producto) para cargar su category que es LAZY. Con 100 productos = 101 queries en lugar de 1. Se detecta activando spring.jpa.show-sql=true y contando las queries en los logs."
+    "explanation": "El N+1 problem: 1 query para obtener todos los productos + N queries adicionales (una por cada producto) para cargar su category que es LAZY. Con 100 productos = 101 queries en lugar de 1. Se detecta activando spring.jpa.show-sql=true y contando las queries en los logs.",
+    "active": true
   },
   {
     "id": 35,
@@ -522,7 +556,8 @@
       "JOIN FETCH siempre es más lento que @EntityGraph en producción"
     ],
     "correct": 0,
-    "explanation": "JOIN FETCH → genera INNER JOIN — productos sin categoría asignada NO aparecen en el resultado. @EntityGraph → genera LEFT JOIN — productos sin categoría SÍ aparecen con category = null. Ambas resuelven el N+1 en una sola query, pero con comportamiento diferente ante datos incompletos. Elegir según el requisito de negocio."
+    "explanation": "JOIN FETCH → genera INNER JOIN — productos sin categoría asignada NO aparecen en el resultado. @EntityGraph → genera LEFT JOIN — productos sin categoría SÍ aparecen con category = null. Ambas resuelven el N+1 en una sola query, pero con comportamiento diferente ante datos incompletos. Elegir según el requisito de negocio.",
+    "active": true
   },
   {
     "id": 36,
@@ -537,7 +572,8 @@
       "Solo puede usarse con @Query, no con query methods derivados"
     ],
     "correct": 0,
-    "explanation": "@NamedEntityGraph define una estrategia de fetch nombrada y reutilizable a nivel de entidad. @EntityGraph(value) en el repositorio la referencia por nombre. Genera un LEFT JOIN para cargar category junto con el producto en una sola query, resolviendo el N+1. Alternativa más semántica al JOIN FETCH en JPQL."
+    "explanation": "@NamedEntityGraph define una estrategia de fetch nombrada y reutilizable a nivel de entidad. @EntityGraph(value) en el repositorio la referencia por nombre. Genera un LEFT JOIN para cargar category junto con el producto en una sola query, resolviendo el N+1. Alternativa más semántica al JOIN FETCH en JPQL.",
+    "active": true
   },
   {
     "id": 37,
@@ -552,7 +588,8 @@
       "Es equivalente a no poner @Transactional — no tiene efecto real"
     ],
     "correct": 1,
-    "explanation": "readOnly = true desactiva el dirty checking — Hibernate no rastrea cambios en las entidades cargadas, lo que reduce la sobrecarga de memoria y CPU. También omite el flush automático al final. En PostgreSQL puede habilitar optimizaciones del driver de conexión. Es buena práctica en todos los métodos de servicio que solo leen datos."
+    "explanation": "readOnly = true desactiva el dirty checking — Hibernate no rastrea cambios en las entidades cargadas, lo que reduce la sobrecarga de memoria y CPU. También omite el flush automático al final. En PostgreSQL puede habilitar optimizaciones del driver de conexión. Es buena práctica en todos los métodos de servicio que solo leen datos.",
+    "active": true
   },
   {
     "id": 38,
@@ -567,7 +604,8 @@
       "Solo hace rollback si la excepción tiene @Rollback anotado"
     ],
     "correct": 2,
-    "explanation": "Rollback automático solo con RuntimeException (y sus subclases — unchecked). Las checked Exceptions (IOException, SQLException...) NO hacen rollback por defecto en Spring. Para forzarlo: @Transactional(rollbackFor = Exception.class). En el lab, RuntimeException('Insufficient stock') hace rollback de toda la orden correctamente."
+    "explanation": "Rollback automático solo con RuntimeException (y sus subclases — unchecked). Las checked Exceptions (IOException, SQLException...) NO hacen rollback por defecto en Spring. Para forzarlo: @Transactional(rollbackFor = Exception.class). En el lab, RuntimeException('Insufficient stock') hace rollback de toda la orden correctamente.",
+    "active": true
   },
   {
     "id": 39,
@@ -582,7 +620,8 @@
       "Impide que el método sea invocado desde dentro de otra transacción activa"
     ],
     "correct": 2,
-    "explanation": "REQUIRES_NEW suspende la transacción del llamador y crea una nueva independiente. En el lab, si OrderService falla (stock insuficiente) y hace rollback de toda la orden, el AuditLog ya se guardó en su propia transacción y ese registro persiste. Ideal para audit logs, métricas y notificaciones que deben sobrevivir al rollback del llamador."
+    "explanation": "REQUIRES_NEW suspende la transacción del llamador y crea una nueva independiente. En el lab, si OrderService falla (stock insuficiente) y hace rollback de toda la orden, el AuditLog ya se guardó en su propia transacción y ese registro persiste. Ideal para audit logs, métricas y notificaciones que deben sobrevivir al rollback del llamador.",
+    "active": true
   },
   {
     "id": 40,
@@ -597,7 +636,8 @@
       "No, pero si llamas a flush() explícitamente antes de cerrar sí funciona"
     ],
     "correct": 2,
-    "explanation": "Dirty checking: dentro de una transacción, Hibernate mantiene las entidades en estado 'managed' con un snapshot del estado inicial. Al hacer flush (automático al cerrar la transacción), compara el estado actual con el snapshot. Si detecta cambios, genera UPDATE automáticamente. Por eso @Transactional(readOnly=true) es una optimización — desactiva este tracking costoso."
+    "explanation": "Dirty checking: dentro de una transacción, Hibernate mantiene las entidades en estado 'managed' con un snapshot del estado inicial. Al hacer flush (automático al cerrar la transacción), compara el estado actual con el snapshot. Si detecta cambios, genera UPDATE automáticamente. Por eso @Transactional(readOnly=true) es una optimización — desactiva este tracking costoso.",
+    "active": true
   },
   {
     "id": 41,
@@ -612,7 +652,8 @@
       "REQUIRED es para lectura; REQUIRES_NEW para escritura"
     ],
     "correct": 1,
-    "explanation": "REQUIRED (default): si hay transacción activa, la usa; si no, crea una. Todo ocurre en la misma transacción — un rollback afecta todo. REQUIRES_NEW: siempre crea una transacción nueva, suspende la del llamador. Son transacciones independientes — el rollback de una no afecta a la otra. El caso de uso clásico de REQUIRES_NEW es el audit log del proyecto."
+    "explanation": "REQUIRED (default): si hay transacción activa, la usa; si no, crea una. Todo ocurre en la misma transacción — un rollback afecta todo. REQUIRES_NEW: siempre crea una transacción nueva, suspende la del llamador. Son transacciones independientes — el rollback de una no afecta a la otra. El caso de uso clásico de REQUIRES_NEW es el audit log del proyecto.",
+    "active": true
   },
   {
     "id": 42,
@@ -627,7 +668,8 @@
       "JPQL trabaja con entidades Java y es portátil entre DBs; SQL nativo usa tablas reales y es específico del motor"
     ],
     "correct": 3,
-    "explanation": "JPQL trabaja con entidades Java (Product, p.category) y es portátil entre motores de DB (PostgreSQL, MySQL, H2). SQL nativo usa tablas y columnas reales, es específico del motor y rompe portabilidad. Usar JPQL por defecto. SQL nativo solo cuando necesitas funciones específicas del motor: JSONB de PostgreSQL, window functions, full-text search, etc."
+    "explanation": "JPQL trabaja con entidades Java (Product, p.category) y es portátil entre motores de DB (PostgreSQL, MySQL, H2). SQL nativo usa tablas y columnas reales, es específico del motor y rompe portabilidad. Usar JPQL por defecto. SQL nativo solo cuando necesitas funciones específicas del motor: JSONB de PostgreSQL, window functions, full-text search, etc.",
+    "active": true
   },
   {
     "id": 43,
@@ -642,7 +684,8 @@
       "Solo funciona correctamente sin la anotación @Query — requiere query methods derivados"
     ],
     "correct": 1,
-    "explanation": "Spring Data JPA ejecuta dos queries automáticamente: 1) SELECT p FROM Product p WHERE ... LIMIT ? OFFSET ? para traer la página de datos. 2) SELECT count(p) FROM Product p WHERE ... para calcular totalElements y así determinar totalPages. Para queries nativas (nativeQuery=true) debes especificar el countQuery manualmente."
+    "explanation": "Spring Data JPA ejecuta dos queries automáticamente: 1) SELECT p FROM Product p WHERE ... LIMIT ? OFFSET ? para traer la página de datos. 2) SELECT count(p) FROM Product p WHERE ... para calcular totalElements y así determinar totalPages. Para queries nativas (nativeQuery=true) debes especificar el countQuery manualmente.",
+    "active": true
   },
   {
     "id": 44,
@@ -657,7 +700,8 @@
       "Transforma el contenido del Page aplicando la función, manteniendo toda la metadata de paginación intacta"
     ],
     "correct": 3,
-    "explanation": "Page.map(fn) transforma cada elemento del Page aplicando la función de conversión, pero mantiene toda la metadata: totalPages, totalElements, pageNumber, hasNext(). Es la forma correcta de convertir Page<Product> a Page<ProductDTO> en el servicio sin perder la información de paginación que el cliente necesita para navegar."
+    "explanation": "Page.map(fn) transforma cada elemento del Page aplicando la función de conversión, pero mantiene toda la metadata: totalPages, totalElements, pageNumber, hasNext(). Es la forma correcta de convertir Page<Product> a Page<ProductDTO> en el servicio sin perder la información de paginación que el cliente necesita para navegar.",
+    "active": true
   },
   {
     "id": 45,
@@ -672,7 +716,8 @@
       "Implementa Pessimistic Locking con SELECT FOR UPDATE automáticamente"
     ],
     "correct": 1,
-    "explanation": "@Version implementa Optimistic Locking. Hibernate incluye la versión en el WHERE del UPDATE: WHERE id=? AND version=?. Si la versión en DB no coincide (otro proceso actualizó primero), Hibernate lanza OptimisticLockException. No bloquea filas — detecta conflictos al momento de guardar. Ideal para escenarios de baja contención como actualizaciones de catálogo."
+    "explanation": "@Version implementa Optimistic Locking. Hibernate incluye la versión en el WHERE del UPDATE: WHERE id=? AND version=?. Si la versión en DB no coincide (otro proceso actualizó primero), Hibernate lanza OptimisticLockException. No bloquea filas — detecta conflictos al momento de guardar. Ideal para escenarios de baja contención como actualizaciones de catálogo.",
+    "active": true
   },
   {
     "id": 46,
@@ -687,7 +732,8 @@
       "Pessimistic siempre tiene mejor rendimiento y debería usarse siempre"
     ],
     "correct": 2,
-    "explanation": "Optimistic Locking (@Version): no bloquea filas, detecta conflictos al hacer UPDATE lanzando OptimisticLockException. Mejor rendimiento en baja contención. Pessimistic Locking (@Lock + LockModeType.PESSIMISTIC_WRITE): bloquea la fila con SELECT FOR UPDATE desde la lectura. Garantía fuerte pero reduce throughput. En Stayly se usa Pessimistic para reservas de habitaciones por la alta contención esperada."
+    "explanation": "Optimistic Locking (@Version): no bloquea filas, detecta conflictos al hacer UPDATE lanzando OptimisticLockException. Mejor rendimiento en baja contención. Pessimistic Locking (@Lock + LockModeType.PESSIMISTIC_WRITE): bloquea la fila con SELECT FOR UPDATE desde la lectura. Garantía fuerte pero reduce throughput. En Stayly se usa Pessimistic para reservas de habitaciones por la alta contención esperada.",
+    "active": true
   },
   {
     "id": 47,
@@ -702,7 +748,8 @@
       "Solo funcionan con @Query anotado, no con query methods derivados"
     ],
     "correct": 0,
-    "explanation": "Las Projections evitan over-fetching: en lugar de cargar toda la entidad Product (con todos sus campos, versión, relaciones), solo traes los campos que necesitas. Spring Data genera un proxy dinámico de la interfaz en runtime. En el lab, ProductSummary evita traer price, category y otros campos cuando solo se necesita el stock."
+    "explanation": "Las Projections evitan over-fetching: en lugar de cargar toda la entidad Product (con todos sus campos, versión, relaciones), solo traes los campos que necesitas. Spring Data genera un proxy dinámico de la interfaz en runtime. En el lab, ProductSummary evita traer price, category y otros campos cuando solo se necesita el stock.",
+    "active": true
   },
   {
     "id": 48,
@@ -717,7 +764,8 @@
       "DTO Projection solo funciona con records de Java 16+, no con clases regulares"
     ],
     "correct": 1,
-    "explanation": "Interface Projection: Spring crea un proxy dinámico. Puede tener problemas de serialización con Jackson. Admite SpEL. DTO/Class Projection: necesita constructor explícito y la expresión new en JPQL. Serializa perfectamente con Jackson sin configuración adicional. Es más predecible y fácil de testear. Preferida en producción por ser más robusta y transparente."
+    "explanation": "Interface Projection: Spring crea un proxy dinámico. Puede tener problemas de serialización con Jackson. Admite SpEL. DTO/Class Projection: necesita constructor explícito y la expresión new en JPQL. Serializa perfectamente con Jackson sin configuración adicional. Es más predecible y fácil de testear. Preferida en producción por ser más robusta y transparente.",
+    "active": true
   },
   {
     "id": 49,
@@ -732,7 +780,8 @@
       "Solo funcionan con bases de datos PostgreSQL y Oracle"
     ],
     "correct": 1,
-    "explanation": "Las Specifications resuelven la combinatoria explosiva: con 4 filtros opcionales necesitarías 2^4=16 métodos. Con Specifications, un solo findAll(spec) acepta cualquier combinación construida dinámicamente. El repositorio debe extender JpaSpecificationExecutor<T>. En el lab, ProductRepository lo extiende y ProductSpecification define los criterios reutilizables."
+    "explanation": "Las Specifications resuelven la combinatoria explosiva: con 4 filtros opcionales necesitarías 2^4=16 métodos. Con Specifications, un solo findAll(spec) acepta cualquier combinación construida dinámicamente. El repositorio debe extender JpaSpecificationExecutor<T>. En el lab, ProductRepository lo extiende y ProductSpecification define los criterios reutilizables.",
+    "active": true
   },
   {
     "id": 50,
@@ -747,7 +796,8 @@
       "Cancela la query completa y retorna una lista vacía"
     ],
     "correct": 2,
-    "explanation": "Retornar null en una Specification significa 'sin restricción para este criterio'. Spring Data JPA lo ignora automáticamente al construir el WHERE. Esto permite filtros 100% dinámicos: si name es null, no agrega condición de nombre. La combinación .where(hasName(name)).and(hasCategory(cat)) construye el WHERE solo con los criterios que tienen valor."
+    "explanation": "Retornar null en una Specification significa 'sin restricción para este criterio'. Spring Data JPA lo ignora automáticamente al construir el WHERE. Esto permite filtros 100% dinámicos: si name es null, no agrega condición de nombre. La combinación .where(hasName(name)).and(hasCategory(cat)) construye el WHERE solo con los criterios que tienen valor.",
+    "active": true
   },
   {
     "id": 51,
@@ -762,7 +812,8 @@
       "FilterableRepository<Product, Long>"
     ],
     "correct": 1,
-    "explanation": "JpaSpecificationExecutor<T> habilita los métodos: findAll(Specification<T>), findOne(Specification<T>), count(Specification<T>) y exists(Specification<T>). Sin extender esta interfaz, no puedes pasar Specifications al repositorio. En el lab, ProductRepository extiende tanto JpaRepository como JpaSpecificationExecutor."
+    "explanation": "JpaSpecificationExecutor<T> habilita los métodos: findAll(Specification<T>), findOne(Specification<T>), count(Specification<T>) y exists(Specification<T>). Sin extender esta interfaz, no puedes pasar Specifications al repositorio. En el lab, ProductRepository extiende tanto JpaRepository como JpaSpecificationExecutor.",
+    "active": true
   },
   {
     "id": 52,
@@ -777,7 +828,8 @@
       "Solo es un problema con @OneToMany, las relaciones @ManyToOne son seguras de retornar"
     ],
     "correct": 2,
-    "explanation": "Tres problemas al retornar entidades: 1) LazyInitializationException: Jackson intenta serializar una relación LAZY fuera de la sesión Hibernate. 2) Referencia circular: Product → Category → List<Product> → StackOverflow. 3) Over-exposure: expones el modelo de DB (columnas, versiones, timestamps internos) al cliente. Siempre convertir a DTOs en la capa de servicio."
+    "explanation": "Tres problemas al retornar entidades: 1) LazyInitializationException: Jackson intenta serializar una relación LAZY fuera de la sesión Hibernate. 2) Referencia circular: Product → Category → List<Product> → StackOverflow. 3) Over-exposure: expones el modelo de DB (columnas, versiones, timestamps internos) al cliente. Siempre convertir a DTOs en la capa de servicio.",
+    "active": true
   },
   {
     "id": 53,
@@ -792,7 +844,8 @@
       "Solo falla si el objeto Category es null en la base de datos"
     ],
     "correct": 2,
-    "explanation": "LazyInitializationException: 'could not initialize proxy - no Session'. Ocurre al acceder a una relación LAZY fuera del contexto transaccional — la sesión Hibernate ya está cerrada. Soluciones: 1) @Transactional para mantener la sesión abierta. 2) JOIN FETCH o @EntityGraph para cargarlo todo en una query. 3) Convertir a DTO dentro de la transacción."
+    "explanation": "LazyInitializationException: 'could not initialize proxy - no Session'. Ocurre al acceder a una relación LAZY fuera del contexto transaccional — la sesión Hibernate ya está cerrada. Soluciones: 1) @Transactional para mantener la sesión abierta. 2) JOIN FETCH o @EntityGraph para cargarlo todo en una query. 3) Convertir a DTO dentro de la transacción.",
+    "active": true
   },
   {
     "id": 54,
@@ -807,7 +860,8 @@
       "save() solo funciona para inserts nuevos; saveAndFlush() también para actualizaciones"
     ],
     "correct": 0,
-    "explanation": "save() acumula los cambios en el contexto de persistencia y los envía a la DB al hacer flush (automático al cerrar la transacción). saveAndFlush() envía el SQL a la DB inmediatamente dentro de la transacción activa. Útil cuando necesitas que los cambios sean visibles para queries subsiguientes dentro de la misma transacción, por ejemplo en tests de integración."
+    "explanation": "save() acumula los cambios en el contexto de persistencia y los envía a la DB al hacer flush (automático al cerrar la transacción). saveAndFlush() envía el SQL a la DB inmediatamente dentro de la transacción activa. Útil cuando necesitas que los cambios sean visibles para queries subsiguientes dentro de la misma transacción, por ejemplo en tests de integración.",
+    "active": true
   },
   {
     "id": 55,
@@ -822,13 +876,14 @@
       "Solo funcionan con @EnableWebSecurity activado en la aplicación"
     ],
     "correct": 1,
-    "explanation": "Para @CreatedBy y @LastModifiedBy debes implementar AuditorAware<String> (o <Long> si usas IDs) como bean Spring. El método getCurrentAuditor() retorna el usuario actual — en proyectos con Spring Security se obtiene de SecurityContextHolder.getContext().getAuthentication().getName(). Spring Data JPA llama a este bean automáticamente al persistir."
+    "explanation": "Para @CreatedBy y @LastModifiedBy debes implementar AuditorAware<String> (o <Long> si usas IDs) como bean Spring. El método getCurrentAuditor() retorna el usuario actual — en proyectos con Spring Security se obtiene de SecurityContextHolder.getContext().getAuthentication().getName(). Spring Data JPA llama a este bean automáticamente al persistir.",
+    "active": true
   },
   {
     "id": 56,
     "level": "Mid",
     "category": "Query Methods",
-    "question": "¿Qué hace el query method findByCategoryOrderByPriceAsc en ProductRepository del proyecto?",
+    "question": "FALSE¿Qué hace el query method findByCategoryOrderByPriceAsc en ProductRepository del proyecto?",
     "code": "List<Product> findByCategoryOrderByPriceAsc(Category category);",
     "options": [
       "Busca por categoría y luego ordena el resultado en memoria de la JVM",
@@ -837,13 +892,14 @@
       "Ordena por precio descendente — Asc se ignora porque es el default"
     ],
     "correct": 1,
-    "explanation": "OrderBy[Field]Asc/Desc es una keyword de Spring Data JPA que agrega ORDER BY al SQL generado. El ordenamiento lo hace la base de datos, no la JVM. Genera: SELECT p FROM Product p WHERE p.category = ?1 ORDER BY p.price ASC. Mucho más eficiente que ordenar en Java después de cargar todos los datos."
+    "explanation": "OrderBy[Field]Asc/Desc es una keyword de Spring Data JPA que agrega ORDER BY al SQL generado. El ordenamiento lo hace la base de datos, no la JVM. Genera: SELECT p FROM Product p WHERE p.category = ?1 ORDER BY p.price ASC. Mucho más eficiente que ordenar en Java después de cargar todos los datos.",
+    "active": false
   },
   {
     "id": 57,
     "level": "Mid",
     "category": "Query Methods",
-    "question": "¿Por qué el método findByCategoryOrderByPriceAsc recibe un objeto Category en lugar del Long category_id?",
+    "question": "FALSE¿Por qué el método findByCategoryOrderByPriceAsc recibe un objeto Category en lugar del Long category_id?",
     "code": "// Recibe entidad:\nList<Product> findByCategoryOrderByPriceAsc(Category category);\n\n// Alternativa con ID:\nList<Product> findByCategoryIdOrderByPriceAsc(Long categoryId);",
     "options": [
       "Pasar la entidad evita una query adicional de búsqueda si ya tienes el objeto cargado; ambas formas son válidas",
@@ -852,7 +908,8 @@
       "Solo se puede pasar la entidad en @ManyToOne, no en @OneToMany"
     ],
     "correct": 0,
-    "explanation": "Ambas formas son válidas. Si ya tienes el objeto Category cargado en la capa de servicio (lo buscaste antes), pasarlo directamente evita una query adicional. findByCategoryId acepta directamente el Long sin necesitar el objeto. En el lab, el servicio ya tiene la Category cargada desde la DB, así que pasar el objeto es más eficiente."
+    "explanation": "Ambas formas son válidas. Si ya tienes el objeto Category cargado en la capa de servicio (lo buscaste antes), pasarlo directamente evita una query adicional. findByCategoryId acepta directamente el Long sin necesitar el objeto. En el lab, el servicio ya tiene la Category cargada desde la DB, así que pasar el objeto es más eficiente.",
+    "active": false
   },
   {
     "id": 58,
@@ -867,7 +924,8 @@
       "@Param solo funciona con nativeQuery=true, no con JPQL estándar"
     ],
     "correct": 0,
-    "explanation": "@Param('min') vincula el parámetro del método Java al placeholder :min en el JPQL. Es requerido cuando usas named parameters (:nombre). Con positional parameters (?1, ?2) no es necesario. Usando named parameters el código es más legible y el orden de los parámetros en el método no importa."
+    "explanation": "@Param('min') vincula el parámetro del método Java al placeholder :min en el JPQL. Es requerido cuando usas named parameters (:nombre). Con positional parameters (?1, ?2) no es necesario. Usando named parameters el código es más legible y el orden de los parámetros en el método no importa.",
+    "active": true
   },
   {
     "id": 59,
@@ -882,7 +940,8 @@
       "findByStockEquals(0) sería exactamente equivalente — ambas opciones son igual de claras"
     ],
     "correct": 1,
-    "explanation": "@Query es preferible cuando el nombre del query method sería largo e ilegible (findByStockEqualsAndStatusNotAndCategoryNameContaining...) o cuando la lógica requiere JOINs, subqueries, o funciones de agregación que no se pueden expresar limpiamente con keywords. findOutOfStock() como nombre de método es mucho más semántico que findByStockEquals(0)."
+    "explanation": "@Query es preferible cuando el nombre del query method sería largo e ilegible (findByStockEqualsAndStatusNotAndCategoryNameContaining...) o cuando la lógica requiere JOINs, subqueries, o funciones de agregación que no se pueden expresar limpiamente con keywords. findOutOfStock() como nombre de método es mucho más semántico que findByStockEquals(0).",
+    "active": true
   },
   {
     "id": 60,
@@ -897,7 +956,8 @@
       "Es solo una convención de estilo sin impacto técnico real"
     ],
     "correct": 2,
-    "explanation": "Page<Entity> en el controller tiene los mismos tres problemas de retornar entidades: LazyInitializationException, referencias circulares en JSON y over-exposure. La solución es usar Page.map(this::toDTO) en la capa de servicio para transformar a DTOs manteniendo toda la metadata de paginación intacta."
+    "explanation": "Page<Entity> en el controller tiene los mismos tres problemas de retornar entidades: LazyInitializationException, referencias circulares en JSON y over-exposure. La solución es usar Page.map(this::toDTO) en la capa de servicio para transformar a DTOs manteniendo toda la metadata de paginación intacta.",
+    "active": true
   },
   {
     "id": 61,
@@ -912,7 +972,8 @@
       "El @EntityGraph se ignora cuando se sobreescribe findAll() — requiere un nombre de método diferente"
     ],
     "correct": 0,
-    "explanation": "Sobreescribir findAll() con @EntityGraph genera un LEFT JOIN automático con category en una sola query para todas las llamadas a findAll() en ese repositorio. Es la solución más transparente al N+1 porque afecta todas las llamadas sin modificar el código del servicio. El trade-off: siempre carga category aunque no se necesite."
+    "explanation": "Sobreescribir findAll() con @EntityGraph genera un LEFT JOIN automático con category en una sola query para todas las llamadas a findAll() en ese repositorio. Es la solución más transparente al N+1 porque afecta todas las llamadas sin modificar el código del servicio. El trade-off: siempre carga category aunque no se necesite.",
+    "active": true
   },
   {
     "id": 62,
@@ -927,7 +988,8 @@
       "@Builder — genera el patrón Builder para la clase"
     ],
     "correct": 2,
-    "explanation": "El lab usa @Getter y @Setter por separado en lugar de @Data. Esto es deliberado: @Data genera equals() y hashCode() basados en todos los campos, lo que puede causar problemas con entidades JPA en colecciones o con relaciones bidireccionales. También genera toString() que puede disparar el N+1 al imprimir relaciones LAZY."
+    "explanation": "El lab usa @Getter y @Setter por separado en lugar de @Data. Esto es deliberado: @Data genera equals() y hashCode() basados en todos los campos, lo que puede causar problemas con entidades JPA en colecciones o con relaciones bidireccionales. También genera toString() que puede disparar el N+1 al imprimir relaciones LAZY.",
+    "active": true
   },
   {
     "id": 63,
@@ -942,7 +1004,8 @@
       "Genera getters para los campos final únicamente"
     ],
     "correct": 0,
-    "explanation": "@RequiredArgsConstructor genera un constructor con todos los campos final y @NonNull. Spring usa este constructor para la inyección de dependencias (constructor injection), que es la forma recomendada sobre @Autowired en campos. Los campos final garantizan que las dependencias no puedan ser null ni cambiarse después de la construcción."
+    "explanation": "@RequiredArgsConstructor genera un constructor con todos los campos final y @NonNull. Spring usa este constructor para la inyección de dependencias (constructor injection), que es la forma recomendada sobre @Autowired en campos. Los campos final garantizan que las dependencias no puedan ser null ni cambiarse después de la construcción.",
+    "active": true
   },
   {
     "id": 64,
@@ -957,7 +1020,8 @@
       "Los criterios null se ignoran automáticamente; el WHERE se construye solo con los filtros que tienen valor"
     ],
     "correct": 3,
-    "explanation": "Specification.where(null) no agrega condición. Cada método estático de ProductSpecification retorna null si el parámetro es null. Al combinar con .and(), los null se ignoran automáticamente. El resultado es un WHERE que contiene solo los filtros con valor real. Si todos son null, retorna todos los productos sin filtrar."
+    "explanation": "Specification.where(null) no agrega condición. Cada método estático de ProductSpecification retorna null si el parámetro es null. Al combinar con .and(), los null se ignoran automáticamente. El resultado es un WHERE que contiene solo los filtros con valor real. Si todos son null, retorna todos los productos sin filtrar.",
+    "active": true
   },
   {
     "id": 65,
@@ -972,7 +1036,8 @@
       "JoinType.LEFT solo funciona con bases de datos PostgreSQL y MySQL"
     ],
     "correct": 1,
-    "explanation": "JoinType.LEFT genera LEFT JOIN entre Product y Category. Incluye productos que no tienen categoría asignada (category = null). Con JoinType.INNER (o sin especificar), solo aparecerían productos CON categoría. En filtros opcionales, LEFT JOIN es generalmente más correcto para no excluir datos inesperadamente."
+    "explanation": "JoinType.LEFT genera LEFT JOIN entre Product y Category. Incluye productos que no tienen categoría asignada (category = null). Con JoinType.INNER (o sin especificar), solo aparecerían productos CON categoría. En filtros opcionales, LEFT JOIN es generalmente más correcto para no excluir datos inesperadamente.",
+    "active": true
   },
   {
     "id": 66,
@@ -987,7 +1052,8 @@
       "@Id @Column\nprivate String email;"
     ],
     "correct": 0,
-    "explanation": "@Column(nullable = false, unique = true) genera NOT NULL y UNIQUE constraint en el DDL. nullable = false indica que la columna no acepta valores NULL. unique = true crea un índice único en la columna. Para validación en la capa web se complementa con @Email y @NotBlank de Bean Validation, pero estos son conceptos separados."
+    "explanation": "@Column(nullable = false, unique = true) genera NOT NULL y UNIQUE constraint en el DDL. nullable = false indica que la columna no acepta valores NULL. unique = true crea un índice único en la columna. Para validación en la capa web se complementa con @Email y @NotBlank de Bean Validation, pero estos son conceptos separados.",
+    "active": true
   },
   {
     "id": 67,
@@ -1002,13 +1068,14 @@
       "@Lock(PESSIMISTIC_WRITE) solo funciona con bases de datos Oracle"
     ],
     "correct": 2,
-    "explanation": "@Lock(LockModeType.PESSIMISTIC_WRITE) genera SELECT ... FOR UPDATE en PostgreSQL. Bloquea la fila desde la lectura — ninguna otra transacción puede modificar ese registro hasta que la transacción actual se complete (commit o rollback). Ideal para escenarios de alta contención como reservas de habitaciones en Stayly."
+    "explanation": "@Lock(LockModeType.PESSIMISTIC_WRITE) genera SELECT ... FOR UPDATE en PostgreSQL. Bloquea la fila desde la lectura — ninguna otra transacción puede modificar ese registro hasta que la transacción actual se complete (commit o rollback). Ideal para escenarios de alta contención como reservas de habitaciones en Stayly.",
+    "active": true
   },
   {
     "id": 68,
     "level": "Junior",
     "category": "Repositorios",
-    "question": "¿Cómo eliminarías todos los productos de una categoría usando Spring Data JPA en un solo método?",
+    "question": "FALSE¿Cómo eliminarías todos los productos de una categoría usando Spring Data JPA en un solo método?",
     "code": null,
     "options": [
       "productRepository.removeByCategory(category)",
@@ -1017,7 +1084,8 @@
       "productRepository.deleteByCategory(category)"
     ],
     "correct": 3,
-    "explanation": "deleteBy es el prefijo de Spring Data JPA para operaciones de eliminación derivadas del nombre del método. Genera DELETE FROM products WHERE category_id = ?. También puedes usar removeBy como alias. Spring Data JPA soporta los prefijos: find/read/get/query (lectura), delete/remove (eliminación), count (conteo), exists (existencia)."
+    "explanation": "deleteBy es el prefijo de Spring Data JPA para operaciones de eliminación derivadas del nombre del método. Genera DELETE FROM products WHERE category_id = ?. También puedes usar removeBy como alias. Spring Data JPA soporta los prefijos: find/read/get/query (lectura), delete/remove (eliminación), count (conteo), exists (existencia).",
+    "active": false
   },
   {
     "id": 69,
@@ -1032,7 +1100,8 @@
       "En la entidad — para que Hibernate gestione la transacción por operación"
     ],
     "correct": 1,
-    "explanation": "@Transactional pertenece a la capa de servicio. Razones: 1) Mantiene la sesión Hibernate abierta durante toda la ejecución del método, permitiendo cargar relaciones LAZY. 2) Agrupa múltiples operaciones de repositorio en una unidad atómica. 3) Permite definir el comportamiento de rollback según la lógica de negocio. En el controller sería demasiado amplio; en el repositorio demasiado granular."
+    "explanation": "@Transactional pertenece a la capa de servicio. Razones: 1) Mantiene la sesión Hibernate abierta durante toda la ejecución del método, permitiendo cargar relaciones LAZY. 2) Agrupa múltiples operaciones de repositorio en una unidad atómica. 3) Permite definir el comportamiento de rollback según la lógica de negocio. En el controller sería demasiado amplio; en el repositorio demasiado granular.",
+    "active": true
   },
   {
     "id": 70,
@@ -1047,7 +1116,8 @@
       "Usando @EnableQueryLogging de Spring Boot Actuator"
     ],
     "correct": 1,
-    "explanation": "Activar spring.jpa.show-sql=true (y format_sql=true para legibilidad) muestra en los logs todas las queries ejecutadas. El N+1 se manifiesta como un patrón: 1 SELECT de la lista + N SELECT idénticos con diferentes IDs. Herramientas adicionales: Hibernate Statistics, datasource-proxy, o P6Spy para captura detallada en desarrollo."
+    "explanation": "Activar spring.jpa.show-sql=true (y format_sql=true para legibilidad) muestra en los logs todas las queries ejecutadas. El N+1 se manifiesta como un patrón: 1 SELECT de la lista + N SELECT idénticos con diferentes IDs. Herramientas adicionales: Hibernate Statistics, datasource-proxy, o P6Spy para captura detallada en desarrollo.",
+    "active": true
   },
   {
     "id": 71,
@@ -1062,7 +1132,8 @@
       "precision define el máximo de dígitos totales y length el máximo de caracteres para el mismo tipo"
     ],
     "correct": 0,
-    "explanation": "precision y scale son atributos para tipos numéricos decimales: precision=10 significa máximo 10 dígitos en total, scale=2 significa 2 decimales. Genera DECIMAL(10,2) en SQL. length es para tipos texto: length=150 genera VARCHAR(150). En el lab, price usa BigDecimal con precision/scale y name usa String con length."
+    "explanation": "precision y scale son atributos para tipos numéricos decimales: precision=10 significa máximo 10 dígitos en total, scale=2 significa 2 decimales. Genera DECIMAL(10,2) en SQL. length es para tipos texto: length=150 genera VARCHAR(150). En el lab, price usa BigDecimal con precision/scale y name usa String con length.",
+    "active": true
   },
   {
     "id": 72,
@@ -1077,7 +1148,8 @@
       "@Transactional mantiene la sesión Hibernate abierta durante todo el método, permitiendo acceder a relaciones LAZY sin LazyInitializationException"
     ],
     "correct": 3,
-    "explanation": "@Transactional mantiene la sesión Hibernate (EntityManager) abierta durante toda la ejecución del método. Dentro de la sesión activa, Hibernate puede cargar relaciones LAZY bajo demanda cuando se accede a ellas. Al terminar el método, la sesión se cierra y cualquier acceso posterior a relaciones LAZY fuera del @Transactional lanzaría LazyInitializationException."
+    "explanation": "@Transactional mantiene la sesión Hibernate (EntityManager) abierta durante toda la ejecución del método. Dentro de la sesión activa, Hibernate puede cargar relaciones LAZY bajo demanda cuando se accede a ellas. Al terminar el método, la sesión se cierra y cualquier acceso posterior a relaciones LAZY fuera del @Transactional lanzaría LazyInitializationException.",
+    "active": true
   },
   {
     "id": 73,
@@ -1092,7 +1164,8 @@
       "Specification.where() es el punto de entrada seguro que maneja el caso null; llamar .and() directamente en null lanzaría NullPointerException"
     ],
     "correct": 3,
-    "explanation": "Specification.where(spec) es el método estático de entrada que maneja null de forma segura — si spec es null, retorna una Specification sin restricciones. Llamar directamente .and() en una Specification que podría ser null lanzaría NullPointerException. where() es la forma idiomática y segura de iniciar la cadena de Specifications."
+    "explanation": "Specification.where(spec) es el método estático de entrada que maneja null de forma segura — si spec es null, retorna una Specification sin restricciones. Llamar directamente .and() en una Specification que podría ser null lanzaría NullPointerException. where() es la forma idiomática y segura de iniciar la cadena de Specifications.",
+    "active": true
   },
   {
     "id": 74,
@@ -1107,7 +1180,8 @@
       "Lanzar una excepción de dominio específica (ResourceNotFoundException) que el @ControllerAdvice convierte a HTTP 404"
     ],
     "correct": 3,
-    "explanation": "La práctica recomendada es lanzar una excepción de dominio (ResourceNotFoundException extendiendo RuntimeException) desde el servicio. Un @ControllerAdvice o @RestControllerAdvice centraliza el manejo de excepciones y las convierte en respuestas HTTP apropiadas (404 Not Found). Esto mantiene la lógica de negocio separada del protocolo HTTP y hace el código más testeable."
+    "explanation": "La práctica recomendada es lanzar una excepción de dominio (ResourceNotFoundException extendiendo RuntimeException) desde el servicio. Un @ControllerAdvice o @RestControllerAdvice centraliza el manejo de excepciones y las convierte en respuestas HTTP apropiadas (404 Not Found). Esto mantiene la lógica de negocio separada del protocolo HTTP y hace el código más testeable.",
+    "active": true
   },
   {
     "id": 75,
@@ -1122,6 +1196,87 @@
       "Spring Data genera automáticamente este query con findSalesByCategory() sin necesitar @Query"
     ],
     "correct": 2,
-    "explanation": "JPQL soporta funciones de agregación (SUM, COUNT, AVG, MIN, MAX) y GROUP BY. El resultado se puede recibir como List<Object[]> (donde cada elemento es un array con los valores proyectados) o mejor aún, usando DTO projection: SELECT new com.pkg.SalesDTO(c.name, SUM(oi.unitPrice * oi.quantity)). La segunda forma es más type-safe y legible."
-  }
+    "explanation": "JPQL soporta funciones de agregación (SUM, COUNT, AVG, MIN, MAX) y GROUP BY. El resultado se puede recibir como List<Object[]> (donde cada elemento es un array con los valores proyectados) o mejor aún, usando DTO projection: SELECT new com.pkg.SalesDTO(c.name, SUM(oi.unitPrice * oi.quantity)). La segunda forma es más type-safe y legible.",
+    "active": true
+  },
+  {
+    "id": 76,
+    "level": "Junior",
+    "category": "Estrategias de Consulta",
+    "question": "¿Cuáles son las principales formas de construir consultas en Spring Data JPA y cuándo usarías cada una?",
+    "code": null,
+    "options": [
+      "Query Methods para consultas simples por convención de nombre, @Query para lógica compleja con JPQL, Specifications para filtros dinámicos opcionales, y Query By Example para búsquedas por prototipo de objeto",
+      "Query Methods para todo tipo de consultas, @Query solo para SQL nativo, y Specifications solo en proyectos con más de 10 entidades",
+      "Solo existen dos formas: Query Methods para lectura y @Query para escritura",
+      "Query Methods para consultas simples, @Query para filtros dinámicos, y Specifications solo cuando se requiere paginación"
+    ],
+    "correct": 0,
+    "explanation": "Spring Data JPA ofrece cuatro mecanismos principales: Query Methods (derived queries) generan SQL por convención del nombre del método — ideales para consultas fijas y simples. @Query con JPQL permite lógica más compleja sin perder portabilidad entre motores de DB. Specifications implementan la Criteria API para filtros dinámicos opcionales — resuelven la combinatoria explosiva de parámetros. Query By Example (QBE) permite buscar usando una instancia de la entidad como prototipo — útil para formularios de búsqueda simples sin lógica compleja.",
+    "active": true
+  },
+  {
+    "id": 77,
+    "level": "Junior",
+    "category": "Estrategias de Consulta",
+    "question": "Necesitas buscar productos cuyo nombre contenga un texto Y cuyo precio esté entre dos valores. ¿Lo implementas con un Query Method o con @Query? ¿Por qué?",
+    "code": "// Opción A\nList<Product> findByNameContainingIgnoreCaseAndPriceBetween(\n    String name, BigDecimal min, BigDecimal max);\n\n// Opción B\n@Query(\"SELECT p FROM Product p WHERE \" +\n       \"LOWER(p.name) LIKE LOWER(CONCAT('%',:name,'%')) \" +\n       \"AND p.price BETWEEN :min AND :max\")\nList<Product> searchProducts(@Param(\"name\") String name,\n                             @Param(\"min\") BigDecimal min,\n                             @Param(\"max\") BigDecimal max);",
+    "options": [
+      "Siempre @Query — los Query Methods solo sirven para búsquedas por un único campo",
+      "Ambas son válidas; el Query Method es preferible aquí porque Spring genera el SQL automáticamente, pero con más de 3 condiciones @Query mejora la legibilidad",
+      "Siempre Query Method — @Query solo debe usarse para SQL nativo con nativeQuery=true",
+      "Ambas son válidas; para cualquier cantidad de condiciones siempre es mejor @Query porque es más explícito y controlado"
+    ],
+    "correct": 1,
+    "explanation": "Ambas opciones son funcionalmente correctas. La regla práctica: usa Query Methods cuando el nombre del método sigue siendo legible (1-3 condiciones simples). Cuando el nombre se vuelve largo e ilegible, o cuando necesitas lógica como subqueries, funciones de agregación o JOINs complejos, @Query con JPQL es la mejor opción. El nombre findByNameContainingIgnoreCaseAndPriceBetween aún es aceptable, pero en el límite — con una condición más ya sería preferible @Query.",
+    "active": true
+  },
+  {
+    "id": 78,
+    "level": "Mid",
+    "category": "Estrategias de Consulta",
+    "question": "Un endpoint GET /products acepta 4 filtros opcionales: nombre, categoría, precio mínimo y precio máximo. ¿Por qué Specifications es mejor que @Query para este caso?",
+    "code": "// Con @Query necesitarías manejar nulls en JPQL\n// o crear múltiples métodos:\nfindByName(String name)\nfindByNameAndCategory(String name, Category cat)\nfindByNameAndPriceBetween(String name, BigDecimal min, BigDecimal max)\nfindByNameAndCategoryAndPriceBetween(...) // y más combinaciones\n\n// Con Specifications:\nSpecification.where(hasName(name))\n             .and(hasCategory(cat))\n             .and(priceBetween(min, max))",
+    "options": [
+      "@Query es igual de bueno — solo necesitas escribir un único @Query con IF/ELSE en JPQL para manejar los nulls",
+      "Specifications permite construir el WHERE dinámicamente según qué filtros tienen valor, evitando la combinatoria de 2^N métodos — cada criterio nulo se ignora automáticamente al retornar null",
+      "Specifications es mejor solo porque permite paginación, algo que @Query no soporta con filtros opcionales",
+      "Specifications es mejor porque genera SQL más optimizado que @Query en todos los casos"
+    ],
+    "correct": 1,
+    "explanation": "Con 4 filtros opcionales necesitarías hasta 2^4=16 métodos @Query para cubrir todas las combinaciones posibles. JPQL no tiene IF/ELSE nativo para omitir condiciones dinámicamente. Specifications resuelve exactamente este problema: cada método estático retorna null si el parámetro es null, y Spring Data lo ignora al construir el WHERE. El resultado es un único findAll(spec) que maneja cualquier combinación de filtros con o sin valor.",
+    "active": true
+  },
+  {
+    "id": 79,
+    "level": "Mid",
+    "category": "Estrategias de Consulta",
+    "question": "¿Qué es Query By Example (QBE) en Spring Data JPA y en qué se diferencia de Specifications?",
+    "code": "// Query By Example:\nProduct probe = new Product();\nprobe.setName(\"laptop\");\nprobe.setCategory(electronics);\n\nExample<Product> example = Example.of(probe,\n    ExampleMatcher.matching()\n        .withIgnoreCase()\n        .withStringMatcher(StringMatcher.CONTAINING));\n\nList<Product> results = productRepository.findAll(example);",
+    "options": [
+      "QBE y Specifications son equivalentes — QBE es solo una sintaxis alternativa más moderna para lo mismo",
+      "QBE usa una instancia de la entidad como prototipo de búsqueda y es ideal para filtros simples de igualdad; Specifications usa Criteria API y soporta lógica compleja como rangos, OR, subqueries y JOINs que QBE no puede expresar",
+      "QBE es más potente que Specifications porque no requiere código adicional — detecta automáticamente cualquier tipo de condición incluyendo rangos y OR",
+      "QBE solo funciona con campos String; Specifications funciona con cualquier tipo de dato"
+    ],
+    "correct": 1,
+    "explanation": "Query By Example permite construir una consulta usando una instancia de la entidad como prototipo — los campos con valor se convierten en condiciones WHERE, los campos null se ignoran. Es ideal para formularios de búsqueda simples con condiciones de igualdad o LIKE. Su limitación: no soporta rangos (BETWEEN, >, <), condiciones OR entre campos distintos, ni JOINs complejos. Para esos casos se necesitan Specifications. QBE requiere que el repositorio extienda QueryByExampleExecutor<T>.",
+    "active": true
+  },
+  {
+    "id": 80,
+    "level": "Mid",
+    "category": "Estrategias de Consulta",
+    "question": "¿En qué situación concreta usarías nativeQuery=true en @Query en lugar de JPQL? ¿Qué pierdes al hacerlo?",
+    "code": "// JPQL — portátil:\n@Query(\"SELECT p FROM Product p WHERE p.stock > 0\")\nList<Product> findInStock();\n\n// SQL Nativo — específico de PostgreSQL:\n@Query(value = \"SELECT * FROM products \" +\n               \"WHERE to_tsvector(name) @@ to_tsquery(:term)\",\n       nativeQuery = true)\nList<Product> findByFullText(@Param(\"term\") String term);",
+    "options": [
+      "Usarías nativeQuery=true siempre que la consulta sea de solo lectura — es más rápido que JPQL en todos los casos",
+      "Usarías nativeQuery=true para funciones específicas del motor de DB que JPQL no puede expresar (full-text search, JSONB, window functions); pierdes portabilidad entre motores y compatibilidad automática con paginación Page<T>",
+      "Usarías nativeQuery=true cuando necesitas paginación — es la única forma de paginar con @Query personalizada",
+      "Usarías nativeQuery=true para cualquier consulta con JOINs — JPQL no soporta JOIN entre más de dos entidades"
+    ],
+    "correct": 1,
+    "explanation": "SQL nativo se justifica cuando necesitas capacidades específicas del motor de DB que JPQL no puede expresar: full-text search con to_tsvector en PostgreSQL, operaciones con JSONB, window functions (ROW_NUMBER, RANK), o queries altamente optimizadas con hints. Lo que pierdes: portabilidad entre motores de DB (si cambias de PostgreSQL a MySQL el query falla), y con paginación debes especificar countQuery manualmente porque Spring Data no puede derivarlo automáticamente del SQL nativo.",
+    "active": true
+  }  
 ]

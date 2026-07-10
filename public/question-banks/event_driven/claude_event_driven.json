@@ -1,0 +1,1052 @@
+[
+  {
+    "id": 1,
+    "level": "Junior",
+    "category": "Conceptos Básicos EDA",
+    "question": "¿Qué es un 'evento' en una arquitectura orientada a eventos (Event-Driven Architecture)?",
+    "code": null,
+    "options": [
+      "Una petición síncrona que espera una respuesta inmediata del receptor",
+      "Un comando que le indica a otro servicio qué acción debe ejecutar",
+      "Un registro inmutable que representa algo que ya sucedió en el sistema",
+      "Una tabla de base de datos que almacena el estado actual de una entidad"
+    ],
+    "correct": 2,
+    "explanation": "Un evento representa un hecho que ya ocurrió (ej. 'OrderCreated'), es inmutable y se publica sin esperar una respuesta directa. Se diferencia de un comando, que es una instrucción imperativa dirigida a un receptor específico."
+  },
+  {
+    "id": 2,
+    "level": "Junior",
+    "category": "Conceptos Básicos EDA",
+    "question": "¿Cuál es la diferencia principal entre un 'comando' y un 'evento' en sistemas orientados a eventos?",
+    "code": null,
+    "options": [
+      "El comando es asíncrono y el evento es síncrono por definición",
+      "El comando expresa una intención dirigida a un receptor específico; el evento notifica un hecho ya ocurrido a quien le interese",
+      "El comando siempre se envía por Kafka y el evento siempre por REST",
+      "No existe diferencia real, son sinónimos usados indistintamente"
+    ],
+    "correct": 1,
+    "explanation": "Un comando ('CreateOrder') es imperativo y tiene un único destinatario esperado que debe ejecutar la acción. Un evento ('OrderCreated') es declarativo, describe algo que ya pasó y puede tener cero, uno o muchos suscriptores."
+  },
+  {
+    "id": 3,
+    "level": "Junior",
+    "category": "Conceptos Básicos EDA",
+    "question": "En el patrón Publish/Subscribe, ¿qué característica principal lo distingue de una comunicación punto a punto?",
+    "code": null,
+    "options": [
+      "Solo puede existir un consumidor activo por cada mensaje publicado",
+      "El productor conoce en tiempo de diseño la dirección IP de cada consumidor",
+      "Requiere obligatoriamente una base de datos relacional compartida",
+      "El productor publica sin conocer ni depender de quién consumirá el mensaje"
+    ],
+    "correct": 3,
+    "explanation": "En Pub/Sub el productor publica eventos en un canal (topic/exchange) desacoplado de los consumidores; estos se suscriben de forma independiente, lo que reduce el acoplamiento respecto a la comunicación punto a punto."
+  },
+  {
+    "id": 4,
+    "level": "Junior",
+    "category": "Conceptos Básicos EDA",
+    "question": "¿Cuál es una ventaja clave de una arquitectura orientada a eventos frente a llamadas síncronas REST entre microservicios?",
+    "code": null,
+    "options": [
+      "Reduce el acoplamiento temporal, permitiendo que productor y consumidor operen sin depender de la disponibilidad simultánea del otro",
+      "Garantiza que todos los servicios usen el mismo lenguaje de programación",
+      "Convierte automáticamente todas las transacciones en atómicas",
+      "Elimina por completo la necesidad de manejar errores en el sistema"
+    ],
+    "correct": 0,
+    "explanation": "Con eventos, el productor no necesita que el consumidor esté disponible en el momento de publicar; esto reduce el acoplamiento temporal y mejora la resiliencia, aunque introduce complejidad en consistencia eventual."
+  },
+  {
+    "id": 5,
+    "level": "Junior",
+    "category": "Conceptos Básicos EDA",
+    "question": "¿Qué significa 'consistencia eventual' (eventual consistency) en un sistema distribuido basado en eventos?",
+    "code": null,
+    "options": [
+      "Que la consistencia se logra únicamente mediante transacciones distribuidas 2PC",
+      "Que, en ausencia de nuevas actualizaciones, todas las réplicas convergerán eventualmente al mismo estado",
+      "Que el sistema nunca podrá ser consistente bajo ninguna circunstancia",
+      "Que todos los nodos deben confirmar el cambio antes de aceptar cualquier escritura"
+    ],
+    "correct": 1,
+    "explanation": "La consistencia eventual acepta que, tras una actualización, pueda existir una ventana temporal de desincronización entre servicios, pero garantiza que, sin nuevas escrituras, todos los consumidores convergerán al mismo estado final."
+  },
+  {
+    "id": 6,
+    "level": "Junior",
+    "category": "Conceptos Básicos EDA",
+    "question": "¿Qué es un 'broker' de mensajería en el contexto de arquitecturas orientadas a eventos?",
+    "code": null,
+    "options": [
+      "Un componente exclusivo de bases de datos NoSQL",
+      "Un servicio intermediario que recibe, almacena y entrega mensajes entre productores y consumidores",
+      "Un proxy HTTP que balancea carga entre instancias de un microservicio",
+      "Una librería que serializa objetos Java a formato binario"
+    ],
+    "correct": 1,
+    "explanation": "El broker (como Kafka, RabbitMQ o ActiveMQ) actúa como intermediario que desacopla productores de consumidores, gestionando el almacenamiento temporal o persistente y la entrega de mensajes."
+  },
+  {
+    "id": 7,
+    "level": "Mid",
+    "category": "Conceptos Básicos EDA",
+    "question": "¿Qué diferencia principal existe entre mensajería 'at-least-once' y 'exactly-once' en sistemas de eventos?",
+    "code": null,
+    "options": [
+      "'At-least-once' garantiza cero duplicados y 'exactly-once' permite duplicados ocasionales",
+      "'Exactly-once' solo aplica a comunicaciones síncronas vía REST",
+      "Son equivalentes en la práctica porque Kafka no soporta 'exactly-once'",
+      "'At-least-once' puede entregar un mensaje más de una vez ante fallos, mientras 'exactly-once' asegura que el efecto se procese una única vez"
+    ],
+    "correct": 3,
+    "explanation": "'At-least-once' prioriza no perder mensajes, aceptando posibles duplicados en reintentos. 'Exactly-once' (semántica soportada por Kafka con transacciones e idempotencia) garantiza que el efecto neto del procesamiento ocurra una sola vez, aunque haya reintentos internos."
+  },
+  {
+    "id": 8,
+    "level": "Mid",
+    "category": "Conceptos Básicos EDA",
+    "question": "¿Por qué la idempotencia es un requisito importante en consumidores de eventos, incluso cuando el broker soporta 'exactly-once'?",
+    "code": null,
+    "options": [
+      "Porque nunca ocurrirán reprocesos ni duplicados en ningún escenario real",
+      "Porque solo es relevante cuando se usa REST en lugar de Kafka",
+      "Porque la idempotencia sustituye por completo la necesidad de particionamiento",
+      "Porque el 'exactly-once' del broker cubre únicamente la escritura al log interno, pero efectos externos (BD, APIs) pueden duplicarse ante reintentos o rebalanceos"
+    ],
+    "correct": 3,
+    "explanation": "Aunque Kafka ofrezca semántica 'exactly-once' dentro de su propio ecosistema (topics-to-topics), un consumidor que produce efectos secundarios externos (guardar en BD, llamar una API) debe diseñarse idempotente porque reintentos, fallos parciales o rebalanceos pueden reprocesar el mismo mensaje."
+  },
+  {
+    "id": 9,
+    "level": "Junior",
+    "category": "Conceptos Básicos EDA",
+    "question": "¿Qué problema busca resolver el patrón 'Dead Letter Queue' (DLQ)?",
+    "code": null,
+    "options": [
+      "Reemplazar la necesidad de logs de auditoría en la aplicación",
+      "Almacenar temporalmente credenciales de acceso al broker",
+      "Aislar mensajes que fallaron repetidamente en su procesamiento para evitar bloquear el flujo principal y permitir su análisis posterior",
+      "Acelerar el procesamiento de mensajes válidos duplicando el throughput"
+    ],
+    "correct": 2,
+    "explanation": "Una DLQ recibe los mensajes que no pudieron procesarse tras varios reintentos, evitando que un mensaje 'envenenado' bloquee el consumo del resto del topic/cola y permitiendo su inspección o reprocesamiento manual."
+  },
+  {
+    "id": 10,
+    "level": "Mid",
+    "category": "Conceptos Básicos EDA",
+    "question": "¿Qué riesgo introduce el 'acoplamiento por esquema' (schema coupling) entre productores y consumidores de eventos?",
+    "code": null,
+    "options": [
+      "Que impide el uso de particionamiento en Kafka",
+      "Que un cambio incompatible en la estructura del evento puede romper a consumidores que no controlan, dado que no hay una llamada directa para negociar el contrato",
+      "Ninguno, ya que los esquemas de eventos nunca cambian una vez definidos",
+      "Que obliga a usar exclusivamente XML como formato de serialización"
+    ],
+    "correct": 1,
+    "explanation": "A diferencia de una API REST donde cliente y servidor negocian en tiempo real, en EDA el productor desconoce a todos sus consumidores; un cambio de esquema incompatible puede romper silenciosamente a consumidores desplegados, de ahí la importancia de la compatibilidad de esquemas."
+  },
+  {
+    "id": 11,
+    "level": "Junior",
+    "category": "Conceptos Básicos EDA",
+    "question": "¿Cuál de las siguientes es una desventaja real de las arquitecturas orientadas a eventos frente a las síncronas?",
+    "code": null,
+    "options": [
+      "Aumentan la complejidad operativa y de depuración (trazabilidad, orden, consistencia eventual)",
+      "Es imposible escalar horizontalmente los consumidores",
+      "No permiten desacoplar productores de consumidores",
+      "Obligan a que todos los servicios compartan la misma base de datos"
+    ],
+    "correct": 0,
+    "explanation": "EDA introduce beneficios de desacoplamiento y resiliencia, pero a costa de mayor complejidad: trazar un flujo de negocio distribuido en eventos, garantizar orden y manejar consistencia eventual son retos operativos reales."
+  },
+  {
+    "id": 12,
+    "level": "Mid",
+    "category": "Conceptos Básicos EDA",
+    "question": "¿Qué es 'backpressure' en el contexto de procesamiento de eventos en streaming?",
+    "code": null,
+    "options": [
+      "Un tipo de partición especial usada solo en RabbitMQ",
+      "Un mecanismo de seguridad que cifra los mensajes en tránsito",
+      "La señal que indica que un consumidor está sobrecargado y necesita que el productor o el sistema regule la tasa de emisión de datos",
+      "El proceso de comprimir mensajes antes de enviarlos al broker"
+    ],
+    "correct": 2,
+    "explanation": "Backpressure describe la situación donde el consumidor no puede procesar datos a la velocidad en que llegan; el sistema debe regular el flujo (buffering, pausas, control de concurrencia) para evitar saturación o pérdida de mensajes."
+  },
+  {
+    "id": 13,
+    "level": "Junior",
+    "category": "Patrones de Diseño y Arquitectura",
+    "question": "¿Qué es 'Event Sourcing' como patrón arquitectónico?",
+    "code": null,
+    "options": [
+      "Un sinónimo de arquitectura orientada a eventos en general",
+      "Guardar únicamente el estado final actual de cada entidad en la base de datos",
+      "Persistir la secuencia completa de eventos que representan los cambios de estado, reconstruyendo el estado actual a partir de ellos",
+      "Una técnica para comprimir mensajes en Kafka antes de enviarlos"
+    ],
+    "correct": 2,
+    "explanation": "En Event Sourcing, el estado no se almacena directamente; en su lugar se persiste cada evento de cambio (ej. 'AccountCreated', 'MoneyDeposited') y el estado actual se deriva reproduciendo esos eventos en orden."
+  },
+  {
+    "id": 14,
+    "level": "Mid",
+    "category": "Patrones de Diseño y Arquitectura",
+    "question": "¿Cuál es la relación típica entre Event Sourcing y CQRS (Command Query Responsibility Segregation)?",
+    "code": null,
+    "options": [
+      "CQRS reemplaza completamente la necesidad de Event Sourcing",
+      "Son mutuamente excluyentes: no pueden usarse en el mismo sistema",
+      "CQRS solo aplica a bases de datos relacionales y es incompatible con eventos",
+      "Se combinan frecuentemente: el lado de escritura (comandos) genera eventos que Event Sourcing persiste, mientras el lado de lectura (queries) usa proyecciones optimizadas construidas a partir de esos eventos"
+    ],
+    "correct": 3,
+    "explanation": "Event Sourcing y CQRS se complementan: los comandos generan eventos que constituyen la fuente de verdad, y a partir de ellos se construyen 'read models' o proyecciones desnormalizadas optimizadas para consultas, separadas del modelo de escritura."
+  },
+  {
+    "id": 15,
+    "level": "Mid",
+    "category": "Patrones de Diseño y Arquitectura",
+    "question": "En el patrón Saga, ¿cuál es la diferencia entre el enfoque 'coreografiado' (choreography) y el 'orquestado' (orchestration)?",
+    "code": null,
+    "options": [
+      "No hay diferencia funcional, solo cambia el nombre según el proveedor cloud",
+      "Orchestration nunca puede implementarse usando eventos, solo REST",
+      "En choreography cada servicio reacciona a eventos de otros sin un coordinador central; en orchestration un componente central dirige explícitamente cada paso",
+      "Choreography requiere obligatoriamente una base de datos compartida entre servicios"
+    ],
+    "correct": 2,
+    "explanation": "En una Saga coreografiada, los servicios publican y escuchan eventos de forma descentralizada, reaccionando cada uno según su rol. En una Saga orquestada, un orquestador central emite comandos y coordina explícitamente la secuencia de pasos y compensaciones."
+  },
+  {
+    "id": 16,
+    "level": "Mid",
+    "category": "Patrones de Diseño y Arquitectura",
+    "question": "¿Para qué sirve una 'transacción de compensación' (compensating transaction) dentro del patrón Saga?",
+    "code": null,
+    "options": [
+      "Para acelerar el commit de una transacción distribuida usando dos fases",
+      "Para evitar que se generen duplicados en el topic de Kafka",
+      "Para cifrar los eventos que contienen datos sensibles",
+      "Para revertir o contrarrestar el efecto de un paso ya confirmado cuando un paso posterior de la saga falla, ya que no existe rollback distribuido como en 2PC"
+    ],
+    "correct": 3,
+    "explanation": "Como las sagas no cuentan con un rollback atómico global, cada paso que modifica estado debe tener una acción de compensación asociada (ej. 'CancelReservation') que se ejecuta si un paso posterior falla, para mantener consistencia del negocio."
+  },
+  {
+    "id": 17,
+    "level": "Junior",
+    "category": "Patrones de Diseño y Arquitectura",
+    "question": "¿Qué es el patrón 'Outbox' (Transactional Outbox)?",
+    "code": null,
+    "options": [
+      "Guardar el cambio de estado y el evento a publicar en la misma transacción de base de datos local, y luego publicarlo de forma confiable mediante un proceso separado",
+      "Un buzón de correo usado para notificar errores a los administradores del sistema",
+      "Enviar el evento directamente a Kafka dentro de la misma transacción JDBC usando dos-phase commit nativo",
+      "Una cola exclusiva de AWS SQS sin relación con bases de datos"
+    ],
+    "correct": 0,
+    "explanation": "El patrón Outbox evita el problema de 'dual write': el cambio de negocio y el registro del evento a publicar se guardan atómicamente en la misma transacción local (una tabla 'outbox'); un proceso aparte (poller o CDC como Debezium) lee esa tabla y publica el evento de forma confiable."
+  },
+  {
+    "id": 18,
+    "level": "Mid",
+    "category": "Patrones de Diseño y Arquitectura",
+    "question": "¿Qué problema concreto resuelve el patrón Transactional Outbox frente a simplemente publicar el evento después de hacer commit en la base de datos?",
+    "code": null,
+    "options": [
+      "Mejora la velocidad de lectura de la base de datos",
+      "Elimina el riesgo de inconsistencia si la aplicación falla entre el commit de la base de datos y el envío del evento al broker (dual write problem)",
+      "Permite evitar el uso de un broker de mensajería por completo",
+      "Convierte automáticamente los eventos en comandos síncronos"
+    ],
+    "correct": 1,
+    "explanation": "Sin Outbox, si la app hace commit en BD pero falla antes de publicar el evento (o viceversa), el sistema queda inconsistente. El Outbox garantiza atomicidad entre el cambio de estado y el registro del evento a publicar, delegando la entrega confiable a un proceso separado."
+  },
+  {
+    "id": 19,
+    "level": "Junior",
+    "category": "Patrones de Diseño y Arquitectura",
+    "question": "¿Qué es el 'Event Notification' pattern, y en qué se diferencia de 'Event-Carried State Transfer'?",
+    "code": null,
+    "options": [
+      "Event Notification solo puede usarse con RabbitMQ y nunca con Kafka",
+      "Event-Carried State Transfer prohíbe el uso de serialización JSON",
+      "Son el mismo patrón con distinto nombre según el proveedor cloud",
+      "Event Notification envía un evento ligero que solo avisa que algo pasó (el receptor debe consultar más datos si los necesita); Event-Carried State Transfer incluye en el propio evento todos los datos relevantes del cambio"
+    ],
+    "correct": 3,
+    "explanation": "Event Notification publica un evento mínimo (ej. solo el ID) que obliga al consumidor a hacer una consulta adicional si necesita más datos. Event-Carried State Transfer incluye el estado relevante directamente en el evento, evitando llamadas adicionales pero aumentando el tamaño y el acoplamiento al esquema."
+  },
+  {
+    "id": 20,
+    "level": "Mid",
+    "category": "Patrones de Diseño y Arquitectura",
+    "question": "¿Cuál es un riesgo típico de usar 'Event-Carried State Transfer' de forma extensiva entre microservicios?",
+    "code": null,
+    "options": [
+      "Que aumenta el acoplamiento al esquema del evento y puede provocar duplicación de datos entre servicios que mantienen copias locales desactualizadas",
+      "Que obliga a usar exclusivamente comunicación síncrona",
+      "Que impide el uso de particiones en Kafka",
+      "Que se reduce drásticamente el acoplamiento entre servicios sin ninguna contrapartida"
+    ],
+    "correct": 0,
+    "explanation": "Al incluir el estado completo en cada evento, los consumidores dependen fuertemente de la forma del payload; además, cada servicio suele mantener una copia local del dato ('materialized view'), lo que puede generar inconsistencias temporales o duplicación de lógica de sincronización."
+  },
+  {
+    "id": 21,
+    "level": "Mid",
+    "category": "Patrones de Diseño y Arquitectura",
+    "question": "¿Qué es el patrón 'Competing Consumers' y qué garantiza principalmente?",
+    "code": null,
+    "options": [
+      "Que un único consumidor procese todos los mensajes de todos los topics de forma secuencial",
+      "Que múltiples instancias de un mismo consumidor (o consumer group) compitan por procesar mensajes de una misma cola/topic, permitiendo escalar el procesamiento horizontalmente",
+      "Que los mensajes se dupliquen intencionalmente para pruebas de carga",
+      "Que dos aplicaciones distintas usen el mismo mensaje para propósitos de negocio opuestos"
+    ],
+    "correct": 1,
+    "explanation": "'Competing Consumers' permite distribuir la carga de procesamiento entre varias instancias que compiten por los mensajes disponibles (por ejemplo, varias instancias en el mismo consumer group de Kafka leyendo particiones distintas), logrando escalabilidad horizontal."
+  },
+  {
+    "id": 22,
+    "level": "Junior",
+    "category": "Patrones de Diseño y Arquitectura",
+    "question": "¿Qué es un 'Event Bus' en una arquitectura orientada a eventos?",
+    "code": null,
+    "options": [
+      "Un canal central por el cual fluyen los eventos entre distintos productores y consumidores, desacoplándolos entre sí",
+      "Un tipo de contenedor Docker exclusivo para microservicios Java",
+      "Un protocolo de autenticación usado en Spring Security",
+      "Una base de datos relacional especializada en almacenar logs"
+    ],
+    "correct": 0,
+    "explanation": "El Event Bus actúa como canal centralizado (puede implementarse con Kafka, un broker AMQP o un servicio como EventBridge) que permite a los productores publicar eventos sin conocer a los consumidores específicos."
+  },
+  {
+    "id": 23,
+    "level": "Mid",
+    "category": "Patrones de Diseño y Arquitectura",
+    "question": "En un diseño de microservicios orientado a eventos, ¿qué antipatrón representa el 'Distributed Monolith' vía eventos?",
+    "code": null,
+    "options": [
+      "Cuando se usa un único topic de Kafka para todo el sistema, lo cual siempre es recomendable",
+      "Cuando los microservicios se comunican exclusivamente por eventos y nunca por REST",
+      "Cuando se implementa CQRS sin Event Sourcing",
+      "Cuando los servicios están tan acoplados temporalmente y por esquema a través de los eventos que no pueden desplegarse ni evolucionar de forma independiente, replicando los problemas de un monolito pero de forma distribuida"
+    ],
+    "correct": 3,
+    "explanation": "Aunque se usen eventos, si los esquemas están fuertemente acoplados, las dependencias de despliegue son estrictas o los flujos de negocio requieren coordinación síncrona encubierta entre muchos servicios, se termina teniendo la rigidez de un monolito pero con la complejidad operativa de un sistema distribuido."
+  },
+  {
+    "id": 24,
+    "level": "Mid",
+    "category": "Patrones de Diseño y Arquitectura",
+    "question": "¿Qué estrategia ayuda a mantener el orden de procesamiento de eventos relacionados a una misma entidad de negocio (ej. un mismo pedido) en un sistema distribuido con múltiples particiones/consumidores?",
+    "code": null,
+    "options": [
+      "Enviar cada evento a un topic distinto de forma aleatoria",
+      "Particionar por una clave estable relacionada con la entidad (ej. orderId como clave de partición en Kafka), garantizando que sus eventos vayan a la misma partición y se procesen en orden",
+      "Desactivar por completo el particionamiento en el broker",
+      "Usar siempre un único consumidor global sin agrupación por clave"
+    ],
+    "correct": 1,
+    "explanation": "Kafka garantiza orden solo dentro de una misma partición. Usar una clave estable (como orderId) para el particionamiento asegura que todos los eventos de esa entidad vayan a la misma partición y se consuman en el orden de publicación."
+  },
+  {
+    "id": 25,
+    "level": "Junior",
+    "category": "Kafka",
+    "question": "¿Qué es un 'topic' en Apache Kafka?",
+    "code": null,
+    "options": [
+      "Una instancia física del broker que almacena datos en disco",
+      "Un archivo de configuración exclusivo de Zookeeper",
+      "Una categoría o canal lógico al cual se publican y del cual se consumen registros (eventos)",
+      "El nombre del grupo de consumidores que procesa mensajes"
+    ],
+    "correct": 2,
+    "explanation": "Un topic es una abstracción lógica: un canal con nombre al que los productores envían registros y del cual los consumidores los leen. Internamente, un topic se divide en particiones distribuidas entre los brokers."
+  },
+  {
+    "id": 26,
+    "level": "Junior",
+    "category": "Kafka",
+    "question": "¿Qué es una 'partición' dentro de un topic de Kafka?",
+    "code": null,
+    "options": [
+      "Un consumidor especial que lee todos los topics del clúster",
+      "Una subdivisión ordenada e inmutable del topic que permite paralelismo de lectura/escritura y se distribuye entre brokers",
+      "Un mecanismo de cifrado de mensajes en tránsito",
+      "Una copia idéntica y redundante de todo el topic almacenada en un solo broker"
+    ],
+    "correct": 1,
+    "explanation": "Cada topic se divide en una o más particiones; cada partición es un log ordenado e inmutable. Las particiones permiten distribuir el topic entre distintos brokers y paralelizar el consumo entre varias instancias de un consumer group."
+  },
+  {
+    "id": 27,
+    "level": "Junior",
+    "category": "Kafka",
+    "question": "¿Qué es un 'consumer group' en Kafka?",
+    "code": null,
+    "options": [
+      "Un conjunto de consumidores que colaboran para leer un topic completo, donde cada partición es asignada a un único consumidor del grupo a la vez",
+      "Una lista de topics permitidos para un productor específico",
+      "Un mecanismo para cifrar las credenciales de acceso al clúster",
+      "Un grupo de brokers que replican datos entre sí"
+    ],
+    "correct": 0,
+    "explanation": "Un consumer group permite que varias instancias de una aplicación compartan el trabajo de consumir un topic: Kafka asigna cada partición a un único consumidor del grupo en un momento dado, logrando paralelismo sin duplicar el procesamiento dentro del mismo grupo."
+  },
+  {
+    "id": 28,
+    "level": "Mid",
+    "category": "Kafka",
+    "question": "¿Qué representa el 'offset' de un consumidor en Kafka?",
+    "code": null,
+    "options": [
+      "El número total de brokers activos en el clúster",
+      "El tiempo de vida (TTL) configurado para los mensajes del topic",
+      "La posición (índice) del último registro leído por el consumidor dentro de una partición específica",
+      "El identificador único global de un mensaje en todo el clúster, independiente de la partición"
+    ],
+    "correct": 2,
+    "explanation": "El offset es un número secuencial que identifica la posición de un registro dentro de una partición. Kafka lleva el registro del offset consumido por cada consumer group para saber desde dónde continuar leyendo tras un reinicio o rebalanceo."
+  },
+  {
+    "id": 29,
+    "level": "Mid",
+    "category": "Kafka",
+    "question": "¿Qué papel cumple el factor de replicación (replication factor) y el conjunto ISR (In-Sync Replicas) en la durabilidad de los datos en Kafka?",
+    "code": null,
+    "options": [
+      "El replication factor determina cuántos consumer groups pueden leer el topic simultáneamente",
+      "El replication factor define cuántas copias de cada partición existen entre brokers, y el ISR es el subconjunto de esas réplicas que están sincronizadas y pueden usarse para garantizar que un mensaje confirmado (acks=all) no se pierda ante la caída de un broker",
+      "El ISR controla el balanceo de carga entre productores, no entre réplicas",
+      "El replication factor solo afecta la compresión de los mensajes, no la disponibilidad"
+    ],
+    "correct": 1,
+    "explanation": "El replication factor indica cuántas copias de cada partición se mantienen en distintos brokers. El ISR son las réplicas que están al día con el líder; con acks=all, un mensaje se confirma solo cuando todas las réplicas del ISR lo tienen, protegiendo contra la pérdida de datos si el líder falla."
+  },
+  {
+    "id": 30,
+    "level": "Mid",
+    "category": "Kafka",
+    "question": "¿Qué diferencia hay entre las estrategias de limpieza de logs 'delete' y 'compact' en un topic de Kafka?",
+    "code": null,
+    "options": [
+      "'delete' solo aplica a topics internos de Kafka, nunca a topics de negocio",
+      "'compact' elimina todos los mensajes cada 24 horas sin excepción",
+      "No existe diferencia real, ambas estrategias hacen exactamente lo mismo",
+      "'delete' elimina segmentos completos de log según edad/tamaño configurado; 'compact' conserva solo el último valor conocido por cada clave, eliminando versiones anteriores"
+    ],
+    "correct": 3,
+    "explanation": "La política 'delete' descarta segmentos de log completos cuando superan el retention configurado (tiempo o tamaño). La política 'compact' conserva, para cada clave, únicamente el registro más reciente, útil para representar el estado actual de una entidad (ej. tablas de estado o changelog topics)."
+  },
+  {
+    "id": 31,
+    "level": "Mid",
+    "category": "Kafka",
+    "question": "¿Cómo logra Kafka la semántica 'exactly-once' en escrituras dentro de su propio ecosistema (productor-topic-consumidor)?",
+    "code": null,
+    "options": [
+      "Usando únicamente el particionamiento por clave, sin necesidad de transacciones",
+      "Combinando productores idempotentes (idempotence=true) con transacciones que agrupan escrituras a múltiples particiones/topics de forma atómica",
+      "Simplemente reintentando indefinidamente hasta que el mensaje llegue, sin ningún control adicional",
+      "Desactivando por completo las réplicas para evitar duplicados"
+    ],
+    "correct": 1,
+    "explanation": "Kafka logra 'exactly-once' combinando productores idempotentes, que evitan duplicados por reintentos de red, con transacciones que permiten que un conjunto de escrituras (incluyendo el commit de offsets) se confirme de forma atómica, evitando efectos parciales."
+  },
+  {
+    "id": 32,
+    "level": "Junior",
+    "category": "Kafka",
+    "question": "¿Qué sucede cuando un consumidor se une o abandona un consumer group en Kafka?",
+    "code": null,
+    "options": [
+      "El clúster de Kafka se reinicia por completo para aplicar el cambio",
+      "Se dispara un 'rebalance' que redistribuye las particiones entre los consumidores activos del grupo",
+      "Todos los mensajes ya consumidos se vuelven a publicar desde cero en un nuevo topic",
+      "El topic completo se elimina automáticamente para evitar inconsistencias"
+    ],
+    "correct": 1,
+    "explanation": "Cada vez que cambia la membresía de un consumer group (un consumidor se cae, se agrega uno nuevo, etc.), Kafka ejecuta un rebalance para reasignar las particiones entre los consumidores activos, garantizando que cada partición siga teniendo un único consumidor asignado."
+  },
+  {
+    "id": 33,
+    "level": "Junior",
+    "category": "RabbitMQ / ActiveMQ",
+    "question": "¿Qué diferencia arquitectónica fundamental existe entre RabbitMQ y Kafka respecto al almacenamiento de mensajes?",
+    "code": null,
+    "options": [
+      "RabbitMQ no permite ningún tipo de acuse de recibo (ack) de mensajes",
+      "Ambos sistemas almacenan los mensajes de forma idéntica y son intercambiables sin cambios de diseño",
+      "RabbitMQ generalmente elimina un mensaje de la cola una vez confirmado por el consumidor, mientras Kafka retiene los registros en un log durante un período configurable, permitiendo múltiples lecturas independientes",
+      "Kafka elimina los mensajes inmediatamente tras ser leídos, igual que una cola tradicional"
+    ],
+    "correct": 2,
+    "explanation": "RabbitMQ funciona tradicionalmente como una cola: el mensaje se elimina al ser confirmado (ack) por el consumidor. Kafka, en cambio, mantiene los registros en un log persistente por un tiempo configurado, permitiendo que distintos consumer groups lean el mismo dato de forma independiente y hasta lo reprocesen (replay)."
+  },
+  {
+    "id": 34,
+    "level": "Mid",
+    "category": "RabbitMQ / ActiveMQ",
+    "question": "En RabbitMQ, ¿qué función cumple un 'exchange' respecto a las colas?",
+    "code": null,
+    "options": [
+      "El exchange almacena permanentemente los mensajes en lugar de las colas",
+      "El exchange recibe los mensajes del productor y los enruta a una o más colas según reglas de bindings y su tipo (direct, topic, fanout, headers)",
+      "El exchange solo existe en clústeres con más de tres nodos",
+      "El exchange es el nombre técnico que RabbitMQ usa para referirse a una cola"
+    ],
+    "correct": 1,
+    "explanation": "En el modelo AMQP de RabbitMQ, el productor nunca publica directamente a una cola: publica a un exchange, que enruta el mensaje a una o varias colas según el tipo de exchange (direct, topic, fanout, headers) y los bindings configurados."
+  },
+  {
+    "id": 35,
+    "level": "Junior",
+    "category": "Spring Cloud Stream",
+    "question": "¿Cuál es el propósito principal de Spring Cloud Stream?",
+    "code": null,
+    "options": [
+      "Gestionar exclusivamente la seguridad OAuth2 de los microservicios",
+      "Reemplazar completamente a Spring Boot como framework base",
+      "Sustituir la necesidad de usar un broker de mensajería en producción",
+      "Proveer una abstracción de programación basada en 'binders' que permite escribir aplicaciones orientadas a mensajes desacopladas del middleware específico (Kafka, RabbitMQ, etc.)"
+    ],
+    "correct": 3,
+    "explanation": "Spring Cloud Stream ofrece un modelo de programación con 'binders' que abstraen los detalles del broker subyacente (Kafka, RabbitMQ, etc.), permitiendo escribir lógica de negocio orientada a mensajes con Supplier/Function/Consumer y cambiar de middleware con mínima modificación de código."
+  },
+  {
+    "id": 36,
+    "level": "Mid",
+    "category": "Spring Cloud Stream",
+    "question": "En el modelo funcional de Spring Cloud Stream, ¿qué tipo de bean se usa para representar un consumidor de eventos que solo procesa entrada sin producir salida?",
+    "code": "@Bean\npublic Consumer<Order> processOrder() {\n    return order -> log.info(\"Procesando {}\", order);\n}",
+    "options": [
+      "Un bean de tipo Consumer<T>",
+      "Un bean de tipo Supplier<T>",
+      "Un bean de tipo Function<T, R>",
+      "Un bean anotado únicamente con @RestController"
+    ],
+    "correct": 0,
+    "explanation": "En el modelo funcional de Spring Cloud Stream, un `Consumer<T>` representa un procesamiento de solo entrada (recibe eventos sin publicar salida); `Supplier<T>` produce datos, y `Function<T,R>` transforma entrada en salida."
+  },
+  {
+    "id": 37,
+    "level": "Mid",
+    "category": "Spring Cloud Stream",
+    "question": "¿Para qué se utiliza 'StreamBridge' en Spring Cloud Stream?",
+    "code": "@Autowired\nStreamBridge streamBridge;\n\nstreamBridge.send(\"orders-out-0\", new OrderEvent(id));",
+    "options": [
+      "Para conectar dos brokers distintos entre sí de forma transparente sin configuración",
+      "Para definir exclusivamente las políticas de seguridad del binder",
+      "Para enviar mensajes a un destino de forma dinámica/imperativa desde código que no sigue el modelo declarativo Supplier/Function estándar",
+      "Para reemplazar KafkaTemplate en cualquier escenario, incluso fuera de Spring Cloud Stream"
+    ],
+    "correct": 2,
+    "explanation": "StreamBridge permite enviar mensajes de forma imperativa a un binding específico desde cualquier punto del código (por ejemplo, dentro de un servicio REST), útil cuando el envío no encaja naturalmente en el modelo funcional basado en Supplier."
+  },
+  {
+    "id": 38,
+    "level": "Mid",
+    "category": "Spring Cloud Stream",
+    "question": "¿Qué propósito cumple la propiedad de configuración 'destination' en un binding de Spring Cloud Stream?",
+    "code": null,
+    "options": [
+      "Define el puerto TCP en el que escuchará la aplicación Spring Boot",
+      "Define exclusivamente el timeout de las peticiones REST del microservicio",
+      "Define el nombre lógico del topic/exchange/cola real en el broker al cual se conecta ese binding específico",
+      "Define el algoritmo de compresión utilizado para todos los mensajes"
+    ],
+    "correct": 2,
+    "explanation": "La propiedad `spring.cloud.stream.bindings.<binding-name>.destination` asocia un binding lógico (por ejemplo, 'processOrder-in-0') con el nombre real del topic o exchange en el broker, desacoplando el nombre del canal en el código del nombre físico en la infraestructura."
+  },
+  {
+    "id": 39,
+    "level": "Junior",
+    "category": "Spring Cloud Stream",
+    "question": "¿Qué ventaja aporta el uso de 'binders' en Spring Cloud Stream frente a usar directamente el cliente nativo de Kafka?",
+    "code": null,
+    "options": [
+      "Los binders eliminan por completo la necesidad de un broker en producción",
+      "Los binders solo funcionan si la aplicación no usa Spring Boot",
+      "Los binders permiten escribir la lógica de negocio de forma agnóstica al middleware, facilitando cambiar de Kafka a RabbitMQ (u otro) modificando principalmente configuración en lugar de código",
+      "Los binders garantizan automáticamente 'exactly-once' sin ninguna configuración adicional"
+    ],
+    "correct": 2,
+    "explanation": "El binder es la capa de integración específica de cada middleware (kafka-binder, rabbit-binder, etc.); al programar contra la abstracción de Spring Cloud Stream, gran parte de la lógica de negocio queda desacoplada del broker concreto, facilitando portabilidad y pruebas."
+  },
+  {
+    "id": 40,
+    "level": "Junior",
+    "category": "AWS EventBridge / SNS / SQS",
+    "question": "¿Cuál es la diferencia principal entre Amazon SNS y Amazon SQS?",
+    "code": null,
+    "options": [
+      "SNS y SQS son exactamente el mismo servicio con nombres distintos según la región de AWS",
+      "SQS distribuye mensajes a múltiples suscriptores simultáneamente, mientras SNS solo permite un consumidor",
+      "SNS solo puede usarse dentro de una VPC privada, mientras SQS es siempre público",
+      "SNS es un servicio de publicación/suscripción (pub/sub) que distribuye mensajes a múltiples suscriptores; SQS es una cola de mensajes que retiene mensajes hasta que un consumidor los procesa y elimina"
+    ],
+    "correct": 3,
+    "explanation": "SNS (Simple Notification Service) implementa el patrón pub/sub, enviando (fan-out) el mismo mensaje a múltiples suscriptores (colas SQS, Lambdas, HTTP endpoints, etc.). SQS (Simple Queue Service) es una cola punto a punto donde los mensajes permanecen hasta ser procesados y eliminados explícitamente por un consumidor."
+  },
+  {
+    "id": 41,
+    "level": "Mid",
+    "category": "AWS EventBridge / SNS / SQS",
+    "question": "¿Qué patrón habilita típicamente la combinación 'SNS + múltiples colas SQS suscritas' (fan-out)?",
+    "code": null,
+    "options": [
+      "Permitir que un único evento publicado en SNS se entregue de forma independiente y durable a múltiples colas SQS, cada una consumida por un microservicio distinto sin acoplarse entre sí",
+      "Eliminar automáticamente la necesidad de manejar errores en los consumidores",
+      "Garantizar que solo un servicio reciba el mensaje mientras el resto lo ignora",
+      "Reemplazar la necesidad de usar EventBridge en cualquier escenario"
+    ],
+    "correct": 0,
+    "explanation": "El patrón fan-out con SNS+SQS permite que un mismo evento se distribuya de forma durable a varios consumidores independientes (cada uno con su propia cola SQS), de modo que un fallo o lentitud en un consumidor no afecte a los demás."
+  },
+  {
+    "id": 42,
+    "level": "Mid",
+    "category": "AWS EventBridge / SNS / SQS",
+    "question": "¿Qué característica distintiva tiene Amazon EventBridge frente a SNS en cuanto al enrutamiento de eventos?",
+    "code": null,
+    "options": [
+      "SNS soporta reglas de enrutamiento basadas en contenido, mientras EventBridge no lo soporta",
+      "EventBridge solo permite un único suscriptor por evento, igual que una cola FIFO",
+      "EventBridge no puede integrarse con Lambda ni con SQS bajo ninguna circunstancia",
+      "EventBridge permite enrutamiento basado en reglas (event pattern matching) sobre el contenido/atributos del evento hacia múltiples targets, e integra de forma nativa eventos de servicios AWS y aplicaciones SaaS de terceros"
+    ],
+    "correct": 3,
+    "explanation": "EventBridge se especializa en enrutamiento basado en reglas sobre el contenido del evento (event pattern matching), con integración nativa a decenas de servicios AWS y aplicaciones SaaS externas, lo que lo hace ideal para arquitecturas de eventos más ricas que un simple fan-out."
+  },
+  {
+    "id": 43,
+    "level": "Junior",
+    "category": "AWS EventBridge / SNS / SQS",
+    "question": "¿Para qué sirve una cola de tipo 'Dead Letter Queue' (DLQ) configurada sobre una cola SQS estándar?",
+    "code": null,
+    "options": [
+      "Para duplicar cada mensaje exitoso como respaldo de auditoría",
+      "Para acelerar el procesamiento de mensajes prioritarios",
+      "Para cifrar automáticamente todos los mensajes en tránsito",
+      "Para recibir automáticamente mensajes que no pudieron procesarse exitosamente después de alcanzar el número máximo de intentos de recepción (maxReceiveCount)"
+    ],
+    "correct": 3,
+    "explanation": "Cuando un mensaje en SQS supera el 'maxReceiveCount' configurado en la redrive policy sin ser eliminado exitosamente (procesado), se mueve automáticamente a la DLQ asociada, evitando que bloquee indefinidamente el procesamiento del resto de la cola."
+  },
+  {
+    "id": 44,
+    "level": "Mid",
+    "category": "AWS EventBridge / SNS / SQS",
+    "question": "¿Qué garantiza una cola SQS FIFO (First-In-First-Out) que una cola SQS estándar no garantiza?",
+    "code": null,
+    "options": [
+      "Orden estricto de entrega dentro de un mismo 'Message Group ID' y prevención de duplicados exactos mediante deduplicación",
+      "Un rendimiento (throughput) siempre mayor que el de una cola estándar",
+      "Retención ilimitada de mensajes sin ningún límite de tiempo",
+      "Cifrado automático que no está disponible en colas estándar"
+    ],
+    "correct": 0,
+    "explanation": "Las colas SQS FIFO garantizan orden exacto de entrega dentro de un mismo Message Group ID y ofrecen deduplicación (por content-based deduplication o deduplication ID), a cambio de un throughput menor que las colas estándar, que priorizan rendimiento sobre orden estricto."
+  },
+  {
+    "id": 45,
+    "level": "Mid",
+    "category": "AWS EventBridge / SNS / SQS",
+    "question": "En una arquitectura serverless con AWS Lambda como consumidor de una cola SQS estándar, ¿qué implicación tiene el hecho de que SQS estándar sea 'at-least-once' y no garantice orden estricto?",
+    "code": null,
+    "options": [
+      "Que es obligatorio usar exclusivamente colas FIFO en cualquier integración con Lambda",
+      "Que la función Lambda debe diseñarse de forma idempotente y tolerante a procesar mensajes fuera de orden o potencialmente duplicados",
+      "Que SQS convierte automáticamente los mensajes duplicados en errores fatales que detienen el sistema",
+      "Que Lambda nunca podrá procesar mensajes de SQS bajo ninguna circunstancia"
+    ],
+    "correct": 1,
+    "explanation": "Dado que SQS estándar puede entregar un mensaje más de una vez y sin garantía de orden, la lógica de negocio en la función Lambda consumidora debe ser idempotente y no asumir un orden estricto de llegada, salvo que se use explícitamente una cola FIFO."
+  },
+  {
+    "id": 46,
+    "level": "Mid",
+    "category": "Otras Herramientas",
+    "question": "¿Qué es 'Change Data Capture' (CDC) y cómo se relaciona con herramientas como Debezium en arquitecturas orientadas a eventos?",
+    "code": null,
+    "options": [
+      "Debezium es un tipo de broker que reemplaza a Kafka",
+      "CDC es un algoritmo de compresión usado exclusivamente por Kafka Streams",
+      "CDC es una técnica que captura los cambios (inserts/updates/deletes) del log de transacciones de una base de datos y los publica como eventos en tiempo real, sin requerir cambios en el código de la aplicación origen",
+      "CDC requiere reescribir manualmente cada consulta SQL como un evento"
+    ],
+    "correct": 2,
+    "explanation": "CDC captura los cambios directamente del log de transacciones (binlog en MySQL, WAL en PostgreSQL, etc.) sin modificar la aplicación origen. Debezium es una plataforma CDC muy usada que publica esos cambios como eventos a Kafka, siendo clave para implementar el patrón Outbox u otros flujos de sincronización de datos."
+  },
+  {
+    "id": 47,
+    "level": "Mid",
+    "category": "Otras Herramientas",
+    "question": "¿Qué diferencia principal existe entre el modo tradicional de Kafka con Zookeeper y el modo KRaft (KIP-500)?",
+    "code": null,
+    "options": [
+      "KRaft elimina la dependencia de un servicio de coordinación externo (Zookeeper), integrando la gestión de metadatos del clúster directamente dentro de los propios brokers de Kafka mediante un protocolo de consenso tipo Raft",
+      "KRaft solo puede usarse en clústeres de un único broker",
+      "KRaft es simplemente un nuevo nombre comercial para Zookeeper sin cambios técnicos",
+      "Zookeeper es más rápido que KRaft en todos los escenarios de metadatos"
+    ],
+    "correct": 0,
+    "explanation": "KRaft reemplaza a Zookeeper como mecanismo de gestión de metadatos y elección de líderes, integrando ese rol directamente en un subconjunto de brokers de Kafka mediante un protocolo de consenso basado en Raft, simplificando la operación del clúster."
+  },
+  {
+    "id": 48,
+    "level": "Junior",
+    "category": "Otras Herramientas",
+    "question": "¿Qué es Kafka Connect y cuál es su propósito principal?",
+    "code": null,
+    "options": [
+      "Un cliente de línea de comandos exclusivo para administrar usuarios de Kafka",
+      "Un reemplazo completo de Kafka Streams para procesamiento en tiempo real",
+      "Un framework para integrar Kafka con sistemas externos (bases de datos, S3, Elasticsearch, etc.) mediante conectores reutilizables (source y sink), sin necesidad de escribir código de productor/consumidor personalizado",
+      "Un servicio de AWS que sustituye a Kafka en la nube"
+    ],
+    "correct": 2,
+    "explanation": "Kafka Connect provee un framework estandarizado con conectores 'source' (para traer datos hacia Kafka desde sistemas externos) y 'sink' (para llevar datos desde Kafka hacia sistemas externos), evitando escribir integraciones custom para cada caso."
+  },
+  {
+    "id": 49,
+    "level": "Junior",
+    "category": "Diseño de API y Serialización",
+    "question": "¿Por qué es común preferir formatos binarios como Avro o Protobuf sobre JSON para eventos de alto volumen en Kafka?",
+    "code": null,
+    "options": [
+      "Porque Kafka técnicamente no permite enviar mensajes en formato JSON",
+      "Porque JSON no puede ser leído nunca por ningún sistema externo a Java",
+      "Porque Avro y Protobuf eliminan por completo la necesidad de versionar los eventos",
+      "Porque los formatos binarios suelen ofrecer menor tamaño de payload y mayor eficiencia de serialización/deserialización, además de soporte robusto para evolución de esquemas"
+    ],
+    "correct": 3,
+    "explanation": "Avro y Protobuf generan payloads más compactos que JSON y ofrecen serialización/deserialización más eficiente en CPU, además de mecanismos formales de esquema que facilitan validar compatibilidad entre versiones, algo que JSON no garantiza de forma nativa."
+  },
+  {
+    "id": 50,
+    "level": "Mid",
+    "category": "Diseño de API y Serialización",
+    "question": "¿Qué diferencia clave existe entre compatibilidad de esquema 'backward compatible' y 'forward compatible' en un Schema Registry?",
+    "code": null,
+    "options": [
+      "'Forward compatible' solo aplica a formatos JSON, nunca a Avro",
+      "Ambos términos son sinónimos exactos sin ninguna diferencia práctica",
+      "'Backward compatible' significa que un consumidor con el esquema nuevo puede leer datos escritos con el esquema anterior; 'forward compatible' significa que un consumidor con el esquema anterior puede leer datos escritos con el esquema nuevo",
+      "'Backward compatible' implica que nunca se puede eliminar ni agregar campos al esquema"
+    ],
+    "correct": 2,
+    "explanation": "Backward compatibility: el consumidor actualizado (nuevo esquema) puede leer mensajes producidos con el esquema anterior. Forward compatibility: consumidores que aún usan el esquema anterior pueden leer mensajes producidos con el esquema nuevo. Elegir la estrategia correcta depende de si se actualizan primero productores o consumidores."
+  },
+  {
+    "id": 51,
+    "level": "Mid",
+    "category": "Diseño de API y Serialización",
+    "question": "¿Qué rol cumple un 'Schema Registry' (como Confluent Schema Registry) en un pipeline de eventos con Avro?",
+    "code": null,
+    "options": [
+      "Actúa como repositorio centralizado de versiones de esquema, validando compatibilidad entre versiones y permitiendo que productores/consumidores serialicen/deserialicen sin incluir el esquema completo en cada mensaje",
+      "Reemplaza completamente la necesidad de tener brokers de Kafka en el clúster",
+      "Solo almacena credenciales de autenticación de los clientes Kafka",
+      "Convierte automáticamente cualquier mensaje Avro en JSON antes de entregarlo"
+    ],
+    "correct": 0,
+    "explanation": "El Schema Registry almacena y versiona los esquemas Avro/Protobuf/JSON Schema, valida las reglas de compatibilidad configuradas al registrar nuevas versiones, y permite que los mensajes solo lleven un ID de esquema (en lugar del esquema completo), reduciendo el tamaño del payload."
+  },
+  {
+    "id": 52,
+    "level": "Junior",
+    "category": "Diseño de API y Serialización",
+    "question": "Al diseñar el 'payload' de un evento, ¿por qué se recomienda incluir metadatos como 'eventId', 'eventType', 'occurredAt' y 'version' además de los datos de negocio?",
+    "code": null,
+    "options": [
+      "Porque sin ellos Kafka rechaza automáticamente el mensaje",
+      "Porque son campos obligatorios exigidos por el protocolo TCP",
+      "Porque reemplazan la necesidad de una clave de partición",
+      "Porque facilitan trazabilidad, deduplicación, enrutamiento y evolución del esquema del evento a lo largo del tiempo"
+    ],
+    "correct": 3,
+    "explanation": "Metadatos como un identificador único de evento, tipo, timestamp y versión permiten a los consumidores implementar idempotencia (usando eventId), decidir cómo procesar según eventType/version, y trazar el flujo de eventos en el sistema, algo especialmente valioso para debugging y auditoría."
+  },
+  {
+    "id": 53,
+    "level": "Mid",
+    "category": "Diseño de API y Serialización",
+    "question": "¿Qué es CloudEvents y qué problema busca resolver en arquitecturas orientadas a eventos?",
+    "code": null,
+    "options": [
+      "Una especificación estándar (CNCF) que define un formato común de metadatos para describir eventos, facilitando la interoperabilidad entre distintos sistemas, lenguajes y plataformas",
+      "Un tipo de partición especial usada únicamente en RabbitMQ",
+      "Un algoritmo de compresión de mensajes exclusivo de Kafka Streams",
+      "Un producto comercial de AWS que reemplaza a EventBridge"
+    ],
+    "correct": 0,
+    "explanation": "CloudEvents es una especificación abierta que estandariza atributos comunes de un evento (id, source, type, time, specversion, etc.), independientemente del protocolo de transporte (Kafka, HTTP, MQTT), facilitando la interoperabilidad entre sistemas heterogéneos."
+  },
+  {
+    "id": 54,
+    "level": "Mid",
+    "category": "Diseño de API y Serialización",
+    "question": "Al evolucionar el esquema de un evento Avro, ¿qué práctica ayuda a mantener compatibilidad backward al agregar un nuevo campo?",
+    "code": "{\"name\": \"discountCode\", \"type\": [\"null\", \"string\"], \"default\": null}",
+    "options": [
+      "Definir el nuevo campo con un valor por defecto ('default'), de modo que los consumidores con el esquema anterior no fallen y los productores puedan omitirlo si no aplica",
+      "Cambiar el tipo de dato de un campo existente sin actualizar el 'default'",
+      "Renombrar campos existentes sin declarar un alias",
+      "Eliminar todos los campos anteriores para simplificar el esquema"
+    ],
+    "correct": 0,
+    "explanation": "En Avro, agregar un campo nuevo con un valor 'default' explícito permite que registros antiguos (sin ese campo) sigan siendo válidos al deserializarse con el nuevo esquema, preservando backward compatibility."
+  },
+  {
+    "id": 55,
+    "level": "Junior",
+    "category": "Diseño de API y Serialización",
+    "question": "¿Cuál es una desventaja práctica de usar JSON como formato de serialización de eventos en sistemas de alto volumen?",
+    "code": null,
+    "options": [
+      "JSON no puede representar estructuras anidadas ni arrays",
+      "JSON produce payloads más grandes que formatos binarios y no impone un esquema estricto por defecto, lo que puede facilitar incompatibilidades no detectadas entre productor y consumidor",
+      "JSON no es soportado por ningún lenguaje de programación fuera de JavaScript",
+      "JSON obliga a usar exclusivamente bases de datos NoSQL"
+    ],
+    "correct": 1,
+    "explanation": "JSON es legible y ampliamente soportado, pero al ser un formato de texto tiende a generar payloads más grandes que Avro/Protobuf, y sin una capa adicional (como JSON Schema) no impone validación estricta de estructura, lo que puede permitir cambios incompatibles que solo se detectan en tiempo de ejecución."
+  },
+  {
+    "id": 56,
+    "level": "Mid",
+    "category": "Diseño de API y Serialización",
+    "question": "¿Qué estrategia de versionado de eventos consiste en incluir el número de versión en el nombre del topic (ej. 'orders.v1', 'orders.v2')?",
+    "code": null,
+    "options": [
+      "Un anti-patrón que Kafka bloquea a nivel de broker",
+      "Versionado por topic, que permite a productores y consumidores migrar gradualmente entre versiones incompatibles del esquema, a costa de fragmentar el flujo de datos en múltiples topics",
+      "Versionado semántico exclusivo de Maven, sin relación con Kafka",
+      "Versionado que Kafka aplica automáticamente sin configuración del desarrollador"
+    ],
+    "correct": 1,
+    "explanation": "Versionar por nombre de topic es una estrategia válida cuando un cambio de esquema es incompatible (breaking change): se crea un nuevo topic para la nueva versión, permitiendo que consumidores migren a su propio ritmo, aunque implica mantener temporalmente ambos flujos y coordinar la migración."
+  },
+  {
+    "id": 57,
+    "level": "Junior",
+    "category": "Diseño de API y Serialización",
+    "question": "¿Qué propósito cumple definir una 'clave' (key) explícita al producir un mensaje a Kafka, más allá del valor (payload) del evento?",
+    "code": null,
+    "options": [
+      "La clave es obligatoria únicamente cuando se usa Spring Cloud Stream",
+      "La clave define el formato de serialización (Avro, JSON, etc.) que se usará",
+      "La clave cifra automáticamente el contenido del mensaje",
+      "La clave determina a qué partición se enviará el mensaje (por defecto, mediante hashing), lo cual es relevante para garantizar orden por entidad y para el log compaction"
+    ],
+    "correct": 3,
+    "explanation": "El key de un mensaje Kafka determina, mediante hashing por defecto, a qué partición se enruta el registro; esto es clave para mantener el orden de eventos relacionados a una misma entidad y es también el criterio usado en topics con política de compactación (log compaction) para conservar el último valor por clave."
+  },
+  {
+    "id": 58,
+    "level": "Mid",
+    "category": "Diseño de API y Serialización",
+    "question": "¿Por qué se considera una mala práctica exponer directamente las entidades JPA de la base de datos como el payload de los eventos publicados?",
+    "code": null,
+    "options": [
+      "Porque acopla el contrato público del evento a los detalles internos del modelo de persistencia, dificultando cambios internos sin romper a los consumidores, y puede filtrar datos sensibles o relaciones no deseadas (ej. lazy loading)",
+      "Porque Kafka rechaza automáticamente cualquier objeto anotado con @Entity",
+      "Porque JPA no permite serializar entidades bajo ninguna circunstancia",
+      "Porque los eventos solo pueden contener tipos primitivos como String o int"
+    ],
+    "correct": 0,
+    "explanation": "Exponer entidades JPA directamente acopla el contrato del evento (público, consumido por otros equipos) a la estructura interna de persistencia; cualquier refactor de la entidad rompe a los consumidores, y además puede filtrar campos sensibles, relaciones lazy no inicializadas o datos irrelevantes para el consumidor."
+  },
+  {
+    "id": 59,
+    "level": "Mid",
+    "category": "Diseño de API y Serialización",
+    "question": "En Spring Kafka, ¿qué ventaja ofrece configurar un 'ErrorHandlingDeserializer' junto al deserializador real (por ejemplo, JsonDeserializer)?",
+    "code": "spring.kafka.consumer.value-deserializer=org.springframework.kafka.support.serializer.ErrorHandlingDeserializer\nspring.kafka.consumer.properties.spring.deserializer.value.delegate.class=org.springframework.kafka.support.serializer.JsonDeserializer",
+    "options": [
+      "Evita que errores de deserialización (payload corrupto o incompatible) detengan al listener, delegando el manejo del error al ErrorHandler configurado en lugar de lanzar una excepción no controlada que bloquea el consumo",
+      "Elimina la necesidad de definir un DLQ para mensajes fallidos",
+      "Aumenta el throughput del consumidor duplicando los hilos de procesamiento",
+      "Convierte automáticamente cualquier error de negocio en un evento de éxito"
+    ],
+    "correct": 0,
+    "explanation": "Sin un ErrorHandlingDeserializer, un mensaje que no puede deserializarse correctamente puede provocar una excepción que bloquea indefinidamente el consumo de la partición. Envolver el deserializador real con ErrorHandlingDeserializer permite capturar ese fallo y delegarlo al manejador de errores configurado (por ejemplo, para enviarlo a una DLQ)."
+  },
+  {
+    "id": 60,
+    "level": "Mid",
+    "category": "Diseño de API y Serialización",
+    "question": "¿Qué diferencia hay entre incluir un 'header' de tipo (type) en el mensaje Kafka (como hace JsonSerializer de Spring por defecto) frente a depender únicamente de la estructura del payload para deserializar?",
+    "code": null,
+    "options": [
+      "Los headers de Kafka solo pueden contener números, nunca nombres de clases",
+      "Ambas opciones producen exactamente el mismo comportamiento en todos los casos",
+      "Usar headers de tipo permite al consumidor deserializar directamente al tipo Java correcto sin inspeccionar el contenido, pero acopla al consumidor al nombre de clase del productor si no se configuran mapeos explícitos de tipo",
+      "Depender de headers de tipo elimina por completo la necesidad de un Schema Registry"
+    ],
+    "correct": 2,
+    "explanation": "Spring's JsonSerializer añade por defecto un header (`__TypeId__`) con el nombre completo de la clase Java del productor, lo que simplifica la deserialización automática en el consumidor; sin embargo, si no se configuran mapeos de tipo explícitos (`spring.json.type.mapping`), el consumidor queda acoplado al paquete/nombre de clase interno del productor, lo cual es frágil ante refactors."
+  },
+  {
+    "id": 61,
+    "level": "Junior",
+    "category": "Spring Kafka",
+    "question": "¿Cuál es la diferencia entre `spring-kafka` y Spring Cloud Stream?",
+    "code": null,
+    "options": [
+      "spring-kafka solo funciona con Kafka Streams, mientras Spring Cloud Stream funciona con el cliente productor/consumidor clásico",
+      "`spring-kafka` es una capa de integración directa con la API de Apache Kafka (KafkaTemplate, @KafkaListener); Spring Cloud Stream es una abstracción de más alto nivel sobre distintos brokers, y de hecho usa spring-kafka internamente como uno de sus binders",
+      "Son exactamente lo mismo, Spring Cloud Stream es solo el nombre nuevo de spring-kafka a partir de Spring Boot 3",
+      "Spring Cloud Stream reemplaza la necesidad de tener un broker Kafka en producción"
+    ],
+    "correct": 1,
+    "explanation": "`spring-kafka` te da acceso directo y explícito a los conceptos de Kafka (topics, particiones, KafkaTemplate, @KafkaListener). Spring Cloud Stream añade una capa de abstracción (Supplier/Function/Consumer) que puede usar spring-kafka como 'binder' por debajo, permitiendo cambiar de broker con menos cambios de código a costa de menor control fino."
+  },
+  {
+    "id": 62,
+    "level": "Junior",
+    "category": "Spring Kafka",
+    "question": "¿Para qué sirve `KafkaTemplate` en Spring y es thread-safe?",
+    "code": "@Autowired\nprivate KafkaTemplate<String, Order> kafkaTemplate;\n\nkafkaTemplate.send(\"orders-topic\", order.getId(), order);",
+    "options": [
+      "Sirve exclusivamente para consumir mensajes, nunca para producirlos",
+      "Sirve para definir la configuración de seguridad (SASL/SSL) del clúster de Kafka",
+      "Sirve para enviar mensajes a un topic, pero no es thread-safe, por lo que se debe crear una instancia nueva por cada hilo",
+      "Sirve para enviar mensajes a un topic de forma sencilla desde el código de la aplicación, y sí, es thread-safe: se puede compartir una única instancia entre varios hilos"
+    ],
+    "correct": 3,
+    "explanation": "`KafkaTemplate` envuelve al `KafkaProducer` y expone métodos simples como `send()` para publicar mensajes. Es thread-safe, por lo que Spring Boot lo configura como un bean único (singleton) que puede inyectarse y reutilizarse en toda la aplicación sin necesidad de crear una instancia por request o por hilo."
+  },
+  {
+    "id": 63,
+    "level": "Junior",
+    "category": "Spring Kafka",
+    "question": "¿Cómo escuchas mensajes de un tópico de forma declarativa en Spring, y qué debes tener en cuenta si quieres que varias instancias procesen en paralelo?",
+    "code": "@KafkaListener(topics = \"orders-topic\", groupId = \"orders-service\")\npublic void listen(Order order) {\n    // procesar order\n}",
+    "options": [
+      "Usando la anotación `@KafkaListener`; para procesar en paralelo basta con desplegar más instancias, sin importar cuántas particiones tenga el topic",
+      "Usando la anotación `@KafkaListener` sobre un método; para procesar en paralelo, las instancias deben pertenecer al mismo `groupId` y el topic debe tener más de una partición, ya que cada partición solo puede ser consumida por una instancia a la vez dentro del grupo",
+      "Usando `@Scheduled` para revisar el topic cada cierto tiempo en lugar de un listener reactivo",
+      "Implementando manualmente un `Thread` que haga polling infinito sobre el `KafkaConsumer`, ya que Spring no ofrece soporte declarativo"
+    ],
+    "correct": 1,
+    "explanation": "Con `@KafkaListener` defines de forma declarativa qué método procesa los mensajes de un topic, indicando el `groupId`. Para que varias instancias procesen en paralelo de verdad, el topic necesita múltiples particiones, ya que Kafka asigna cada partición a un único consumidor del grupo; si solo hay una partición, agregar más instancias no aumenta el paralelismo real."
+  },
+  {
+    "id": 64,
+    "level": "Mid",
+    "category": "Spring Kafka",
+    "question": "¿Qué pasa si un mensaje falla repetidamente al procesarse en un listener de Spring Kafka? ¿Cómo evitas que bloquee el resto del tópico?",
+    "code": null,
+    "options": [
+      "Spring Kafka permite configurar un manejador de errores (`DefaultErrorHandler`) que reintenta un número limitado de veces y, si sigue fallando, envía el mensaje a un topic separado (Dead Letter Topic) en lugar de detener el consumo del resto de los mensajes",
+      "El listener se detiene permanentemente y hay que reiniciar manualmente la aplicación cada vez que ocurre un error",
+      "Spring Kafka elimina automáticamente el topic completo si detecta más de tres fallos consecutivos",
+      "Por defecto Spring Kafka descarta silenciosamente el mensaje fallido sin ninguna configuración adicional necesaria"
+    ],
+    "correct": 0,
+    "explanation": "Sin configuración, un error no controlado puede hacer que el consumidor se quede reintentando indefinidamente el mismo mensaje y bloquee la partición. Spring Kafka permite configurar reintentos con backoff y, tras agotarlos, mover el mensaje 'envenenado' a un Dead Letter Topic (comúnmente con el sufijo `.DLT`), liberando el flujo normal para continuar procesando el resto."
+  },
+  {
+    "id": 65,
+    "level": "Mid",
+    "category": "Spring Kafka",
+    "question": "¿Por qué alguien elegiría manejar el commit de offsets manualmente en lugar de dejar el commit automático?",
+    "code": null,
+    "options": [
+      "Porque el commit automático solo funciona con RabbitMQ, no con Kafka",
+      "Porque el commit manual mejora automáticamente el throughput del consumidor sin ninguna otra configuración",
+      "Porque el commit automático no existe en Spring Kafka y siempre hay que hacerlo manualmente",
+      "Para tener control explícito de cuándo se considera 'procesado' un mensaje, evitando marcar como leído un mensaje que en realidad falló antes de completar su procesamiento (por ejemplo, antes de guardar en base de datos)"
+    ],
+    "correct": 3,
+    "explanation": "Con commit automático, Kafka confirma el offset en intervalos de tiempo sin garantizar que tu lógica de negocio ya terminó exitosamente; si la app falla justo después del commit pero antes de completar el procesamiento, ese mensaje se pierde. El commit manual permite confirmar el offset solo después de que el procesamiento (ej. guardar en BD) fue exitoso, alineando mejor la semántica 'at-least-once' con la lógica real de negocio."
+  },
+  {
+    "id": 66,
+    "level": "Mid",
+    "category": "Spring Kafka",
+    "question": "¿Qué problema puede ocurrir si guardas algo en la base de datos y luego publicas un evento en Kafka como dos pasos separados, y cómo se maneja normalmente en Spring?",
+    "code": null,
+    "options": [
+      "Puede ocurrir el problema de 'dual write': la base de datos se actualiza pero el evento nunca se publica (o viceversa) si la aplicación falla entre ambos pasos; en Spring esto se maneja normalmente con el patrón Outbox o usando transacciones que sincronizan la base de datos y Kafka",
+      "El único problema posible es de rendimiento, nunca de consistencia de datos",
+      "Este problema solo puede ocurrir si se usa Spring Cloud Stream, nunca con spring-kafka directamente",
+      "No existe ningún riesgo real, porque Spring garantiza automáticamente que ambos pasos se ejecuten juntos sin configuración adicional"
+    ],
+    "correct": 0,
+    "explanation": "Si el commit en base de datos y la publicación del evento son dos operaciones independientes, un fallo entre ambas deja el sistema inconsistente (el 'dual write problem'). En Spring esto se resuelve típicamente con el patrón Transactional Outbox (guardar el evento en una tabla dentro de la misma transacción de BD y publicarlo después con un proceso aparte) o, en casos más simples, usando soporte transaccional que coordina la base de datos local y Kafka."
+  },
+  {
+    "id": 67,
+    "level": "Junior",
+    "category": "Spring Kafka",
+    "question": "¿Cuál es la configuración mínima que necesitas en un `application.yml` de Spring Boot para que tu aplicación se conecte a un clúster de Kafka?",
+    "code": "spring:\n  kafka:\n    bootstrap-servers: localhost:9092\n    consumer:\n      group-id: orders-service",
+    "options": [
+      "Se necesita definir explícitamente la contraseña de administrador del clúster de Kafka, incluso en ambientes sin seguridad habilitada",
+      "Spring Boot no permite configuración por `application.yml`, solo mediante clases `@Configuration` en Java",
+      "Indicar la dirección de los brokers (`bootstrap-servers`) y, si vas a consumir, un `group-id`; el resto de propiedades (serializadores, etc.) tienen valores por defecto razonables que Spring Boot autoconfigura",
+      "Es obligatorio configurar manualmente cada partición del topic antes de poder conectarse"
+    ],
+    "correct": 2,
+    "explanation": "Con Spring Boot basta con indicar `spring.kafka.bootstrap-servers` (dirección del clúster) y, para consumidores, `spring.kafka.consumer.group-id`. Spring Boot autoconfigura razonablemente el resto (como serializadores por defecto), aunque en la práctica casi siempre se ajustan el serializer/deserializer según el tipo de dato que se envía."
+  },
+  {
+    "id": 68,
+    "level": "Junior",
+    "category": "Spring Kafka",
+    "question": "Si quieres que un objeto Java (por ejemplo, una clase `Order`) se envíe y reciba como JSON en Spring Kafka, ¿qué necesitas configurar a grandes rasgos?",
+    "code": "spring.kafka.producer.value-serializer=org.springframework.kafka.support.serializer.JsonSerializer\nspring.kafka.consumer.value-deserializer=org.springframework.kafka.support.serializer.JsonDeserializer",
+    "options": [
+      "No es necesario configurar nada adicional, Kafka convierte automáticamente cualquier objeto Java a JSON sin serializadores",
+      "Es obligatorio usar exclusivamente Avro para poder enviar objetos Java, JSON no es soportado por Kafka",
+      "Configurar el productor con un serializador JSON (`JsonSerializer`) y el consumidor con un deserializador JSON (`JsonDeserializer`), de modo que Spring convierta automáticamente el objeto Java a JSON al enviar y viceversa al recibir",
+      "Basta con anotar la clase `Order` con `@RestController` para que se serialice automáticamente al publicarla en Kafka"
+    ],
+    "correct": 2,
+    "explanation": "Kafka en su núcleo solo entiende bytes; para trabajar con objetos Java como `Order`, Spring Kafka provee `JsonSerializer`/`JsonDeserializer` (basados en Jackson) que convierten automáticamente entre el objeto Java y su representación JSON en ambos extremos, configurándose típicamente vía propiedades del productor y consumidor."
+  },
+  {
+    "id": 69,
+    "level": "Mid",
+    "category": "Spring Kafka",
+    "question": "¿Cuándo usarías `spring-kafka` directamente en un proyecto en lugar de Spring Cloud Stream, y viceversa?",
+    "code": null,
+    "options": [
+      "No hay ningún criterio real para elegir entre ambos, la elección es puramente estética",
+      "Spring Cloud Stream solo funciona con RabbitMQ, por lo que si usas Kafka siempre debes usar spring-kafka",
+      "Se usa `spring-kafka` directamente cuando se necesita control fino sobre características específicas de Kafka (particiones, transacciones, headers); se usa Spring Cloud Stream cuando se prioriza portabilidad entre distintos brokers o un modelo de programación más simple y desacoplado del middleware",
+      "spring-kafka solo debe usarse en proyectos pequeños y Spring Cloud Stream únicamente en sistemas con más de 10 microservicios"
+    ],
+    "correct": 2,
+    "explanation": "La elección depende de qué tanto control necesitas: si el equipo requiere aprovechar features específicos de Kafka (transacciones, manejo fino de particiones/headers) conviene spring-kafka directo; si se prioriza un modelo de programación uniforme y la posibilidad de cambiar de broker con menor esfuerzo, Spring Cloud Stream (que puede usar spring-kafka como binder) es más adecuado."
+  },
+  {
+    "id": 70,
+    "level": "Junior",
+    "category": "Spring Kafka",
+    "question": "Si tu aplicación Spring Boot no logra conectarse al broker de Kafka al arrancar, ¿qué cosas básicas revisarías primero?",
+    "code": null,
+    "options": [
+      "Cambiar directamente el `group-id` del consumidor, ya que ese es siempre el origen del problema de conexión",
+      "Que la propiedad `bootstrap-servers` apunte a la dirección y puerto correctos del broker, que el broker esté efectivamente levantado y accesible en red, y que no haya un firewall o configuración de red (por ejemplo, en Docker) bloqueando la conexión",
+      "Verificar solamente los logs de la base de datos, ya que los problemas de conexión a Kafka casi siempre se originan ahí",
+      "Revisar únicamente si la versión de Java instalada es la 8, ya que Kafka no funciona con versiones más recientes"
+    ],
+    "correct": 1,
+    "explanation": "La causa más común de fallo de conexión es una configuración incorrecta o inaccesible de `bootstrap-servers` (host/puerto equivocado, broker caído, o problemas de red/Docker donde el hostname interno no resuelve desde la aplicación). Revisar esos tres puntos básicos resuelve la mayoría de los casos antes de investigar configuraciones más avanzadas."
+  }
+]
