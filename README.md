@@ -12,6 +12,16 @@ Re-reading notes before a technical interview feels productive but isn't — it 
 
 ---
 
+## Stack
+
+- **React 18** + **Vite** — fast dev loop, no framework overhead for what is fundamentally a state machine over JSON.
+- **Docker / docker-compose** — bind-mounted dev container so edits sync instantly between host and container (`volumes: .:/app`), used mainly to keep the environment identical across machines.
+- **Vanilla CSS-in-JS** (inline style objects, no Tailwind/styled-components) — deliberate, see below.
+- **Static JSON as the data layer** — no database, no ORM, no API calls of any kind today.
+- **Responsive layout** — `clamp()`-based sizing throughout, so the same codebase works as a mobile web app without a separate build.
+
+---
+
 ## How it works (at a glance)
 
 ```mermaid
@@ -49,16 +59,6 @@ App navigation (current screen, score, timers) is driven by a hand-rolled screen
 
 **Full topic catalog — Java Core through Event-Driven and Hexagonal Architecture:**
 <img src="docs/screenshots/topic-selection.png" width="70%" alt="Topic selection screen">
-
----
-
-## Stack
-
-- **React 18** + **Vite** — fast dev loop, no framework overhead for what is fundamentally a state machine over JSON.
-- **Docker / docker-compose** — bind-mounted dev container so edits sync instantly between host and container (`volumes: .:/app`), used mainly to keep the environment identical across machines.
-- **Vanilla CSS-in-JS** (inline style objects, no Tailwind/styled-components) — deliberate, see below.
-- **Static JSON as the data layer** — no database, no ORM, no API calls of any kind today.
-- **Responsive layout** — `clamp()`-based sizing throughout, so the same codebase works as a mobile web app without a separate build.
 
 ---
 
