@@ -1,4 +1,5 @@
 // add_active_field.js
+// One-time script to set the 'active' field to true for all existing entries after a new field was added to the questions bank JSON.
 import { readdirSync, readFileSync, writeFileSync } from 'fs'
 import { join } from 'path'
 
