@@ -1,0 +1,946 @@
+[
+  {
+    "id": 1,
+    "level": "Junior",
+    "category": "Arquitectura Hexagonal",
+    "question": "¿Cuál es el objetivo principal de la arquitectura hexagonal (puertos y adaptadores)?",
+    "code": null,
+    "options": [
+      "Reducir el número de clases del proyecto agrupando toda la lógica en un solo paquete",
+      "Reemplazar el patrón MVC en aplicaciones web modernas",
+      "Aislar el núcleo de negocio de los detalles tecnológicos externos (frameworks, BD, APIs), para que el dominio no dependa de ellos",
+      "Forzar el uso de microservicios en lugar de monolitos"
+    ],
+    "correct": 2,
+    "explanation": "El objetivo central es el aislamiento: el dominio (reglas de negocio) no debe conocer ni depender de frameworks, bases de datos o protocolos de comunicación. Eso permite cambiar la tecnología sin tocar la lógica de negocio.",
+    "active": true
+  },
+  {
+    "id": 2,
+    "level": "Junior",
+    "category": "Arquitectura Hexagonal",
+    "question": "¿Qué problema busca resolver la arquitectura hexagonal frente al clásico Controller-Service-Repository?",
+    "code": null,
+    "options": [
+      "Que existan demasiadas tablas en la base de datos",
+      "Que los controladores REST tengan demasiados endpoints",
+      "Que el Service tenga demasiados métodos públicos, sin relación con el acoplamiento a infraestructura",
+      "Que el Service termine acoplado a JPA, HTTP y otros detalles técnicos, mezclando reglas de negocio con infraestructura"
+    ],
+    "correct": 3,
+    "explanation": "En Controller-Service-Repository el 'Service' suele terminar dependiendo directamente de anotaciones JPA, clientes HTTP, etc. Hexagonal invierte esa dependencia: la infraestructura depende del dominio, no al revés.",
+    "active": true
+  },
+  {
+    "id": 3,
+    "level": "Junior",
+    "category": "Arquitectura Hexagonal",
+    "question": "¿Por qué se dice que el dominio 'no debe depender de nada externo' en arquitectura hexagonal?",
+    "code": null,
+    "options": [
+      "Porque el dominio no puede tener más de una clase por caso de uso",
+      "Porque el dominio solo puede usar clases del paquete java.util",
+      "Porque las clases de dominio no deben importar frameworks, drivers de BD ni librerías de infraestructura; solo Java puro y, como mucho, otras clases del propio dominio",
+      "Porque el dominio debe ejecutarse en un microservicio separado del resto del sistema"
+    ],
+    "correct": 2,
+    "explanation": "El dominio debe poder compilarse y ejecutarse sin ninguna dependencia de Spring, JPA, HTTP, etc. Solo depende de Java puro (y de sí mismo), lo que permite testearlo aislado y reemplazar la infraestructura sin tocarlo.",
+    "active": true
+  },
+  {
+    "id": 4,
+    "level": "Junior",
+    "category": "Arquitectura Hexagonal",
+    "question": "¿Por qué la lógica de negocio no debería tener anotaciones de Spring como @Service, @Entity o @Component?",
+    "code": null,
+    "options": [
+      "Porque esas anotaciones ralentizan el arranque de la aplicación",
+      "Porque esas anotaciones solo funcionan en clases con constructor vacío",
+      "Porque Spring no permite anotar clases de dominio por razones de seguridad",
+      "Porque acoplarían el dominio a un framework específico; si cambias de framework o versión mayor, tendrías que modificar el dominio sin que haya cambiado ninguna regla de negocio"
+    ],
+    "correct": 3,
+    "explanation": "Anotar el dominio con Spring lo ata a ese framework. El criterio de diseño es: si un cambio de tecnología obliga a tocar el dominio, esa dependencia no debería estar ahí.",
+    "active": true
+  },
+  {
+    "id": 5,
+    "level": "Junior",
+    "category": "Arquitectura Hexagonal",
+    "question": "¿Cómo se relaciona la arquitectura hexagonal con el principio de Dependency Inversion (SOLID)?",
+    "code": null,
+    "options": [
+      "El dominio define interfaces (puertos) que la infraestructura implementa; los módulos de alto nivel (dominio) no dependen de los de bajo nivel (infraestructura), sino al revés",
+      "Hexagonal reemplaza a Dependency Inversion, no lo necesita",
+      "No tiene relación, son conceptos independientes",
+      "Dependency Inversion solo aplica a inyección de dependencias con @Autowired"
+    ],
+    "correct": 0,
+    "explanation": "Es la aplicación directa del DIP: las abstracciones (puertos) las define el dominio, y los detalles concretos (adaptadores JPA, REST, etc.) dependen de esas abstracciones — nunca al revés.",
+    "active": true
+  },
+  {
+    "id": 6,
+    "level": "Mid",
+    "category": "Arquitectura Hexagonal",
+    "question": "¿Qué diferencia hay entre arquitectura hexagonal y Clean Architecture? ¿Son lo mismo?",
+    "code": null,
+    "options": [
+      "Comparten el mismo principio (aislar el dominio mediante inversión de dependencias), pero Clean Architecture añade más anillos explícitos (entities, use cases, interface adapters, frameworks) mientras hexagonal se centra en la dualidad puertos/adaptadores",
+      "Clean Architecture es exclusiva de aplicaciones .NET y hexagonal de Java",
+      "Clean Architecture no permite usar bases de datos relacionales, hexagonal sí",
+      "Son exactamente el mismo patrón con nombres distintos, sin ninguna diferencia"
+    ],
+    "correct": 0,
+    "explanation": "Ambas comparten el mismo espíritu (dependencias apuntando hacia el dominio), pero Clean Architecture (Uncle Bob) formaliza más capas concéntricas, mientras hexagonal se enfoca en la idea más simple de puertos de entrada/salida y adaptadores.",
+    "active": true
+  },
+  {
+    "id": 7,
+    "level": "Mid",
+    "category": "Arquitectura Hexagonal",
+    "question": "¿Cuáles son las principales desventajas o costos de adoptar arquitectura hexagonal?",
+    "code": null,
+    "options": [
+      "No tiene desventajas reales, siempre es la mejor opción",
+      "Impide el uso de pruebas unitarias, ya que todo debe probarse con @SpringBootTest",
+      "Solo funciona con bases de datos NoSQL",
+      "Más código repetitivo (mappers, DTOs), curva de aprendizaje más alta para el equipo, y una aparente duplicidad de modelos (dominio vs persistencia) que puede sentirse como sobreingeniería en dominios simples"
+    ],
+    "correct": 3,
+    "explanation": "El costo real es código adicional (mappers, interfaces, DTOs) y una curva de aprendizaje mayor. Por eso no siempre conviene: en CRUDs simples ese costo no se justifica.",
+    "active": true
+  },
+  {
+    "id": 8,
+    "level": "Mid",
+    "category": "Arquitectura Hexagonal",
+    "question": "¿En qué tipo de proyectos aporta más valor la arquitectura hexagonal, y en cuáles sería sobreingeniería?",
+    "code": null,
+    "options": [
+      "Aporta valor en cualquier proyecto sin excepción, incluyendo un CRUD simple de un solo endpoint",
+      "Solo aporta valor en aplicaciones monolíticas, nunca en microservicios",
+      "Aporta más valor en dominios con reglas de negocio complejas y cambiantes (ej. crédito, seguros, pagos) con múltiples integraciones externas; sería sobreingeniería en CRUDs simples con poca lógica de negocio",
+      "Solo aporta valor en aplicaciones sin base de datos"
+    ],
+    "correct": 2,
+    "explanation": "El criterio es la complejidad y estabilidad del dominio: cuando las reglas de negocio son ricas, cambian seguido y hay múltiples integraciones (BD, colas, APIs externas), el aislamiento paga. En un CRUD simple, el costo extra de mappers y capas no se justifica.",
+    "active": true
+  },
+  {
+    "id": 9,
+    "level": "Junior",
+    "category": "Arquitectura Hexagonal",
+    "question": "En arquitectura hexagonal, ¿qué significa que el dominio sea 'agnóstico al framework'?",
+    "code": null,
+    "options": [
+      "Que el dominio se genera automáticamente a partir del framework elegido",
+      "Que el dominio puede ejecutarse sin ningún framework de aplicación (Spring, Quarkus, etc.), usando solo Java estándar",
+      "Que el dominio no puede tener tests automatizados",
+      "Que el dominio debe funcionar con cualquier framework simultáneamente en el mismo despliegue"
+    ],
+    "correct": 1,
+    "explanation": "Agnóstico al framework significa que las clases del dominio compilan y corren con Java puro, sin ninguna dependencia de Spring u otro framework. Esto es lo que permite portarlo entre tecnologías sin reescribirlo.",
+    "active": true
+  },
+  {
+    "id": 10,
+    "level": "Mid",
+    "category": "Arquitectura Hexagonal",
+    "question": "¿Cuál es la ventaja principal de invertir la dependencia entre infraestructura y dominio (que infraestructura dependa del dominio y no al revés)?",
+    "code": null,
+    "options": [
+      "Que elimina por completo la necesidad de hacer testing de integración",
+      "Que la aplicación arranca más rápido",
+      "Que reduce el número de líneas de código total del proyecto",
+      "Que el dominio se puede testear, evolucionar y entender sin necesidad de conocer detalles de infraestructura, y la infraestructura puede cambiarse sin tocar el dominio"
+    ],
+    "correct": 3,
+    "explanation": "Al invertir la dependencia, el dominio queda protegido de los cambios de infraestructura: puedes migrar de JPA a MongoDB, o de REST a gRPC, sin tocar una sola clase de negocio.",
+    "active": true
+  },
+  {
+    "id": 11,
+    "level": "Junior",
+    "category": "Arquitectura Hexagonal",
+    "question": "¿Qué es un puerto en arquitectura hexagonal?",
+    "code": null,
+    "options": [
+      "Un puerto de red TCP/IP que expone el microservicio",
+      "Una interfaz definida por el dominio o la aplicación que describe cómo se comunica el mundo exterior con la lógica de negocio, o viceversa",
+      "Una clase concreta que implementa un repositorio JPA",
+      "Un archivo de configuración de application.yml"
+    ],
+    "correct": 1,
+    "explanation": "Un puerto es una interfaz (contrato), no una implementación. Define QUÉ se puede hacer, no CÓMO se hace técnicamente. El 'cómo' lo resuelve el adaptador.",
+    "active": true
+  },
+  {
+    "id": 12,
+    "level": "Junior",
+    "category": "Arquitectura Hexagonal",
+    "question": "¿Qué es un adaptador en arquitectura hexagonal?",
+    "code": "public interface GuardarSolicitudPort {\n    Solicitud guardar(Solicitud solicitud);\n}\n\n// Adaptador (infraestructura) que implementa el puerto\n@Repository\npublic class SolicitudJpaAdapter implements GuardarSolicitudPort {\n    private final SolicitudJpaRepository jpaRepository;\n    // traduce Solicitud (dominio) <-> SolicitudEntity (JPA)\n}",
+    "options": [
+      "La implementación técnica concreta que traduce entre el mundo exterior (HTTP, BD, colas) y el puerto definido por el dominio",
+      "Una anotación de Spring Boot que convierte automáticamente un Service en un puerto",
+      "Un patrón de diseño exclusivo para convertir tipos de datos primitivos en Java",
+      "Un archivo JSON que documenta los endpoints REST"
+    ],
+    "correct": 0,
+    "explanation": "El adaptador es el 'traductor': por ejemplo, un controlador REST recibe un JSON, lo convierte a lo que el puerto de entrada espera; o un adaptador JPA implementa el puerto de repositorio traduciendo a SQL.",
+    "active": true
+  },
+  {
+    "id": 13,
+    "level": "Junior",
+    "category": "Arquitectura Hexagonal",
+    "question": "¿Cuál es la diferencia entre puertos de entrada (driving/inbound) y puertos de salida (driven/outbound)?",
+    "code": null,
+    "options": [
+      "No hay diferencia real, son sinónimos usados por distintos autores",
+      "Los de entrada solo se usan en tests, los de salida solo en producción",
+      "Los de entrada son interfaces, los de salida son siempre clases abstractas",
+      "Los de entrada exponen la lógica del dominio hacia afuera (casos de uso invocados por adaptadores como un controller REST); los de salida son requeridos por el dominio para hablar con servicios externos (BD, mensajería) y los implementa un adaptador"
+    ],
+    "correct": 3,
+    "explanation": "Puerto de entrada: 'algo de afuera activa al dominio' (ej. un caso de uso). Puerto de salida: 'el dominio necesita algo de afuera' (ej. persistir o publicar un evento), y quien lo implementa es un adaptador secundario.",
+    "active": true
+  },
+  {
+    "id": 14,
+    "level": "Junior",
+    "category": "Arquitectura Hexagonal",
+    "question": "¿Qué rol juegan las interfaces de Java en la implementación de los puertos?",
+    "code": null,
+    "options": [
+      "Las interfaces solo sirven para documentar el código, no tienen efecto en tiempo de ejecución",
+      "Las interfaces definen el contrato del puerto sin atarlo a ninguna implementación técnica concreta, permitiendo que el dominio dependa de una abstracción y no de un detalle",
+      "Ningún rol especial, los puertos se implementan solo con clases abstractas",
+      "Las interfaces de los puertos deben extender siempre JpaRepository"
+    ],
+    "correct": 1,
+    "explanation": "Las interfaces son el mecanismo natural de Java para expresar un puerto: el dominio declara 'necesito esto' sin saber cómo se resuelve, y en runtime Spring inyecta la implementación concreta (el adaptador).",
+    "active": true
+  },
+  {
+    "id": 15,
+    "level": "Mid",
+    "category": "Arquitectura Hexagonal",
+    "question": "Necesitas exponer el mismo caso de uso tanto por un endpoint REST como por un listener de Kafka. ¿Cómo lo modelarías con puertos y adaptadores sin duplicar lógica?",
+    "code": null,
+    "options": [
+      "No es posible reutilizar el mismo caso de uso entre dos protocolos distintos",
+      "Poniendo la lógica de negocio directamente en el controller REST y llamándola desde el listener de Kafka con un HTTP interno",
+      "El caso de uso se implementa una sola vez como puerto de entrada; tanto el controlador REST como el listener de Kafka son dos adaptadores de entrada distintos que invocan el mismo puerto",
+      "Duplicando el caso de uso: una clase para REST y otra para Kafka"
+    ],
+    "correct": 2,
+    "explanation": "La gracia de los puertos de entrada es justamente esa: múltiples adaptadores (REST, Kafka, CLI, scheduler) pueden invocar el mismo caso de uso sin duplicar ni una línea de lógica de negocio.",
+    "active": true
+  },
+  {
+    "id": 16,
+    "level": "Mid",
+    "category": "Arquitectura Hexagonal",
+    "question": "Un puerto de salida de persistencia necesita, en algunos casos, además escribir en una caché Redis. ¿Cómo lo resolverías manteniendo el diseño hexagonal?",
+    "code": null,
+    "options": [
+      "Metiendo el cliente de Redis directamente dentro del dominio para que sea más rápido",
+      "El puerto de salida sigue siendo una sola interfaz; el adaptador que la implementa puede internamente coordinar tanto la escritura en BD como en Redis (o se define un puerto adicional de caché), sin que el dominio sepa que existe Redis",
+      "Hay que crear dos dominios distintos, uno para BD y otro para caché",
+      "No se puede combinar dos tecnologías detrás del mismo puerto de salida"
+    ],
+    "correct": 1,
+    "explanation": "El dominio solo conoce el contrato del puerto. El adaptador es libre de coordinar internamente múltiples tecnologías (BD + caché), o puedes exponer un puerto de caché aparte si el caso de uso necesita decidir explícitamente sobre eso.",
+    "active": true
+  },
+  {
+    "id": 17,
+    "level": "Junior",
+    "category": "Arquitectura Hexagonal",
+    "question": "¿Un Controller de Spring MVC ES el adaptador de entrada, o simplemente forma parte de él?",
+    "code": null,
+    "options": [
+      "El Controller y el puerto de entrada son la misma interfaz, sin distinción",
+      "El Controller nunca puede ser un adaptador, siempre debe ser parte del dominio",
+      "El adaptador de entrada siempre debe estar en un microservicio distinto del Controller",
+      "El Controller de Spring MVC típicamente actúa como el adaptador de entrada: recibe la petición HTTP, la traduce a la llamada del puerto de entrada (caso de uso) y traduce la respuesta de vuelta a HTTP"
+    ],
+    "correct": 3,
+    "explanation": "El @RestController es, en la práctica, el adaptador de entrada: convierte el mundo HTTP (request/response, DTOs) al lenguaje del dominio (llamando al puerto/caso de uso) y viceversa.",
+    "active": true
+  },
+  {
+    "id": 18,
+    "level": "Mid",
+    "category": "Arquitectura Hexagonal",
+    "question": "¿Por qué los puertos de salida se definen en el dominio (o capa de aplicación) pero se implementan en infraestructura?",
+    "code": null,
+    "options": [
+      "Es una convención sin efecto real, podría ser al revés sin ningún problema",
+      "Porque así se garantiza que el dominio decida QUÉ necesita (el contrato) sin saber CÓMO se resuelve técnicamente; si fuera al revés, el dominio dependería directamente de JPA, HTTP clients, etc., perdiendo el aislamiento",
+      "Porque Spring Boot obliga a que las interfaces estén siempre en el paquete domain",
+      "Porque los puertos de salida no pueden compilar si no están en el mismo paquete que su implementación"
+    ],
+    "correct": 1,
+    "explanation": "Si el contrato lo definiera infraestructura, el dominio tendría que adaptarse a los cambios de infraestructura. Al definirlo el dominio, es infraestructura quien se adapta al dominio — eso es literalmente la inversión de dependencias.",
+    "active": true
+  },
+  {
+    "id": 19,
+    "level": "Mid",
+    "category": "Arquitectura Hexagonal",
+    "question": "Para un caso de uso de 'crear una solicitud de crédito' que debe persistir el registro y publicar un evento, ¿cuántos puertos de salida como mínimo identificarías?",
+    "code": null,
+    "options": [
+      "Cero, todo se resuelve dentro del propio caso de uso sin necesidad de puertos de salida",
+      "Exactamente cuatro puertos, uno por cada capa de la arquitectura",
+      "Al menos dos: un puerto para persistencia (ej. GuardarSolicitudPort) y otro para publicar eventos (ej. PublicarEventoPort), cada uno con una responsabilidad clara",
+      "Uno solo: un puerto genérico 'GestionarSolicitudPort' que hace absolutamente todo"
+    ],
+    "correct": 2,
+    "explanation": "Buena práctica: separar por responsabilidad. Mezclar persistencia y publicación de eventos en un solo puerto genérico dificulta el testing y viola cohesión — cada puerto de salida debería representar una necesidad concreta del dominio.",
+    "active": true
+  },
+  {
+    "id": 20,
+    "level": "Junior",
+    "category": "Arquitectura Hexagonal",
+    "question": "¿Cómo se estructuran típicamente los paquetes raíz de un proyecto Spring Boot con arquitectura hexagonal?",
+    "code": "src/main/java/com/empresa/credito\n├── domain\n│   ├── model\n│   └── port\n├── application\n│   └── usecase\n└── infrastructure\n    ├── rest\n    ├── persistence\n    └── config",
+    "options": [
+      "domain (modelo y puertos), application (casos de uso) e infrastructure (adaptadores HTTP, persistencia, configuración de Spring)",
+      "un único paquete plano con todas las clases juntas para simplificar el build",
+      "entities, dto, utils, config, sin ninguna separación por responsabilidad de negocio",
+      "controller, service, repository, model (estructura clásica en capas técnicas)"
+    ],
+    "correct": 0,
+    "explanation": "La convención más común separa domain (modelo puro y puertos), application (orquestación de casos de uso) e infrastructure (todo lo que toca frameworks: REST, JPA, Kafka, configuración de Spring).",
+    "active": true
+  },
+  {
+    "id": 21,
+    "level": "Junior",
+    "category": "Arquitectura Hexagonal",
+    "question": "¿Qué NO debería contener nunca el paquete domain de un proyecto hexagonal en Spring Boot?",
+    "code": null,
+    "options": [
+      "Clases con reglas de negocio puras (POJOs)",
+      "Anotaciones de Spring o JPA (@Entity, @Service, @Autowired) ni imports de librerías de infraestructura",
+      "Excepciones de negocio propias del dominio",
+      "Interfaces de puertos de salida"
+    ],
+    "correct": 1,
+    "explanation": "El paquete domain debe compilar sin ninguna dependencia de Spring, JPA u otra librería de infraestructura. Si aparece un import de org.springframework o javax.persistence ahí, es una señal de que el dominio se está contaminando.",
+    "active": true
+  },
+  {
+    "id": 22,
+    "level": "Mid",
+    "category": "Arquitectura Hexagonal",
+    "question": "¿Qué diferencia hay entre el paquete application (casos de uso) y el paquete domain (modelo)? ¿Por qué separarlos si ambos son 'lógica de negocio'?",
+    "code": null,
+    "options": [
+      "application solo puede contener clases anotadas con @RestController",
+      "domain siempre debe estar vacío en proyectos hexagonales bien diseñados",
+      "domain contiene las reglas y el estado del negocio (entidades, value objects, invariantes); application orquesta esas reglas para cumplir un caso de uso específico (ej. coordinar validación + persistencia + evento), sin contener reglas de negocio propias",
+      "No hay diferencia real, es una separación arbitraria sin ningún beneficio"
+    ],
+    "correct": 2,
+    "explanation": "domain es el 'qué es verdad siempre' del negocio (invariantes, reglas). application es el 'qué pasos sigo' para lograr algo concreto, coordinando el dominio y los puertos de salida. La separación evita que el caso de uso se convierta en una clase gigante con reglas de negocio mezcladas con orquestación.",
+    "active": true
+  },
+  {
+    "id": 23,
+    "level": "Junior",
+    "category": "Arquitectura Hexagonal",
+    "question": "¿Qué tipo de clases esperarías encontrar dentro de infrastructure en un proyecto hexagonal con Spring Boot?",
+    "code": null,
+    "options": [
+      "Solo interfaces de puertos, sin ninguna implementación",
+      "Únicamente las clases del modelo de dominio",
+      "Solo los archivos de tests unitarios del proyecto",
+      "Controladores REST, adaptadores JPA, clientes HTTP/WebClient, listeners de Kafka/SQS, configuración de Spring (@Configuration, beans) y mappers entidad-dominio"
+    ],
+    "correct": 3,
+    "explanation": "infrastructure agrupa todo lo que 'habla' con el mundo técnico: controllers, repositorios JPA concretos, clientes de servicios externos, configuración de beans y los mappers que traducen entre modelos.",
+    "active": true
+  },
+  {
+    "id": 24,
+    "level": "Mid",
+    "category": "Arquitectura Hexagonal",
+    "question": "¿Convendría organizar los paquetes por capa técnica (domain/application/infrastructure) o por feature/módulo de negocio en un proyecto que crece mucho?",
+    "code": null,
+    "options": [
+      "La organización de paquetes no tiene ningún impacto en la mantenibilidad del proyecto",
+      "Por feature es obligatorio desde el día uno, organizar por capa técnica está prohibido en hexagonal",
+      "Ambos enfoques son válidos: por capa técnica es más simple al inicio y más fácil de explicar, mientras que organizar primero por feature/módulo (y dentro de cada uno replicar domain/application/infrastructure) escala mejor en proyectos grandes con múltiples equipos",
+      "Siempre por capa técnica, nunca hay motivo para organizar por feature"
+    ],
+    "correct": 2,
+    "explanation": "En proyectos pequeños, por capa técnica es suficiente y claro. En proyectos grandes con varios dominios (ej. solicitudes, pagos, scoring), organizar primero por feature y luego por capa dentro de cada uno reduce el acoplamiento entre equipos y facilita una futura extracción a microservicios.",
+    "active": true
+  },
+  {
+    "id": 25,
+    "level": "Junior",
+    "category": "Arquitectura Hexagonal",
+    "question": "Si el dominio no puede usar @Service, ¿cómo implementarías un caso de uso (puerto de entrada) en Spring Boot?",
+    "code": "@Configuration\npublic class UseCaseConfig {\n    @Bean\n    public CrearSolicitudUseCase crearSolicitudUseCase(\n            GuardarSolicitudPort guardarPort,\n            PublicarEventoPort eventoPort) {\n        return new CrearSolicitudUseCaseImpl(guardarPort, eventoPort);\n    }\n}",
+    "options": [
+      "Es imposible usar casos de uso sin anotarlos con @Service, hay que sacrificar la pureza del dominio",
+      "El caso de uso se implementa como una clase Java normal (sin anotaciones de Spring) y se registra manualmente como bean mediante una clase @Configuration con un método @Bean",
+      "Se declara el caso de uso como una interfaz vacía sin ninguna implementación",
+      "Se anota el caso de uso con @Repository en lugar de @Service"
+    ],
+    "correct": 1,
+    "explanation": "Una práctica común es dejar la implementación del caso de uso libre de anotaciones y registrarla explícitamente en una clase @Configuration, pasándole por constructor los adaptadores de salida ya resueltos por Spring.",
+    "active": true
+  },
+  {
+    "id": 26,
+    "level": "Junior",
+    "category": "Arquitectura Hexagonal",
+    "question": "¿Dónde debería vivir la validación de reglas de negocio: en el controlador REST o en el caso de uso?",
+    "code": null,
+    "options": [
+      "En el caso de uso (capa application/domain), para que la regla se aplique sin importar si la petición viene de REST, un mensaje de Kafka o un test; el controlador solo valida formato básico del DTO",
+      "En un @ControllerAdvice que intercepta todas las peticiones antes de llegar al controller",
+      "En el mapper que convierte el DTO a entidad de dominio",
+      "En el controlador REST, usando @Valid sobre el DTO de entrada, siempre y sin excepción"
+    ],
+    "correct": 0,
+    "explanation": "@Valid en el DTO sirve para validaciones de formato (campo requerido, formato de email). Las reglas de negocio reales (ej. 'el monto solicitado no puede superar el límite del cliente') deben vivir en el caso de uso, para que apliquen sin importar el canal de entrada.",
+    "active": true
+  },
+  {
+    "id": 27,
+    "level": "Junior",
+    "category": "Arquitectura Hexagonal",
+    "question": "¿Cómo evitas que un DTO de entrada con anotaciones de validación de Spring (@NotNull, @Valid) contamine el dominio?",
+    "code": null,
+    "options": [
+      "El DTO vive en infrastructure (junto al controller) y se mapea a un objeto de dominio puro antes de invocar el caso de uso; las anotaciones de validación de Spring nunca llegan al paquete domain",
+      "Anotando el modelo de dominio con @NotNull también, no hay problema en compartir anotaciones",
+      "Eliminando toda validación de formato del proyecto",
+      "Usando la misma clase tanto para el DTO de entrada como para el modelo de dominio, para ahorrar código"
+    ],
+    "correct": 0,
+    "explanation": "El DTO con anotaciones de Bean Validation es responsabilidad de infrastructure. Se mapea al modelo de dominio (sin anotaciones) antes de que la petición llegue al caso de uso, manteniendo el dominio limpio.",
+    "active": true
+  },
+  {
+    "id": 28,
+    "level": "Junior",
+    "category": "Arquitectura Hexagonal",
+    "question": "¿Cómo implementarías un adaptador de persistencia con Spring Data JPA sin que la @Entity sea la misma clase que el modelo de dominio?",
+    "code": "@Entity\n@Table(name = \"solicitudes\")\nclass SolicitudEntity {\n    @Id private Long id;\n    private BigDecimal monto;\n    // getters/setters, sin lógica de negocio\n}\n\n// En el adaptador:\nSolicitud dominio = mapper.toDomain(entity);",
+    "options": [
+      "Creando una clase separada anotada con @Entity (ej. SolicitudEntity) para persistencia, y un Mapper que convierte entre SolicitudEntity y el modelo de dominio Solicitud dentro del adaptador",
+      "Usando la clase de dominio directamente como @Entity, anotándola con JPA para ahorrar el mapeo",
+      "No es posible separar el modelo de dominio de la entidad JPA en Spring Boot",
+      "Generando la @Entity automáticamente a partir de un archivo YAML sin necesidad de mapper"
+    ],
+    "correct": 0,
+    "explanation": "Se mantienen dos modelos: el de dominio (POJO puro) y la entidad JPA (con anotaciones de persistencia). El adaptador de persistencia contiene el mapper que traduce entre ambos.",
+    "active": true
+  },
+  {
+    "id": 29,
+    "level": "Mid",
+    "category": "Arquitectura Hexagonal",
+    "question": "¿Qué patrón usarías para mapear entre entidades de dominio y entidades de persistencia (JPA) o DTOs?",
+    "code": null,
+    "options": [
+      "Reflection genérico en tiempo de ejecución sin ninguna clase de mapeo explícita",
+      "Un componente Mapper dedicado (manual, con MapStruct, o mediante constructores/factory methods) ubicado en la capa de infraestructura, responsable exclusivo de la traducción entre modelos",
+      "Serializar ambos objetos a JSON y deserializar de un tipo al otro como mecanismo de mapeo",
+      "No se necesita ningún mapper si las clases tienen los mismos nombres de campo"
+    ],
+    "correct": 1,
+    "explanation": "Un Mapper explícito (manual o generado con MapStruct) hace la traducción visible y testeable, y vive en infraestructura — el dominio no necesita saber que existe ese mapeo.",
+    "active": true
+  },
+  {
+    "id": 30,
+    "level": "Mid",
+    "category": "Arquitectura Hexagonal",
+    "question": "¿Cómo implementarías un adaptador que consume un servicio externo vía REST respetando el puerto definido en el dominio?",
+    "code": "public interface ConsultarScoringPort {\n    ScoreCrediticio consultar(String clienteId);\n}\n\n@Component\nclass ScoringWebClientAdapter implements ConsultarScoringPort {\n    private final WebClient webClient;\n    public ScoreCrediticio consultar(String clienteId) {\n        // llamada HTTP + mapeo a modelo de dominio\n    }\n}",
+    "options": [
+      "Definiendo un puerto de salida en el dominio (ej. ConsultarScoringPort) y creando en infrastructure un adaptador que lo implemente usando WebClient/RestTemplate, traduciendo la respuesta HTTP al modelo de dominio",
+      "Inyectando WebClient o RestTemplate directamente en el caso de uso del dominio para llamarlo sin pasar por ningún puerto",
+      "Haciendo la llamada HTTP directamente desde el controlador REST antes de invocar el caso de uso",
+      "No es posible integrar servicios externos en una arquitectura hexagonal"
+    ],
+    "correct": 0,
+    "explanation": "El dominio declara qué necesita (ej. 'consultar el scoring del cliente') mediante un puerto; el adaptador en infraestructura resuelve el CÓMO usando WebClient y traduce la respuesta externa al modelo de dominio.",
+    "active": true
+  },
+  {
+    "id": 31,
+    "level": "Junior",
+    "category": "Arquitectura Hexagonal",
+    "question": "¿Dónde colocarías el manejo global de excepciones (@ControllerAdvice) y por qué?",
+    "code": null,
+    "options": [
+      "No es necesario un manejo centralizado, cada controller debe tener su propio try/catch",
+      "En el paquete domain, junto a las excepciones de negocio, porque así están todas juntas",
+      "En infrastructure (capa del adaptador REST), porque traducir una excepción de negocio a un código de estado HTTP es un detalle de ese protocolo específico, no una regla de negocio",
+      "En application, dentro del propio caso de uso, capturando y devolviendo directamente el ResponseEntity"
+    ],
+    "correct": 2,
+    "explanation": "El dominio lanza excepciones de negocio puras (sin conocer HTTP). Es el adaptador REST (@ControllerAdvice) quien decide cómo traducir esa excepción a un código de estado, porque otro adaptador (ej. un listener de Kafka) traduciría esa misma excepción de forma distinta.",
+    "active": true
+  },
+  {
+    "id": 32,
+    "level": "Junior",
+    "category": "Arquitectura Hexagonal",
+    "question": "El dominio lanza una excepción de negocio pura (ej. SolicitudNoElegibleException). ¿Cómo se traduce a un HTTP 409 sin que el dominio conozca códigos HTTP?",
+    "code": null,
+    "options": [
+      "El @ControllerAdvice en infrastructure captura ese tipo de excepción específico y decide mapearlo a HTTP 409, sin que la excepción de dominio sepa nada sobre HTTP",
+      "No es posible mapear excepciones de dominio a códigos HTTP en arquitectura hexagonal",
+      "Lanzando directamente un ResponseStatusException desde el dominio en lugar de una excepción propia",
+      "Agregando un campo httpStatus dentro de la propia excepción de dominio"
+    ],
+    "correct": 0,
+    "explanation": "La excepción de dominio solo expresa 'qué pasó' en términos de negocio. La decisión de qué código HTTP corresponde es responsabilidad exclusiva del adaptador REST, mantenida fuera del dominio.",
+    "active": true
+  },
+  {
+    "id": 33,
+    "level": "Mid",
+    "category": "Arquitectura Hexagonal",
+    "question": "¿Cómo se resuelve, en el caso de uso, la orquestación de: validar reglas, guardar en BD y publicar un evento, manteniendo el dominio testeable?",
+    "code": null,
+    "options": [
+      "Toda la orquestación debe vivir en el controller REST, no en el caso de uso",
+      "Es necesario levantar @SpringBootTest para poder testear esta orquestación, no hay alternativa",
+      "El caso de uso llama directamente a JpaRepository.save() y a KafkaTemplate.send() sin ninguna interfaz intermedia",
+      "El caso de uso orquesta la secuencia usando únicamente los puertos de salida (interfaces) inyectados por constructor; en un test unitario esos puertos se mockean sin levantar Spring ni infraestructura real"
+    ],
+    "correct": 3,
+    "explanation": "El caso de uso depende de interfaces (puertos), no de implementaciones concretas. Eso permite testear la orquestación completa con Mockito, sin infraestructura real, validando el orden de llamadas y el manejo de errores.",
+    "active": true
+  },
+  {
+    "id": 34,
+    "level": "Mid",
+    "category": "Arquitectura Hexagonal",
+    "question": "¿Dónde es más apropiado colocar @Transactional: en el caso de uso, en el adaptador de persistencia, o en el dominio puro?",
+    "code": null,
+    "options": [
+      "En el controlador REST, para que la transacción cubra la serialización de la respuesta también",
+      "No se puede usar @Transactional en una arquitectura hexagonal bajo ninguna circunstancia",
+      "En la capa de aplicación (caso de uso) o en el adaptador de infraestructura, nunca en el dominio puro, porque @Transactional es un detalle técnico de Spring/JPA que el dominio no debe conocer",
+      "Siempre en el dominio puro, ya que las transacciones son parte de la lógica de negocio"
+    ],
+    "correct": 2,
+    "explanation": "@Transactional es una anotación de Spring/framework, así que su lugar natural es application o infrastructure, donde ya se acepta cierto acoplamiento a Spring. El dominio puro se mantiene libre de esa anotación.",
+    "active": true
+  },
+  {
+    "id": 35,
+    "level": "Mid",
+    "category": "Arquitectura Hexagonal",
+    "question": "Si colocas @Transactional en la capa de aplicación, ¿estás rompiendo el principio de que el dominio no conozca el framework?",
+    "code": null,
+    "options": [
+      "No necesariamente: 'dominio' (paquete domain, modelo puro) y 'capa de aplicación' (casos de uso) suelen tratarse como zonas distintas; muchos equipos aceptan cierto acoplamiento leve a Spring en application, siempre que el paquete domain se mantenga 100% puro",
+      "Sí, y la única alternativa correcta es mover toda la lógica de negocio al controlador REST",
+      "Sí, y por eso nunca debe usarse @Transactional en ningún punto del proyecto",
+      "No, porque @Transactional no es una anotación de Spring sino de Java estándar"
+    ],
+    "correct": 0,
+    "explanation": "Hay cierto debate legítimo aquí: algunos equipos exigen pureza total incluso en application; otros aceptan que la capa de aplicación (a diferencia del modelo de dominio) puede tener anotaciones ligeras de Spring como @Transactional, siempre que el core del modelo de negocio se mantenga intacto.",
+    "active": true
+  },
+  {
+    "id": 36,
+    "level": "Mid",
+    "category": "Arquitectura Hexagonal",
+    "question": "¿Cómo integrarías Spring Security en una arquitectura hexagonal sin que el dominio dependa de clases como Authentication o SecurityContext?",
+    "code": null,
+    "options": [
+      "La seguridad se resuelve en el adaptador de entrada (filtros, controller); solo el dato ya extraído y simple (ej. un String con el ID del usuario) se pasa como parámetro al caso de uso, sin exponer tipos de Spring Security al dominio",
+      "Inyectando SecurityContextHolder directamente dentro del caso de uso para consultar el usuario autenticado",
+      "Anotando las clases de dominio con @PreAuthorize directamente",
+      "No es posible aplicar seguridad en una arquitectura hexagonal"
+    ],
+    "correct": 0,
+    "explanation": "La seguridad es una preocupación de infraestructura. El adaptador de entrada extrae la información necesaria (ej. ID de usuario) del contexto de seguridad y se la pasa al caso de uso como un tipo simple del dominio, sin filtrar clases de Spring Security hacia adentro.",
+    "active": true
+  },
+  {
+    "id": 37,
+    "level": "Junior",
+    "category": "Arquitectura Hexagonal",
+    "question": "¿Cómo pasarías el ID del usuario autenticado desde el adaptador de entrada hasta el caso de uso sin acoplar el dominio a Spring Security?",
+    "code": null,
+    "options": [
+      "Guardando el usuario autenticado en una variable estática accesible desde cualquier clase",
+      "Pasando el objeto Authentication de Spring Security completo como parámetro del caso de uso",
+      "El caso de uso debe consultar SecurityContextHolder.getContext() directamente",
+      "Extrayendo el ID como un String u objeto de dominio simple en el controller, y pasándolo como parámetro plano al método del caso de uso"
+    ],
+    "correct": 3,
+    "explanation": "El adaptador de entrada hace la extracción (ej. authentication.getName()) y le pasa al caso de uso solo el dato relevante como tipo simple, evitando que el dominio conozca la API de Spring Security.",
+    "active": true
+  },
+  {
+    "id": 38,
+    "level": "Mid",
+    "category": "Arquitectura Hexagonal",
+    "question": "¿Cómo manejarías logging y métricas (observabilidad) sin ensuciar el dominio con dependencias de infraestructura?",
+    "code": null,
+    "options": [
+      "Agregando System.out.println directamente en las clases de dominio para simplificar",
+      "Anotando todas las clases de dominio con @Slf4j de Lombok sin ninguna restricción",
+      "El dominio puede exponer eventos o resultados que la capa de aplicación/infraestructura observa y registra (ej. con un Logger o Micrometer), o se usa AOP en la capa de infraestructura, sin que las clases de dominio importen librerías de logging específicas",
+      "Es imposible tener observabilidad en un sistema con arquitectura hexagonal"
+    ],
+    "correct": 2,
+    "explanation": "Aunque en la práctica muchos equipos toleran un logger básico en el dominio, la forma más estricta es que el logging detallado (métricas, trazas) viva en application/infrastructure, observando lo que el dominio produce, no al revés.",
+    "active": true
+  },
+  {
+    "id": 39,
+    "level": "Junior",
+    "category": "Arquitectura Hexagonal",
+    "question": "¿Cómo pruebas unitariamente un caso de uso sin levantar el contexto de Spring (@SpringBootTest)?",
+    "code": "@Test\nvoid deberiaCrearSolicitud() {\n    var guardarPort = mock(GuardarSolicitudPort.class);\n    var eventoPort = mock(PublicarEventoPort.class);\n    var useCase = new CrearSolicitudUseCaseImpl(guardarPort, eventoPort);\n    // when / then\n}",
+    "options": [
+      "Instanciando el caso de uso directamente con 'new', pasándole mocks (Mockito) de los puertos de salida por constructor, sin ningún contexto de Spring involucrado",
+      "No es posible, siempre se necesita @SpringBootTest para probar un caso de uso",
+      "Usando @WebMvcTest, que es el único mecanismo válido para testear casos de uso",
+      "Copiando el código del caso de uso dentro de la clase de test para evitar la inyección de dependencias"
+    ],
+    "correct": 0,
+    "explanation": "Como el caso de uso depende de interfaces (puertos) inyectadas por constructor, en el test simplemente se crean mocks de esos puertos con Mockito y se instancia la clase con 'new', sin arrancar Spring.",
+    "active": true
+  },
+  {
+    "id": 40,
+    "level": "Junior",
+    "category": "Arquitectura Hexagonal",
+    "question": "¿Qué ventaja de velocidad obtienes al testear el dominio con JUnit y Mockito puros en lugar de tests que levantan todo el contexto de Spring?",
+    "code": null,
+    "options": [
+      "Ninguna, el tiempo de ejecución es idéntico en ambos casos",
+      "Los tests unitarios de dominio corren en milisegundos porque no cargan el ApplicationContext, no conectan a base de datos ni inicializan beans; los tests con @SpringBootTest son órdenes de magnitud más lentos",
+      "Los tests con Mockito solo pueden ejecutarse en modo offline sin conexión a internet",
+      "Mockito reemplaza automáticamente la necesidad de escribir aserciones"
+    ],
+    "correct": 1,
+    "explanation": "Al no depender del framework, los tests de dominio/casos de uso son extremadamente rápidos (sin arrancar contexto, sin BD real), lo que permite ejecutarlos constantemente durante el desarrollo (TDD-friendly).",
+    "active": true
+  },
+  {
+    "id": 41,
+    "level": "Mid",
+    "category": "Arquitectura Hexagonal",
+    "question": "¿Qué tipo de test usarías para validar un adaptador de persistencia JPA, y por qué no basta con mockear el repositorio ahí?",
+    "code": null,
+    "options": [
+      "@WebMvcTest, porque prueba tanto el controller como el repositorio en un solo test",
+      "@DataJpaTest (o con Testcontainers), porque necesitas verificar que las queries, el mapeo objeto-relacional y las restricciones de la BD real funcionan correctamente; mockear el repositorio no prueba nada de eso",
+      "Un test unitario puro con Mockito es suficiente, no hace falta ninguna base de datos ni siquiera en memoria",
+      "No es necesario testear el adaptador de persistencia si el dominio ya está bien testeado"
+    ],
+    "correct": 1,
+    "explanation": "El adaptador de persistencia es justamente la pieza que integra con la tecnología real, por lo que mockearlo no aporta valor: hay que probarlo contra una BD real o en memoria (@DataJpaTest) o, mejor aún, con Testcontainers para mayor fidelidad.",
+    "active": true
+  },
+  {
+    "id": 42,
+    "level": "Mid",
+    "category": "Arquitectura Hexagonal",
+    "question": "¿Qué tipo de test usarías para validar un controlador REST de forma aislada, y qué diferencia tiene con un test end-to-end?",
+    "code": null,
+    "options": [
+      "Un test unitario con 'new' sobre el controller, sin ningún framework de testing",
+      "@SpringBootTest siempre, ya que es el único tipo de test válido para controllers",
+      "@WebMvcTest, que levanta solo la capa web (controller, serialización, validación) mockeando el caso de uso; a diferencia de un test end-to-end, no involucra base de datos real ni el contexto completo de Spring",
+      "No hay diferencia entre @WebMvcTest y un test end-to-end, ambos prueban exactamente lo mismo"
+    ],
+    "correct": 2,
+    "explanation": "@WebMvcTest carga solo la capa MVC (serialización JSON, validación de DTOs, manejo de excepciones) con el caso de uso mockeado, mientras que un test end-to-end recorre toda la aplicación real, incluyendo BD.",
+    "active": true
+  },
+  {
+    "id": 43,
+    "level": "Mid",
+    "category": "Arquitectura Hexagonal",
+    "question": "Si migras un adaptador de salida de JPA a un cliente HTTP externo, ¿qué tests deberían romperse y cuáles no deberían verse afectados?",
+    "code": null,
+    "options": [
+      "Todos los tests del proyecto deberían romperse, incluyendo los del dominio y los casos de uso",
+      "Solo los tests específicos del adaptador de persistencia (los que prueban ese detalle técnico); los tests del dominio y de los casos de uso, al depender solo del puerto (interfaz), no deberían verse afectados en absoluto",
+      "Solo los tests del controlador REST deberían romperse",
+      "Ningún test debería romperse nunca, sin importar el cambio realizado"
+    ],
+    "correct": 1,
+    "explanation": "Este es justo el beneficio medible de la arquitectura: si cambiar de tecnología de persistencia rompe tests del dominio o de los casos de uso, es señal de que había una fuga de abstracción — en un diseño correcto, esos tests son inmunes a ese cambio.",
+    "active": true
+  },
+  {
+    "id": 44,
+    "level": "Mid",
+    "category": "Arquitectura Hexagonal",
+    "question": "¿Cómo diseñarías un mock de un puerto de salida para testear un caso de uso que involucra persistencia y publicación de un evento?",
+    "code": null,
+    "options": [
+      "No se pueden mockear dos puertos distintos en el mismo test, hay que elegir solo uno",
+      "Se debe levantar una base de datos H2 en memoria y un broker Kafka embebido para poder testear correctamente",
+      "Se crean dos mocks independientes (uno por cada puerto de salida) con Mockito, se configura su comportamiento con when/thenReturn, y luego se verifica con verify() que el caso de uso los invocó en el orden y con los argumentos esperados",
+      "Los puertos de salida no se pueden mockear porque son interfaces, solo se pueden mockear clases concretas"
+    ],
+    "correct": 2,
+    "explanation": "Mockito permite mockear tantas interfaces como puertos tenga el caso de uso. La ventaja de tener puertos separados por responsabilidad es justamente que el test puede verificar cada colaboración de forma independiente y explícita.",
+    "active": true
+  },
+  {
+    "id": 45,
+    "level": "Mid",
+    "category": "Arquitectura Hexagonal",
+    "question": "¿Cómo se comunican dos hexágonos (microservicios) entre sí sin que uno conozca los detalles internos del otro?",
+    "code": null,
+    "options": [
+      "No es posible que dos hexágonos se comuniquen entre sí, cada uno debe ser completamente autónomo y aislado",
+      "Accediendo directamente a la base de datos del otro microservicio desde el adaptador de persistencia",
+      "Compartiendo directamente las clases de dominio entre ambos microservicios mediante una librería común",
+      "Cada hexágono expone puertos de salida (ej. cliente HTTP o publicador de eventos) implementados por adaptadores (WebClient, Spring Cloud Stream, SNS/SQS); el otro microservicio solo conoce el contrato del mensaje/API, nunca las clases internas de dominio del primero"
+    ],
+    "correct": 3,
+    "explanation": "Cada microservicio mantiene su hexágono cerrado: la comunicación pasa por puertos y adaptadores (HTTP, eventos), exponiendo solo contratos (DTOs de integración/eventos), nunca las entidades internas de dominio del otro servicio.",
+    "active": true
+  },
+  {
+    "id": 46,
+    "level": "Junior",
+    "category": "Arquitectura Hexagonal",
+    "question": "¿Qué son los Domain Events (eventos de dominio)?",
+    "code": null,
+    "options": [
+      "Métricas de rendimiento expuestas vía Actuator",
+      "Objetos que representan un hecho de negocio relevante que ya ocurrió (ej. SolicitudAprobadaEvent), definidos en el dominio, que otras partes del sistema pueden reaccionar a ellos",
+      "Logs técnicos generados automáticamente por Spring Boot al arrancar la aplicación",
+      "Excepciones lanzadas por el framework cuando falla una transacción"
+    ],
+    "correct": 1,
+    "explanation": "Un evento de dominio expresa 'algo que pasó' en el lenguaje del negocio (en pasado: Aprobada, Creada, Rechazada). Se define en el dominio, aunque su publicación técnica (a Kafka, SNS, etc.) es responsabilidad de infraestructura.",
+    "active": true
+  },
+  {
+    "id": 47,
+    "level": "Mid",
+    "category": "Arquitectura Hexagonal",
+    "question": "Si usas ApplicationEventPublisher de Spring para publicar un evento de dominio, ¿estás rompiendo la pureza del dominio?",
+    "code": null,
+    "options": [
+      "Sí, y no existe ninguna forma de resolverlo manteniendo hexagonal",
+      "Sí, porque ApplicationEventPublisher es una clase de Spring; si el dominio la usa directamente, queda acoplado al framework. Se resuelve definiendo un puerto de salida propio (ej. PublicarEventoPort) que un adaptador implemente usando ApplicationEventPublisher u otra tecnología",
+      "No, ApplicationEventPublisher es parte de Java estándar, no de Spring",
+      "No importa si se usa directamente en el dominio, ya que ApplicationEventPublisher no tiene ningún efecto sobre el acoplamiento"
+    ],
+    "correct": 1,
+    "explanation": "Es un acoplamiento real si se usa directo en el dominio. La solución es definir un puerto de salida propio del dominio para publicar eventos, y que la implementación concreta (usando ApplicationEventPublisher, Kafka, SNS, etc.) viva en infraestructura.",
+    "active": true
+  },
+  {
+    "id": 48,
+    "level": "Mid",
+    "category": "Arquitectura Hexagonal",
+    "question": "En un flujo donde booking-service publica un evento que consume payment-service vía SNS/SQS, ¿en qué capa vive el publicador y en qué capa el listener?",
+    "code": null,
+    "options": [
+      "Ambos deben vivir en el paquete domain de cada microservicio, ya que publicar y consumir eventos es una regla de negocio",
+      "El publicador vive en application y el listener siempre debe vivir en domain",
+      "El publicador vive en infrastructure de booking-service (adaptador de salida que implementa el puerto de publicación); el listener vive en infrastructure de payment-service (adaptador de entrada que traduce el mensaje SQS a una llamada a su propio caso de uso)",
+      "No importa la capa, siempre que ambos estén en el mismo microservicio"
+    ],
+    "correct": 2,
+    "explanation": "Publicar y consumir mensajes son detalles técnicos de mensajería (SNS/SQS), así que ambos viven en infrastructure de cada servicio, como adaptadores de salida y de entrada respectivamente — cada uno traduciendo hacia/desde su propio dominio.",
+    "active": true
+  },
+  {
+    "id": 49,
+    "level": "Mid",
+    "category": "Arquitectura Hexagonal",
+    "question": "¿Qué consideraciones de idempotencia debe tener un adaptador de entrada que consume mensajes de una cola (SQS/Kafka)?",
+    "code": null,
+    "options": [
+      "La idempotencia es responsabilidad exclusiva del broker, nunca del microservicio consumidor",
+      "Ninguna, las colas garantizan entrega exactamente una vez (exactly-once) por diseño, sin necesidad de lógica adicional",
+      "Solo aplica si se usa Kafka, en SQS no es un problema relevante",
+      "El adaptador debe manejar posibles mensajes duplicados (entrega at-least-once es común), por ejemplo verificando si el evento ya fue procesado antes de invocar el caso de uso, para que reintentos no dupliquen efectos de negocio"
+    ],
+    "correct": 3,
+    "explanation": "La mayoría de brokers garantizan at-least-once, no exactly-once. El adaptador de entrada (o el caso de uso) debe poder detectar y descartar mensajes duplicados para evitar, por ejemplo, aprobar la misma solicitud dos veces por un reintento.",
+    "active": true
+  },
+  {
+    "id": 50,
+    "level": "Mid",
+    "category": "Arquitectura Hexagonal",
+    "question": "Te asignan un proyecto Spring Boot existente, muy acoplado (todo en Service y Repository tradicional). ¿Cómo empezarías a migrarlo hacia arquitectura hexagonal?",
+    "code": null,
+    "options": [
+      "Migrando primero la base de datos a una tecnología distinta, y después preocupándose por el código",
+      "Reescribiendo todo el sistema desde cero en un nuevo repositorio antes de tocar producción",
+      "No es recomendable migrar nunca un sistema que ya está en producción y funcionando",
+      "De forma incremental: identificar el núcleo del dominio, extraer interfaces (puertos) de las dependencias externas actuales, crear adaptadores que implementen esos puertos, y migrar módulo por módulo sin detener el desarrollo de features"
+    ],
+    "correct": 3,
+    "explanation": "La migración recomendada es incremental, empezando por el módulo con más dolor o cambio frecuente: se extraen puertos alrededor del código existente, se crean adaptadores, y se va reduciendo el acoplamiento sin parar el negocio ni reescribir todo de golpe.",
+    "active": true
+  },
+  {
+    "id": 51,
+    "level": "Mid",
+    "category": "Arquitectura Hexagonal",
+    "question": "¿En qué consiste el patrón Strangler Fig aplicado a una migración hacia arquitectura hexagonal, y por qué es preferible a una reescritura completa?",
+    "code": null,
+    "options": [
+      "En detener el sistema legacy por completo mientras se construye el nuevo desde cero, para evitar mantener dos sistemas en paralelo",
+      "En clonar el proyecto legacy y ejecutarlo en paralelo sin ninguna comunicación entre ambos",
+      "En ir reemplazando progresivamente partes del sistema legacy por nuevos componentes hexagonales, mientras ambos conviven, hasta que el legacy queda completamente reemplazado; es preferible porque reduce el riesgo frente a una reescritura total ('big bang') que suele fallar en proyectos grandes",
+      "Es un patrón exclusivo de migraciones de base de datos, no aplica a arquitectura de código"
+    ],
+    "correct": 2,
+    "explanation": "El nombre viene de la higuera estranguladora, que crece alrededor de un árbol hasta reemplazarlo. Aplicado a software: se envuelve gradualmente el sistema legacy con nuevos componentes hexagonales hasta que el legacy desaparece, minimizando el riesgo de una reescritura total.",
+    "active": true
+  },
+  {
+    "id": 52,
+    "level": "Mid",
+    "category": "Arquitectura Hexagonal",
+    "question": "Si migras tu base de datos de PostgreSQL a MongoDB, ¿qué partes cambian y cuáles permanecen intactas si la arquitectura hexagonal está bien aplicada?",
+    "code": null,
+    "options": [
+      "Cambia únicamente el adaptador de persistencia (su implementación interna y el mapper); el dominio, los casos de uso y el puerto de repositorio (la interfaz) permanecen intactos, ya que ellos no conocen la tecnología de persistencia",
+      "Cambian los controladores REST, ya que dependen directamente del tipo de base de datos usado",
+      "Cambia todo el sistema completo, incluyendo el dominio, los casos de uso y los controladores REST",
+      "No cambia nada, MongoDB y PostgreSQL son intercambiables sin ningún ajuste de código"
+    ],
+    "correct": 0,
+    "explanation": "Esta es la prueba de fuego del diseño: si migrar de BD relacional a documental solo implica reescribir el adaptador (y su mapper), sin tocar dominio ni casos de uso, la arquitectura está bien aplicada.",
+    "active": true
+  },
+  {
+    "id": 53,
+    "level": "Mid",
+    "category": "Arquitectura Hexagonal",
+    "question": "¿Cómo facilita la arquitectura hexagonal la evolución de un monolito hacia microservicios?",
+    "code": null,
+    "options": [
+      "Al mantener el dominio ya desacoplado de infraestructura y con fronteras claras (puertos/adaptadores), extraer un módulo de negocio a su propio microservicio implica principalmente mover paquetes y crear nuevos adaptadores de comunicación, sin reescribir la lógica de negocio",
+      "Obliga a que el monolito se convierta directamente en un solo microservicio gigante",
+      "Solo facilita la migración si el monolito ya usa exclusivamente NoSQL",
+      "No facilita nada, hexagonal y microservicios son conceptos incompatibles entre sí"
+    ],
+    "correct": 0,
+    "explanation": "Si el dominio de un módulo ya está aislado detrás de puertos, extraerlo a un microservicio propio consiste sobre todo en darle su propia infraestructura (BD, API, despliegue) — la lógica de negocio en sí casi no cambia.",
+    "active": true
+  },
+  {
+    "id": 54,
+    "level": "Mid",
+    "category": "Arquitectura Hexagonal",
+    "question": "¿Qué problema real es común ver cuando un equipo no está familiarizado con arquitectura hexagonal, y cómo se mitiga?",
+    "code": null,
+    "options": [
+      "El equipo no puede escribir tests bajo ninguna circunstancia",
+      "Este problema no existe, cualquier equipo adopta hexagonal sin dificultad desde el primer sprint",
+      "El equipo termina 'filtrando' anotaciones o tipos de framework hacia el dominio por comodidad (ej. usar la @Entity como modelo de dominio); se mitiga con revisiones de código enfocadas, ejemplos claros del equipo y, si es posible, chequeos automatizados de dependencias entre paquetes",
+      "El equipo tiende a escribir demasiado código de dominio y muy poco de infraestructura, sin ninguna forma de evitarlo"
+    ],
+    "correct": 2,
+    "explanation": "El error más común es la contaminación gradual del dominio por conveniencia ('totalmente puro' cuesta más al inicio). Se mitiga con disciplina de revisión de código, ejemplos de referencia del equipo, y herramientas como ArchUnit para verificar automáticamente que domain no dependa de infraestructura.",
+    "active": true
+  },
+  {
+    "id": 55,
+    "level": "Mid",
+    "category": "Arquitectura Hexagonal",
+    "question": "¿Cómo asegurarías, a nivel de equipo y de código, que el dominio se mantenga independiente de JPA, Kafka o REST a lo largo del tiempo?",
+    "code": null,
+    "options": [
+      "Confiando únicamente en que el equipo recuerde la regla de memoria, sin ningún mecanismo de verificación automática",
+      "Prohibiendo por completo el uso de Spring Boot en todo el proyecto, incluida la infraestructura",
+      "Revisando manualmente el código una vez al año durante una auditoría",
+      "Combinando convención de paquetes clara, revisiones de código enfocadas en ese punto, y reglas automatizadas (por ejemplo con ArchUnit) que fallen el build si domain importa clases de Spring, JPA u otras librerías de infraestructura"
+    ],
+    "correct": 3,
+    "explanation": "Las buenas intenciones se erosionan con el tiempo y la presión de entrega. Automatizar la regla (ArchUnit o similar, que valide en el build que domain no depende de infraestructura) es lo que la sostiene realmente en el largo plazo.",
+    "active": true
+  },
+  {
+    "id": 56,
+    "level": "Mid",
+    "category": "Arquitectura Hexagonal",
+    "question": "Compara arquitectura hexagonal vs arquitectura en capas tradicional: ¿en qué escenario elegirías cada una para un proyecto nuevo?",
+    "code": null,
+    "options": [
+      "No existe ningún criterio objetivo para elegir entre ambas, es únicamente cuestión de gusto personal",
+      "Arquitectura en capas tradicional es razonable para CRUDs simples con poca lógica de negocio y equipos pequeños; hexagonal conviene cuando el dominio es complejo, cambia seguido, y hay múltiples integraciones externas que se beneficiarían de aislamiento",
+      "Hexagonal siempre es superior y debería usarse en el 100% de los proyectos nuevos sin excepción",
+      "La arquitectura en capas tradicional siempre es superior porque tiene menos código"
+    ],
+    "correct": 1,
+    "explanation": "No hay una arquitectura 'ganadora' universal — la decisión depende de la complejidad del dominio, la vida esperada del proyecto y el número de integraciones externas. Elegir sin ese análisis suele terminar en sobreingeniería o en deuda técnica.",
+    "active": true
+  },
+  {
+    "id": 57,
+    "level": "Junior",
+    "category": "Arquitectura Hexagonal",
+    "question": "¿Arquitectura hexagonal es lo mismo que DDD (Domain-Driven Design)? ¿Se pueden usar una sin la otra?",
+    "code": null,
+    "options": [
+      "Hexagonal solo puede usarse si el proyecto también implementa Event Sourcing y CQRS obligatoriamente",
+      "DDD es una versión antigua y obsoleta de arquitectura hexagonal",
+      "Son sinónimos exactos, no se pueden separar bajo ninguna circunstancia",
+      "No son lo mismo: hexagonal es un patrón arquitectónico centrado en el aislamiento técnico del dominio (puertos/adaptadores); DDD es una metodología de modelado de negocio (entidades, agregados, lenguaje ubicuo). Se complementan muy bien, pero se pueden aplicar de forma independiente"
+    ],
+    "correct": 3,
+    "explanation": "Hexagonal resuelve el CÓMO aislar técnicamente el dominio; DDD resuelve el CÓMO modelar correctamente ese dominio (agregados, invariantes, lenguaje ubicuo). Son complementarios pero independientes: puedes tener hexagonal sin DDD estricto, y viceversa.",
+    "active": true
+  },
+  {
+    "id": 58,
+    "level": "Mid",
+    "category": "Arquitectura Hexagonal",
+    "question": "Si tuvieras que sacrificar algo por tiempo de entrega en un sprint, ¿qué simplificarías primero sin comprometer el aislamiento del dominio?",
+    "code": null,
+    "options": [
+      "Anotaría directamente el modelo de dominio con @Entity para ahorrarme el mapper, ya que es un sacrificio menor",
+      "Reduciría la cantidad de DTOs/mappers intermedios donde el riesgo sea bajo (ej. reutilizar un mismo DTO para request/response en un endpoint interno de bajo riesgo), manteniendo intacto el aislamiento del puerto del dominio, que es lo que protege el negocio a largo plazo",
+      "Eliminaría por completo la separación entre dominio e infraestructura para ahorrar tiempo",
+      "Quitaría todos los tests unitarios del dominio para ahorrar tiempo de desarrollo"
+    ],
+    "correct": 1,
+    "explanation": "El límite que protege el valor real de hexagonal es el aislamiento del dominio (el puerto). Los mappers/DTOs son el costo operativo que, en zonas de bajo riesgo, se puede simplificar puntualmente sin comprometer ese límite — a diferencia de mezclar @Entity con el dominio, que sí lo rompe.",
+    "active": true
+  },
+  {
+    "id": 59,
+    "level": "Mid",
+    "category": "Arquitectura Hexagonal",
+    "question": "¿Cómo defenderías, ante un tech lead escéptico, la inversión de tiempo en mappers y DTOs adicionales que exige esta arquitectura?",
+    "code": null,
+    "options": [
+      "Sin datos ni ejemplos, simplemente insistiendo en que es 'la forma correcta' de programar",
+      "Prometiendo que los mappers se eliminarán automáticamente en una versión futura de Spring Boot",
+      "Argumentando que es una moda de la industria y que 'todos lo están usando ahora'",
+      "Mostrando el costo real medible: menor tiempo y riesgo al cambiar de tecnología de persistencia o al testear el dominio de forma aislada, comparado con el costo actual de que un cambio en la capa de infraestructura rompa reglas de negocio sin querer, en un dominio con reglas complejas y cambiantes"
+    ],
+    "correct": 3,
+    "explanation": "El argumento que convence a un tech lead escéptico no es teórico, es de costo: ¿cuánto tiempo perdemos hoy cuando un cambio de infraestructura rompe algo de negocio? Comparar ese costo real contra el costo de mappers/DTOs es el argumento con más peso, sobre todo en dominios como crédito o pagos.",
+    "active": true
+  }
+]

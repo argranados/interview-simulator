@@ -52,6 +52,9 @@ const BANKS_CONFIG = {
   event_driven: [
     { ai: 'claude', title: 'Claude', emoji: '🧠', description: 'Más analítico' },
   ],
+  arquitectura_hexagonal: [
+    { ai: 'claude', title: 'Claude', emoji: '🧠', description: 'Más analítico' },
+  ],
 }
 
 const TOPIC_LABELS = {
@@ -67,6 +70,7 @@ const TOPIC_LABELS = {
   spring_security_2: 'Spring Security 2',
   spring_data: 'Spring Data',
   event_driven: 'Event-Driven',
+  arquitectura_hexagonal: 'Arquitectura Hexagonal',
 }
 
 export default function LandingPage({ onSelect, onBack, topic }) {

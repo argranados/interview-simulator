@@ -12,6 +12,7 @@ export default function TopicPage({ onSelect, onRepaso }) {
         { id: 'spring_security_2', title: 'Spring Security 2', emoji: '🛡️', description: 'OAuth2/OIDC — Keycloak, Auth0, Cognito', available: true },
         { id: 'spring_data', title: 'Spring Data', emoji: '💾', description: 'JPA, Repositories, Transacciones', available: true },
         { id: 'event_driven', title: 'Event-Driven', emoji: '📡', description: 'Kafka, RabbitMQ, Mensajería', available: true },
+        { id: 'arquitectura_hexagonal', title: 'Arquitectura Hexagonal', emoji: '⬡', description: 'Puertos, adaptadores, dominio', available: true },
     ]
 
     return (
