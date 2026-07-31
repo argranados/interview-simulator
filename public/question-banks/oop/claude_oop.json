@@ -1,0 +1,402 @@
+[
+  {
+    "id": 1,
+    "level": "Junior",
+    "category": "OOP",
+    "question": "¿Cuáles son los 4 pilares fundamentales de la Programación Orientada a Objetos?",
+    "code": null,
+    "options": [
+      "Herencia, Interfaces, Paquetes, Excepciones",
+      "Encapsulamiento, Herencia, Polimorfismo, Abstracción",
+      "Clases, Objetos, Métodos, Atributos",
+      "Constructor, Destructor, Getter, Setter"
+    ],
+    "correct": 1,
+    "explanation": "Los 4 pilares clásicos de la POO son: encapsulamiento (ocultar el estado interno), herencia (reutilizar y extender comportamiento), polimorfismo (una misma interfaz, múltiples comportamientos) y abstracción (modelar solo lo relevante del dominio).",
+    "active": true
+  },
+  {
+    "id": 2,
+    "level": "Junior",
+    "category": "OOP",
+    "question": "¿Qué es el encapsulamiento en Java?",
+    "code": null,
+    "options": [
+      "Convertir todos los atributos de una clase en static",
+      "Ocultar el estado interno de un objeto y exponer solo lo necesario a través de métodos públicos, controlando el acceso con modificadores como private",
+      "Crear una clase dentro de otra clase",
+      "Heredar los atributos privados de una superclase"
+    ],
+    "correct": 1,
+    "explanation": "Encapsulamiento significa proteger el estado interno del objeto (normalmente con private) y exponer una API controlada (getters, setters, métodos de negocio) para interactuar con él, evitando que código externo lo modifique de forma inconsistente.",
+    "active": true
+  },
+  {
+    "id": 3,
+    "level": "Junior",
+    "category": "OOP",
+    "question": "¿Cuál es la diferencia principal entre sobrecarga (overloading) y sobreescritura (overriding)?",
+    "code": null,
+    "options": [
+      "No hay diferencia, son sinónimos",
+      "La sobrecarga solo aplica a constructores; la sobreescritura solo aplica a métodos normales",
+      "La sobrecarga define varios métodos con el mismo nombre pero distinta firma dentro de la misma clase (tiempo de compilación); la sobreescritura redefine un método heredado en una subclase con la misma firma (tiempo de ejecución)",
+      "La sobrecarga ocurre entre clases distintas; la sobreescritura ocurre dentro de la misma clase"
+    ],
+    "correct": 2,
+    "explanation": "Overloading es polimorfismo estático: mismo nombre, distinta lista de parámetros, resuelto en compilación. Overriding es polimorfismo dinámico: la subclase redefine el comportamiento heredado, y la JVM decide qué implementación ejecutar en tiempo de ejecución según el tipo real del objeto.",
+    "active": true
+  },
+  {
+    "id": 4,
+    "level": "Junior",
+    "category": "OOP",
+    "question": "¿Qué diferencia hay entre una clase abstracta y una interfaz en Java moderno (8+)?",
+    "code": null,
+    "options": [
+      "Una interfaz puede tener constructores y estado mutable, una clase abstracta no",
+      "No hay ninguna diferencia desde Java 8",
+      "Una clase abstracta puede tener estado (atributos de instancia) y constructores; una interfaz no tiene estado propio, y solo permite constantes y métodos default/static con implementación, sin constructor",
+      "Una clase solo puede implementar una interfaz, pero puede extender varias clases abstractas"
+    ],
+    "correct": 2,
+    "explanation": "Una clase abstracta modela una jerarquía 'es-un' con estado compartido y puede tener constructores. Una interfaz define un contrato de comportamiento ('puede-hacer'); desde Java 8 admite métodos default y static con cuerpo, pero sigue sin tener estado de instancia ni constructor, y una clase puede implementar varias interfaces pero extender solo una clase.",
+    "active": true
+  },
+  {
+    "id": 5,
+    "level": "Junior",
+    "category": "OOP",
+    "question": "¿Qué imprime el siguiente código y por qué?",
+    "code": "class Animal {\n    void hacerSonido() { System.out.println(\"Sonido genérico\"); }\n}\nclass Perro extends Animal {\n    @Override\n    void hacerSonido() { System.out.println(\"Guau\"); }\n}\npublic class Main {\n    public static void main(String[] args) {\n        Animal a = new Perro();\n        a.hacerSonido();\n    }\n}",
+    "options": [
+      "Sonido genérico, porque la variable está declarada como tipo Animal",
+      "Guau, porque el método se resuelve según el tipo real del objeto en tiempo de ejecución (dynamic dispatch)",
+      "Da un error de compilación",
+      "Imprime ambos: Sonido genérico y Guau"
+    ],
+    "correct": 1,
+    "explanation": "Aunque la referencia es de tipo Animal, el objeto real es un Perro. Java resuelve las llamadas a métodos de instancia sobreescritos usando el tipo dinámico (real) del objeto, no el tipo estático de la variable, por eso imprime 'Guau'.",
+    "active": true
+  },
+  {
+    "id": 6,
+    "level": "Junior",
+    "category": "OOP",
+    "question": "¿Qué es el principio de sustitución de Liskov (la 'L' de SOLID)?",
+    "code": null,
+    "options": [
+      "Que toda subclase debe sobreescribir todos los métodos de su superclase",
+      "Que los objetos de una subclase deben poder sustituir a los objetos de la superclase sin alterar el comportamiento correcto del programa",
+      "Que una clase solo debe tener una responsabilidad",
+      "Que las interfaces deben ser pequeñas y específicas"
+    ],
+    "correct": 1,
+    "explanation": "LSP establece que si S es subtipo de T, los objetos de tipo T deben poder reemplazarse por objetos de tipo S sin romper la corrección del programa. Violarlo típicamente se ve cuando una subclase debilita precondiciones esperadas o lanza excepciones inesperadas (ej. Cuadrado extends Rectangulo rompiendo el contrato de setAncho/setAlto).",
+    "active": true
+  },
+  {
+    "id": 7,
+    "level": "Mid",
+    "category": "OOP",
+    "question": "¿Por qué se recomienda favorecer la composición sobre la herencia?",
+    "code": null,
+    "options": [
+      "Porque Java no permite herencia múltiple de clases",
+      "Porque la composición no permite reutilizar código, solo la herencia lo permite",
+      "Porque la herencia crea un acoplamiento fuerte entre clase base y derivada (rompe encapsulamiento, el 'fragile base class problem') mientras que la composición permite combinar comportamientos de forma flexible y con menor acoplamiento",
+      "Porque la composición es más rápida en tiempo de ejecución"
+    ],
+    "correct": 2,
+    "explanation": "La herencia expone detalles internos de la superclase a la subclase y un cambio en la clase base puede romper subclases de forma inesperada (fragile base class problem). La composición ('tiene-un' en vez de 'es-un') permite ensamblar comportamiento mediante interfaces, con menor acoplamiento y mayor flexibilidad para cambiar la implementación en tiempo de ejecución.",
+    "active": true
+  },
+  {
+    "id": 8,
+    "level": "Mid",
+    "category": "OOP",
+    "question": "¿Qué problema resuelve el uso de interfaces frente a la herencia múltiple de implementación (que Java no permite entre clases)?",
+    "code": null,
+    "options": [
+      "Ninguno, las interfaces no tienen relación con la herencia múltiple",
+      "Permiten que una clase implemente múltiples contratos de comportamiento (varias interfaces) sin heredar estado de varias fuentes, evitando el 'diamond problem' del estado",
+      "Permiten heredar atributos privados de varias clases a la vez",
+      "Eliminan la necesidad de usar polimorfismo"
+    ],
+    "correct": 1,
+    "explanation": "Java no permite herencia múltiple de clases para evitar ambigüedades de estado (diamond problem), pero sí permite implementar múltiples interfaces, ya que estas no aportan estado propio. Con default methods puede haber conflicto de comportamiento entre interfaces, pero se resuelve explícitamente sobreescribiendo el método, no automáticamente como pasaría con estado.",
+    "active": true
+  },
+  {
+    "id": 9,
+    "level": "Mid",
+    "category": "OOP",
+    "question": "¿Qué es el 'diamond problem' y cómo lo mitiga Java con default methods en interfaces?",
+    "code": null,
+    "options": [
+      "Es un error de memoria; Java lo resuelve con el garbage collector",
+      "Es la ambigüedad que surge cuando una clase hereda el mismo método (con implementación) desde dos rutas distintas; en interfaces, Java obliga a la clase a sobreescribir explícitamente el método en conflicto en vez de elegir una implementación automáticamente",
+      "Es un problema exclusivo de lenguajes con tipado dinámico",
+      "Java no tiene ningún mecanismo para este problema, por eso prohíbe totalmente las interfaces con default methods"
+    ],
+    "correct": 1,
+    "explanation": "Si una clase implementa dos interfaces que definen el mismo default method, el compilador no elige automáticamente una: obliga a la clase a sobreescribir el método y decidir explícitamente qué implementación usar (o combinar ambas), evitando ambigüedad silenciosa.",
+    "active": true
+  },
+  {
+    "id": 10,
+    "level": "Mid",
+    "category": "OOP",
+    "question": "¿Qué es 'cohesión' y 'acoplamiento' en diseño orientado a objetos, y cuál es el objetivo deseable?",
+    "code": null,
+    "options": [
+      "Cohesión mide cuántas clases tiene un paquete; acoplamiento mide cuántas líneas de código tiene una clase",
+      "Alta cohesión: los elementos de una clase están fuertemente relacionados en torno a una única responsabilidad. Bajo acoplamiento: las clases dependen lo mínimo posible unas de otras. Se busca alta cohesión y bajo acoplamiento",
+      "Se busca baja cohesión y alto acoplamiento para maximizar la reutilización",
+      "Son sinónimos y ambos deben minimizarse"
+    ],
+    "correct": 1,
+    "explanation": "Alta cohesión significa que una clase tiene una responsabilidad clara y sus métodos/atributos están relacionados entre sí (relacionado con el Single Responsibility Principle). Bajo acoplamiento significa que las clases dependen poco de los detalles internos de otras, típicamente logrado programando contra interfaces. El objetivo es maximizar cohesión y minimizar acoplamiento.",
+    "active": true
+  },
+  {
+    "id": 11,
+    "level": "Mid",
+    "category": "OOP",
+    "question": "¿Por qué sobreescribir equals() en Java obliga (por buena práctica) a sobreescribir también hashCode()?",
+    "code": null,
+    "options": [
+      "No es necesario, son métodos independientes",
+      "Porque el contrato de Object establece que objetos iguales según equals() deben producir el mismo hashCode(); si no se cumple, estructuras como HashMap o HashSet pueden comportarse de forma incorrecta (ej. no encontrar un elemento que sí está presente)",
+      "Porque Java lanza una excepción en tiempo de compilación si no se hace",
+      "Porque hashCode() se usa solo para ordenar colecciones con Comparable"
+    ],
+    "correct": 1,
+    "explanation": "El contrato de equals()/hashCode() exige que si a.equals(b) es true, entonces a.hashCode() == b.hashCode(). Romper esto hace que colecciones basadas en hash (HashMap, HashSet) no encuentren objetos 'iguales' porque los buscan en el bucket equivocado, causando bugs difíciles de detectar.",
+    "active": true
+  },
+  {
+    "id": 12,
+    "level": "Mid",
+    "category": "OOP",
+    "question": "¿Qué caracteriza a una clase inmutable bien diseñada en Java?",
+    "code": null,
+    "options": [
+      "Que todos sus métodos sean static",
+      "Que sus atributos sean final, no exponga setters, se declare la clase como final (o controle la herencia), y si expone referencias a objetos mutables internos, devuelva copias defensivas en vez de la referencia real",
+      "Que implemente Serializable",
+      "Que use únicamente tipos primitivos como atributos"
+    ],
+    "correct": 1,
+    "explanation": "Una clase inmutable típica: atributos private final asignados en el constructor, sin setters, clase final para evitar que una subclase rompa la inmutabilidad, y copias defensivas al recibir o devolver referencias a objetos mutables (por ejemplo, un List o Date interno), para que nadie pueda modificar el estado desde fuera después de construido el objeto.",
+    "active": true
+  },
+  {
+    "id": 13,
+    "level": "Mid",
+    "category": "OOP",
+    "question": "¿Qué error de diseño representa el clásico ejemplo 'Cuadrado extends Rectangulo' respecto a Liskov?",
+    "code": "class Rectangulo {\n    protected int ancho, alto;\n    void setAncho(int a) { this.ancho = a; }\n    void setAlto(int a) { this.alto = a; }\n}\nclass Cuadrado extends Rectangulo {\n    @Override\n    void setAncho(int a) { this.ancho = a; this.alto = a; }\n    @Override\n    void setAlto(int a) { this.ancho = a; this.alto = a; }\n}",
+    "options": [
+      "No hay ningún problema, es una herencia válida y correcta",
+      "Cuadrado modifica el comportamiento esperado de setAncho/setAlto (cambia ambas dimensiones a la vez), rompiendo una invariante que el código cliente asume sobre Rectangulo, por lo que Cuadrado no puede sustituir a Rectangulo de forma segura",
+      "El problema es que Cuadrado no sobreescribe ningún método",
+      "El problema es únicamente de rendimiento, no de diseño"
+    ],
+    "correct": 1,
+    "explanation": "Código cliente que use un Rectangulo puede asumir que cambiar el ancho no afecta el alto. Cuadrado rompe esa invariante silenciosamente, así que sustituir un Rectangulo por un Cuadrado puede producir resultados incorrectos (por ejemplo, al calcular un área esperada tras fijar ancho y alto por separado). Es el ejemplo canónico de violación de Liskov: 'es-un' matemáticamente cierto no siempre implica una relación de herencia válida en código.",
+    "active": true
+  },
+  {
+    "id": 14,
+    "level": "Mid",
+    "category": "OOP",
+    "question": "¿Qué significa el principio Open/Closed (la 'O' de SOLID) y cómo se relaciona con el polimorfismo?",
+    "code": null,
+    "options": [
+      "Que las clases deben estar abiertas a modificación directa constantemente",
+      "Que una clase debe estar abierta a extensión pero cerrada a modificación; se logra típicamente definiendo abstracciones (interfaces/clases abstractas) y agregando nuevo comportamiento mediante nuevas implementaciones polimórficas, sin tocar el código existente",
+      "Que todos los atributos deben ser públicos para poder extenderlos libremente",
+      "Que no se pueden agregar nuevas clases una vez el sistema está en producción"
+    ],
+    "correct": 1,
+    "explanation": "OCP busca que se pueda añadir comportamiento nuevo (por ejemplo, una nueva estrategia de descuento o un nuevo tipo de notificación) creando una nueva clase que implemente una interfaz existente, sin modificar el código ya probado. El polimorfismo es el mecanismo que permite que el código cliente use la nueva implementación sin cambios, típicamente vía inyección de dependencias.",
+    "active": true
+  },
+  {
+    "id": 15,
+    "level": "Senior",
+    "category": "OOP",
+    "question": "En un diseño con Strategy Pattern para calcular descuentos, ¿qué principio SOLID se está aplicando principalmente y por qué?",
+    "code": "interface EstrategiaDescuento {\n    double calcular(double monto);\n}\nclass DescuentoNavidad implements EstrategiaDescuento {\n    public double calcular(double monto) { return monto * 0.9; }\n}\nclass DescuentoBlackFriday implements EstrategiaDescuento {\n    public double calcular(double monto) { return monto * 0.7; }\n}\nclass Carrito {\n    private EstrategiaDescuento estrategia;\n    Carrito(EstrategiaDescuento e) { this.estrategia = e; }\n    double total(double monto) { return estrategia.calcular(monto); }\n}",
+    "options": [
+      "Single Responsibility únicamente, porque cada clase tiene un método",
+      "Open/Closed y Dependency Inversion: Carrito depende de la abstracción EstrategiaDescuento (no de implementaciones concretas), y se pueden agregar nuevas estrategias de descuento sin modificar Carrito",
+      "Interface Segregation, porque la interfaz tiene un solo método",
+      "Liskov, porque las estrategias heredan de una clase abstracta"
+    ],
+    "correct": 1,
+    "explanation": "Carrito no conoce las clases concretas DescuentoNavidad o DescuentoBlackFriday, solo la abstracción EstrategiaDescuento (Dependency Inversion Principle), y se puede agregar una nueva estrategia (ej. DescuentoVIP) sin tocar Carrito (Open/Closed Principle). Es el ejemplo clásico de cómo composición + polimorfismo + programar contra interfaces habilitan extensibilidad real.",
+    "active": true
+  },
+  {
+    "id": 16,
+    "level": "Senior",
+    "category": "OOP",
+    "question": "¿Qué ventaja aporta declarar los métodos de una API pública recibiendo tipos de interfaz (ej. List<T>) en vez de tipos concretos (ej. ArrayList<T>)?",
+    "code": null,
+    "options": [
+      "Ninguna, es solo una convención estética sin impacto real",
+      "Permite bajo acoplamiento: el código cliente puede pasar cualquier implementación (ArrayList, LinkedList, una lista inmutable, etc.) sin que el método dependa de detalles internos de una implementación concreta, facilitando testing y flexibilidad futura",
+      "Hace que el código compile más rápido",
+      "Es obligatorio en Java, no compilaría de otra forma"
+    ],
+    "correct": 1,
+    "explanation": "'Programar contra interfaces, no contra implementaciones' es un principio central de diseño OO: reduce el acoplamiento, facilita sustituir implementaciones (por ejemplo, para tests con mocks o para cambiar de ArrayList a una lista inmutable) y hace explícito el contrato real que el método necesita, sin atarse a detalles de una clase concreta.",
+    "active": true
+  },
+  {
+    "id": 17,
+    "level": "Senior",
+    "category": "OOP",
+    "question": "¿Qué problema práctico introduce heredar de una clase concreta que no fue diseñada para ser extendida (por ejemplo, extender una clase de una librería externa sin métodos protected ni documentación de extensión)?",
+    "code": null,
+    "options": [
+      "Ningún problema, cualquier clase puede extenderse de forma segura siempre",
+      "El problema del 'fragile base class': cambios internos en la superclase (incluso en detalles de implementación no documentados como el orden de llamadas a métodos propios) pueden romper silenciosamente la subclase en una actualización de versión, ya que la subclase depende de comportamiento no garantizado por contrato",
+      "Solo afecta el rendimiento, nunca la correctitud",
+      "Java lo prohíbe automáticamente marcando la clase base como final"
+    ],
+    "correct": 1,
+    "explanation": "Si una clase no fue diseñada explícitamente para herencia (sin documentar qué métodos son 'puntos de extensión' seguros), una subclase puede depender accidentalmente de detalles de implementación. Al actualizar la librería, esos detalles pueden cambiar sin romper el contrato público, pero sí rompen la subclase. Por eso Effective Java recomienda 'diseñar para herencia o prohibirla' (documentar o marcar final), y preferir composición cuando no se controla la clase base.",
+    "active": true
+  },
+  {
+    "id": 18,
+    "level": "Senior",
+    "category": "OOP",
+    "question": "¿Por qué se considera un anti-patrón usar herencia solo para reutilizar código, sin que exista una verdadera relación 'es-un'?",
+    "code": "class Pila extends ArrayList<Integer> {\n    void push(int v) { add(v); }\n    int pop() { return remove(size() - 1); }\n}",
+    "options": [
+      "No es un anti-patrón, es la forma correcta de reutilizar código en Java",
+      "Porque Pila expone toda la API pública de ArrayList (add(int index, ...), remove(Object), etc.), rompiendo el encapsulamiento del concepto 'pila' y permitiendo operaciones inválidas para una estructura LIFO; sería mejor usar composición (tener un ArrayList interno) y exponer solo push/pop",
+      "Porque ArrayList no puede extenderse en Java",
+      "Porque genera un error de compilación por herencia múltiple"
+    ],
+    "correct": 1,
+    "explanation": "Este es el ejemplo clásico de 'herencia de implementación' mal usada: Pila hereda TODA la interfaz pública de ArrayList, incluyendo métodos que rompen la semántica de una pila (insertar en medio, eliminar por índice arbitrario). El código cliente podría hacer pila.add(0, 5) y violar el orden LIFO. La alternativa correcta es composición: Pila contiene un List internamente y expone solo push()/pop()/peek(), preservando el encapsulamiento real del concepto.",
+    "active": true
+  },
+  {
+    "id": 19,
+    "level": "Senior",
+    "category": "OOP",
+    "question": "¿Qué es el 'Interface Segregation Principle' (la 'I' de SOLID) y qué problema evita en el diseño de interfaces grandes?",
+    "code": null,
+    "options": [
+      "Que todas las clases deben implementar todas las interfaces del sistema",
+      "Que es mejor tener varias interfaces pequeñas y específicas que una interfaz grande de propósito general, evitando que las clases se vean forzadas a implementar métodos que no necesitan o no tienen sentido para ellas",
+      "Que las interfaces no pueden tener más de un método",
+      "Que las interfaces deben segregarse en paquetes distintos según su autor"
+    ],
+    "correct": 1,
+    "explanation": "ISP dice que ningún cliente debería depender de métodos que no usa. Una interfaz gorda (ej. Trabajador con metodos trabajar(), comer(), dormir()) fuerza a implementaciones como Robot a implementar comer() y dormir() sin sentido, típicamente lanzando UnsupportedOperationException. La solución es dividirla en interfaces más pequeñas y cohesivas (Trabajable, Alimentable, etc.) que cada clase implemente según lo que realmente necesite.",
+    "active": true
+  },
+  {
+    "id": 20,
+    "level": "Mid",
+    "category": "OOP",
+    "question": "¿Qué diferencia hay entre polimorfismo de inclusión (herencia/interfaces) y polimorfismo paramétrico (generics) en Java?",
+    "code": null,
+    "options": [
+      "Son exactamente lo mismo con distinto nombre",
+      "El polimorfismo de inclusión permite tratar objetos de distintas subclases a través de un tipo común (ej. List<Animal> con Perro y Gato), resuelto en runtime; el polimorfismo paramétrico (generics) permite escribir código que opera sobre cualquier tipo T de forma type-safe, resuelto principalmente en compilación mediante type erasure",
+      "El polimorfismo paramétrico solo existe en lenguajes funcionales, no en Java",
+      "El polimorfismo de inclusión requiere reflexión obligatoriamente"
+    ],
+    "correct": 1,
+    "explanation": "El polimorfismo de inclusión (subtyping) es el clásico de OOP: una referencia de tipo padre puede apuntar a distintos tipos hijos y el método correcto se resuelve en tiempo de ejecución (dynamic dispatch). Los generics (List<T>, Optional<T>) son polimorfismo paramétrico: el compilador verifica tipos en compilación y luego borra la información genérica (type erasure) en el bytecode, dando seguridad de tipos sin duplicar código por cada tipo concreto.",
+    "active": true
+  },
+  {
+    "id": 21,
+    "level": "Junior",
+    "category": "OOP",
+    "question": "¿Qué palabra clave se usa en Java para evitar que una clase sea heredada?",
+    "code": null,
+    "options": [
+      "static",
+      "final",
+      "sealed",
+      "private"
+    ],
+    "correct": 1,
+    "explanation": "final aplicado a una clase impide que cualquier otra clase la extienda. (Desde Java 17, sealed ofrece un control más granular, permitiendo especificar exactamente qué clases sí pueden extenderla, pero final sigue siendo la forma clásica de prohibir la herencia por completo.)",
+    "active": true
+  },
+  {
+    "id": 22,
+    "level": "Mid",
+    "category": "OOP",
+    "question": "¿Por qué en Java los métodos private y static NO participan en el polimorfismo de sobreescritura (overriding)?",
+    "code": null,
+    "options": [
+      "Porque Java no permite declarar métodos private ni static dentro de una jerarquía de herencia",
+      "Porque se resuelven en tiempo de compilación según el tipo estático de la referencia (binding estático), no en tiempo de ejecución según el tipo real del objeto; por eso un método static con el mismo nombre en una subclase 'oculta' (hiding) al de la superclase, en vez de sobreescribirlo",
+      "Porque siempre lanzan una excepción si se intenta redefinirlos",
+      "Porque solo pueden usarse en clases abstractas"
+    ],
+    "correct": 1,
+    "explanation": "El overriding real depende de dynamic dispatch (resuelto en runtime según el objeto). Los métodos static se asocian a la clase, no a la instancia, así que se resuelven por el tipo de la referencia en compilación (static binding); esto se llama 'method hiding', no overriding. Los métodos private ni siquiera son visibles para la subclase como para participar en el polimorfismo.",
+    "active": true
+  },
+  {
+    "id": 23,
+    "level": "Senior",
+    "category": "OOP",
+    "question": "En un sistema con muchas subclases que solo difieren en pequeños comportamientos (ej. distintos tipos de Empleado con distinta forma de calcular bono), ¿qué alternativa de diseño suele preferirse a una jerarquía de herencia profunda?",
+    "code": null,
+    "options": [
+      "Agregar más niveles de herencia para cada variación específica",
+      "Extraer el comportamiento variable a una interfaz/estrategia inyectada por composición (Strategy Pattern), manteniendo una única clase Empleado configurada con distintas políticas de cálculo, en vez de una subclase por cada variación",
+      "Usar únicamente atributos static compartidos entre todas las subclases",
+      "Eliminar el uso de clases y usar solo funciones globales"
+    ],
+    "correct": 1,
+    "explanation": "Jerarquías de herencia profundas para modelar variaciones de comportamiento tienden a volverse rígidas y difíciles de mantener (explosión de subclases, duplicación, dificultad para combinar variaciones). El patrón Strategy resuelve esto inyectando el comportamiento variable como una dependencia (interfaz), permitiendo combinar y cambiar comportamientos en runtime sin tocar la jerarquía de clases ni crear una subclase por cada combinación posible.",
+    "active": true
+  },
+  {
+    "id": 24,
+    "level": "Mid",
+    "category": "OOP",
+    "question": "¿Qué significa que Java use 'paso por valor' incluso para objetos, y por qué genera confusión?",
+    "code": null,
+    "options": [
+      "Que los objetos se copian completamente cada vez que se pasan a un método",
+      "Que Java siempre pasa una copia del valor de la referencia (la dirección al objeto en el heap); por eso reasignar el parámetro dentro del método no afecta a la variable original, pero modificar el estado interno del objeto apuntado sí es visible fuera del método",
+      "Que Java pasa por referencia real, igual que C++",
+      "Que solo los tipos primitivos se pasan por valor; los objetos siempre se pasan por referencia real"
+    ],
+    "correct": 1,
+    "explanation": "Java siempre pasa por valor. Para objetos, ese 'valor' es la copia de la referencia (no del objeto). Por eso un método puede mutar el objeto al que apunta la referencia (ej. lista.add(...)) y el cambio se ve fuera, pero si el método hace parametro = new Objeto(), solo cambia la copia local de la referencia, sin afectar la variable original del llamador.",
+    "active": true
+  },
+  {
+    "id": 25,
+    "level": "Senior",
+    "category": "OOP",
+    "question": "¿Qué rol cumple el principio de Inversión de Dependencias (la 'D' de SOLID) en la inyección de dependencias usada por frameworks como Spring?",
+    "code": null,
+    "options": [
+      "Ninguno, son conceptos completamente independientes",
+      "DIP establece que los módulos de alto nivel no deben depender de módulos de bajo nivel, sino que ambos deben depender de abstracciones; la inyección de dependencias es la técnica mecánica (constructor injection, etc.) que aplica ese principio, dejando que un contenedor externo (como el contexto de Spring) provea las implementaciones concretas",
+      "DIP obliga a que todas las clases sean abstractas",
+      "DIP significa que las dependencias deben instanciarse siempre con new dentro de cada clase"
+    ],
+    "correct": 1,
+    "explanation": "DIP es el principio de diseño: las clases de alto nivel (lógica de negocio) deben depender de abstracciones (interfaces), no de detalles concretos de bajo nivel (una implementación específica de repositorio, por ejemplo). La inyección de dependencias es el mecanismo que hace esto práctico: en vez de que la clase cree sus propias dependencias con new, las recibe desde afuera (constructor, setter, o un contenedor como Spring), permitiendo cambiar implementaciones sin tocar la clase que las usa.",
+    "active": true
+  }
+]

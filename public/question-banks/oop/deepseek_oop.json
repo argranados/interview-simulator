@@ -1,0 +1,562 @@
+[
+  {
+    "id": 1,
+    "level": "Junior",
+    "category": "OOP",
+    "question": "¿Cuál de los siguientes NO es un pilar de la Programación Orientada a Objetos?",
+    "code": null,
+    "options": [
+      "Encapsulamiento",
+      "Herencia",
+      "Polimorfismo",
+      "Sobrecarga"
+    ],
+    "correct": 3,
+    "explanation": "Los cuatro pilares son Encapsulamiento, Herencia, Polimorfismo y Abstracción. Sobrecarga es un mecanismo de polimorfismo, pero no un pilar fundamental.",
+    "active": true
+  },
+  {
+    "id": 2,
+    "level": "Junior",
+    "category": "OOP",
+    "question": "¿Qué permite la herencia en Java?",
+    "code": null,
+    "options": [
+      "Que una clase herede atributos y métodos de otra clase",
+      "Que una interfaz herede de otra interfaz",
+      "Que un objeto herede de otro objeto en tiempo de ejecución",
+      "Que un método tenga múltiples definiciones"
+    ],
+    "correct": 0,
+    "explanation": "La herencia permite que una clase (subclase) herede miembros de otra clase (superclase), promoviendo la reutilización de código.",
+    "active": true
+  },
+  {
+    "id": 3,
+    "level": "Junior",
+    "category": "OOP",
+    "question": "¿Qué significa encapsulamiento?",
+    "code": null,
+    "options": [
+      "Ocultar los detalles de implementación y exponer solo lo necesario",
+      "Agrupar datos y métodos que operan sobre ellos en una unidad",
+      "Permitir que una clase tenga múltiples formas",
+      "Establecer una relación de padre-hijo entre clases"
+    ],
+    "correct": 0,
+    "explanation": "El encapsulamiento consiste en ocultar el estado interno de un objeto y proporcionar métodos públicos para interactuar con él, protegiendo la integridad de los datos.",
+    "active": true
+  },
+  {
+    "id": 4,
+    "level": "Junior",
+    "category": "OOP",
+    "question": "¿Cuál es la diferencia entre una clase abstracta y una interfaz en Java?",
+    "code": null,
+    "options": [
+      "Una clase abstracta puede tener métodos concretos, una interfaz no (hasta Java 8)",
+      "Una interfaz puede tener atributos, una clase abstracta no",
+      "Una clase abstracta no puede ser heredada, una interfaz sí",
+      "No hay diferencia, son intercambiables"
+    ],
+    "correct": 0,
+    "explanation": "En Java, una clase abstracta puede tener métodos implementados (concretos) y abstractos, mientras que una interfaz (antes de Java 8) solo declaraba métodos. A partir de Java 8, las interfaces pueden tener métodos default y estáticos.",
+    "active": true
+  },
+  {
+    "id": 5,
+    "level": "Junior",
+    "category": "OOP",
+    "question": "¿Qué es el polimorfismo?",
+    "code": null,
+    "options": [
+      "Capacidad de un objeto de tomar muchas formas",
+      "Capacidad de una clase de tener múltiples constructores",
+      "Capacidad de un método de sobrecargarse",
+      "Capacidad de ocultar datos"
+    ],
+    "correct": 0,
+    "explanation": "El polimorfismo permite que objetos de diferentes clases sean tratados como objetos de una clase común, y que un mismo mensaje sea respondido de formas distintas según el objeto.",
+    "active": true
+  },
+  {
+    "id": 6,
+    "level": "Junior",
+    "category": "OOP",
+    "question": "¿Cuál es la salida del siguiente código?",
+    "code": "class A { void m() { System.out.println(\"A\"); } }\nclass B extends A { void m() { System.out.println(\"B\"); } }\npublic class Main {\n  public static void main(String[] args) {\n    A obj = new B();\n    obj.m();\n  }\n}",
+    "options": [
+      "A",
+      "B",
+      "Error de compilación",
+      "Error en tiempo de ejecución"
+    ],
+    "correct": 1,
+    "explanation": "Aunque la referencia es de tipo A, el objeto es de tipo B, y el método m() está sobrescrito, por lo que se invoca la versión de B (polimorfismo dinámico).",
+    "active": true
+  },
+  {
+    "id": 7,
+    "level": "Junior",
+    "category": "OOP",
+    "question": "¿Qué modificador de acceso permite que un miembro sea accesible solo dentro de su propia clase?",
+    "code": null,
+    "options": [
+      "public",
+      "protected",
+      "private",
+      "default (package-private)"
+    ],
+    "correct": 2,
+    "explanation": "El modificador 'private' restringe el acceso al miembro únicamente dentro de la misma clase, siendo el nivel más restrictivo.",
+    "active": true
+  },
+  {
+    "id": 8,
+    "level": "Junior",
+    "category": "OOP",
+    "question": "¿Qué es un constructor?",
+    "code": null,
+    "options": [
+      "Un método especial que se invoca al crear un objeto",
+      "Un método que destruye un objeto",
+      "Un método estático que devuelve una instancia",
+      "Un bloque de código que se ejecuta antes del main"
+    ],
+    "correct": 0,
+    "explanation": "El constructor es un método especial que se llama automáticamente cuando se instancia un objeto, inicializando su estado.",
+    "active": true
+  },
+  {
+    "id": 9,
+    "level": "Junior",
+    "category": "OOP",
+    "question": "¿Cuál es la diferencia entre sobrecarga (overloading) y sobrescritura (overriding)?",
+    "code": null,
+    "options": [
+      "La sobrecarga ocurre en la misma clase, la sobrescritura en herencia",
+      "La sobrescritura ocurre en la misma clase, la sobrecarga en herencia",
+      "Ambas ocurren en la misma clase",
+      "No hay diferencia significativa"
+    ],
+    "correct": 0,
+    "explanation": "La sobrecarga (overloading) se da cuando varios métodos en la misma clase tienen el mismo nombre pero diferentes parámetros. La sobrescritura (overriding) ocurre cuando una subclase redefine un método heredado.",
+    "active": true
+  },
+  {
+    "id": 10,
+    "level": "Junior",
+    "category": "OOP",
+    "question": "¿Qué palabra clave se usa para heredar una clase en Java?",
+    "code": null,
+    "options": [
+      "implements",
+      "extends",
+      "inherits",
+      "super"
+    ],
+    "correct": 1,
+    "explanation": "En Java, una clase extiende otra usando la palabra clave 'extends'. 'implements' se usa para interfaces.",
+    "active": true
+  },
+  {
+    "id": 11,
+    "level": "Mid",
+    "category": "OOP",
+    "question": "¿Cuál es el propósito de la palabra clave 'super' en Java?",
+    "code": null,
+    "options": [
+      "Referirse al constructor de la clase padre",
+      "Referirse al objeto actual",
+      "Llamar a un método estático",
+      "Crear una nueva instancia de la clase padre"
+    ],
+    "correct": 0,
+    "explanation": "'super' se usa para acceder a miembros de la superclase, incluyendo constructores, desde una subclase.",
+    "active": true
+  },
+  {
+    "id": 12,
+    "level": "Mid",
+    "category": "OOP",
+    "question": "¿Qué es una clase interna (inner class) en Java?",
+    "code": null,
+    "options": [
+      "Una clase definida dentro de otra clase",
+      "Una clase que solo puede ser instanciada dentro de su paquete",
+      "Una clase anónima",
+      "Una clase que hereda de una interfaz"
+    ],
+    "correct": 0,
+    "explanation": "Una clase interna es una clase declarada dentro de otra clase, con acceso a sus miembros privados.",
+    "active": true
+  },
+  {
+    "id": 13,
+    "level": "Mid",
+    "category": "OOP",
+    "question": "¿Qué ocurre si no se define un constructor en una clase Java?",
+    "code": null,
+    "options": [
+      "El compilador genera un constructor por defecto sin parámetros",
+      "La clase no se puede instanciar",
+      "Se produce un error de compilación",
+      "Se llama automáticamente al constructor de Object"
+    ],
+    "correct": 0,
+    "explanation": "Si no se define ningún constructor, el compilador proporciona un constructor predeterminado sin argumentos que llama a super() implícitamente.",
+    "active": true
+  },
+  {
+    "id": 14,
+    "level": "Mid",
+    "category": "OOP",
+    "question": "¿Qué es la abstracción en POO?",
+    "code": null,
+    "options": [
+      "Simplificar la realidad modelando solo los aspectos relevantes",
+      "Ocultar los detalles internos de un objeto",
+      "Permitir que una clase herede de múltiples clases",
+      "Agrupar datos y métodos en una misma unidad"
+    ],
+    "correct": 0,
+    "explanation": "La abstracción es el proceso de extraer las características esenciales de un objeto, ignorando los detalles irrelevantes, para modelarlo en un sistema.",
+    "active": true
+  },
+  {
+    "id": 15,
+    "level": "Mid",
+    "category": "OOP",
+    "question": "¿Cuál es la diferencia entre 'abstract class' e 'interface' en Java 8+?",
+    "code": null,
+    "options": [
+      "Una clase abstracta puede tener estado (variables de instancia), una interfaz no",
+      "Una interfaz puede tener métodos con implementación (default), una clase abstracta no",
+      "Una clase abstracta no puede implementar múltiples interfaces",
+      "Las interfaces pueden extender clases abstractas"
+    ],
+    "correct": 0,
+    "explanation": "Las clases abstractas pueden tener variables de instancia (estado), mientras que las interfaces solo pueden tener constantes estáticas. Desde Java 8, ambos pueden tener métodos concretos, pero las interfaces no pueden tener estado.",
+    "active": true
+  },
+  {
+    "id": 16,
+    "level": "Mid",
+    "category": "OOP",
+    "question": "Dado el siguiente código, ¿qué imprime?",
+    "code": "class Parent {\n  static void m() { System.out.println(\"Parent static\"); }\n}\nclass Child extends Parent {\n  static void m() { System.out.println(\"Child static\"); }\n}\npublic class Main {\n  public static void main(String[] args) {\n    Parent p = new Child();\n    p.m();\n  }\n}",
+    "options": [
+      "Parent static",
+      "Child static",
+      "Error de compilación",
+      "Error en tiempo de ejecución"
+    ],
+    "correct": 0,
+    "explanation": "Los métodos estáticos no se sobrescriben, sino que se ocultan. La decisión se toma en tiempo de compilación según el tipo de referencia, por lo que se invoca el método estático de Parent.",
+    "active": true
+  },
+  {
+    "id": 17,
+    "level": "Mid",
+    "category": "OOP",
+    "question": "¿Qué es el 'diamante de la herencia' y cómo lo resuelve Java?",
+    "code": null,
+    "options": [
+      "Es un problema de herencia múltiple; Java no permite herencia múltiple de clases, solo interfaces con default methods que requieren resolución explícita",
+      "Es un patrón de diseño; Java lo resuelve con clases abstractas",
+      "Es un error de compilación cuando una clase implementa dos interfaces",
+      "Java permite herencia múltiple de clases, por lo que no hay problema"
+    ],
+    "correct": 0,
+    "explanation": "El problema del diamante ocurre con herencia múltiple. Java evita herencia múltiple de clases, pero con interfaces (default methods) puede haber conflicto, que debe resolverse sobrescribiendo el método en la clase concreta.",
+    "active": true
+  },
+  {
+    "id": 18,
+    "level": "Mid",
+    "category": "OOP",
+    "question": "¿Qué patrón de diseño se basa en el principio de 'programar para interfaces, no para implementaciones'?",
+    "code": null,
+    "options": [
+      "Patrón Estrategia (Strategy)",
+      "Patrón Singleton",
+      "Patrón Factory",
+      "Patrón Decorator"
+    ],
+    "correct": 0,
+    "explanation": "El patrón Estrategia utiliza interfaces para definir una familia de algoritmos, permitiendo cambiar la implementación en tiempo de ejecución, aplicando el principio de programación orientada a interfaces.",
+    "active": true
+  },
+  {
+    "id": 19,
+    "level": "Mid",
+    "category": "OOP",
+    "question": "¿Cuál es el resultado de intentar compilar el siguiente código?",
+    "code": "interface A { default void m() { System.out.println(\"A\"); } }\ninterface B { default void m() { System.out.println(\"B\"); } }\nclass C implements A, B { }",
+    "options": [
+      "Compila y ejecuta correctamente",
+      "Error de compilación por conflicto de métodos default",
+      "Compila pero lanza excepción en tiempo de ejecución",
+      "No compila porque una clase no puede implementar dos interfaces"
+    ],
+    "correct": 1,
+    "explanation": "Hay un conflicto entre métodos default de A y B. La clase C debe sobrescribir m() para resolver la ambigüedad, de lo contrario, error de compilación.",
+    "active": true
+  },
+  {
+    "id": 20,
+    "level": "Mid",
+    "category": "OOP",
+    "question": "¿Qué es el acoplamiento (coupling) en POO y por qué es deseable un bajo acoplamiento?",
+    "code": null,
+    "options": [
+      "Mide la dependencia entre clases; bajo acoplamiento facilita el mantenimiento y la reutilización",
+      "Mide la cohesión interna de una clase; bajo acoplamiento significa alta cohesión",
+      "Es el número de métodos en una clase; debe ser bajo para mayor legibilidad",
+      "Es la herencia múltiple; debe evitarse"
+    ],
+    "correct": 0,
+    "explanation": "El acoplamiento se refiere al grado de interdependencia entre módulos. Un bajo acoplamiento reduce el impacto de cambios y mejora la modularidad.",
+    "active": true
+  },
+  {
+    "id": 21,
+    "level": "Senior",
+    "category": "OOP",
+    "question": "Explique el principio de sustitución de Liskov (LSP).",
+    "code": null,
+    "options": [
+      "Los objetos de una subclase deben poder sustituir a objetos de la superclase sin alterar el comportamiento correcto del programa",
+      "Las subclases deben tener más privilegios que las superclases",
+      "Una clase no debe heredar de otra clase concreta",
+      "Las interfaces deben ser pequeñas y específicas"
+    ],
+    "correct": 0,
+    "explanation": "El LSP establece que si S es subtipo de T, entonces los objetos de tipo T pueden ser reemplazados por objetos de tipo S sin afectar la corrección del programa. Es fundamental para un buen diseño de herencia.",
+    "active": true
+  },
+  {
+    "id": 22,
+    "level": "Senior",
+    "category": "OOP",
+    "question": "¿Cuál es la diferencia entre composición y agregación?",
+    "code": null,
+    "options": [
+      "En composición, el objeto contenido no existe sin el contenedor; en agregación, puede existir independientemente",
+      "En agregación, el objeto contenido no existe sin el contenedor; en composición, puede existir independientemente",
+      "Ambas son lo mismo, términos intercambiables",
+      "Composición usa herencia, agregación usa interfaces"
+    ],
+    "correct": 0,
+    "explanation": "La composición es una relación fuerte donde el ciclo de vida de las partes depende del todo (ej. una casa y sus habitaciones). Agregación es más débil (ej. una universidad y sus profesores, pueden existir sin la universidad).",
+    "active": true
+  },
+  {
+    "id": 23,
+    "level": "Senior",
+    "category": "OOP",
+    "question": "¿Qué ventaja ofrece la inmutabilidad en el diseño orientado a objetos?",
+    "code": null,
+    "options": [
+      "Facilita la concurrencia y reduce errores al no permitir cambios de estado",
+      "Aumenta el rendimiento al evitar copias",
+      "Permite herencia múltiple",
+      "Simplifica el polimorfismo"
+    ],
+    "correct": 0,
+    "explanation": "Los objetos inmutables son seguros para hilos, predecibles y evitan efectos secundarios, lo que mejora la robustez y el mantenimiento.",
+    "active": true
+  },
+  {
+    "id": 24,
+    "level": "Senior",
+    "category": "OOP",
+    "question": "¿Qué es el 'Dependency Inversion Principle' (DIP) de SOLID?",
+    "code": null,
+    "options": [
+      "Los módulos de alto nivel no deben depender de módulos de bajo nivel; ambos deben depender de abstracciones",
+      "Los módulos de bajo nivel deben depender de los de alto nivel",
+      "Las abstracciones no deben depender de detalles, sino viceversa",
+      "Es lo mismo que Inyección de Dependencias"
+    ],
+    "correct": 0,
+    "explanation": "El principio de inversión de dependencias establece que las dependencias deben basarse en abstracciones (interfaces) en lugar de implementaciones concretas, para reducir el acoplamiento.",
+    "active": true
+  },
+  {
+    "id": 25,
+    "level": "Senior",
+    "category": "OOP",
+    "question": "En Java, ¿cómo se implementa una clase inmutable?",
+    "code": null,
+    "options": [
+      "Declarar la clase final, todos los campos final y privados, sin setters, y devolver copias defensivas en getters",
+      "Usar la palabra clave 'immutable'",
+      "Hacer todos los campos estáticos",
+      "Usar solo constructores privados"
+    ],
+    "correct": 0,
+    "explanation": "Para crear una clase inmutable, se debe asegurar que el estado no pueda cambiar después de la construcción: clase final, campos privados y finales, sin métodos modificadores, y en getters devolver copias si son objetos mutables.",
+    "active": true
+  },
+  {
+    "id": 26,
+    "level": "Senior",
+    "category": "OOP",
+    "question": "¿Qué es el 'Open/Closed Principle' (OCP)?",
+    "code": null,
+    "options": [
+      "Las entidades deben estar abiertas para extensión pero cerradas para modificación",
+      "Las clases deben estar abiertas para modificación y cerradas para extensión",
+      "Los métodos deben ser públicos y las clases privadas",
+      "Es un principio de pruebas unitarias"
+    ],
+    "correct": 0,
+    "explanation": "OCP establece que las clases deben permitir añadir nuevas funcionalidades sin cambiar su código fuente existente, mediante herencia o composición.",
+    "active": true
+  },
+  {
+    "id": 27,
+    "level": "Senior",
+    "category": "OOP",
+    "question": "¿Cuál es la finalidad de los 'métodos default' en interfaces desde Java 8?",
+    "code": null,
+    "options": [
+      "Permitir añadir nuevos métodos a interfaces existentes sin romper las implementaciones",
+      "Sustituir a las clases abstractas",
+      "Hacer que las interfaces sean funcionales",
+      "Permitir herencia múltiple completa"
+    ],
+    "correct": 0,
+    "explanation": "Los métodos default permiten evolución de interfaces manteniendo compatibilidad binaria, ya que las clases que implementan la interfaz no necesitan implementar el nuevo método.",
+    "active": true
+  },
+  {
+    "id": 28,
+    "level": "Senior",
+    "category": "OOP",
+    "question": "¿Qué problema resuelve el patrón 'Factory Method'?",
+    "code": null,
+    "options": [
+      "Delega la creación de objetos a subclases, desacoplando el cliente de la clase concreta",
+      "Asegura una única instancia de una clase",
+      "Permite agregar responsabilidades a un objeto dinámicamente",
+      "Proporciona una interfaz unificada para un conjunto de interfaces"
+    ],
+    "correct": 0,
+    "explanation": "El patrón Factory Method define un método para crear objetos, permitiendo que las subclases decidan qué clase instanciar, promoviendo bajo acoplamiento.",
+    "active": true
+  },
+  {
+    "id": 29,
+    "level": "Senior",
+    "category": "OOP",
+    "question": "¿Cuál es la diferencia entre 'static' y 'final' en Java?",
+    "code": null,
+    "options": [
+      "static indica que el miembro pertenece a la clase, no a la instancia; final impide que se modifique (variable constante, método no sobrescrito, clase no heredada)",
+      "static y final son sinónimos",
+      "static permite herencia, final la impide",
+      "final solo aplica a variables, static solo a métodos"
+    ],
+    "correct": 0,
+    "explanation": "'static' significa que el miembro es compartido por todas las instancias (o pertenece a la clase). 'final' establece inmutabilidad: para variables, constante; para métodos, no sobrescritura; para clases, no herencia.",
+    "active": true
+  },
+  {
+    "id": 30,
+    "level": "Senior",
+    "category": "OOP",
+    "question": "¿Qué es el 'Interface Segregation Principle' (ISP)?",
+    "code": null,
+    "options": [
+      "Las interfaces deben ser específicas y no forzar a las clases a implementar métodos que no usan",
+      "Las interfaces deben ser grandes para cubrir todos los casos",
+      "Una interfaz debe tener un solo método",
+      "Las interfaces no deben tener métodos default"
+    ],
+    "correct": 0,
+    "explanation": "ISP establece que es mejor tener varias interfaces pequeñas y enfocadas que una interfaz general con muchos métodos, evitando que las clases implementen métodos irrelevantes.",
+    "active": true
+  },
+  {
+    "id": 31,
+    "level": "Senior",
+    "category": "OOP",
+    "question": "Dado el siguiente código, ¿cuál es el resultado?",
+    "code": "class A {\n  private int x = 10;\n  public void m() { System.out.println(x); }\n}\nclass B extends A {\n  private int x = 20;\n  public void m() { System.out.println(x); }\n}\npublic class Main {\n  public static void main(String[] args) {\n    A a = new B();\n    a.m();\n  }\n}",
+    "options": [
+      "10",
+      "20",
+      "Error de compilación",
+      "Error en tiempo de ejecución"
+    ],
+    "correct": 1,
+    "explanation": "Aunque la variable x está oculta (shadowing), el método m() es sobrescrito y se invoca el de B, que imprime la x de B (20).",
+    "active": true
+  },
+  {
+    "id": 32,
+    "level": "Senior",
+    "category": "OOP",
+    "question": "¿Qué es el 'cohesión' y por qué es importante?",
+    "code": null,
+    "options": [
+      "Mide la relación entre los elementos de una clase; alta cohesión significa que la clase tiene un propósito único y claro, facilitando mantenimiento",
+      "Mide el acoplamiento entre clases; alta cohesión indica bajo acoplamiento",
+      "Es la cantidad de métodos en una clase; debe ser alta para ser eficiente",
+      "Es la herencia múltiple; debe evitarse"
+    ],
+    "correct": 0,
+    "explanation": "La cohesión indica qué tan enfocada está una clase en una sola responsabilidad. Una alta cohesión mejora la legibilidad y mantenibilidad.",
+    "active": true
+  },
+  {
+    "id": 33,
+    "level": "Senior",
+    "category": "OOP",
+    "question": "¿Cuál es el propósito de la inyección de dependencias (Dependency Injection)?",
+    "code": null,
+    "options": [
+      "Suministrar las dependencias de un objeto desde el exterior, en lugar de crearlas internamente, para mejorar desacoplamiento y testabilidad",
+      "Permitir herencia múltiple",
+      "Asegurar que una clase tenga una sola instancia",
+      "Hacer que los objetos sean inmutables"
+    ],
+    "correct": 0,
+    "explanation": "La inyección de dependencias es un patrón donde se pasan las dependencias a un objeto (por constructor, setter, etc.) en lugar de que el objeto las cree, facilitando pruebas y flexibilidad.",
+    "active": true
+  },
+  {
+    "id": 34,
+    "level": "Senior",
+    "category": "OOP",
+    "question": "¿Qué problema resuelve el patrón 'Decorator'?",
+    "code": null,
+    "options": [
+      "Agregar responsabilidades adicionales a un objeto de forma dinámica sin modificar su estructura",
+      "Agrupar objetos en una estructura jerárquica",
+      "Separar la interfaz de la implementación",
+      "Proveer una interfaz única para un conjunto de subsistemas"
+    ],
+    "correct": 0,
+    "explanation": "El patrón Decorator permite envolver un objeto con otros objetos que añaden funcionalidad, de manera flexible y sin alterar el objeto original.",
+    "active": true
+  },
+  {
+    "id": 35,
+    "level": "Senior",
+    "category": "OOP",
+    "question": "¿Qué es una 'clase anónima' en Java y cuándo se usa?",
+    "code": null,
+    "options": [
+      "Una clase sin nombre declarada e instanciada en una expresión, usada para implementar interfaces o extender clases de forma local",
+      "Una clase que no tiene constructores",
+      "Una clase estática interna",
+      "Una clase que no puede ser instanciada"
+    ],
+    "correct": 0,
+    "explanation": "Las clases anónimas son clases locales sin nombre que se definen en el punto de instanciación, útiles para implementar rápidamente interfaces o clases abstractas en una sola línea.",
+    "active": true
+  }
+]

@@ -294,6 +294,7 @@ const TOPIC_LABELS = {
     spring_data: 'Spring Data',
     event_driven: 'Event-Driven',
     arquitectura_hexagonal: 'Arquitectura Hexagonal',    
+    oop: 'OOP',
 }
 
 // Baraja las opciones de una pregunta y recalcula el índice correct

@@ -55,6 +55,10 @@ const BANKS_CONFIG = {
   arquitectura_hexagonal: [
     { ai: 'claude', title: 'Claude', emoji: '🧠', description: 'Más analítico' },
   ],
+  oop: [
+    { ai: 'claude', title: 'Claude', emoji: '🧠', description: 'Más analítico' },
+    { ai: 'deepseek', title: 'DeepSeek', emoji: '⚡', description: 'Más técnico y directo' },
+  ],  
 }
 
 const TOPIC_LABELS = {
@@ -71,6 +75,7 @@ const TOPIC_LABELS = {
   spring_data: 'Spring Data',
   event_driven: 'Event-Driven',
   arquitectura_hexagonal: 'Arquitectura Hexagonal',
+  oop: 'OOP (Object-Oriented Programming)',
 }
 
 export default function LandingPage({ onSelect, onBack, topic }) {

@@ -13,6 +13,7 @@ export default function TopicPage({ onSelect, onRepaso }) {
         { id: 'spring_data', title: 'Spring Data', emoji: '💾', description: 'JPA, Repositories, Transacciones', available: true },
         { id: 'event_driven', title: 'Event-Driven', emoji: '📡', description: 'Kafka, RabbitMQ, Mensajería', available: true },
         { id: 'arquitectura_hexagonal', title: 'Arquitectura Hexagonal', emoji: '⬡', description: 'Puertos, adaptadores, dominio', available: true },
+        { id: 'oop', title: 'OOP', emoji: '🧬', description: 'Encapsulamiento, herencia, polimorfismo, abstracción', available: true },
     ]
 
     return (
