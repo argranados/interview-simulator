@@ -1,0 +1,527 @@
+[
+    {
+        "id": 1,
+        "level": "Junior",
+        "category": "Conceptos Básicos EDA",
+        "question": "¿Qué es un 'evento' en una arquitectura orientada a eventos (Event-Driven Architecture)?",
+        "code": null,
+        "options": [
+            "Una petición síncrona que espera una respuesta inmediata del receptor",
+            "Un comando que le indica a otro servicio qué acción debe ejecutar",
+            "Un registro inmutable que representa algo que ya sucedió en el sistema",
+            "Una tabla de base de datos que almacena el estado actual de una entidad"
+        ],
+        "correct": 2,
+        "explanation": "Un evento representa un hecho que ya ocurrió (ej. 'OrderCreated'), es inmutable y se publica sin esperar una respuesta directa. Se diferencia de un comando, que es una instrucción imperativa dirigida a un receptor específico."
+    },
+    {
+        "id": 2,
+        "level": "Junior",
+        "category": "Conceptos Core Kafka",
+        "question": "¿Cómo se define una partición dentro de un Topic de Apache Kafka?",
+        "code": null,
+        "options": [
+            "Una subdivisión lógica que guarda una copia exacta de todos los mensajes del cluster",
+            "Un registro de confirmación (commit log) indexado y de solo adición (append-only) para mensajes",
+            "Un búfer de memoria volátil que acelera la transferencia de mensajes hacia los consumidores",
+            "Una cola temporal que elimina automáticamente los mensajes una vez que son leídos"
+        ],
+        "correct": 1,
+        "explanation": "Las particiones son registros de confirmación ordenados e inmutables donde se añaden los mensajes secuencialmente. Son la unidad básica de paralelismo y escalabilidad en Kafka."
+    },
+    {
+        "id": 3,
+        "level": "Junior",
+        "category": "Consumer Groups",
+        "question": "Si un Topic tiene 4 particiones y un Consumer Group tiene 5 instancias activas, ¿qué sucede con la quinta instancia?",
+        "code": null,
+        "options": [
+            "Se queda en estado inactivo (idle) sin recibir mensajes de ninguna partición",
+            "Ayuda a leer los mensajes de la primera partición en conjunto con la primera instancia",
+            "Lanza una excepción de tipo IllegalStateException al intentar conectarse al broker",
+            "Crea automáticamente una quinta partición virtual en el topic para poder operar"
+        ],
+        "correct": 0,
+        "explanation": "Regla de oro de Kafka: Cada partición puede ser asignada como máximo a un solo consumidor dentro de un mismo grupo. Si hay más consumidores que particiones, las instancias sobrantes quedan inactivas esperando que otra se caiga."
+    },
+    {
+        "id": 4,
+        "level": "Junior",
+        "category": "Arquitectura Kafka",
+        "question": "¿Qué componente del ecosistema tradicional de Kafka se encarga de gestionar los metadatos del cluster y coordinar los brokers, antes de la llegada de KRaft?",
+        "code": null,
+        "options": [
+            "Schema Registry",
+            "Kafka Connect",
+            "ZooKeeper",
+            "KRaft Manager"
+        ],
+        "correct": 2,
+        "explanation": "Tradicionalmente, ZooKeeper se ha encargado de la gestión de metadatos, elección del broker líder y detección de fallos. Actualmente se está migrando a KRaft (Kafka Raft Metadata Mode) para eliminar esta dependencia externa."
+    },
+    {
+        "id": 5,
+        "level": "Mid",
+        "category": "Estrategias de Producción",
+        "question": "¿Cómo determina el productor por defecto a qué partición enviar un mensaje si este se publica con una clave (Key) no nula?",
+        "code": null,
+        "options": [
+            "Calcula un hash de la clave y aplica una operación módulo sobre el número total de particiones",
+            "Utiliza un algoritmo Round-Robin estricto para distribuir las claves de forma equitativa",
+            "Envía el mensaje obligatoriamente a la partición 0 y luego las réplicas lo mueven de lugar",
+            "Calcula el peso en bytes de la clave y lo asigna a la partición con mayor espacio disponible"
+        ],
+        "correct": 0,
+        "explanation": "El particionador por defecto de Kafka genera un hash determinista a partir de la clave del mensaje. Al aplicar el módulo sobre el total de particiones, garantiza que los mensajes con la misma clave caigan siempre en la misma partición."
+    },
+    {
+        "id": 6,
+        "level": "Junior",
+        "category": "Offsets y Commits",
+        "question": "¿Qué es un 'Offset' en el contexto de un consumidor de Kafka?",
+        "code": null,
+        "options": [
+            "Un identificador único global autogenerado para cada mensaje que se envía al cluster",
+            "Un puntero secuencial que indica la posición del próximo mensaje que leerá o confirmará un consumidor",
+            "El retraso en milisegundos que experimenta un mensaje desde el productor hasta el broker",
+            "Un mecanismo de encriptación que protege el cuerpo del mensaje durante la transmisión"
+        ],
+        "correct": 1,
+        "explanation": "El offset es un número entero secuencial asignado a cada mensaje dentro de una partición. Sirve para que el consumidor lleve el control exacto de qué mensajes ya procesó y cuáles le faltan por leer."
+    },
+    {
+        "id": 7,
+        "level": "Mid",
+        "category": "Configuración del Productor",
+        "question": "Si configuras la propiedad 'acks=all' (o acks=-1) en un productor, ¿cuál es el comportamiento esperado?",
+        "code": null,
+        "options": [
+            "El productor recibirá éxito en cuanto el broker líder escriba el mensaje en su memoria caché",
+            "El productor no esperará ninguna confirmación del cluster y asumirá que el envío fue exitoso",
+            "El productor esperará a que todos los consumidores activos del topic procesen y confirmen el mensaje",
+            "El productor esperará la confirmación del broker líder y de todas sus réplicas sincronizadas (ISR)"
+        ],
+        "correct": 3,
+        "explanation": "La opción 'acks=all' ofrece la máxima durabilidad de datos. El broker no responderá con éxito al productor hasta que el mensaje haya sido replicado en todos los nodos que forman parte de las In-Sync Replicas (ISR)."
+    },
+    {
+        "id": 8,
+        "level": "Junior",
+        "category": "Diferencias Tecnológicas",
+        "question": "¿Cuál es una diferencia fundamental en la retención de mensajes entre Apache Kafka y un Message Broker tradicional como RabbitMQ?",
+        "code": null,
+        "options": [
+            "RabbitMQ almacena los mensajes indefinidamente en disco y Kafka los borra inmediatamente tras ser leídos",
+            "Kafka retiene los mensajes de forma persistente según el tiempo o tamaño configurado, incluso si ya fueron leídos",
+            "Kafka elimina los mensajes de la partición de inmediato en cuanto un consumidor del grupo hace commit",
+            "RabbitMQ no permite que múltiples consumidores lean el mismo mensaje bajo ninguna configuración"
+        ],
+        "correct": 1,
+        "explanation": "En RabbitMQ, los mensajes se eliminan normalmente de la cola una vez procesados con éxito. Kafka funciona como un log distribuido persistente; los mensajes se quedan en el disco y se eliminan solo cuando expira la política de retención (ej. 7 días)."
+    },
+    {
+        "id": 9,
+        "level": "Mid",
+        "category": "Manejo de Errores",
+        "question": "¿Qué problema común de los sistemas distribuidos resuelve la implementación de un Dead Letter Topic (DLT)?",
+        "code": null,
+        "options": [
+            "El desbordamiento de memoria por almacenar mensajes demasiado pesados en el broker",
+            "El bloqueo indefinido del procesamiento de una partición debido a un mensaje corrupto (Poison Pill)",
+            "La pérdida de orden cronológico en los mensajes cuando un consumidor sufre un rebalanceo",
+            "La falta de sincronización de esquemas cuando se actualiza una entidad en el productor"
+        ],
+        "correct": 1,
+        "explanation": "Si un mensaje lanza un error irrecuperable (ej. JSON malformado), reintentarlo sin fin bloqueará el hilo del consumidor, impidiendo procesar los mensajes siguientes. Al enviarlo a un DLT, se libera la partición para continuar el flujo."
+    },
+    {
+        "id": 10,
+        "level": "Junior",
+        "category": "Spring Boot Integration",
+        "question": "Estás desarrollando un microservicio con Spring Boot para escuchar mensajes de Kafka. ¿Qué anotación debes utilizar a nivel de método para declarar un consumidor?",
+        "code": "import org.springframework.kafka.annotation.KafkaListener;\n\n// ... dentro de tu clase de servicio\n@__________ (topics = \"orders-topic\", groupId = \"orders-group\")\npublic void consume(String message) {\n    System.out.println(message);\n}",
+        "options": [
+            "KafkaConsumer",
+            "KafkaListener",
+            "MessageMapping",
+            "EventListener"
+        ],
+        "correct": 1,
+        "explanation": "La anotación estándar provista por Spring for Apache Kafka es `@KafkaListener`. Permite configurar de forma declarativa los tópicos a escuchar y el ID del grupo de consumidores."
+    },
+    {
+        "id": 11,
+        "level": "Mid",
+        "category": "Spring Boot Integration",
+        "question": "Para enviar mensajes de manera programática en una aplicación Spring Boot usando la configuración estándar, ¿qué componente genérico debes inyectar en tu servicio?",
+        "code": "@Autowired\nprivate ____________<String, OrderEvent> kafkaTemplate;\n\npublic void sendEvent(OrderEvent event) {\n    kafkaTemplate.send(\"orders-topic\", event.getId(), event);\n}",
+        "options": [
+            "KafkaProducerClient",
+            "KafkaSender",
+            "KafkaTemplate",
+            "KafkaMessagePublisher"
+        ],
+        "correct": 2,
+        "explanation": "`KafkaTemplate` es la abstracción de alto nivel que proporciona Spring Kafka para envolver al productor nativo y facilitar el envío de registros con una API intuitiva."
+    },
+    {
+        "id": 12,
+        "level": "Mid",
+        "category": "Garantías de Entrega",
+        "question": "¿Cómo se define el modelo de entrega 'At-least-once' (Al menos una vez) en Kafka?",
+        "code": null,
+        "options": [
+            "Los mensajes se guardan en el broker un mínimo de una vez antes de replicarse a otros nodos",
+            "Se garantiza que los mensajes se procesarán exactamente una sola vez sin duplicados bajo cualquier fallo",
+            "Garantiza que ningún mensaje se perderá, pero abre la posibilidad de que un mensaje se procese más de una vez",
+            "El consumidor lee el mensaje y avanza el offset antes de que la lógica de negocio se complete con éxito"
+        ],
+        "correct": 2,
+        "explanation": "'At-least-once' es la garantía por defecto. Si un consumidor procesa un mensaje y la aplicación se cae justo antes de confirmar el offset, al reiniciar volverá a leer el mismo mensaje, provocando un duplicado."
+    },
+    {
+        "id": 13,
+        "level": "Mid",
+        "category": "Idempotencia",
+        "question": "¿Qué característica de diseño debe cumplir la lógica de tu backend para mitigar los impactos negativos de la garantía 'At-least-once'?",
+        "code": null,
+        "options": [
+            "Debe ser síncrona y bloquear el hilo hasta confirmar la persistencia en base de datos",
+            "Debe ser idempotente, validando si el identificador único del evento ya fue procesado anteriormente",
+            "Debe limpiar la memoria caché del microservicio después de recibir cada lote de mensajes",
+            "Debe rechazar de forma automática cualquier mensaje que contenga una clave de partición repetida"
+        ],
+        "correct": 1,
+        "explanation": "Al diseñar un consumidor idempotente (por ejemplo, validando IDs de eventos únicos en una tabla de control), aseguras que aunque el mensaje llegue duplicado por reintentos de red o fallos, el estado del negocio no se alterará dos veces."
+    },
+    {
+        "id": 14,
+        "level": "Junior",
+        "category": "Garantías de Orden",
+        "question": "¿Bajo qué condición garantiza Kafka el orden estricto de entrega de los mensajes?",
+        "code": null,
+        "options": [
+            "Únicamente a nivel de partición individual; no existe garantía de orden global en todo el Topic",
+            "A nivel de Topic completo, ordenando secuencialmente sin importar la partición de destino",
+            "A nivel de Cluster, ordenando cronológicamente según la hora de creación de los brokers",
+            "Solo si el topic fue configurado explícitamente con un número impar de réplicas en KRaft"
+        ],
+        "correct": 0,
+        "explanation": "Kafka garantiza el orden de los mensajes estrictamente dentro de una misma partición. Si necesitas procesar eventos en un orden específico, debes agruparlos bajo la misma Key para asegurar que caigan en la misma partición."
+    },
+    {
+        "id": 15,
+        "level": "Mid",
+        "category": "Rebalanceo",
+        "question": "¿Qué es un 'Rebalance' (Rebalanceo) en un Consumer Group de Kafka y por qué hay que monitorearlo?",
+        "code": null,
+        "options": [
+            "Un proceso de optimización que mueve físicamente los datos del disco de un broker a otro",
+            "Una reasignación de particiones entre los consumidores del grupo que detiene temporalmente el consumo (Stop-the-world)",
+            "Un reinicio controlado de todos los hilos del productor cuando la red experimenta alta latencia",
+            "Una limpieza automática que ejecuta Spring Boot para eliminar registros huérfanos de la memoria"
+        ],
+        "correct": 1,
+        "explanation": "El rebalanceo ocurre cuando un consumidor entra o sale del grupo (o cambian las particiones). Durante este proceso, se detiene el consumo de mensajes para reasignar equitativamente qué consumidor leerá qué partición, lo que puede generar picos de latencia."
+    },
+    {
+        "id": 16,
+        "level": "Mid",
+        "category": "Patrones Avanzados",
+        "question": "¿Qué es un 'Compacted Topic' (Tópico Compactado) en Kafka y para qué escenario es ideal?",
+        "code": null,
+        "options": [
+            "Un tópico que comprime los mensajes en formato .zip para reducir el consumo de red un 50%",
+            "Un mecanismo que descarta los mensajes duplicados en tiempo real antes de que ingresen a la partición",
+            "Un tópico que elimina registros antiguos y conserva solo el último estado (valor) conocido para cada clave",
+            "Un tópico optimizado para lectura rápida que almacena los datos únicamente en la memoria RAM del broker"
+        ],
+        "correct": 2,
+        "explanation": "La compactación de logs asegura que Kafka retenga al menos el último valor para cada clave de mensaje dentro de un topic. Es idóneo para restaurar estados de cachés o tablas de búsqueda de datos (como el patrón CQRS)."
+    },
+    {
+        "id": 17,
+        "level": "Mid",
+        "category": "Gobierno de Datos y Serialización",
+        "question": "¿Por qué en entornos empresariales de nivel Mid/Senior se prefiere usar esquemas como Apache Avro con Confluent Schema Registry en lugar de JSON plano?",
+        "code": null,
+        "options": [
+            "Porque JSON no soporta estructuras complejas como listas o mapeos anidados",
+            "Porque Avro cifra de forma nativa los payloads impidiendo ataques informáticos en tránsito",
+            "Porque JSON tiende a corromper los bits de los caracteres especiales durante transferencias asíncronas",
+            "Porque reduce drásticamente el tamaño del payload al enviar datos binarios y garantiza compatibilidad de contratos"
+        ],
+        "correct": 3,
+        "explanation": "Avro no envía los nombres de las propiedades en cada mensaje (lo que sí hace JSON), reduciendo el ancho de banda. Además, Schema Registry centraliza los esquemas y valida que los cambios en el modelo no rompan los consumidores existentes."
+    },
+    {
+        "id": 18,
+        "level": "Mid",
+        "category": "Métricas y Monitoreo",
+        "question": "En producción, estás revisando las métricas de tu sistema y notas que el 'Consumer Group Lag' está incrementando de forma crítica. ¿Qué significa esto?",
+        "code": null,
+        "options": [
+            "Que el productor está tardando demasiado tiempo en serializar los eventos antes de enviarlos",
+            "Que tus consumidores están procesando los mensajes más lento de lo que los productores los están publicando",
+            "Que el tiempo de replicación entre el broker líder y los brokers seguidores está superando el umbral permitido",
+            "Que el conteo de offsets libres en el cluster ha llegado a su límite y Kafka dejará de escribir"
+        ],
+        "correct": 1,
+        "explanation": "El 'Consumer Lag' representa la diferencia entre el último offset escrito por el productor y el último offset confirmado por el consumidor. Un lag en aumento indica que tu backend está perdiendo la carrera contra el volumen de datos entrante."
+    },
+    {
+        "id": 19,
+        "level": "Junior",
+        "category": "Configuración del Consumidor",
+        "question": "Si creas un Consumer Group completamente nuevo y se conecta a un Topic que ya tiene millones de mensajes históricos, ¿qué propiedad controla si el grupo lee desde el principio de los tiempos o solo los mensajes nuevos?",
+        "code": null,
+        "options": [
+            "reset.offset.strategy",
+            "auto.offset.reset",
+            "initial.offset.policy",
+            "kafka.consumer.start-position"
+        ],
+        "correct": 1,
+        "explanation": "La propiedad auto.offset.reset define el comportamiento cuando no hay un offset inicial guardado en Kafka. Sus valores típicos son 'earliest' (leer desde el mensaje más antiguo disponible) y 'latest' (leer solo lo nuevo a partir de la conexión)."
+    },
+    {
+        "id": 20,
+        "level": "Mid",
+        "category": "Spring Boot Avanzado",
+        "question": "Deseas implementar un control estricto de offsets confirmando manualmente cada mensaje en Spring Boot tras asegurar el éxito de tu lógica. ¿Qué configuración debes cambiar y qué objeto inyectar en tu listener?",
+        "code": "/* En application.yml:\n   spring.kafka.listener.ack-mode: manual_immediate */\n\n@KafkaListener(topics = "payments", groupId = "pay-group")\npublic void listen(String msg, ___________ acknowledgment) {\n    // Lógica\n    acknowledgment.acknowledge();\n}",
+        "options": [
+            "Inyectar un objeto de tipo KafkaSession y llamar a complete()",
+            "Inyectar un objeto de tipo Acknowledgment y llamar a acknowledge()",
+            "Inyectar un objeto de tipo CommitOffset y llamar a save()",
+            "Inyectar un objeto de tipo MessageHeaders y llamar a flush()"
+        ],
+        "correct": 1,
+        "explanation": "Al configurar el ack-mode como manual, Spring Kafka te permite recibir una instancia de Acknowledgment. Al llamar al método acknowledge(), se ejecuta el commit manual del offset hacia el broker."
+    },
+    {
+        "id": 21,
+        "level": "Mid",
+        "category": "Resiliencia y Reintentos",
+        "question": "¿Cuál es la principal ventaja de utilizar la anotación '@RetryableTopic' en Spring Kafka para gestionar excepciones en lugar de bucles de reintento internos?",
+        "code": "@RetryableTopic(\n    attempts = "3",\n    backoff = @Backoff(delay = 2000, multiplier = 2.0),\n    topicSuffixingStrategy = TopicSuffixingStrategy.SUFFIX_WITH_INDEX_VALUE\n)\n@KafkaListener(topics = "inventory-topic")\npublic void process(String message) { ... }",
+        "options": [
+            "Permite ejecutar reintentos no bloqueantes, enviando los mensajes fallidos a tópicos secundarios sin detener el hilo principal",
+            "Duplica de forma automática el ancho de banda del hilo del consumidor para procesar en paralelo",
+            "Elimina la necesidad de definir deserializadores en el archivo de propiedades del microservicio",
+            "Fuerza a los brokers seguidores a convertirse en líderes inmediatos para mitigar problemas de red local"
+        ],
+        "correct": 0,
+        "explanation": "@RetryableTopic habilita el patrón de reintentos no bloqueantes. En lugar de congelar el consumidor bloqueando el hilo, el mensaje problemático se publica en un tópico de reintento con delay y el consumidor sigue leyendo mensajes sanos."
+    },
+    {
+        "id": 22,
+        "level": "Junior",
+        "category": "Conceptos Core Kafka",
+        "question": "¿A qué se refiere el término 'Broker' en el ecosistema de Apache Kafka?",
+        "code": null,
+        "options": [
+            "Una instancia de servidor físico o virtual que compone el cluster de Kafka y almacena los datos",
+            "Una biblioteca cliente en Java que encapsula la lógica para transformar mensajes de texto a bytes",
+            "Una interfaz gráfica web utilizada para monitorear el rendimiento de los consumidores en tiempo real",
+            "Un proxy inverso que distribuye las peticiones HTTP externas hacia los microservicios backend"
+        ],
+        "correct": 0,
+        "explanation": "Un Broker es cada uno de los nodos o servidores individuales que conforman el cluster de Kafka. Se encargan de recibir los mensajes de los productores, persistirlos en disco y servirlos a los consumidores."
+    },
+    {
+        "id": 23,
+        "level": "Junior",
+        "category": "Estrategias de Producción",
+        "question": "Si envías un mensaje a un Topic de Kafka sin especificar una clave (Key=null), ¿cómo distribuye Kafka el mensaje entre las particiones por defecto?",
+        "code": null,
+        "options": [
+            "Calcula el tamaño del mensaje en bytes y lo envía a la partición con menor almacenamiento ocupado",
+            "Envía una copia del mensaje de manera síncrona a todas y cada una de las particiones del topic",
+            "Utiliza una estrategia round-robin (o adhesiva integrada) para balancear la carga equitativamente entre las particiones",
+            "Bloquea el envío lanzando una excepción de tipo NullPointerException a nivel de productor"
+        ],
+        "correct": 2,
+        "explanation": "Si no hay clave, Kafka distribuye los mensajes entre las particiones disponibles utilizando una estrategia de balanceo de carga (históricamente Round-Robin, y en versiones modernas, Sticky Partitioner) para optimizar el rendimiento."
+    },
+    {
+        "id": 24,
+        "level": "Mid",
+        "category": "Configuración del Consumidor",
+        "question": "Si tu microservicio de Spring Boot procesa lotes pesados de mensajes y la lógica tarda más tiempo del definido en la propiedad 'max.poll.interval.ms', ¿qué hará el broker de Kafka?",
+        "code": null,
+        "options": [
+            "Considerará que el consumidor está colgado o muerto, lo expulsará del grupo e iniciará un rebalanceo",
+            "Duplicará automáticamente el tamaño de la memoria RAM asignada al contenedor de la aplicación",
+            "Eliminará de inmediato todos los mensajes que se encontraban encolados dentro de la partición actual",
+            "Incrementará el ancho de banda del hilo consumidor sin alterar el estado del Consumer Group"
+        ],
+        "correct": 0,
+        "explanation": "La propiedad max.poll.interval.ms es el tiempo máximo permitido entre invocaciones de sondeo (poll()). Si tu código tarda demasiado en procesar un lote (por ejemplo, por una consulta lenta a base de datos), Kafka asume que el hilo falló y desata un rebalanceo."
+    },
+    {
+        "id": 25,
+        "level": "Junior",
+        "category": "Conceptos Core Kafka",
+        "question": "¿En qué consiste el concepto de 'In-Sync Replicas' (ISR) en la arquitectura de Kafka?",
+        "code": null,
+        "options": [
+            "El subconjunto de brokers seguidores que están completamente al día con los mensajes del broker líder de una partición",
+            "El número total de aplicaciones Java backend que están consumiendo un mismo tópico al mismo tiempo",
+            "Una lista de servidores proxy externos encargados de transformar payloads JSON a XML",
+            "La sincronización forzada de los relojes del sistema de todos los nodos del cluster mediante protocolo NTP"
+        ],
+        "correct": 0,
+        "explanation": "Las ISR son aquellas réplicas (seguidores) de una partición que se mantienen al corriente con el líder dentro de un umbral de tiempo determinado. Si el líder falla, solo un nodo miembro del ISR puede ser elegido como nuevo líder."
+    },
+    {
+        "id": 26,
+        "level": "Mid",
+        "category": "Productores Idempotentes",
+        "question": "Al habilitar la propiedad 'enable.idempotence=true' en tu Kafka Producer, ¿cómo evita el broker la duplicidad de mensajes en caso de reintentos por fallos de red?",
+        "code": null,
+        "options": [
+            "El broker guarda un hash MD5 de todo el cuerpo del mensaje y rechaza colisiones exactas en las últimas 24 horas",
+            "El productor asigna un ID único al productor y un número de secuencia por mensaje, permitiendo al broker ignorar duplicados",
+            "El broker exige al consumidor que valide si el offset ya existía antes de autorizar la escritura física",
+            "Se bloquean todas las escrituras concurrentes forzando al cluster a operar en un solo hilo de ejecución"
+        ],
+        "correct": 1,
+        "explanation": "El productor idempotente de Kafka añade un identificador de productor (PID) y un número de secuencia monótonamente creciente a cada lote de mensajes. Si el broker recibe un número de secuencia que ya guardó, simplemente descarta el duplicado y envía el ACK."
+    },
+    {
+        "id": 27,
+        "level": "Mid",
+        "category": "Casos de Uso y Patrones",
+        "question": "En el patrón Event Sourcing, ¿cuál es el rol principal que desempeña una plataforma como Apache Kafka?",
+        "code": null,
+        "options": [
+            "Actúa como una base de datos relacional tradicional donde los registros se sobrescriben constantemente",
+            "Funciona como la fuente única de la verdad almacenando un log inmutable de todos los cambios de estado como eventos",
+            "Se encarga exclusivamente de renderizar las vistas html que se muestran al cliente final en el frontend",
+            "Sirve únicamente como un cortafuegos (firewall) para mitigar ataques de denegación de servicio distribuidos"
+        ],
+        "correct": 1,
+        "explanation": "En Event Sourcing, el estado de una entidad no se almacena directamente; en su lugar, se guardan todos los eventos que alteraron esa entidad en un orden estricto (un log de auditoría). Kafka es la infraestructura perfecta para almacenar y reproducir este flujo de eventos inmutables."
+    },
+    {
+        "id": 28,
+        "level": "Junior",
+        "category": "Serialización",
+        "question": "Estás configurando tu microservicio Spring Boot y necesitas definir cómo se convertirán los objetos Java a bytes antes de ser transmitidos a Kafka. ¿Qué propiedades debes establecer en tu application.properties?",
+        "code": null,
+        "options": [
+            "spring.kafka.producer.key-serializer y spring.kafka.producer.value-serializer",
+            "spring.kafka.converter.object-to-string y spring.kafka.converter.string-to-byte",
+            "spring.kafka.transformer.input-type y spring.kafka.transformer.output-type",
+            "spring.kafka.encode.key-format y spring.kafka.encode.value-format"
+        ],
+        "correct": 0,
+        "explanation": "Las propiedades clave para el productor son key-serializer y value-serializer. En ellas se definen las clases encargadas de la serialización, por ejemplo: org.apache.kafka.common.serialization.StringSerializer."
+    },
+    {
+        "id": 29,
+        "level": "Mid",
+        "category": "Transacciones",
+        "question": "Para lograr un procesamiento con semántica 'Exactly-Once' (Exactamente una vez) en un flujo que lee de un tópico, procesa y escribe en otro tópico, ¿qué característica avanzada de Kafka se debe habilitar?",
+        "code": null,
+        "options": [
+            "Kafka Transactions (Transacciones multitópico coordinadas por un Transaction Coordinator)",
+            "Auto-commit síncrono acoplado a un bloque try-catch nativo de Java",
+            "Configurar un clúster secundario espejo mediante el uso exclusivo de MirrorMaker 2",
+            "La compactación agresiva de memoria caché utilizando hilos demonio en Spring Boot"
+        ],
+        "correct": 0,
+        "explanation": "La semántica de procesamiento Exactly-Once (EOS) en Kafka se apoya en una API transaccional. Permite coordinar de forma atómica que el envío de mensajes a múltiples tópicos y el commit del offset del consumidor tengan éxito juntos o fallen juntos."
+    },
+    {
+        "id": 30,
+        "level": "Mid",
+        "category": "Manejo de Errores",
+        "question": "Al usar 'Dead Letter Publishing' en Spring Kafka con la clase 'DeadLetterPublishingRecoverer', ¿qué nombre recibe por defecto el tópico de descarte al que se envía el mensaje fallido?",
+        "code": null,
+        "options": [
+            "El nombre del tópico original seguido del sufijo '.DLT'",
+            "Un nombre aleatorio alfanumérico generado en base al ID del contenedor",
+            "El prefijo 'dead-letter-queue-' concatenado con el ID de la partición",
+            "No se crea ningún tópico nuevo, los mensajes se redirigen al tópico interno '__consumer_offsets'"
+        ],
+        "correct": 0,
+        "explanation": "Por defecto, la implementación de Spring Kafka DeadLetterPublishingRecoverer añade el sufijo .DLT al nombre del tópico donde ocurrió el error (ej. si falló en orders, se enviará a orders.DLT)."
+    },
+    {
+        "id": 31,
+        "level": "Junior",
+        "category": "Estructura del Mensaje",
+        "question": "¿Cuáles son los componentes principales que conforman la estructura de un registro (Record / Message) en Kafka?",
+        "code": null,
+        "options": [
+            "IP de origen, Puerto de conexión, Protocolo de red y Payload binario",
+            "Identificador de partición primaria, Estado del broker, Token de seguridad y URI",
+            "Key, Value, Timestamp y opcionalmente Headers (Metadatos clave-valor)",
+            "Nombre de la tabla, Sentencia SQL original, Usuario creador y Firma digital"
+        ],
+        "correct": 2,
+        "explanation": "Un registro de Kafka está compuesto esencialmente por una clave (Key), el cuerpo o mensaje (Value), una marca de tiempo (Timestamp) y cabeceras opcionales (Headers) para transportar metadatos sin alterar el payload."
+    },
+    {
+        "id": 32,
+        "level": "Mid",
+        "category": "Spring Boot Integration",
+        "question": "Deseas que tu '@KafkaListener' procese los mensajes agrupados en lotes (batch) en lugar de uno por uno para mejorar el rendimiento de inserción en una base de datos. ¿Qué debes configurar en Spring Boot?",
+        "code": "// Configuración deseada:\n@KafkaListener(topics = "metrics", groupId = "batch-group")\npublic void listenBatch(List messages) {\n    // Procesa una lista completa de mensajes\n}",
+        "options": [
+            "Establecer la propiedad spring.kafka.listener.type=batch en la configuración de la aplicación",
+            "Cambiar el modificador de acceso del método de público a privado estático",
+            "Encapsular el parámetro del método utilizando una clase contenedora genérica como Optional",
+            "Añadir la anotación @BatchProcessing directamente sobre la clase principal de Spring Boot"
+        ],
+        "correct": 0,
+        "explanation": "Al configurar spring.kafka.listener.type: batch, le indicas a Spring que configure el contenedor de listeners para recibir colecciones de mensajes en una sola invocación del método, reduciendo la sobrecarga de llamadas."
+    },
+    {
+        "id": 33,
+        "level": "Mid",
+        "category": "Arquitectura Kafka",
+        "question": "¿Cuál es la función primordial de los componentes denominados 'Leader' y 'Follower' en el manejo de particiones dentro de un cluster de Kafka?",
+        "code": null,
+        "options": [
+            "El Leader procesa todas las lecturas y escrituras por defecto; los Followers replican pasivamente los datos para alta disponibilidad",
+            "El Leader cifra los payloads en formato binario y los Followers los desencriptan para su distribución a la red",
+            "El Leader distribuye mensajes a los productores y los Followers se encargan de limpiar la memoria RAM expirada",
+            "Los Followers reciben los mensajes de los clientes externos y el Leader es una cola temporal que los ordena"
+        ],
+        "correct": 0,
+        "explanation": "Para cada partición de un tópico, un broker actúa como Líder y cero o más brokers actúan como Seguidores. El Líder es el único encargado de procesar las solicitudes de producción y consumo, mientras que los seguidores copian los datos para garantizar tolerancia a fallos."
+    },
+    {
+        "id": 34,
+        "level": "Junior",
+        "category": "Configuración del Productor",
+        "question": "Si configuras 'acks=0' en las propiedades de un productor de Kafka, ¿qué impacto tiene en el rendimiento y en la fiabilidad de tu backend?",
+        "code": null,
+        "options": [
+            "El rendimiento es el más bajo posible pero asegura que nunca existan problemas de latencia de red",
+            "Ofrece la máxima velocidad de envío posible, pero con un riesgo muy alto de pérdida de datos si el broker falla",
+            "Fuerza al microservicio a lanzar excepciones automáticas si un consumidor está desconectado",
+            "Garantiza de forma estricta que no habrá duplicación de mensajes debido a reintentos automáticos"
+        ],
+        "correct": 1,
+        "explanation": "Con acks=0, el productor envía el mensaje a la red y de inmediato lo considera exitoso sin esperar respuesta alguna del broker. Es sumamente rápido (baja latencia) pero propenso a pérdidas de datos si el broker sufre un crash."
+    },
+    {
+        "id": 35,
+        "level": "Mid",
+        "category": "Ecosistema Kafka",
+        "question": "En una arquitectura backend moderna, ¿cuál es el propósito del framework 'Kafka Connect' dentro del ecosistema de Apache Kafka?",
+        "code": null,
+        "options": [
+            "Proporcionar una interfaz de usuario visual integrada para administrar bases de datos relacionales en la nube",
+            "Establecer túneles VPN de alta seguridad dedicados de manera exclusiva al tráfico de datos móviles",
+            "Facilitar la integración lista para usar (no-code/low-code) para mover datos masivos entre Kafka y otros sistemas externos como bases de datos o S3",
+            "Ofrecer un compilador optimizado que traduce código fuente Java a scripts binarios ejecutables de forma nativa"
+        ],
+        "correct": 2,
+        "explanation": "Kafka Connect es un componente diseñado para simplificar la integración. Mediante conectores estándar de origen (Source) y destino (Sink), permite integrar Kafka de forma robusta con bases de datos (ej. Debezium para CDC), Elasticsearch, AWS S3, etc., sin escribir código personalizado de producción/consumo."
+    }
+]

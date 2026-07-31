@@ -1,0 +1,562 @@
+[
+    {
+        "id": 1,
+        "level": "Junior",
+        "category": "Kafka Fundamentals",
+        "question": "¿Qué es Apache Kafka y para qué se utiliza principalmente?",
+        "code": null,
+        "options": [
+            "Una plataforma de streaming distribuida para publicar y suscribirse a flujos de registros, procesar eventos en tiempo real y almacenarlos de forma duradera.",
+            "Un sistema de colas de mensajes tradicional basado en JMS.",
+            "Una base de datos NoSQL para almacenar eventos.",
+            "Un framework de procesamiento por lotes similar a Hadoop."
+        ],
+        "correct": 0,
+        "explanation": "Kafka es un sistema distribuido de streaming que combina mensajería, almacenamiento persistente y procesamiento de flujos en tiempo real. No es una cola tradicional JMS ni una base de datos, sino una plataforma de eventos.",
+        "active": true
+    },
+    {
+        "id": 2,
+        "level": "Junior",
+        "category": "Kafka Fundamentals",
+        "question": "¿Cuáles son los componentes principales de Kafka?",
+        "code": null,
+        "options": [
+            "Servers, Queues, Exchanges, Bindings.",
+            "Brokers, Topics, Partitions, Producers, Consumers, Consumer Groups.",
+            "Nodes, Shards, Replicas, Clients.",
+            "Master, Slave, ZooKeeper."
+        ],
+        "correct": 1,
+        "explanation": "Los componentes esenciales son: brokers (servidores), topics (categorías lógicas), particiones (unidades de almacenamiento), productores (publican mensajes), consumidores (leen mensajes) y grupos de consumidores (para escalar el consumo).",
+        "active": true
+    },
+    {
+        "id": 3,
+        "level": "Junior",
+        "category": "Kafka Fundamentals",
+        "question": "¿Qué diferencia hay entre un Topic y una Partición?",
+        "code": null,
+        "options": [
+            "Las particiones son temas anidados.",
+            "El topic es el contenedor lógico y la partición es la unidad física de almacenamiento dentro del topic, que permite paralelismo.",
+            "No hay diferencia, se usan indistintamente.",
+            "Son lo mismo, solo que partición es el nombre antiguo."
+        ],
+        "correct": 1,
+        "explanation": "Un topic es un nombre lógico que agrupa mensajes, mientras que las particiones son divisiones físicas de ese topic que permiten paralelismo y orden dentro de cada partición.",
+        "active": true
+    },
+    {
+        "id": 4,
+        "level": "Mid",
+        "category": "Consumers",
+        "question": "¿Qué es un Consumer Group y cómo gestiona el consumo de particiones?",
+        "code": null,
+        "options": [
+            "Es un grupo de consumidores que comparten el mismo group.id y cada partición es asignada a un único consumidor del grupo para procesar mensajes en paralelo.",
+            "Es un grupo de topics que se consumen juntos.",
+            "Es un conjunto de brokers que sirven a un consumidor.",
+            "Es un mecanismo para replicar datos entre centros de datos."
+        ],
+        "correct": 0,
+        "explanation": "Un grupo de consumidores permite escalar el consumo: cada partición es asignada a un solo consumidor dentro del grupo, garantizando que los mensajes se procesen en paralelo sin duplicados entre consumidores del mismo grupo.",
+        "active": true
+    },
+    {
+        "id": 5,
+        "level": "Junior",
+        "category": "Consumers",
+        "question": "¿Qué es el offset en Kafka y cómo se gestiona el commit?",
+        "code": null,
+        "options": [
+            "Es la posición del consumidor dentro de una partición; se puede confirmar automática o manualmente.",
+            "Es el identificador único de cada mensaje.",
+            "Es la clave de partición.",
+            "Es el tamaño del mensaje."
+        ],
+        "correct": 0,
+        "explanation": "El offset es un número que indica la posición del próximo mensaje a leer en una partición. El commit es el acto de guardar ese offset para indicar que los mensajes han sido procesados; puede ser automático o manual.",
+        "active": true
+    },
+    {
+        "id": 6,
+        "level": "Mid",
+        "category": "Kafka Fundamentals",
+        "question": "Explica las semánticas de entrega: at‑most‑once, at‑least‑once y exactly‑once.",
+        "code": null,
+        "options": [
+            "At‑most‑once: los mensajes se entregan como máximo una vez (pueden perderse). At‑least‑once: se entregan al menos una vez (pueden duplicarse). Exactly‑once: se entregan exactamente una vez.",
+            "Solo exactly‑once es importante.",
+            "At‑most‑once: con confirmación; at‑least‑once: sin confirmación; exactly‑once: transacciones.",
+            "Todas son equivalentes."
+        ],
+        "correct": 0,
+        "explanation": "At‑most‑once: sin confirmación o confirmación asíncrona, puede perder mensajes. At‑least‑once: con confirmación, puede duplicar. Exactly‑once: usando productor idempotente y transacciones, asegura que cada mensaje se procese una sola vez.",
+        "active": true
+    },
+    {
+        "id": 7,
+        "level": "Mid",
+        "category": "Configuration",
+        "question": "¿Cómo se logra exactly‑once en Kafka?",
+        "code": null,
+        "options": [
+            "Configurando acks=all y retries=0.",
+            "Usando el productor idempotente y transacciones, junto con consumidores que consumen dentro de una transacción.",
+            "Usando exactly‑once delivery con un solo consumidor.",
+            "No es posible lograr exactly‑once en Kafka."
+        ],
+        "correct": 1,
+        "explanation": "Exactly‑once se logra habilitando el productor idempotente (enable.idempotence=true) y usando transacciones (initTransactions, beginTransaction, commitTransaction) para atomicidad entre producción y consumo.",
+        "active": true
+    },
+    {
+        "id": 8,
+        "level": "Junior",
+        "category": "Kafka Fundamentals",
+        "question": "¿Qué es el ISR (In‑Sync Replicas)?",
+        "code": null,
+        "options": [
+            "Es el número de particiones por topic.",
+            "Es el grupo de consumidores activos.",
+            "Es el conjunto de réplicas que están sincronizadas con el líder de una partición.",
+            "Es el mecanismo de compresión de mensajes."
+        ],
+        "correct": 2,
+        "explanation": "ISR es el conjunto de réplicas que están al día con el líder (han replicado todos los mensajes). Los seguidores que se atrasan salen del ISR. Solo las réplicas en ISR pueden ser elegidas como nuevo líder.",
+        "active": true
+    },
+    {
+        "id": 9,
+        "level": "Junior",
+        "category": "Kafka Architecture",
+        "question": "¿Qué rol juega el líder y los seguidores en una partición?",
+        "code": null,
+        "options": [
+            "El líder maneja todas las lecturas y escrituras; los seguidores replican pasivamente.",
+            "Los seguidores manejan lecturas y el líder maneja escrituras.",
+            "Todos son iguales.",
+            "El líder solo maneja escrituras y los seguidores lecturas."
+        ],
+        "correct": 0,
+        "explanation": "Para cada partición, un broker es líder y maneja todas las peticiones de producción y consumo. Los seguidores solo replican los datos del líder para tolerancia a fallos. Si el líder falla, un seguidor del ISR se convierte en líder.",
+        "active": true
+    },
+    {
+        "id": 10,
+        "level": "Mid",
+        "category": "Design",
+        "question": "¿Cómo se determina el número de particiones para un topic?",
+        "code": null,
+        "options": [
+            "Siempre debe ser 3 particiones.",
+            "Debe ser igual al número de brokers.",
+            "Debe ser al menos el número de consumidores esperados en el grupo para lograr paralelismo, pero también depende del throughput deseado.",
+            "No importa, Kafka lo ajusta automáticamente."
+        ],
+        "correct": 2,
+        "explanation": "El número de particiones afecta el paralelismo máximo (número de consumidores por grupo) y el throughput. Debe dimensionarse según la carga esperada y la capacidad de los brokers. No se ajusta automáticamente.",
+        "active": true
+    },
+    {
+        "id": 11,
+        "level": "Mid",
+        "category": "Producers",
+        "question": "Configuraciones clave del productor: acks, retries, batch.size, linger.ms. Explica su función.",
+        "code": null,
+        "options": [
+            "acks controla la cantidad de confirmaciones de los brokers; retries reintentos en fallos; batch.size y linger.ms controlan el batching para mejorar rendimiento.",
+            "acks define la partición; retries el número de consumidores; batch.size el tamaño del topic.",
+            "Son configuraciones obsoletas.",
+            "Solo acks es importante."
+        ],
+        "correct": 0,
+        "explanation": "acks=0/1/all define durabilidad; retries reintenta en caso de error transitorio; batch.size y linger.ms agrupan mensajes para mejorar throughput.",
+        "active": true
+    },
+    {
+        "id": 12,
+        "level": "Mid",
+        "category": "Consumers",
+        "question": "¿Qué configuraciones son clave en el consumidor?",
+        "code": null,
+        "options": [
+            "compression.type, sasl.mechanism.",
+            "acks, retries, batch.size.",
+            "enable.auto.commit, auto.offset.reset, max.poll.records.",
+            "partition.assignment.strategy, interceptor.classes."
+        ],
+        "correct": 2,
+        "explanation": "enable.auto.commit controla si el offset se confirma automáticamente; auto.offset.reset define qué hacer cuando no hay offset guardado (earliest/latest); max.poll.records limita el número de mensajes por lote.",
+        "active": true
+    },
+    {
+        "id": 13,
+        "level": "Mid",
+        "category": "Consumers",
+        "question": "¿Qué es el rebalanceo y cómo afecta a los consumidores?",
+        "code": null,
+        "options": [
+            "Es el ajuste de réplicas entre brokers.",
+            "Es el proceso de reasignación de particiones entre consumidores de un grupo, que puede ocurrir al unirse o salir consumidores; durante el rebalanceo, el consumo se pausa.",
+            "Es el balanceo de carga de los brokers.",
+            "Es la redistribución de offsets."
+        ],
+        "correct": 1,
+        "explanation": "El rebalanceo redistribuye las particiones entre los consumidores de un grupo cuando hay cambios en el grupo. Durante este periodo, los consumidores no pueden procesar mensajes, por lo que debe ser rápido y gestionado correctamente.",
+        "active": true
+    },
+    {
+        "id": 14,
+        "level": "Mid",
+        "category": "Error Handling",
+        "question": "¿Cómo manejar mensajes duplicados en el consumidor?",
+        "code": null,
+        "options": [
+            "Configurando el productor para que no envíe duplicados.",
+            "Implementando idempotencia en el procesamiento, usando claves únicas o versionado.",
+            "Ignorando duplicados.",
+            "Reiniciando el consumidor."
+        ],
+        "correct": 1,
+        "explanation": "La idempotencia en el consumidor (por ejemplo, usando una clave de negocio única y almacenando el estado) permite procesar mensajes duplicados sin efectos secundarios, ya que Kafka puede entregar duplicados en escenarios de fallo.",
+        "active": true
+    },
+    {
+        "id": 15,
+        "level": "Mid",
+        "category": "Integration",
+        "question": "Implementación de un productor con Spring Boot usando KafkaTemplate. ¿Cuál es el código correcto?",
+        "code": "@Autowired\nprivate KafkaTemplate<String, String> kafkaTemplate;\n\npublic void send(String topic, String message) {\n kafkaTemplate.send(topic, message);\n}",
+        "options": [
+            "Usar JmsTemplate.",
+            "No se puede con Spring Boot.",
+            "Configurar KafkaTemplate con ProducerFactory es necesario, pero el ejemplo correcto es el que inyecta el template y llama a send.",
+            "Usar KafkaProducer directamente."
+        ],
+        "correct": 2,
+        "explanation": "En Spring Boot, se puede inyectar KafkaTemplate y usar su método send(topic, message) para enviar mensajes. La configuración de fábricas se hace en la configuración, pero el uso es simple.",
+        "active": true
+    },
+    {
+        "id": 16,
+        "level": "Mid",
+        "category": "Integration",
+        "question": "Implementación de un consumidor con Spring Boot usando @KafkaListener. ¿Cuál es la forma correcta?",
+        "code": "@KafkaListener(topics = "miTopic", groupId = "miGrupo")\npublic void listen(String message) {\n // procesar mensaje\n}",
+        "options": [
+            "Usar KafkaConsumer manual.",
+            "Implementar MessageListener.",
+            "@KafkaListener(topics = "miTopic", groupId = "miGrupo") public void listen(String message) { ... }",
+            "@EventListener para Kafka."
+        ],
+        "correct": 2,
+        "explanation": "La anotación @KafkaListener de Spring Kafka permite definir métodos que escuchan mensajes de uno o más topics, con configuración de grupo y otras propiedades.",
+        "active": true
+    },
+    {
+        "id": 17,
+        "level": "Mid",
+        "category": "Producers",
+        "question": "¿Cómo usar KafkaTemplate para enviar mensajes con clave y valor?",
+        "code": "kafkaTemplate.send(topic, key, value);",
+        "options": [
+            "kafkaTemplate.send(topic, value);",
+            "kafkaTemplate.sendDefault(key, value);",
+            "kafkaTemplate.send(topic, key, value);",
+            "kafkaTemplate.publish(topic, key, value);"
+        ],
+        "correct": 2,
+        "explanation": "El método send(topic, key, value) permite especificar la clave para determinar la partición (si se usa un particionador por clave) y el valor del mensaje.",
+        "active": true
+    },
+    {
+        "id": 18,
+        "level": "Mid",
+        "category": "Serialization",
+        "question": "Serialización/deserialización en Kafka. ¿Qué es y cómo configurar con JSON?",
+        "code": "// En configuración del productor\nprops.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);\nprops.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);\n\n// En el consumidor\nprops.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);\nprops.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);",
+        "options": [
+            "Kafka solo soporta String.",
+            "No se puede usar JSON.",
+            "Usar ObjectMapper automáticamente.",
+            "Los mensajes se envían como bytes, se debe especificar un Serializer para el productor y Deserializer para el consumidor, por ejemplo JsonSerializer y JsonDeserializer."
+        ],
+        "correct": 3,
+        "explanation": "Kafka maneja los mensajes como arrays de bytes, por lo que se necesita un Serializer para convertir objetos a bytes en el productor y un Deserializer en el consumidor. Spring Kafka provee JsonSerializer/JsonDeserializer para JSON.",
+        "active": true
+    },
+    {
+        "id": 19,
+        "level": "Mid",
+        "category": "Patterns",
+        "question": "¿Qué es el patrón Outbox y cómo se implementa con Kafka?",
+        "code": null,
+        "options": [
+            "Es un patrón de enrutamiento.",
+            "Es un patrón de seguridad.",
+            "Consiste en almacenar eventos en una tabla de la base de datos junto con la transacción, y un publicador los envía a Kafka, garantizando consistencia.",
+            "Es un patrón para enviar mensajes fuera de la red."
+        ],
+        "correct": 2,
+        "explanation": "El patrón Outbox asegura que los eventos se publiquen de manera fiable en el contexto de una transacción de base de datos. Los eventos se escriben en una tabla 'outbox' y un proceso los envía a Kafka, evitando pérdidas o duplicados.",
+        "active": true
+    },
+    {
+        "id": 20,
+        "level": "Mid",
+        "category": "Patterns",
+        "question": "¿Qué es Event Sourcing y su relación con Kafka?",
+        "code": null,
+        "options": [
+            "Event Sourcing almacena el estado como una secuencia de eventos; Kafka es ideal para almacenar y transmitir esos eventos de forma durable.",
+            "Event Sourcing es lo mismo que CQRS.",
+            "No tienen relación.",
+            "Kafka no es adecuado para Event Sourcing."
+        ],
+        "correct": 0,
+        "explanation": "Event Sourcing persiste cada cambio de estado como un evento inmutable. Kafka, con su almacenamiento duradero y ordenado por partición, es una plataforma natural para almacenar y reproducir estos eventos.",
+        "active": true
+    },
+    {
+        "id": 21,
+        "level": "Mid",
+        "category": "Error Handling",
+        "question": "¿Cómo manejar errores en un consumidor, como reintentos y Dead Letter Topic?",
+        "code": null,
+        "options": [
+            "No se puede, Kafka no tiene DLT.",
+            "Se pueden configurar reintentos con @RetryableTopic o manejar errores enviando a un DLT, usando el error handler de Spring Kafka.",
+            "Solo se puede reiniciando el consumidor.",
+            "Ignorando el error."
+        ],
+        "correct": 1,
+        "explanation": "Spring Kafka ofrece soporte para reintentos y Dead Letter Topics (DLT) mediante anotaciones como @RetryableTopic y configurando un contenedor con error handler, permitiendo que mensajes fallidos se envíen a un topic de fallos.",
+        "active": true
+    },
+    {
+        "id": 22,
+        "level": "Mid",
+        "category": "Advanced",
+        "question": "¿Qué son los interceptores en Kafka?",
+        "code": null,
+        "options": [
+            "Son filtros de red.",
+            "Son plugins para el broker.",
+            "Son componentes que permiten interceptar y modificar mensajes en el productor o consumidor antes de ser enviados o después de ser recibidos.",
+            "Son herramientas de monitoreo."
+        ],
+        "correct": 2,
+        "explanation": "Los interceptores (ProducerInterceptor y ConsumerInterceptor) permiten agregar lógica personalizada, como auditoría, trazabilidad o modificación de mensajes, en el cliente antes de la serialización o después de la deserialización.",
+        "active": true
+    },
+    {
+        "id": 23,
+        "level": "Mid",
+        "category": "Security",
+        "question": "¿Cómo configurar SSL/SASL para seguridad en Kafka?",
+        "code": "// Ejemplo de propiedades para productor/consumidor\nprops.put(CommonClientConfigs.SECURITY_PROTOCOL_CONFIG, "SSL");\nprops.put(SslConfigs.SSL_TRUSTSTORE_LOCATION_CONFIG, "/path/truststore.jks");\nprops.put(SslConfigs.SSL_TRUSTSTORE_PASSWORD_CONFIG, "password");\n// Para SASL\nprops.put(CommonClientConfigs.SECURITY_PROTOCOL_CONFIG, "SASL_SSL");\nprops.put(SaslConfigs.SASL_MECHANISM, "PLAIN");\nprops.put(SaslConfigs.SASL_JAAS_CONFIG, "...");",
+        "options": [
+            "Se configuran solo en el broker.",
+            "Usando certificados X.509 automáticamente.",
+            "No se puede, Kafka no tiene seguridad.",
+            "Se deben configurar propiedades de seguridad en el productor/consumidor como security.protocol, ssl.truststore.location, sasl.mechanism, etc."
+        ],
+        "correct": 3,
+        "explanation": "Kafka soporta SSL/TLS y SASL para autenticación y cifrado. Las propiedades se definen en el lado del cliente (productor/consumidor) y también en los brokers.",
+        "active": true
+    },
+    {
+        "id": 24,
+        "level": "Mid",
+        "category": "Operations",
+        "question": "¿Cómo monitorear Kafka (métricas, JMX, etc.)?",
+        "code": null,
+        "options": [
+            "No tiene monitoreo.",
+            "Solo se puede con logs.",
+            "Usando el AdminClient.",
+            "Kafka expone métricas a través de JMX y se pueden usar herramientas como Prometheus, Grafana, o la interfaz de administración."
+        ],
+        "correct": 3,
+        "explanation": "Kafka expone métricas (como tasas de producción, consumo, latencias, estados de réplicas) mediante JMX. Se pueden recolectar con Prometheus y visualizar en Grafana, o usar herramientas como Kafka Manager.",
+        "active": true
+    },
+    {
+        "id": 25,
+        "level": "Mid",
+        "category": "Streams",
+        "question": "¿Qué es Kafka Streams y para qué sirve?",
+        "code": null,
+        "options": [
+            "Es un cliente para consumir mensajes.",
+            "Es un reemplazo de Kafka.",
+            "Es una biblioteca para procesamiento de flujos en tiempo real sobre Kafka, permitiendo transformaciones, agregaciones y joins.",
+            "Es un motor de reglas."
+        ],
+        "correct": 2,
+        "explanation": "Kafka Streams es una biblioteca Java/Scala para construir aplicaciones de procesamiento de flujos (stream processing) usando Kafka como fuente y sumidero, soportando operaciones como filtros, mapas, agregaciones y ventanas.",
+        "active": true
+    },
+    {
+        "id": 26,
+        "level": "Junior",
+        "category": "Comparison",
+        "question": "Diferencia entre Kafka y otros message brokers como RabbitMQ.",
+        "code": null,
+        "options": [
+            "Son iguales.",
+            "Kafka no tiene colas.",
+            "Kafka está diseñado para alto throughput y almacenamiento duradero, mientras que RabbitMQ es más para enrutamiento complejo y colas tradicionales.",
+            "RabbitMQ es más rápido."
+        ],
+        "correct": 2,
+        "explanation": "Kafka es una plataforma de streaming persistente con alto rendimiento y retención de mensajes, ideal para procesamiento de eventos. RabbitMQ es un broker de mensajería con enrutamiento flexible y colas, más orientado a mensajería transaccional.",
+        "active": true
+    },
+    {
+        "id": 27,
+        "level": "Mid",
+        "category": "Producers",
+        "question": "¿Qué es un Partitioner y cómo funciona?",
+        "code": null,
+        "options": [
+            "Es el encargado de replicar mensajes.",
+            "Es el que asigna offsets.",
+            "Es una función que determina a qué partición va un mensaje basado en la clave, se puede personalizar.",
+            "Es el que compacta los topics."
+        ],
+        "correct": 2,
+        "explanation": "El particionador (Partitioner) decide la partición de destino para cada mensaje. Por defecto, usa el hash de la clave; si no hay clave, usa round-robin o sticky. Se puede implementar un particionador personalizado.",
+        "active": true
+    },
+    {
+        "id": 28,
+        "level": "Mid",
+        "category": "Producers",
+        "question": "¿Qué es un productor idempotente?",
+        "code": null,
+        "options": [
+            "Es un productor que no envía duplicados.",
+            "Es un productor que solo envía mensajes únicos.",
+            "Es un productor configurado con acks=0.",
+            "Es un productor que garantiza que cada mensaje se escriba exactamente una vez en la partición, incluso si hay reintentos, mediante IDs de secuencia."
+        ],
+        "correct": 3,
+        "explanation": "El productor idempotente (enable.idempotence=true) asigna un ID de secuencia a cada mensaje y el broker lo usa para descartar duplicados en caso de reintentos, logrando exactly-once en la producción.",
+        "active": true
+    },
+    {
+        "id": 29,
+        "level": "Mid",
+        "category": "Design",
+        "question": "¿Cómo garantizar el orden de los mensajes en Kafka?",
+        "code": null,
+        "options": [
+            "Usando un solo consumidor.",
+            "No se puede garantizar el orden.",
+            "Configurando el broker.",
+            "Usando la misma clave para mensajes que deben ir en orden, así van a la misma partición, y dentro de una partición el orden está garantizado."
+        ],
+        "correct": 3,
+        "explanation": "Kafka garantiza el orden de los mensajes dentro de una partición. Para preservar el orden de eventos relacionados, se usa una misma clave de partición, asegurando que todos vayan a la misma partición.",
+        "active": true
+    },
+    {
+        "id": 30,
+        "level": "Mid",
+        "category": "Producers/Consumers",
+        "question": "¿Qué son los headers en Kafka y cómo se usan?",
+        "code": null,
+        "options": [
+            "Son los encabezados HTTP.",
+            "Son las claves de partición.",
+            "Son metadatos adicionales que se pueden adjuntar a los mensajes, útiles para enrutamiento, versionado, etc.",
+            "Son los offsets."
+        ],
+        "correct": 2,
+        "explanation": "Los headers son pares clave-valor que se añaden a los mensajes (además del valor y la clave) para transportar metadatos como tipo de evento, versión, trazas, etc.",
+        "active": true
+    },
+    {
+        "id": 31,
+        "level": "Mid",
+        "category": "Integration",
+        "question": "¿Cómo configurar un listener con diferentes contenedores de fábrica en Spring Kafka?",
+        "code": "@Configuration\npublic class KafkaConfig {\n @Bean\n public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, String>> kafkaListenerContainerFactory() {\n ConcurrentKafkaListenerContainerFactory<String, String> factory = new ConcurrentKafkaListenerContainerFactory<>();\n factory.setConsumerFactory(consumerFactory());\n return factory;\n }\n\n @Bean\n public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, String>> anotherFactory() {\n // configuración diferente\n }\n}\n\n// Uso\n@KafkaListener(topics = "topic1", containerFactory = "anotherFactory")\npublic void listenWithAnotherFactory(String message) { }",
+        "options": [
+            "No se puede, solo una fábrica.",
+            "Configurando en application.properties.",
+            "Se puede definir múltiples KafkaListenerContainerFactory con diferentes configuraciones y usarlas en @KafkaListener con containerFactory.",
+            "Usando @Bean para cada uno."
+        ],
+        "correct": 2,
+        "explanation": "Se pueden definir varios beans de KafkaListenerContainerFactory con configuraciones distintas (por ejemplo, diferentes deserializadores, concurrencia, etc.) y luego en la anotación @KafkaListener se especifica cuál usar mediante el atributo containerFactory.",
+        "active": true
+    },
+    {
+        "id": 32,
+        "level": "Mid",
+        "category": "Producers",
+        "question": "¿Cómo usar transacciones en Kafka?",
+        "code": "// Ejemplo en productor\nproducer.initTransactions();\nproducer.beginTransaction();\ntry {\n producer.send(record1);\n producer.send(record2);\n producer.commitTransaction();\n} catch (Exception e) {\n producer.abortTransaction();\n}",
+        "options": [
+            "Configurando acks=all.",
+            "Usando JTA.",
+            "Usando KafkaProducer con initTransactions(), beginTransaction(), commitTransaction(), y configurando transactional.id.",
+            "No hay transacciones en Kafka."
+        ],
+        "correct": 2,
+        "explanation": "Las transacciones en Kafka permiten enviar un conjunto de mensajes de forma atómica a través de múltiples particiones y topics. Se necesita configurar transactional.id y usar los métodos init, begin, commit y abort.",
+        "active": true
+    },
+    {
+        "id": 33,
+        "level": "Mid",
+        "category": "Admin",
+        "question": "¿Qué es el AdminClient y para qué sirve?",
+        "code": null,
+        "options": [
+            "Es un cliente para administrar topics, particiones, configuraciones, etc. mediante API.",
+            "Es un cliente para consumir mensajes.",
+            "Es una herramienta de línea de comandos.",
+            "No existe."
+        ],
+        "correct": 0,
+        "explanation": "AdminClient es una API de Kafka para realizar operaciones administrativas como crear/eliminar topics, alterar configuraciones, listar grupos, etc., de forma programática.",
+        "active": true
+    },
+    {
+        "id": 34,
+        "level": "Junior",
+        "category": "Best Practices",
+        "question": "Buenas prácticas para nombrar topics y diseñar esquemas.",
+        "code": null,
+        "options": [
+            "Nombres cortos y crípticos.",
+            "Usar nombres descriptivos con prefijos como entorno, dominio, versión; usar esquemas compatibles (Avro, JSON Schema) para evolución.",
+            "No importa el nombre.",
+            "Usar solo minúsculas y guiones."
+        ],
+        "correct": 1,
+        "explanation": "Se recomienda nombrar topics con un prefijo que indique entorno (prod, dev), dominio (ej: ventas), y versión (v1). Los esquemas deben ser evolutivos usando Avro o JSON Schema con compatibilidad.",
+        "active": true
+    },
+    {
+        "id": 35,
+        "level": "Mid",
+        "category": "Testing",
+        "question": "¿Cómo probar aplicaciones con Kafka (Embedded Kafka, MockConsumer, etc.)?",
+        "code": null,
+        "options": [
+            "Solo con pruebas manuales.",
+            "Usando la consola de Kafka.",
+            "Se puede usar EmbeddedKafka para pruebas de integración, MockConsumer/Producer para unitarias, y TestContainers.",
+            "No se puede probar."
+        ],
+        "correct": 2,
+        "explanation": "Spring Kafka ofrece @EmbeddedKafka para pruebas de integración con un broker embebido. Para pruebas unitarias se pueden usar mocks de consumidores y productores. TestContainers permite levantar un contenedor real de Kafka en las pruebas.",
+        "active": true
+    }
+]
