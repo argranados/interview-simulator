@@ -58,7 +58,11 @@ const BANKS_CONFIG = {
   oop: [
     { ai: 'claude', title: 'Claude', emoji: '🧠', description: 'Más analítico' },
     { ai: 'deepseek', title: 'DeepSeek', emoji: '⚡', description: 'Más técnico y directo' },
-  ],  
+  ],
+  kafka: [
+    { ai: 'deepseek', title: 'DeepSeek', emoji: '⚡', description: 'Más técnico y directo' },
+    { ai: 'gemini', title: 'Gemini', emoji: '💎', description: 'Preciso y estructurado' },
+  ],
 }
 
 const TOPIC_LABELS = {
@@ -76,6 +80,7 @@ const TOPIC_LABELS = {
   event_driven: 'Event-Driven',
   arquitectura_hexagonal: 'Arquitectura Hexagonal',
   oop: 'OOP (Object-Oriented Programming)',
+  kafka: 'Kafka',   // ← nueva línea  
 }
 
 export default function LandingPage({ onSelect, onBack, topic }) {

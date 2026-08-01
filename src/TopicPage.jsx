@@ -14,6 +14,7 @@ export default function TopicPage({ onSelect, onRepaso }) {
         { id: 'event_driven', title: 'Event-Driven', emoji: '📡', description: 'Kafka, RabbitMQ, Mensajería', available: true },
         { id: 'arquitectura_hexagonal', title: 'Arquitectura Hexagonal', emoji: '⬡', description: 'Puertos, adaptadores, dominio', available: true },
         { id: 'oop', title: 'OOP', emoji: '🧬', description: 'Encapsulamiento, herencia, polimorfismo, abstracción', available: true },
+        { id: 'kafka', title: 'Kafka', emoji: '📨', description: 'Topics, Partitions, Producers/Consumers', available: true },
     ]
 
     return (

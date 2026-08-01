@@ -244,11 +244,11 @@
         "level": "Mid",
         "category": "Integration",
         "question": "Implementación de un consumidor con Spring Boot usando @KafkaListener. ¿Cuál es la forma correcta?",
-        "code": "@KafkaListener(topics = "miTopic", groupId = "miGrupo")\npublic void listen(String message) {\n // procesar mensaje\n}",
+        "code": "@KafkaListener(topics = \"miTopic\", groupId = \"miGrupo\")\npublic void listen(String message) {\n // procesar mensaje\n}",
         "options": [
             "Usar KafkaConsumer manual.",
             "Implementar MessageListener.",
-            "@KafkaListener(topics = "miTopic", groupId = "miGrupo") public void listen(String message) { ... }",
+            "@KafkaListener(topics = \"miTopic\", groupId = \"miGrupo\") public void listen(String message) { ... }",
             "@EventListener para Kafka."
         ],
         "correct": 2,
@@ -356,7 +356,7 @@
         "level": "Mid",
         "category": "Security",
         "question": "¿Cómo configurar SSL/SASL para seguridad en Kafka?",
-        "code": "// Ejemplo de propiedades para productor/consumidor\nprops.put(CommonClientConfigs.SECURITY_PROTOCOL_CONFIG, "SSL");\nprops.put(SslConfigs.SSL_TRUSTSTORE_LOCATION_CONFIG, "/path/truststore.jks");\nprops.put(SslConfigs.SSL_TRUSTSTORE_PASSWORD_CONFIG, "password");\n// Para SASL\nprops.put(CommonClientConfigs.SECURITY_PROTOCOL_CONFIG, "SASL_SSL");\nprops.put(SaslConfigs.SASL_MECHANISM, "PLAIN");\nprops.put(SaslConfigs.SASL_JAAS_CONFIG, "...");",
+        "code": "// Ejemplo de propiedades para productor/consumidor\nprops.put(CommonClientConfigs.SECURITY_PROTOCOL_CONFIG, \"SSL\");\nprops.put(SslConfigs.SSL_TRUSTSTORE_LOCATION_CONFIG, \"/path/truststore.jks\");\nprops.put(SslConfigs.SSL_TRUSTSTORE_PASSWORD_CONFIG, \"password\");\n// Para SASL\nprops.put(CommonClientConfigs.SECURITY_PROTOCOL_CONFIG, \"SASL_SSL\");\nprops.put(SaslConfigs.SASL_MECHANISM, \"PLAIN\");\nprops.put(SaslConfigs.SASL_JAAS_CONFIG, \"...\");",
         "options": [
             "Se configuran solo en el broker.",
             "Usando certificados X.509 automáticamente.",
@@ -484,7 +484,7 @@
         "level": "Mid",
         "category": "Integration",
         "question": "¿Cómo configurar un listener con diferentes contenedores de fábrica en Spring Kafka?",
-        "code": "@Configuration\npublic class KafkaConfig {\n @Bean\n public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, String>> kafkaListenerContainerFactory() {\n ConcurrentKafkaListenerContainerFactory<String, String> factory = new ConcurrentKafkaListenerContainerFactory<>();\n factory.setConsumerFactory(consumerFactory());\n return factory;\n }\n\n @Bean\n public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, String>> anotherFactory() {\n // configuración diferente\n }\n}\n\n// Uso\n@KafkaListener(topics = "topic1", containerFactory = "anotherFactory")\npublic void listenWithAnotherFactory(String message) { }",
+        "code": "@Configuration\npublic class KafkaConfig {\n @Bean\n public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, String>> kafkaListenerContainerFactory() {\n ConcurrentKafkaListenerContainerFactory<String, String> factory = new ConcurrentKafkaListenerContainerFactory<>();\n factory.setConsumerFactory(consumerFactory());\n return factory;\n }\n\n @Bean\n public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, String>> anotherFactory() {\n // configuración diferente\n }\n}\n\n// Uso\n@KafkaListener(topics = \"topic1\", containerFactory = \"anotherFactory\")\npublic void listenWithAnotherFactory(String message) { }",
         "options": [
             "No se puede, solo una fábrica.",
             "Configurando en application.properties.",

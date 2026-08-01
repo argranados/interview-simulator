@@ -289,7 +289,7 @@
         "level": "Mid",
         "category": "Spring Boot Avanzado",
         "question": "Deseas implementar un control estricto de offsets confirmando manualmente cada mensaje en Spring Boot tras asegurar el éxito de tu lógica. ¿Qué configuración debes cambiar y qué objeto inyectar en tu listener?",
-        "code": "/* En application.yml:\n   spring.kafka.listener.ack-mode: manual_immediate */\n\n@KafkaListener(topics = "payments", groupId = "pay-group")\npublic void listen(String msg, ___________ acknowledgment) {\n    // Lógica\n    acknowledgment.acknowledge();\n}",
+        "code": "/* En application.yml:\n   spring.kafka.listener.ack-mode: manual_immediate */\n\n@KafkaListener(topics = \"payments\", groupId = \"pay-group\")\npublic void listen(String msg, ___________ acknowledgment) {\n    // Lógica\n    acknowledgment.acknowledge();\n}",
         "options": [
             "Inyectar un objeto de tipo KafkaSession y llamar a complete()",
             "Inyectar un objeto de tipo Acknowledgment y llamar a acknowledge()",
@@ -304,7 +304,7 @@
         "level": "Mid",
         "category": "Resiliencia y Reintentos",
         "question": "¿Cuál es la principal ventaja de utilizar la anotación '@RetryableTopic' en Spring Kafka para gestionar excepciones en lugar de bucles de reintento internos?",
-        "code": "@RetryableTopic(\n    attempts = "3",\n    backoff = @Backoff(delay = 2000, multiplier = 2.0),\n    topicSuffixingStrategy = TopicSuffixingStrategy.SUFFIX_WITH_INDEX_VALUE\n)\n@KafkaListener(topics = "inventory-topic")\npublic void process(String message) { ... }",
+        "code": "@RetryableTopic(\n    attempts = \"3\",\n    backoff = @Backoff(delay = 2000, multiplier = 2.0),\n    topicSuffixingStrategy = TopicSuffixingStrategy.SUFFIX_WITH_INDEX_VALUE\n)\n@KafkaListener(topics = \"inventory-topic\")\npublic void process(String message) { ... }",
         "options": [
             "Permite ejecutar reintentos no bloqueantes, enviando los mensajes fallidos a tópicos secundarios sin detener el hilo principal",
             "Duplica de forma automática el ancho de banda del hilo del consumidor para procesar en paralelo",
@@ -469,7 +469,7 @@
         "level": "Mid",
         "category": "Spring Boot Integration",
         "question": "Deseas que tu '@KafkaListener' procese los mensajes agrupados en lotes (batch) en lugar de uno por uno para mejorar el rendimiento de inserción en una base de datos. ¿Qué debes configurar en Spring Boot?",
-        "code": "// Configuración deseada:\n@KafkaListener(topics = "metrics", groupId = "batch-group")\npublic void listenBatch(List messages) {\n    // Procesa una lista completa de mensajes\n}",
+        "code": "// Configuración deseada:\n@KafkaListener(topics = \"metrics\", groupId = \"batch-group\")\npublic void listenBatch(List messages) {\n    // Procesa una lista completa de mensajes\n}",
         "options": [
             "Establecer la propiedad spring.kafka.listener.type=batch en la configuración de la aplicación",
             "Cambiar el modificador de acceso del método de público a privado estático",

@@ -295,6 +295,7 @@ const TOPIC_LABELS = {
     event_driven: 'Event-Driven',
     arquitectura_hexagonal: 'Arquitectura Hexagonal',    
     oop: 'OOP',
+    kafka: 'Kafka',
 }
 
 // Baraja las opciones de una pregunta y recalcula el índice correct
