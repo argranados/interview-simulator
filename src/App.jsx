@@ -294,7 +294,8 @@ const TOPIC_LABELS = {
     spring_data: 'Spring Data',
     event_driven: 'Event-Driven',
     arquitectura_hexagonal: 'Arquitectura Hexagonal',    
-    oop: 'OOP',
+    // oop: 'OOP',
+    algoritmos: 'Algoritmos',
     kafka: 'Kafka',
 }
 
@@ -321,7 +322,7 @@ function getAIName(bank) {
 }
 
 export default function App() {
-    const TOTAL_QUESTIONS = 25
+    const TOTAL_QUESTIONS = 20
 
     const [questions, setQuestions] = useState([])
     const [loading, setLoading] = useState(false)

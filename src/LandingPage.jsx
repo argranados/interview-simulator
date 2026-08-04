@@ -55,9 +55,13 @@ const BANKS_CONFIG = {
   arquitectura_hexagonal: [
     { ai: 'claude', title: 'Claude', emoji: '🧠', description: 'Más analítico' },
   ],
-  oop: [
-    { ai: 'claude', title: 'Claude', emoji: '🧠', description: 'Más analítico' },
-    { ai: 'deepseek', title: 'DeepSeek', emoji: '⚡', description: 'Más técnico y directo' },
+  // oop: [
+  //   { ai: 'claude', title: 'Claude', emoji: '🧠', description: 'Más analítico' },
+  //   { ai: 'deepseek', title: 'DeepSeek', emoji: '⚡', description: 'Más técnico y directo' },
+  // ],
+  algoritmos: [    
+    { ai: 'deepseek', title: 'deepseek', emoji: '⚡', description: 'Más técnico y directo' },
+    { ai: 'gemini', title: 'Gemini', emoji: '💎', description: 'Preciso y estructurado' },
   ],
   kafka: [
     { ai: 'deepseek', title: 'DeepSeek', emoji: '⚡', description: 'Más técnico y directo' },
@@ -79,7 +83,8 @@ const TOPIC_LABELS = {
   spring_data: 'Spring Data',
   event_driven: 'Event-Driven',
   arquitectura_hexagonal: 'Arquitectura Hexagonal',
-  oop: 'OOP (Object-Oriented Programming)',
+  // oop: 'OOP (Object-Oriented Programming)',
+  algoritmos: 'Algoritmos',
   kafka: 'Kafka',   // ← nueva línea  
 }
 

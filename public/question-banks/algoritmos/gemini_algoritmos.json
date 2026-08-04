@@ -1,0 +1,594 @@
+[
+    {
+        "id": 1,
+        "level": "Junior",
+        "category": "Collections",
+        "question": "¿Qué colección usarías si necesitas permitir elementos duplicados y acceso rápido por índice?",
+        "code": null,
+        "options": [
+            "HashSet",
+            "TreeSet",
+            "ArrayList",
+            "HashMap"
+        ],
+        "correct": 2,
+        "explanation": "ArrayList permite elementos duplicados y acceso rápido por índice gracias a su implementación basada en arreglos dinámicos.",
+        "active": true
+    },
+    {
+        "id": 2,
+        "level": "Junior",
+        "category": "Big O Notation",
+        "question": "¿Cuál es la complejidad temporal en el peor de los casos para buscar un elemento en un arreglo desordenado de tamaño N?",
+        "code": null,
+        "options": [
+            "O(1)",
+            "O(log n)",
+            "O(n)",
+            "O(n^2)"
+        ],
+        "correct": 2,
+        "explanation": "En un arreglo desordenado, en el peor de los casos debes recorrer todos los elementos, lo que toma tiempo lineal O(n).",
+        "active": true
+    },
+    {
+        "id": 3,
+        "level": "Junior",
+        "category": "Data Structures",
+        "question": "¿Qué principio rige el comportamiento de una estructura de datos tipo Stack (Pila)?",
+        "code": null,
+        "options": [
+            "FIFO (First In, First Out)",
+            "LIFO (Last In, First Out)",
+            "LILO (Last In, Last Out)",
+            "Random Access"
+        ],
+        "correct": 1,
+        "explanation": "Las pilas son estructuras LIFO, lo que significa que el último elemento en entrar es el primero en salir.",
+        "active": true
+    },
+    {
+        "id": 4,
+        "level": "Junior",
+        "category": "Algorithms",
+        "question": "¿Cuál es el requisito indispensable para poder aplicar una búsqueda binaria en un arreglo?",
+        "code": null,
+        "options": [
+            "Que el arreglo no contenga elementos duplicados.",
+            "Que el arreglo esté previamente ordenado.",
+            "Que el tamaño del arreglo sea una potencia de 2.",
+            "Que los elementos sean únicamente de tipo entero."
+        ],
+        "correct": 1,
+        "explanation": "La búsqueda binaria requiere que la estructura esté ordenada para poder descartar la mitad de los elementos en cada paso.",
+        "active": true
+    },
+    {
+        "id": 5,
+        "level": "Junior",
+        "category": "Data Structures",
+        "question": "¿Qué estructura de datos almacena pares clave-valor y ofrece (idealmente) búsquedas en tiempo constante?",
+        "code": null,
+        "options": [
+            "HashMap / HashTable",
+            "LinkedList",
+            "Binary Tree",
+            "Queue"
+        ],
+        "correct": 0,
+        "explanation": "Las tablas hash calculan un índice mediante una función hash para almacenar y recuperar valores en O(1) promedio.",
+        "active": true
+    },
+    {
+        "id": 6,
+        "level": "Junior",
+        "category": "Big O Notation",
+        "question": "Si un algoritmo duplica su tiempo de ejecución cada vez que la entrada aumenta en 1 elemento, ¿qué complejidad tiene?",
+        "code": null,
+        "options": [
+            "O(n^2)",
+            "O(n log n)",
+            "O(log n)",
+            "O(2^n)"
+        ],
+        "correct": 3,
+        "explanation": "Un crecimiento donde el tiempo se multiplica por una constante con cada incremento unitario es de tipo exponencial O(2^n).",
+        "active": true
+    },
+    {
+        "id": 7,
+        "level": "Junior",
+        "category": "Data Structures",
+        "question": "¿Qué operación de una Cola (Queue) se utiliza para extraer el elemento al frente de la estructura?",
+        "code": null,
+        "options": [
+            "Push",
+            "Pop",
+            "Dequeue / Poll",
+            "Peek"
+        ],
+        "correct": 2,
+        "explanation": "Dequeue elimina y devuelve el elemento al frente de una cola FIFO, a diferencia de Peek que solo lo observa.",
+        "active": true
+    },
+    {
+        "id": 8,
+        "level": "Semi-Senior",
+        "category": "Algorithms",
+        "question": "¿Cuál es la complejidad temporal en el peor de los casos del algoritmo QuickSort?",
+        "code": null,
+        "options": [
+            "O(n log n)",
+            "O(n^2)",
+            "O(n)",
+            "O(2^n)"
+        ],
+        "correct": 1,
+        "explanation": "Si el pivote elegido es siempre el peor posible (mínimo o máximo en un arreglo ordenado), QuickSort degrada a O(n^2).",
+        "active": true
+    },
+    {
+        "id": 9,
+        "level": "Semi-Senior",
+        "category": "Data Structures",
+        "question": "¿Cuál es la principal ventaja de una LinkedList sobre un ArrayList convencional?",
+        "code": null,
+        "options": [
+            "Menor consumo de memoria total.",
+            "Acceso directo a cualquier elemento mediante índices.",
+            "Mejor rendimiento al ordenar elementos con QuickSort.",
+            "Inserciones y eliminaciones en tiempo O(1) si ya se tiene la referencia al nodo."
+        ],
+        "correct": 3,
+        "explanation": "Las listas enlazadas modifican punteros locales para insertar/eliminar sin necesidad de desplazar otros elementos en memoria.",
+        "active": true
+    },
+    {
+        "id": 10,
+        "level": "Semi-Senior",
+        "category": "Algorithms",
+        "question": "¿En qué orden se visitan los nodos de un Árbol Binario de Búsqueda mediante un recorrido 'In-Order'?",
+        "code": null,
+        "options": [
+            "De izquierda a derecha, resultando en los elementos ordenados de forma ascendente.",
+            "Primero la raíz, luego el subárbol izquierdo y después el derecho.",
+            "Primero las hojas inferiores y al final la raíz principal.",
+            "De forma descendente, empezando por el nodo con el valor máximo."
+        ],
+        "correct": 0,
+        "explanation": "El recorrido In-Order procesa (Izquierda, Raíz, Derecha), lo que en un BST garantiza un orden estrictamente ascendente.",
+        "active": true
+    },
+    {
+        "id": 11,
+        "level": "Semi-Senior",
+        "category": "Big O Notation",
+        "question": "¿Cuál es la complejidad de espacio (Space Complexity) de un algoritmo iterativo que busca el máximo de un arreglo sin usar memoria extra?",
+        "code": null,
+        "options": [
+            "O(n)",
+            "O(log n)",
+            "O(1)",
+            "O(n^2)"
+        ],
+        "correct": 2,
+        "explanation": "Al no reservar estructuras adicionales proporcionales a la entrada, la complejidad espacial es constante O(1).",
+        "active": true
+    },
+    {
+        "id": 12,
+        "level": "Semi-Senior",
+        "category": "Collections",
+        "question": "¿Cuál de las siguientes colecciones NO garantiza el orden de inserción de sus elementos?",
+        "code": null,
+        "options": [
+            "LinkedList",
+            "ArrayList",
+            "HashSet",
+            "LinkedHashSet"
+        ],
+        "correct": 2,
+        "explanation": "HashSet utiliza la función hash de los objetos para distribuirlos internamente, perdiendo por completo el orden en que se agregaron.",
+        "active": true
+    },
+    {
+        "id": 13,
+        "level": "Semi-Senior",
+        "category": "Algorithms",
+        "question": "¿Qué paradigma algorítmico basa su estrategia en resolver subproblemas independientes y combinar sus soluciones, como en MergeSort?",
+        "code": null,
+        "options": [
+            "Programación Dinámica",
+            "Divide and Conquer (Divide y Vencerás)",
+            "Algoritmos Voraces (Greedy)",
+            "Backtracking"
+        ],
+        "correct": 1,
+        "explanation": "Divide y Vencerás divide el problema en fragmentos autónomos, los resuelve recursivamente y luego une los resultados.",
+        "active": true
+    },
+    {
+        "id": 14,
+        "level": "Semi-Senior",
+        "category": "Big O Notation",
+        "question": "Analiza el siguiente fragmento. ¿Cuál es su complejidad temporal?",
+        "code": "for (int i = 1; i < n; i = i * 2) { // operaciones O(1) }",
+        "options": [
+            "O(log n)",
+            "O(n)",
+            "O(n log n)",
+            "O(1)"
+        ],
+        "correct": 0,
+        "explanation": "Dado que la variable de control se multiplica por 2 en cada iteración, el bucle terminará en pasos proporcionales al logaritmo de n.",
+        "active": true
+    },
+    {
+        "id": 15,
+        "level": "Semi-Senior",
+        "category": "Data Structures",
+        "question": "¿Qué sucede en una tabla hash cuando dos claves diferentes generan exactamente el mismo índice de almacenamiento?",
+        "code": null,
+        "options": [
+            "El programa arroja un error en tiempo de ejecución (IndexOutOfBounds).",
+            "La clave antigua se sobrescribe automáticamente sin aviso.",
+            "Se produce una colisión, la cual debe resolverse mediante técnicas como encadenamiento o direccionamiento abierto.",
+            "La tabla hash duplica su tamaño dinámicamente de forma inmediata."
+        ],
+        "correct": 2,
+        "explanation": "Las funciones hash finitas mapeando datos infinitos producen colisiones; resolverlas es vital para la integridad del mapa.",
+        "active": true
+    },
+    {
+        "id": 16,
+        "level": "Senior",
+        "category": "Algorithms",
+        "question": "¿Cuál es la principal diferencia entre Programación Dinámica y Divide y Vencerás?",
+        "code": null,
+        "options": [
+            "La programación dinámica no usa recursividad en ningún escenario.",
+            "Programación dinámica optimiza problemas con subproblemas superpuestos guardando sus soluciones (memorización).",
+            "Divide y vencerás es exclusivamente aplicable a arreglos numéricos.",
+            "La programación dinámica tiene siempre una peor complejidad que divide y vencerás."
+        ],
+        "correct": 1,
+        "explanation": "A diferencia de Divide y Vencerás donde los subproblemas son independientes, la Programación Dinámica reutiliza cálculos de subproblemas repetidos.",
+        "active": true
+    },
+    {
+        "id": 17,
+        "level": "Senior",
+        "category": "Data Structures",
+        "question": "¿Cuál es la altura máxima (peor caso) de un Árbol Binario de Búsqueda (BST) no balanceado con N nodos?",
+        "code": null,
+        "options": [
+            "O(log n)",
+            "O(n)",
+            "O(n log n)",
+            "O(sqrt(n))"
+        ],
+        "correct": 1,
+        "explanation": "Si se insertan datos en orden estrictamente secuencial, el BST se degenera en una lista enlazada con altura lineal O(n).",
+        "active": false
+    },
+    {
+        "id": 18,
+        "level": "Senior",
+        "category": "Algorithms",
+        "question": "Para encontrar el camino más corto en un grafo con pesos negativos pero sin ciclos negativos, ¿qué algoritmo es el adecuado?",
+        "code": null,
+        "options": [
+            "Dijkstra",
+            "Floyd-Warshall",
+            "Bellman-Ford",
+            "Kruskal"
+        ],
+        "correct": 2,
+        "explanation": "Dijkstra puede fallar o entrar en bucles infinitos con aristas negativas; Bellman-Ford maneja pesos negativos correctamente.",
+        "active": false
+    },
+    {
+        "id": 19,
+        "level": "Senior",
+        "category": "Big O Notation",
+        "question": "Analiza la complejidad de un algoritmo recursivo cuya relación de recurrencia es T(n) = 2T(n/2) + O(n). Según el Teorema Maestro, ¿cuál es su Big O?",
+        "code": null,
+        "options": [
+            "O(n)",
+            "O(n^2)",
+            "O(log n)",
+            "O(n log n)"
+        ],
+        "correct": 3,
+        "explanation": "Este caso corresponde al escenario balanceado del Teorema Maestro (como en MergeSort), dando como resultado O(n log n).",
+        "active": false
+    },
+    {
+        "id": 20,
+        "level": "Senior",
+        "category": "Data Structures",
+        "question": "¿Qué propiedad define matemáticamente a un Min-Heap (Montículo Mínimo)?",
+        "code": null,
+        "options": [
+            "Cada nodo tiene un valor estrictamente mayor que el de sus nodos hermanos.",
+            "El valor de cualquier nodo es mayor o igual que el valor de su nodo padre.",
+            "El valor de la raíz es siempre el elemento con el valor máximo del árbol.",
+            "El subárbol izquierdo siempre contiene más elementos que el derecho."
+        ],
+        "correct": 1,
+        "explanation": "En un Min-Heap, la propiedad fundamental dicta que el padre debe ser menor o igual que sus hijos, dejando el mínimo global en la raíz.",
+        "active": false
+    },
+    {
+        "id": 21,
+        "level": "Junior",
+        "category": "Collections",
+        "question": "¿Qué estructura usarías si necesitas asegurar que todos los elementos almacenados sean únicos?",
+        "code": null,
+        "options": [
+            "Set",
+            "List",
+            "Queue",
+            "Array"
+        ],
+        "correct": 0,
+        "explanation": "La interfaz Set está diseñada específicamente para prohibir elementos duplicados en su colección.",
+        "active": true
+    },
+    {
+        "id": 22,
+        "level": "Junior",
+        "category": "Algorithms",
+        "question": "¿Cuál es la complejidad temporal del algoritmo de ordenamiento por burbuja (Bubble Sort) en su peor caso?",
+        "code": null,
+        "options": [
+            "O(n log n)",
+            "O(1)",
+            "O(n^2)",
+            "O(n)"
+        ],
+        "correct": 2,
+        "explanation": "Bubble Sort compara pares adyacentes usando dos bucles anidados, resultando en una eficiencia cuadrática O(n^2).",
+        "active": true
+    },
+    {
+        "id": 23,
+        "level": "Semi-Senior",
+        "category": "Algorithms",
+        "question": "¿Qué algoritmo de recorrido de grafos utiliza una estructura de datos de tipo Cola (Queue) para su implementación?",
+        "code": null,
+        "options": [
+            "DFS (Depth-First Search)",
+            "BFS (Breadth-First Search)",
+            "A* Search",
+            "Prim's Algorithm"
+        ],
+        "correct": 1,
+        "explanation": "BFS (búsqueda en anchura) explora nivel por nivel, guardando los nodos vecinos descubiertos en una cola FIFO.",
+        "active": true
+    },
+    {
+        "id": 24,
+        "level": "Semi-Senior",
+        "category": "Data Structures",
+        "question": "En un árbol AVL, ¿cuál es el factor de balance máximo permitido para cualquier nodo antes de requerir una rotación?",
+        "code": null,
+        "options": [
+            "0",
+            "1",
+            "2",
+            "Cualquier valor positivo"
+        ],
+        "correct": 1,
+        "explanation": "Los árboles AVL son árboles binarios auto-balanceados donde la diferencia de alturas de los subárboles no puede exceder el valor absoluto de 1.",
+        "active": true
+    },
+    {
+        "id": 25,
+        "level": "Senior",
+        "category": "Algorithms",
+        "question": "¿Para cuál de los siguientes problemas se utiliza comúnmente el algoritmo de Kruskal?",
+        "code": null,
+        "options": [
+            "Encontrar el árbol de expansión mínima (Minimum Spanning Tree) de un grafo.",
+            "Encontrar el camino más corto desde un único nodo origen.",
+            "Detectar componentes fuertemente conexos en grafos dirigidos.",
+            "Resolver el problema del flujo máximo en una red de transporte."
+        ],
+        "correct": 0,
+        "explanation": "Kruskal es un algoritmo voraz que añade aristas de menor peso de forma ordenada para construir el árbol de expansión mínima sin crear ciclos.",
+        "active": false
+    },
+    {
+        "id": 26,
+        "level": "Semi-Senior",
+        "category": "Big O Notation",
+        "question": "¿Cuál es la complejidad temporal del método 'put' en un HashMap en un escenario promedio libre de colisiones extremas?",
+        "code": null,
+        "options": [
+            "O(1)",
+            "O(log n)",
+            "O(n)",
+            "O(n log n)"
+        ],
+        "correct": 0,
+        "explanation": "En condiciones normales, acceder al índice generado por la función hash y colocar el valor toma tiempo constante O(1).",
+        "active": true
+    },
+    {
+        "id": 27,
+        "level": "Junior",
+        "category": "Algorithms",
+        "question": "Si una función se llama a sí misma de manera repetida reduciendo el problema original en cada paso, estamos aplicando:",
+        "code": null,
+        "options": [
+            "Iteración simple",
+            "Concurrencia",
+            "Inmutabilidad",
+            "Recursión"
+        ],
+        "correct": 3,
+        "explanation": "La recursión es la técnica de programación donde un método se invoca a sí mismo hasta alcanzar una condición base de salida.",
+        "active": true
+    },
+    {
+        "id": 28,
+        "level": "Senior",
+        "category": "Algorithms",
+        "question": "¿Qué estructura de datos interna se utiliza comúnmente para optimizar las operaciones del algoritmo de Kruskal y verificar ciclos rápidamente?",
+        "code": null,
+        "options": [
+            "Segment Tree",
+            "Disjoint-Set / Union-Find",
+            "Trie",
+            "Fibonacci Heap"
+        ],
+        "correct": 1,
+        "explanation": "Union-Find gestiona eficientemente la unión de conjuntos y permite verificar si dos nodos pertenecen al mismo componente en tiempo casi constante.",
+        "active": false
+    },
+    {
+        "id": 29,
+        "level": "Semi-Senior",
+        "category": "Big O Notation",
+        "question": "Determina la complejidad del siguiente bloque:",
+        "code": "for (int i = 0; i < n; i++) {\n  for (int j = 0; j < n; j++) {\n    // Operación O(1)\n  }\n}",
+        "options": [
+            "O(n)",
+            "O(n^2)",
+            "O(2^n)",
+            "O(n log n)"
+        ],
+        "correct": 1,
+        "explanation": "Al tener dos bucles anidados que dependen linealmente del tamaño de la entrada N de forma directa, las ejecuciones se multiplican: N * N = O(n^2).",
+        "active": true
+    },
+    {
+        "id": 30,
+        "level": "Senior",
+        "category": "Data Structures",
+        "question": "¿Cuál es la complejidad temporal óptima para buscar palabras en un diccionario usando una estructura de datos tipo 'Trie' (Prefijos), donde L es la longitud de la palabra?",
+        "code": null,
+        "options": [
+            "O(log L)",
+            "O(n)",
+            "O(L)",
+            "O(n * L)"
+        ],
+        "correct": 2,
+        "explanation": "La búsqueda en un Trie depende exclusivamente del número de caracteres de la clave buscada (L), independientemente de la cantidad N de palabras guardadas.",
+        "active": false
+    },
+    {
+        "id": 31,
+        "level": "Junior",
+        "category": "Data Structures",
+        "question": "¿Cuál es la principal diferencia entre un Array y un ArrayList en Java?",
+        "code": null,
+        "options": [
+            "Un Array puede cambiar de tamaño dinámicamente y un ArrayList no.",
+            "Un ArrayList puede redimensionarse automáticamente y un Array tiene tamaño fijo.",
+            "Un Array solo almacena números y un ArrayList solo objetos.",
+            "No existe ninguna diferencia entre ambos."
+        ],
+        "correct": 1,
+        "explanation": "Un Array tiene tamaño fijo desde su creación, mientras que ArrayList gestiona internamente un arreglo que se redimensiona automáticamente al agregar o quitar elementos.",
+        "active": true
+    },
+    {
+        "id": 32,
+        "level": "Junior",
+        "category": "Big O Notation",
+        "question": "¿Qué complejidad temporal tiene acceder a un elemento de un ArrayList por su índice?",
+        "code": null,
+        "options": [
+            "O(1)",
+            "O(n)",
+            "O(log n)",
+            "O(n^2)"
+        ],
+        "correct": 0,
+        "explanation": "Al estar respaldado por un arreglo, ArrayList permite calcular la posición en memoria directamente a partir del índice, logrando acceso en tiempo constante O(1).",
+        "active": true
+    },
+    {
+        "id": 33,
+        "level": "Junior",
+        "category": "Collections",
+        "question": "¿Qué interfaz de Java debe implementar una clase para poder usarse como clave en un HashMap de forma confiable?",
+        "code": null,
+        "options": [
+            "Comparable",
+            "Serializable",
+            "equals() y hashCode()",
+            "Iterable"
+        ],
+        "correct": 2,
+        "explanation": "Para que un HashMap ubique correctamente los valores asociados a una clave, el objeto usado como clave debe sobrescribir consistentemente los métodos equals() y hashCode().",
+        "active": true
+    },
+    {
+        "id": 34,
+        "level": "Semi-Senior",
+        "category": "Algorithms",
+        "question": "¿Cuál es la complejidad temporal del algoritmo MergeSort en su mejor, peor y caso promedio?",
+        "code": null,
+        "options": [
+            "O(n) en todos los casos.",
+            "O(n log n) en todos los casos.",
+            "O(n^2) en el peor caso y O(n log n) en el promedio.",
+            "O(log n) en todos los casos."
+        ],
+        "correct": 1,
+        "explanation": "MergeSort siempre divide el arreglo a la mitad y combina en tiempo lineal, por lo que su complejidad se mantiene en O(n log n) sin importar el orden inicial de los datos.",
+        "active": true
+    },
+    {
+        "id": 35,
+        "level": "Semi-Senior",
+        "category": "Data Structures",
+        "question": "¿Qué estructura de datos es más adecuada para implementar la funcionalidad de 'deshacer' (undo) en un editor de texto?",
+        "code": null,
+        "options": [
+            "Queue (Cola)",
+            "Stack (Pila)",
+            "HashSet",
+            "TreeMap"
+        ],
+        "correct": 1,
+        "explanation": "Una pila permite guardar cada acción y deshacer la más reciente primero (LIFO), que es exactamente el comportamiento esperado de un 'undo'.",
+        "active": true
+    },
+    {
+        "id": 36,
+        "level": "Semi-Senior",
+        "category": "Big O Notation",
+        "question": "Determina la complejidad del siguiente fragmento:",
+        "code": "int i = n;\nwhile (i > 1) {\n  i = i / 2;\n  // Operación O(1)\n}",
+        "options": [
+            "O(n)",
+            "O(n log n)",
+            "O(log n)",
+            "O(1)"
+        ],
+        "correct": 2,
+        "explanation": "Como el valor de i se divide entre 2 en cada iteración, el número de pasos necesarios para llegar a 1 crece de forma logarítmica respecto a n, resultando en O(log n).",
+        "active": true
+    },
+    {
+        "id": 37,
+        "level": "Semi-Senior",
+        "category": "Collections",
+        "question": "¿Qué colección de Java mantiene sus elementos ordenados automáticamente según su orden natural o un Comparator?",
+        "code": null,
+        "options": [
+            "HashSet",
+            "ArrayList",
+            "TreeSet",
+            "LinkedList"
+        ],
+        "correct": 2,
+        "explanation": "TreeSet implementa la interfaz SortedSet y utiliza un árbol Red-Black internamente para mantener sus elementos siempre ordenados.",
+        "active": true
+    }
+]

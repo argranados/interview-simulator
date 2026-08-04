@@ -1,0 +1,610 @@
+[
+    {
+        "id": 1,
+        "level": "Junior",
+        "category": "Collections",
+        "question": "¿Qué colección usarías si necesitas permitir elementos duplicados y acceso rápido por índice?",
+        "code": null,
+        "options": [
+            "HashSet",
+            "TreeSet",
+            "ArrayList",
+            "HashMap"
+        ],
+        "correct": 2,
+        "explanation": "ArrayList permite elementos duplicados y acceso rápido por índice gracias a su implementación basada en arreglos dinámicos.",
+        "active": true
+    },
+    {
+        "id": 2,
+        "level": "Junior",
+        "category": "Sorting",
+        "question": "¿Cuál es la complejidad temporal promedio del algoritmo de ordenamiento QuickSort?",
+        "code": null,
+        "options": [
+            "O(n log n)",
+            "O(n^2)",
+            "O(n)",
+            "O(log n)"
+        ],
+        "correct": 0,
+        "explanation": "QuickSort tiene un tiempo promedio de O(n log n), aunque en el peor caso es O(n^2).",
+        "active": true
+    },
+    {
+        "id": 3,
+        "level": "Junior",
+        "category": "Searching",
+        "question": "¿Cuál es el requisito principal para aplicar búsqueda binaria sobre un arreglo?",
+        "code": null,
+        "options": [
+            "Que esté ordenado",
+            "Que no tenga duplicados",
+            "Que sea de tamaño par",
+            "Que sea de tipo entero"
+        ],
+        "correct": 0,
+        "explanation": "La búsqueda binaria requiere que el arreglo esté ordenado para poder dividir el espacio de búsqueda a la mitad en cada paso.",
+        "active": true
+    },
+    {
+        "id": 4,
+        "level": "Semi-Senior",
+        "category": "Data Structures",
+        "question": "¿Qué estructura de datos es más adecuada para implementar una cola de prioridad?",
+        "code": null,
+        "options": [
+            "Lista enlazada",
+            "Árbol binario de búsqueda",
+            "Heap (montículo)",
+            "Arreglo dinámico"
+        ],
+        "correct": 2,
+        "explanation": "Un heap (montículo) permite inserción y extracción del elemento con mayor (o menor) prioridad en O(log n), ideal para colas de prioridad.",
+        "active": true
+    },
+    {
+        "id": 5,
+        "level": "Junior",
+        "category": "Complexity",
+        "question": "¿Qué complejidad tiene el acceso a un elemento por índice en un ArrayList?",
+        "code": null,
+        "options": [
+            "O(1)",
+            "O(n)",
+            "O(log n)",
+            "O(n log n)"
+        ],
+        "correct": 0,
+        "explanation": "El acceso por índice en un ArrayList es O(1) porque se basa en un arreglo que permite acceso directo.",
+        "active": true
+    },
+    {
+        "id": 6,
+        "level": "Semi-Senior",
+        "category": "Recursion",
+        "question": "¿Cuál es el problema de la recursión simple para calcular el n-ésimo número de Fibonacci sin memoización?",
+        "code": null,
+        "options": [
+            "Desbordamiento de pila",
+            "Complejidad exponencial O(2^n)",
+            "Complejidad O(n^2)",
+            "No retorna el valor correcto"
+        ],
+        "correct": 1,
+        "explanation": "La recursión simple de Fibonacci tiene complejidad exponencial O(2^n) debido a la repetición de subproblemas.",
+        "active": true
+    },
+    {
+        "id": 7,
+        "level": "Senior",
+        "category": "Graphs",
+        "question": "¿Qué algoritmo usarías para encontrar el camino más corto en un grafo con pesos no negativos?",
+        "code": null,
+        "options": [
+            "Dijkstra",
+            "Bellman-Ford",
+            "Floyd-Warshall",
+            "BFS"
+        ],
+        "correct": 0,
+        "explanation": "Dijkstra es el algoritmo estándar para caminos mínimos con pesos no negativos. BFS solo sirve para grafos no ponderados.",
+        "active": false
+    },
+    {
+        "id": 8,
+        "level": "Junior",
+        "category": "Sorting",
+        "question": "¿Cuál de los siguientes algoritmos de ordenamiento es estable?",
+        "code": null,
+        "options": [
+            "Quicksort",
+            "Heapsort",
+            "Merge Sort",
+            "Selection Sort"
+        ],
+        "correct": 2,
+        "explanation": "Merge Sort es estable porque conserva el orden relativo de elementos con igual clave. Quicksort y Heapsort no son estables por defecto.",
+        "active": true
+    },
+    {
+        "id": 9,
+        "level": "Semi-Senior",
+        "category": "Dynamic Programming",
+        "question": "¿Qué técnica se usa para resolver el problema de la mochila fraccionaria?",
+        "code": null,
+        "options": [
+            "Programación dinámica",
+            "Algoritmo voraz (greedy)",
+            "Backtracking",
+            "Fuerza bruta"
+        ],
+        "correct": 1,
+        "explanation": "El problema de la mochila fraccionaria se resuelve con un algoritmo voraz, eligiendo los elementos con mayor relación valor/peso.",
+        "active": true
+    },
+    {
+        "id": 10,
+        "level": "Senior",
+        "category": "Trees",
+        "question": "¿Qué propiedad distingue a un árbol AVL de un árbol binario de búsqueda normal?",
+        "code": null,
+        "options": [
+            "Permite duplicados",
+            "Está balanceado por altura",
+            "Siempre es completo",
+            "No tiene rotaciones"
+        ],
+        "correct": 1,
+        "explanation": "Un árbol AVL es un BST autobalanceado que mantiene la diferencia de alturas de los subárboles ≤ 1, usando rotaciones.",
+        "active": false
+    },
+    {
+        "id": 11,
+        "level": "Junior",
+        "category": "Strings",
+        "question": "¿Cuál es la complejidad de verificar si dos cadenas son anagramas usando un arreglo de conteo de 26 caracteres?",
+        "code": null,
+        "options": [
+            "O(n)",
+            "O(n log n)",
+            "O(n^2)",
+            "O(1)"
+        ],
+        "correct": 0,
+        "explanation": "Recorrer ambas cadenas una vez y actualizar el conteo da O(n), donde n es la longitud de las cadenas.",
+        "active": true
+    },
+    {
+        "id": 12,
+        "level": "Semi-Senior",
+        "category": "Complexity",
+        "question": "¿Qué significa que un algoritmo tenga complejidad O(n!) ?",
+        "code": null,
+        "options": [
+            "Es muy eficiente",
+            "Es factorial y muy ineficiente para n grandes",
+            "Es lineal",
+            "Es cuadrático"
+        ],
+        "correct": 1,
+        "explanation": "O(n!) es una complejidad factorial, extremadamente ineficiente, típica de algoritmos de fuerza bruta como el problema del viajante.",
+        "active": true
+    },
+    {
+        "id": 13,
+        "level": "Junior",
+        "category": "Data Structures",
+        "question": "¿Qué estructura de datos usa el principio LIFO (Last In, First Out)?",
+        "code": null,
+        "options": [
+            "Cola",
+            "Pila",
+            "Lista enlazada",
+            "Deque"
+        ],
+        "correct": 1,
+        "explanation": "La pila (stack) sigue el principio LIFO, el último elemento en entrar es el primero en salir.",
+        "active": true
+    },
+    {
+        "id": 14,
+        "level": "Senior",
+        "category": "Graphs",
+        "question": "¿Cuál es el propósito del algoritmo de Floyd-Warshall?",
+        "code": null,
+        "options": [
+            "Encontrar el camino más corto entre todos los pares de nodos",
+            "Encontrar el árbol de expansión mínima",
+            "Ordenar topológicamente un grafo",
+            "Detectar ciclos en un grafo dirigido"
+        ],
+        "correct": 0,
+        "explanation": "Floyd-Warshall calcula las distancias más cortas entre todos los pares de vértices en un grafo ponderado.",
+        "active": false
+    },
+    {
+        "id": 15,
+        "level": "Junior",
+        "category": "Sorting",
+        "question": "¿Cuál es el peor caso de complejidad para el algoritmo de ordenamiento por burbuja?",
+        "code": null,
+        "options": [
+            "O(n log n)",
+            "O(n^2)",
+            "O(n)",
+            "O(log n)"
+        ],
+        "correct": 1,
+        "explanation": "El peor caso de burbuja es O(n^2) cuando el arreglo está ordenado en sentido inverso.",
+        "active": true
+    },
+    {
+        "id": 16,
+        "level": "Semi-Senior",
+        "category": "Recursion",
+        "question": "¿Qué es la recursión de cola (tail recursion)?",
+        "code": null,
+        "options": [
+            "Recursión que no usa la pila",
+            "Recursión donde la llamada recursiva es la última operación",
+            "Recursión con dos llamadas recursivas",
+            "Recursión que siempre termina"
+        ],
+        "correct": 1,
+        "explanation": "En la recursión de cola, la llamada recursiva es la última instrucción, lo que permite optimizaciones por el compilador.",
+        "active": true
+    },
+    {
+        "id": 17,
+        "level": "Senior",
+        "category": "Dynamic Programming",
+        "question": "¿Cuál de los siguientes problemas se resuelve típicamente con programación dinámica?",
+        "code": null,
+        "options": [
+            "Búsqueda binaria",
+            "Máximo subarreglo (Kadane)",
+            "Ordenamiento por mezcla",
+            "Recorrido BFS"
+        ],
+        "correct": 1,
+        "explanation": "El algoritmo de Kadane para el máximo subarreglo es un ejemplo clásico de programación dinámica con subestructura óptima.",
+        "active": false
+    },
+    {
+        "id": 18,
+        "level": "Junior",
+        "category": "Collections",
+        "question": "¿Qué implementación de Map en Java mantiene el orden de inserción?",
+        "code": null,
+        "options": [
+            "HashMap",
+            "TreeMap",
+            "LinkedHashMap",
+            "Hashtable"
+        ],
+        "correct": 2,
+        "explanation": "LinkedHashMap mantiene un orden de inserción o de acceso, mientras que HashMap no garantiza orden.",
+        "active": true
+    },
+    {
+        "id": 19,
+        "level": "Semi-Senior",
+        "category": "Trees",
+        "question": "¿Qué tipo de recorrido de árbol produce una secuencia ordenada en un árbol binario de búsqueda?",
+        "code": null,
+        "options": [
+            "Preorden",
+            "Inorden",
+            "Postorden",
+            "Nivel"
+        ],
+        "correct": 1,
+        "explanation": "El recorrido inorden (izquierda-raíz-derecha) en un BST produce los elementos en orden ascendente.",
+        "active": true
+    },
+    {
+        "id": 20,
+        "level": "Junior",
+        "category": "Searching",
+        "question": "¿Cuántas comparaciones se necesitan en el peor caso para la búsqueda binaria en un arreglo de 1,000,000 elementos?",
+        "code": null,
+        "options": [
+            "10",
+            "20",
+            "50",
+            "100"
+        ],
+        "correct": 1,
+        "explanation": "La búsqueda binaria tiene O(log n), y log₂(1,000,000) ≈ 20, por lo que se necesitan unas 20 comparaciones.",
+        "active": true
+    },
+    {
+        "id": 21,
+        "level": "Senior",
+        "category": "Graphs",
+        "question": "¿Qué algoritmo se usa para detectar ciclos en un grafo dirigido?",
+        "code": null,
+        "options": [
+            "BFS",
+            "DFS con colores",
+            "Orden topológico",
+            "Algoritmo de Kruskal"
+        ],
+        "correct": 1,
+        "explanation": "DFS con estados (blanco, gris, negro) permite detectar ciclos en grafos dirigidos; si se encuentra un nodo en gris, hay ciclo.",
+        "active": false
+    },
+    {
+        "id": 22,
+        "level": "Junior",
+        "category": "Complexity",
+        "question": "¿Cuál es la complejidad espacial de un algoritmo que utiliza un arreglo auxiliar de tamaño n?",
+        "code": null,
+        "options": [
+            "O(1)",
+            "O(n)",
+            "O(n^2)",
+            "O(log n)"
+        ],
+        "correct": 1,
+        "explanation": "Si se usa un arreglo auxiliar de tamaño n, la complejidad espacial adicional es O(n).",
+        "active": true
+    },
+    {
+        "id": 23,
+        "level": "Semi-Senior",
+        "category": "Sorting",
+        "question": "¿Qué algoritmo de ordenamiento tiene complejidad O(n + k) donde k es el rango de los valores?",
+        "code": null,
+        "options": [
+            "QuickSort",
+            "MergeSort",
+            "Counting Sort",
+            "HeapSort"
+        ],
+        "correct": 2,
+        "explanation": "Counting Sort es un algoritmo de ordenamiento lineal O(n + k) cuando el rango de valores es pequeño y conocido.",
+        "active": true
+    },
+    {
+        "id": 24,
+        "level": "Senior",
+        "category": "Strings",
+        "question": "¿Qué técnica se usa para encontrar patrones en texto con complejidad O(n+m) usando preprocesamiento?",
+        "code": null,
+        "options": [
+            "KMP (Knuth-Morris-Pratt)",
+            "Boyer-Moore",
+            "Fuerza bruta",
+            "Rabin-Karp"
+        ],
+        "correct": 0,
+        "explanation": "KMP tiene complejidad O(n+m) y usa una tabla de prefijos para evitar retrocesos innecesarios.",
+        "active": false
+    },
+    {
+        "id": 25,
+        "level": "Junior",
+        "category": "Data Structures",
+        "question": "¿Qué estructura de datos permite inserciones y eliminaciones en ambos extremos?",
+        "code": null,
+        "options": [
+            "Pila",
+            "Cola",
+            "Deque (cola doble)",
+            "Lista enlazada simple"
+        ],
+        "correct": 2,
+        "explanation": "Un deque (double-ended queue) permite añadir y eliminar elementos tanto al principio como al final.",
+        "active": true
+    },
+    {
+        "id": 26,
+        "level": "Semi-Senior",
+        "category": "Dynamic Programming",
+        "question": "En el problema de la subsecuencia común más larga (LCS), ¿cuál es la complejidad temporal de la solución con programación dinámica?",
+        "code": null,
+        "options": [
+            "O(n+m)",
+            "O(n*m)",
+            "O(n^2)",
+            "O(2^n)"
+        ],
+        "correct": 1,
+        "explanation": "La solución DP para LCS es O(n*m), donde n y m son las longitudes de las cadenas.",
+        "active": true
+    },
+    {
+        "id": 27,
+        "level": "Senior",
+        "category": "Complexity",
+        "question": "¿Qué es la notación Theta (Θ) en el análisis de algoritmos?",
+        "code": null,
+        "options": [
+            "Cota superior asintótica",
+            "Cota inferior asintótica",
+            "Cota ajustada asintótica",
+            "Complejidad promedio"
+        ],
+        "correct": 2,
+        "explanation": "Θ provee una cota ajustada, es decir, tanto superior como inferior asintóticamente, para el crecimiento del algoritmo.",
+        "active": false
+    },
+    {
+        "id": 28,
+        "level": "Junior",
+        "category": "Searching",
+        "question": "¿Qué algoritmo de búsqueda es más eficiente para datos desordenados?",
+        "code": null,
+        "options": [
+            "Búsqueda binaria",
+            "Búsqueda lineal",
+            "Búsqueda por interpolación",
+            "Búsqueda exponencial"
+        ],
+        "correct": 1,
+        "explanation": "En datos desordenados solo se puede usar búsqueda lineal, ya que los demás requieren ordenamiento.",
+        "active": true
+    },
+    {
+        "id": 29,
+        "level": "Semi-Senior",
+        "category": "Trees",
+        "question": "¿Cuál es la altura máxima de un árbol AVL con n nodos?",
+        "code": null,
+        "options": [
+            "log₂ n",
+            "1.44 log₂ n",
+            "n",
+            "n/2"
+        ],
+        "correct": 1,
+        "explanation": "La altura máxima de un AVL es aproximadamente 1.44 log₂ n, debido al balanceo estricto.",
+        "active": true
+    },
+    {
+        "id": 30,
+        "level": "Senior",
+        "category": "Graphs",
+        "question": "¿Qué algoritmo de árbol de expansión mínima funciona mejor en grafos densos?",
+        "code": null,
+        "options": [
+            "Kruskal",
+            "Prim",
+            "Borůvka",
+            "Dijkstra"
+        ],
+        "correct": 1,
+        "explanation": "Prim con implementación de matriz de adyacencia o heap puede ser más eficiente en grafos densos (O(V^2) o O(E log V)).",
+        "active": false
+    },
+    {
+        "id": 31,
+        "level": "Junior",
+        "category": "Data Structures",
+        "question": "¿Qué estructura de datos utiliza el principio FIFO (First In, First Out)?",
+        "code": null,
+        "options": [
+            "Cola",
+            "Pila",
+            "Lista",
+            "Árbol"
+        ],
+        "correct": 0,
+        "explanation": "La cola (Queue) sigue el principio FIFO: el primer elemento en entrar es el primero en salir.",
+        "active": true
+    },
+    {
+        "id": 32,
+        "level": "Semi-Senior",
+        "category": "Searching",
+        "question": "¿Cuál de las siguientes afirmaciones sobre la búsqueda binaria es correcta?",
+        "code": null,
+        "options": [
+            "Siempre tiene complejidad O(log n)",
+            "Solo funciona si el arreglo está ordenado",
+            "Solo funciona si el arreglo tiene tamaño par",
+            "Solo funciona si el arreglo no tiene duplicados"
+        ],
+        "correct": 1,
+        "explanation": "La búsqueda binaria requiere que el arreglo esté ordenado. Si no lo está, no se puede aplicar correctamente.",
+        "active": true
+    },
+    {
+        "id": 33,
+        "level": "Junior",
+        "category": "Complexity",
+        "question": "¿Cuál es la complejidad temporal de un algoritmo con dos bucles anidados que recorren n elementos cada uno?",
+        "code": null,
+        "options": [
+            "O(1)",
+            "O(n)",
+            "O(log n)",
+            "O(n^2)"
+        ],
+        "correct": 3,
+        "explanation": "Dos bucles anidados que iteran n veces cada uno dan una complejidad O(n * n) = O(n^2).",
+        "active": true
+    },
+    {
+        "id": 34,
+        "level": "Semi-Senior",
+        "category": "Sorting",
+        "question": "¿Cuál es una ventaja clave de Merge Sort sobre QuickSort en ciertos escenarios?",
+        "code": null,
+        "options": [
+            "Es más rápido en el peor caso siempre",
+            "Tiene menor complejidad espacial",
+            "No utiliza recursión",
+            "Es un algoritmo estable"
+        ],
+        "correct": 3,
+        "explanation": "Merge Sort es estable (conserva el orden de elementos iguales), mientras que QuickSort no lo es por defecto.",
+        "active": true
+    },
+    {
+        "id": 35,
+        "level": "Junior",
+        "category": "Collections",
+        "question": "En Java, ¿qué interfaz de colección representa una secuencia ordenada que permite elementos duplicados y acceso por índice?",
+        "code": null,
+        "options": [
+            "Set",
+            "Queue",
+            "List",
+            "Map"
+        ],
+        "correct": 2,
+        "explanation": "La interfaz List (implementada por ArrayList, LinkedList, etc.) permite duplicados, orden y acceso por índice.",
+        "active": true
+    },
+    {
+        "id": 36,
+        "level": "Semi-Senior",
+        "category": "Dynamic Programming",
+        "question": "¿Cuál de los siguientes problemas se resuelve típicamente con programación dinámica utilizando subestructura óptima?",
+        "code": null,
+        "options": [
+            "Búsqueda lineal en un arreglo",
+            "Recorrido DFS en un grafo",
+            "Problema del cambio de monedas (coin change)",
+            "Ordenamiento por burbuja"
+        ],
+        "correct": 2,
+        "explanation": "El problema del cambio de monedas tiene subestructura óptima y se resuelve eficientemente con programación dinámica.",
+        "active": true
+    },
+    {
+        "id": 37,
+        "level": "Junior",
+        "category": "Recursion",
+        "question": "¿Qué ocurre si una función recursiva no tiene un caso base que detenga la recursión?",
+        "code": null,
+        "options": [
+            "Retorna 0 automáticamente",
+            "Se produce un desbordamiento de pila (StackOverflowError)",
+            "Retorna null",
+            "El compilador muestra un error"
+        ],
+        "correct": 1,
+        "explanation": "Sin caso base, la recursión continúa indefinidamente hasta agotar la memoria de la pila, lanzando StackOverflowError.",
+        "active": true
+    },
+    {
+        "id": 38,
+        "level": "Semi-Senior",
+        "category": "Trees",
+        "question": "¿Cuántos hijos puede tener como máximo un nodo en un árbol binario?",
+        "code": null,
+        "options": [
+            "0",
+            "1",
+            "3",
+            "2"
+        ],
+        "correct": 3,
+        "explanation": "Un árbol binario se define porque cada nodo tiene como máximo dos hijos (izquierdo y derecho).",
+        "active": true
+    }
+]

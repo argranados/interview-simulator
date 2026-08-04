@@ -13,7 +13,8 @@ export default function TopicPage({ onSelect, onRepaso }) {
         { id: 'spring_data', title: 'Spring Data', emoji: '💾', description: 'JPA, Repositories, Transacciones', available: true },
         { id: 'event_driven', title: 'Event-Driven', emoji: '📡', description: 'Kafka, RabbitMQ, Mensajería', available: true },
         { id: 'arquitectura_hexagonal', title: 'Arquitectura Hexagonal', emoji: '⬡', description: 'Puertos, adaptadores, dominio', available: true },
-        { id: 'oop', title: 'OOP', emoji: '🧬', description: 'Encapsulamiento, herencia, polimorfismo, abstracción', available: true },
+        // { id: 'oop', title: 'OOP', emoji: '🧬', description: 'Encapsulamiento, herencia, polimorfismo, abstracción', available: true },
+        { id: 'algoritmos', title: 'Algoritmos', emoji: '🧮', description: 'Complejidad, estructuras de datos, técnicas de resolución', available: true },
         { id: 'kafka', title: 'Kafka', emoji: '📨', description: 'Topics, Partitions, Producers/Consumers', available: true },
     ]
 
